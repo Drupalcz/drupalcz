@@ -26,7 +26,7 @@
   //]]>
 </script>
 
-<script type="text/javascript" src="/sites/all/themes/drupal/show_afs_search.js"></script>
+<script type="text/javascript" src="/sites/all/modules/google_cse/show_afs_search.js"></script>
 
 <?php if ($suffix): ?>
   <div class="google-cse-results-suffix"><?php print $suffix; ?></div>
