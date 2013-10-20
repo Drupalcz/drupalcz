@@ -26,8 +26,10 @@
   //]]>
 </script>
 
-<script type="text/javascript" src="/sites/all/modules/google_cse/show_afs_search.js"></script>
-
+<script type="text/javascript">
+  var googleSearchProtocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+  document.write("<scr"+"ipt type='text/javascript' src='"+googleSearchProtocol+"www.google.com/afsonline/show_afs_search.js'></scr"+"ipt>");
+</script>
 <?php if ($suffix): ?>
   <div class="google-cse-results-suffix"><?php print $suffix; ?></div>
 <?php endif; ?>
