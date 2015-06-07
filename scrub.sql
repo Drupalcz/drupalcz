@@ -7,6 +7,7 @@ UPDATE users SET name=CONCAT('user', uid), pass='heslo', init=CONCAT('user', uid
 UPDATE users SET mail=CONCAT('user', uid, '@example.com') WHERE uid != 0;
 UPDATE comments SET name='Anonymous', mail='', homepage='http://example.com', hostname='1.1.1.1' WHERE uid=0;
 UPDATE profile_values SET value = '1';
+UPDATE variable SET value = 's:64:"aff4833333333m7a2363233333333332aff4833333333m7a2363233333333332";' WHERE name = 'drupal_private_key';
 DELETE FROM watchdog;
 DELETE FROM sessions;
 DELETE FROM signup;
