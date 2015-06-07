@@ -12,6 +12,14 @@ DELETE FROM watchdog;
 DELETE FROM sessions;
 DELETE FROM signup;
 DELETE FROM signup_log;
+TRUNCATE TABLE cache;
+TRUNCATE TABLE cache_block;
+TRUNCATE TABLE cache_filter;
+TRUNCATE TABLE cache_path;
+TRUNCATE TABLE cache_form;
+TRUNCATE TABLE cache_page;
+TRUNCATE TABLE cache_menu;
+TRUNCATE TABLE cache_update;
 
 # Location
 UPDATE location SET city = 'Schneekoppe', latitude = '50.735942477452205', longitude = '15.739728212356567';
