@@ -21,13 +21,22 @@ TRUNCATE TABLE cache_page;
 TRUNCATE TABLE cache_menu;
 TRUNCATE TABLE cache_update;
 
+# CCK (Content)
+TRUNCATE TABLE cache_content;
+
 # Location
 UPDATE location SET city = 'Schneekoppe', latitude = '50.735942477452205', longitude = '15.739728212356567';
+TRUNCATE TABLE cache_location;
 
 # Mollom
 UPDATE variable SET value = 's:32:"aff4833333333m7a2363233333333333";' WHERE name = 'mollom_public_key';
 UPDATE variable SET value = 's:32:"aff4833333333m7a2363233333333332";' WHERE name = 'mollom_private_key';
+TRUNCATE TABLE cache_mollom;
 
 # Path
 DELETE FROM url_alias WHERE src LIKE 'user/%';
 
+# Views
+TRUNCATE TABLE cache_views;
+TRUNCATE TABLE cache_views_data;
+TRUNCATE TABLE views_object_cache;
