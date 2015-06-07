@@ -20,3 +20,6 @@ UPDATE location SET city = 'Schneekoppe', latitude = '50.735942477452205', longi
 UPDATE variable SET value = 's:32:"aff4833333333m7a2363233333333333";' WHERE name = 'mollom_public_key';
 UPDATE variable SET value = 's:32:"aff4833333333m7a2363233333333332";' WHERE name = 'mollom_private_key';
 
+# Path
+DELETE FROM url_alias WHERE src LIKE 'user/%';
+
