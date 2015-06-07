@@ -21,6 +21,9 @@ TRUNCATE TABLE cache_page;
 TRUNCATE TABLE cache_menu;
 TRUNCATE TABLE cache_update;
 
+# CAPTCHA
+TRUNCATE TABLE captcha_sessions;
+
 # CCK (Content)
 TRUNCATE TABLE cache_content;
 
