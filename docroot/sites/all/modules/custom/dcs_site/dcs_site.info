@@ -1,0 +1,4 @@
+name = Site
+description = Defines general site configuration. Enables other modules.
+core = 7.x
+package = DCS
