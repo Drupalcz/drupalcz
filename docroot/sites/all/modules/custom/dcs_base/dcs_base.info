@@ -1,0 +1,17 @@
+name = Base
+description = Common shared components.
+core = 7.x
+package = DCS
+dependencies[] = features
+dependencies[] = file
+dependencies[] = taxonomy
+dependencies[] = text
+features[features_api][] = api:2
+features[field_base][] = body
+features[field_base][] = field_attachment
+features[field_base][] = field_tax_drupal_version
+features[field_base][] = field_tax_tags
+features[field_base][] = taxonomy_forums
+features[taxonomy][] = forums
+features[taxonomy][] = tags
+features[taxonomy][] = tax_drupal_version
