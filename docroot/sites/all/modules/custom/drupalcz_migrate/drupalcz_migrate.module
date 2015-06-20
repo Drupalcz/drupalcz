@@ -1,0 +1,19 @@
+<?php
+
+define('D6_DB', 'drupalcz');
+
+require_once 'comments/comments.inc';
+require_once 'comments/comments-articles.inc';
+require_once 'comments/comments-blogs.inc';
+require_once 'comments/comments-forums.inc';
+
+require_once 'terms/terms.inc';
+require_once 'terms/terms-categories.inc';
+require_once 'terms/terms-forums.inc';
+
+require_once 'nodes/nodes.inc';
+require_once 'nodes/nodes-articles.inc';
+require_once 'nodes/nodes-forums.inc';
+require_once 'nodes/nodes-blogs.inc';
+
+require_once 'users/users.inc';

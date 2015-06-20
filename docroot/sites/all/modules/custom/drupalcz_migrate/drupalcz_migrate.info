@@ -1,0 +1,11 @@
+project = drupalcz_migrate
+name = DrupalCZ Migrate
+description = Migrate users and content from old drupal.cz site.
+package = DrupalCZ
+core = 7.x
+
+dependencies[] = migrate
+dependencies[] = migrate_extras
+
+#  include the files that contain your Migrate classes
+files[] = users.inc
