@@ -28,6 +28,9 @@ UPDATE ad_clicks SET uid = '0', status = '4', hostname = '127.0.0.1', user_agent
 UPDATE ad_owners SET uid = '1';
 UPDATE ad_statistics SET date = '280281600', count = '1';
 
+# BOOST
+TRUNCATE TABLE boost_cache;
+
 # CAPTCHA
 TRUNCATE TABLE captcha_sessions;
 
