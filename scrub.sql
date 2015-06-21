@@ -3,6 +3,7 @@
 
 
 # Drupal core
+UPDATE authmap SET authname = CONCAT('http://aid', aid, '.uid', uid, '.drupal.cz'), module = 'drupal' WHERE aid != '1';
 UPDATE users SET name=CONCAT('user', uid), pass='heslo', init=CONCAT('user', uid, '@example.com') WHERE uid != 0;
 UPDATE users SET mail=CONCAT('user', uid, '@example.com') WHERE uid != 0;
 UPDATE comments SET name='Anonymous', mail='', homepage='http://example.com', hostname='1.1.1.1' WHERE uid=0;
