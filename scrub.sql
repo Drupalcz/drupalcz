@@ -21,6 +21,12 @@ TRUNCATE TABLE cache_page;
 TRUNCATE TABLE cache_menu;
 TRUNCATE TABLE cache_update;
 
+# AD
+UPDATE ads SET autoactivate = '0', autoactivated = '0', autoexpire = '0', autoexpired = '0', activated = '0', maxviews = '0', maxclicks = '0', expired = '0';
+UPDATE ad_clicks SET uid = '0', status = '4', hostname = '127.0.0.1', user_agent = 'Drupal (+http://drupal.org/)', adgroup = '', hostid = '', url = '', timestamp = '280281600';
+UPDATE ad_owners SET uid = '1';
+UPDATE ad_statistics SET date = '280281600', count = '1';
+
 # CAPTCHA
 TRUNCATE TABLE captcha_sessions;
 
