@@ -38,6 +38,10 @@ TRUNCATE TABLE captcha_sessions;
 # CCK (Content)
 TRUNCATE TABLE cache_content;
 
+# DEVEL
+TRUNCATE TABLE devel_queries;
+TRUNCATE TABLE devel_times;
+
 # Location
 UPDATE location SET city = 'Schneekoppe', latitude = '50.735942477452205', longitude = '15.739728212356567';
 TRUNCATE TABLE cache_location;
