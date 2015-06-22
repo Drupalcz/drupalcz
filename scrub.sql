@@ -66,3 +66,6 @@ UPDATE poll_votes SET uid = '0', hostname = CONCAT('127.0.', CAST(RAND() * 1000 
 TRUNCATE TABLE cache_views;
 TRUNCATE TABLE cache_views_data;
 TRUNCATE TABLE views_object_cache;
+
+# Acquia
+TRUNCATE TABLE __ACQUIA_MONITORING;
