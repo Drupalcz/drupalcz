@@ -51,6 +51,9 @@ UPDATE variable SET value = 's:32:"aff4833333333m7a2363233333333332";' WHERE nam
 TRUNCATE TABLE cache_mollom;
 TRUNCATE TABLE mollom;
 
+# Node Authorship
+UPDATE node_authorship SET authorship = 'Drupal user';
+
 # Path
 DELETE FROM url_alias WHERE src LIKE 'user/%';
 
