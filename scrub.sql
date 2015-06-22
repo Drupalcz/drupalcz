@@ -58,6 +58,10 @@ UPDATE node_authorship SET authorship = 'Drupal user';
 # Path
 DELETE FROM url_alias WHERE src LIKE 'user/%';
 
+# Poll
+# Note: Generates invalid IP addresses.
+UPDATE poll_votes SET uid = '0', hostname = CONCAT('127.0.', CAST(RAND() * 1000 AS INT), '.', CAST(RAND() * 1000 AS INT));
+
 # Views
 TRUNCATE TABLE cache_views;
 TRUNCATE TABLE cache_views_data;
