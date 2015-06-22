@@ -1,7 +1,6 @@
 # Will Scrub a Drupal.cz database.
 # Jakub Suchy, 22.10.2010
 
-
 # Drupal core
 UPDATE authmap SET authname = CONCAT('http://aid', aid, '.uid', uid, '.drupal.cz'), module = 'drupal' WHERE aid != '1';
 UPDATE users SET name=CONCAT('user', uid), pass='heslo', init=CONCAT('user', uid, '@example.com') WHERE uid != 0;
@@ -23,22 +22,22 @@ TRUNCATE TABLE cache_page;
 TRUNCATE TABLE cache_menu;
 TRUNCATE TABLE cache_update;
 
-# AD
+# Ad
 UPDATE ads SET autoactivate = '0', autoactivated = '0', autoexpire = '0', autoexpired = '0', activated = '0', maxviews = '0', maxclicks = '0', expired = '0';
 UPDATE ad_clicks SET uid = '0', status = '4', hostname = '127.0.0.1', user_agent = 'Drupal (+http://drupal.org/)', adgroup = '', hostid = '', url = '', timestamp = '280281600';
 UPDATE ad_owners SET uid = '1';
 UPDATE ad_statistics SET date = '280281600', count = '1';
 
-# BOOST
+# Boost
 TRUNCATE TABLE boost_cache;
 
-# CAPTCHA
+# Captcha
 TRUNCATE TABLE captcha_sessions;
 
 # CCK (Content)
 TRUNCATE TABLE cache_content;
 
-# DEVEL
+# Devel
 TRUNCATE TABLE devel_queries;
 TRUNCATE TABLE devel_times;
 
