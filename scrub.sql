@@ -8,7 +8,6 @@ UPDATE users SET mail=CONCAT('user', uid, '@example.com') WHERE uid != 0;
 UPDATE comments SET name='Anonymous', mail='', homepage='http://example.com', hostname='1.1.1.1' WHERE uid=0;
 UPDATE contact SET recipients = 'drupalcz@localhost';
 UPDATE history SET timestamp = '280281600';
-UPDATE variable SET value = 's:64:"aff4833333333m7a2363233333333332aff4833333333m7a2363233333333332";' WHERE name = 'drupal_private_key';
 DELETE FROM watchdog;
 DELETE FROM sessions;
 DELETE FROM signup;
@@ -34,6 +33,25 @@ UPDATE profile_values SET value = 'Jsem profesionál, umím dělat i moduly' WHE
 UPDATE profile_values SET value = 'Hlavní město Praha' WHERE fid = '10';
 UPDATE profile_values SET value = 'drupalcz@localhost' WHERE fid = '11';
 
+# Varibles
+DELETE FROM variable
+WHERE (name = 'acquia_agent_cloud_migration' OR
+name = 'acquia_agent_verify_peer' OR
+name = 'acquia_identifier' OR
+name = 'acquia_key' OR
+name = 'acquia_migrate_files' OR
+name = 'acquia_spi_boot_last' OR
+name = 'acquia_spi_cron_last' OR
+name = 'acquia_spi_module_rebuild' OR
+name = 'acquia_subscription_data' OR
+name = 'acquia_subscription_name');
+UPDATE variable SET value = 's:32:"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";' WHERE name = 'boost_crawler_key';
+UPDATE variable SET value = 's:64:"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";' WHERE name = 'drupal_private_key';
+UPDATE variable SET value = 's:33:"aaaaaaaaaaaaaaaaaaaaa:aaaaaaaaaaa";' WHERE name = 'google_cse_cx';
+UPDATE variable SET value = 's:86:"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";' WHERE name = 'googlemap_api_key';
+UPDATE variable SET value = '' WHERE name = 'shield_user';
+UPDATE variable SET value = '' WHERE name = 'shield_pass';
+
 # Ad
 UPDATE ads SET autoactivate = '0', autoactivated = '0', autoexpire = '0', autoexpired = '0', activated = '0', maxviews = '0', maxclicks = '0', expired = '0';
 UPDATE ad_clicks SET uid = '0', status = '4', hostname = '127.0.0.1', user_agent = 'Drupal (+http://drupal.org/)', adgroup = '', hostid = '', url = '', timestamp = '280281600';
@@ -58,8 +76,8 @@ UPDATE location SET city = 'Schneekoppe', latitude = '50.735942477452205', longi
 TRUNCATE TABLE cache_location;
 
 # Mollom
-UPDATE variable SET value = 's:32:"aff4833333333m7a2363233333333333";' WHERE name = 'mollom_public_key';
-UPDATE variable SET value = 's:32:"aff4833333333m7a2363233333333332";' WHERE name = 'mollom_private_key';
+UPDATE variable SET value = 's:32:"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";' WHERE name = 'mollom_public_key';
+UPDATE variable SET value = 's:32:"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";' WHERE name = 'mollom_private_key';
 TRUNCATE TABLE cache_mollom;
 TRUNCATE TABLE mollom;
 
