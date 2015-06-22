@@ -21,6 +21,7 @@ TRUNCATE TABLE cache_form;
 TRUNCATE TABLE cache_page;
 TRUNCATE TABLE cache_menu;
 TRUNCATE TABLE cache_update;
+TRUNCATE TABLE openid_association;
 
 # Ad
 UPDATE ads SET autoactivate = '0', autoactivated = '0', autoexpire = '0', autoexpired = '0', activated = '0', maxviews = '0', maxclicks = '0', expired = '0';
