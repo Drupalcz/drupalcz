@@ -62,6 +62,9 @@ DELETE FROM url_alias WHERE src LIKE 'user/%';
 # Note: Generates invalid IP addresses.
 UPDATE poll_votes SET uid = '0', hostname = CONCAT('127.0.', CAST(RAND() * 1000 AS INT), '.', CAST(RAND() * 1000 AS INT));
 
+# Voting API
+UPDATE votingapi_vote SET uid = '1', timestamp = '280281600', hostname = '127.0.0.1';
+
 # Views
 TRUNCATE TABLE cache_views;
 TRUNCATE TABLE cache_views_data;
