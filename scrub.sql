@@ -8,7 +8,6 @@ UPDATE users SET mail=CONCAT('user', uid, '@example.com') WHERE uid != 0;
 UPDATE comments SET name='Anonymous', mail='', homepage='http://example.com', hostname='1.1.1.1' WHERE uid=0;
 UPDATE contact SET recipients = 'drupalcz@localhost';
 UPDATE history SET timestamp = '280281600';
-UPDATE profile_values SET value = '1';
 UPDATE variable SET value = 's:64:"aff4833333333m7a2363233333333332aff4833333333m7a2363233333333332";' WHERE name = 'drupal_private_key';
 DELETE FROM watchdog;
 DELETE FROM sessions;
@@ -23,6 +22,17 @@ TRUNCATE TABLE cache_page;
 TRUNCATE TABLE cache_menu;
 TRUNCATE TABLE cache_update;
 TRUNCATE TABLE openid_association;
+
+# User data
+UPDATE profile_values SET value = 'Real Name' WHERE fid = '1';
+UPDATE profile_values SET value = 'http://drupal.cz' WHERE fid = '4';
+UPDATE profile_values SET value = '25-30' WHERE fid = '5';
+UPDATE profile_values SET value = 'contributor' WHERE fid = '6';
+UPDATE profile_values SET value = 'Google' WHERE fid = '7';
+UPDATE profile_values SET value = 'Středně pokročilý' WHERE fid = '8';
+UPDATE profile_values SET value = 'Jsem profesionál, umím dělat i moduly' WHERE fid = '9';
+UPDATE profile_values SET value = 'Hlavní město Praha' WHERE fid = '10';
+UPDATE profile_values SET value = 'drupalcz@localhost' WHERE fid = '11';
 
 # Ad
 UPDATE ads SET autoactivate = '0', autoactivated = '0', autoexpire = '0', autoexpired = '0', activated = '0', maxviews = '0', maxclicks = '0', expired = '0';
