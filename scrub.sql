@@ -33,6 +33,14 @@ UPDATE profile_values SET value = 'Jsem profesionál, umím dělat i moduly' WHE
 UPDATE profile_values SET value = 'Hlavní město Praha' WHERE fid = '10';
 UPDATE profile_values SET value = 'drupalcz@localhost' WHERE fid = '11';
 
+# Comments
+UPDATE comments SET name=CONCAT('user', uid);
+UPDATE comments SET mail=CONCAT('user', uid, '@example.com');
+UPDATE comments SET homepage=CONCAT('http://user', uid, '.example.com');
+# Note: Generates invalid IP addresses.
+UPDATE comments SET hostname = CONCAT('127.0.', CAST(RAND() * 1000 AS INT), '.', CAST(RAND() * 1000 AS INT));
+UPDATE comments SET timestamp=(timestamp + FLOOR(0 + (RAND() * 100000)));
+
 # Varibles
 DELETE FROM variable
 WHERE (name = 'acquia_agent_cloud_migration' OR
