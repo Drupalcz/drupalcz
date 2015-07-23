@@ -16,7 +16,7 @@ $databases = array(
 );
 
 // Stage file proxy
-$conf['stage_file_proxy_origin'] = "http://USERNAME:" . urlencode('PASSWORD') . "@dev-SITENAME.gotpantheon.com";
+$conf['stage_file_proxy_origin'] = "http://USERNAME:" . urlencode('PASSWORD') . "@TYPESOMETHING";
 $conf['stage_file_proxy_use_imagecache_root'] = 1;
 
 // Acquia
