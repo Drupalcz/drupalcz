@@ -1,19 +1,19 @@
 language: php
 
 php:
-  - 5.4
-  - 5.5
+  #- 5.4
+  #- 5.5
   - 5.6
-  - 7.0
-  - hhvm
+  #- 7.0
+  #- hhvm
 
 matrix:
   fast_finish: true
-  allow_failures:
-    - php: 5.4
-    - php: 5.5
-    - php: 7.0
-    - php: hhvm
+  #allow_failures:
+    #- php: 5.4
+    #- php: 5.5
+    #- php: 7.0
+    #- php: hhvm
 
 mysql:
   database: drupal
@@ -27,8 +27,6 @@ before_install:
   - /home/travis/.phpenv/versions/5.6/bin/composer self-update
 
 install:
-  - ls -al
-
   # Add the Google Chrome packages.
   - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
   - sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
@@ -44,10 +42,10 @@ install:
   # Build Behat dependencies
   - cd ./tests/behat
   - composer install --prefer-source --no-interaction
-  - cd ../../../
+  - cd ../../
   
   # Build the current branch.
-  - cd docroot
+  - cd ./docroot
   - mkdir sites/default/files
   - mkdir sites/default/private/files
   - mkdir sites/default/private/temp
@@ -89,22 +87,23 @@ install:
 
 before_script:
   # Configure the private and temporary file systems.
+  - cd ./docroot/sites
+  - drush vset -y file_public_path "sites/default/files"
   - drush vset -y file_private_path "sites/default/private/files"
   - drush vset -y file_temporary_path "sites/default/private/temp"
+  - cd ../../
   
+  - cd ./docroot
   - drush runserver --server=builtin 8888 > /dev/null 2>&1 &
   - SERVER_PID=$!
   - sleep 3
+  - cd ../
 
   # Make the Travis tests repos agnostic by injecting drupal_root with BEHAT_PARAMS
   - BUILD_OWNER=`dirname $TRAVIS_BUILD_DIR`
   - export BEHAT_PARAMS="extensions[Drupal\\DrupalExtension\\Extension][drupal][drupal_root]=$BUILD_OWNER/drupal"
   
 script:
-
-  # If this isn't an upgrade, we test if any features are overridden.
-  - if [[ "$UPGRADE" == none ]]; then bash ../../scripts/check-overridden.sh; fi
-
   # First, run all the tests in Firefox.
   - ./bin/behat --config behat.travis.yml
  
@@ -112,7 +111,6 @@ script:
   - ./bin/behat --config behat.travis.yml -p chrome
 
 after_script:
-
   # Stop the webserver so that it's not still running when MySQL is stopped.
   - kill $SERVER_PID
 
@@ -122,3 +120,4 @@ notifications:
       - drupalcz-travis@klaska.net
     on_success: always
     on_failure: always
+
