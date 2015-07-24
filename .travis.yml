@@ -22,8 +22,13 @@ mysql:
 
 before_install:
   - sudo apt-get update > /dev/null
+  
+  # Update composer
+  - /home/travis/.phpenv/versions/5.6/bin/composer self-update
 
 install:
+  - ls -al
+
   # Add the Google Chrome packages.
   - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
   - sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
