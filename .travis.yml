@@ -1,0 +1,115 @@
+language: php
+
+php:
+  - 5.4
+  - 5.5
+  - 5.6
+  - hhvm
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: hhvm
+
+mysql:
+  database: drupal
+  username: root
+  encoding: utf8
+
+before_install:
+  - sudo apt-get update > /dev/null
+
+install:
+  # Add the Google Chrome packages.
+  - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+  - sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+  - sudo apt-get update > /dev/null
+
+  # Create a database for our Drupal site.
+  - "mysql -e 'create database drupal;'"
+  
+  # Install the latest Drush 7.
+  - composer global require --no-interaction drush/drush:7.*
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+  # Build Behat dependencies
+  - cd ./tests/behat
+  - composer install --prefer-source --no-interaction
+  - cd ../../../
+  
+  # Build the current branch.
+  - cd docroot
+  - mkdir sites/default/files
+  - mkdir sites/default/private/files
+  - mkdir sites/default/private/temp
+  - sudo chmod -R 777 sites/default/files
+  - sudo chmod -R 777 sites/default/private
+  - cd ../
+  
+  # Setup display for Selenium
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 5
+
+  # Get Chrome and ChromeDriver
+  - sudo apt-get install google-chrome-stable
+  - wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
+  - unzip -a chromedriver_linux64.zip
+
+  # Insane hack from jsdevel:
+  #   https://github.com/jsdevel/travis-debugging/blob/master/shim.bash
+  # This allows chrome-sandbox to work in side of OpenVZ, because I can't
+  # figure out how to start chrome with --no-sandbox.
+  - export CHROME_SANDBOX=/opt/google/chrome/chrome-sandbox
+  - sudo rm -f $CHROME_SANDBOX
+  - sudo wget https://googledrive.com/host/0B5VlNZ_Rvdw6NTJoZDBSVy1ZdkE -O $CHROME_SANDBOX
+  - sudo chown root:root $CHROME_SANDBOX; sudo chmod 4755 $CHROME_SANDBOX
+  - sudo md5sum $CHROME_SANDBOX
+
+  # Get Selenium
+  - wget http://selenium-release.storage.googleapis.com/2.42/selenium-server-standalone-2.42.1.jar
+  - java -jar selenium-server-standalone-2.42.1.jar > /dev/null 2>&1 &
+  - sleep 5
+ 
+  # Disable sendmail
+  - echo sendmail_path=`which true` >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+
+  # Enable APC
+  - echo "extension=apc.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - echo "apc.shm_size=256M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+
+before_script:
+  # Configure the private and temporary file systems.
+  - drush vset -y file_private_path "sites/default/private/files"
+  - drush vset -y file_temporary_path "sites/default/private/temp"
+  
+  - drush runserver --server=builtin 8888 > /dev/null 2>&1 &
+  - SERVER_PID=$!
+  - sleep 3
+
+  # Make the Travis tests repos agnostic by injecting drupal_root with BEHAT_PARAMS
+  - BUILD_OWNER=`dirname $TRAVIS_BUILD_DIR`
+  - export BEHAT_PARAMS="extensions[Drupal\\DrupalExtension\\Extension][drupal][drupal_root]=$BUILD_OWNER/drupal"
+  
+script:
+
+  # If this isn't an upgrade, we test if any features are overridden.
+  - if [[ "$UPGRADE" == none ]]; then bash ../../scripts/check-overridden.sh; fi
+
+  # First, run all the tests in Firefox.
+  - ./bin/behat --config behat.travis.yml
+ 
+  # Then run some Chrome-only tests.
+  - ./bin/behat --config behat.travis.yml -p chrome
+
+after_script:
+
+  # Stop the webserver so that it's not still running when MySQL is stopped.
+  - kill $SERVER_PID
+
+notifications:
+  email:
+    recipients:
+      - drupalcz-travis@klaska.net
+    on_success: always
+    on_failure: always
