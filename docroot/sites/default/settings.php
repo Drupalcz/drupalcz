@@ -71,9 +71,11 @@ if (!empty($path) && file_exists($path)) {
 }
 
 /**
- * Local settings
+ * Local settings.
  * Always loaded last. This included file is not in the repo so you need to
- * create it yourself.
+ * create it yourself by making copy of
+ * docroot/sites/all/config/default.settings.local.php and adding your config
+ * there. .gitignore will make sure it will not be commited.
  */
 $settings_file = DRUPAL_ROOT . "/sites/all/config/settings.local.php";
 if (file_exists($settings_file)) {
