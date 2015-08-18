@@ -2,14 +2,18 @@
 docroot/sites/all/config/default.settings.local.php
 
 # Ignore paths that contain user-generated content.
+docroot/files
 docroot/sites/*/files
+docroot/sites/*/private
 
 # SaaS
 .sass-cache
 
-# Logs and databases
+# Logs, databases and archives
 *.log
 *.sql
+*gz
+*bz2
 
 # Tools
 adminer.php
