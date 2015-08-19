@@ -1,5 +1,43 @@
-# ignore the Drupal standard files directories and their contents
-docroot/files/
-docroot/sites/*/files/
+# Ignore local configuration.
+docroot/sites/all/config/default.settings.local.php
+
+# Ignore paths that contain user-generated content.
+docroot/files
+docroot/sites/*/files
+docroot/sites/*/private
+
+# SaaS
 .sass-cache
+
+# Logs, databases and archives
+*.log
+*.sql
+*gz
+*bz2
+
+# Tools
+adminer.php
+
+# OS generated files
+.DS_Store*
+__MACOSX
+ehthumbs.db
+Icon
+Thumbs.db
+._*
+
+# Development enviroments:
+# PHPStorm
 .idea
+# NetBeans
+/nbproject
+# Vim generated files
+*.un~
+*.swp
+
+# Allow developers to use extra projects locally.
+docroot/sites/all/modules/_dev_loc
+docroot/sites/all/themes/_dev_loc
+
+# Configure your global git ignore to take care of your specifics.
+# https://help.github.com/articles/ignoring-files/#create-a-global-gitignore
