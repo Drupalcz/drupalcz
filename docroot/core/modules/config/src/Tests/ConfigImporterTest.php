@@ -295,8 +295,7 @@ class ConfigImporterTest extends KernelTestBase {
 
     $logs = $this->configImporter->getErrors();
     $this->assertEqual(count($logs), 1);
-    $message = SafeMarkup::format("'config_test' entity with ID '@name' already exists", array('@name' => 'secondary'));
-    $this->assertEqual($logs[0], SafeMarkup::format('Unexpected error during import with operation @op for @name: !message.', array('@op' => 'create', '@name' => $name_primary, '!message' => $message)));
+    $this->assertEqual($logs[0], SafeMarkup::format("Unexpected error during import with operation @op for @name: 'config_test' entity with ID '@name_secondary' already exists.", array('@op' => 'create', '@name' => $name_primary, '@name_secondary' => 'secondary')));
   }
 
   /**
@@ -670,6 +669,23 @@ class ConfigImporterTest extends KernelTestBase {
       $error_log = $this->configImporter->getErrors();
       // Install profiles should not even be scanned at this point.
       $this->assertEqual(['Unable to install the <em class="placeholder">standard</em> module since it does not exist.'], $error_log);
+    }
+  }
+
+  /**
+   * Tests config_get_config_directory().
+   */
+  public function testConfigGetConfigDirectory() {
+    $directory = config_get_config_directory(CONFIG_STAGING_DIRECTORY);
+    $this->assertEqual($this->configDirectories[CONFIG_STAGING_DIRECTORY], $directory);
+
+    $message = 'Calling config_get_config_directory() with CONFIG_ACTIVE_DIRECTORY results in an exception.';
+    try {
+      config_get_config_directory(CONFIG_ACTIVE_DIRECTORY);
+      $this->fail($message);
+    }
+    catch (\Exception $e) {
+      $this->pass($message);
     }
   }
 

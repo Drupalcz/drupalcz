@@ -7,6 +7,7 @@
 
 namespace Drupal\simpletest;
 
+use Drupal\Component\Utility\SafeStringInterface;
 use Drupal\Component\Utility\Crypt;
 use Drupal\Component\Utility\Random;
 use Drupal\Component\Utility\SafeMarkup;
@@ -29,6 +30,7 @@ abstract class TestBase {
 
   use SessionTestTrait;
   use RandomGeneratorTrait;
+  use AssertHelperTrait;
 
   /**
    * The test run ID.
@@ -359,7 +361,7 @@ abstract class TestBase {
    * @param $status
    *   Can be 'pass', 'fail', 'exception', 'debug'.
    *   TRUE is a synonym for 'pass', FALSE for 'fail'.
-   * @param $message
+   * @param string|\Drupal\Component\Utility\SafeStringInterface $message
    *   (optional) A message to display with the assertion. Do not translate
    *   messages: use \Drupal\Component\Utility\SafeMarkup::format() to embed
    *   variables in the message text, not t(). If left blank, a default message
@@ -377,6 +379,9 @@ abstract class TestBase {
    *   is the caller function itself.
    */
   protected function assert($status, $message = '', $group = 'Other', array $caller = NULL) {
+    if ($message instanceof SafeStringInterface) {
+      $message = (string) $message;
+    }
     // Convert boolean status to string status.
     if (is_bool($status)) {
       $status = $status ? 'pass' : 'fail';
@@ -654,6 +659,11 @@ abstract class TestBase {
    *   TRUE if the assertion succeeded, FALSE otherwise.
    */
   protected function assertEqual($first, $second, $message = '', $group = 'Other') {
+    // Cast objects implementing SafeStringInterface to string instead of
+    // relying on PHP casting them to string depending on what they are being
+    // comparing with.
+    $first = $this->castSafeStrings($first);
+    $second = $this->castSafeStrings($second);
     return $this->assert($first == $second, $message ? $message : SafeMarkup::format('Value @first is equal to value @second.', array('@first' => var_export($first, TRUE), '@second' => var_export($second, TRUE))), $group);
   }
 
@@ -754,9 +764,9 @@ abstract class TestBase {
    *   TRUE if the assertion succeeded, FALSE otherwise.
    */
   protected function assertIdenticalObject($object1, $object2, $message = '', $group = 'Other') {
-    $message = $message ?: SafeMarkup::format('!object1 is identical to !object2', array(
-      '!object1' => var_export($object1, TRUE),
-      '!object2' => var_export($object2, TRUE),
+    $message = $message ?: SafeMarkup::format('@object1 is identical to @object2', array(
+      '@object1' => var_export($object1, TRUE),
+      '@object2' => var_export($object2, TRUE),
     ));
     $identical = TRUE;
     foreach ($object1 as $key => $value) {

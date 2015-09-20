@@ -13,6 +13,7 @@ use Drupal\Component\Utility\Unicode;
 use Drupal\Core\DrupalKernel;
 use Drupal\Core\Extension\ExtensionDiscovery;
 use Drupal\Core\Logger\RfcLogLevel;
+use Drupal\Core\Render\SafeString;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\Utility\Error;
@@ -101,6 +102,9 @@ const DRUPAL_PHP_FUNCTION_PATTERN = '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*';
  * $config_directories key for active directory.
  *
  * @see config_get_config_directory()
+ *
+ * @deprecated in Drupal 8.0.x and will be removed before 9.0.0. Drupal core no
+ *   longer creates an active directory.
  */
 const CONFIG_ACTIVE_DIRECTORY = 'active';
 
@@ -162,14 +166,19 @@ function conf_path($require_settings = TRUE, $reset = FALSE, Request $request = 
 /**
  * Returns the path of a configuration directory.
  *
+ * Configuration directories are configured using $config_directories in
+ * settings.php.
+ *
  * @param string $type
- *   (optional) The type of config directory to return. Drupal core provides
- *   'active' and 'staging'. Defaults to CONFIG_ACTIVE_DIRECTORY.
+ *   The type of config directory to return. Drupal core provides the
+ *   CONFIG_STAGING_DIRECTORY constant to access the staging directory.
  *
  * @return string
  *   The configuration directory path.
+ *
+ * @throws \Exception
  */
-function config_get_config_directory($type = CONFIG_ACTIVE_DIRECTORY) {
+function config_get_config_directory($type) {
   global $config_directories;
 
   if (!empty($config_directories[$type])) {
@@ -482,9 +491,9 @@ function drupal_set_message($message = NULL, $type = 'status', $repeat = FALSE) 
       $_SESSION['messages'][$type] = array();
     }
 
-    // Convert strings which are in the safe markup list to SafeString objects.
-    if (is_string($message) && SafeMarkup::isSafe($message)) {
-      $message = \Drupal\Core\Render\SafeString::create($message);
+    // Convert strings which are safe to the simplest SafeString objects.
+    if (!($message instanceof SafeString) && SafeMarkup::isSafe($message)) {
+      $message = SafeString::create((string) $message);
     }
 
     // Do not use strict type checking so that equivalent string and

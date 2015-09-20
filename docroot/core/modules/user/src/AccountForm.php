@@ -190,11 +190,11 @@ abstract class AccountForm extends ContentEntityForm {
       }
     }
 
-    if ($admin) {
-      $status = $account->isActive();
+    if ($admin || !$register) {
+      $status = $account->get('status')->value;
     }
     else {
-      $status = $register ? $config->get('register') == USER_REGISTER_VISITORS : $account->isActive();
+      $status = $config->get('register') == USER_REGISTER_VISITORS ? 1 : 0;
     }
 
     $form['account']['status'] = array(
@@ -205,7 +205,7 @@ abstract class AccountForm extends ContentEntityForm {
       '#access' => $admin,
     );
 
-    $roles = array_map(array('\Drupal\Component\Utility\SafeMarkup', 'checkPlain'), user_role_names(TRUE));
+    $roles = array_map(array('\Drupal\Component\Utility\Html', 'escape'), user_role_names(TRUE));
 
     $form['account']['roles'] = array(
       '#type' => 'checkboxes',

@@ -74,13 +74,7 @@ class PageCacheTagsIntegrationTest extends WebTestBase {
       'route',
       'theme',
       'timezone',
-      'user.permissions',
-      // The user login block access depends on whether the current user is
-      // logged in or not.
-      'user.roles:anonymous',
-      // The cache contexts associated with the (in)accessible menu links are
-      // bubbled.
-      'user.roles:authenticated',
+      'user',
       // The placed block is only visible on certain URLs through a visibility
       // condition.
       'url',
@@ -91,6 +85,7 @@ class PageCacheTagsIntegrationTest extends WebTestBase {
       'rendered',
       'block_view',
       'config:block_list',
+      'config:block.block.bartik_branding',
       'config:block.block.bartik_breadcrumbs',
       'config:block.block.bartik_content',
       'config:block.block.bartik_tools',
@@ -127,6 +122,7 @@ class PageCacheTagsIntegrationTest extends WebTestBase {
       'rendered',
       'block_view',
       'config:block_list',
+      'config:block.block.bartik_branding',
       'config:block.block.bartik_breadcrumbs',
       'config:block.block.bartik_content',
       'config:block.block.bartik_tools',

@@ -82,8 +82,8 @@ class NegotiationBrowserForm extends ConfigFormBase {
     }
     else {
       $language_options = array(
-        $this->t('Existing languages') => $existing_languages,
-        $this->t('Languages not yet added') => $this->languageManager->getStandardLanguageListWithoutConfigured(),
+        (string) $this->t('Existing languages') => $existing_languages,
+        (string) $this->t('Languages not yet added') => $this->languageManager->getStandardLanguageListWithoutConfigured(),
       );
     }
 
