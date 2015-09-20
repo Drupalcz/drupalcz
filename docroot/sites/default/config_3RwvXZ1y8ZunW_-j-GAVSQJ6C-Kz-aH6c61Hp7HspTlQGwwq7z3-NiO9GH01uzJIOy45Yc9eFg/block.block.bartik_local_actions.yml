@@ -1,0 +1,20 @@
+uuid: 8ec6f4c5-fcdc-4f9f-a900-a5f9e33930ca
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bartik
+id: bartik_local_actions
+theme: bartik
+region: content
+weight: -10
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+  cache:
+    max_age: -1
+visibility: {  }

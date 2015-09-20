@@ -1,0 +1,26 @@
+uuid: 7b46e314-c296-4218-b73b-59800dbdd72e
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.tools
+  module:
+    - system
+  theme:
+    - seven
+id: seven_tools
+theme: seven
+region: header
+weight: 0
+provider: null
+plugin: 'system_menu_block:tools'
+settings:
+  id: 'system_menu_block:tools'
+  label: Tools
+  provider: system
+  label_display: visible
+  cache:
+    max_age: -1
+  level: 1
+  depth: 0
+visibility: {  }

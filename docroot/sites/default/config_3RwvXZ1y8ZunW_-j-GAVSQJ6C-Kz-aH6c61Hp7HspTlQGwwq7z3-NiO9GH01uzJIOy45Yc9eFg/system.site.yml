@@ -1,0 +1,12 @@
+uuid: e93af437-7a76-4e5c-a346-70b432be8046
+name: Drupal.cz
+mail: d8-drupalcz@klaska.net
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /user/login
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en

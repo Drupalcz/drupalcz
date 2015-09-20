@@ -1,0 +1,25 @@
+uuid: 4a97424c-7abe-49ad-b700-b33d7530f95c
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - classy
+id: classy_branding
+theme: classy
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  cache:
+    max_age: -1
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }
