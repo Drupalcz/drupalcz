@@ -7,12 +7,13 @@ dependencies:
   - node
   - block
   - dblog
-  - page_cache
-  - dynamic_page_cache
+  - node
+  - text
   - menu_ui
   - path
-  - text
   - user
 themes:
   - stark
   - seven
+distribution: true
+
