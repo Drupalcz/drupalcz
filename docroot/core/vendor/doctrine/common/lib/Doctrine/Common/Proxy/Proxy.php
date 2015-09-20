@@ -19,8 +19,8 @@
 
 namespace Doctrine\Common\Proxy;
 
-use Closure;
 use Doctrine\Common\Persistence\Proxy as BaseProxy;
+use Closure;
 
 /**
  * Interface for proxy classes.

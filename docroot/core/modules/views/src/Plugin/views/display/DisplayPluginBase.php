@@ -9,6 +9,7 @@ namespace Drupal\views\Plugin\views\display;
 
 use Drupal\Component\Plugin\DependentPluginInterface;
 use Drupal\Component\Utility\Html;
+use Drupal\Component\Utility\Unicode;
 use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableMetadata;
@@ -1129,7 +1130,7 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
       );
     }
 
-    $display_comment = views_ui_truncate($this->getOption('display_comment'), 80);
+    $display_comment = Unicode::substr($this->getOption('display_comment'), 0, 10);
     $options['display_comment'] = array(
       'category' => 'other',
       'title' => $this->t('Administrative comment'),
@@ -1543,7 +1544,7 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
         $access_plugin = $this->getPlugin('access');
         if ($access_plugin->usesOptions()) {
           $form['markup'] = array(
-            '#prefix' => '<div class="js-form-item form-item description">',
+            '#prefix' => '<div class="form-item description">',
             '#markup' => $this->t('You may also adjust the !settings for the currently selected access restriction.', array('!settings' => $this->optionLink(t('settings'), 'access_options'))),
             '#suffix' => '</div>',
           );
@@ -1580,7 +1581,7 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
         $cache_plugin = $this->getPlugin('cache');
         if ($cache_plugin->usesOptions()) {
           $form['markup'] = array(
-            '#prefix' => '<div class="js-form-item form-item description">',
+            '#prefix' => '<div class="form-item description">',
             '#suffix' => '</div>',
             '#markup' => $this->t('You may also adjust the !settings for the currently selected cache mechanism.', array('!settings' => $this->optionLink(t('settings'), 'cache_options'))),
           );
@@ -1652,7 +1653,7 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
 
         if ($style_plugin->usesOptions()) {
           $form['markup'] = array(
-            '#prefix' => '<div class="js-form-item form-item description">',
+            '#prefix' => '<div class="form-item description">',
             '#suffix' => '</div>',
             '#markup' => $this->t('You may also adjust the !settings for the currently selected style.', array('!settings' => $this->optionLink(t('settings'), 'style_options'))),
           );
@@ -1700,7 +1701,7 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
 
         if ($row_plugin_instance->usesOptions()) {
           $form['markup'] = array(
-            '#prefix' => '<div class="js-form-item form-item description">',
+            '#prefix' => '<div class="form-item description">',
             '#suffix' => '</div>',
             '#markup' => $this->t('You may also adjust the !settings for the currently selected row style.', array('!settings' => $this->optionLink(t('settings'), 'row_options'))),
           );
@@ -1725,24 +1726,17 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
         );
 
         $options = array();
-        $optgroup_arguments = (string) t('Arguments');
-        foreach ($this->view->display_handler->getHandlers('argument') as $arg => $handler) {
-          $options[$optgroup_arguments]["{{ arguments.$arg }}"] = $this->t('@argument title', array('@argument' => $handler->adminLabel()));
-          $options[$optgroup_arguments]["{{ raw_arguments.$arg }}"] = $this->t('@argument input', array('@argument' => $handler->adminLabel()));
+        $count = 0; // This lets us prepare the key as we want it printed.
+        foreach ($this->view->display_handler->getHandlers('argument') as $handler) {
+          $options[t('Arguments')]['%' . ++$count] = $this->t('@argument title', array('@argument' => $handler->adminLabel()));
+          $options[t('Arguments')]['!' . $count] = $this->t('@argument input', array('@argument' => $handler->adminLabel()));
         }
 
         // Default text.
         // We have some options, so make a list.
-        $description = [];
-        $description[] = [
-          '#markup' => $this->t('A Drupal path or external URL the more link will point to. Note that this will override the link display setting above.'),
-        ];
+        $output = '';
         if (!empty($options)) {
-          $description[] = [
-            '#prefix' => '<p>',
-            '#markup' => $this->t('The following tokens are available for this link. You may use Twig syntax in this field.'),
-            '#suffix' => '</p>',
-          ];
+          $output = $this->t('<p>The following tokens are available for this link.</p>');
           foreach (array_keys($options) as $type) {
             if (!empty($options[$type])) {
               $items = array();
@@ -1752,8 +1746,9 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
               $item_list = array(
                 '#theme' => 'item_list',
                 '#items' => $items,
+                '#list_type' => $type,
               );
-              $description[] = $item_list;
+              $output .= drupal_render($item_list);
             }
           }
         }
@@ -1762,7 +1757,7 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
           '#type' => 'textfield',
           '#title' => $this->t('Custom URL'),
           '#default_value' => $this->getOption('link_url'),
-          '#description' => $description,
+          '#description' => $this->t('A Drupal path or external URL the more link will point to. Note that this will override the link display setting above.') . $output,
           '#states' => array(
             'visible' => array(
               ':input[name="link_display"]' => array('value' => 'custom_url'),
@@ -1773,7 +1768,7 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
       case 'exposed_block':
         $form['#title'] .= $this->t('Put the exposed form in a block');
         $form['description'] = array(
-          '#markup' => '<div class="js-form-item form-item description">' . $this->t('If set, any exposed widgets will not appear with this view. Instead, a block will be made available to the Drupal block administration system, and the exposed form will appear there. Note that this block must be enabled manually, Views will not enable it for you.') . '</div>',
+          '#markup' => '<div class="description form-item">' . $this->t('If set, any exposed widgets will not appear with this view. Instead, a block will be made available to the Drupal block administration system, and the exposed form will appear there. Note that this block must be enabled manually, Views will not enable it for you.') . '</div>',
         );
         $form['exposed_block'] = array(
           '#type' => 'radios',
@@ -1801,7 +1796,7 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
         $exposed_form_plugin = $this->getPlugin('exposed_form');
         if ($exposed_form_plugin->usesOptions()) {
           $form['markup'] = array(
-            '#prefix' => '<div class="js-form-item form-item description">',
+            '#prefix' => '<div class="form-item description">',
             '#suffix' => '</div>',
             '#markup' => $this->t('You may also adjust the !settings for the currently selected style.', array('!settings' => $this->optionLink(t('settings'), 'exposed_form_options'))),
           );
@@ -1837,7 +1832,7 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
         $pager_plugin = $this->getPlugin('pager');
         if ($pager_plugin->usesOptions()) {
           $form['markup'] = array(
-            '#prefix' => '<div class="js-form-item form-item description">',
+            '#prefix' => '<div class="form-item description">',
             '#suffix' => '</div>',
             '#markup' => $this->t('You may also adjust the !settings for the currently selected pager.', array('!settings' => $this->optionLink(t('settings'), 'pager_options'))),
           );
@@ -2223,9 +2218,7 @@ abstract class DisplayPluginBase extends PluginBase implements DisplayPluginInte
   public function renderArea($area, $empty = FALSE) {
     $return = array();
     foreach ($this->getHandlers($area) as $key => $area_handler) {
-      if ($area_render = $area_handler->render($empty)) {
-        $return[$key] = $area_render;
-      }
+      $return[$key] = $area_handler->render($empty);
     }
     return $return;
   }

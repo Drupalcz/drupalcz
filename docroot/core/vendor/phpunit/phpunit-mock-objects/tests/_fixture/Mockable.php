@@ -4,7 +4,7 @@ class Mockable
     public $constructorArgs;
     public $cloned;
 
-    public function __construct($arg1 = null, $arg2 = null)
+    public function __construct($arg1 = NULL, $arg2 = NULL)
     {
         $this->constructorArgs = array($arg1, $arg2);
     }
@@ -12,17 +12,17 @@ class Mockable
     public function mockableMethod()
     {
         // something different from NULL
-        return true;
+        return TRUE;
     }
 
     public function anotherMockableMethod()
     {
         // something different from NULL
-        return true;
+        return TRUE;
     }
 
     public function __clone()
     {
-        $this->cloned = true;
+        $this->cloned = TRUE;
     }
 }

@@ -7,6 +7,7 @@
 
 namespace Drupal\views\Plugin\views\filter;
 
+use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -161,10 +162,10 @@ class StringFilter extends FilterPluginBase {
     $options = $this->operatorOptions('short');
     $output = '';
     if (!empty($options[$this->operator])) {
-      $output = $options[$this->operator];
+      $output = SafeMarkup::checkPlain($options[$this->operator]);
     }
     if (in_array($this->operator, $this->operatorValues(1))) {
-      $output .= ' ' . $this->value;
+      $output .= ' ' . SafeMarkup::checkPlain($this->value);
     }
     return $output;
   }

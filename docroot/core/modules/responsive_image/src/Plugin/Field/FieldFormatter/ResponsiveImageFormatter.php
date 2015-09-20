@@ -16,8 +16,6 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
 use Drupal\image\Plugin\Field\FieldFormatter\ImageFormatterBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Utility\LinkGeneratorInterface;
 
 /**
  * Plugin for responsive image formatter.
@@ -45,20 +43,6 @@ class ResponsiveImageFormatter extends ImageFormatterBase implements ContainerFa
   protected $imageStyleStorage;
 
   /**
-   * The current user.
-   *
-   * @var \Drupal\Core\Session\AccountInterface
-   */
-  protected $currentUser;
-
-  /**
-   * The link generator.
-   *
-   * @var \Drupal\Core\Utility\LinkGeneratorInterface
-   */
-  protected $linkGenerator;
-
-  /**
    * Constructs a ResponsiveImageFormatter object.
    *
    * @param string $plugin_id
@@ -79,18 +63,12 @@ class ResponsiveImageFormatter extends ImageFormatterBase implements ContainerFa
    *   The responsive image style storage.
    * @param \Drupal\Core\Entity\EntityStorageInterface $image_style_storage
    *   The image style storage.
-   * @param \Drupal\Core\Utility\LinkGeneratorInterface $link_generator
-   *   The link generator service.
-   * @param \Drupal\Core\Session\AccountInterface $current_user
-   *   The current user.
    */
-  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, EntityStorageInterface $responsive_image_style_storage, EntityStorageInterface $image_style_storage, LinkGeneratorInterface $link_generator, AccountInterface $current_user) {
+  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, EntityStorageInterface $responsive_image_style_storage, EntityStorageInterface $image_style_storage) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings);
 
     $this->responsiveImageStyleStorage = $responsive_image_style_storage;
     $this->imageStyleStorage = $image_style_storage;
-    $this->linkGenerator = $link_generator;
-    $this->currentUser = $current_user;
   }
 
   /**
@@ -106,9 +84,7 @@ class ResponsiveImageFormatter extends ImageFormatterBase implements ContainerFa
       $configuration['view_mode'],
       $configuration['third_party_settings'],
       $container->get('entity.manager')->getStorage('responsive_image_style'),
-      $container->get('entity.manager')->getStorage('image_style'),
-      $container->get('link_generator'),
-      $container->get('current_user')
+      $container->get('entity.manager')->getStorage('image_style')
     );
   }
 
@@ -142,10 +118,6 @@ class ResponsiveImageFormatter extends ImageFormatterBase implements ContainerFa
       '#default_value' => $this->getSetting('responsive_image_style'),
       '#required' => TRUE,
       '#options' => $responsive_image_options,
-      '#description' => array(
-        '#markup' => $this->linkGenerator->generate($this->t('Configure Responsive Image Styles'), new Url('entity.responsive_image_style.collection')),
-        '#access' => $this->currentUser->hasPermission('administer responsive image styles'),
-        ),
     );
 
     $link_types = array(

@@ -7,8 +7,6 @@
 
 namespace Drupal\path\Tests;
 
-use Drupal\Core\Cache\Cache;
-
 /**
  * Add, edit, delete, and change alias and verify its consistency in the
  * database.
@@ -59,8 +57,6 @@ class PathAliasTest extends PathTestBase {
 
     // Visit the alias for the node and confirm a cache entry is created.
     \Drupal::cache('data')->deleteAll();
-    // @todo Remove this once https://www.drupal.org/node/2480077 lands.
-    Cache::invalidateTags(['rendered']);
     $this->drupalGet(trim($edit['alias'], '/'));
     $this->assertTrue(\Drupal::cache('data')->get('preload-paths:' .  $edit['source']), 'Cache entry was created.');
   }

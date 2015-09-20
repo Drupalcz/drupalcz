@@ -12,18 +12,8 @@ use Drupal\Core\Render\Element;
 /**
  * Provides a render element for a group of form elements.
  *
- * Usage example:
- * @code
- * $form['author'] = array(
- *   '#type' => 'fieldset',
- *   '#title' => 'Author',
- * );
- *
- * $form['author']['name'] = array(
- *   '#type' => 'textfield',
- *   '#title' => t('Name'),
- * );
- * @endcode
+ * In default rendering, the only difference between a 'fieldgroup' and a
+ * 'fieldset' is the CSS class applied to the containing HTML element.
  *
  * @see \Drupal\Core\Render\Element\Fieldgroup
  * @see \Drupal\Core\Render\Element\Details

@@ -31,7 +31,7 @@ class Twig_Tests_ParserTest extends PHPUnit_Framework_TestCase
             new Twig_Token(Twig_Token::BLOCK_END_TYPE, '', 1),
             new Twig_Token(Twig_Token::EOF_TYPE, '', 1),
         ));
-        $parser = new Twig_Parser(new Twig_Environment($this->getMock('Twig_LoaderInterface')));
+        $parser = new Twig_Parser(new Twig_Environment());
         $parser->parse($stream);
     }
 
@@ -94,7 +94,7 @@ class Twig_Tests_ParserTest extends PHPUnit_Framework_TestCase
 
     public function testParseIsReentrant()
     {
-        $twig = new Twig_Environment($this->getMock('Twig_LoaderInterface'), array(
+        $twig = new Twig_Environment(null, array(
             'autoescape' => false,
             'optimizations' => 0,
         ));
@@ -120,7 +120,7 @@ class Twig_Tests_ParserTest extends PHPUnit_Framework_TestCase
     // see https://github.com/symfony/symfony/issues/4218
     public function testGetVarName()
     {
-        $twig = new Twig_Environment($this->getMock('Twig_LoaderInterface'), array(
+        $twig = new Twig_Environment(null, array(
             'autoescape' => false,
             'optimizations' => 0,
         ));
@@ -137,7 +137,7 @@ EOF
 
     protected function getParser()
     {
-        $parser = new TestParser(new Twig_Environment($this->getMock('Twig_LoaderInterface')));
+        $parser = new TestParser(new Twig_Environment());
         $parser->setParent(new Twig_Node());
         $parser->stream = $this->getMockBuilder('Twig_TokenStream')->disableOriginalConstructor()->getMock();
 

@@ -1,5 +1,5 @@
 id: d7_field_instance_widget_settings
-label: Field instance widget configuration
+label: Drupal 7 field instance widget configuration
 migration_tags:
   - Drupal 7
 source:
@@ -15,12 +15,12 @@ process:
       plugin: migration
       migration: d7_field
       source:
-        - field_name
         - entity_type
+        - field_name
     -
       plugin: extract
       index:
-        - 0
+        - 1
     -
       plugin: skip_on_empty
       method: row
@@ -44,7 +44,6 @@ process:
         phone_textfield: telephone_default
         options_onoff: boolean_checkbox
         entityreference_autocomplete: entity_reference_autocomplete
-        taxonomy_autocomplete: entity_reference_autocomplete
   'options/settings':
     plugin: field_instance_widget_settings
     source:

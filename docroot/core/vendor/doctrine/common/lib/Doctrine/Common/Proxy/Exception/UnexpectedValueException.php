@@ -31,8 +31,6 @@ use UnexpectedValueException as BaseUnexpectedValueException;
 class UnexpectedValueException extends BaseUnexpectedValueException implements ProxyException
 {
     /**
-     * @param string $proxyDirectory
-     *
      * @return self
      */
     public static function proxyDirectoryNotWritable($proxyDirectory)

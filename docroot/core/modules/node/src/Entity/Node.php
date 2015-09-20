@@ -91,9 +91,9 @@ class Node extends ContentEntityBase implements NodeInterface {
   public function preSave(EntityStorageInterface $storage) {
     parent::preSave($storage);
 
-    // If no owner has been set explicitly, make the anonymous user the owner.
+    // If no owner has been set explicitly, make the current user the owner.
     if (!$this->getOwner()) {
-      $this->setOwnerId(0);
+      $this->setOwnerId(\Drupal::currentUser()->id());
     }
     // If no revision author has been set explicitly, make the node owner the
     // revision author.

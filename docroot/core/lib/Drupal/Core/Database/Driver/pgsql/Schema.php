@@ -726,23 +726,17 @@ class Schema extends DatabaseSchema {
     // Usually, we do this via a simple typecast 'USING fieldname::type'. But
     // the typecast does not work for conversions to bytea.
     // @see http://www.postgresql.org/docs/current/static/datatype-binary.html
-    $table_information = $this->queryTableInformation($table);
-    $is_bytea = !empty($table_information->blob_fields[$field]);
     if ($spec['pgsql_type'] != 'bytea') {
-      if ($is_bytea) {
-        $this->connection->query('ALTER TABLE {' . $table . '} ALTER "' . $field . '" TYPE ' . $field_def . ' USING convert_from("' . $field . '"' . ", 'UTF8')");
-      }
-      else {
-        $this->connection->query('ALTER TABLE {' . $table . '} ALTER "' . $field . '" TYPE ' . $field_def . ' USING "' . $field . '"::' . $field_def);
-      }
+      $this->connection->query('ALTER TABLE {' . $table . '} ALTER "' . $field . '" TYPE ' . $field_def . ' USING "' . $field . '"::' . $field_def);
     }
     else {
       // Do not attempt to convert a field that is bytea already.
-      if (!$is_bytea) {
+      $table_information = $this->queryTableInformation($table);
+      if (!in_array($field, $table_information->blob_fields)) {
         // Convert to a bytea type by using the SQL replace() function to
         // convert any single backslashes in the field content to double
         // backslashes ('\' to '\\').
-        $this->connection->query('ALTER TABLE {' . $table . '} ALTER "' . $field . '" TYPE ' . $field_def . ' USING decode(replace("' . $field . '"' . ", E'\\\\', E'\\\\\\\\'), 'escape');");
+        $this->connection->query('ALTER TABLE {' . $table . '} ALTER "' . $field . '" TYPE ' . $field_def . ' USING decode(replace("' . $field . '"' . ", '\\', '\\\\'), 'escape');");
       }
     }
 

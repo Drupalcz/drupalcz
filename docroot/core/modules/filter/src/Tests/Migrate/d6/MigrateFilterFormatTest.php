@@ -7,7 +7,6 @@
 
 namespace Drupal\filter\Tests\Migrate\d6;
 
-use Drupal\filter\Entity\FilterFormat;
 use Drupal\migrate_drupal\Tests\d6\MigrateDrupal6TestBase;
 
 /**
@@ -23,11 +22,18 @@ class MigrateFilterFormatTest extends MigrateDrupal6TestBase {
   static $modules = array('filter');
 
   /**
+   * {@inheritdoc}
+   */
+  protected function setUp() {
+    parent::setUp();
+    $this->executeMigration('d6_filter_format');
+  }
+
+  /**
    * Tests the Drupal 6 filter format to Drupal 8 migration.
    */
   public function testFilterFormat() {
-    $this->executeMigration('d6_filter_format');
-    $filter_format = FilterFormat::load('filtered_html');
+    $filter_format = entity_load('filter_format', 'filtered_html');
 
     // Check filter status.
     $filters = $filter_format->get('filters');
@@ -46,10 +52,6 @@ class MigrateFilterFormatTest extends MigrateDrupal6TestBase {
     $this->assertIdentical(TRUE, $filters['filter_html']['settings']['filter_html_help']);
     $this->assertIdentical(FALSE, $filters['filter_html']['settings']['filter_html_nofollow']);
     $this->assertIdentical(72, $filters['filter_url']['settings']['filter_url_length']);
-
-    // Check that the PHP code filter is converted to filter_null.
-    $filters = FilterFormat::load('php_code')->get('filters');
-    $this->assertTrue(isset($filters['filter_null']));
   }
 
 }

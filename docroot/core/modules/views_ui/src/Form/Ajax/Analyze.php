@@ -44,7 +44,7 @@ class Analyze extends ViewsFormBase {
     $messages = $analyzer->getMessages($view->getExecutable());
 
     $form['analysis'] = array(
-      '#prefix' => '<div class="js-form-item form-item">',
+      '#prefix' => '<div class="form-item">',
       '#suffix' => '</div>',
       '#markup' => $analyzer->formatMessages($messages),
     );

@@ -12,13 +12,6 @@ class Twig_Extension_Escaper extends Twig_Extension
 {
     protected $defaultStrategy;
 
-    /**
-     * Constructor.
-     *
-     * @param string|false|callable $defaultStrategy An escaping strategy
-     *
-     * @see setDefaultStrategy()
-     */
     public function __construct($defaultStrategy = 'html')
     {
         $this->setDefaultStrategy($defaultStrategy);
@@ -62,14 +55,12 @@ class Twig_Extension_Escaper extends Twig_Extension
      * The strategy can be a valid PHP callback that takes the template
      * "filename" as an argument and returns the strategy to use.
      *
-     * @param string|false|callable $defaultStrategy An escaping strategy
+     * @param mixed $defaultStrategy An escaping strategy
      */
     public function setDefaultStrategy($defaultStrategy)
     {
         // for BC
         if (true === $defaultStrategy) {
-            @trigger_error('Using "true" as the default strategy is deprecated. Use "html" instead.', E_USER_DEPRECATED);
-
             $defaultStrategy = 'html';
         }
 
@@ -85,13 +76,13 @@ class Twig_Extension_Escaper extends Twig_Extension
      *
      * @param string $filename The template "filename"
      *
-     * @return string|false The default strategy to use for the template
+     * @return string The default strategy to use for the template
      */
     public function getDefaultStrategy($filename)
     {
         // disable string callables to avoid calling a function named html or js,
         // or any other upcoming escaping strategy
-        if (!is_string($this->defaultStrategy) && false !== $this->defaultStrategy) {
+        if (!is_string($this->defaultStrategy) && is_callable($this->defaultStrategy)) {
             return call_user_func($this->defaultStrategy, $filename);
         }
 

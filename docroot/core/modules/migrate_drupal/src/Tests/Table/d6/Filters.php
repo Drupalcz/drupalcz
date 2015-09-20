@@ -130,14 +130,8 @@ class Filters extends DrupalDumpBase {
       'module' => 'filter',
       'delta' => '3',
       'weight' => '10',
-    ))->values(array(
-      'fid' => '16',
-      'format' => '4',
-      'module' => 'php',
-      'delta' => '0',
-      'weight' => '10',
     ))->execute();
   }
 
 }
-#7944abbf862871fb50d6742602093713
+#e4ed25d991f88bc73a10b840dcc1b004

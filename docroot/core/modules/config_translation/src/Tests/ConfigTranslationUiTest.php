@@ -176,9 +176,6 @@ class ConfigTranslationUiTest extends WebTestBase {
     $this->assertFieldByName('translation[config_names][system.site][name]', $fr_site_name);
     $this->assertFieldByName('translation[config_names][system.site][slogan]', $fr_site_slogan);
 
-    // Place branding block with site name and slogan into header region.
-    $this->drupalPlaceBlock('system_branding_block', ['region' => 'header']);
-
     // Check French translation of site name and slogan are in place.
     $this->drupalGet('fr');
     $this->assertRaw($fr_site_name);
@@ -370,7 +367,7 @@ class ConfigTranslationUiTest extends WebTestBase {
 
     // Test that delete links work and operations perform properly.
     foreach ($this->langcodes as $langcode) {
-      $replacements = array('%label' => t('@label @entity_type', array('@label' => $label, '@entity_type' => Unicode::strtolower(t('Contact form')))), '@language' => \Drupal::languageManager()->getLanguage($langcode)->getName());
+      $replacements = array('%label' => t('!label !entity_type', array('!label' => $label, '!entity_type' => Unicode::strtolower(t('Contact form')))), '@language' => \Drupal::languageManager()->getLanguage($langcode)->getName());
 
       $this->drupalGet("$translation_base_url/$langcode/delete");
       $this->assertRaw(t('Are you sure you want to delete the @language translation of %label?', $replacements));

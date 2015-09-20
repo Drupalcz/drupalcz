@@ -20,6 +20,7 @@
 namespace Doctrine\Common\Persistence\Mapping\Driver;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\Persistence\Mapping\MappingException;
 
 /**

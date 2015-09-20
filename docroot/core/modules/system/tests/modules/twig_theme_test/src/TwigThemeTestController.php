@@ -99,14 +99,4 @@ class TwigThemeTestController {
     return array('#theme' => 'twig_registry_loader_test');
   }
 
-  /**
-   * Controller for testing a renderable inside a template.
-   */
-  public function renderable() {
-    return [
-      '#theme' => 'twig_theme_test_renderable',
-      '#renderable' => new ExampleRenderable()
-    ];
-  }
-
 }

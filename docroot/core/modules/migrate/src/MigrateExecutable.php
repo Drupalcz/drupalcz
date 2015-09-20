@@ -42,6 +42,17 @@ class MigrateExecutable implements MigrateExecutableInterface {
   protected $sourceRowStatus;
 
   /**
+   * The queued messages not yet saved.
+   *
+   * Each element in the array is an array with two keys:
+   * - 'message': The message string.
+   * - 'level': The level, a MigrationInterface::MESSAGE_* constant.
+   *
+   * @var array
+   */
+  protected $queuedMessages = array();
+
+  /**
    * The ratio of the memory limit at which an operation will be interrupted.
    *
    * @var float
@@ -167,6 +178,10 @@ class MigrateExecutable implements MigrateExecutableInterface {
   protected function getSource() {
     if (!isset($this->source)) {
       $this->source = $this->migration->getSourcePlugin();
+
+      // @TODO, find out how to remove this.
+      // @see https://www.drupal.org/node/2443617
+      $this->source->migrateExecutable = $this;
     }
     return $this->source;
   }
@@ -230,16 +245,15 @@ class MigrateExecutable implements MigrateExecutableInterface {
     $destination = $this->migration->getDestinationPlugin();
     while ($source->valid()) {
       $row = $source->current();
-      $this->sourceIdValues = $row->getSourceIdValues();
+      if ($this->sourceIdValues = $row->getSourceIdValues()) {
+        // Wipe old messages, and save any new messages.
+        $id_map->delete($this->sourceIdValues, TRUE);
+        $this->saveQueuedMessages();
+      }
 
       try {
         $this->processRow($row);
         $save = TRUE;
-      }
-      catch (MigrateException $e) {
-        $this->migration->getIdMap()->saveIdMapping($row, array(), $e->getStatus(), $this->rollbackAction);
-        $this->saveMessage($e->getMessage(), $e->getLevel());
-        $save = FALSE;
       }
       catch (MigrateSkipRowException $e) {
         $id_map->saveIdMapping($row, array(), MigrateIdMapInterface::STATUS_IGNORED, $this->rollbackAction);
@@ -269,6 +283,7 @@ class MigrateExecutable implements MigrateExecutableInterface {
         catch (MigrateException $e) {
           $this->migration->getIdMap()->saveIdMapping($row, array(), $e->getStatus(), $this->rollbackAction);
           $this->saveMessage($e->getMessage(), $e->getLevel());
+          $this->message->display($e->getMessage(), 'error');
         }
         catch (\Exception $e) {
           $this->migration->getIdMap()->saveIdMapping($row, array(), MigrateIdMapInterface::STATUS_FAILED, $this->rollbackAction);
@@ -381,6 +396,23 @@ class MigrateExecutable implements MigrateExecutableInterface {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function queueMessage($message, $level = MigrationInterface::MESSAGE_ERROR) {
+    $this->queuedMessages[] = array('message' => $message, 'level' => $level);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function saveQueuedMessages() {
+    foreach ($this->queuedMessages as $queued_message) {
+      $this->saveMessage($queued_message['message'], $queued_message['level']);
+    }
+    $this->queuedMessages = array();
+  }
+
+  /**
    * Takes an Exception object and both saves and displays it.
    *
    * Pulls in additional information on the location triggering the exception.
@@ -426,10 +458,10 @@ class MigrateExecutable implements MigrateExecutableInterface {
     }
     if ($pct_memory > $threshold) {
       $this->message->display(
-        $this->t('Memory usage is @usage (@pct% of limit @limit), reclaiming memory.',
-          array('@pct' => round($pct_memory*100),
-                '@usage' => $this->formatSize($usage),
-                '@limit' => $this->formatSize($this->memoryLimit))),
+        $this->t('Memory usage is !usage (!pct% of limit !limit), reclaiming memory.',
+          array('!pct' => round($pct_memory*100),
+                '!usage' => $this->formatSize($usage),
+                '!limit' => $this->formatSize($this->memoryLimit))),
         'warning');
       $usage = $this->attemptMemoryReclaim();
       $pct_memory = $usage / $this->memoryLimit;
@@ -437,19 +469,19 @@ class MigrateExecutable implements MigrateExecutableInterface {
       // coming back here and trimming a tiny amount
       if ($pct_memory > (0.90 * $threshold)) {
         $this->message->display(
-          $this->t('Memory usage is now @usage (@pct% of limit @limit), not enough reclaimed, starting new batch',
-            array('@pct' => round($pct_memory*100),
-                  '@usage' => $this->formatSize($usage),
-                  '@limit' => $this->formatSize($this->memoryLimit))),
+          $this->t('Memory usage is now !usage (!pct% of limit !limit), not enough reclaimed, starting new batch',
+            array('!pct' => round($pct_memory*100),
+                  '!usage' => $this->formatSize($usage),
+                  '!limit' => $this->formatSize($this->memoryLimit))),
           'warning');
         return TRUE;
       }
       else {
         $this->message->display(
-          $this->t('Memory usage is now @usage (@pct% of limit @limit), reclaimed enough, continuing',
-            array('@pct' => round($pct_memory*100),
-                  '@usage' => $this->formatSize($usage),
-                  '@limit' => $this->formatSize($this->memoryLimit))),
+          $this->t('Memory usage is now !usage (!pct% of limit !limit), reclaimed enough, continuing',
+            array('!pct' => round($pct_memory*100),
+                  '!usage' => $this->formatSize($usage),
+                  '!limit' => $this->formatSize($this->memoryLimit))),
           'warning');
         return FALSE;
       }

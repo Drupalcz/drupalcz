@@ -47,7 +47,7 @@ class ClassMapGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider getTestCreateMapTests
      */
-    public function testDump($directory)
+    public function testDump($directory, $expected)
     {
         $this->prepare_workspace();
 
@@ -115,12 +115,6 @@ class ClassMapGeneratorTest extends \PHPUnit_Framework_TestCase
             ));
         }
 
-        if (PHP_VERSION_ID >= 50500) {
-            $data[] = array(__DIR__.'/Fixtures/php5.5', array(
-                'ClassCons\\Foo' => __DIR__.'/Fixtures/php5.5/class_cons.php',
-            ));
-        }
-
         return $data;
     }
 
@@ -140,10 +134,10 @@ class ClassMapGeneratorTest extends \PHPUnit_Framework_TestCase
     protected function assertEqualsNormalized($expected, $actual, $message = null)
     {
         foreach ($expected as $ns => $path) {
-            $expected[$ns] = str_replace('\\', '/', $path);
+            $expected[$ns] = strtr($path, '\\', '/');
         }
         foreach ($actual as $ns => $path) {
-            $actual[$ns] = str_replace('\\', '/', $path);
+            $actual[$ns] = strtr($path, '\\', '/');
         }
         $this->assertEquals($expected, $actual, $message);
     }

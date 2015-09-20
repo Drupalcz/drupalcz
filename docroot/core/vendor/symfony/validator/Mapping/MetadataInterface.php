@@ -24,7 +24,6 @@ use Symfony\Component\Validator\MetadataInterface as LegacyMetadataInterface;
  * traversed or not.
  *
  * @since  2.5
- *
  * @author Bernhard Schussek <bschussek@gmail.com>
  *
  * @see CascadingStrategy

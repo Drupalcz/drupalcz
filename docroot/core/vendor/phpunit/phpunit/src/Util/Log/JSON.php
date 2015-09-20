@@ -8,25 +8,36 @@
  * file that was distributed with this source code.
  */
 
+if (!defined('JSON_PRETTY_PRINT')) {
+    define('JSON_PRETTY_PRINT', 128);
+}
+
 /**
  * A TestListener that generates JSON messages.
  *
- * @since Class available since Release 3.0.0
+ * @package    PHPUnit
+ * @subpackage Util_Log
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://www.phpunit.de/
+ * @since      Class available since Release 3.0.0
  */
 class PHPUnit_Util_Log_JSON extends PHPUnit_Util_Printer implements PHPUnit_Framework_TestListener
 {
     /**
-     * @var string
+     * @var    string
      */
     protected $currentTestSuiteName = '';
 
     /**
-     * @var string
+     * @var    string
      */
     protected $currentTestName = '';
 
     /**
-     * @var bool
+     * @var     boolean
+     * @access  private
      */
     protected $currentTestPass = true;
 
@@ -194,10 +205,10 @@ class PHPUnit_Util_Log_JSON extends PHPUnit_Util_Printer implements PHPUnit_Fram
     }
 
     /**
-     * @param string                          $status
-     * @param float                           $time
-     * @param array                           $trace
-     * @param string                          $message
+     * @param string $status
+     * @param float  $time
+     * @param array  $trace
+     * @param string $message
      * @param PHPUnit_Framework_TestCase|null $test
      */
     protected function writeCase($status, $time, array $trace = array(), $message = '', $test = null)
@@ -232,12 +243,6 @@ class PHPUnit_Util_Log_JSON extends PHPUnit_Util_Printer implements PHPUnit_Fram
             }
         });
 
-        $flags = 0;
-
-        if (defined('JSON_PRETTY_PRINT')) {
-            $flags |= JSON_PRETTY_PRINT;
-        }
-
-        parent::write(json_encode($buffer, $flags));
+        parent::write(json_encode($buffer, JSON_PRETTY_PRINT));
     }
 }

@@ -333,7 +333,7 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
    * {@inheritdoc}
    */
   public function tokenizeValue($value, $row_index = NULL) {
-    if (strpos($value, '{{') !== FALSE) {
+    if (strpos($value, '{{') !== FALSE || strpos($value, '!') !== FALSE || strpos($value, '%') !== FALSE) {
       $fake_item = array(
         'alter_text' => TRUE,
         'text' => $value,
@@ -862,20 +862,19 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
 
       // Setup the tokens for fields.
       $previous = $this->getPreviousFieldLabels();
-      $optgroup_arguments = (string) t('Arguments');
-      $optgroup_fields = (string) t('Fields');
       foreach ($previous as $id => $label) {
-        $options[$optgroup_fields]["{{ $id }}"] = substr(strrchr($label, ":"), 2 );
+        $options[t('Fields')]["{{ $id }}"] = substr(strrchr($label, ":"), 2 );
       }
       // Add the field to the list of options.
-      $options[$optgroup_fields]["{{ {$this->options['id']} }}"] = substr(strrchr($this->adminLabel(), ":"), 2 );
+      $options[t('Fields')]["{{ {$this->options['id']} }}"] = substr(strrchr($this->adminLabel(), ":"), 2 );
 
+      $count = 0; // This lets us prepare the key as we want it printed.
       foreach ($this->view->display_handler->getHandlers('argument') as $arg => $handler) {
-        $options[$optgroup_arguments]["{{ arguments.$arg }}"] = $this->t('@argument title', array('@argument' => $handler->adminLabel()));
-        $options[$optgroup_arguments]["{{ raw_arguments.$arg }}"] = $this->t('@argument input', array('@argument' => $handler->adminLabel()));
+        $options[t('Arguments')]['%' . ++$count] = $this->t('@argument title', array('@argument' => $handler->adminLabel()));
+        $options[t('Arguments')]['!' . $count] = $this->t('@argument input', array('@argument' => $handler->adminLabel()));
       }
 
-      $this->documentSelfTokens($options[$optgroup_fields]);
+      $this->documentSelfTokens($options[t('Fields')]);
 
       // Default text.
 
@@ -897,6 +896,7 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
             $item_list = array(
               '#theme' => 'item_list',
               '#items' => $items,
+              '#list_type' => $type,
             );
             $output[] = $item_list;
           }
@@ -1305,9 +1305,8 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
     }
 
     // Preserve whether or not the string is safe. Since $suffix comes from
-    // \Drupal::l(), it is safe to append. Use SafeMarkup::isSafe() here because
-    // renderAsLink() can return both safe and unsafe values.
-    if (SafeMarkup::isSafe($value)) {
+    // \Drupal::l(), it is safe to append.
+    if ($value_is_safe) {
       return ViewsRenderPipelineSafeString::create($value . $suffix);
     }
     else {
@@ -1395,8 +1394,8 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
       $path = preg_replace(['/(\%7B){2}(\%20)*/', '/(\%20)*(\%7D){2}/'], ['{{','}}'], $path);
 
       // Use strip tags as there should never be HTML in the path.
-      // However, we need to preserve special characters like " that are escaped
-      // by \Drupal\Component\Utility\Html::escape().
+      // However, we need to preserve special characters like " that
+      // were removed by SafeMarkup::checkPlain().
       $path = strip_tags(Html::decodeEntities($this->viewsTokenReplace($path, $tokens)));
 
       if (!empty($alter['path_case']) && $alter['path_case'] != 'none' && !$alter['url']->isRouted()) {
@@ -1482,7 +1481,8 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
       $options['attributes']['rel'] = $rel;
     }
 
-    $target = trim($this->viewsTokenReplace($alter['target'], $tokens));
+    // Not sure if this SafeMarkup::checkPlain() is needed here?
+    $target = SafeMarkup::checkPlain(trim($this->viewsTokenReplace($alter['target'], $tokens)));
     if (!empty($target)) {
       $options['attributes']['target'] = $target;
     }
@@ -1532,20 +1532,19 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
 
     // Build the link based on our altered Url object, adding on the optional
     // prefix and suffix
-    $render = [
-      '#type' => 'link',
-      '#title' => $text,
-      '#url' => $final_url,
-    ];
+    $value = '';
 
     if (!empty($alter['prefix'])) {
-      $render['#prefix'] = $this->viewsTokenReplace($alter['prefix'], $tokens);
+      $value .= Xss::filterAdmin($this->viewsTokenReplace($alter['prefix'], $tokens));
     }
-    if (!empty($alter['suffix'])) {
-      $render['#suffix'] = $this->viewsTokenReplace($alter['suffix'], $tokens);
-    }
-    return $this->getRenderer()->render($render);
 
+    $value .= $this->linkGenerator()->generate($text, $final_url);
+
+    if (!empty($alter['suffix'])) {
+      $value .= Xss::filterAdmin($this->viewsTokenReplace($alter['suffix'], $tokens));
+    }
+
+    return $value;
   }
 
   /**
@@ -1558,7 +1557,7 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
     }
     $count = 0;
     foreach ($this->displayHandler->getHandlers('argument') as $arg => $handler) {
-      $token = "{{ arguments.$arg }}";
+      $token = '%' . ++$count;
       if (!isset($tokens[$token])) {
         $tokens[$token] = '';
       }
@@ -1566,8 +1565,7 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
       // Use strip tags as there should never be HTML in the path.
       // However, we need to preserve special characters like " that
       // were removed by SafeMarkup::checkPlain().
-      $tokens["{{ raw_arguments.$arg }}"] = isset($this->view->args[$count]) ? strip_tags(Html::decodeEntities($this->view->args[$count])) : '';
-      $count++;
+      $tokens['!' . $count] = isset($this->view->args[$count - 1]) ? strip_tags(Html::decodeEntities($this->view->args[$count - 1])) : '';
     }
 
     // Get flattened set of tokens for any array depth in query parameters.
@@ -1663,8 +1661,8 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
       }
       else {
         // Create a token key based on array element structure.
-        $token_string = !empty($parent_keys) ? implode('.', $parent_keys) . '.' . $param : $param;
-        $tokens['{{ arguments.' . $token_string . ' }}'] = strip_tags(Html::decodeEntities($val));
+        $token_string = !empty($parent_keys) ? implode('_', $parent_keys) . '_' . $param : $param;
+        $tokens['%' . $token_string] = strip_tags(Html::decodeEntities($val));
       }
     }
 

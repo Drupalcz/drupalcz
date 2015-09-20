@@ -1,5 +1,5 @@
 id: d7_comment_field
-label: Comment field configuration
+label: Drupal 7 comment field configuration
 migration_tags:
   - Drupal 7
 source:

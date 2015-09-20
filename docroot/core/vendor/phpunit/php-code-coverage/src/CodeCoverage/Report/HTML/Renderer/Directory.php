@@ -11,7 +11,13 @@
 /**
  * Renders a PHP_CodeCoverage_Report_Node_Directory node.
  *
- * @since Class available since Release 1.1.0
+ * @category   PHP
+ * @package    CodeCoverage
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://github.com/sebastianbergmann/php-code-coverage
+ * @since      Class available since Release 1.1.0
  */
 class PHP_CodeCoverage_Report_HTML_Renderer_Directory extends PHP_CodeCoverage_Report_HTML_Renderer
 {
@@ -47,7 +53,7 @@ class PHP_CodeCoverage_Report_HTML_Renderer_Directory extends PHP_CodeCoverage_R
 
     /**
      * @param  PHP_CodeCoverage_Report_Node $item
-     * @param  bool                         $total
+     * @param  boolean                      $total
      * @return string
      */
     protected function renderItem(PHP_CodeCoverage_Report_Node $item, $total = false)

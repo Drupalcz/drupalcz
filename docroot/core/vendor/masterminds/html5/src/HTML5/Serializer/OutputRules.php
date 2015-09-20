@@ -73,86 +73,17 @@ class OutputRules implements \Masterminds\HTML5\Serializer\RulesInterface
 
             'nodeName'=>'img', 'nodeName'=>array('img', 'a'),
             'attrName'=>'alt', 'attrName'=>array('title', 'alt'),
+
+
+            'prefixes'=>['xh'=>'http://www.w3.org/1999/xhtml'),
+            'xpath' => "@checked[../../xh:input[@type='radio' or @type='checkbox']]",
         ),
         */
         array(
-            'nodeNamespace' => 'http://www.w3.org/1999/xhtml',
-            'attrName' => array('href',
-                'hreflang',
-                'http-equiv',
-                'icon',
-                'id',
-                'keytype',
-                'kind',
-                'label',
-                'lang',
-                'language',
-                'list',
-                'maxlength',
-                'media',
-                'method',
-                'name',
-                'placeholder',
-                'rel',
-                'rows',
-                'rowspan',
-                'sandbox',
-                'spellcheck',
-                'scope',
-                'seamless',
-                'shape',
-                'size',
-                'sizes',
-                'span',
-                'src',
-                'srcdoc',
-                'srclang',
-                'srcset',
-                'start',
-                'step',
-                'style',
-                'summary',
-                'tabindex',
-                'target',
-                'title',
-                'type',
-                'value',
-                'width',
-                'border',
-                'charset',
-                'cite',
-                'class',
-                'code',
-                'codebase',
-                'color',
-                'cols',
-                'colspan',
-                'content',
-                'coords',
-                'data',
-                'datetime',
-                'default',
-                'dir',
-                'dirname',
-                'enctype',
-                'for',
-                'form',
-                'formaction',
-                'headers',
-                'height',
-                'accept',
-                'accept-charset',
-                'accesskey',
-                'action',
-                'align',
-                'alt',
-                'bgcolor',
-            ),
+            'nodeNamespace'=>'http://www.w3.org/1999/xhtml',
+            'attrName'=>array('alt', 'title'),
         ),
-        array(
-            'nodeNamespace' => 'http://www.w3.org/1999/xhtml',
-            'xpath' => 'starts-with(local-name(), \'data-\')',
-        ),
+
     );
 
     const DOCTYPE = '<!DOCTYPE html>';
@@ -397,7 +328,7 @@ class OutputRules implements \Masterminds\HTML5\Serializer\RulesInterface
                         $xp->registerNamespace($nsPrefix, $ns);
                     }
                 }
-                if(!$xp->evaluate($rule['xpath'], $attr)){
+                if(!$xp->query($rule['xpath'], $attr->ownerElement)->length){
                     continue;
                 }
             }

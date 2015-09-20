@@ -945,7 +945,7 @@ class EntityManager extends DefaultPluginManager implements EntityManagerInterfa
 
     foreach ($definitions as $entity_type_id => $definition) {
       if ($group) {
-        $options[(string) $definition->getGroupLabel()][$entity_type_id] = $definition->getLabel();
+        $options[$definition->getGroupLabel()][$entity_type_id] = $definition->getLabel();
       }
       else {
         $options[$entity_type_id] = $definition->getLabel();
@@ -960,7 +960,7 @@ class EntityManager extends DefaultPluginManager implements EntityManagerInterfa
 
       // Make sure that the 'Content' group is situated at the top.
       $content = $this->t('Content', array(), array('context' => 'Entity type group'));
-      $options = array((string) $content => $options[(string) $content]) + $options;
+      $options = array($content => $options[$content]) + $options;
     }
 
     return $options;

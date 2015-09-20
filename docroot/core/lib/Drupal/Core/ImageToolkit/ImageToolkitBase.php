@@ -32,11 +32,11 @@ abstract class ImageToolkitBase extends PluginBase implements ImageToolkitInterf
   protected $configFactory;
 
   /**
-   * Path of the image file.
+   * Image object this toolkit instance is tied to.
    *
-   * @var string
+   * @var \Drupal\Core\Image\ImageInterface
    */
-  protected $source = '';
+  protected $image;
 
   /**
    * The image toolkit operation manager.
@@ -84,22 +84,18 @@ abstract class ImageToolkitBase extends PluginBase implements ImageToolkitInterf
   /**
    * {@inheritdoc}
    */
-  public function setSource($source) {
-    // If a previous image has been loaded, there is no way to know if the
-    // toolkit implementation needs to perform any additional actions like
-    // freeing memory. Therefore, the source image cannot be changed once set.
-    if ($this->source) {
+  public function setImage(ImageInterface $image) {
+    if ($this->image) {
       throw new \BadMethodCallException(__METHOD__ . '() may only be called once');
     }
-    $this->source = $source;
-    return $this;
+    $this->image = $image;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getSource() {
-    return $this->source;
+  public function getImage() {
+    return $this->image;
   }
 
   /**

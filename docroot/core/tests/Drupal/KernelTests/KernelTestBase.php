@@ -7,9 +7,6 @@
 
 namespace Drupal\KernelTests;
 
-use Drupal\Component\FileCache\ApcuFileCacheBackend;
-use Drupal\Component\FileCache\FileCache;
-use Drupal\Component\FileCache\FileCacheFactory;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Config\ConfigImporter;
@@ -23,7 +20,6 @@ use Drupal\Core\Entity\Sql\SqlEntityStorageInterface;
 use Drupal\Core\Extension\ExtensionDiscovery;
 use Drupal\Core\Site\Settings;
 use Drupal\simpletest\AssertContentTrait;
-use Drupal\simpletest\AssertHelperTrait;
 use Drupal\simpletest\RandomGeneratorTrait;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,7 +52,6 @@ abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements Ser
 
   use AssertLegacyTrait;
   use AssertContentTrait;
-  use AssertHelperTrait;
   use RandomGeneratorTrait;
 
   /**
@@ -217,7 +212,6 @@ abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements Ser
     parent::setUp();
 
     $this->root = static::getDrupalRoot();
-    $this->initFileCache();
     $this->bootEnvironment();
     $this->bootKernel();
   }
@@ -260,6 +254,7 @@ abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements Ser
     $this->siteDirectory = vfsStream::url('root/sites/simpletest/' . $suffix);
 
     mkdir($this->siteDirectory . '/files', 0775);
+    mkdir($this->siteDirectory . '/files/config/' . CONFIG_ACTIVE_DIRECTORY, 0775, TRUE);
     mkdir($this->siteDirectory . '/files/config/' . CONFIG_STAGING_DIRECTORY, 0775, TRUE);
 
     // Ensure that all code that relies on drupal_valid_test_ua() can still be
@@ -278,6 +273,7 @@ abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements Ser
     new Settings($settings);
 
     $GLOBALS['config_directories'] = array(
+      CONFIG_ACTIVE_DIRECTORY => $this->siteDirectory . '/files/config/active',
       CONFIG_STAGING_DIRECTORY => $this->siteDirectory . '/files/config/staging',
     );
 
@@ -346,14 +342,6 @@ abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements Ser
 
     // register() is only called if a new container was built/compiled.
     $this->container = $kernel->getContainer();
-
-    // Ensure database tasks have been run.
-    require_once __DIR__ . '/../../../includes/install.inc';
-    $connection = Database::getConnection();
-    $errors = db_installer_object($connection->driver())->runTasks();
-    if (!empty($errors)) {
-      $this->fail('Failed to run installer database tasks: ' . implode(', ', $errors));
-    }
 
     if ($modules) {
       $this->container->get('module_handler')->loadAll();
@@ -489,32 +477,6 @@ abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements Ser
     $container = clone self::$initialContainerBuilder;
 
     return $container;
-  }
-
-  /**
-   * Initializes the FileCache component.
-   *
-   * We can not use the Settings object in a component, that's why we have to do
-   * it here instead of \Drupal\Component\FileCache\FileCacheFactory.
-   */
-  protected function initFileCache() {
-    $configuration = Settings::get('file_cache');
-
-    // Provide a default configuration, if not set.
-    if (!isset($configuration['default'])) {
-      $configuration['default'] = [
-        'class' => FileCache::class,
-        'cache_backend_class' => NULL,
-        'cache_backend_configuration' => [],
-      ];
-      // @todo Use extension_loaded('apcu') for non-testbot
-      //  https://www.drupal.org/node/2447753.
-      if (function_exists('apc_fetch')) {
-        $configuration['default']['cache_backend_class'] = ApcuFileCacheBackend::class;
-      }
-    }
-    FileCacheFactory::setConfiguration($configuration);
-    FileCacheFactory::setPrefix(Settings::getApcuPrefix('file_cache', $this->root));
   }
 
   /**
@@ -662,9 +624,6 @@ abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements Ser
         $this->{$property->name} = NULL;
       }
     }
-
-    // Clean FileCache cache.
-    FileCache::reset();
 
     // Clean up statics, container, and settings.
     if (function_exists('drupal_static_reset')) {
@@ -904,14 +863,9 @@ abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements Ser
    *   The rendered string output (typically HTML).
    */
   protected function render(array &$elements) {
-    // Use the bare HTML page renderer to render our links.
-    $renderer = $this->container->get('bare_html_page_renderer');
-    $response = $renderer->renderBarePage(
-      $build, '', $this->container->get('theme.manager')->getActiveTheme()->getName()
-    );
-
-    // Glean the content from the response object.
-    $this->setRawContent($response->getContent());
+    $content = $this->container->get('renderer')->render($elements);
+    drupal_process_attached($elements);
+    $this->setRawContent($content);
     $this->verbose('<pre style="white-space: pre-wrap">' . Html::escape($content));
     return $content;
   }
@@ -1087,6 +1041,7 @@ abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements Ser
     if ($name === 'configDirectories') {
       trigger_error(sprintf("KernelTestBase::\$%s no longer exists. Use config_get_config_directory() directly instead.", $name), E_USER_DEPRECATED);
       return array(
+        CONFIG_ACTIVE_DIRECTORY => config_get_config_directory(CONFIG_ACTIVE_DIRECTORY),
         CONFIG_STAGING_DIRECTORY => config_get_config_directory(CONFIG_STAGING_DIRECTORY),
       );
     }

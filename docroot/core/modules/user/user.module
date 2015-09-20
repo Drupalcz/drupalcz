@@ -377,23 +377,6 @@ function user_user_view(array &$build, UserInterface $account, EntityViewDisplay
 }
 
 /**
- * Implements hook_ENTITY_TYPE_view_alter() for user entities.
- *
- * This function adds a default alt tag to the user_picture field to maintain
- * accessibility.
- */
-function user_user_view_alter(array &$build, UserInterface $account, EntityViewDisplayInterface $display) {
-  if (user_picture_enabled() && !empty($build['user_picture'])) {
-    foreach (Element::children($build['user_picture']) as $key) {
-      $item = $build['user_picture'][$key]['#item'];
-      if (!$item->get('alt')->getValue()) {
-        $item->get('alt')->setValue(\Drupal::translation()->translate('Profile picture for user @username', ['@username' => $account->getUsername()]));
-      }
-    }
-  }
-}
-
-/**
  * Implements hook_preprocess_HOOK() for block templates.
  */
 function user_preprocess_block(&$variables) {
@@ -413,12 +396,12 @@ function user_preprocess_block(&$variables) {
  *   The account object for the user whose name is to be formatted.
  *
  * @return string
- *   An unsanitized string with the username to display.
+ *   An unsanitized string with the username to display. The code receiving
+ *   this result must ensure that \Drupal\Component\Utility\SafeMarkup::checkPlain()
+ *   is called on it before it is printed to the page.
  *
- * @deprecated in Drupal 8.0.x-dev, will be removed before Drupal 9.0.0.
- *   Use \Drupal\Core\Session\AccountInterface::getUsername().
- *
- * @todo Remove usage in https://www.drupal.org/node/2311219.
+ * @deprecated in Drupal 8.x-dev, will be removed before Drupal 8.0.
+ *   Use \Drupal\Core\Session\Interface::getUsername().
  */
 function user_format_name(AccountInterface $account) {
   return $account->getUsername();
@@ -451,7 +434,9 @@ function user_template_preprocess_default_variables_alter(&$variables) {
  *   - account: The user account (\Drupal\Core\Session\AccountInterface).
  *
  * Modules that make any changes to variables like 'name' or 'extra' must ensure
- * that the final string is safe.
+ * that the final string is safe to include directly in the output by using
+ * \Drupal\Component\Utility\SafeMarkup::checkPlain() or
+ * \Drupal\Component\Utility\Xss::filter().
  */
 function template_preprocess_username(&$variables) {
   $account = $variables['account'] ?: new AnonymousUserSession();
@@ -1266,7 +1251,7 @@ function user_form_process_password_confirm($element) {
     $password_settings += array(
       'strengthTitle' => t('Password strength:'),
       'hasWeaknesses' => t('To make your password stronger:'),
-      'tooShort' => t('Make it at least 12 characters'),
+      'tooShort' => t('Make it at least 6 characters'),
       'addLowerCase' => t('Add lowercase letters'),
       'addUpperCase' => t('Add uppercase letters'),
       'addNumbers' => t('Add numbers'),

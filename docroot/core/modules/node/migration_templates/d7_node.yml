@@ -1,5 +1,5 @@
 id: d7_node
-label: Nodes
+label: Drupal 7 nodes
 migration_tags:
   - Drupal 7
 builder:
@@ -30,5 +30,3 @@ migration_dependencies:
   required:
     - d7_user
     - d7_node_type
-  optional:
-    - d7_field_instance

@@ -684,34 +684,8 @@ class Block extends DrupalDumpBase {
       'pages' => '',
       'title' => '',
       'cache' => '-1',
-    ))->values(array(
-      'bid' => '45',
-      'module' => 'block',
-      'delta' => '1',
-      'theme' => 'bartik',
-      'status' => '1',
-      'weight' => '0',
-      'region' => 'highlighted',
-      'custom' => '0',
-      'visibility' => '0',
-      'pages' => '',
-      'title' => 'Mildly amusing limerick of the day',
-      'cache' => '-1',
-    ))->values(array(
-      'bid' => '46',
-      'module' => 'block',
-      'delta' => '1',
-      'theme' => 'seven',
-      'status' => '0',
-      'weight' => '0',
-      'region' => '',
-      'custom' => '0',
-      'visibility' => '0',
-      'pages' => '',
-      'title' => 'Mildly amusing limerick of the day',
-      'cache' => '-1',
     ))->execute();
   }
 
 }
-#be0543597cafbd2f12cadf1beacb04fc
+#74042b5093754da56e33ac51a867f531

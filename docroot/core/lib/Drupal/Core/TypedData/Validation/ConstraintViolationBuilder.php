@@ -7,7 +7,7 @@
 
 namespace Drupal\Core\TypedData\Validation;
 
-use Drupal\Core\Validation\TranslatorInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationList;
@@ -68,7 +68,7 @@ class ConstraintViolationBuilder implements ConstraintViolationBuilderInterface 
   /**
    * The translator.
    *
-   * @var \Drupal\Core\Validation\TranslatorInterface
+   * @var \Symfony\Component\Translation\TranslatorInterface
    */
   protected $translator;
 
@@ -117,7 +117,7 @@ class ConstraintViolationBuilder implements ConstraintViolationBuilderInterface 
    *   The property string.
    * @param mixed $invalidValue
    *   The invalid value.
-   * @param \Drupal\Core\Validation\TranslatorInterface $translator
+   * @param \Symfony\Component\Translation\TranslatorInterface $translator
    *   The translator.
    * @param null $translationDomain
    *   (optional) The translation domain.

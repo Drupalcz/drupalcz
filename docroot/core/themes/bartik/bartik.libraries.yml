@@ -24,7 +24,6 @@ global-styling:
       css/components/list-group.css: {}
       css/components/list.css: {}
       css/components/main-content.css: {}
-      css/components/menu.css: {}
       css/components/messages.css: {}
       css/components/node.css: {}
       css/components/node-preview.css: {}
@@ -32,13 +31,12 @@ global-styling:
       css/components/pager.css: {}
       css/components/panel.css: {}
       css/components/primary-menu.css: {}
-      css/components/search-form.css: {}
+      css/components/search.css: {}
       css/components/search-results.css: {}
       css/components/secondary-menu.css: {}
       css/components/shortcut.css: {}
       css/components/skip-link.css: {}
       css/components/sidebar.css: {}
-      css/components/site-branding.css: {}
       css/components/site-footer.css: {}
       css/components/table.css: {}
       css/components/tabs.css: {}

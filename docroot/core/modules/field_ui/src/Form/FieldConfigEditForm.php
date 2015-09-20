@@ -7,6 +7,7 @@
 
 namespace Drupal\field_ui\Form;
 
+use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Field\AllowedTagsXssTrait;
 use Drupal\Core\Field\FieldFilteredString;
@@ -171,7 +172,7 @@ class FieldConfigEditForm extends EntityForm {
       $items = $form['#entity']->get($this->entity->getName());
       $default_value = $items->defaultValuesFormSubmit($form['default_value'], $form, $form_state);
     }
-    $this->entity->setDefaultValue($default_value);
+    $this->entity->default_value = $default_value;
 }
 
   /**
@@ -202,7 +203,7 @@ class FieldConfigEditForm extends EntityForm {
    *   The label of the field.
    */
   public function getTitle(FieldConfigInterface $field_config) {
-    return $field_config->label();
+    return SafeMarkup::checkPlain($field_config->label());
   }
 
 }

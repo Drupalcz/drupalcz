@@ -12,8 +12,6 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\entity_reference\Tests\EntityReferenceTestTrait;
-use Drupal\field\Entity\FieldConfig;
-use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\node\Entity\NodeType;
 
 /**
@@ -31,7 +29,7 @@ class PagePreviewTest extends NodeTestBase {
    *
    * @var array
    */
-  public static $modules = array('node', 'taxonomy', 'comment', 'image', 'file');
+  public static $modules = array('node', 'taxonomy', 'comment');
 
   /**
    * The name of the created field.
@@ -70,25 +68,6 @@ class PagePreviewTest extends NodeTestBase {
 
     $this->term = $term;
 
-    // Create an image field.
-    FieldStorageConfig::create([
-      'field_name' => 'field_image',
-      'entity_type' => 'node',
-      'type' => 'image',
-      'settings' => [],
-      'cardinality' => FieldStorageConfig::CARDINALITY_UNLIMITED,
-    ])->save();
-
-    $field_config = FieldConfig::create([
-      'field_name' => 'field_image',
-      'label' => 'Images',
-      'entity_type' => 'node',
-      'bundle' => 'page',
-      'required' => FALSE,
-      'settings' => [],
-    ]);
-    $field_config->save();
-
     // Create a field.
     $this->fieldName = Unicode::strtolower($this->randomMachineName());
     $handler_settings = array(
@@ -116,17 +95,6 @@ class PagePreviewTest extends NodeTestBase {
         'type' => 'entity_reference_label',
       ))
       ->save();
-
-    entity_get_form_display('node', 'page', 'default')
-      ->setComponent('field_image', array(
-        'type' => 'image_image',
-        'settings' => [],
-      ))
-      ->save();
-
-    entity_get_display('node', 'page', 'default')
-      ->setComponent('field_image')
-      ->save();
   }
 
   /**
@@ -139,21 +107,14 @@ class PagePreviewTest extends NodeTestBase {
 
     // Fill in node creation form and preview node.
     $edit = array();
-    $edit[$title_key] = '<em>' . $this->randomMachineName(8) . '</em>';
+    $edit[$title_key] = $this->randomMachineName(8);
     $edit[$body_key] = $this->randomMachineName(16);
     $edit[$term_key] = $this->term->getName();
-
-    // Upload an image.
-    $test_image = current($this->drupalGetTestFiles('image', 39325));
-    $edit['files[field_image_0][]'] = drupal_realpath($test_image->uri);
-    $this->drupalPostForm('node/add/page', $edit, t('Upload'));
-
-    // Add an alt tag and preview the node.
-    $this->drupalPostForm(NULL, ['field_image[0][alt]' => 'Picture of llamas'], t('Preview'));
+    $this->drupalPostForm('node/add/page', $edit, t('Preview'));
 
     // Check that the preview is displaying the title, body and term.
     $this->assertTitle(t('@title | Drupal', array('@title' => $edit[$title_key])), 'Basic page title is preview.');
-    $this->assertEscaped($edit[$title_key], 'Title displayed and escaped.');
+    $this->assertText($edit[$title_key], 'Title displayed.');
     $this->assertText($edit[$body_key], 'Body displayed.');
     $this->assertText($edit[$term_key], 'Term displayed.');
     $this->assertLink(t('Back to content editing'));
@@ -180,12 +141,11 @@ class PagePreviewTest extends NodeTestBase {
     $this->assertFieldByName($title_key, $edit[$title_key], 'Title field displayed.');
     $this->assertFieldByName($body_key, $edit[$body_key], 'Body field displayed.');
     $this->assertFieldByName($term_key, $edit[$term_key] . ' (' . $this->term->id() . ')', 'Term field displayed.');
-    $this->assertFieldByName('field_image[0][alt]', 'Picture of llamas');
 
     // Return to page preview to check everything is as expected.
     $this->drupalPostForm(NULL, array(), t('Preview'));
     $this->assertTitle(t('@title | Drupal', array('@title' => $edit[$title_key])), 'Basic page title is preview.');
-    $this->assertEscaped($edit[$title_key], 'Title displayed and escaped.');
+    $this->assertText($edit[$title_key], 'Title displayed.');
     $this->assertText($edit[$body_key], 'Body displayed.');
     $this->assertText($edit[$term_key], 'Term displayed.');
     $this->assertLink(t('Back to content editing'));
@@ -196,9 +156,8 @@ class PagePreviewTest extends NodeTestBase {
     $this->assertFieldByName($body_key, $edit[$body_key], 'Body field displayed.');
     $this->assertFieldByName($term_key, $edit[$term_key] . ' (' . $this->term->id() . ')', 'Term field displayed.');
 
-    // Save the node - this is a new POST, so we need to upload the image.
-    $this->drupalPostForm('node/add/page', $edit, t('Upload'));
-    $this->drupalPostForm(NULL, ['field_image[0][alt]' => 'Picture of llamas'], t('Save'));
+    // Save the node.
+    $this->drupalPostForm('node/add/page', $edit, t('Save'));
     $node = $this->drupalGetNodeByTitle($edit[$title_key]);
 
     // Check the term was displayed on the saved node.

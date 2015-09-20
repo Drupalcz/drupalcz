@@ -9,6 +9,12 @@
  */
 
 /**
+ * @package    PHPUnit_MockObject
+ * @author     Giorgio Sironi <piccoloprincipeazzurro@gmail.com>
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://github.com/sebastianbergmann/phpunit-mock-objects
  * @since      File available since Release 1.0.0
  */
 class Framework_MockBuilderTest extends PHPUnit_Framework_TestCase
@@ -41,7 +47,7 @@ class Framework_MockBuilderTest extends PHPUnit_Framework_TestCase
     {
         $spec = $this->getMockBuilder('Mockable');
         $mock = $spec->getMock();
-        $this->assertEquals(array(null, null), $mock->constructorArgs);
+        $this->assertEquals(array(NULL, NULL), $mock->constructorArgs);
     }
 
     public function testMockClassNameCanBeSpecified()
@@ -81,7 +87,7 @@ class Framework_MockBuilderTest extends PHPUnit_Framework_TestCase
         $spec = $this->getMockBuilder('Mockable');
         $spec->disableOriginalClone();
         $mock = $spec->getMock();
-        $mock->cloned = false;
+        $mock->cloned = FALSE;
         $cloned = clone $mock;
         $this->assertFalse($cloned->cloned);
     }

@@ -1,5 +1,5 @@
 id: d6_node_settings
-label: Node configuration
+label: Drupal 6 node configuration
 migration_tags:
   - Drupal 6
 source:

@@ -143,7 +143,7 @@ class PathBasedBreadcrumbBuilder implements BreadcrumbBuilderInterface {
     $exclude['/user'] = TRUE;
     // Because this breadcrumb builder is entirely path-based, vary by the
     // 'url.path' cache context.
-    $breadcrumb->addCacheContexts(['url.path']);
+    $breadcrumb->setCacheContexts(['url.path']);
     while (count($path_elements) > 1) {
       array_pop($path_elements);
       // Copy the path elements for up-casting.

@@ -124,13 +124,6 @@ abstract class UpdatePathTestBase extends WebTestBase {
   protected $strictConfigSchema = FALSE;
 
   /**
-   * Fail the test if there are failed updates.
-   *
-   * @var bool
-   */
-  protected $checkFailedUpdates = TRUE;
-
-  /**
    * Constructs an UpdatePathTestCase object.
    *
    * @param $test_id
@@ -253,9 +246,7 @@ abstract class UpdatePathTestBase extends WebTestBase {
     $this->clickLink(t('Apply pending updates'));
 
     // Ensure there are no failed updates.
-    if ($this->checkFailedUpdates) {
-      $this->assertNoRaw('<strong>' . t('Failed:') . '</strong>');
-    }
+    $this->assertNoRaw('<strong>' . t('Failed:') . '</strong>');
 
     // The config schema can be incorrect while the update functions are being
     // executed. But once the update has been completed, it needs to be valid

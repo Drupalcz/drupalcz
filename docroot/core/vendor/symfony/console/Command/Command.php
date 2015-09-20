@@ -513,7 +513,7 @@ class Command
      */
     public function getHelp()
     {
-        return $this->help ?: $this->description;
+        return $this->help;
     }
 
     /**

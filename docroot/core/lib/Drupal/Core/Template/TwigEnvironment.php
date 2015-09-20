@@ -82,7 +82,7 @@ class TwigEnvironment extends \Twig_Environment {
       'auto_reload' => NULL,
     );
     // Ensure autoescaping is always on.
-    $options['autoescape'] = 'html';
+    $options['autoescape'] = TRUE;
 
     $this->loader = $loader;
     parent::__construct($this->loader, $options);

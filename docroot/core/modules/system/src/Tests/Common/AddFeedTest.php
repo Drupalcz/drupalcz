@@ -61,14 +61,9 @@ class AddFeedTest extends WebTestBase {
       $build['#attached']['feed'][] = [$feed_info['url'], $feed_info['title']];
     }
 
-    // Use the bare HTML page renderer to render our links.
-    $renderer = $this->container->get('bare_html_page_renderer');
-    $response = $renderer->renderBarePage(
-      $build, '', $this->container->get('theme.manager')->getActiveTheme()->getName()
-    );
-    // Glean the content from the response object.
-    $this->setRawContent($response->getContent());
-    // Assert that the content contains the RSS links we specified.
+    drupal_process_attached($build);
+
+    $this->setRawContent(drupal_get_html_head());
     foreach ($urls as $description => $feed_info) {
       $this->assertPattern($this->urlToRSSLinkPattern($feed_info['url'], $feed_info['title']), format_string('Found correct feed header for %description', array('%description' => $description)));
     }

@@ -1,5 +1,5 @@
 id: d7_simpletest_settings
-label: SimpleTest configuration
+label: Drupal 7 SimpleTest configuration
 migration_tags:
   - Drupal 7
 source:

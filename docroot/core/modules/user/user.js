@@ -133,10 +133,10 @@
     var $usernameBox = $('input.username');
     var username = ($usernameBox.length > 0) ? $usernameBox.val() : translate.username;
 
-    // Lose 5 points for every character less than 12, plus a 30 point penalty.
-    if (password.length < 12) {
+    // Lose 5 points for every character less than 6, plus a 30 point penalty.
+    if (password.length < 6) {
       msg.push(translate.tooShort);
-      strength -= ((12 - password.length) * 5) + 30;
+      strength -= ((6 - password.length) * 5) + 30;
     }
 
     // Count weaknesses.

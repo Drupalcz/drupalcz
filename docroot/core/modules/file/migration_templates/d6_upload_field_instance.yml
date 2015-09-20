@@ -1,5 +1,5 @@
 id: d6_upload_field_instance
-label: Upload field instance configuration
+label: Drupal 6 upload field instance configuration
 migration_tags:
   - Drupal 6
 source:

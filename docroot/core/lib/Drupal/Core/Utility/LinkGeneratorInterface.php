@@ -60,10 +60,14 @@ interface LinkGeneratorInterface {
    *     class will be applied to the link. It is important to use this
    *     sparingly since it is usually unnecessary and requires extra
    *     processing.
+   * @param bool $collect_bubbleable_metadata
+   *   (optional) Defaults to FALSE. When TRUE, both the generated link and its
+   *   associated bubbleable metadata are returned.
    *
-   * @return \Drupal\Core\GeneratedLink
-   *   A GeneratedLink object containing a link to the given route and
-   *   parameters and bubbleable metadata.
+   * @return string|\Drupal\Core\GeneratedLink
+   *   An HTML string containing a link to the given route and parameters.
+   *   When $collect_bubbleable_metadata is TRUE, a GeneratedLink object is
+   *   returned, containing the generated link plus bubbleable metadata.
    *
    * @throws \Symfony\Component\Routing\Exception\RouteNotFoundException
    *   Thrown when the named route doesn't exist.
@@ -73,18 +77,22 @@ interface LinkGeneratorInterface {
    *   Thrown when a parameter value for a placeholder is not correct because it
    *   does not match the requirement.
    */
-  public function generate($text, Url $url);
+  public function generate($text, Url $url, $collect_bubbleable_metadata = FALSE);
 
   /**
    * Renders a link from a link object.
    *
    * @param \Drupal\Core\Link $link
    *   A link object to convert to a string.
+   * @param bool $collect_bubbleable_metadata
+   *   (optional) Defaults to FALSE. When TRUE, both the generated link and its
+   *   associated bubbleable metadata are returned.
    *
-   * @return \Drupal\Core\GeneratedLink
-   *   A GeneratedLink object containing a link to the given route and
-   *   parameters and bubbleable metadata.
+   * @return string|\Drupal\Core\GeneratedLink
+   *   An HTML string containing a link to the given route and parameters.
+   *   When $collect_bubbleable_metadata is TRUE, a GeneratedLink object is
+   *   returned, containing the generated link plus bubbleable metadata.
    */
-  public function generateFromLink(Link $link);
+  public function generateFromLink(Link $link, $collect_bubbleable_metadata = FALSE);
 
 }

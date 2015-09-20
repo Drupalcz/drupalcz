@@ -7,26 +7,46 @@
 
 namespace Drupal\path\Plugin\migrate\source\d6;
 
-use Drupal\path\Plugin\migrate\source\UrlAliasBase;
+use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 
 /**
- * URL aliases source from database.
+ * Drupal 6 url aliases source from database.
  *
  * @MigrateSource(
- *   id = "d6_url_alias",
- *   source_provider = "path"
+ *   id = "d6_url_alias"
  * )
  */
-class UrlAlias extends UrlAliasBase {
+class UrlAlias extends DrupalSqlBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function query() {
+    $query = $this->select('url_alias', 'ua')
+      ->fields('ua', array('pid', 'src', 'dst', 'language'));
+    $query->orderBy('pid');
+
+    return $query;
+  }
 
   /**
    * {@inheritdoc}
    */
   public function fields() {
-    $fields = parent::fields();
-    $fields['src'] = $this->t('The internal system path.');
-    $fields['dst'] = $this->t('The path alias.');
-    return $fields;
+    return array(
+      'pid' => $this->t('The numeric identifier of the path alias.'),
+      'src' => $this->t('The internal path.'),
+      'dst' => $this->t('The user set path alias.'),
+      'language' => $this->t('The language code of the url alias.'),
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getIds() {
+    $ids['pid']['type'] = 'integer';
+    return $ids;
   }
 
 }

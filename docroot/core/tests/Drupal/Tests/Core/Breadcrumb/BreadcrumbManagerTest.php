@@ -10,8 +10,6 @@ namespace Drupal\Tests\Core\Breadcrumb;
 use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Breadcrumb\BreadcrumbManager;
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Cache\Context\CacheContextsManager;
-use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -19,13 +17,6 @@ use Drupal\Tests\UnitTestCase;
  * @group Breadcrumb
  */
 class BreadcrumbManagerTest extends UnitTestCase {
-
-  /**
-   * The dependency injection container.
-   *
-   * @var \Symfony\Component\DependencyInjection\ContainerBuilder
-   */
-  protected $container;
 
   /**
    * The breadcrumb object.
@@ -55,11 +46,6 @@ class BreadcrumbManagerTest extends UnitTestCase {
     $this->moduleHandler = $this->getMock('Drupal\Core\Extension\ModuleHandlerInterface');
     $this->breadcrumbManager = new BreadcrumbManager($this->moduleHandler);
     $this->breadcrumb = new Breadcrumb();
-
-    $this->container = new ContainerBuilder();
-    $cache_contexts_manager = $this->prophesize(CacheContextsManager::class)->reveal();
-    $this->container->set('cache_contexts_manager', $cache_contexts_manager);
-    \Drupal::setContainer($this->container);
   }
 
   /**
@@ -85,7 +71,7 @@ class BreadcrumbManagerTest extends UnitTestCase {
     $builder = $this->getMock('Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface');
     $links = array('<a href="/example">Test</a>');
     $this->breadcrumb->setLinks($links);
-    $this->breadcrumb->addCacheContexts(['foo'])->addCacheTags(['bar']);
+    $this->breadcrumb->setCacheContexts(['foo'])->setCacheTags(['bar']);
 
     $builder->expects($this->once())
       ->method('applies')
@@ -122,7 +108,7 @@ class BreadcrumbManagerTest extends UnitTestCase {
     $builder2 = $this->getMock('Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface');
     $links2 = array('<a href="/example2">Test2</a>');
     $this->breadcrumb->setLinks($links2);
-    $this->breadcrumb->addCacheContexts(['baz'])->addCacheTags(['qux']);
+    $this->breadcrumb->setCacheContexts(['baz'])->setCacheTags(['qux']);
     $builder2->expects($this->once())
       ->method('applies')
       ->will($this->returnValue(TRUE));
@@ -160,7 +146,7 @@ class BreadcrumbManagerTest extends UnitTestCase {
     $builder2 = $this->getMock('Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface');
     $links2 = ['<a href="/example2">Test2</a>'];
     $this->breadcrumb->setLinks($links2);
-    $this->breadcrumb->addCacheContexts(['baz'])->addCacheTags(['qux']);
+    $this->breadcrumb->setCacheContexts(['baz'])->setCacheTags(['qux']);
     $builder2->expects($this->once())
       ->method('applies')
       ->will($this->returnValue(TRUE));

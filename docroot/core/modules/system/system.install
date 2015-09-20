@@ -53,11 +53,10 @@ function system_requirements($phase) {
 
     // Warn if any experimental modules are installed.
     $experimental = array();
-    $enabled_modules = \Drupal::moduleHandler()->getModuleList();
+    $enabled_modules = system_rebuild_module_data();
     foreach ($enabled_modules as $module => $data) {
-      $info = system_get_info('module', $module);
-      if ($info['package'] === 'Core (Experimental)') {
-        $experimental[$module] = $info['name'];
+      if ($data->info['package'] === 'Core (Experimental)') {
+        $experimental[$module] = $data->info['name'];
       }
     }
     if (!empty($experimental)) {
@@ -239,22 +238,6 @@ function system_requirements($phase) {
   }
   else {
     $requirements['php_extensions']['value'] = t('Enabled');
-  }
-
-  if ($phase == 'install' || $phase == 'runtime') {
-    // Check to see if OPcache is installed.
-    $opcache_enabled = (function_exists('opcache_get_status') && opcache_get_status()['opcache_enabled']);
-    if (!$opcache_enabled) {
-      $requirements['php_opcache'] = array(
-        'value' => t('Not enabled'),
-        'severity' => REQUIREMENT_WARNING,
-        'description' => t('PHP OPcode caching can improve your site\'s performance considerably. It is <strong>highly recommended</strong> to have <a href="@opcache_link" target="_blank">OPcache</a> installed on your server.', array('@opcache_link' => 'http://php.net/manual/en/opcache.installation.php')),
-      );
-    }
-    else {
-      $requirements['php_opcache']['value'] = t('Enabled');
-    }
-    $requirements['php_opcache']['title'] = t('PHP OPcode caching');
   }
 
   if ($phase == 'install' || $phase == 'update') {
@@ -615,30 +598,17 @@ function system_requirements($phase) {
     );
 
     // Check installed modules.
-    $has_pending_updates = FALSE;
     foreach (\Drupal::moduleHandler()->getModuleList() as $module => $filename) {
       $updates = drupal_get_schema_versions($module);
       if ($updates !== FALSE) {
         $default = drupal_get_installed_schema_version($module);
         if (max($updates) > $default) {
-          $has_pending_updates = TRUE;
+          $requirements['update']['severity'] = REQUIREMENT_ERROR;
+          $requirements['update']['value'] = t('Out of date');
+          $requirements['update']['description'] = t('Some modules have database schema updates to install. You should run the <a href="@update">database update script</a> immediately.', array('@update' => \Drupal::url('system.db_update')));
           break;
         }
       }
-    }
-    if (!$has_pending_updates) {
-      /** @var \Drupal\Core\Update\UpdateRegistry $post_update_registry */
-      $post_update_registry = \Drupal::service('update.post_update_registry');
-      $missing_post_update_functions = $post_update_registry->getPendingUpdateFunctions();
-      if (!empty($missing_post_update_functions)) {
-        $has_pending_updates = TRUE;
-      }
-    }
-
-    if ($has_pending_updates) {
-      $requirements['update']['severity'] = REQUIREMENT_ERROR;
-      $requirements['update']['value'] = t('Out of date');
-      $requirements['update']['description'] = t('Some modules have database schema updates to install. You should run the <a href="@update">database update script</a> immediately.', array('@update' => \Drupal::url('system.db_update')));
     }
 
     // Verify that no entity updates are pending after running every DB update.
@@ -1337,8 +1307,7 @@ function system_update_8004() {
   // https://www.drupal.org/node/2542748. Regenerate the related schemas to
   // ensure they match the currently expected status.
   $manager = \Drupal::entityDefinitionUpdateManager();
-  foreach (array_keys(\Drupal::entityManager()
-    ->getDefinitions()) as $entity_type_id) {
+  foreach (array_keys(\Drupal::entityManager()->getDefinitions()) as $entity_type_id) {
     $manager->updateEntityType($manager->getEntityType($entity_type_id));
   }
 }
@@ -1493,78 +1462,7 @@ function system_update_8005() {
 }
 
 /**
- * Place branding blocks in every theme.
- */
-function system_update_8006() {
-  // When block module is not installed, there is nothing that could be done
-  // except showing a warning.
-  if (!\Drupal::moduleHandler()->moduleExists('block')) {
-    return t('Block module is not enabled so site branding elements, which have been converted to a block, are not visible anymore.');
-  }
-
-  /** @var \Drupal\Core\Extension\ThemeHandlerInterface $theme_handler */
-  $theme_handler = \Drupal::service('theme_handler');
-  $custom_themes_installed = FALSE;
-  $message = NULL;
-  $langcode = \Drupal::service('language_manager')->getCurrentLanguage()->getId();
-
-  $site_branding_default_settings = [
-    'plugin' => 'system_branding_block',
-    'region' => 'content',
-    'settings.label' => 'Site branding',
-    'settings.label_display' => 0,
-    'settings.cache.max_age' => 0,
-    'visibility' => [],
-    'weight' => 0,
-    'langcode' => $langcode,
-  ];
-  foreach ($theme_handler->listInfo() as $theme) {
-    $theme_name = $theme->getName();
-    switch ($theme_name) {
-      case 'bartik':
-        $name = 'block.block.bartik_branding';
-        $values = [
-            'id' => 'bartik_branding',
-            'region' => 'header',
-          ] + $site_branding_default_settings;
-        _system_update_create_block($name, $theme_name, $values);
-        break;
-
-      case 'stark':
-        $name = 'block.block.stark_branding';
-        $values = [
-            'id' => 'stark_branding',
-            'region' => 'header',
-          ] + $site_branding_default_settings;
-        _system_update_create_block($name, $theme_name, $values);
-        break;
-
-      case 'seven':
-      case 'classy':
-        // Don't place any blocks or trigger custom themes installed warning.
-        break;
-      default:
-        $custom_themes_installed = TRUE;
-        $name = sprintf('block.block.%s_branding', $theme_name);
-        $values = [
-            'id' => sprintf('%s_branding', $theme_name),
-            'region' => 'content',
-            'weight' => '-50',
-          ] + $site_branding_default_settings;
-        _system_update_create_block($name, $theme_name, $values);
-        break;
-    }
-  }
-
-  if ($custom_themes_installed) {
-    $message = t('Because your site has custom theme(s) installed, we had to set the branding block into the content region. Please manually review the block configuration and remove the site name, slogan, and logo variables from your templates.');
-  }
-
-  return $message;
-}
-
-/**
- * Helper function to create block configuration objects for an update.
+ * Helper function to create block configuration objects for the update.
  *
  * @param string $name
  *   The name of the config object.
@@ -1584,61 +1482,6 @@ function _system_update_create_block($name, $theme_name, array $values) {
     }
     $block->save();
   }
-}
-
-/**
- * Set langcode fields to be ASCII-only.
- */
-function system_update_8007() {
-  $database = \Drupal::database();
-  $database_schema = $database->schema();
-
-  $schema = \Drupal::keyValue('entity.storage_schema.sql')->getAll();
-  $schema_copy = $schema;
-  foreach ($schema as $item_name => $item) {
-    foreach ($item as $table_name => $table_schema) {
-      foreach ($table_schema as $schema_key => $schema_data) {
-        if ($schema_key == 'fields') {
-          foreach ($schema_data as $field_name => $field_data) {
-            foreach ($field_data as $field_data_property => $field_data_value) {
-              // Langcode fields have the property 'is_ascii' set, instead
-              // they should have set the type to 'varchar_ascii'.
-              if ($field_data_property == 'is_ascii') {
-                unset($schema_copy[$item_name][$table_name]['fields'][$field_name]['is_ascii']);
-                $schema_copy[$item_name][$table_name]['fields'][$field_name]['type'] = 'varchar_ascii';
-                if ($database->driver() == 'mysql') {
-                  $database_schema->changeField($table_name, $field_name, $field_name, $schema_copy[$item_name][$table_name]['fields'][$field_name]);
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  \Drupal::keyValue('entity.storage_schema.sql')->setMultiple($schema_copy);
-
-  $definitions = \Drupal::keyValue('entity.definitions.installed')->getAll();
-  $definitions_copy = $definitions;
-  foreach ($definitions as $item_name => $item_value) {
-    $suffix = '.field_storage_definitions';
-    if (substr($item_name, -strlen($suffix)) == $suffix) {
-      foreach ($item_value as $field_name => $field_definition) {
-        $reflection = new \ReflectionObject($field_definition);
-        $schema_property = $reflection->getProperty('schema');
-        $schema_property->setAccessible(TRUE);
-        $schema = $schema_property->getValue($field_definition);
-        if (isset($schema['columns']['value']['is_ascii'])) {
-          $schema['columns']['value']['type'] = 'varchar_ascii';
-          unset($schema['columns']['value']['is_ascii']);
-        }
-        $schema_property->setValue($field_definition, $schema);
-        $schema_property->setAccessible(FALSE);
-        $definitions_copy[$item_name][$field_name] = $field_definition;
-      }
-    }
-  }
-  \Drupal::keyValue('entity.definitions.installed')->setMultiple($definitions_copy);
 }
 
 /**

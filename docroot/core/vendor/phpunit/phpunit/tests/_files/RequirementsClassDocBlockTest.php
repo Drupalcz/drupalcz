@@ -9,6 +9,7 @@
  */
 class RequirementsClassDocBlockTest
 {
+
     /**
      * @requires PHP 5.4
      * @requires PHPUnit 3.7

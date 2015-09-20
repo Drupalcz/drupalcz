@@ -27,8 +27,6 @@ class Twig_SimpleTest
         $this->options = array_merge(array(
             'is_variadic' => false,
             'node_class' => 'Twig_Node_Expression_Test',
-            'deprecated' => false,
-            'alternative' => null,
         ), $options);
     }
 
@@ -50,15 +48,5 @@ class Twig_SimpleTest
     public function isVariadic()
     {
         return $this->options['is_variadic'];
-    }
-
-    public function isDeprecated()
-    {
-        return $this->options['deprecated'];
-    }
-
-    public function getAlternative()
-    {
-        return $this->options['alternative'];
     }
 }

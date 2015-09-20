@@ -33,7 +33,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @see \Drupal\Core\DependencyInjection\ContainerInjectionInterface
  *
- * @ingroup routing
+ * @ingroup menu
  */
 abstract class ControllerBase implements ContainerInjectionInterface {
 

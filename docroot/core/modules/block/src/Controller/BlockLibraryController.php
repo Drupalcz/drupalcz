@@ -104,11 +104,9 @@ class BlockLibraryController extends ControllerBase {
     foreach ($definitions as $plugin_id => $plugin_definition) {
       $row = [];
       $row['title']['data'] = [
-        '#type' => 'inline_template',
-        '#template' => '<div class="block-filter-text-source">{{ label }}</div>',
-        '#context' => [
-          'label' => $plugin_definition['admin_label'],
-        ],
+        '#markup' => $plugin_definition['admin_label'],
+        '#prefix' => '<div class="block-filter-text-source">',
+        '#suffix' => '</div>',
       ];
       $row['category']['data'] = $plugin_definition['category'];
       $links['add'] = [

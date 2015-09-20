@@ -15,7 +15,13 @@
  * Keeps track of all expectations and stubs as well as registering
  * identifications for builders.
  *
- * @since Class available since Release 1.0.0
+ * @package    PHPUnit_MockObject
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @version    Release: @package_version@
+ * @link       http://github.com/sebastianbergmann/phpunit-mock-objects
+ * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Framework_MockObject_InvocationMocker implements PHPUnit_Framework_MockObject_Stub_MatcherCollection, PHPUnit_Framework_MockObject_Invokable, PHPUnit_Framework_MockObject_Builder_Namespace
 {
@@ -44,16 +50,16 @@ class PHPUnit_Framework_MockObject_InvocationMocker implements PHPUnit_Framework
     {
         foreach ($this->matchers as $matcher) {
             if ($matcher->hasMatchers()) {
-                return true;
+                return TRUE;
             }
         }
 
-        return false;
+        return FALSE;
     }
 
     /**
-     * @param  mixed     $id
-     * @return bool|null
+     * @param  mixed        $id
+     * @return boolean|null
      */
     public function lookupId($id)
     {
@@ -61,7 +67,7 @@ class PHPUnit_Framework_MockObject_InvocationMocker implements PHPUnit_Framework
             return $this->builderMap[$id];
         }
 
-        return;
+        return NULL;
     }
 
     /**
@@ -73,7 +79,7 @@ class PHPUnit_Framework_MockObject_InvocationMocker implements PHPUnit_Framework
     {
         if (isset($this->builderMap[$id])) {
             throw new PHPUnit_Framework_Exception(
-                'Match builder with id <' . $id . '> is already registered.'
+              'Match builder with id <' . $id . '> is already registered.'
             );
         }
 
@@ -87,8 +93,7 @@ class PHPUnit_Framework_MockObject_InvocationMocker implements PHPUnit_Framework
     public function expects(PHPUnit_Framework_MockObject_Matcher_Invocation $matcher)
     {
         return new PHPUnit_Framework_MockObject_Builder_InvocationMocker(
-            $this,
-            $matcher
+          $this, $matcher
         );
     }
 
@@ -98,13 +103,13 @@ class PHPUnit_Framework_MockObject_InvocationMocker implements PHPUnit_Framework
      */
     public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
     {
-        $exception      = null;
-        $hasReturnValue = false;
+        $exception      = NULL;
+        $hasReturnValue = FALSE;
 
         if (strtolower($invocation->methodName) == '__tostring') {
             $returnValue = '';
         } else {
-            $returnValue = null;
+            $returnValue = NULL;
         }
 
         foreach ($this->matchers as $match) {
@@ -114,7 +119,7 @@ class PHPUnit_Framework_MockObject_InvocationMocker implements PHPUnit_Framework
 
                     if (!$hasReturnValue) {
                         $returnValue    = $value;
-                        $hasReturnValue = true;
+                        $hasReturnValue = TRUE;
                     }
                 }
             } catch (Exception $e) {
@@ -122,7 +127,7 @@ class PHPUnit_Framework_MockObject_InvocationMocker implements PHPUnit_Framework
             }
         }
 
-        if ($exception !== null) {
+        if ($exception !== NULL) {
             throw $exception;
         }
 
@@ -131,21 +136,21 @@ class PHPUnit_Framework_MockObject_InvocationMocker implements PHPUnit_Framework
 
     /**
      * @param  PHPUnit_Framework_MockObject_Invocation $invocation
-     * @return bool
+     * @return boolean
      */
     public function matches(PHPUnit_Framework_MockObject_Invocation $invocation)
     {
         foreach ($this->matchers as $matcher) {
             if (!$matcher->matches($invocation)) {
-                return false;
+                return FALSE;
             }
         }
 
-        return true;
+        return TRUE;
     }
 
     /**
-     * @return bool
+     * @return boolean
      */
     public function verify()
     {

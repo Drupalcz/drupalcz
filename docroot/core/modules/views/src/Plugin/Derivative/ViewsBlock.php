@@ -9,7 +9,6 @@ namespace Drupal\views\Plugin\Derivative;
 
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
-use Drupal\Core\StringTranslation\TranslationWrapper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -90,24 +89,19 @@ class ViewsBlock implements ContainerDeriverInterface {
         // Add a block plugin definition for each block display.
         if (isset($display) && !empty($display->definition['uses_hook_block'])) {
           $delta = $view->id() . '-' . $display->display['id'];
+          $desc = $display->getOption('block_description');
 
-          $admin_label = $display->getOption('block_description');
-          if (empty($admin_label)) {
+          if (empty($desc)) {
             if ($display->display['display_title'] == $display->definition['title']) {
-              $admin_label = $view->label();
+              $desc = t('!view', array('!view' => $view->label()));
             }
             else {
-              // Allow translators to control the punctuation. Plugin
-              // definitions get cached, so use TranslationWrapper() instead of
-              // t() to avoid double escaping when $admin_label is rendered
-              // during requests that use the cached definition.
-              $admin_label = new TranslationWrapper('@view: @display', ['@view' => $view->label(), '@display' => $display->display['display_title']]);
+              $desc = t('!view: !display', array('!view' => $view->label(), '!display' => $display->display['display_title']));
             }
           }
-
           $this->derivatives[$delta] = array(
             'category' => $display->getOption('block_category'),
-            'admin_label' => $admin_label,
+            'admin_label' => $desc,
             'config_dependencies' => array(
               'config' => array(
                 $view->getConfigDependencyName(),

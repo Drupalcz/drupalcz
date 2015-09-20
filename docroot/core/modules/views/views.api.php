@@ -78,11 +78,6 @@ use Drupal\views\ViewExecutable;
  */
 
 /**
- * @addtogroup hooks
- * @{
- */
-
-/**
  * Analyze a view to provide warnings about its configuration.
  *
  * @param \Drupal\views\ViewExecutable $view
@@ -1218,10 +1213,6 @@ function hook_views_plugins_sort_alter(array &$plugins) {
   // Change the 'title' handler class.
   $plugins['title']['class'] = 'Drupal\\example\\ExampleClass';
 }
-
-/**
- * @} End of "addtogroup hooks".
- */
 
 /**
  * @}

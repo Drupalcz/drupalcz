@@ -19,6 +19,7 @@
 
 namespace Doctrine\Common\Proxy\Exception;
 
+use Doctrine\Common\Persistence\Proxy;
 use OutOfBoundsException as BaseOutOfBoundsException;
 
 /**

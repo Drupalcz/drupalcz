@@ -153,13 +153,4 @@ class FileCache implements FileCacheInterface {
     }
   }
 
-  /**
-   * Resets the static cache.
-   *
-   * @todo Replace this once https://www.drupal.org/node/2260187 is in.
-   */
-  public static function reset() {
-    static::$cached = [];
-  }
-
 }

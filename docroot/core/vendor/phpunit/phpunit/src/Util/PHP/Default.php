@@ -13,7 +13,13 @@ use SebastianBergmann\Environment\Runtime;
 /**
  * Default utility for PHP sub-processes.
  *
- * @since Class available since Release 3.5.12
+ * @package    PHPUnit
+ * @subpackage Util
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://www.phpunit.de/
+ * @since      Class available since Release 3.5.12
  */
 class PHPUnit_Util_PHP_Default extends PHPUnit_Util_PHP
 {

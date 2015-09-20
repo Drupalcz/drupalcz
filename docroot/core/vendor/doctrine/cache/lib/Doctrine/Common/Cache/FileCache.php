@@ -37,48 +37,21 @@ abstract class FileCache extends CacheProvider
     /**
      * The cache file extension.
      *
-     * @var string
+     * @var string|null
      */
-    private $extension;
-
-    /**
-     * @var string[] regular expressions for replacing disallowed characters in file name
-     */
-    private $disallowedCharacterPatterns = array(
-        '/\-/', // replaced to disambiguate original `-` and `-` derived from replacements
-        '/[^a-zA-Z0-9\-_\[\]]/' // also excludes non-ascii chars (not supported, depending on FS)
-    );
-
-    /**
-     * @var string[] replacements for disallowed file characters
-     */
-    private $replacementCharacters = array('__', '-');
-
-    /**
-     * @var int
-     */
-    private $umask;
+    protected $extension;
 
     /**
      * Constructor.
      *
-     * @param string $directory The cache directory.
-     * @param string $extension The cache file extension.
+     * @param string      $directory The cache directory.
+     * @param string|null $extension The cache file extension.
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct($directory, $extension = '', $umask = 0002)
+    public function __construct($directory, $extension = null)
     {
-        // YES, this needs to be *before* createPathIfNeeded()
-        if ( ! is_int($umask)) {
-            throw new \InvalidArgumentException(sprintf(
-                'The umask parameter is required to be integer, was: %s',
-                gettype($umask)
-            ));
-        }
-        $this->umask = $umask;
-
-        if ( ! $this->createPathIfNeeded($directory)) {
+        if ( ! is_dir($directory) && ! @mkdir($directory, 0777, true)) {
             throw new \InvalidArgumentException(sprintf(
                 'The directory "%s" does not exist and could not be created.',
                 $directory
@@ -92,9 +65,8 @@ abstract class FileCache extends CacheProvider
             ));
         }
 
-        // YES, this needs to be *after* createPathIfNeeded()
         $this->directory = realpath($directory);
-        $this->extension = (string) $extension;
+        $this->extension = $extension ?: $this->extension;
     }
 
     /**
@@ -124,12 +96,12 @@ abstract class FileCache extends CacheProvider
      */
     protected function getFilename($id)
     {
-        return $this->directory
-            . DIRECTORY_SEPARATOR
-            . implode(str_split(hash('sha256', $id), 2), DIRECTORY_SEPARATOR)
-            . DIRECTORY_SEPARATOR
-            . preg_replace($this->disallowedCharacterPatterns, $this->replacementCharacters, $id)
-            . $this->extension;
+        $hash = hash('sha256', $id);
+        $path = implode(str_split($hash, 16), DIRECTORY_SEPARATOR);
+        $path = $this->directory . DIRECTORY_SEPARATOR . $path;
+        $id   = preg_replace('@[\\\/:"*?<>|]+@', '', $id);
+
+        return $path . DIRECTORY_SEPARATOR . $id . $this->extension;
     }
 
     /**
@@ -174,64 +146,13 @@ abstract class FileCache extends CacheProvider
     }
 
     /**
-     * Create path if needed.
-     *
-     * @param string $path
-     * @return bool TRUE on success or if path already exists, FALSE if path cannot be created.
-     */
-    private function createPathIfNeeded($path)
-    {
-        if ( ! is_dir($path)) {
-            if (false === @mkdir($path, 0777 & (~$this->umask), true) && !is_dir($path)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * Writes a string content to file in an atomic way.
-     *
-     * @param string $filename Path to the file where to write the data.
-     * @param string $content  The content to write
-     *
-     * @return bool TRUE on success, FALSE if path cannot be created, if path is not writable or an any other error.
-     */
-    protected function writeFile($filename, $content)
-    {
-        $filepath = pathinfo($filename, PATHINFO_DIRNAME);
-
-        if ( ! $this->createPathIfNeeded($filepath)) {
-            return false;
-        }
-
-        if ( ! is_writable($filepath)) {
-            return false;
-        }
-
-        $tmpFile = tempnam($filepath, 'swap');
-        @chmod($tmpFile, 0666 & (~$this->umask));
-
-        if (file_put_contents($tmpFile, $content) !== false) {
-            if (@rename($tmpFile, $filename)) {
-                return true;
-            }
-
-            @unlink($tmpFile);
-        }
-
-        return false;
-    }
-
-    /**
      * @return \Iterator
      */
     private function getIterator()
     {
-        return new \RegexIterator(
-            new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->directory)),
-            '/^.+' . preg_quote($this->extension, '/') . '$/i'
-        );
+        $pattern = '/^.+\\' . $this->extension . '$/i';
+        $iterator = new \RecursiveDirectoryIterator($this->directory);
+        $iterator = new \RecursiveIteratorIterator($iterator);
+        return new \RegexIterator($iterator, $pattern);
     }
 }

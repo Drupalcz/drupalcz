@@ -80,8 +80,8 @@ class ManageFieldsTest extends WebTestBase {
     $type = $this->drupalCreateContentType(array('name' => $type_name, 'type' => $type_name));
     $this->contentType = $type->id();
 
-    // Create random field name with markup to test escaping.
-    $this->fieldLabel = '<em>' . $this->randomMachineName(8) . '</em>';
+    // Create random field name.
+    $this->fieldLabel = $this->randomMachineName(8);
     $this->fieldNameInput =  strtolower($this->randomMachineName(8));
     $this->fieldName = 'field_'. $this->fieldNameInput;
 
@@ -194,7 +194,6 @@ class ManageFieldsTest extends WebTestBase {
     $field_id = 'node.' . $this->contentType . '.' . $this->fieldName;
     // Go to the field edit page.
     $this->drupalGet('admin/structure/types/manage/' . $this->contentType . '/fields/' . $field_id . '/storage');
-    $this->assertEscaped($this->fieldLabel);
 
     // Populate the field settings with new settings.
     $string = 'updated dummy test string';
@@ -403,7 +402,7 @@ class ManageFieldsTest extends WebTestBase {
     $this->drupalPostForm($admin_path, $edit, t('Save settings'));
     $this->assertText("Saved $field_name configuration", 'The form was successfully submitted.');
     $field = FieldConfig::loadByName('node', $this->contentType, $field_name);
-    $this->assertEqual($field->getDefaultValueLiteral(), array(array('value' => 1)), 'The default value was correctly saved.');
+    $this->assertEqual($field->default_value, array(array('value' => 1)), 'The default value was correctly saved.');
 
     // Check that the default value shows up in the form
     $this->drupalGet($admin_path);
@@ -414,7 +413,7 @@ class ManageFieldsTest extends WebTestBase {
     $this->drupalPostForm(NULL, $edit, t('Save settings'));
     $this->assertText("Saved $field_name configuration", 'The form was successfully submitted.');
     $field = FieldConfig::loadByName('node', $this->contentType, $field_name);
-    $this->assertEqual($field->getDefaultValueLiteral(), NULL, 'The default value was correctly saved.');
+    $this->assertEqual($field->default_value, NULL, 'The default value was correctly saved.');
 
     // Check that the default value can be empty when the field is marked as
     // required and can store unlimited values.
@@ -432,7 +431,7 @@ class ManageFieldsTest extends WebTestBase {
     $this->drupalPostForm(NULL, array(), t('Save settings'));
     $this->assertText("Saved $field_name configuration", 'The form was successfully submitted.');
     $field = FieldConfig::loadByName('node', $this->contentType, $field_name);
-    $this->assertEqual($field->getDefaultValueLiteral(), NULL, 'The default value was correctly saved.');
+    $this->assertEqual($field->default_value, NULL, 'The default value was correctly saved.');
 
     // Check that the default widget is used when the field is hidden.
     entity_get_form_display($field->getTargetEntityTypeId(), $field->getTargetBundle(), 'default')

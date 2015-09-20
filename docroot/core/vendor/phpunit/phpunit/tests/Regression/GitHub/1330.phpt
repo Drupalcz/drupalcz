@@ -15,6 +15,8 @@ PHPUnit_TextUI_Command::main();
 --EXPECTF--
 PHPUnit %s by Sebastian Bergmann and contributors.
 
+Configuration read from %s
+
 
 Starting test 'Issue1330Test::testTrue'.
 .

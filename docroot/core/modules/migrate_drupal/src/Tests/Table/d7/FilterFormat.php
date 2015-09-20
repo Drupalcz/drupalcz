@@ -84,12 +84,6 @@ class FilterFormat extends DrupalDumpBase {
       'status' => '1',
       'weight' => '1',
     ))->values(array(
-      'format' => 'php_code',
-      'name' => 'PHP code',
-      'cache' => '0',
-      'status' => '1',
-      'weight' => '11',
-    ))->values(array(
       'format' => 'plain_text',
       'name' => 'Plain text',
       'cache' => '1',
@@ -99,4 +93,4 @@ class FilterFormat extends DrupalDumpBase {
   }
 
 }
-#1b5a38dba80d3aa28301b147d36c3d9e
+#1e6fc650aec40ccdac7d9290778b5708

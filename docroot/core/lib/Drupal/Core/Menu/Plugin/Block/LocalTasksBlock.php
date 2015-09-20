@@ -8,7 +8,6 @@
 namespace Drupal\Core\Menu\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Menu\LocalTaskManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -89,7 +88,7 @@ class LocalTasksBlock extends BlockBase implements ContainerFactoryPluginInterfa
    */
   public function build() {
     $config = $this->configuration;
-    $cacheability = new CacheableMetadata();
+
     $tabs = [
       '#theme' => 'menu_local_tasks',
     ];
@@ -97,7 +96,6 @@ class LocalTasksBlock extends BlockBase implements ContainerFactoryPluginInterfa
     // Add only selected levels for the printed output.
     if ($config['primary']) {
       $links = $this->localTaskManager->getLocalTasks($this->routeMatch->getRouteName(), 0);
-      $cacheability = $cacheability->merge($links['cacheability']);
       // Do not display single tabs.
       $tabs += [
         '#primary' => count(Element::getVisibleChildren($links['tabs'])) > 1 ? $links['tabs'] : [],
@@ -105,20 +103,48 @@ class LocalTasksBlock extends BlockBase implements ContainerFactoryPluginInterfa
     }
     if ($config['secondary']) {
       $links = $this->localTaskManager->getLocalTasks($this->routeMatch->getRouteName(), 1);
-      $cacheability = $cacheability->merge($links['cacheability']);
       // Do not display single tabs.
       $tabs += [
         '#secondary' => count(Element::getVisibleChildren($links['tabs'])) > 1 ? $links['tabs'] : [],
       ];
     }
 
-    $build = [];
-    $cacheability->applyTo($build);
     if (empty($tabs['#primary']) && empty($tabs['#secondary'])) {
-      return $build;
+      return [];
     }
 
-    return $build + $tabs;
+    return $tabs;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
+    $form = parent::buildConfigurationForm($form, $form_state);
+
+    // The "Page actions" block is never cacheable because of hooks creating
+    // local tasks doesn't provide cacheability metadata.
+    // @todo Remove after https://www.drupal.org/node/2511516 has landed.
+    $form['cache']['#disabled'] = TRUE;
+    $form['cache']['#description'] = $this->t('This block is never cacheable.');
+    $form['cache']['max_age']['#value'] = 0;
+
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheMaxAge() {
+    // @todo Remove after https://www.drupal.org/node/2511516 has landed.
+    return 0;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheContexts() {
+    return ['route.name'];
   }
 
   /**

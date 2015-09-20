@@ -19,8 +19,8 @@
 
 namespace Doctrine\Common\Reflection;
 
-use Doctrine\Common\Proxy\Proxy;
 use ReflectionProperty;
+use Doctrine\Common\Proxy\Proxy;
 
 /**
  * PHP Runtime Reflection Public Property - special overrides for public properties.

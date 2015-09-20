@@ -1,4 +1,3 @@
-#!/bin/sh
 set -x
 if [ "$TRAVIS_PHP_VERSION" = 'hhvm' ] || [ "$TRAVIS_PHP_VERSION" = 'hhvm-nightly' ] ; then
     curl -sS https://getcomposer.org/installer > composer-installer.php

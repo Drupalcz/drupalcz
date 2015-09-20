@@ -78,57 +78,10 @@ class ClassMetadataFactoryTest extends DoctrineTestCase
 
     public function testGetAliasedMetadata()
     {
-        $this->cmf->getMetadataFor('prefix:ChildEntity');
+        $loadedMetadata = $this->cmf->getMetadataFor('prefix:ChildEntity');
 
         $this->assertTrue($this->cmf->hasMetadataFor(__NAMESPACE__ . '\ChildEntity'));
         $this->assertTrue($this->cmf->hasMetadataFor('prefix:ChildEntity'));
-    }
-
-    /**
-     * @group DCOM-270
-     */
-    public function testGetInvalidAliasedMetadata()
-    {
-        $this->setExpectedException(
-            'Doctrine\Common\Persistence\Mapping\MappingException',
-            'Class \'Doctrine\Tests\Common\Persistence\Mapping\ChildEntity:Foo\' does not exist'
-        );
-
-        $this->cmf->getMetadataFor('prefix:ChildEntity:Foo');
-    }
-
-    /**
-     * @group DCOM-270
-     */
-    public function testClassIsTransient()
-    {
-        $this->assertTrue($this->cmf->isTransient('prefix:ChildEntity:Foo'));
-    }
-
-    public function testWillFallbackOnNotLoadedMetadata()
-    {
-        $classMetadata = $this->getMock('Doctrine\Common\Persistence\Mapping\ClassMetadata');
-
-        $this->cmf->fallbackCallback = function () use ($classMetadata) {
-            return $classMetadata;
-        };
-
-        $this->cmf->metadata = null;
-
-        $this->assertSame($classMetadata, $this->cmf->getMetadataFor('Foo'));
-    }
-
-    public function testWillFailOnFallbackFailureWithNotLoadedMetadata()
-    {
-        $this->cmf->fallbackCallback = function () {
-            return null;
-        };
-
-        $this->cmf->metadata = null;
-
-        $this->setExpectedException('Doctrine\Common\Persistence\Mapping\MappingException');
-
-        $this->cmf->getMetadataFor('Foo');
     }
 }
 
@@ -136,9 +89,6 @@ class TestClassMetadataFactory extends AbstractClassMetadataFactory
 {
     public $driver;
     public $metadata;
-
-    /** @var callable|null */
-    public $fallbackCallback;
 
     public function __construct($driver, $metadata)
     {
@@ -179,20 +129,6 @@ class TestClassMetadataFactory extends AbstractClassMetadataFactory
     }
 
     protected function isEntity(ClassMetadata $class)
-    {
-        return true;
-    }
-
-    protected function onNotFoundMetadata($className)
-    {
-        if (! $fallback = $this->fallbackCallback) {
-            return null;
-        }
-
-        return $fallback();
-    }
-
-    public function isTransient($class)
     {
         return true;
     }

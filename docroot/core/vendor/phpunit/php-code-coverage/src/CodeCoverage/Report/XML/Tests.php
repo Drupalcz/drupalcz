@@ -9,7 +9,13 @@
  */
 
 /**
- * @since Class available since Release 2.0.0
+ * @category   PHP
+ * @package    CodeCoverage
+ * @author     Arne Blankerts <arne@blankerts.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://github.com/sebastianbergmann/php-code-coverage
+ * @since      Class available since Release 2.0.0
  */
 class PHP_CodeCoverage_Report_XML_Tests
 {
@@ -29,7 +35,7 @@ class PHP_CodeCoverage_Report_XML_Tests
         $this->contextNode = $context;
     }
 
-    public function addTest($test, array $result)
+    public function addTest($test, $result)
     {
         $node = $this->contextNode->appendChild(
             $this->contextNode->ownerDocument->createElementNS(
@@ -38,8 +44,8 @@ class PHP_CodeCoverage_Report_XML_Tests
             )
         );
         $node->setAttribute('name', $test);
-        $node->setAttribute('size', $result['size']);
-        $node->setAttribute('result', (int) $result['status']);
-        $node->setAttribute('status', $this->codeMap[(int) $result['status']]);
+        $node->setAttribute('result', (int) $result);
+        $node->setAttribute('status', $this->codeMap[(int) $result]);
+
     }
 }

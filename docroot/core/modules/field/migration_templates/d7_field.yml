@@ -1,5 +1,5 @@
 id: d7_field
-label: Field configuration
+label: Drupal 7 field configuration
 migration_tags:
   - Drupal 7
 source:

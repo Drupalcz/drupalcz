@@ -11,17 +11,23 @@
 /**
  * Iterator for test suites.
  *
- * @since Class available since Release 3.1.0
+ * @package    PHPUnit
+ * @subpackage Util
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://www.phpunit.de/
+ * @since      Class available since Release 3.1.0
  */
 class PHPUnit_Util_TestSuiteIterator implements RecursiveIterator
 {
     /**
-     * @var int
+     * @var    integer
      */
     protected $position;
 
     /**
-     * @var PHPUnit_Framework_Test[]
+     * @var    PHPUnit_Framework_Test[]
      */
     protected $tests;
 
@@ -35,6 +41,7 @@ class PHPUnit_Util_TestSuiteIterator implements RecursiveIterator
 
     /**
      * Rewinds the Iterator to the first element.
+     *
      */
     public function rewind()
     {
@@ -44,7 +51,7 @@ class PHPUnit_Util_TestSuiteIterator implements RecursiveIterator
     /**
      * Checks if there is a current element after calls to rewind() or next().
      *
-     * @return bool
+     * @return boolean
      */
     public function valid()
     {
@@ -54,7 +61,7 @@ class PHPUnit_Util_TestSuiteIterator implements RecursiveIterator
     /**
      * Returns the key of the current element.
      *
-     * @return int
+     * @return integer
      */
     public function key()
     {
@@ -73,6 +80,7 @@ class PHPUnit_Util_TestSuiteIterator implements RecursiveIterator
 
     /**
      * Moves forward to next element.
+     *
      */
     public function next()
     {
@@ -86,7 +94,7 @@ class PHPUnit_Util_TestSuiteIterator implements RecursiveIterator
      */
     public function getChildren()
     {
-        return new self(
+        return new PHPUnit_Util_TestSuiteIterator(
             $this->tests[$this->position]
         );
     }
@@ -94,7 +102,7 @@ class PHPUnit_Util_TestSuiteIterator implements RecursiveIterator
     /**
      * Checks whether the current element has children.
      *
-     * @return bool
+     * @return boolean
      */
     public function hasChildren()
     {

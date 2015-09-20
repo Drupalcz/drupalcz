@@ -430,27 +430,13 @@ class BaseFieldDefinition extends ListDataDefinition implements FieldDefinitionI
   /**
    * {@inheritdoc}
    */
-  public function getDefaultValueLiteral() {
-    return isset($this->definition['default_value']) ? $this->definition['default_value'] : [];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getDefaultValueCallback() {
-    return isset($this->definition['default_value_callback']) ? $this->definition['default_value_callback'] : NULL;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getDefaultValue(FieldableEntityInterface $entity) {
     // Allow custom default values function.
-    if ($callback = $this->getDefaultValueCallback()) {
-      $value = call_user_func($callback, $entity, $this);
+    if (!empty($this->definition['default_value_callback'])) {
+      $value = call_user_func($this->definition['default_value_callback'], $entity, $this);
     }
     else {
-      $value = $this->getDefaultValueLiteral();
+      $value = isset($this->definition['default_value']) ? $this->definition['default_value'] : NULL;
     }
     // Normalize into the "array keyed by delta" format.
     if (isset($value) && !is_array($value)) {
@@ -466,33 +452,60 @@ class BaseFieldDefinition extends ListDataDefinition implements FieldDefinitionI
   }
 
   /**
-   * {@inheritdoc}
-   */
-  public function setDefaultValue($value) {
-    if ($value === NULL) {
-      $value = [];
-    }
-    // Unless the value is an empty array, we may need to transform it.
-    if (!is_array($value) || !empty($value)) {
-      if (!is_array($value)) {
-        $value = array(array($this->getMainPropertyName() => $value));
-      }
-      elseif (is_array($value) && !is_numeric(array_keys($value)[0])) {
-        $value = array(0 => $value);
-      }
-    }
-    $this->definition['default_value'] = $value;
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
+   * Sets a custom default value callback.
+   *
+   * If set, the callback overrides any set default value.
+   *
+   * @param string|null $callback
+   *   The callback to invoke for getting the default value (pass NULL to unset
+   *   a previously set callback). The callback will be invoked with the
+   *   following arguments:
+   *   - \Drupal\Core\Entity\FieldableEntityInterface $entity
+   *     The entity being created.
+   *   - \Drupal\Core\Field\FieldDefinitionInterface $definition
+   *     The field definition.
+   *   It should return the default value in the format accepted by the
+   *   setDefaultValue() method.
+   *
+   * @return $this
    */
   public function setDefaultValueCallback($callback) {
     if (isset($callback) && !is_string($callback)) {
       throw new \InvalidArgumentException('Default value callback must be a string, like "function_name" or "ClassName::methodName"');
     }
     $this->definition['default_value_callback'] = $callback;
+    return $this;
+  }
+
+  /**
+   * Sets a default value.
+   *
+   * Note that if a default value callback is set, it will take precedence over
+   * any value set here.
+   *
+   * @param mixed $value
+   *   The default value for the field. This can be either:
+   *   - a literal, in which case it will be assigned to the first property of
+   *     the first item.
+   *   - a numerically indexed array of items, each item being a property/value
+   *     array.
+   *   - a non-numerically indexed array, in which case the array is assumed to
+   *     be a property/value array and used as the first item
+   *   - NULL or array() for no default value.
+   *
+   * @return $this
+   */
+  public function setDefaultValue($value) {
+    // Unless the value is NULL or an empty array, we may need to transform it.
+    if (!(is_null($value) || (is_array($value) && empty($value)))) {
+      if (!is_array($value)) {
+        $value = array(array($this->getMainPropertyName() => $value));
+      }
+      elseif (!is_numeric(array_keys($value)[0])) {
+        $value = array(0 => $value);
+      }
+    }
+    $this->definition['default_value'] = $value;
     return $this;
   }
 

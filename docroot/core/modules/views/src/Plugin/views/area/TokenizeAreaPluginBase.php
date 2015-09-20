@@ -52,15 +52,14 @@ abstract class TokenizeAreaPluginBase extends AreaPluginBase {
 
     // Get a list of the available fields and arguments for token replacement.
     $options = array();
-    $optgroup_arguments = (string) t('Arguments');
-    $optgroup_fields = (string) t('Fields');
     foreach ($this->view->display_handler->getHandlers('field') as $field => $handler) {
-      $options[$optgroup_fields]["{{ $field }}"] = $handler->adminLabel();
+      $options[t('Fields')]["[$field]"] = $handler->adminLabel();
     }
 
-    foreach ($this->view->display_handler->getHandlers('argument') as $arg => $handler) {
-      $options[$optgroup_arguments]["{{ arguments.$arg }}"] = $this->t('@argument title', array('@argument' => $handler->adminLabel()));
-      $options[$optgroup_arguments]["{{ raw_arguments.$arg }}"] = $this->t('@argument input', array('@argument' => $handler->adminLabel()));
+    $count = 0; // This lets us prepare the key as we want it printed.
+    foreach ($this->view->display_handler->getHandlers('argument') as $handler) {
+      $options[t('Arguments')]['%' . ++$count] = $this->t('@argument title', array('@argument' => $handler->adminLabel()));
+      $options[t('Arguments')]['!' . $count] = $this->t('@argument input', array('@argument' => $handler->adminLabel()));
     }
 
     if (!empty($options)) {
@@ -76,7 +75,7 @@ abstract class TokenizeAreaPluginBase extends AreaPluginBase {
         ),
       );
       $form['tokens']['help'] = array(
-        '#markup' => '<p>' . $this->t('The following tokens are available. You may use Twig syntax in this field.') . '</p>',
+        '#markup' => '<p>' . $this->t('The following tokens are available. If you would like to have the characters \'[\' and \']\' use the HTML entity codes \'%5B\' or  \'%5D\' or they will get replaced with empty space.') . '</p>',
       );
       foreach (array_keys($options) as $type) {
         if (!empty($options[$type])) {

@@ -13,8 +13,6 @@ PHPUnit_TextUI_Command::main();
 --EXPECTF--
 PHPUnit %s by Sebastian Bergmann and contributors.
 
-Runtime:	%s
-
 ...FSS
 
 Time: %s, Memory: %sMb

@@ -20,7 +20,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  * that is passed through the validation run.
  *
  * @since  2.5
- *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
 interface ExecutionContextFactoryInterface

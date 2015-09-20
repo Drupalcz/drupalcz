@@ -166,18 +166,14 @@ class GraphvizDumper extends Dumper
         $container = $this->cloneContainer();
 
         foreach ($container->getDefinitions() as $id => $definition) {
-            $class = $definition->getClass();
-
-            if ('\\' === substr($class, 0, 1)) {
-                $class = substr($class, 1);
-            }
+            $className = $definition->getClass();
 
             try {
-                $class = $this->container->getParameterBag()->resolveValue($class);
+                $className = $this->container->getParameterBag()->resolveValue($className);
             } catch (ParameterNotFoundException $e) {
             }
 
-            $nodes[$id] = array('class' => str_replace('\\', '\\\\', $class), 'attributes' => array_merge($this->options['node.definition'], array('style' => ContainerInterface::SCOPE_PROTOTYPE !== $definition->getScope() ? 'filled' : 'dotted')));
+            $nodes[$id] = array('class' => str_replace('\\', '\\\\', $className), 'attributes' => array_merge($this->options['node.definition'], array('style' => ContainerInterface::SCOPE_PROTOTYPE !== $definition->getScope() ? 'filled' : 'dotted')));
             $container->setDefinition($id, new Definition('stdClass'));
         }
 
