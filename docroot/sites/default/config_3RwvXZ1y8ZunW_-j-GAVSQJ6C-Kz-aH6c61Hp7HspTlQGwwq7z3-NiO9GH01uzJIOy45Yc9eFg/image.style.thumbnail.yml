@@ -1,4 +1,3 @@
-uuid: e743ddc3-8433-41a7-a708-8f0670a9e840
 langcode: en
 status: true
 dependencies: {  }
@@ -6,7 +5,6 @@ name: thumbnail
 label: 'Thumbnail (100×100)'
 effects:
   1cfec298-8620-4749-b100-ccb6c4500779:
-    uuid: 1cfec298-8620-4749-b100-ccb6c4500779
     id: image_scale
     weight: 0
     data:
