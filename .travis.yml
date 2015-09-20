@@ -65,6 +65,6 @@ install:
 
 script:
   # Run behat tests
-  - cd ./tests/behat
-  - ./bin/behat
+  - cd ./tests/behat/vendor/behat/behat/bin
+  - ./behat
   - cd ../..
