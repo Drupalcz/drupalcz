@@ -3,12 +3,12 @@ status: true
 dependencies:
   config:
     - node.type.dcz_article
-id: node.dcz_article.status
-field_name: status
+id: node.dcz_article.promote
+field_name: promote
 entity_type: node
 bundle: dcz_article
-label: 'Publishing status'
-description: 'A boolean indicating whether the node is published.'
+label: 'Promoted to front page'
+description: ''
 required: false
 translatable: true
 default_value:
@@ -16,6 +16,6 @@ default_value:
     value: 0
 default_value_callback: ''
 settings:
-  on_label: On
-  off_label: Off
+  on_label: 'On'
+  off_label: 'Off'
 field_type: boolean

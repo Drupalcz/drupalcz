@@ -48,7 +48,7 @@ install:
 
   # Set up site
   - cd ./docroot
-  - drush si standard install_configure_form.update_status_module='array(FALSE,FALSE)' --sites-subdir=default --db-url=mysql://root:@127.0.0.1/drupalcz --verbose --account-name=admin --account-pass=admin --site-mail=drupalcz_travis_dev@klaska.net --site-name="Drupal.cz" --yes
+  - drush si dcz install_configure_form.update_status_module='array(FALSE,FALSE)' --sites-subdir=default --db-url=mysql://root:@127.0.0.1/drupalcz --verbose --account-name=admin --account-pass=admin --site-mail=drupalcz_travis_dev@klaska.net --site-name="Drupal.cz" --yes
   - cd ..
 
   # Setup behat

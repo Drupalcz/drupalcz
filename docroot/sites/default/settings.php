@@ -692,16 +692,6 @@ $settings['container_yamls'][] = __DIR__ . '/services.yml';
 #   include __DIR__ . '/settings.local.php';
 # }
 
-/**
- * Instalation profile.
- */
-$settings['install_profile'] = 'minimal';
-
-/**
- * Path to CMI config directory.
- */
-$config_directories['staging'] = 'sites/default/config_3RwvXZ1y8ZunW_-j-GAVSQJ6C-Kz-aH6c61Hp7HspTlQGwwq7z3-NiO9GH01uzJIOy45Yc9eFg';
-
 // On Acquia Cloud, this include file configures Drupal to use the correct
 // database in each site environment (Dev, Stage, or Prod). To use this
 // settings.php for development on your local workstation, set $db_url
@@ -713,10 +703,11 @@ if (file_exists('/var/www/site-php')) {
 if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   $env = $_ENV['AH_SITE_ENVIRONMENT'];
   $path = DRUPAL_ROOT . "/settings/settings.{$env}.php";
-}
-// Load settings.
-if (!empty($path) && file_exists($path)) {
-  require($path);
+
+  // Load settings.
+  if (!empty($path) && file_exists($path)) {
+    require($path);
+  }
 }
 /**
  * Local settings.

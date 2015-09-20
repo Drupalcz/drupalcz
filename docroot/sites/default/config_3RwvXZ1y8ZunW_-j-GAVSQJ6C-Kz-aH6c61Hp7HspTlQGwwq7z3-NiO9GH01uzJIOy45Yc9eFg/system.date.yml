@@ -1,9 +1,0 @@
-country:
-  default: CZ
-first_day: 0
-timezone:
-  default: Europe/Prague
-  user:
-    configurable: true
-    warn: false
-    default: 0
