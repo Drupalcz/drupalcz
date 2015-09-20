@@ -1,6 +1,8 @@
 {
   "require": {
     "drupal/drupal-extension": "~3.1.2"
+    "guzzlehttp/guzzle": "dev-master#1879fbe853b0c64d109e369c7aeff09849e62d1e",
+    "guzzlehttp/psr7": "~1.2"
   },
   "config": {
     "bin-dir": "bin/"
