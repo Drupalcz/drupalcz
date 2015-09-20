@@ -21,7 +21,7 @@ class Twig_Compiler implements Twig_CompilerInterface
     protected $source;
     protected $indentation;
     protected $env;
-    protected $debugInfo = array();
+    protected $debugInfo;
     protected $sourceOffset;
     protected $sourceLine;
     protected $filename;
@@ -34,6 +34,7 @@ class Twig_Compiler implements Twig_CompilerInterface
     public function __construct(Twig_Environment $env)
     {
         $this->env = $env;
+        $this->debugInfo = array();
     }
 
     public function getFilename()

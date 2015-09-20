@@ -7,7 +7,7 @@
 
 namespace Drupal\Core\TypedData\Validation;
 
-use Drupal\Core\Validation\TranslatorInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationList;
@@ -38,7 +38,7 @@ class ExecutionContext implements ExecutionContextInterface {
   protected $root;
 
   /**
-   * @var \Drupal\Core\Validation\TranslatorInterface
+   * @var \Symfony\Component\Translation\TranslatorInterface
    */
   protected $translator;
 
@@ -117,7 +117,7 @@ class ExecutionContext implements ExecutionContextInterface {
    *   The validator.
    * @param mixed $root
    *   The root.
-   * @param \Drupal\Core\Validation\TranslatorInterface $translator
+   * @param \Symfony\Component\Translation\TranslatorInterface $translator
    *   The translator.
    * @param string $translationDomain
    *   (optional) The translation domain.

@@ -445,9 +445,8 @@ EOF
                 $this->doLoadCatalogue($fallback);
             }
 
-            $fallbackCatalogue = new MessageCatalogue($fallback, $this->catalogues[$fallback]->all());
-            $current->addFallbackCatalogue($fallbackCatalogue);
-            $current = $fallbackCatalogue;
+            $current->addFallbackCatalogue($this->catalogues[$fallback]);
+            $current = $this->catalogues[$fallback];
         }
     }
 

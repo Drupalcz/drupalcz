@@ -52,11 +52,6 @@ class ConfirmFormHelper {
       '#title' => $form->getCancelText(),
       '#attributes' => ['class' => ['button']],
       '#url' => $url,
-      '#cache' => [
-        'contexts' => [
-          'url.query_args:destination',
-        ],
-      ],
     ];
   }
 

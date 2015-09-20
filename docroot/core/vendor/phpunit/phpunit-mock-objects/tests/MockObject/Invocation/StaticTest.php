@@ -24,13 +24,11 @@ class Framework_MockObject_Invocation_StaticTest extends PHPUnit_Framework_TestC
     public function testAllowToGetMethodParametersSetInConstructor()
     {
         $expectedParameters = array(
-          'foo', 5, array('a', 'b'), new StdClass, null, false
+          'foo', 5, array('a', 'b'), new StdClass, NULL, FALSE
         );
 
         $invocation = new PHPUnit_Framework_MockObject_Invocation_Static(
-            'FooClass',
-            'FooMethod',
-            $expectedParameters
+          'FooClass', 'FooMethod', $expectedParameters
         );
 
         $this->assertSame($expectedParameters, $invocation->parameters);
@@ -39,13 +37,13 @@ class Framework_MockObject_Invocation_StaticTest extends PHPUnit_Framework_TestC
     public function testConstructorAllowToSetFlagCloneObjectsInParameters()
     {
         $parameters = array(new StdClass);
-        $cloneObjects = true;
+        $cloneObjects = TRUE;
 
         $invocation = new PHPUnit_Framework_MockObject_Invocation_Static(
-            'FooClass',
-            'FooMethod',
-            $parameters,
-            $cloneObjects
+          'FooClass',
+          'FooMethod',
+          $parameters,
+          $cloneObjects
         );
 
         $this->assertEquals($parameters, $invocation->parameters);

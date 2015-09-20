@@ -110,15 +110,7 @@ class EntityType implements EntityTypeInterface {
   /**
    * The name of a callback that returns the label of the entity.
    *
-   * @var callable|null
-   *
-   * @deprecated in Drupal 8.0.x-dev and will be removed before Drupal 9.0.0.
-   *   Use Drupal\Core\Entity\EntityInterface::label() for complex label
-   *   generation as needed.
-   *
-   * @see \Drupal\Core\Entity\EntityInterface::label()
-   *
-   * @todo Remove usages of label_callback https://www.drupal.org/node/2450793.
+   * @var string|null
    */
   protected $label_callback = NULL;
 

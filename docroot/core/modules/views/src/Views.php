@@ -7,6 +7,8 @@
 
 namespace Drupal\views;
 
+use Drupal\Component\Utility\SafeMarkup;
+
 /**
  * Static service container wrapper for views.
  */
@@ -396,8 +398,8 @@ class Views {
           if (!isset($plugins[$key])) {
             $plugins[$key] = array(
               'type' => $type,
-              'title' => $info[$name]['title'],
-              'provider' => $info[$name]['provider'],
+              'title' => SafeMarkup::checkPlain($info[$name]['title']),
+              'provider' => SafeMarkup::checkPlain($info[$name]['provider']),
               'views' => array(),
             );
           }

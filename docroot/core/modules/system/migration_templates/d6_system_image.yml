@@ -1,5 +1,5 @@
 id: d6_system_image
-label: Image toolkit configuration
+label: Drupal 6 image toolkit configuration
 migration_tags:
   - Drupal 6
 source:

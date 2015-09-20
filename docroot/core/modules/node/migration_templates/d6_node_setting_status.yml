@@ -1,5 +1,5 @@
 id: d6_node_setting_status
-label: Node type 'status' setting
+label: Drupal 6 node type 'status' setting
 migration_tags:
   - Drupal 6
 source:

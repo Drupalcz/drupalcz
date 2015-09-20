@@ -11,24 +11,44 @@
 /**
  * A Decorator that runs a test repeatedly.
  *
- * @since Class available since Release 2.0.0
+ * @package    PHPUnit
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://www.phpunit.de/
+ * @since      Class available since Release 2.0.0
  */
 class PHPUnit_Extensions_RepeatedTest extends PHPUnit_Extensions_TestDecorator
 {
     /**
-     * @var bool
+     * @var mixed
+     */
+    protected $filter = false;
+
+    /**
+     * @var array
+     */
+    protected $groups = array();
+
+    /**
+     * @var array
+     */
+    protected $excludeGroups = array();
+
+    /**
+     * @var boolean
      */
     protected $processIsolation = false;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $timesRepeat = 1;
 
     /**
      * @param  PHPUnit_Framework_Test      $test
-     * @param  int                         $timesRepeat
-     * @param  bool                        $processIsolation
+     * @param  integer                     $timesRepeat
+     * @param  boolean                     $processIsolation
      * @throws PHPUnit_Framework_Exception
      */
     public function __construct(PHPUnit_Framework_Test $test, $timesRepeat = 1, $processIsolation = false)
@@ -52,7 +72,7 @@ class PHPUnit_Extensions_RepeatedTest extends PHPUnit_Extensions_TestDecorator
      * Counts the number of test cases that
      * will be run by this test.
      *
-     * @return int
+     * @return integer
      */
     public function count()
     {

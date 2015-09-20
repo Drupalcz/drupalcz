@@ -31,7 +31,6 @@ abstract class DatabaseTestBase extends KernelTestBase {
       'test_null',
       'test_serialized',
       'test_special_columns',
-      'TEST_UPPERCASE',
     ));
     self::addSampleData();
   }

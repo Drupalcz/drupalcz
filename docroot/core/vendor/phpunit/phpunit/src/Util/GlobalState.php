@@ -9,7 +9,15 @@
  */
 
 /**
- * @since Class available since Release 3.4.0
+ *
+ *
+ * @package    PHPUnit
+ * @subpackage Util
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://www.phpunit.de/
+ * @since      Class available since Release 3.4.0
  */
 class PHPUnit_Util_GlobalState
 {
@@ -165,7 +173,6 @@ class PHPUnit_Util_GlobalState
            (is_array($variable) && self::arrayOnlyContainsScalars($variable))) {
             return var_export($variable, true);
         }
-
         return 'unserialize(' .
                 var_export(serialize($variable), true) .
                 ')';

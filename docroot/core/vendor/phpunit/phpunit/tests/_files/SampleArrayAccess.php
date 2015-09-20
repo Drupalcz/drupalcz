@@ -5,6 +5,7 @@
  * with some minor changes
  * This class required for PHPUnit_Framework_Constraint_ArrayHasKey testing
  */
+
 class SampleArrayAccess implements ArrayAccess
 {
     private $container;

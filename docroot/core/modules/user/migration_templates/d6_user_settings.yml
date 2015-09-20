@@ -1,5 +1,5 @@
 id: d6_user_settings
-label: User configuration
+label: Drupal 6 user configuration
 migration_tags:
   - Drupal 6
 source:

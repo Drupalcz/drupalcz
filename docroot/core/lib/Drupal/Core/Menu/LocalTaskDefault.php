@@ -8,8 +8,6 @@
 namespace Drupal\Core\Menu;
 
 use Drupal\Component\Plugin\PluginBase;
-use Drupal\Core\Cache\Cache;
-use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Default object used for LocalTaskPlugins.
  */
-class LocalTaskDefault extends PluginBase implements LocalTaskInterface, CacheableDependencyInterface {
+class LocalTaskDefault extends PluginBase implements LocalTaskInterface {
 
   use DependencySerializationTrait;
 
@@ -143,36 +141,6 @@ class LocalTaskDefault extends PluginBase implements LocalTaskInterface, Cacheab
       $this->routeProvider = \Drupal::service('router.route_provider');
     }
     return $this->routeProvider;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getCacheTags() {
-    if (!isset($this->pluginDefinition['cache_tags'])) {
-      return [];
-    }
-    return $this->pluginDefinition['cache_tags'];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getCacheContexts() {
-    if (!isset($this->pluginDefinition['cache_contexts'])) {
-      return [];
-    }
-    return $this->pluginDefinition['cache_contexts'];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getCacheMaxAge() {
-    if (!isset($this->pluginDefinition['cache_max_age'])) {
-      return Cache::PERMANENT;
-    }
-    return $this->pluginDefinition['cache_max_age'];
   }
 
 }

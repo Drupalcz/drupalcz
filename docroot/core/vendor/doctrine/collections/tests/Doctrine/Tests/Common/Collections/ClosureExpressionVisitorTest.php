@@ -27,17 +27,10 @@ use Doctrine\Common\Collections\ExpressionBuilder;
  */
 class ClosureExpressionVisitorTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var ClosureExpressionVisitor
-     */
     private $visitor;
-
-    /**
-     * @var ExpressionBuilder
-     */
     private $builder;
 
-    protected function setUp()
+    public function setUp()
     {
         $this->visitor = new ClosureExpressionVisitor();
         $this->builder = new ExpressionBuilder();

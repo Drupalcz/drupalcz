@@ -21,11 +21,4 @@ class TestTasksSettingsSub1 extends LocalTaskDefault {
     return $this->t('Dynamic title for @class', array('@class' => 'TestTasksSettingsSub1'));
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  function getCacheTags() {
-    return ['kittens:ragdoll'];
-  }
-
 }

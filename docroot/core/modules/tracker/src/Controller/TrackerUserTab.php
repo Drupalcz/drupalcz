@@ -9,6 +9,7 @@ namespace Drupal\tracker\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\user\UserInterface;
+use Drupal\Component\Utility\SafeMarkup;
 
 /**
  * Controller for tracker.user_tab route.
@@ -27,6 +28,6 @@ class TrackerUserTab extends ControllerBase {
    * Title callback for the tracker.user_tab route.
    */
   public function getTitle(UserInterface $user) {
-    return $user->getUsername();
+    return SafeMarkup::checkPlain($user->getUsername());
   }
 }

@@ -8,6 +8,7 @@
 namespace Drupal\taxonomy\Plugin\views\argument;
 
 use Drupal\views\Plugin\views\argument\NumericArgument;
+use Drupal\Component\Utility\SafeMarkup;
 use Drupal\taxonomy\VocabularyStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -62,7 +63,7 @@ class VocabularyVid extends NumericArgument {
   function title() {
     $vocabulary = $this->vocabularyStorage->load($this->argument);
     if ($vocabulary) {
-      return $vocabulary->label();
+      return SafeMarkup::checkPlain($vocabulary->label());
     }
 
     return $this->t('No vocabulary');

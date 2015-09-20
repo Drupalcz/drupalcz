@@ -5,6 +5,8 @@
  * Callbacks and hooks related to form system.
  */
 
+use Drupal\Component\Utility\SafeMarkup;
+
 /**
  * @addtogroup callbacks
  * @{
@@ -77,7 +79,7 @@ function callback_batch_operation($MULTIPLE_PARAMS, &$context) {
     node_save($node);
 
     // Store some result for post-processing in the finished callback.
-    $context['results'][] = $node->title;
+    $context['results'][] = SafeMarkup::checkPlain($node->title);
 
     // Update our progress information.
     $context['sandbox']['progress']++;

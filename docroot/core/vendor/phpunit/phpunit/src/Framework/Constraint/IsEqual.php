@@ -17,7 +17,15 @@
  *
  * The expected value is passed in the constructor.
  *
- * @since Class available since Release 3.0.0
+ * @package    PHPUnit
+ * @subpackage Framework_Constraint
+ * @author     Kore Nordmann <kn@ez.no>
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @author     Bernhard Schussek <bschussek@2bepublished.at>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://www.phpunit.de/
+ * @since      Class available since Release 3.0.0
  */
 class PHPUnit_Framework_Constraint_IsEqual extends PHPUnit_Framework_Constraint
 {
@@ -32,17 +40,17 @@ class PHPUnit_Framework_Constraint_IsEqual extends PHPUnit_Framework_Constraint
     protected $delta = 0.0;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $maxDepth = 10;
 
     /**
-     * @var bool
+     * @var boolean
      */
     protected $canonicalize = false;
 
     /**
-     * @var bool
+     * @var boolean
      */
     protected $ignoreCase = false;
 
@@ -54,9 +62,9 @@ class PHPUnit_Framework_Constraint_IsEqual extends PHPUnit_Framework_Constraint
     /**
      * @param  mixed                       $value
      * @param  float                       $delta
-     * @param  int                         $maxDepth
-     * @param  bool                        $canonicalize
-     * @param  bool                        $ignoreCase
+     * @param  integer                     $maxDepth
+     * @param  boolean                     $canonicalize
+     * @param  boolean                     $ignoreCase
      * @throws PHPUnit_Framework_Exception
      */
     public function __construct($value, $delta = 0.0, $maxDepth = 10, $canonicalize = false, $ignoreCase = false)

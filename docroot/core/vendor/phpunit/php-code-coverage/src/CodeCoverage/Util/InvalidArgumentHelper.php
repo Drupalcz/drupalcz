@@ -12,14 +12,20 @@
  * Factory for PHP_CodeCoverage_Exception objects that are used to describe
  * invalid arguments passed to a function or method.
  *
- * @since Class available since Release 1.2.0
+ * @category   PHP
+ * @package    CodeCoverage
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://github.com/sebastianbergmann/php-code-coverage
+ * @since      Class available since Release 1.2.0
  */
 class PHP_CodeCoverage_Util_InvalidArgumentHelper
 {
     /**
-     * @param int    $argument
-     * @param string $type
-     * @param mixed  $value
+     * @param integer $argument
+     * @param string  $type
+     * @param mixed   $value
      */
     public static function factory($argument, $type, $value = null)
     {

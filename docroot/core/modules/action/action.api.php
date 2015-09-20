@@ -6,11 +6,6 @@
  */
 
 /**
- * @addtogroup hooks
- * @{
- */
-
-/**
  * Executes code after an action is deleted.
  *
  * @param $aid
@@ -21,7 +16,3 @@ function hook_action_delete($aid) {
     ->condition('aid', $aid)
     ->execute();
 }
-
-/**
- * @} End of "addtogroup hooks".
- */

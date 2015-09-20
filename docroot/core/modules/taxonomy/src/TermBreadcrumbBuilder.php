@@ -78,7 +78,7 @@ class TermBreadcrumbBuilder implements BreadcrumbBuilderInterface {
 
     // This breadcrumb builder is based on a route parameter, and hence it
     // depends on the 'route' cache context.
-    $breadcrumb->addCacheContexts(['route']);
+    $breadcrumb->setCacheContexts(['route']);
 
     return $breadcrumb;
   }

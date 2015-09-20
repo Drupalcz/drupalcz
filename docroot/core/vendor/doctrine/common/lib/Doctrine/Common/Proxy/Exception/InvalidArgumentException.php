@@ -69,8 +69,6 @@ class InvalidArgumentException extends BaseInvalidArgumentException implements P
     }
 
     /**
-     * @param Proxy $proxy
-     *
      * @return self
      */
     public static function unitializedProxyExpected(Proxy $proxy)

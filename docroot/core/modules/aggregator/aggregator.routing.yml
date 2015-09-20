@@ -10,7 +10,7 @@ aggregator.admin_settings:
   path: '/admin/config/services/aggregator/settings'
   defaults:
     _form: '\Drupal\aggregator\Form\SettingsForm'
-    _title: 'Feed aggregator settings'
+    _title: 'Settings'
   requirements:
     _permission: 'administer news feeds'
 

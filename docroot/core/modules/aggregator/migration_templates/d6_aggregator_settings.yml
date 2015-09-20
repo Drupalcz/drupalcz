@@ -1,5 +1,5 @@
 id: d6_aggregator_settings
-label: Aggregator configuration
+label: Drupal 6 aggregator configuration
 migration_tags:
   - Drupal 6
 source:

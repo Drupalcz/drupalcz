@@ -233,10 +233,11 @@ class LocalTaskDefaultTest extends UnitTestCase {
    * @covers ::getTitle
    */
   public function testGetTitle() {
-    $this->pluginDefinition['title'] = (new TranslationWrapper('Example', [], [], $this->stringTranslation));
+    $this->pluginDefinition['title'] = (new TranslationWrapper('Example'))
+      ->setStringTranslation($this->stringTranslation);
     $this->stringTranslation->expects($this->once())
-      ->method('translateString')
-      ->with($this->pluginDefinition['title'])
+      ->method('translate')
+      ->with('Example', array(), array())
       ->will($this->returnValue('Example translated'));
 
     $this->setupLocalTaskDefault();
@@ -248,10 +249,11 @@ class LocalTaskDefaultTest extends UnitTestCase {
    */
   public function testGetTitleWithContext() {
     $title = 'Example';
-    $this->pluginDefinition['title'] = (new TranslationWrapper($title, array(), array('context' => 'context'), $this->stringTranslation));
+    $this->pluginDefinition['title'] = (new TranslationWrapper($title, array(), array('context' => 'context')))
+      ->setStringTranslation($this->stringTranslation);
     $this->stringTranslation->expects($this->once())
-      ->method('translateString')
-      ->with($this->pluginDefinition['title'])
+      ->method('translate')
+      ->with($title, array(), array('context' => 'context'))
       ->will($this->returnValue('Example translated with context'));
 
     $this->setupLocalTaskDefault();
@@ -262,10 +264,12 @@ class LocalTaskDefaultTest extends UnitTestCase {
    * @covers ::getTitle
    */
   public function testGetTitleWithTitleArguments() {
-    $this->pluginDefinition['title'] = (new TranslationWrapper('Example @test', array('@test' => 'value'), [], $this->stringTranslation));
+    $title = 'Example @test';
+    $this->pluginDefinition['title'] = (new TranslationWrapper('Example @test', array('@test' => 'value')))
+      ->setStringTranslation($this->stringTranslation);
     $this->stringTranslation->expects($this->once())
-      ->method('translateString')
-      ->with($this->pluginDefinition['title'])
+      ->method('translate')
+      ->with($title, array('@test' => 'value'), array())
       ->will($this->returnValue('Example value'));
 
     $this->setupLocalTaskDefault();
@@ -295,23 +299,6 @@ class LocalTaskDefaultTest extends UnitTestCase {
         )
       )
     ), $this->localTaskBase->getOptions($route_match));
-  }
-
-  /**
-   * @covers ::getCacheContexts
-   * @covers ::getCacheTags
-   * @covers ::getCacheMaxAge
-   */
-  public function testCacheabilityMetadata() {
-    $this->pluginDefinition['cache_contexts'] = ['route'];
-    $this->pluginDefinition['cache_tags'] = ['kitten'];
-    $this->pluginDefinition['cache_max_age'] = 3600;
-
-    $this->setupLocalTaskDefault();
-
-    $this->assertEquals(['route'], $this->localTaskBase->getCacheContexts());
-    $this->assertEquals(['kitten'], $this->localTaskBase->getCacheTags());
-    $this->assertEquals(3600, $this->localTaskBase->getCacheMaxAge());
   }
 
 }

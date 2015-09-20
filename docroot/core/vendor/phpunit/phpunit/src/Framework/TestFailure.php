@@ -11,7 +11,13 @@
 /**
  * A TestFailure collects a failed test together with the caught exception.
  *
- * @since Class available since Release 2.0.0
+ * @package    PHPUnit
+ * @subpackage Framework
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://www.phpunit.de/
+ * @since      Class available since Release 2.0.0
  */
 class PHPUnit_Framework_TestFailure
 {
@@ -26,7 +32,7 @@ class PHPUnit_Framework_TestFailure
     protected $failedTest;
 
     /**
-     * @var Exception
+     * @var    Exception
      */
     protected $thrownException;
 
@@ -154,7 +160,7 @@ class PHPUnit_Framework_TestFailure
      * Returns true if the thrown exception
      * is of type AssertionFailedError.
      *
-     * @return bool
+     * @return boolean
      */
     public function isFailure()
     {

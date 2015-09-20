@@ -19,6 +19,7 @@
 
 namespace Doctrine\Common\Persistence\Mapping\Driver;
 
+use Doctrine\Common\Persistence\Mapping\Driver\MappingDriver;
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\Mapping\MappingException;
 

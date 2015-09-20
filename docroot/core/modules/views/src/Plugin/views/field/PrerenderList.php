@@ -78,24 +78,17 @@ abstract class PrerenderList extends FieldPluginBase implements MultiItemsFieldH
   public function renderItems($items) {
     if (!empty($items)) {
       if ($this->options['type'] == 'separator') {
-        $render = [
-          '#type' => 'inline_template',
-          '#template' => '{{ items|safe_join(separator) }}',
-          '#context' => [
-            'items' => $items,
-            'separator' => $this->sanitizeValue($this->options['separator'], 'xss_admin')
-          ]
-        ];
+        return implode($this->sanitizeValue($this->options['separator'], 'xss_admin'), $items);
       }
       else {
-        $render = array(
+        $item_list = array(
           '#theme' => 'item_list',
           '#items' => $items,
           '#title' => NULL,
           '#list_type' => $this->options['type'],
         );
+        return drupal_render($item_list);
       }
-      return drupal_render($render);
     }
   }
 

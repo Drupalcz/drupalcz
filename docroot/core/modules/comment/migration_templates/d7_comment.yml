@@ -1,5 +1,5 @@
 id: d7_comment
-label: Comments
+label: Drupal 7 comments
 migration_tags:
   - Drupal 7
 source:

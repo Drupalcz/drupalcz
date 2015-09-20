@@ -31,7 +31,7 @@ display:
           field: entity_entity_test
           id: entity_entity_test
           table: views
-          target: '{{ raw_arguments.id }}'
+          target: '!1'
           view_mode: full
           plugin_id: entity
         entity_block:

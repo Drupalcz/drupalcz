@@ -11,7 +11,13 @@
 /**
  * Filter for blacklisting and whitelisting of code coverage information.
  *
- * @since Class available since Release 1.0.0
+ * @category   PHP
+ * @package    CodeCoverage
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://github.com/sebastianbergmann/php-code-coverage
+ * @since      Class available since Release 1.0.0
  */
 class PHP_CodeCoverage_Filter
 {
@@ -28,6 +34,42 @@ class PHP_CodeCoverage_Filter
      * @var array
      */
     private $whitelistedFiles = array();
+
+    /**
+     * @var boolean
+     */
+    private $blacklistPrefilled = false;
+
+    /**
+     * A list of classes which are always blacklisted
+     *
+     * @var array
+     */
+    public static $blacklistClassNames = array(
+        'File_Iterator' => 1,
+        'PHP_CodeCoverage' => 1,
+        'PHP_Invoker' => 1,
+        'PHP_Timer' => 1,
+        'PHP_Token' => 1,
+        'PHPUnit_Framework_TestCase' => 2,
+        'PHPUnit_Extensions_Database_TestCase' => 2,
+        'PHPUnit_Framework_MockObject_Generator' => 2,
+        'PHPUnit_Extensions_SeleniumTestCase' => 2,
+        'PHPUnit_Extensions_Story_TestCase' => 2,
+        'Text_Template' => 1,
+        'Symfony\Component\Yaml\Yaml' => 1,
+        'SebastianBergmann\Diff\Diff' => 1,
+        'SebastianBergmann\Environment\Runtime' => 1,
+        'SebastianBergmann\Comparator\Comparator' => 1,
+        'SebastianBergmann\Exporter\Exporter' => 1,
+        'SebastianBergmann\GlobalState\Snapshot' => 1,
+        'SebastianBergmann\RecursionContext\Context' => 1,
+        'SebastianBergmann\Version' => 1,
+        'Composer\Autoload\ClassLoader' => 1,
+        'Doctrine\Instantiator\Instantiator' => 1,
+        'phpDocumentor\Reflection\DocBlock' => 1,
+        'Prophecy\Prophet' => 1
+    );
 
     /**
      * Adds a directory to the blacklist (recursively).
@@ -197,7 +239,8 @@ class PHP_CodeCoverage_Filter
      * When the whitelist is not empty, whitelisting is used.
      *
      * @param  string                     $filename
-     * @return bool
+     * @param  boolean                    $ignoreWhitelist
+     * @return boolean
      * @throws PHP_CodeCoverage_Exception
      */
     public function isFiltered($filename)
@@ -210,6 +253,10 @@ class PHP_CodeCoverage_Filter
 
         if (!empty($this->whitelistedFiles)) {
             return !isset($this->whitelistedFiles[$filename]);
+        }
+
+        if (!$this->blacklistPrefilled) {
+            $this->prefillBlacklist();
         }
 
         return isset($this->blacklistedFiles[$filename]);
@@ -238,12 +285,49 @@ class PHP_CodeCoverage_Filter
     /**
      * Returns whether this filter has a whitelist.
      *
-     * @return bool
+     * @return boolean
      * @since  Method available since Release 1.1.0
      */
     public function hasWhitelist()
     {
         return !empty($this->whitelistedFiles);
+    }
+
+    /**
+     * @since Method available since Release 1.2.3
+     */
+    private function prefillBlacklist()
+    {
+        if (defined('__PHPUNIT_PHAR__')) {
+            $this->addFileToBlacklist(__PHPUNIT_PHAR__);
+        }
+
+        foreach (self::$blacklistClassNames as $className => $parent) {
+            $this->addDirectoryContainingClassToBlacklist($className, $parent);
+        }
+
+        $this->blacklistPrefilled = true;
+    }
+
+    /**
+     * @param string  $className
+     * @param integer $parent
+     * @since Method available since Release 1.2.3
+     */
+    private function addDirectoryContainingClassToBlacklist($className, $parent = 1)
+    {
+        if (!class_exists($className)) {
+            return;
+        }
+
+        $reflector = new ReflectionClass($className);
+        $directory = $reflector->getFileName();
+
+        for ($i = 0; $i < $parent; $i++) {
+            $directory = dirname($directory);
+        }
+
+        $this->addDirectoryToBlacklist($directory);
     }
 
     /**

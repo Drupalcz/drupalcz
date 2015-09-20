@@ -1,5 +1,5 @@
 id: d6_view_modes
-label: View modes
+label: Drupal 6 view modes
 migration_tags:
   - Drupal 6
 source:

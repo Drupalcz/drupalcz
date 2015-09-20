@@ -1,5 +1,5 @@
 id: d7_aggregator_settings
-label: Aggregator configuration
+label: Drupal 7 aggregator configuration
 migration_tags:
   - Drupal 7
 source:

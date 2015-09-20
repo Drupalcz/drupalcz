@@ -1,11 +1,12 @@
 id: d6_url_alias
-label: URL aliases
+label: Drupal 6 URL aliases
 migration_tags:
   - Drupal 6
 source:
   plugin: d6_url_alias
   constants:
     slash: '/'
+
 process:
   source:
     plugin: concat

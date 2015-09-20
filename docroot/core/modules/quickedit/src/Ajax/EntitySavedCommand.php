@@ -7,8 +7,6 @@
 
 namespace Drupal\quickedit\Ajax;
 
-use Drupal\Core\Ajax\BaseCommand;
-
 /**
  * AJAX command to indicate the entity was loaded from PrivateTempStore and
  * saved into the database.

@@ -9,7 +9,13 @@
  */
 
 /**
- * @since Class available since Release 2.0.0
+ * @category   PHP
+ * @package    CodeCoverage
+ * @author     Arne Blankerts <arne@blankerts.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://github.com/sebastianbergmann/php-code-coverage
+ * @since      Class available since Release 2.0.0
  */
 class PHP_CodeCoverage_Report_XML
 {
@@ -41,8 +47,8 @@ class PHP_CodeCoverage_Report_XML
         $this->processTests($coverage->getTests());
         $this->processDirectory($report, $this->project);
 
-        $index                     = $this->project->asDom();
-        $index->formatOutput       = true;
+        $index = $this->project->asDom();
+        $index->formatOutput = true;
         $index->preserveWhiteSpace = false;
         $index->save($target . '/index.xml');
     }
@@ -132,8 +138,8 @@ class PHP_CodeCoverage_Report_XML
             $this->target . dirname($file->getId()) . '/'
         );
 
-        $fileDom                     = $fileReport->asDom();
-        $fileDom->formatOutput       = true;
+        $fileDom = $fileReport->asDom();
+        $fileDom->formatOutput = true;
         $fileDom->preserveWhiteSpace = false;
         $fileDom->save($this->target . $file->getId() . '.xml');
     }

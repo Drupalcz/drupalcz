@@ -55,6 +55,7 @@ class RequirementsTest extends PHPUnit_Framework_TestCase
     {
     }
 
+
     /**
      * @requires function testFunc
      */

@@ -7,7 +7,7 @@
 
 namespace Drupal\Core\TypedData\Validation;
 
-use Drupal\Core\Validation\TranslatorInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Context\ExecutionContextFactoryInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class ExecutionContextFactory implements ExecutionContextFactoryInterface {
 
   /**
-   * @var \Drupal\Core\Validation\TranslatorInterface
+   * @var TranslatorInterface
    */
   protected $translator;
 
@@ -33,7 +33,7 @@ class ExecutionContextFactory implements ExecutionContextFactoryInterface {
   /**
    * Constructs a new ExecutionContextFactory instance.
    *
-   * @param \Drupal\Core\Validation\TranslatorInterface $translator
+   * @param \Symfony\Component\Translation\TranslatorInterface $translator
    *   The translator instance.
    * @param string $translationDomain
    *   (optional) The translation domain.

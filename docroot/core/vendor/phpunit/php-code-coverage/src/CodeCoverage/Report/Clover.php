@@ -11,7 +11,13 @@
 /**
  * Generates a Clover XML logfile from an PHP_CodeCoverage object.
  *
- * @since Class available since Release 1.0.0
+ * @category   PHP
+ * @package    CodeCoverage
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://github.com/sebastianbergmann/php-code-coverage
+ * @since      Class available since Release 1.0.0
  */
 class PHP_CodeCoverage_Report_Clover
 {
@@ -23,7 +29,7 @@ class PHP_CodeCoverage_Report_Clover
      */
     public function process(PHP_CodeCoverage $coverage, $target = null, $name = null)
     {
-        $xmlDocument               = new DOMDocument('1.0', 'UTF-8');
+        $xmlDocument = new DOMDocument('1.0', 'UTF-8');
         $xmlDocument->formatOutput = true;
 
         $xmlCoverage = $xmlDocument->createElement('coverage');

@@ -225,23 +225,16 @@ class DisplayTest extends UITestBase {
     $display_title_path = 'admin/structure/views/nojs/display/test_display/block_1/display_title';
     $this->drupalPostForm($display_title_path, array('display_title' => $display_title), t('Apply'));
 
-    // Ensure that the title is escaped as expected.
-    $this->assertEscaped($display_title);
-    $this->assertNoRaw($display_title);
-
+    $placeholder = array('!display_title' => $display_title);
     // Ensure that the dropdown buttons are displayed correctly.
-    $this->assertFieldByXpath('//input[@type="submit"]', 'Duplicate ' . $display_title);
-    $this->assertFieldByXpath('//input[@type="submit"]', 'Delete ' . $display_title);
-    $this->assertFieldByXpath('//input[@type="submit"]', 'Disable ' . $display_title);
-    $this->assertNoFieldByXpath('//input[@type="submit"]', 'Enable ' . $display_title);
+    $this->assertFieldByXpath('//input[@type="submit"]', t('Duplicate !display_title', $placeholder));
+    $this->assertFieldByXpath('//input[@type="submit"]', t('Delete !display_title', $placeholder));
+    $this->assertFieldByXpath('//input[@type="submit"]', t('Disable !display_title', $placeholder));
+    $this->assertNoFieldByXpath('//input[@type="submit"]', t('Enable !display_title', $placeholder));
 
     // Disable the display so we can test the rendering of the "Enable" button.
-    $this->drupalPostForm(NULL, NULL, 'Disable ' . $display_title);
-    $this->assertFieldByXpath('//input[@type="submit"]', 'Enable ' . $display_title);
-    $this->assertNoFieldByXpath('//input[@type="submit"]', 'Disable ' . $display_title);
-
-    // Ensure that the title is escaped as expected.
-    $this->assertEscaped($display_title);
-    $this->assertNoRaw($display_title);
+    $this->drupalPostForm(NULL, NULL, t('Disable !display_title', $placeholder));
+    $this->assertFieldByXpath('//input[@type="submit"]', t('Enable !display_title', $placeholder));
+    $this->assertNoFieldByXpath('//input[@type="submit"]', t('Disable !display_title', $placeholder));
   }
 }

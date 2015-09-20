@@ -7,7 +7,8 @@
 
 namespace Drupal\editor\Ajax;
 
-use Drupal\Core\Ajax\BaseCommand;
+use Drupal\Core\Ajax\CommandInterface;
+use Drupal\quickedit\Ajax\BaseCommand;
 
 /**
  * AJAX command to rerender a formatted text field without any transformation

@@ -7,6 +7,7 @@
 
 namespace Drupal\node\Plugin\views\argument;
 
+use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\views\Plugin\views\argument\StringArgument;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -75,7 +76,7 @@ class Type extends StringArgument {
   function node_type($type_name) {
     $type = $this->nodeTypeStorage->load($type_name);
     $output = $type ? $type->label() : $this->t('Unknown content type');
-    return $output;
+    return SafeMarkup::checkPlain($output);
   }
 
 }

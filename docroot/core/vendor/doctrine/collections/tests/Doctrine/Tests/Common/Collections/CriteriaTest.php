@@ -1,5 +1,4 @@
 <?php
-
 namespace Doctrine\Tests\Common\Collections;
 
 use Doctrine\Common\Collections\Criteria;
@@ -12,7 +11,7 @@ class CriteriaTest extends \PHPUnit_Framework_TestCase
     {
         $criteria = Criteria::create();
 
-        $this->assertInstanceOf('Doctrine\Common\Collections\Criteria', $criteria);
+        $this->assertInstanceOf("Doctrine\Common\Collections\Criteria", $criteria);
     }
 
     public function testConstructor()

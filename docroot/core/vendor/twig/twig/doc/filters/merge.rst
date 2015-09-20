@@ -42,7 +42,6 @@ overridden.
         
 .. note::
 
-    Internally, Twig uses the PHP `array_merge`_ function. It supports
-    Traversable objects by transforming those to arrays.
+    Internally, Twig uses the PHP `array_merge`_ function.
 
 .. _`array_merge`: http://php.net/array_merge

@@ -15,7 +15,6 @@ namespace Drupal\Core\Template;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Component\Utility\SafeStringInterface;
-use Drupal\Core\Render\RenderableInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Routing\UrlGeneratorInterface;
 use Drupal\Core\Theme\ThemeManagerInterface;
@@ -387,10 +386,7 @@ class TwigExtension extends \Twig_Extension {
       $return = (string) $arg;
     }
     elseif (is_object($arg)) {
-      if ($arg instanceof RenderableInterface) {
-        $arg = $arg->toRenderable();
-      }
-      elseif (method_exists($arg, '__toString')) {
+      if (method_exists($arg, '__toString')) {
         $return = (string) $arg;
       }
       // You can't throw exceptions in the magic PHP __toString methods, see
@@ -465,10 +461,7 @@ class TwigExtension extends \Twig_Extension {
     }
 
     if (is_object($arg)) {
-      if ($arg instanceof RenderableInterface) {
-        $arg = $arg->toRenderable();
-      }
-      elseif (method_exists($arg, '__toString')) {
+      if (method_exists($arg, '__toString')) {
         return (string) $arg;
       }
       // You can't throw exceptions in the magic PHP __toString methods, see

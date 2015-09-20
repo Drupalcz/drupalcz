@@ -83,10 +83,11 @@ class LocalActionDefaultTest extends UnitTestCase {
    * @see \Drupal\Core\Menu\LocalTaskDefault::getTitle()
    */
   public function testGetTitle() {
-    $this->pluginDefinition['title'] = (new TranslationWrapper('Example', [], [], $this->stringTranslation));
+    $this->pluginDefinition['title'] = (new TranslationWrapper('Example'))
+      ->setStringTranslation($this->stringTranslation);
     $this->stringTranslation->expects($this->once())
-      ->method('translateString')
-      ->with($this->pluginDefinition['title'])
+      ->method('translate')
+      ->with('Example', array(), array())
       ->will($this->returnValue('Example translated'));
 
     $this->setupLocalActionDefault();
@@ -99,10 +100,11 @@ class LocalActionDefaultTest extends UnitTestCase {
    * @see \Drupal\Core\Menu\LocalTaskDefault::getTitle()
    */
   public function testGetTitleWithContext() {
-    $this->pluginDefinition['title'] = (new TranslationWrapper('Example', array(), array('context' => 'context'), $this->stringTranslation));
+    $this->pluginDefinition['title'] = (new TranslationWrapper('Example', array(), array('context' => 'context')))
+      ->setStringTranslation($this->stringTranslation);
     $this->stringTranslation->expects($this->once())
-      ->method('translateString')
-      ->with($this->pluginDefinition['title'])
+      ->method('translate')
+      ->with('Example', array(), array('context' => 'context'))
       ->will($this->returnValue('Example translated with context'));
 
     $this->setupLocalActionDefault();
@@ -113,10 +115,11 @@ class LocalActionDefaultTest extends UnitTestCase {
    * Tests the getTitle method with title arguments.
    */
   public function testGetTitleWithTitleArguments() {
-    $this->pluginDefinition['title'] = (new TranslationWrapper('Example @test', array('@test' => 'value'), [], $this->stringTranslation));
+    $this->pluginDefinition['title'] = (new TranslationWrapper('Example @test', array('@test' => 'value')))
+      ->setStringTranslation($this->stringTranslation);
     $this->stringTranslation->expects($this->once())
-      ->method('translateString')
-      ->with($this->pluginDefinition['title'])
+      ->method('translate')
+      ->with('Example @test', array('@test' => 'value'), array())
       ->will($this->returnValue('Example value'));
 
     $this->setupLocalActionDefault();

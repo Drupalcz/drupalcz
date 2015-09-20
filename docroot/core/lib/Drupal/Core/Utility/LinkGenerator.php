@@ -8,7 +8,6 @@
 namespace Drupal\Core\Utility;
 
 use Drupal\Component\Serialization\Json;
-use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Component\Utility\SafeStringInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
@@ -65,8 +64,8 @@ class LinkGenerator implements LinkGeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function generateFromLink(Link $link) {
-    return $this->generate($link->getText(), $link->getUrl());
+  public function generateFromLink(Link $link, $collect_bubbleable_metadata = FALSE) {
+    return $this->generate($link->getText(), $link->getUrl(), $collect_bubbleable_metadata);
   }
 
   /**
@@ -81,18 +80,14 @@ class LinkGenerator implements LinkGeneratorInterface {
    *
    * @see system_page_attachments()
    */
-  public function generate($text, Url $url) {
+  public function generate($text, Url $url, $collect_bubbleable_metadata = FALSE) {
     // Performance: avoid Url::toString() needing to retrieve the URL generator
     // service from the container.
     $url->setUrlGenerator($this->urlGenerator);
 
-    if (is_array($text)) {
-      $text = $this->renderer->render($text);
-    }
-
     // Start building a structured representation of our link to be altered later.
     $variables = array(
-      'text' => $text,
+      'text' => is_array($text) ? $this->renderer->render($text) : $text,
       'url' => $url,
       'options' => $url->getOptions(),
     );
@@ -154,26 +149,21 @@ class LinkGenerator implements LinkGeneratorInterface {
     unset($variables['options']['attributes']);
     $url->setOptions($variables['options']);
 
-    // External URLs can not have cacheable metadata.
-    if ($url->isExternal()) {
-      $generated_link = new GeneratedLink();
-      $attributes['href'] = $url->toString(FALSE);
+    if (!$collect_bubbleable_metadata) {
+      $url_string = $url->toString($collect_bubbleable_metadata);
     }
     else {
-      $generated_url = $url->toString(TRUE);
+      $generated_url = $url->toString($collect_bubbleable_metadata);
+      $url_string = $generated_url->getGeneratedUrl();
       $generated_link = GeneratedLink::createFromObject($generated_url);
-      // The result of the URL generator is a plain-text URL to use as the href
-      // attribute, and it is escaped by \Drupal\Core\Template\Attribute.
-      $attributes['href'] = $generated_url->getGeneratedUrl();
     }
+    // The result of the URL generator is a plain-text URL to use as the href
+    // attribute, and it is escaped by \Drupal\Core\Template\Attribute.
+    $attributes['href'] = $url_string;
 
-    if (!SafeMarkup::isSafe($variables['text'])) {
-      $variables['text'] = Html::escape($variables['text']);
-    }
-    $attributes = new Attribute($attributes);
-    // This is safe because Attribute does escaping and $variables['text'] is
-    // either rendered or escaped.
-    return $generated_link->setGeneratedLink('<a' . $attributes . '>' . $variables['text'] . '</a>');
+    $result = SafeMarkup::format('<a@attributes>@text</a>', array('@attributes' => new Attribute($attributes), '@text' => $variables['text']));
+
+    return $collect_bubbleable_metadata ? $generated_link->setGeneratedLink($result) : $result;
   }
 
 }

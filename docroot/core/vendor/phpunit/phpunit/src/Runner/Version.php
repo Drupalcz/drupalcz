@@ -11,7 +11,13 @@
 /**
  * This class defines the current version of PHPUnit.
  *
- * @since Class available since Release 2.0.0
+ * @package    PHPUnit
+ * @subpackage Runner
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://www.phpunit.de/
+ * @since      Class available since Release 2.0.0
  */
 class PHPUnit_Runner_Version
 {
@@ -30,7 +36,7 @@ class PHPUnit_Runner_Version
         }
 
         if (self::$version === null) {
-            $version       = new SebastianBergmann\Version('4.8.6', dirname(dirname(__DIR__)));
+            $version = new SebastianBergmann\Version('4.6.4', dirname(dirname(__DIR__)));
             self::$version = $version->getVersion();
         }
 

@@ -13,22 +13,21 @@
  * - site_slogan: Slogan for site as defined in Site information settings.
  */
 #}
-{% set attributes = attributes.addClass('site-branding') %}
 {% block content %}
   {% if site_logo %}
-    <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="site-branding__logo">
+    <a href="{{ url('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="site-logo">
       <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
     </a>
   {% endif %}
   {% if site_name or site_slogan %}
-    <div class="site-branding__text">
+    <div class="site-branding-text">
       {% if site_name %}
-        <div class="site-branding__name">
-          <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
-        </div>
+        <strong class="site-name">
+          <a href="{{ url('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
+        </strong>
       {% endif %}
       {% if site_slogan %}
-        <div class="site-branding__slogan">{{ site_slogan }}</div>
+        <div class="site-slogan">{{ site_slogan }}</div>
       {% endif %}
     </div>
   {% endif %}

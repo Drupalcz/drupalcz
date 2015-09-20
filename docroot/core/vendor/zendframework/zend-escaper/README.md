@@ -1,14 +1,15 @@
-# zend-escaper
+Escaper Component from ZF2
+==========================
 
-[![Build Status](https://secure.travis-ci.org/zendframework/zend-escaper.svg?branch=master)](https://secure.travis-ci.org/zendframework/zend-escaper)
-[![Coverage Status](https://coveralls.io/repos/zendframework/zend-escaper/badge.svg?branch=master)](https://coveralls.io/r/zendframework/zend-escaper?branch=master)
+This is the Escaper component for ZF2.
 
-The OWASP Top 10 web security risks study lists Cross-Site Scripting (XSS) in
-second place. PHP’s sole functionality against XSS is limited to two functions
-of which one is commonly misapplied. Thus, the `Zend\Escaper` component was written.
-It offers developers a way to escape output and defend from XSS and related
-vulnerabilities by introducing contextual escaping based on peer-reviewed rules.
+- File issues at https://github.com/zendframework/zf2/issues
+- Create pull requests against https://github.com/zendframework/zf2
+- Documentation is at http://framework.zend.com/docs
 
+LICENSE
+-------
 
-- File issues at https://github.com/zendframework/zend-escaper/issues
-- Documentation is at http://framework.zend.com/manual/current/en/index.html#zend-escaper
+The files in this archive are released under the [Zend Framework
+license](http://framework.zend.com/license), which is a 3-clause BSD license.
+

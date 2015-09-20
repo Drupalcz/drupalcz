@@ -11,7 +11,14 @@
 /**
  * Command-line options parsing class.
  *
- * @since Class available since Release 3.0.0
+ * @package    PHPUnit
+ * @subpackage Util
+ * @author     Andrei Zmievski <andrei@php.net>
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://www.phpunit.de/
+ * @since      Class available since Release 3.0.0
  */
 class PHPUnit_Util_Getopt
 {
@@ -47,8 +54,8 @@ class PHPUnit_Util_Getopt
 
             if ($arg[0] != '-' ||
                 (strlen($arg) > 1 && $arg[1] == '-' && !$long_options)) {
-                $non_opts[] = $args[$i];
-                continue;
+                $non_opts = array_merge($non_opts, array_slice($args, $i));
+                break;
             } elseif (strlen($arg) > 1 && $arg[1] == '-') {
                 self::parseLongOption(
                     substr($arg, 2),
@@ -153,7 +160,7 @@ class PHPUnit_Util_Getopt
             }
 
             $full_option = '--' . preg_replace('/={1,2}$/', '', $long_opt);
-            $opts[]      = array($full_option, $opt_arg);
+            $opts[] = array($full_option, $opt_arg);
 
             return;
         }

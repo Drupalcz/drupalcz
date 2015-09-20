@@ -10,7 +10,6 @@ namespace Drupal\editor;
 use Drupal\editor\Entity\Editor;
 use Drupal\filter\Entity\FilterFormat;
 use Drupal\Component\Plugin\PluginManagerInterface;
-use Drupal\Core\Render\BubbleableMetadata;
 
 /**
  * Defines a service for Text Editor's render elements.
@@ -94,7 +93,7 @@ class Element {
     $element['#attached']['library'][] = 'editor/drupal.editor';
 
     // Attach attachments for all available editors.
-    $element['#attached'] = BubbleableMetadata::mergeAttachments($element['#attached'], $this->pluginManager->getAttachments($format_ids));
+    $element['#attached'] = drupal_merge_attached($element['#attached'], $this->pluginManager->getAttachments($format_ids));
 
     // Apply XSS filters when editing content if necessary. Some types of text
     // editors cannot guarantee that the end user won't become a victim of XSS.

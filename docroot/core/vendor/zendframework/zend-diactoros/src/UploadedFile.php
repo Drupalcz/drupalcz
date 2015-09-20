@@ -223,10 +223,9 @@ class UploadedFile implements UploadedFileInterface
             throw new RuntimeException('Unable to write to designated path');
         }
 
-        $stream = $this->getStream();
-        $stream->rewind();
-        while (! $stream->eof()) {
-            fwrite($handle, $stream->read(4096));
+        $this->stream->rewind();
+        while (! $this->stream->eof()) {
+            fwrite($handle, $this->stream->read(4096));
         }
 
         fclose($handle);

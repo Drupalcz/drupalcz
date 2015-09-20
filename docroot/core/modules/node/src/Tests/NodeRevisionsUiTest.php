@@ -119,11 +119,20 @@ class NodeRevisionsUiTest extends NodeTestBase {
     // Assert the old revision message.
     $date = format_date($nodes[0]->revision_timestamp->value, 'short');
     $url = new Url('entity.node.revision', ['node' => $nodes[0]->id(), 'node_revision' => $nodes[0]->getRevisionId()]);
-    $this->assertRaw(\Drupal::l($date, $url) . ' by ' . $editor);
+    $old_revision_message = t('!date by !username', [
+      '!date' => \Drupal::l($date, $url),
+      '!username' => $editor,
+    ]);
+    $this->assertRaw($old_revision_message);
 
     // Assert the current revision message.
     $date = format_date($nodes[1]->revision_timestamp->value, 'short');
-    $this->assertRaw($nodes[1]->link($date) . ' by ' . $editor . '<p class="revision-log">' . $revision_log . '</p>');
+    $current_revision_message = t('!date by !username', [
+      '!date' => $nodes[1]->link($date),
+      '!username' => $editor,
+    ]);
+    $current_revision_message .= '<p class="revision-log">' . $revision_log . '</p>';
+    $this->assertRaw($current_revision_message);
   }
 
 }

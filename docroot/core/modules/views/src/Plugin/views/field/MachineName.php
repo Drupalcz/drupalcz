@@ -83,7 +83,7 @@ class MachineName extends FieldPluginBase {
   public function render(ResultRow $values) {
     $value = $values->{$this->field_alias};
     if (!empty($this->options['machine_name']) || !isset($this->valueOptions[$value])) {
-      $result = $this->sanitizeValue($value);
+      $result = SafeMarkup::checkPlain($value);
     }
     else {
       $result = $this->valueOptions[$value];

@@ -127,27 +127,13 @@ class MessageCatalogueTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \LogicException
      */
-    public function testAddFallbackCatalogueWithParentCircularReference()
+    public function testAddFallbackCatalogueWithCircularReference()
     {
         $main = new MessageCatalogue('en_US');
         $fallback = new MessageCatalogue('fr_FR');
 
         $fallback->addFallbackCatalogue($main);
         $main->addFallbackCatalogue($fallback);
-    }
-
-    /**
-     * @expectedException \LogicException
-     */
-    public function testAddFallbackCatalogueWithFallbackCircularReference()
-    {
-        $fr = new MessageCatalogue('fr');
-        $en = new MessageCatalogue('en');
-        $es = new MessageCatalogue('es');
-
-        $fr->addFallbackCatalogue($en);
-        $es->addFallbackCatalogue($en);
-        $en->addFallbackCatalogue($fr);
     }
 
     /**
@@ -192,10 +178,10 @@ class MessageCatalogueTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array(), $catalogue->getMetadata('key2', 'messages'), 'Metadata key2 is array');
 
         $catalogue->deleteMetadata('key2', 'messages');
-        $this->assertNull($catalogue->getMetadata('key2', 'messages'), 'Metadata key2 should is deleted.');
+        $this->assertEquals(null, $catalogue->getMetadata('key2', 'messages'), 'Metadata key2 should is deleted.');
 
         $catalogue->deleteMetadata('key2', 'domain');
-        $this->assertNull($catalogue->getMetadata('key2', 'domain'), 'Metadata key2 should is deleted.');
+        $this->assertEquals(null, $catalogue->getMetadata('key2', 'domain'), 'Metadata key2 should is deleted.');
     }
 
     public function testMetadataMerge()

@@ -7,7 +7,6 @@
 
 namespace Drupal\node\Tests\Migrate\d6;
 
-use Drupal\migrate\Entity\MigrationInterface;
 use Drupal\migrate_drupal\Tests\d6\MigrateDrupal6TestBase;
 use Drupal\migrate\Entity\Migration;
 
@@ -19,11 +18,6 @@ class MigrateNodeBuilderTest extends MigrateDrupal6TestBase {
   public static $modules = ['migrate', 'migrate_drupal', 'node'];
 
   /**
-   * @var MigrationInterface[]
-   */
-  protected $builtMigrations = [];
-
-  /**
    * Asserts various aspects of a migration entity.
    *
    * @param string $id
@@ -32,10 +26,10 @@ class MigrateNodeBuilderTest extends MigrateDrupal6TestBase {
    *   The label.
    */
   protected function assertEntity($id, $label) {
-    $migration = $this->builtMigrations[$id];
+    $migration = Migration::load($id);
     $this->assertTrue($migration instanceof Migration);
-    $this->assertIdentical($id, $migration->id());
-    $this->assertEqual($label, $migration->label());
+    $this->assertIdentical($id, $migration->Id());
+    $this->assertIdentical($label, $migration->label());
   }
 
   /**
@@ -64,11 +58,7 @@ class MigrateNodeBuilderTest extends MigrateDrupal6TestBase {
     ];
 
     $migrations = \Drupal::service('migrate.migration_builder')->createMigrations($templates);
-    // Key the array.
-    foreach ($migrations as $migration) {
-      $this->builtMigrations[$migration->id()] = $migration;
-    }
-    $this->assertIdentical(11, count($this->builtMigrations));
+    $this->assertIdentical(11, count($migrations));
     $this->assertEntity('d6_node__article', 'Drupal 6 nodes (article)');
     $this->assertEntity('d6_node__company', 'Drupal 6 nodes (company)');
     $this->assertEntity('d6_node__employee', 'Drupal 6 nodes (employee)');

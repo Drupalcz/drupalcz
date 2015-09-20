@@ -1,5 +1,5 @@
 id: d7_comment_entity_display
-label: Comment display configuration
+label: Drupal 7 comment display configuration
 migration_tags:
   - Drupal 7
 source:

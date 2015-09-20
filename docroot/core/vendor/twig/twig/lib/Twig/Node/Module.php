@@ -402,7 +402,22 @@ class Twig_Node_Module extends Twig_Node
                 ->raw(");\n")
             ;
         } else {
-            throw new LogicException('Trait templates can only be constant nodes');
+            $compiler
+                ->write(sprintf('%s = ', $var))
+                ->subcompile($node)
+                ->raw(";\n")
+                ->write(sprintf('if (!%s', $var))
+                ->raw(" instanceof Twig_Template) {\n")
+                ->indent()
+                ->write(sprintf('%s = $this->loadTemplate(%s')
+                ->raw(', ')
+                ->repr($compiler->getFilename())
+                ->raw(', ')
+                ->repr($node->getLine())
+                ->raw(");\n", $var, $var))
+                ->outdent()
+                ->write("}\n")
+            ;
         }
     }
 }

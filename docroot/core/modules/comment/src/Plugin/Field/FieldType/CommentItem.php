@@ -159,13 +159,6 @@ class CommentItem extends FieldItemBase implements CommentItemInterface {
   /**
    * {@inheritdoc}
    */
-  public static function mainPropertyName() {
-    return 'status';
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function isEmpty() {
     // There is always a value for this field, it is one of
     // CommentItemInterface::OPEN, CommentItemInterface::CLOSED or

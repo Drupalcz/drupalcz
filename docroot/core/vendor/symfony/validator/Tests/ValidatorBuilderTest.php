@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\Validator\Tests;
 
+use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\ValidatorBuilder;
 use Symfony\Component\Validator\ValidatorBuilderInterface;
 

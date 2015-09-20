@@ -1,5 +1,5 @@
 id: d6_user
-label: User accounts
+label: Drupal 6 user accounts
 migration_tags:
   - Drupal 6
 source:

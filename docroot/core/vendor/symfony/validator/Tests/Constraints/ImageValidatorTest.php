@@ -15,9 +15,6 @@ use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\ImageValidator;
 use Symfony\Component\Validator\Validation;
 
-/**
- * @requires extension fileinfo
- */
 class ImageValidatorTest extends AbstractConstraintValidatorTest
 {
     protected $context;

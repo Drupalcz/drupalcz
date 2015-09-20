@@ -19,10 +19,7 @@
 
 namespace Doctrine\Common\Collections;
 
-use ArrayAccess;
-use Closure;
-use Countable;
-use IteratorAggregate;
+use Closure, Countable, IteratorAggregate, ArrayAccess;
 
 /**
  * The missing (SPL) Collection/Array/OrderedMap interface.
@@ -32,7 +29,7 @@ use IteratorAggregate;
  * like a list.
  *
  * A Collection has an internal iterator just like a PHP array. In addition,
- * a Collection can be iterated with external iterators, which is preferable.
+ * a Collection can be iterated with external iterators, which is preferrable.
  * To use an external iterator simply use the foreach language construct to
  * iterate over the collection (which calls {@link getIterator()} internally) or
  * explicitly retrieve an iterator though {@link getIterator()} which can then be
@@ -55,14 +52,14 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
      *
      * @return boolean Always TRUE.
      */
-    public function add($element);
+    function add($element);
 
     /**
      * Clears the collection, removing all elements.
      *
      * @return void
      */
-    public function clear();
+    function clear();
 
     /**
      * Checks whether an element is contained in the collection.
@@ -72,14 +69,14 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
      *
      * @return boolean TRUE if the collection contains the element, FALSE otherwise.
      */
-    public function contains($element);
+    function contains($element);
 
     /**
      * Checks whether the collection is empty (contains no elements).
      *
      * @return boolean TRUE if the collection is empty, FALSE otherwise.
      */
-    public function isEmpty();
+    function isEmpty();
 
     /**
      * Removes the element at the specified index from the collection.
@@ -88,7 +85,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
      *
      * @return mixed The removed element or NULL, if the collection did not contain the element.
      */
-    public function remove($key);
+    function remove($key);
 
     /**
      * Removes the specified element from the collection, if it is found.
@@ -97,7 +94,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeElement($element);
+    function removeElement($element);
 
     /**
      * Checks whether the collection contains an element with the specified key/index.
@@ -107,7 +104,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
      * @return boolean TRUE if the collection contains an element with the specified key/index,
      *                 FALSE otherwise.
      */
-    public function containsKey($key);
+    function containsKey($key);
 
     /**
      * Gets the element at the specified key/index.
@@ -116,7 +113,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
      *
      * @return mixed
      */
-    public function get($key);
+    function get($key);
 
     /**
      * Gets all keys/indices of the collection.
@@ -124,7 +121,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
      * @return array The keys/indices of the collection, in the order of the corresponding
      *               elements in the collection.
      */
-    public function getKeys();
+    function getKeys();
 
     /**
      * Gets all values of the collection.
@@ -132,7 +129,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
      * @return array The values of all elements in the collection, in the order they
      *               appear in the collection.
      */
-    public function getValues();
+    function getValues();
 
     /**
      * Sets an element in the collection at the specified key/index.
@@ -142,49 +139,49 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
      *
      * @return void
      */
-    public function set($key, $value);
+    function set($key, $value);
 
     /**
      * Gets a native PHP array representation of the collection.
      *
      * @return array
      */
-    public function toArray();
+    function toArray();
 
     /**
      * Sets the internal iterator to the first element in the collection and returns this element.
      *
      * @return mixed
      */
-    public function first();
+    function first();
 
     /**
      * Sets the internal iterator to the last element in the collection and returns this element.
      *
      * @return mixed
      */
-    public function last();
+    function last();
 
     /**
      * Gets the key/index of the element at the current iterator position.
      *
      * @return int|string
      */
-    public function key();
+    function key();
 
     /**
      * Gets the element of the collection at the current iterator position.
      *
      * @return mixed
      */
-    public function current();
+    function current();
 
     /**
      * Moves the internal iterator position to the next element and returns this element.
      *
      * @return mixed
      */
-    public function next();
+    function next();
 
     /**
      * Tests for the existence of an element that satisfies the given predicate.
@@ -193,7 +190,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
      *
      * @return boolean TRUE if the predicate is TRUE for at least one element, FALSE otherwise.
      */
-    public function exists(Closure $p);
+    function exists(Closure $p);
 
     /**
      * Returns all the elements of this collection that satisfy the predicate p.
@@ -203,16 +200,16 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
      *
      * @return Collection A collection with the results of the filter operation.
      */
-    public function filter(Closure $p);
+    function filter(Closure $p);
 
     /**
      * Tests whether the given predicate p holds for all elements of this collection.
-     *
+     * 
      * @param Closure $p The predicate.
      *
      * @return boolean TRUE, if the predicate yields TRUE for all elements, FALSE otherwise.
      */
-    public function forAll(Closure $p);
+    function forAll(Closure $p);
 
     /**
      * Applies the given function to each element in the collection and returns
@@ -222,7 +219,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
      *
      * @return Collection
      */
-    public function map(Closure $func);
+    function map(Closure $func);
 
     /**
      * Partitions this collection in two collections according to a predicate.
@@ -234,7 +231,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
      *               of elements where the predicate returned TRUE, the second element
      *               contains the collection of elements where the predicate returned FALSE.
      */
-    public function partition(Closure $p);
+    function partition(Closure $p);
 
     /**
      * Gets the index/key of a given element. The comparison of two elements is strict,
@@ -245,7 +242,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
      *
      * @return int|string|bool The key/index of the element or FALSE if the element was not found.
      */
-    public function indexOf($element);
+    function indexOf($element);
 
     /**
      * Extracts a slice of $length elements starting at position $offset from the Collection.
@@ -259,5 +256,5 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
      *
      * @return array
      */
-    public function slice($offset, $length = null);
+    function slice($offset, $length = null);
 }

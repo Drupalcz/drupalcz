@@ -11,7 +11,14 @@
 /**
  * Logical NOT.
  *
- * @since Class available since Release 3.0.0
+ * @package    PHPUnit
+ * @subpackage Framework_Constraint
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @author     Bernhard Schussek <bschussek@2bepublished.at>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://www.phpunit.de/
+ * @since      Class available since Release 3.0.0
  */
 class PHPUnit_Framework_Constraint_Not extends PHPUnit_Framework_Constraint
 {
@@ -112,13 +119,16 @@ class PHPUnit_Framework_Constraint_Not extends PHPUnit_Framework_Constraint
         switch (get_class($this->constraint)) {
             case 'PHPUnit_Framework_Constraint_And':
             case 'PHPUnit_Framework_Constraint_Not':
-            case 'PHPUnit_Framework_Constraint_Or':
+            case 'PHPUnit_Framework_Constraint_Or': {
                 return 'not( ' . $this->constraint->failureDescription($other) . ' )';
+                }
+            break;
 
-            default:
+            default: {
                 return self::negate(
                     $this->constraint->failureDescription($other)
                 );
+                }
         }
     }
 
@@ -132,20 +142,23 @@ class PHPUnit_Framework_Constraint_Not extends PHPUnit_Framework_Constraint
         switch (get_class($this->constraint)) {
             case 'PHPUnit_Framework_Constraint_And':
             case 'PHPUnit_Framework_Constraint_Not':
-            case 'PHPUnit_Framework_Constraint_Or':
+            case 'PHPUnit_Framework_Constraint_Or': {
                 return 'not( ' . $this->constraint->toString() . ' )';
+                }
+            break;
 
-            default:
+            default: {
                 return self::negate(
                     $this->constraint->toString()
                 );
+                }
         }
     }
 
     /**
      * Counts the number of constraint elements.
      *
-     * @return int
+     * @return integer
      * @since  Method available since Release 3.4.0
      */
     public function count()

@@ -1,5 +1,5 @@
 id: d7_node_revision
-label: Node revisions
+label: Drupal 7 node revisions
 migration_tags:
   - Drupal 7
 builder:

@@ -14,6 +14,7 @@ PHPUnit_TextUI_Command::main();
 PHPUnit %s by Sebastian Bergmann and contributors.
 
 Available test group(s):
+ - Sebastian Bergmann <sebastian@phpunit.de>
  - balanceCannotBecomeNegative
  - balanceIsInitiallyZero
  - specification

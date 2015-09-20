@@ -113,11 +113,12 @@ abstract class Entity extends DestinationBase implements ContainerFactoryPluginI
       $this->updateEntity($entity, $row);
     }
     else {
-      // Stubs might need some required fields filled in.
+      $values = $row->getDestination();
+      // Stubs might not have the bundle specified.
       if ($row->isStub()) {
-        $this->processStubRow($row);
+        $values = $this->processStubValues($values);
       }
-      $entity = $this->storage->create($row->getDestination());
+      $entity = $this->storage->create($values);
       $entity->enforceIsNew();
     }
     return $entity;
@@ -138,14 +139,21 @@ abstract class Entity extends DestinationBase implements ContainerFactoryPluginI
   /**
    * Process the stub values.
    *
-   * @param \Drupal\migrate\Row $row
-   *   The row of data.
+   * @param array $values
+   *   An array of destination values.
+   *
+   * @return array
+   *   The processed stub values.
    */
-  protected function processStubRow(Row $row) {
+  protected function processStubValues(array $values) {
+    $values = array_intersect_key($values, $this->getIds());
+
     $bundle_key = $this->getKey('bundle');
-    if ($bundle_key && empty($row->getDestinationProperty($bundle_key))) {
-      $row->setDestinationProperty($bundle_key, reset($this->bundles));
+    if ($bundle_key && !isset($values[$bundle_key])) {
+      $values[$bundle_key] = reset($this->bundles);
     }
+
+    return $values;
   }
 
   /**

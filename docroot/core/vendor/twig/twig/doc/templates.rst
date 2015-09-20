@@ -60,9 +60,6 @@ Many IDEs support syntax highlighting and auto-completion for Twig:
 * *Emacs* via `web-mode.el`_
 * *Atom* via the `PHP-twig for atom`_
 
-Also, `TwigFiddle`_ is an online service that allows you to execute Twig templates
-from a browser; it supports all versions of Twig.
-
 Variables
 ---------
 
@@ -885,4 +882,3 @@ Extension<creating_extensions>` chapter.
 .. _`web-mode.el`:                http://web-mode.org/
 .. _`regular expressions`:        http://php.net/manual/en/pcre.pattern.php
 .. _`PHP-twig for atom`:          https://github.com/reesef/php-twig
-.. _`TwigFiddle`:                 http://twigfiddle.com/

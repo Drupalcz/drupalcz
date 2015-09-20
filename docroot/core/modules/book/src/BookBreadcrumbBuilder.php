@@ -96,7 +96,7 @@ class BookBreadcrumbBuilder implements BreadcrumbBuilderInterface {
       }
     }
     $breadcrumb->setLinks($links);
-    $breadcrumb->addCacheContexts(['route.book_navigation']);
+    $breadcrumb->setCacheContexts(['route.book_navigation']);
     return $breadcrumb;
   }
 

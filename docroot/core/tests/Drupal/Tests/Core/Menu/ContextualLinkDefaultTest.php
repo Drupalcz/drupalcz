@@ -71,10 +71,11 @@ class ContextualLinkDefaultTest extends UnitTestCase {
    */
   public function testGetTitle() {
     $title = 'Example';
-    $this->pluginDefinition['title'] = (new TranslationWrapper($title, [], [], $this->stringTranslation));
+    $this->pluginDefinition['title'] = (new TranslationWrapper($title))
+      ->setStringTranslation($this->stringTranslation);
     $this->stringTranslation->expects($this->once())
-      ->method('translateString')
-      ->with($this->pluginDefinition['title'])
+      ->method('translate')
+      ->with($title, array(), array())
       ->will($this->returnValue('Example translated'));
 
     $this->setupContextualLinkDefault();
@@ -86,10 +87,11 @@ class ContextualLinkDefaultTest extends UnitTestCase {
    */
   public function testGetTitleWithContext() {
     $title = 'Example';
-    $this->pluginDefinition['title'] = (new TranslationWrapper($title, array(), array('context' => 'context'), $this->stringTranslation));
+    $this->pluginDefinition['title'] = (new TranslationWrapper($title, array(), array('context' => 'context')))
+      ->setStringTranslation($this->stringTranslation);
     $this->stringTranslation->expects($this->once())
-      ->method('translateString')
-      ->with($this->pluginDefinition['title'])
+      ->method('translate')
+      ->with($title, array(), array('context' => 'context'))
       ->will($this->returnValue('Example translated with context'));
 
     $this->setupContextualLinkDefault();
@@ -101,10 +103,11 @@ class ContextualLinkDefaultTest extends UnitTestCase {
    */
   public function testGetTitleWithTitleArguments() {
     $title = 'Example @test';
-    $this->pluginDefinition['title'] = (new TranslationWrapper($title, array('@test' => 'value'), [], $this->stringTranslation));
+    $this->pluginDefinition['title'] = (new TranslationWrapper($title, array('@test' => 'value')))
+      ->setStringTranslation($this->stringTranslation);
     $this->stringTranslation->expects($this->once())
-      ->method('translateString')
-      ->with($this->pluginDefinition['title'])
+      ->method('translate')
+      ->with($title, array('@test' => 'value'), array())
       ->will($this->returnValue('Example value'));
 
     $this->setupContextualLinkDefault();

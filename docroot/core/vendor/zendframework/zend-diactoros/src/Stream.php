@@ -35,7 +35,23 @@ class Stream implements StreamInterface
      */
     public function __construct($stream, $mode = 'r')
     {
-        $this->setStream($stream, $mode);
+        $this->stream = $stream;
+
+        if (is_resource($stream)) {
+            $this->resource = $stream;
+        } elseif (is_string($stream)) {
+            set_error_handler(function ($errno, $errstr) {
+                throw new InvalidArgumentException(
+                    'Invalid file provided for stream; must be a valid path with valid permissions'
+                );
+            }, E_WARNING);
+            $this->resource = fopen($stream, $mode);
+            restore_error_handler();
+        } else {
+            throw new InvalidArgumentException(
+                'Invalid stream provided; must be a string stream identifier or resource'
+            );
+        }
     }
 
     /**
@@ -89,7 +105,26 @@ class Stream implements StreamInterface
      */
     public function attach($resource, $mode = 'r')
     {
-        $this->setStream($resource, $mode);
+        $error = null;
+        if (! is_resource($resource) && is_string($resource)) {
+            set_error_handler(function ($e) use (&$error) {
+                $error = $e;
+            }, E_WARNING);
+            $resource = fopen($resource, $mode);
+            restore_error_handler();
+        }
+
+        if ($error) {
+            throw new InvalidArgumentException('Invalid stream reference provided');
+        }
+
+        if (! is_resource($resource)) {
+            throw new InvalidArgumentException(
+                'Invalid stream provided; must be a string stream identifier or resource'
+            );
+        }
+
+        $this->resource = $resource;
     }
 
     /**
@@ -287,42 +322,5 @@ class Stream implements StreamInterface
         }
 
         return $metadata[$key];
-    }
-
-    /**
-     * Set the internal stream resource.
-     *
-     * @param string|resource $stream String stream target or stream resource.
-     * @param string $mode Resource mode for stream target.
-     * @throws InvalidArgumentException for invalid streams or resources.
-     */
-    private function setStream($stream, $mode = 'r')
-    {
-        $error    = null;
-        $resource = $stream;
-
-        if (is_string($stream)) {
-            set_error_handler(function ($e) use (&$error) {
-                $error = $e;
-            }, E_WARNING);
-            $resource = fopen($stream, $mode);
-            restore_error_handler();
-        }
-
-        if ($error) {
-            throw new InvalidArgumentException('Invalid stream reference provided');
-        }
-
-        if (! is_resource($resource) || 'stream' !== get_resource_type($resource)) {
-            throw new InvalidArgumentException(
-                'Invalid stream provided; must be a string stream identifier or stream resource'
-            );
-        }
-
-        if ($stream !== $resource) {
-            $this->stream = $stream;
-        }
-
-        $this->resource = $resource;
     }
 }

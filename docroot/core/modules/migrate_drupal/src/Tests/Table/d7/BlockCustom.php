@@ -56,13 +56,8 @@ class BlockCustom extends DrupalDumpBase {
       'info',
       'format',
     ))
-    ->values(array(
-      'bid' => '1',
-      'body' => "A fellow jumped off a high wall\r\nAnd had a most terrible fall\r\nHe went back to bed\r\nWith a bump on his head\r\nThat's why you don't jump off a wall",
-      'info' => 'Limerick',
-      'format' => 'filtered_html',
-    ))->execute();
+    ->execute();
   }
 
 }
-#d317035ee9af9b69d78ab3dd0c7072b9
+#bcecada721307d09075575d51819ab41

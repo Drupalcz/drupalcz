@@ -8,6 +8,6 @@ class FatalTest extends PHPUnit_Framework_TestCase
             xdebug_disable();
         }
 
-        eval('class FatalTest {}');
+        non_existing_function();
     }
 }
