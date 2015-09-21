@@ -1,19 +1,35 @@
 name: Drupal.cz
 type: profile
-description: 'Build skeleton for Drupal.cz community site.'
-version: VERSION
 core: 8.x
+version: 8.x-1.0
 dependencies:
   - node
   - block
-  - dblog
-  - node
-  - text
-  - menu_ui
-  - path
   - user
+  - breakpoint
+  - ckeditor
+  - color
+  - config
+  - comment
+  - contact
+  - menu_link_content
+  - datetime
+  - editor
+  - entity_reference
+  - image
+  - menu_ui
+  - options
+  - path
+  - page_cache
+  - taxonomy
+  - dblog
+  - shortcut
+  - toolbar
+  - field_ui
+  - file
+  - views
+  - views_ui
 themes:
-  - stark
+  - bartik
   - seven
 distribution: true
-

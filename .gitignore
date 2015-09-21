@@ -44,3 +44,4 @@ docroot/themes/_dev_loc
 
 # Configure your global git ignore to take care of your specifics.
 # https://help.github.com/articles/ignoring-files/#create-a-global-gitignore
+tests/behat/vendor
