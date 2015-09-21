@@ -1,6 +1,9 @@
 # Ignore local configuration.
 docroot/settings/settings.local.php
 
+# Ignore changes done by installer.
+docroot/sites/default/settings.php
+
 # Ignore paths that contain user-generated content.
 docroot/files
 docroot/sites/*/files
