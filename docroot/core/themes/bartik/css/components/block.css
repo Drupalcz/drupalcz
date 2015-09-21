@@ -1,0 +1,22 @@
+/**
+ * @file
+ * Visual styles for Bartik's blocks.
+ */
+
+/* Block has it's own content wrapper. */
+.block .content {
+  margin-top: 10px;
+}
+
+/* List in block. */
+.block ol,
+.block ul {
+  margin: 0;
+  padding: 0 0 0.25em 1em; /* LTR */
+}
+[dir="rtl"] .block ol,
+[dir="rtl"] .block ul {
+  padding: 0 1em 0.25em 0;
+  /* This is required to win over specifity of [dir="rtl"] ul.menu */
+  margin-right: 0;
+}

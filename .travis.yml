@@ -41,14 +41,14 @@ install:
 
   # Install latest Drush 7.
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - composer global require --prefer-dist --no-interaction drush/drush:7.*
+  - composer global require --prefer-dist --no-interaction drush/drush:dev-master
 
   # Disable sendmail
   - echo sendmail_path=`which true` >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
   # Set up site
   - cd ./docroot
-  - drush si standard install_configure_form.update_status_module='array(FALSE,FALSE)' --sites-subdir=default --db-url=mysql://root:@127.0.0.1/drupalcz --verbose --account-name=admin --account-pass=admin --site-mail=drupalcz_travis_dev@klaska.net --site-name="Drupal.cz" --yes
+  - drush si dcz install_configure_form.update_status_module='array(FALSE,FALSE)' --sites-subdir=default --db-url=mysql://root:@127.0.0.1/drupalcz --verbose --account-name=admin --account-pass=admin --site-mail=drupalcz_travis_dev@klaska.net --site-name="Drupal.cz" --yes
   - cd ..
 
   # Setup behat
@@ -66,5 +66,5 @@ install:
 script:
   # Run behat tests
   - cd ./tests/behat
-  - ./bin/behat
+  - ./vendor/behat/behat/bin/behat
   - cd ../..
