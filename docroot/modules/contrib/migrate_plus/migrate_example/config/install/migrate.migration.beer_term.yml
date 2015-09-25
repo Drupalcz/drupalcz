@@ -1,0 +1,17 @@
+id: beer_term
+label: Migrate styles from the source database to taxonomy terms
+migration_group: beer
+source:
+  plugin: beer_term
+destination:
+  plugin: entity:taxonomy_term
+process:
+  vid:
+    plugin: default_value
+    default_value: migrate_example_beer_styles
+  name: style
+  description: details
+  parent:
+    plugin: migration
+    migration: beer_term
+    source: style_parent

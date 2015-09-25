@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_dcz_bio
+    - field.field.user.user.field_dcz_name
+    - field.field.user.user.field_dcz_surname
+  module:
+    - text
+    - user
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  account:
+    weight: -10
+  contact:
+    weight: 5
+  field_dcz_bio:
+    weight: 9
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+  field_dcz_name:
+    weight: 7
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_dcz_surname:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  language:
+    weight: 0
+  timezone:
+    weight: 6
+hidden: {  }

@@ -1,0 +1,16 @@
+<?php
+
+use Drupal\Core\Url;
+
+/**
+ * @file
+ * Install, update and uninstall functions for the migrate_upgrade module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function migrate_upgrade_install() {
+  $url = Url::fromUri('base:upgrade')->toString();
+  drupal_set_message(t("The Drupal Upgrade UI module has been enabled. Proceed to the <a href='@url'>upgrade form</a>.", ['@url' => $url]));
+}
