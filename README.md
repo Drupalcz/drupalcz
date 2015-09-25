@@ -19,5 +19,8 @@
   * `drush si dcz`
 
 ## Contributing
+* We are using GitFlow(https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow/) branching strategy
+  * you need to create ```feature/NAME``` branch for each issue
+  * after you finish work on issue, create pull request against ```develop``` branch 
 * Commit your changes. ( http://chris.beams.io/posts/git-commit/ )
 * Create pull request. https://help.github.com/articles/creating-a-pull-request/
