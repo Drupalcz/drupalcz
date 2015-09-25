@@ -61,6 +61,10 @@ class User extends DrupalSqlBase {
     $fields['dcz_name'] = $this->t('Name');
     $fields['dcz_surname'] = $this->t('Surname');
     $fields['dcz_bio'] = $this->t('Bio');
+
+    // Add roles field.
+    $fields['roles'] = $this->t('Roles');
+
     return $fields;
   }
 
@@ -69,6 +73,14 @@ class User extends DrupalSqlBase {
    */
   public function prepareRow(Row $row) {
     $uid = $row->getSourceProperty('uid');
+
+    // User roles.
+    $roles = $this->select('users_roles', 'ur')
+      ->fields('ur', array('rid'))
+      ->condition('ur.uid', $row->getSourceProperty('uid'))
+      ->execute()
+      ->fetchCol();
+    $row->setSourceProperty('roles', $roles);
 
     // name & surname
     $result = $this->getDatabase()->query('
