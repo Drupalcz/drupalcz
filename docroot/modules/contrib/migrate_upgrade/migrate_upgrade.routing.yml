@@ -1,0 +1,18 @@
+migrate_upgrade.upgrade:
+  path: '/upgrade'
+  defaults:
+    _form: '\Drupal\migrate_upgrade\Form\MigrateUpgradeForm'
+    _title: 'Upgrade'
+  requirements:
+    _permission: 'administer software updates'
+  options:
+    _admin_route: TRUE
+
+migrate_upgrade.log:
+  path: '/upgrade/log'
+  defaults:
+      _controller: '\Drupal\migrate_upgrade\Controller\MigrateController::showLog'
+  requirements:
+    _permission: 'administer software updates'
+  options:
+    _admin_route: TRUE

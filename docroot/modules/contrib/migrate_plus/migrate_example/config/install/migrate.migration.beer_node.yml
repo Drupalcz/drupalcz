@@ -1,0 +1,31 @@
+id: beer_node
+label: Beers of the world
+migration_group: beer
+source:
+  plugin: beer_node
+destination:
+  plugin: entity:node
+process:
+  type:
+    plugin: default_value
+    default_value: migrate_example_beer
+  nid: bid
+  title: name
+  uid:
+    plugin: migration
+    migration: beer_user
+    source: aid
+  sticky:
+    plugin: default_value
+    default_value: 0
+  field_migrate_example_country: countries
+  field_migrate_example_beer_style:
+    plugin: migration
+    migration: beer_term
+    source: terms
+  'body/value': body
+  'body/summary': excerpt
+migration_dependencies:
+  required:
+    - beer_term
+    - beer_user

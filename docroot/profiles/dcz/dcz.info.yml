@@ -29,6 +29,9 @@ dependencies:
   - file
   - views
   - views_ui
+  - dcz_article
+  - dcz_user
+  - dcz_migrate
 themes:
   - bartik
   - seven

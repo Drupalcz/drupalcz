@@ -1,0 +1,34 @@
+id: beer_user
+label: Beer Drinkers of the world
+migration_group: beer
+source:
+  plugin: beer_user
+destination:
+  plugin: entity:user
+process:
+  name:
+    plugin: dedupe_entity
+    entity_type: user
+    field: name
+    postfix: _
+    source: name
+  pass: password
+  mail: mail
+  created:
+    -
+      plugin: callback
+      callable: strtotime
+      source: posted
+  access:
+    plugin: get
+    source: @created
+  login:
+    plugin: get
+    source: @created
+  status: status
+  init: mail
+  roles:
+    plugin: default_value
+    default_value: 2
+  field_migrate_example_gender: sex
+  field_migrate_example_favbeers: beers

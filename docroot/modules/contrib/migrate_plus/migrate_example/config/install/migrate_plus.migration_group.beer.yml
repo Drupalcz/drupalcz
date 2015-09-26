@@ -1,0 +1,18 @@
+# The machine name of the group, by which it is referenced in individual
+# migrations.
+id: beer
+
+# A human-friendly label of the group, displayed in the UI.
+label: Beer Imports
+
+# More information about the group.
+description: A few simple beer-related imports, to demonstrate how to implement migrations.
+
+# Short description of the type of source, e.g. "Drupal 6" or "WordPress".
+source_type: Custom tables
+
+# Here we add any default configuration settings to be shared among all
+# migrations in the group.
+shared_configuration:
+  source:
+    key: default
