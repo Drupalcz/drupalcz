@@ -20,7 +20,7 @@
 
 # No hyerarchycal comments!
 
-# Delete all the stuff!
+# Delete some users and content.
 DELETE FROM users WHERE uid > '100';
 DELETE FROM profile_values WHERE uid > '100';
 DELETE FROM authmap WHERE uid > '100';
@@ -31,15 +31,18 @@ DELETE FROM comments WHERE uid > '100' AND pid != '0';
 DELETE FROM comments WHERE uid = '0' AND cid > '1000';
 
 
-# Location
+# Location instance
 DELETE FROM location_instance WHERE lid IN (
-    SELECT * FROM (
-        SELECT location_instance.lid FROM location_instance JOIN location ON location_instance.lid=location.lid WHERE location_instance.uid > '100'
-    ) AS lid
+  SELECT * FROM (
+    SELECT location_instance.lid FROM location_instance JOIN location ON location_instance.lid=location.lid WHERE location_instance.uid > '100'
+  ) AS lid
+);
+# Location
+DELETE FROM location WHERE lid NOT IN (
+  SELECT lid FROM location_instance AS lid
 );
 
 # ToDo: Make these tables slimmer:
-# location
 # node_authorship
 # url_alias
 # poll_votes
