@@ -30,7 +30,6 @@ DELETE FROM comments WHERE uid > '100' AND pid != '0';
 # Delete most of anonymous comments.
 DELETE FROM comments WHERE uid = '0' AND cid > '1000';
 
-
 # Location instance
 DELETE FROM location_instance WHERE lid IN (
   SELECT * FROM (
@@ -52,3 +51,5 @@ TRUNCATE TABLE ads;
 TRUNCATE TABLE ad_clicks;
 TRUNCATE TABLE ad_owners;
 TRUNCATE TABLE ad_statistics;
+TRUNCATE TABLE locales_source;
+TRUNCATE TABLE locales_target;
