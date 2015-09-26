@@ -11,15 +11,6 @@ migration_tags:
 label: 'Drupal 6 user roles'
 source:
   plugin: d6_user_role
-  key: upgrade
-  database:
-    driver: mysql
-    username: drupaluser
-    password: ''
-    port: '33067'
-    host: 127.0.0.1
-    database: dcz_old
-    prefix: null
 process:
   id:
     -
