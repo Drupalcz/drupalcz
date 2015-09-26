@@ -15,8 +15,13 @@
 * Prepare your database and fill the credentials into your new local config.
   * `cp docroot/settings/default.settings.local.php docroot/settings/settings.local.php`
   * edit this config: `docroot/settings/settings.local.php`
-* Install the site using the Drupal.cz installation profile.
-  * `drush si dcz`
+* Install the site (it will use the Drupal.cz distribution).
+  * `cd docroot`
+  * `drush si`
+* Migrate data from D6 Drupal.cz
+  * Get the database snapshot: https://github.com/Drupalcz/drupalcz_db
+  * Import it into new database separarate from D8 version.
+  * Run the migration: `drush migrate-manifest --legacy-db-url=mysql://USERNAME:PASSWORD@localhost/D6_DB_NAME manifest.yml`
 
 ## Contributing
 * We are using GitFlow(https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow/) branching strategy
