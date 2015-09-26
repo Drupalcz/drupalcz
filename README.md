@@ -2,6 +2,16 @@
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Drupalcz/drupalcz?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/Drupalcz/drupalcz.svg?branch=master)](https://travis-ci.org/Drupalcz/drupalcz)
 
+## Contents
+* acquia-utils/ - Acquia cloud specific tools.
+* docroot/ - Website directory.
+* library/ - Acquia cloud libraries.
+* tests/ - Collection of tests for Travis CI and local development.
+* .gitignore - Gitignore.
+* .travis.yml - Travis CI test suite configuration.
+* scrub.sql - script to strip sensitive data from D6 production database.
+* slim.sql - script to make scrubbed database smaller so we can run tests quicker. 
+
 ## Requirements
 * Install composer: https://getcomposer.org/doc/00-intro.md
 * Install Drush version 8: http://docs.drush.org/en/master/install/
