@@ -57,3 +57,4 @@ TRUNCATE TABLE search_dataset;
 TRUNCATE TABLE search_index;
 TRUNCATE TABLE search_node_links;
 TRUNCATE TABLE search_total;
+TRUNCATE TABLE spam_tracker;
