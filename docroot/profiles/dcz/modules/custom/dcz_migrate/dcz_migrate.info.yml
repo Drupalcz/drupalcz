@@ -7,4 +7,5 @@ package: dcz
 dependencies:
   - migrate
   - migrate_drupal
+  - migrate_tools
   - dcz_user

@@ -4,6 +4,8 @@ dependencies:
   config:
     - field.field.user.user.field_dcz_bio
     - field.field.user.user.field_dcz_name
+    - field.field.user.user.field_dcz_pos_lat
+    - field.field.user.user.field_dcz_pos_long
     - field.field.user.user.field_dcz_surname
   module:
     - text
@@ -14,32 +16,54 @@ bundle: user
 mode: default
 content:
   account:
-    weight: -10
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
   contact:
-    weight: 5
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
   field_dcz_bio:
-    weight: 9
+    weight: 6
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
   field_dcz_name:
-    weight: 7
+    weight: 4
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-  field_dcz_surname:
+  field_dcz_pos_lat:
+    type: string_textfield
     weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_dcz_pos_long:
+    type: string_textfield
+    weight: 7
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_dcz_surname:
+    weight: 5
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
   language:
-    weight: 0
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
   timezone:
-    weight: 6
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
 hidden: {  }

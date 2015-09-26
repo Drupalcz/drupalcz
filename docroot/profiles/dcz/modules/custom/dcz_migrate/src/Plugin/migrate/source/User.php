@@ -61,6 +61,8 @@ class User extends DrupalSqlBase {
     $fields['dcz_name'] = $this->t('Name');
     $fields['dcz_surname'] = $this->t('Surname');
     $fields['dcz_bio'] = $this->t('Bio');
+    $fields['dcz_lat'] = $this->t('Latitude');
+    $fields['dcz_long'] = $this->t('Longitude');
 
     // Add roles field.
     $fields['roles'] = $this->t('Roles');
@@ -82,7 +84,7 @@ class User extends DrupalSqlBase {
       ->fetchCol();
     $row->setSourceProperty('roles', $roles);
 
-    // name & surname
+    // Name & surname.
     $result = $this->getDatabase()->query('
       SELECT
         prf.value
@@ -98,7 +100,23 @@ class User extends DrupalSqlBase {
       $row->setSourceProperty('dcz_surname', $names[1]);
     }
 
-    // bio
+    // Latitude & longitude.
+    $result = $this->getDatabase()->query('
+      SELECT
+        loc.latitude,
+        loc.longitude
+      FROM
+        {location} loc
+      LEFT JOIN {location_instance} lic ON lic.lid=loc.lid
+      WHERE
+        lic.uid = :uid
+    ', array(':uid' => $uid));
+    foreach ($result as $record) {
+      $row->setSourceProperty('dcz_lat', $record->latitude);
+      $row->setSourceProperty('dcz_long', $record->longitude);
+    }
+
+    // Bio.
     $info = unserialize($row->getSourceProperty('data'));
     $row->setSourceProperty('dcz_bio_value', $info['info']);
     $row->setSourceProperty('dcz_bio_format', 1);

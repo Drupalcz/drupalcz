@@ -32,6 +32,8 @@ process:
     source: uid
   field_dcz_name: dcz_name
   field_dcz_surname: dcz_surname
+  field_dcz_pos_lat: dcz_lat
+  field_dcz_pos_long: dcz_long
   'field_dcz_bio/value': dcz_bio_value
   'field_dcz_bio/format':
     plugin: static_map
