@@ -159,10 +159,10 @@ DELETE FROM location WHERE lid NOT IN (
   SELECT lid FROM location_instance AS lid
 );
 
-# ToDo: Make these tables slimmer:
-# node_authorship
-# url_alias
-# poll_votes
+# Poll votes.
+DELETE FROM poll_votes WHERE nid NOT IN (
+  SELECT nid FROM node AS nid
+);
 
 # No impact on migration, just making the DB smaller.
 TRUNCATE TABLE ads;
@@ -180,3 +180,4 @@ TRUNCATE TABLE search_index;
 TRUNCATE TABLE search_node_links;
 TRUNCATE TABLE search_total;
 TRUNCATE TABLE spam_tracker;
+TRUNCATE TABLE url_alias;
