@@ -160,10 +160,6 @@ DELETE FROM location WHERE lid NOT IN (
 );
 
 # ToDo: Make these tables slimmer:
-# aggregator_category_item
-# aggregator_feed
-# aggregator_item
-# aggregator_category_item
 # node_authorship
 # url_alias
 # poll_votes
@@ -173,6 +169,10 @@ TRUNCATE TABLE ads;
 TRUNCATE TABLE ad_clicks;
 TRUNCATE TABLE ad_owners;
 TRUNCATE TABLE ad_statistics;
+TRUNCATE TABLE aggregator_category_item;
+TRUNCATE TABLE aggregator_feed;
+TRUNCATE TABLE aggregator_item;
+TRUNCATE TABLE aggregator_category_item;
 TRUNCATE TABLE locales_source;
 TRUNCATE TABLE locales_target;
 TRUNCATE TABLE search_dataset;
