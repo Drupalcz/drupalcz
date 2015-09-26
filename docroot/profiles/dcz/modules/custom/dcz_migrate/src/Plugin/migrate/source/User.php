@@ -135,14 +135,4 @@ class User extends DrupalSqlBase {
       ),
     );
   }
-
-//  /**
-//   * {@inheritdoc}
-//   */
-//  public function entityTypeId() {
-//    return 'user';
-//  }
-
 }
-
-?>
