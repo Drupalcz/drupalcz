@@ -53,3 +53,7 @@ TRUNCATE TABLE ad_owners;
 TRUNCATE TABLE ad_statistics;
 TRUNCATE TABLE locales_source;
 TRUNCATE TABLE locales_target;
+TRUNCATE TABLE search_dataset;
+TRUNCATE TABLE search_index;
+TRUNCATE TABLE search_node_links;
+TRUNCATE TABLE search_total;
