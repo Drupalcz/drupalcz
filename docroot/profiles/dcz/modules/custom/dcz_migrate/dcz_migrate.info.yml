@@ -9,3 +9,4 @@ dependencies:
   - migrate_drupal
   - migrate_tools
   - dcz_user
+  - dcz_tags_taxonomy
