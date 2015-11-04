@@ -4,8 +4,7 @@ dependencies:
   config:
     - field.storage.node.field_migrate_example_beer_style
     - node.type.migrate_example_beer
-  module:
-    - entity_reference
+    - taxonomy.vocabulary.migrate_example_beer_styles
 id: node.migrate_example_beer.field_migrate_example_beer_style
 field_name: field_migrate_example_beer_style
 entity_type: node

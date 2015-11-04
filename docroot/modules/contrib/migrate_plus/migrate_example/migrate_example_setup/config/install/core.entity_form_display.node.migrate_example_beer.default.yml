@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.migrate_example_beer.body
-    - field.field.node.migrate_example_beer.comment
+    - field.field.node.migrate_example_beer.field_comments
     - field.field.node.migrate_example_beer.field_migrate_example_beer_style
     - field.field.node.migrate_example_beer.field_migrate_example_country
     - field.field.node.migrate_example_beer.field_migrate_example_image
@@ -26,38 +26,38 @@ content:
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
-  comment:
-    type: comment_default
-    weight: 10
-    settings: {  }
-    third_party_settings: {  }
   created:
     type: datetime_timestamp
     weight: 2
     settings: {  }
     third_party_settings: {  }
+  field_comments:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    type: comment_default
   field_migrate_example_beer_style:
-    type: entity_reference_autocomplete
     weight: 7
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    type: entity_reference_autocomplete
   field_migrate_example_country:
-    type: string_textfield
     weight: 8
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    type: string_textfield
   field_migrate_example_image:
-    type: image_image
     weight: 9
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
+    type: image_image
   path:
     type: path
     weight: 5
@@ -65,15 +65,15 @@ content:
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 3
     settings:
       display_label: true
+    weight: 3
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 4
     settings:
       display_label: true
+    weight: 4
     third_party_settings: {  }
   title:
     type: string_textfield

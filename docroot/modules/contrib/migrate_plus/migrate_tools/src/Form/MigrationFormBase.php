@@ -11,6 +11,7 @@ use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Entity\Query\QueryFactory;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\migrate_plus\Entity\MigrationGroup;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\migrate\Entity\MigrationInterface;
 
@@ -70,6 +71,12 @@ class MigrationFormBase extends EntityForm {
     /** @var MigrationInterface $migration */
     $migration = $this->entity;
 
+    $form['warning'] = [
+      '#markup' => $this->t('Creating migrations is not yet supported. See <a href=":url">:url</a>', [
+        ':url' => 'https://www.drupal.org/node/2573241',
+      ])
+    ];
+
     // Build the form.
     $form['label'] = array(
       '#type' => 'textfield',
@@ -90,7 +97,7 @@ class MigrationFormBase extends EntityForm {
       '#disabled' => !$migration->isNew(),
     );
 
-    $groups = entity_load_multiple('migration_group');
+    $groups = MigrationGroup::loadMultiple();
     $group_options = [];
     foreach ($groups as $group) {
       $group_options[$group->id()] = $group->label();

@@ -8,6 +8,8 @@
 namespace Drupal\migrate_tools;
 
 use Drupal\migrate\Event\MigratePreRowSaveEvent;
+use Drupal\migrate\Event\MigrateRollbackEvent;
+use Drupal\migrate\Event\MigrateRowDeleteEvent;
 use Drupal\migrate\MigrateExecutable as MigrateExecutableBase;
 use Drupal\migrate\MigrateMessageInterface;
 use Drupal\migrate\Entity\MigrationInterface;
@@ -94,12 +96,15 @@ class MigrateExecutable extends MigrateExecutableBase {
     if (isset($options['idlist'])) {
       $this->idlist = explode(',', $options['idlist']);
     }
-    $this->listeners[MigrateEvents::MAP_SAVE] = array($this, 'onMapSave');
-    $this->listeners[MigrateEvents::MAP_DELETE] = array($this, 'onMapDelete');
-    $this->listeners[MigrateEvents::POST_IMPORT] = array($this, 'onPostImport');
-    $this->listeners[MigrateEvents::PRE_ROW_SAVE] = array($this, 'onPreRowSave');
-    $this->listeners[MigrateEvents::POST_ROW_SAVE] = array($this, 'onPostRowSave');
-    $this->listeners[MigratePlusEvents::PREPARE_ROW] = array($this, 'onPrepareRow');
+
+    $this->listeners[MigrateEvents::MAP_SAVE] = [$this, 'onMapSave'];
+    $this->listeners[MigrateEvents::MAP_DELETE] = [$this, 'onMapDelete'];
+    $this->listeners[MigrateEvents::POST_IMPORT] = [$this, 'onPostImport'];
+    $this->listeners[MigrateEvents::POST_ROLLBACK] = [$this, 'onPostRollback'];
+    $this->listeners[MigrateEvents::PRE_ROW_SAVE] = [$this, 'onPreRowSave'];
+    $this->listeners[MigrateEvents::POST_ROW_SAVE] = [$this, 'onPostRowSave'];
+    $this->listeners[MigrateEvents::POST_ROW_DELETE] = [$this, 'onPostRowDelete'];
+    $this->listeners[MigratePlusEvents::PREPARE_ROW] = [$this, 'onPrepareRow'];
     foreach ($this->listeners as $event => $listener) {
       \Drupal::service('event_dispatcher')->addListener($event, $listener);
     }
@@ -212,6 +217,13 @@ class MigrateExecutable extends MigrateExecutableBase {
     $migrate_last_imported_store = \Drupal::keyValue('migrate_last_imported');
     $migrate_last_imported_store->set($event->getMigration()->id(), round(microtime(TRUE) * 1000));
     $this->progressMessage();
+    $this->removeListeners();
+  }
+
+  /**
+   * Clean up all our event listeners.
+   */
+  protected function removeListeners() {
     foreach ($this->listeners as $event => $listener) {
       \Drupal::service('event_dispatcher')->removeListener($event, $listener);
     }
@@ -226,22 +238,55 @@ class MigrateExecutable extends MigrateExecutableBase {
   protected function progressMessage($done = TRUE) {
     $processed = $this->getProcessedCount();
     if ($done) {
-      $singular_message = "Processed 1 item (!created created, !updated updated, !failures failed, !ignored ignored) - done with '!name'";
-      $plural_message = "Processed !numitems items (!created created, !updated updated, !failures failed, !ignored ignored) - done with '!name'";
+      $singular_message = "Processed 1 item (@created created, @updated updated, @failures failed, @ignored ignored) - done with '@name'";
+      $plural_message = "Processed @numitems items (@created created, @updated updated, @failures failed, @ignored ignored) - done with '@name'";
     }
     else {
-      $singular_message = "Processed 1 item (!created created, !updated updated, !failures failed, !ignored ignored) - continuing with '!name'";
-      $plural_message = "Processed !numitems items (!created created, !updated updated, !failures failed, !ignored ignored) - continuing with '!name'";
+      $singular_message = "Processed 1 item (@created created, @updated updated, @failures failed, @ignored ignored) - continuing with '@name'";
+      $plural_message = "Processed @numitems items (@created created, @updated updated, @failures failed, @ignored ignored) - continuing with '@name'";
     }
     $this->message->display(\Drupal::translation()->formatPlural($processed,
       $singular_message, $plural_message,
-        array('!numitems' => $processed,
-              '!created' => $this->getCreatedCount(),
-              '!updated' => $this->getUpdatedCount(),
-              '!failures' => $this->getFailedCount(),
-              '!ignored' => $this->getIgnoredCount(),
-              '!name' => $this->migration->id())));
+        array('@numitems' => $processed,
+              '@created' => $this->getCreatedCount(),
+              '@updated' => $this->getUpdatedCount(),
+              '@failures' => $this->getFailedCount(),
+              '@ignored' => $this->getIgnoredCount(),
+              '@name' => $this->migration->id())));
   }
+
+  /**
+   * React to rollback completion.
+   *
+   * @param \Drupal\migrate\Event\MigrateRollbackEvent $event
+   *   The map event.
+   */
+  public function onPostRollback(MigrateRollbackEvent $event) {
+    $this->rollbackMessage();
+    $this->removeListeners();
+  }
+
+  /**
+   * Emit information on what we've done since the last feedback (or the
+   * beginning of this migration).
+   *
+   * @param bool $done
+   */
+  protected function rollbackMessage($done = TRUE) {
+   $rolled_back = $this->getRollbackCount();
+   if ($done) {
+     $singular_message = "Rolled back 1 item - done with '@name'";
+     $plural_message = "Rolled back @numitems items - done with '@name'";
+   }
+   else {
+     $singular_message = "Rolled back 1 item - continuing with '@name'";
+     $plural_message = "Rolled back @numitems items - continuing with '@name'";
+   }
+   $this->message->display(\Drupal::translation()->formatPlural($rolled_back,
+     $singular_message, $plural_message,
+       array('@numitems' => $rolled_back,
+             '@name' => $this->migration->id())));
+ }
 
   /**
    * React to an item about to be imported.
@@ -273,6 +318,19 @@ class MigrateExecutable extends MigrateExecutableBase {
     $this->counter++;
     if ($this->itemLimit && $this->counter >= $this->itemLimit) {
       $event->getMigration()->interruptMigration(MigrationInterface::RESULT_COMPLETED);
+    }
+  }
+
+  /**
+   * React to item rollback.
+   *
+   * @param \Drupal\migrate\Event\MigrateRowDeleteEvent $event
+   *   The post-save event.
+   */
+  public function onPostRowDelete(MigrateRowDeleteEvent $event) {
+    if ($this->feedback && ($this->deleteCounter) && $this->deleteCounter % $this->feedback == 0) {
+      $this->rollbackMessage(FALSE);
+      $this->resetCounters();
     }
   }
 

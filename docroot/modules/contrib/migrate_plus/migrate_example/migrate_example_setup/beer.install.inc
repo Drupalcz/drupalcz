@@ -11,11 +11,6 @@ function migrate_example_beer_schema() {
   $schema['migrate_example_beer_topic'] = migrate_example_beer_schema_topic();
   $schema['migrate_example_beer_topic_node'] = migrate_example_beer_schema_topic_node();
 
-  // These two tables are primarily for testing the table_copy plugin.
-  // They do provide some guidance for uri redirection per uri_map_redirect.php
-  $schema['migrate_example_beer_legacy_urls'] = migrate_example_beer_schema_legacy_urls();
-  $schema['migrate_example_beer_copy_urls'] = migrate_example_beer_schema_legacy_urls();
-
   return $schema;
 }
 
@@ -26,7 +21,6 @@ function migrate_example_beer_install() {
   migrate_example_beer_data_comment();
   migrate_example_beer_data_topic();
   migrate_example_beer_data_topic_node();
-  migrate_example_beer_data_urls();
 }
 
 function migrate_example_beer_schema_node() {
@@ -219,13 +213,13 @@ function migrate_example_beer_schema_account() {
         'not null' => TRUE,
         'description' => 'Blocked_Allowed',
       ),
-      'posted' => array(
+      'registered' => array(
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
         'description' => 'Registration date',
       ),
-      'name' => array(
+      'username' => array(
         'type' => 'varchar',
         'length' => 255,
         'not null' => FALSE,
@@ -243,7 +237,7 @@ function migrate_example_beer_schema_account() {
         'not null' => FALSE,
         'description' => 'Account password (raw)',
       ),
-      'mail' => array(
+      'email' => array(
         'type' => 'varchar',
         'length' => 255,
         'not null' => FALSE,
@@ -252,7 +246,7 @@ function migrate_example_beer_schema_account() {
       'sex' => array(
         'type' => 'int',
         'not null' => FALSE,
-        'description' => 'Gender',
+        'description' => 'Gender (0 for male, 1 for female)',
       ),
       'beers' => array(
         'type' => 'varchar',
@@ -262,43 +256,6 @@ function migrate_example_beer_schema_account() {
       ),
     ),
     'primary key' => array('aid'),
-  );
-}
-
-function migrate_example_beer_schema_legacy_urls() {
-  return array(
-    'description' => 'Stores legacy paths and destination ids for redirection.',
-    'fields' => array(
-      'id'  => array(
-        'type' => 'int',
-        'not null' => TRUE,
-        'description' => 'Primary Key: ID.',
-      ),
-      'migration_name' => array(
-        'type' => 'varchar',
-        'length' => 50,
-        'not null' => TRUE,
-        'default' => '',
-      ),
-      'source_id' => array(
-        'type' => 'int',
-        'not null' => FALSE,
-      ),
-      'source_uri' => array(
-        'type' => 'varchar',
-        'length' => 500,
-        'not null' => FALSE,
-      ),
-      'modificationdatetime' => array(
-        'type' => 'int',
-        'unsigned' => TRUE,
-        'not null' => TRUE,
-      ),
-    ),
-    'primary key' => array('ID'),
-    'indexes' => array(
-      'source_uri' => array(array('source_uri', 255)),
-    ),
   );
 }
 
@@ -319,10 +276,10 @@ function migrate_example_beer_data_node() {
   $query->execute();
 }
 
-// Note that alice has duplicate username. Exercises dedupe() method.
+// Note that alice has duplicate username. Exercises dedupe_entity plugin.
 // @TODO duplicate email also.
 function migrate_example_beer_data_account() {
-  $fields = array('status', 'posted', 'name', 'nickname', 'password', 'mail', 'sex', 'beers');
+  $fields = array('status', 'registered', 'username', 'nickname', 'password', 'email', 'sex', 'beers');
   $query = db_insert('migrate_example_beer_account')
     ->fields($fields);
   $data = array(
@@ -346,7 +303,7 @@ function migrate_example_beer_data_comment() {
     array(99999998, NULL, 'im second', 'aromatic', 'alice', 'alice@example.com', 0),
     array(99999999, NULL, 'im parent', 'malty', 'alice', 'alice@example.com', 0),
     array(99999999, 1, 'im child', 'cold body', 'bob', NULL, 1),
-    array(99999999, 2, 'im grandchild', 'bitter body', 'charlie@example.com', NULL, 1),
+    array(99999999, 4, 'im grandchild', 'bitter body', 'charlie@example.com', NULL, 1),
   );
   foreach ($data as $row) {
     $query->values(array_combine($fields, $row));
@@ -377,21 +334,6 @@ function migrate_example_beer_data_topic_node() {
     array(99999999, 'pilsner'),
     array(99999999, 'red ale'),
     array(99999998, 'red ale'),
-  );
-  foreach ($data as $row) {
-    $query->values(array_combine($fields, $row));
-  }
-  $query->execute();
-}
-
-function migrate_example_beer_data_urls() {
-  $fields = array('id', 'migration_name', 'source_id', 'source_uri', 'modificationdatetime');
-  $query = db_insert('migrate_example_beer_legacy_urls')
-    ->fields($fields);
-  $data = array(
-    array(1, 'BeerNode', 99999997, 'the_boddington/main', strtotime('2010-04-12 08:32:06')),
-    array(2, 'BeerNode', 99999998, 'Miller Lite taste', strtotime('2010-04-12 08:32:05')),
-    array(3, 'BeerNode', 99999999, 'green wonder', strtotime('2010-04-12 08:32:03')),
   );
   foreach ($data as $row) {
     $query->values(array_combine($fields, $row));

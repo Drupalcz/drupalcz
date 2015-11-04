@@ -61,7 +61,7 @@ function migrate_plus_migration_load($migrations) {
 }
 
 /**
- * Implement hook_migrate_prepare_row().
+ * Implements hook_migrate_prepare_row().
  */
 function migrate_plus_migrate_prepare_row(Row $row, MigrateSourceInterface $source, MigrationInterface $migration) {
   // We will not encourage unnecessary coupling to Migration entities by passing

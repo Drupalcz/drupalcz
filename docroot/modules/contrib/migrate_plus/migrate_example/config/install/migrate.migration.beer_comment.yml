@@ -1,10 +1,9 @@
+# Migration configuration for beer comments. No new concepts here.
 id: beer_comment
 label: Comments on beers
 migration_group: beer
 source:
   plugin: beer_comment
-  constants:
-    entity_type: node
 destination:
   plugin: entity:comment
 process:
@@ -16,13 +15,15 @@ process:
     plugin: migration
     migration: beer_node
     source: bid
-  entity_type: 'constants/entity_type'
+  entity_type:
+    plugin: default_value
+    default_value: node
   field_name:
     plugin: default_value
-    default_value: comment
+    default_value: field_comments
   comment_type:
     plugin: default_value
-    default_value: comment
+    default_value: node_comments
   subject: subject
   uid:
     plugin: migration

@@ -110,8 +110,8 @@ class MigrateManifest {
     // Warn the user if any migrations were not found.
     $nonexistent_migrations = array_diff($migration_ids, array_keys($migrations));
     if (count($nonexistent_migrations) > 0) {
-      drush_log(dt('The following migrations were not found: !migrations', array(
-        '!migrations' => implode(', ', $nonexistent_migrations),
+      drush_log(dt('The following migrations were not found: @migrations', array(
+        '@migrations' => implode(', ', $nonexistent_migrations),
       )), 'warning');
     }
 

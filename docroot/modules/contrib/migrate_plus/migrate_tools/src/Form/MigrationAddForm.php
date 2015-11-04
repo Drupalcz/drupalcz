@@ -35,7 +35,8 @@ class MigrationAddForm extends MigrationFormBase {
    */
   protected function actions(array $form, FormStateInterface $form_state) {
     $actions = parent::actions($form, $form_state);
-    $actions['submit']['#value'] = $this->t('Create Migration');
+//    $actions['submit']['#value'] = $this->t('Create Migration');
+    unset($actions['submit']);
     return $actions;
   }
 

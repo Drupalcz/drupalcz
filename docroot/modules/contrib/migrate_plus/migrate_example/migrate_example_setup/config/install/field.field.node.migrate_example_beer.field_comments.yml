@@ -2,18 +2,18 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.comment
+    - field.storage.node.field_comments
     - node.type.migrate_example_beer
   module:
     - comment
-id: node.migrate_example_beer.comment
-field_name: comment
+id: node.migrate_example_beer.field_comments
+field_name: field_comments
 entity_type: node
 bundle: migrate_example_beer
 label: Comments
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value:
   -
     status: 2

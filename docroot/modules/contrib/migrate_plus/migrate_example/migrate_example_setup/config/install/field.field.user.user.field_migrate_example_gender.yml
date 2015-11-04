@@ -4,7 +4,7 @@ dependencies:
   config:
     - field.storage.user.field_migrate_example_gender
   module:
-    - options
+    - user
 id: user.user.field_migrate_example_gender
 field_name: field_migrate_example_gender
 entity_type: user
@@ -16,4 +16,4 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: list_integer
+field_type: string

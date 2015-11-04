@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.migrate_example_beer.body
-    - field.field.node.migrate_example_beer.comment
+    - field.field.node.migrate_example_beer.field_comments
     - field.field.node.migrate_example_beer.field_migrate_example_beer_style
     - field.field.node.migrate_example_beer.field_migrate_example_country
     - field.field.node.migrate_example_beer.field_migrate_example_image
@@ -19,40 +19,40 @@ bundle: migrate_example_beer
 mode: default
 content:
   body:
+    label: hidden
     type: text_default
     weight: 2
     settings: {  }
     third_party_settings: {  }
-    label: hidden
-  comment:
-    type: comment_default
+  field_comments:
     weight: 5
+    label: above
     settings:
       pager_id: 0
     third_party_settings: {  }
-    label: hidden
+    type: comment_default
   field_migrate_example_beer_style:
-    type: entity_reference_label
     weight: 3
+    label: above
     settings:
       link: true
     third_party_settings: {  }
-    label: above
+    type: entity_reference_label
   field_migrate_example_country:
-    type: string
     weight: 4
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    label: above
+    type: string
   field_migrate_example_image:
-    type: image
     weight: 1
+    label: above
     settings:
       image_style: ''
       image_link: ''
     third_party_settings: {  }
-    label: hidden
+    type: image
   links:
     weight: 0
     settings: {  }
