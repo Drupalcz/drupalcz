@@ -10,7 +10,6 @@ namespace Drupal\system\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block\MessagesBlockPluginInterface;
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Provides a block to display the messages.
@@ -38,20 +37,6 @@ class SystemMessagesBlock extends BlockBase implements MessagesBlockPluginInterf
    */
   public function build() {
     return ['#type' => 'status_messages'];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $form = parent::buildConfigurationForm($form, $form_state);
-
-    // @see ::getCacheMaxAge()
-    $form['cache']['#description'] = $this->t('This block is cacheable forever, it is not configurable.');
-    $form['cache']['max_age']['#value'] = Cache::PERMANENT;
-    $form['cache']['max_age']['#disabled'] = TRUE;
-
-    return $form;
   }
 
   /**

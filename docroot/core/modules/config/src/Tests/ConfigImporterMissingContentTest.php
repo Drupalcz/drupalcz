@@ -7,9 +7,7 @@
 
 namespace Drupal\config\Tests;
 
-use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Config\ConfigImporter;
-use Drupal\Core\Config\ConfigImporterException;
 use Drupal\Core\Config\StorageComparer;
 use Drupal\simpletest\KernelTestBase;
 
@@ -45,11 +43,11 @@ class ConfigImporterMissingContentTest extends KernelTestBase {
     // so it has to be cleared out manually.
     unset($GLOBALS['hook_config_test']);
 
-    $this->copyConfig($this->container->get('config.storage'), $this->container->get('config.storage.staging'));
+    $this->copyConfig($this->container->get('config.storage'), $this->container->get('config.storage.sync'));
 
     // Set up the ConfigImporter object for testing.
     $storage_comparer = new StorageComparer(
-      $this->container->get('config.storage.staging'),
+      $this->container->get('config.storage.sync'),
       $this->container->get('config.storage'),
       $this->container->get('config.manager')
     );
@@ -75,10 +73,10 @@ class ConfigImporterMissingContentTest extends KernelTestBase {
   function testMissingContent() {
     \Drupal::state()->set('config_import_test.config_import_missing_content', TRUE);
 
-    // Update a configuration entity in the staging directory to have a
-    // dependency on two content entities that do not exist.
+    // Update a configuration entity in the sync directory to have a dependency
+    // on two content entities that do not exist.
     $storage = $this->container->get('config.storage');
-    $staging = $this->container->get('config.storage.staging');
+    $sync = $this->container->get('config.storage.sync');
     $entity_one = entity_create('entity_test', array('name' => 'one'));
     $entity_two = entity_create('entity_test', array('name' => 'two'));
     $entity_three = entity_create('entity_test', array('name' => 'three'));
@@ -93,7 +91,7 @@ class ConfigImporterMissingContentTest extends KernelTestBase {
     // Entity three will be resolved by
     // \Drupal\Core\Config\Importer\FinalMissingContentSubscriber.
     $original_dynamic_data['dependencies']['content'][] = $entity_three->getConfigDependencyName();
-    $staging->write($dynamic_name, $original_dynamic_data);
+    $sync->write($dynamic_name, $original_dynamic_data);
 
     // Import.
     $this->configImporter->reset()->import();

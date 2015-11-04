@@ -8,7 +8,6 @@
 namespace Drupal\filter\Tests;
 
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Session\AnonymousUserSession;
 use Drupal\Core\TypedData\OptionsProviderInterface;
 use Drupal\Core\TypedData\DataDefinition;
@@ -108,7 +107,15 @@ class FilterAPITest extends EntityUnitTestBase {
     $filtered_html_format = entity_load('filter_format', 'filtered_html');
     $this->assertIdentical(
       $filtered_html_format->getHtmlRestrictions(),
-      array('allowed' => array('p' => TRUE, 'br' => TRUE, 'strong' => TRUE, 'a' => TRUE, '*' => array('style' => FALSE, 'on*' => FALSE))),
+      array(
+        'allowed' => array(
+          'p' => FALSE,
+          'br' => FALSE,
+          'strong' => FALSE,
+          'a' => array('href' => TRUE, 'hreflang' => TRUE),
+          '*' => array('style' => FALSE, 'on*' => FALSE, 'lang' => TRUE, 'dir' => array('ltr' => TRUE, 'rtl' => TRUE)),
+        ),
+      ),
       'FilterFormatInterface::getHtmlRestrictions() works as expected for the filtered_html format.'
     );
     $this->assertIdentical(
@@ -164,7 +171,7 @@ class FilterAPITest extends EntityUnitTestBase {
         'filter_html' => array(
           'status' => 1,
           'settings' => array(
-            'allowed_html' => '<p> <br> <a> <strong>',
+            'allowed_html' => '<p> <br> <a href> <strong>',
           ),
         ),
         'filter_test_restrict_tags_and_attributes' => array(
@@ -185,8 +192,50 @@ class FilterAPITest extends EntityUnitTestBase {
     $very_restricted_html_format->save();
     $this->assertIdentical(
       $very_restricted_html_format->getHtmlRestrictions(),
-      array('allowed' => array('p' => TRUE, 'br' => FALSE, 'a' => array('href' => TRUE), '*' => array('style' => FALSE, 'on*' => FALSE))),
+      array(
+        'allowed' => array(
+          'p' => FALSE,
+          'br' => FALSE,
+          'a' => array('href' => TRUE),
+          '*' => array('style' => FALSE, 'on*' => FALSE, 'lang' => TRUE, 'dir' => array('ltr' => TRUE, 'rtl' => TRUE)),
+        ),
+      ),
       'FilterFormatInterface::getHtmlRestrictions() works as expected for the very_restricted_html format.'
+    );
+    $this->assertIdentical(
+      $very_restricted_html_format->getFilterTypes(),
+      array(FilterInterface::TYPE_HTML_RESTRICTOR),
+      'FilterFormatInterface::getFilterTypes() works as expected for the very_restricted_html format.'
+    );
+
+    // Test on nonsensical_restricted_html, where the allowed attribute values
+    // contain asterisks, which do not have any meaning, but which we also
+    // cannot prevent because configuration can be modified outside of forms.
+    $nonsensical_restricted_html = \Drupal\filter\Entity\FilterFormat::create(array(
+      'format' => 'nonsensical_restricted_html',
+      'name' => 'Nonsensical Restricted HTML',
+      'filters' => array(
+        'filter_html' => array(
+          'status' => 1,
+          'settings' => array(
+            'allowed_html' => '<a> <b class> <c class="*"> <d class="foo bar-* *">',
+          ),
+        ),
+      )
+    ));
+    $nonsensical_restricted_html->save();
+    $this->assertIdentical(
+      $nonsensical_restricted_html->getHtmlRestrictions(),
+      array(
+        'allowed' => array(
+          'a' => FALSE,
+          'b' => array('class' => TRUE),
+          'c' => array('class' => TRUE),
+          'd' => array('class' => array('foo' => TRUE, 'bar-*' => TRUE)),
+          '*' => array('style' => FALSE, 'on*' => FALSE, 'lang' => TRUE, 'dir' => array('ltr' => TRUE, 'rtl' => TRUE)),
+        ),
+      ),
+      'FilterFormatInterface::getHtmlRestrictions() works as expected for the nonsensical_restricted_html format.'
     );
     $this->assertIdentical(
       $very_restricted_html_format->getFilterTypes(),

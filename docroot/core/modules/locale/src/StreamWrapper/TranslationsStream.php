@@ -8,7 +8,6 @@
 namespace Drupal\locale\StreamWrapper;
 
 use Drupal\Core\Annotation\StreamWrapper;
-use Drupal\Core\Annotation\Translation;
 use Drupal\Core\StreamWrapper\LocalStream;
 use Drupal\Core\StreamWrapper\StreamWrapperInterface;
 
@@ -41,7 +40,7 @@ class TranslationsStream extends LocalStream {
   }
 
   /**
-   * Implements Drupal\Core\StreamWrapper\LocalStream::getDirectoryPath()
+   * {@inheritdoc}
    */
   function getDirectoryPath() {
     return \Drupal::config('locale.settings')->get('translation.path');

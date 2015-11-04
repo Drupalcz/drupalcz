@@ -7,13 +7,11 @@
 
 namespace Drupal\views\Plugin\views\argument;
 
-use Drupal\Core\Database\Database;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Abstract argument handler for dates.
@@ -130,7 +128,7 @@ class Date extends Formula implements ContainerFactoryPluginInterface {
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\argument\Formula::getFormula().
+   * {@inheritdoc}
    */
   public function getFormula() {
     $this->formula = $this->getDateFormat($this->argFormat);

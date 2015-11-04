@@ -8,7 +8,6 @@
 namespace Drupal\Tests\Core\Database;
 
 use Drupal\Tests\Core\Database\Stub\StubConnection;
-use Drupal\Tests\Core\Database\Stub\StubPDO;
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -254,11 +253,11 @@ class ConnectionTest extends UnitTestCase {
         array(''),
       ),
       array(
-        '/* Exploit  *  / DROP TABLE node; -- */ ',
+        '/* Exploit  *  / DROP TABLE node. -- */ ',
         array('Exploit * / DROP TABLE node; --'),
       ),
       array(
-        '/* Exploit  *  / DROP TABLE node; --; another comment */ ',
+        '/* Exploit  *  / DROP TABLE node. --. another comment */ ',
         array('Exploit * / DROP TABLE node; --', 'another comment'),
       ),
     );
@@ -286,8 +285,8 @@ class ConnectionTest extends UnitTestCase {
   public function providerFilterComments() {
     return array(
       array('', ''),
-      array('Exploit  *  / DROP TABLE node; --', 'Exploit * / DROP TABLE node; --'),
-      array('Exploit  * / DROP TABLE node; --', 'Exploit */ DROP TABLE node; --'),
+      array('Exploit  *  / DROP TABLE node. --', 'Exploit * / DROP TABLE node; --'),
+      array('Exploit  * / DROP TABLE node. --', 'Exploit */ DROP TABLE node; --'),
     );
   }
 

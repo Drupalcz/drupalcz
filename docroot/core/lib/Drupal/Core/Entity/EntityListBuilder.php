@@ -7,7 +7,6 @@
 
 namespace Drupal\Core\Entity;
 
-use Drupal\Core\Extension\ModuleHandlerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -228,6 +227,7 @@ class EntityListBuilder extends EntityHandlerBase implements EntityListBuilderIn
       '#empty' => $this->t('There is no @label yet.', array('@label' => $this->entityType->getLabel())),
       '#cache' => [
         'contexts' => $this->entityType->getListCacheContexts(),
+        'tags' => $this->entityType->getListCacheTags(),
       ],
     );
     foreach ($this->load() as $entity) {

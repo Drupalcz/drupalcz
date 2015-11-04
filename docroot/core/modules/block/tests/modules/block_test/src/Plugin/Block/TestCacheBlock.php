@@ -39,4 +39,11 @@ class TestCacheBlock extends BlockBase {
     return \Drupal::state()->get('block_test.cache_contexts', []);
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheMaxAge() {
+    return \Drupal::state()->get('block_test.cache_max_age', parent::getCacheMaxAge());
+  }
+
 }

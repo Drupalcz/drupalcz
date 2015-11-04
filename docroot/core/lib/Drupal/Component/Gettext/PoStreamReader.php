@@ -7,9 +7,6 @@
 
 namespace Drupal\Component\Gettext;
 
-use Drupal\Component\Gettext\PoReaderInterface;
-use Drupal\Component\Gettext\PoStreamInterface;
-use Drupal\Component\Gettext\PoHeader;
 use Drupal\Component\Utility\SafeMarkup;
 
 /**
@@ -106,21 +103,21 @@ class PoStreamReader implements PoStreamInterface, PoReaderInterface {
   private $_errors;
 
   /**
-   * Implements Drupal\Component\Gettext\PoMetadataInterface::getLangcode().
+   * {@inheritdoc}
    */
   public function getLangcode() {
     return $this->_langcode;
   }
 
   /**
-   * Implements Drupal\Component\Gettext\PoMetadataInterface::setLangcode().
+   * {@inheritdoc}
    */
   public function setLangcode($langcode) {
     $this->_langcode = $langcode;
   }
 
   /**
-   * Implements Drupal\Component\Gettext\PoMetadataInterface::getHeader().
+   * {@inheritdoc}
    */
   public function getHeader() {
     return $this->_header;
@@ -135,14 +132,14 @@ class PoStreamReader implements PoStreamInterface, PoReaderInterface {
   }
 
   /**
-   * Implements Drupal\Component\Gettext\PoStreamInterface::getURI().
+   * {@inheritdoc}
    */
   public function getURI() {
     return $this->_uri;
   }
 
   /**
-   * Implements Drupal\Component\Gettext\PoStreamInterface::setURI().
+   * {@inheritdoc}
    */
   public function setURI($uri) {
     $this->_uri = $uri;
@@ -183,7 +180,7 @@ class PoStreamReader implements PoStreamInterface, PoReaderInterface {
   }
 
   /**
-   * Implements Drupal\Component\Gettext\PoReaderInterface::readItem().
+   * {@inheritdoc}
    */
   public function readItem() {
     // Clear out the last item.

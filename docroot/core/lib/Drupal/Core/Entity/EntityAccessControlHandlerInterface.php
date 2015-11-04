@@ -10,7 +10,6 @@ namespace Drupal\Core\Entity;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
-use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Session\AccountInterface;
 
 /**
@@ -29,9 +28,6 @@ interface EntityAccessControlHandlerInterface {
    * @param string $operation
    *   The operation access should be checked for.
    *   Usually one of "view", "update" or "delete".
-   * @param string $langcode
-   *   (optional) The language code for which to check access. Defaults to
-   *   LanguageInterface::LANGCODE_DEFAULT.
    * @param \Drupal\Core\Session\AccountInterface $account
    *   (optional) The user session for which to check access, or NULL to check
    *   access for the current user. Defaults to NULL.
@@ -45,7 +41,7 @@ interface EntityAccessControlHandlerInterface {
    *   returned, i.e. TRUE means access is explicitly allowed, FALSE means
    *   access is either explicitly forbidden or "no opinion".
    */
-  public function access(EntityInterface $entity, $operation, $langcode = LanguageInterface::LANGCODE_DEFAULT, AccountInterface $account = NULL, $return_as_object = FALSE);
+  public function access(EntityInterface $entity, $operation, AccountInterface $account = NULL, $return_as_object = FALSE);
 
   /**
    * Checks access to create an entity.

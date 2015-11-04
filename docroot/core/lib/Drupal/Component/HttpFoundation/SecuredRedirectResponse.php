@@ -33,9 +33,24 @@ abstract class SecuredRedirectResponse extends RedirectResponse {
    */
   public static function createFromRedirectResponse(RedirectResponse $response) {
     $safe_response = new static($response->getTargetUrl(), $response->getStatusCode(), $response->headers->allPreserveCase());
-    $safe_response->setProtocolVersion($response->getProtocolVersion());
-    $safe_response->setCharset($response->getCharset());
+    $safe_response->fromResponse($response);
     return $safe_response;
+  }
+
+  /**
+   * Copies over the values from the given response.
+   *
+   * @param \Symfony\Component\HttpFoundation\RedirectResponse $response
+   *   The redirect reponse object.
+   */
+  protected function fromResponse(RedirectResponse $response) {
+    $this->setProtocolVersion($response->getProtocolVersion());
+    $this->setCharset($response->getCharset());
+    // Cookies are separate from other headers and have to be copied over
+    // directly.
+    foreach ($response->headers->getCookies() as $cookie) {
+      $this->headers->setCookie($cookie);
+    }
   }
 
   /**

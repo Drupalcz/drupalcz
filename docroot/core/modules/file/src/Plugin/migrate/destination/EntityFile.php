@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\migrate\Plugin\migrate\destination\EntityFile.
+ * Contains \Drupal\file\Plugin\migrate\destination\EntityFile.
  */
 
 namespace Drupal\file\Plugin\migrate\destination;
@@ -71,6 +71,20 @@ class EntityFile extends EntityContentBase {
       $container->get('stream_wrapper_manager'),
       $container->get('file_system')
     );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getEntity(Row $row, array $old_destination_id_values) {
+    $destination = $row->getDestinationProperty($this->configuration['destination_path_property']);
+    $entity = $this->storage->loadByProperties(['uri' => $destination]);
+    if ($entity) {
+      return reset($entity);
+    }
+    else {
+      return parent::getEntity($row, $old_destination_id_values);
+    }
   }
 
   /**

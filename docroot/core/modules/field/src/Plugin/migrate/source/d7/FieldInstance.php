@@ -28,7 +28,9 @@ class FieldInstance extends DrupalSqlBase {
       ->condition('fci.deleted', 0)
       ->condition('fc.active', 1)
       ->condition('fc.deleted', 0)
-      ->condition('fc.storage_active', 1);
+      ->condition('fc.storage_active', 1)
+      ->fields('fc', array('type'));
+
     $query->innerJoin('field_config', 'fc', 'fci.field_id = fc.id');
 
     // Optionally filter by entity type and bundle.
@@ -79,6 +81,9 @@ class FieldInstance extends DrupalSqlBase {
     $row->setSourceProperty('instance_settings', $data['settings']);
     $row->setSourceProperty('widget_settings', $data['widget']);
     $row->setSourceProperty('display_settings', $data['display']);
+
+    // This is for parity with the d6_field_instance plugin.
+    $row->setSourceProperty('widget_type', $data['widget']['type']);
 
     return parent::prepareRow($row);
   }

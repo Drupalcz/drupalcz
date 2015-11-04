@@ -10,6 +10,7 @@ namespace Drupal\field\Tests\Migrate\d6;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\link\LinkItemInterface;
 use Drupal\migrate_drupal\Tests\d6\MigrateDrupal6TestBase;
+use Drupal\node\Entity\Node;
 
 /**
  * Migrate field instances.
@@ -19,67 +20,18 @@ use Drupal\migrate_drupal\Tests\d6\MigrateDrupal6TestBase;
 class MigrateFieldInstanceTest extends MigrateDrupal6TestBase {
 
   /**
-   * Modules to enable.
-   *
-   * @var array
-   */
-  public static $modules = array(
-    'telephone',
-    'link',
-    'file',
-    'image',
-    'datetime',
-    'node',
-    'field',
-    'text',
-  );
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-    // Add some id mappings for the dependant migrations.
-    $id_mappings = array(
-      'd6_field' => array(
-        array(array('field_test'), array('node', 'field_test')),
-        array(array('field_test_two'), array('node', 'field_test_two')),
-        array(array('field_test_three'), array('node', 'field_test_three')),
-        array(array('field_test_four'), array('node', 'field_test_four')),
-        array(array('field_test_email'), array('node', 'field_test_email')),
-        array(array('field_test_link'), array('node', 'field_test_link')),
-        array(array('field_test_filefield'), array('node', 'field_test_filefield')),
-        array(array('field_test_imagefield'), array('node', 'field_test_imagefield')),
-        array(array('field_test_phone'), array('node', 'field_test_phone')),
-        array(array('field_test_date'), array('node', 'field_test_date')),
-        array(array('field_test_datestamp'), array('node', 'field_test_datestamp')),
-        array(array('field_test_datetime'), array('node', 'field_test_datetime')),
-      ),
-      'd6_node_type' => array(
-        array(array('page'), array('page')),
-        array(array('story'), array('story')),
-        array(array('test_page'), array('test_page')),
-      ),
-    );
-    $this->prepareMigrations($id_mappings);
-    entity_create('node_type', array('type' => 'page'))->save();
-    entity_create('node_type', array('type' => 'story'))->save();
-    entity_create('node_type', array('type' => 'test_page'))->save();
-
-    $this->createFields();
-    $this->executeMigration('d6_field_instance');
-  }
-
-  /**
    * Tests migration of file variables to file.settings.yml.
    */
-  public function testFieldInstanceSettings() {
-    $entity = entity_create('node', array('type' => 'story'));
+  public function testFieldInstanceMigration() {
+    $this->migrateFields();
+
+    $entity = Node::create(['type' => 'story']);
     // Test a text field.
+    /** @var \Drupal\field\FieldConfigInterface $field */
     $field = FieldConfig::load('node.story.field_test');
     $this->assertIdentical('Text Field', $field->label());
-    $expected = array('max_length' => 255);
-    $this->assertIdentical($expected, $field->getSettings());
+    // field_test is a text_long field, which have no settings.
+    $this->assertIdentical([], $field->getSettings());
     $this->assertIdentical('text for default value', $entity->field_test->value);
 
     // Test a number field.
@@ -122,11 +74,8 @@ class MigrateFieldInstanceTest extends MigrateDrupal6TestBase {
       'display_field' => FALSE,
       'display_default' => FALSE,
       'uri_scheme' => 'public',
-      // This value should be 'default:file' but the test does not migrate field
-      // storages so we end up with the default value for this setting.
-      'handler' => 'default:node',
+      'handler' => 'default:file',
       'handler_settings' => array(),
-      'target_bundle' => NULL,
     );
     $field_settings = $field->getSettings();
     ksort($expected);
@@ -145,31 +94,19 @@ class MigrateFieldInstanceTest extends MigrateDrupal6TestBase {
   }
 
   /**
-   * Helper to create fields.
+   * Tests migrating fields into non-existent content types.
    */
-  protected function createFields() {
-    $fields = array(
-      'field_test' => 'text',
-      'field_test_two' => 'integer',
-      'field_test_three' => 'decimal',
-      'field_test_four' => 'float',
-      'field_test_email' => 'email',
-      'field_test_link' => 'link',
-      'field_test_filefield' => 'file',
-      'field_test_imagefield' => 'image',
-      'field_test_phone' => 'telephone',
-      'field_test_date' => 'datetime',
-      'field_test_datestamp' => 'datetime',
-      'field_test_datetime' => 'datetime',
-    );
-    foreach ($fields as $name => $type) {
-      entity_create('field_storage_config', array(
-        'field_name' => $name,
-        'entity_type' => 'node',
-        'type' => $type,
-      ))->save();
-    }
+  public function testMigrateFieldIntoUnknownNodeType() {
+    $this->sourceDatabase->delete('node_type')
+      ->condition('type', 'test_planet')
+      ->execute();
+    // The field migrations use the migration plugin to ensure that the node
+    // types exist, so this should produce no failures...
+    $this->migrateFields();
 
+    // ...and the field instances should not have been migrated.
+    $this->assertNull(FieldConfig::load('node.test_planet.field_multivalue'));
+    $this->assertNull(FieldConfig::load('node.test_planet.field_test_text_single_checkbox'));
   }
 
 }

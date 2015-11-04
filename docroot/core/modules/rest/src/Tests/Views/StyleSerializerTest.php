@@ -7,7 +7,6 @@
 
 namespace Drupal\rest\Tests\Views;
 
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\entity_test\Entity\EntityTest;
@@ -395,7 +394,7 @@ class StyleSerializerTest extends PluginTestBase {
       $expected[] = $expected_row;
     }
 
-    $this->assertIdentical($this->drupalGetJSON('test/serialize/field'), $expected);
+    $this->assertIdentical($this->drupalGetJSON('test/serialize/field'), $this->castSafeStrings($expected));
 
     // Test a random aliases for fields, they should be replaced.
     $alias_map = array(
@@ -430,7 +429,7 @@ class StyleSerializerTest extends PluginTestBase {
       $expected[] = $expected_row;
     }
 
-    $this->assertIdentical($this->drupalGetJSON('test/serialize/field'), $expected);
+    $this->assertIdentical($this->drupalGetJSON('test/serialize/field'), $this->castSafeStrings($expected));
   }
 
   /**

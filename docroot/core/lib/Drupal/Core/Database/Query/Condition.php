@@ -66,7 +66,7 @@ class Condition implements ConditionInterface, \Countable {
   }
 
   /**
-   * Implements Drupal\Core\Database\Query\ConditionInterface::condition().
+   * {@inheritdoc}
    */
   public function condition($field, $value = NULL, $operator = '=') {
     if (empty($operator)) {
@@ -88,7 +88,7 @@ class Condition implements ConditionInterface, \Countable {
   }
 
   /**
-   * Implements Drupal\Core\Database\Query\ConditionInterface::where().
+   * {@inheritdoc}
    */
   public function where($snippet, $args = array()) {
     $this->conditions[] = array(
@@ -102,42 +102,42 @@ class Condition implements ConditionInterface, \Countable {
   }
 
   /**
-   * Implements Drupal\Core\Database\Query\ConditionInterface::isNull().
+   * {@inheritdoc}
    */
   public function isNull($field) {
     return $this->condition($field, NULL, 'IS NULL');
   }
 
   /**
-   * Implements Drupal\Core\Database\Query\ConditionInterface::isNotNull().
+   * {@inheritdoc}
    */
   public function isNotNull($field) {
     return $this->condition($field, NULL, 'IS NOT NULL');
   }
 
   /**
-   * Implements Drupal\Core\Database\Query\ConditionInterface::exists().
+   * {@inheritdoc}
    */
   public function exists(SelectInterface $select) {
     return $this->condition('', $select, 'EXISTS');
   }
 
   /**
-   * Implements Drupal\Core\Database\Query\ConditionInterface::notExists().
+   * {@inheritdoc}
    */
   public function notExists(SelectInterface $select) {
     return $this->condition('', $select, 'NOT EXISTS');
   }
 
   /**
-   * Implements Drupal\Core\Database\Query\ConditionInterface::conditions().
+   * {@inheritdoc}
    */
   public function &conditions() {
     return $this->conditions;
   }
 
   /**
-   * Implements Drupal\Core\Database\Query\ConditionInterface::arguments().
+   * {@inheritdoc}
    */
   public function arguments() {
     // If the caller forgot to call compile() first, refuse to run.
@@ -148,7 +148,7 @@ class Condition implements ConditionInterface, \Countable {
   }
 
   /**
-   * Implements Drupal\Core\Database\Query\ConditionInterface::compile().
+   * {@inheritdoc}
    */
   public function compile(Connection $connection, PlaceholderInterface $queryPlaceholder) {
     // Re-compile if this condition changed or if we are compiled against a
@@ -188,6 +188,25 @@ class Condition implements ConditionInterface, \Countable {
               'operator' => $condition['operator'],
               'use_value' => TRUE,
             );
+            // Remove potentially dangerous characters.
+            // If something passed in an invalid character stop early, so we
+            // don't rely on a broken SQL statement when we would just replace
+            // those characters.
+            if (stripos($condition['operator'], 'UNION') !== FALSE || strpbrk($condition['operator'], '[-\'"();') !== FALSE) {
+              $this->changed = TRUE;
+              $this->arguments = [];
+              // Provide a string which will result into an empty query result.
+              $this->stringVersion = '( AND 1 = 0 )';
+
+              // Conceptually throwing an exception caused by user input is bad
+              // as you result into a WSOD, which depending on your webserver
+              // configuration can result into the assumption that your site is
+              // broken.
+              // On top of that the database API relies on __toString() which
+              // does not allow to throw exceptions.
+              trigger_error('Invalid characters in query operator: ' . $condition['operator'], E_USER_ERROR);
+              return;
+            }
             $operator = $connection->mapConditionOperator($condition['operator']);
             if (!isset($operator)) {
               $operator = $this->mapConditionOperator($condition['operator']);
@@ -228,7 +247,7 @@ class Condition implements ConditionInterface, \Countable {
   }
 
   /**
-   * Implements Drupal\Core\Database\Query\ConditionInterface::compiled().
+   * {@inheritdoc}
    */
   public function compiled() {
     return !$this->changed;
@@ -258,10 +277,10 @@ class Condition implements ConditionInterface, \Countable {
     $this->changed = TRUE;
     foreach ($this->conditions as $key => $condition) {
       if ($key !== '#conjunction') {
-        if ($condition['field'] instanceOf ConditionInterface) {
+        if ($condition['field'] instanceof ConditionInterface) {
           $this->conditions[$key]['field'] = clone($condition['field']);
         }
-        if ($condition['value'] instanceOf SelectInterface) {
+        if ($condition['value'] instanceof SelectInterface) {
           $this->conditions[$key]['value'] = clone($condition['value']);
         }
       }

@@ -12,6 +12,7 @@ use Drupal\Core\Plugin\PluginBase;
 use Drupal\migrate\Entity\MigrationInterface;
 use Drupal\migrate\Exception\RequirementsException;
 use Drupal\migrate\Plugin\MigrateDestinationInterface;
+use Drupal\migrate\Plugin\MigrateIdMapInterface;
 use Drupal\migrate\Plugin\RequirementsInterface;
 
 /**
@@ -25,6 +26,20 @@ use Drupal\migrate\Plugin\RequirementsInterface;
  * @ingroup migration
  */
 abstract class DestinationBase extends PluginBase implements MigrateDestinationInterface, RequirementsInterface {
+
+  /**
+   * Indicates whether the destination can be rolled back.
+   *
+   * @var bool
+   */
+  protected $supportsRollback = FALSE;
+
+  /**
+   * The rollback action to be saved for the last imported item.
+   *
+   * @var int
+   */
+  protected $rollbackAction = MigrateIdMapInterface::ROLLBACK_DELETE;
 
   /**
    * The migration.
@@ -53,6 +68,13 @@ abstract class DestinationBase extends PluginBase implements MigrateDestinationI
   /**
    * {@inheritdoc}
    */
+  public function rollbackAction() {
+    return $this->rollbackAction;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function checkRequirements() {
     if (empty($this->pluginDefinition['requirements_met'])) {
       throw new RequirementsException();
@@ -62,8 +84,33 @@ abstract class DestinationBase extends PluginBase implements MigrateDestinationI
   /**
    * {@inheritdoc}
    */
-  public function rollbackMultiple(array $destination_identifiers) {
+  public function rollback(array $destination_identifier) {
     // By default we do nothing.
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function supportsRollback() {
+    return $this->supportsRollback;
+  }
+
+  /**
+   * For a destination item being updated, set the appropriate rollback action.
+   *
+   * @param array $id_map
+   *   The map row data for the item.
+   */
+  protected function setRollbackAction(array $id_map) {
+    // If the entity we're updating was previously migrated by us, preserve the
+    // existing rollback action.
+    if (isset($id_map['sourceid1'])) {
+      $this->rollbackAction = $id_map['rollback_action'];
+    }
+    // Otherwise, we're updating an entity which already existed on the
+    // destination and want to make sure we do not delete it on rollback.
+    else {
+      $this->rollbackAction = MigrateIdMapInterface::ROLLBACK_PRESERVE;
+    }
+  }
 }

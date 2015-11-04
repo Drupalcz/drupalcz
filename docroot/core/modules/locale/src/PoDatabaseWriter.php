@@ -11,8 +11,6 @@ use Drupal\Component\Gettext\PoHeader;
 use Drupal\Component\Gettext\PoItem;
 use Drupal\Component\Gettext\PoReaderInterface;
 use Drupal\Component\Gettext\PoWriterInterface;
-use Drupal\locale\SourceString;
-use Drupal\locale\TranslationString;
 
 /**
  * Gettext PO writer working with the locale module database.
@@ -70,14 +68,14 @@ class PoDatabaseWriter implements PoWriterInterface {
   }
 
   /**
-   * Implements Drupal\Component\Gettext\PoMetadataInterface::getLangcode().
+   * {@inheritdoc}
    */
   public function getLangcode() {
     return $this->langcode;
   }
 
   /**
-   * Implements Drupal\Component\Gettext\PoMetadataInterface::setLangcode().
+   * {@inheritdoc}
    */
   public function setLangcode($langcode) {
     $this->langcode = $langcode;
@@ -132,7 +130,7 @@ class PoDatabaseWriter implements PoWriterInterface {
   }
 
   /**
-   * Implements Drupal\Component\Gettext\PoMetadataInterface::getHeader().
+   * {@inheritdoc}
    */
   public function getHeader() {
     return $this->header;
@@ -175,17 +173,13 @@ class PoDatabaseWriter implements PoWriterInterface {
       $plural = $header->getPluralForms();
       if (isset($plural) && $p = $header->parsePluralForms($plural)) {
         list($nplurals, $formula) = $p;
-        $locale_plurals[$langcode] = array(
-          'plurals' => $nplurals,
-          'formula' => $formula,
-        );
-        \Drupal::state()->set('locale.translation.plurals', $locale_plurals);
+        \Drupal::service('locale.plural.formula')->setPluralFormula($langcode, $nplurals, $formula);
       }
     }
   }
 
   /**
-   * Implements Drupal\Component\Gettext\PoWriterInterface::writeItem().
+   * {@inheritdoc}
    */
   public function writeItem(PoItem $item) {
     if ($item->isPlural()) {
@@ -196,7 +190,7 @@ class PoDatabaseWriter implements PoWriterInterface {
   }
 
   /**
-   * Implements Drupal\Component\Gettext\PoWriterInterface::writeItems().
+   * {@inheritdoc}
    */
   public function writeItems(PoReaderInterface $reader, $count = -1) {
     $forever = $count == -1;

@@ -36,8 +36,7 @@ class DrupalDateTime extends DateTimePlus {
    * Constructs a date object.
    *
    * @param string $time
-   *   A DateTime object, a date/input_time_adjusted string, a unix timestamp.
-   *   Defaults to 'now'.
+   *   A date/input_time_adjusted string. Defaults to 'now'.
    * @param mixed $timezone
    *   PHP DateTimeZone object, string or NULL allowed.
    *   Defaults to NULL.
@@ -90,7 +89,8 @@ class DrupalDateTime extends DateTimePlus {
    *     the result of the format() method. Defaults to NULL.
    *
    * @return string
-   *   The formatted value of the date.
+   *   The formatted value of the date. Since the format may contain user input,
+   *   this value should be escaped when output.
    */
   public function format($format, $settings = array()) {
     $langcode = !empty($settings['langcode']) ? $settings['langcode'] : $this->langcode;

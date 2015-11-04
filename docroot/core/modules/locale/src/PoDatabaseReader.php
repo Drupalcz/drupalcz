@@ -10,7 +10,6 @@ namespace Drupal\locale;
 use Drupal\Component\Gettext\PoHeader;
 use Drupal\Component\Gettext\PoItem;
 use Drupal\Component\Gettext\PoReaderInterface;
-use Drupal\locale\TranslationString;
 
 /**
  * Gettext PO reader working with the locale module database.
@@ -55,14 +54,14 @@ class PoDatabaseReader implements PoReaderInterface {
   }
 
   /**
-   * Implements Drupal\Component\Gettext\PoMetadataInterface::getLangcode().
+   * {@inheritdoc}
    */
   public function getLangcode() {
     return $this->langcode;
   }
 
   /**
-   * Implements Drupal\Component\Gettext\PoMetadataInterface::setLangcode().
+   * {@inheritdoc}
    */
   public function setLangcode($langcode) {
     $this->langcode = $langcode;
@@ -88,7 +87,7 @@ class PoDatabaseReader implements PoReaderInterface {
   }
 
   /**
-   * Implements Drupal\Component\Gettext\PoMetadataInterface::getHeader().
+   * {@inheritdoc}
    */
   public function getHeader() {
     return new PoHeader($this->getLangcode());
@@ -163,7 +162,7 @@ class PoDatabaseReader implements PoReaderInterface {
   }
 
   /**
-   * Implements Drupal\Component\Gettext\PoReaderInterface::readItem().
+   * {@inheritdoc}
    */
   public function readItem() {
     if ($string = $this->readString()) {

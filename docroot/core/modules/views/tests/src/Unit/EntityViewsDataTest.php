@@ -485,7 +485,7 @@ class EntityViewsDataTest extends UnitTestCase {
     $base_field_definitions = $this->setupBaseFields(EntityTestMul::baseFieldDefinitions($this->baseEntityType));
     $base_field_definitions['type'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel('entity test type')
-      ->setSettings(array('target_type' => 'entity_test_bundle'))
+      ->setSetting('target_type', 'entity_test_bundle')
       ->setTranslatable(TRUE);
     $base_field_definitions = $this->setupBaseFields($base_field_definitions);
     $user_base_field_definitions = [
@@ -772,6 +772,26 @@ class EntityViewsDataTest extends UnitTestCase {
     $this->assertFalse(isset($data['entity_test']['delete_entity_test']));
 
     $this->assertEquals('entity_link_edit', $data['entity_test']['edit_entity_test']['field']['id']);
+  }
+
+  /**
+   * @covers ::getViewsData
+   */
+  public function testGetViewsDataWithoutEntityOperations() {
+    // Make sure there is no list builder. The API does not document is
+    // supports resetting entity handlers, so this might break in the future.
+    $this->baseEntityType->setListBuilderClass(NULL);
+    $data = $this->viewsData->getViewsData();
+    $this->assertArrayNotHasKey('operations', $data[$this->baseEntityType->getBaseTable()]);
+  }
+
+  /**
+   * @covers ::getViewsData
+   */
+  public function testGetViewsDataWithEntityOperations() {
+    $this->baseEntityType->setListBuilderClass('\Drupal\Core\Entity\EntityListBuilder');
+    $data = $this->viewsData->getViewsData();
+    $this->assertSame('entity_operations', $data[$this->baseEntityType->getBaseTable()]['operations']['field']['id']);
   }
 
   /**

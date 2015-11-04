@@ -5,8 +5,6 @@
  * Helper module for Views tests.
  */
 
-use Drupal\views\ViewExecutable;
-
 /**
  * Access callback for the generic handler test.
  *
@@ -109,4 +107,18 @@ function template_preprocess_views_view_mapping_test(&$variables) {
       );
     }
   }
+}
+
+/**
+ * Test pre_render function.
+ *
+ * @param array $element
+ *   A render array
+ *
+ * @return array
+ *   The changed render array.
+ */
+function views_test_data_test_pre_render_function($element) {
+  $element['#markup'] = 'views_test_data_test_pre_render_function executed';
+  return $element;
 }

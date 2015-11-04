@@ -80,6 +80,37 @@ class PageCacheTest extends WebTestBase {
   }
 
   /**
+   * Test that the page cache doesn't depend on cacheability headers.
+   */
+  function testPageCacheTagsIndependentFromCacheabilityHeaders() {
+    $this->setHttpResponseDebugCacheabilityHeaders(FALSE);
+
+    $path = 'system-test/cache_tags_page';
+    $tags = array('system_test_cache_tags_page');
+    $this->drupalGet($path);
+    $this->assertEqual($this->drupalGetHeader('X-Drupal-Cache'), 'MISS');
+
+    // Verify a cache hit, but also the presence of the correct cache tags.
+    $this->drupalGet($path);
+    $this->assertEqual($this->drupalGetHeader('X-Drupal-Cache'), 'HIT');
+    $cid_parts = array(\Drupal::url('system_test.cache_tags_page', array(), array('absolute' => TRUE)), 'html');
+    $cid = implode(':', $cid_parts);
+    $cache_entry = \Drupal::cache('render')->get($cid);
+    sort($cache_entry->tags);
+    $expected_tags = array(
+      'config:user.role.anonymous',
+      'pre_render',
+      'rendered',
+      'system_test_cache_tags_page',
+    );
+    $this->assertIdentical($cache_entry->tags, $expected_tags);
+
+    Cache::invalidateTags($tags);
+    $this->drupalGet($path);
+    $this->assertEqual($this->drupalGetHeader('X-Drupal-Cache'), 'MISS');
+  }
+
+  /**
    * Tests support for different cache items with different request formats
    * specified via a query parameter.
    */
@@ -399,11 +430,63 @@ class PageCacheTest extends WebTestBase {
     // that implementation.
     \Drupal::state()->set('page_cache_bypass_form_immutability', TRUE);
     \Drupal::moduleHandler()->resetImplementations();
-    \Drupal::cache('render')->deleteAll();
+    Cache::invalidateTags(['rendered']);
 
     $this->drupalGet('page_cache_form_test_immutability');
 
     $this->assertText("Immutable: FALSE", "Form is not immutable,");
+  }
+
+  /**
+   * Tests cacheability of a CacheableResponse.
+   *
+   * Tests the difference between having a controller return a plain Symfony
+   * Response object versus returning a Response object that implements the
+   * CacheableResponseInterface.
+   */
+  public function testCacheableResponseResponses() {
+    $config = $this->config('system.performance');
+    $config->set('cache.page.max_age', 300);
+    $config->save();
+
+    // GET a URL, which would be marked as a cache miss if it were cacheable.
+    $this->drupalGet('/system-test/respond-reponse');
+    $this->assertFalse($this->drupalGetHeader('X-Drupal-Cache'), 'Drupal page cache header not found.');
+    $this->assertEqual($this->drupalGetHeader('Cache-Control'), 'must-revalidate, no-cache, post-check=0, pre-check=0, private', 'Cache-Control header was sent');
+
+    // GET it again, verify it's still not cached.
+    $this->drupalGet('/system-test/respond-reponse');
+    $this->assertFalse($this->drupalGetHeader('X-Drupal-Cache'), 'Drupal page cache header not found.');
+    $this->assertEqual($this->drupalGetHeader('Cache-Control'), 'must-revalidate, no-cache, post-check=0, pre-check=0, private', 'Cache-Control header was sent');
+
+    // GET a URL, which would be marked as a cache miss if it were cacheable.
+    $this->drupalGet('/system-test/respond-public-response');
+    $this->assertFalse($this->drupalGetHeader('X-Drupal-Cache'), 'Drupal page cache header not found.');
+    $this->assertEqual($this->drupalGetHeader('Cache-Control'), 'max-age=60, public', 'Cache-Control header was sent');
+
+    // GET it again, verify it's still not cached.
+    $this->drupalGet('/system-test/respond-public-response');
+    $this->assertFalse($this->drupalGetHeader('X-Drupal-Cache'), 'Drupal page cache header not found.');
+    $this->assertEqual($this->drupalGetHeader('Cache-Control'), 'max-age=60, public', 'Cache-Control header was sent');
+
+    // GET a URL, which should be marked as a cache miss.
+    $this->drupalGet('/system-test/respond-cacheable-reponse');
+    $this->assertEqual($this->drupalGetHeader('X-Drupal-Cache'), 'MISS', 'Page was not cached.');
+    $this->assertEqual($this->drupalGetHeader('Cache-Control'), 'max-age=300, public', 'Cache-Control header was sent.');
+
+    // GET it again, it should now be a cache hit.
+    $this->drupalGet('/system-test/respond-cacheable-reponse');
+    $this->assertEqual($this->drupalGetHeader('X-Drupal-Cache'), 'HIT', 'Page was cached.');
+    $this->assertEqual($this->drupalGetHeader('Cache-Control'), 'max-age=300, public', 'Cache-Control header was sent.');
+
+    // Uninstall page cache. This should flush all caches so the next call to a
+    // previously cached page should be a miss now.
+    $this->container->get('module_installer')
+      ->uninstall(['page_cache']);
+
+    // GET a URL that was cached by Page Cache before, it should not be now.
+    $this->drupalGet('/respond-cacheable-reponse');
+    $this->assertFalse($this->drupalGetHeader('X-Drupal-Cache'), 'Drupal page cache header not found.');
   }
 
 }

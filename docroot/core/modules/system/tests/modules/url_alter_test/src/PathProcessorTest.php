@@ -19,7 +19,7 @@ use Drupal\user\Entity\User;
 class PathProcessorTest implements InboundPathProcessorInterface, OutboundPathProcessorInterface {
 
   /**
-   * Implements Drupal\Core\PathProcessor\InboundPathProcessorInterface::processInbound().
+   * {@inheritdoc}
    */
   public function processInbound($path, Request $request) {
     // Rewrite user/username to user/uid.
@@ -31,9 +31,7 @@ class PathProcessorTest implements InboundPathProcessorInterface, OutboundPathPr
     }
 
     // Rewrite community/ to forum/.
-    if ($path == '/community' || strpos($path, '/community/') === 0) {
-      $path = '/forum' . substr($path, 10);
-    }
+    $path = preg_replace('@^/community(.*)@', '/forum$1', $path);
 
     if ($path == '/url-alter-test/bar') {
       $path = '/url-alter-test/foo';
@@ -42,7 +40,7 @@ class PathProcessorTest implements InboundPathProcessorInterface, OutboundPathPr
   }
 
   /**
-   * Implements Drupal\Core\PathProcessor\OutboundPathProcessorInterface::processOutbound().
+   * {@inheritdoc}
    */
   public function processOutbound($path, &$options = array(), Request $request = NULL, BubbleableMetadata $bubbleable_metadata = NULL) {
     // Rewrite user/uid to user/username.
@@ -57,10 +55,7 @@ class PathProcessorTest implements InboundPathProcessorInterface, OutboundPathPr
     }
 
     // Rewrite forum/ to community/.
-    if ($path == '/forum' || strpos($path, '/forum/') === 0) {
-      $path = '/community' . substr($path, 5);
-    }
-    return $path;
+    return preg_replace('@^/forum(.*)@', '/community$1', $path);
   }
 
 }

@@ -7,7 +7,6 @@
 
 namespace Drupal\user\Tests;
 
-use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -65,11 +64,13 @@ class UserAccountLinksTest extends WebTestBase {
     $this->drupalLogout();
     $this->drupalGet('<front>');
 
-    // For a logged-out user, expect no secondary links.
-    $menu = $this->xpath('//ul[@class=:menu_class]', array(
+    // For a logged-out user, expect the secondary menu to have a "Log in" link.
+    $link = $this->xpath('//ul[@class=:menu_class]/li/a[contains(@href, :href) and text()=:text]', array(
       ':menu_class' => 'menu',
+      ':href' => 'user/login',
+      ':text' => 'Log in',
     ));
-    $this->assertEqual(count($menu), 0, 'The secondary links menu is not rendered, because none of its menu links are accessible for the anonymous user.');
+    $this->assertEqual(count($link), 1, 'Log in link is in secondary menu.');
   }
 
   /**

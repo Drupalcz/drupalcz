@@ -5,7 +5,7 @@
 
 (function ($, _, Drupal) {
 
-  "use strict";
+  'use strict';
 
   Drupal.quickedit.editors.plain_text = Drupal.quickedit.EditorView.extend(/** @lends Drupal.quickedit.editors.plain_text# */{
 
@@ -31,7 +31,7 @@
       // Store the original value of this field. Necessary for reverting
       // changes.
       var $textElement;
-      var $fieldItems = this.$el.find('.field__item');
+      var $fieldItems = this.$el.find('.quickedit-field');
       if ($fieldItems.length) {
         $textElement = this.$textElement = $fieldItems.eq(0);
       }

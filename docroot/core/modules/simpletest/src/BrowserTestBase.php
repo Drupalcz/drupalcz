@@ -13,6 +13,7 @@ use Behat\Mink\Exception\Exception;
 use Behat\Mink\Mink;
 use Behat\Mink\Session;
 use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Database\ConnectionNotDefinedException;
 use Drupal\Core\Database\Database;
@@ -23,6 +24,7 @@ use Drupal\Core\Session\UserSession;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\StreamWrapper\StreamWrapperInterface;
 use Drupal\Core\Test\TestRunnerKernel;
+use Drupal\Core\Url;
 use Drupal\user\UserInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -180,6 +182,33 @@ abstract class BrowserTestBase extends \PHPUnit_Framework_TestCase {
    */
   protected $customTranslations;
 
+  /*
+   * Mink class for the default driver to use.
+   *
+   * Shoud be a fully qualified class name that implements
+   * Behat\Mink\Driver\DriverInterface.
+   *
+   * Value can be overridden using the environment variable MINK_DRIVER_CLASS.
+   *
+   * @var string.
+   */
+  protected $minkDefaultDriverClass = '\Behat\Mink\Driver\GoutteDriver';
+
+  /*
+   * Mink default driver params.
+   *
+   * If it's an array its contents are used as constructor params when default
+   * Mink driver class is instantiated.
+   *
+   * Can be overridden using the environment variable MINK_DRIVER_ARGS. In this
+   * case that variable should be a JSON array, for example:
+   * '["firefox", null, "http://localhost:4444/wd/hub"]'.
+   *
+   *
+   * @var array
+   */
+  protected $minkDefaultDriverArgs;
+
   /**
    * Mink session manager.
    *
@@ -191,13 +220,49 @@ abstract class BrowserTestBase extends \PHPUnit_Framework_TestCase {
    * Initializes Mink sessions.
    */
   protected function initMink() {
-    $driver = new GoutteDriver();
+    $driver = $this->getDefaultDriverInstance();
     $session = new Session($driver);
     $this->mink = new Mink();
-    $this->mink->registerSession('goutte', $session);
-    $this->mink->setDefaultSessionName('goutte');
+    $this->mink->registerSession('default', $session);
+    $this->mink->setDefaultSessionName('default');
     $this->registerSessions();
     return $session;
+  }
+
+  /**
+   * Gets an instance of the default Mink driver.
+   *
+   * @return Behat\Mink\Driver\DriverInterface
+   *   Instance of default Mink driver.
+   *
+   * @throws \InvalidArgumentException
+   *   When provided default Mink driver class can't be instantiated.
+   */
+  protected function getDefaultDriverInstance() {
+    // Get default driver params from environment if availables.
+    if ($arg_json = getenv('MINK_DRIVER_ARGS')) {
+      $this->minkDefaultDriverArgs = json_decode($arg_json);
+    }
+
+    // Get and check default driver class from environment if availables.
+    if ($minkDriverClass = getenv('MINK_DRIVER_CLASS')) {
+      if (class_exists($minkDriverClass)) {
+        $this->minkDefaultDriverClass = $minkDriverClass;
+      }
+      else {
+        throw new \InvalidArgumentException("Can't instantiate provided $minkDriverClass class by environment as default driver class.");
+      }
+    }
+
+    if (is_array($this->minkDefaultDriverArgs)) {
+       // Use ReflectionClass to instantiate class with received params.
+      $reflector = new ReflectionClass($this->minkDefaultDriverClass);
+      $driver = $reflector->newInstanceArgs($this->minkDefaultDriverArgs);
+    }
+    else {
+      $driver =  new $this->minkDefaultDriverClass();
+    }
+    return $driver;
   }
 
   /**
@@ -404,7 +469,14 @@ abstract class BrowserTestBase extends \PHPUnit_Framework_TestCase {
     // The URL generator service is not necessarily available yet; e.g., in
     // interactive installer tests.
     if ($this->container->has('url_generator')) {
-      $url = $this->container->get('url_generator')->generateFromPath($path, $options);
+      if (UrlHelper::isExternal($path)) {
+        $url = Url::fromUri($path, $options)->toString();
+      }
+      else {
+        // This is needed for language prefixing.
+        $options['path_processing'] = TRUE;
+        $url = Url::fromUri('base:/' . $path, $options)->toString();
+      }
     }
     else {
       $url = $this->getAbsoluteUrl($path);
@@ -1010,7 +1082,7 @@ abstract class BrowserTestBase extends \PHPUnit_Framework_TestCase {
    */
   protected function prepareEnvironment() {
     // Bootstrap Drupal so we can use Drupal's built in functions.
-    $this->classLoader = require __DIR__ . '/../../../vendor/autoload.php';
+    $this->classLoader = require __DIR__ . '/../../../../autoload.php';
     $request = Request::createFromGlobals();
     $kernel = TestRunnerKernel::createFromRequest($request, $this->classLoader);
     // TestRunnerKernel expects the working directory to be DRUPAL_ROOT.
@@ -1185,7 +1257,7 @@ abstract class BrowserTestBase extends \PHPUnit_Framework_TestCase {
     $server = array_merge($server, $override_server_vars);
 
     $request = Request::create($request_path, 'GET', array(), array(), array(), $server);
-    // Ensure the the request time is REQUEST_TIME to ensure that API calls
+    // Ensure the request time is REQUEST_TIME to ensure that API calls
     // in the test use the right timestamp.
     $request->server->set('REQUEST_TIME', REQUEST_TIME);
     $this->container->get('request_stack')->push($request);

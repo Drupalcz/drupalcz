@@ -12,7 +12,6 @@ use Drupal\Core\Config\ConfigNameException;
 use Drupal\Core\Config\ConfigValueException;
 use Drupal\Core\Config\InstallStorage;
 use Drupal\simpletest\KernelTestBase;
-use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Config\DatabaseStorage;
 use Drupal\Core\Config\UnsupportedDataTypeConfigException;
 
@@ -151,6 +150,12 @@ class ConfigCRUDTest extends KernelTestBase {
     $new_config->save();
     $this->assertIdentical($new_config->get('value'), $expected_values['value']);
     $this->assertIdentical($new_config->get('404'), $expected_values['404']);
+
+    // Test that getMultiple() does not return new config objects that were
+    // previously accessed with get()
+    $new_config = $config_factory->get('non_existing_key');
+    $this->assertTrue($new_config->isNew());
+    $this->assertEqual(0, count($config_factory->loadMultiple(['non_existing_key'])), 'loadMultiple() does not return new objects');
   }
 
   /**

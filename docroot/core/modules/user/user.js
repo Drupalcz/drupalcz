@@ -5,7 +5,7 @@
 
 (function ($, Drupal, drupalSettings) {
 
-  "use strict";
+  'use strict';
 
   /**
    * Attach handlers to evaluate the strength of any password fields and to
@@ -133,10 +133,10 @@
     var $usernameBox = $('input.username');
     var username = ($usernameBox.length > 0) ? $usernameBox.val() : translate.username;
 
-    // Lose 5 points for every character less than 6, plus a 30 point penalty.
-    if (password.length < 6) {
+    // Lose 5 points for every character less than 12, plus a 30 point penalty.
+    if (password.length < 12) {
       msg.push(translate.tooShort);
-      strength -= ((6 - password.length) * 5) + 30;
+      strength -= ((12 - password.length) * 5) + 30;
     }
 
     // Count weaknesses.

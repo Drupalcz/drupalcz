@@ -8,7 +8,6 @@
 namespace Drupal\views\Plugin\views\argument_default;
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\views\ViewExecutable;
 use Drupal\views\Plugin\views\argument\ArgumentPluginBase;
 use Drupal\views\Plugin\views\PluginBase;
 
@@ -100,6 +99,13 @@ abstract class ArgumentDefaultPluginBase extends PluginBase {
       $form[$option_name]['#value'] = $form[$this->option_name]['#default_value'];
       $form[$option_name]['#description'] .= ' <strong>' . $this->t('Note: you do not have permission to modify this. If you change the default filter type, this setting will be lost and you will NOT be able to get it back.') . '</strong>';
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheTags() {
+    return [];
   }
 
 }

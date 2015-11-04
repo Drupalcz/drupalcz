@@ -7,7 +7,6 @@
 
 namespace Drupal\user\Plugin\Validation\Constraint;
 
-use Drupal\Component\Utility\Html;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\ExecutionContextInterface;
@@ -34,7 +33,7 @@ class UserMailRequired extends Constraint implements ConstraintValidatorInterfac
    *
    * @var string
    */
-  public $message = '!name field is required.';
+  public $message = '@name field is required.';
 
   /**
    * @var \Symfony\Component\Validator\ExecutionContextInterface
@@ -73,7 +72,7 @@ class UserMailRequired extends Constraint implements ConstraintValidatorInterfac
     $required = !(!$existing_value && \Drupal::currentUser()->hasPermission('administer users'));
 
     if ($required && (!isset($items) || $items->isEmpty())) {
-      $this->context->addViolation($this->message, ['!name' => Html::escape($account->getFieldDefinition('mail')->getLabel())]);
+      $this->context->addViolation($this->message, ['@name' => $account->getFieldDefinition('mail')->getLabel()]);
     }
   }
 

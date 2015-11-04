@@ -9,7 +9,6 @@ namespace Drupal\views\Plugin\views\row;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\Plugin\views\PluginBase;
-use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
 
 /**
@@ -44,7 +43,7 @@ use Drupal\views\Views;
 abstract class RowPluginBase extends PluginBase {
 
   /**
-   * Overrides Drupal\views\Plugin\Plugin::$usesOptions.
+   * {@inheritdoc}
    */
   protected $usesOptions = TRUE;
 

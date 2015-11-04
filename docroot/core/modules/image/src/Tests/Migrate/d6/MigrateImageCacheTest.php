@@ -2,49 +2,54 @@
 
 /**
  * @file
- * Contains \Drupal\migrate_drupal\Tests\d6\MigrateImageCacheTest.
+ * Contains \Drupal\image\Tests\Migrate\d6\MigrateImageCacheTest.
  */
 
 namespace Drupal\image\Tests\Migrate\d6;
 
 use Drupal\Core\Database\Database;
 use Drupal\image\Entity\ImageStyle;
-use \Drupal\image\ConfigurableImageEffectBase;
+use Drupal\migrate\Entity\Migration;
 use Drupal\migrate\Entity\MigrationInterface;
-use Drupal\migrate\MigrateException;
+use Drupal\migrate\Exception\RequirementsException;
 use Drupal\migrate_drupal\Tests\d6\MigrateDrupal6TestBase;
 
 /**
- * Migrate ImageCache presets to Image styles
+ * Tests migration of ImageCache presets to image styles.
  *
  * @group image
  */
 class MigrateImageCacheTest extends MigrateDrupal6TestBase {
 
   /**
-   * Modules to enable.
-   *
-   * @var array
-   */
-  public static $modules = array('image');
-
-  /**
    * {@inheritdoc}
    */
   public function setUp() {
     parent::setUp();
-    $this->prepareMigrations(array(
-      'd6_imagecache_presets' => [],
-    ));
     $this->installConfig(['image']);
   }
 
   /**
-   * Override parent to setup migration prior to run.
+   * Tests that an exception is thrown when ImageCache is not installed.
    */
-  public function testSourcePlugin() {
-    $this->executeMigration('d6_imagecache_presets');
-    parent::testSourcePlugin();
+  public function testMissingTable() {
+    $this->sourceDatabase->update('system')
+      ->fields(array(
+        'status' => 0,
+      ))
+      ->condition('name', 'imagecache')
+      ->condition('type', 'module')
+      ->execute();
+
+    try {
+      Migration::load('d6_imagecache_presets')
+        ->getSourcePlugin()
+        ->checkRequirements();
+      $this->fail('Did not catch expected RequirementsException.');
+    }
+    catch (RequirementsException $e) {
+      $this->pass('Caught expected RequirementsException: ' . $e->getMessage());
+    }
   }
 
   /**

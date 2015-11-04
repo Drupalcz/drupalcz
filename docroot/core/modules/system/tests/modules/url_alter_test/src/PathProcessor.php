@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 class PathProcessor implements InboundPathProcessorInterface {
 
   /**
-   * Implements Drupal\Core\PathProcessor\InboundPathProcessorInterface::processInbound().
+   * {@inheritdoc}
    */
   public function processInbound($path, Request $request) {
     if (preg_match('!^/user/([^/]+)(/.*)?!', $path, $matches)) {
@@ -27,9 +27,7 @@ class PathProcessor implements InboundPathProcessorInterface {
     }
 
     // Rewrite community/ to forum/.
-    if ($path == '/community' || strpos($path, '/community/') === 0) {
-      $path = '/forum' . substr($path, 9);
-    }
+    $path = preg_replace('@^/community(.*)@', '/forum$1', $path);
 
     if ($path == '/url-alter-test/bar') {
       $path = '/url-alter-test/foo';

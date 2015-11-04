@@ -14,7 +14,6 @@ use Drupal\Core\Form\FormState;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Render\RenderContext;
-use Drupal\views_ui\ViewUI;
 use Drupal\views\ViewEntityInterface;
 use Drupal\views\Ajax;
 use Drupal\Core\Ajax\AjaxResponse;
@@ -221,8 +220,6 @@ abstract class ViewsFormBase extends FormBase implements ViewsFormInterface {
         ->applyTo($form);
     }
     $output = $renderer->renderRoot($form);
-
-    drupal_process_attached($form);
 
     // These forms have the title built in, so set the title here:
     $title = $form_state->get('title') ?: '';

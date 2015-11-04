@@ -8,6 +8,7 @@
 namespace Drupal\field\Tests\Migrate\d6;
 
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\migrate\Entity\Migration;
 use Drupal\migrate_drupal\Tests\d6\MigrateDrupal6TestBase;
 
 /**
@@ -16,13 +17,6 @@ use Drupal\migrate_drupal\Tests\d6\MigrateDrupal6TestBase;
  * @group migrate_drupal_6
  */
 class MigrateFieldTest extends MigrateDrupal6TestBase {
-
-  /**
-   * Modules to enable.
-   *
-   * @var array
-   */
-  public static $modules = array('field', 'telephone', 'link', 'file', 'image', 'datetime', 'node', 'options', 'text');
 
   /**
    * {@inheritdoc}
@@ -39,9 +33,9 @@ class MigrateFieldTest extends MigrateDrupal6TestBase {
     // Text field.
     /** @var \Drupal\field\Entity\FieldStorageConfig $field_storage */
     $field_storage = FieldStorageConfig::load('node.field_test');
-    $expected = array('max_length' => 255);
-    $this->assertIdentical("text", $field_storage->getType(),  t('Field type is @fieldtype. It should be text.', array('@fieldtype' => $field_storage->getType())));
-    $this->assertIdentical($expected, $field_storage->getSettings(), "Field type text settings are correct");
+    $this->assertIdentical('text_long', $field_storage->getType());
+    // text_long fields do not have settings.
+    $this->assertIdentical([], $field_storage->getSettings());
 
     // Integer field.
     $field_storage = FieldStorageConfig::load('node.field_test_two');
@@ -102,6 +96,18 @@ class MigrateFieldTest extends MigrateDrupal6TestBase {
     $field_storage = FieldStorageConfig::load('node.field_test_text_single_checkbox');
     $this->assertIdentical("boolean", $field_storage->getType(),  t('Field type is @fieldtype. It should be boolean.', array('@fieldtype' => $field_storage->getType())));
 
+    // Validate that the source count and processed count match up.
+    /** @var \Drupal\migrate\Entity\MigrationInterface $migration */
+    $migration = Migration::load('d6_field');
+    $this->assertIdentical($migration->getSourcePlugin()->count(), $migration->getIdMap()->processedCount());
+
+    // Check that we've reported on a conflict in widget_types.
+    $messages = [];
+    foreach ($migration->getIdMap()->getMessageIterator() as $message_row) {
+      $messages[] = $message_row->message;
+    }
+    $this->assertIdentical(count($messages), 1);
+    $this->assertIdentical($messages[0], 'Widget types optionwidgets_onoff, text_textfield are used in Drupal 6 field instances: widget type optionwidgets_onoff applied to the Drupal 8 base field');
   }
 
 }

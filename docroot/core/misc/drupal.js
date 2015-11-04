@@ -52,7 +52,7 @@ if (window.jQuery) {
 // wrapping it in an anonymous closure.
 (function (domready, Drupal, drupalSettings, drupalTranslations) {
 
-  "use strict";
+  'use strict';
 
   /**
    * Helper to rethrow errors asynchronously.
@@ -238,23 +238,6 @@ if (window.jQuery) {
   };
 
   /**
-   * Tests the document width for mobile configurations.
-   *
-   * @param {number} [width=640]
-   *   Value of the width to check for.
-   *
-   * @return {bool}
-   *   true if the document's `clientWidth` is bigger than `width`, returns
-   *   false otherwise.
-   *
-   * @deprecated Temporary solution for the mobile initiative.
-   */
-  Drupal.checkWidthBreakpoint = function (width) {
-    width = width || drupalSettings.widthBreakpoint || 640;
-    return (document.documentElement.clientWidth > width);
-  };
-
-  /**
    * Encodes special characters in a plain-text string for display as HTML.
    *
    * @param {string} str
@@ -379,7 +362,7 @@ if (window.jQuery) {
    * See the documentation of the server-side t() function for further details.
    *
    * @param {string} str
-   *   A string containing the English string to translate.
+   *   A string containing the English text to translate.
    * @param {Object.<string, string>} [args]
    *   An object of replacements pairs to make after translation. Incidences
    *   of any key in this array are replaced with the corresponding value.

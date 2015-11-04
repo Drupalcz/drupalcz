@@ -7,10 +7,9 @@
 
 namespace Drupal\rest\Plugin\views\style;
 
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\views\Plugin\CacheablePluginInterface;
-use Drupal\views\ViewExecutable;
-use Drupal\views\Plugin\views\display\DisplayPluginBase;
 use Drupal\views\Plugin\views\style\StylePluginBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -27,15 +26,15 @@ use Symfony\Component\Serializer\SerializerInterface;
  *   display_types = {"data"}
  * )
  */
-class Serializer extends StylePluginBase implements CacheablePluginInterface {
+class Serializer extends StylePluginBase implements CacheableDependencyInterface {
 
   /**
-   * Overrides \Drupal\views\Plugin\views\style\StylePluginBase::$usesRowPlugin.
+   * {@inheritdoc}
    */
   protected $usesRowPlugin = TRUE;
 
   /**
-   * Overrides Drupal\views\Plugin\views\style\StylePluginBase::$usesFields.
+   * {@inheritdoc}
    */
   protected $usesGrouping = FALSE;
 
@@ -155,8 +154,8 @@ class Serializer extends StylePluginBase implements CacheablePluginInterface {
   /**
    * {@inheritdoc}
    */
-  public function isCacheable() {
-    return TRUE;
+  public function getCacheMaxAge() {
+    return Cache::PERMANENT;
   }
 
   /**
@@ -164,6 +163,13 @@ class Serializer extends StylePluginBase implements CacheablePluginInterface {
    */
   public function getCacheContexts() {
     return ['request_format'];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheTags() {
+    return [];
   }
 
 }

@@ -7,7 +7,6 @@
 
 namespace Drupal\hal\Normalizer;
 
-use Drupal\serialization\EntityResolver\EntityResolverInterface;
 use Drupal\serialization\Normalizer\NormalizerBase as SerializationNormalizerBase;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
@@ -24,14 +23,14 @@ abstract class NormalizerBase extends SerializationNormalizerBase implements Den
   protected $formats = array('hal_json');
 
   /**
-   * Implements \Symfony\Component\Serializer\Normalizer\NormalizerInterface::supportsNormalization().
+   * {@inheritdoc}
    */
   public function supportsNormalization($data, $format = NULL) {
     return in_array($format, $this->formats) && parent::supportsNormalization($data, $format);
   }
 
   /**
-   * Implements \Symfony\Component\Serializer\Normalizer\DenormalizerInterface::supportsDenormalization()
+   * {@inheritdoc}
    */
   public function supportsDenormalization($data, $type, $format = NULL) {
     if (in_array($format, $this->formats) && (class_exists($this->supportedInterfaceOrClass) || interface_exists($this->supportedInterfaceOrClass))) {

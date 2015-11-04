@@ -11,9 +11,8 @@ use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Render\Element;
-use Drupal\Core\Render\SafeString;
+use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 
 /**
@@ -34,18 +33,6 @@ class RendererTest extends RendererTestBase {
     '#attached' => [],
     '#children' => '',
   ];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-    // Reset the static list of SafeStrings to prevent bleeding between tests.
-    $reflected_class = new \ReflectionClass('\Drupal\Component\Utility\SafeMarkup');
-    $reflected_property = $reflected_class->getProperty('safeStrings');
-    $reflected_property->setAccessible(true);
-    $reflected_property->setValue([]);
-  }
 
   /**
    * @covers ::render
@@ -109,9 +96,9 @@ class RendererTest extends RendererTestBase {
       '#plain_text' => '<em>foo</em>',
       '#markup' => 'bar',
     ], '&lt;em&gt;foo&lt;/em&gt;'];
-    // Safe strings in #plain_text are are still escaped.
+    // Safe strings in #plain_text are still escaped.
     $data[] = [[
-      '#plain_text' => SafeString::create('<em>foo</em>'),
+      '#plain_text' => Markup::create('<em>foo</em>'),
     ], '&lt;em&gt;foo&lt;/em&gt;'];
     // Renderable child element.
     $data[] = [[
@@ -737,10 +724,10 @@ class RendererTest extends RendererTestBase {
       ],
       // Collect expected property names.
       '#cache_properties' => array_keys(array_filter($expected_results)),
-      'child1' => ['#markup' => SafeString::create('1')],
-      'child2' => ['#markup' => SafeString::create('2')],
+      'child1' => ['#markup' => Markup::create('1')],
+      'child2' => ['#markup' => Markup::create('2')],
       // Mark the value as safe.
-      '#custom_property' => SafeMarkup::checkPlain('custom_value'),
+      '#custom_property' => Markup::create('custom_value'),
       '#custom_property_array' => ['custom value'],
     ];
 

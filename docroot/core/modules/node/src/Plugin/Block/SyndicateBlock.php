@@ -9,8 +9,6 @@ namespace Drupal\node\Plugin\Block;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Cache\Cache;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
 
 /**
@@ -48,29 +46,6 @@ class SyndicateBlock extends BlockBase {
       '#theme' => 'feed_icon',
       '#url' => 'rss.xml',
     );
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $form = parent::buildConfigurationForm($form, $form_state);
-
-    // @see ::getCacheMaxAge()
-    $form['cache']['#disabled'] = TRUE;
-    $form['cache']['max_age']['#value'] = Cache::PERMANENT;
-    $form['cache']['#description'] = $this->t('This block is always cached forever, it is not configurable.');
-
-    return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getCacheMaxAge() {
-    // The 'Syndicate' block is permanently cacheable, because its
-    // contents can never change.
-    return Cache::PERMANENT;
   }
 
 }

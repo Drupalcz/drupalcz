@@ -20,11 +20,9 @@ class MigrateDblogConfigsTest extends MigrateDrupal6TestBase {
   use SchemaCheckTestTrait;
 
   /**
-   * Modules to enable.
-   *
-   * @var array
+   * {@inheritdoc}
    */
-  public static $modules = array('dblog');
+  public static $modules = ['dblog'];
 
   /**
    * {@inheritdoc}
@@ -39,7 +37,7 @@ class MigrateDblogConfigsTest extends MigrateDrupal6TestBase {
    */
   public function testBookSettings() {
     $config = $this->config('dblog.settings');
-    $this->assertIdentical(1000, $config->get('row_limit'));
+    $this->assertIdentical(10000, $config->get('row_limit'));
     $this->assertConfigSchema(\Drupal::service('config.typed'), 'dblog.settings', $config->get());
   }
 

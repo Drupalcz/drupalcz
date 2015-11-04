@@ -7,10 +7,10 @@
 
 namespace Drupal\user\Plugin\views\access;
 
-use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\user\RoleStorageInterface;
-use Drupal\views\Plugin\CacheablePluginInterface;
 use Drupal\views\Plugin\views\access\AccessPluginBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Route;
@@ -27,10 +27,10 @@ use Drupal\Core\Session\AccountInterface;
  *   help = @Translation("Access will be granted to users with any of the specified roles.")
  * )
  */
-class Role extends AccessPluginBase implements CacheablePluginInterface {
+class Role extends AccessPluginBase implements CacheableDependencyInterface {
 
   /**
-   * Overrides Drupal\views\Plugin\Plugin::$usesOptions.
+   * {@inheritdoc}
    */
   protected $usesOptions = TRUE;
 
@@ -97,7 +97,7 @@ class Role extends AccessPluginBase implements CacheablePluginInterface {
     else {
       $rids = user_role_names();
       $rid = reset($this->options['role']);
-      return SafeMarkup::checkPlain($rids[$rid]);
+      return $rids[$rid];
     }
   }
 
@@ -115,7 +115,7 @@ class Role extends AccessPluginBase implements CacheablePluginInterface {
       '#type' => 'checkboxes',
       '#title' => $this->t('Role'),
       '#default_value' => $this->options['role'],
-      '#options' => array_map('\Drupal\Component\Utility\SafeMarkup::checkPlain', user_role_names()),
+      '#options' => array_map('\Drupal\Component\Utility\Html::escape', user_role_names()),
       '#description' => $this->t('Only the checked roles will be able to access this display.'),
     );
   }
@@ -149,8 +149,8 @@ class Role extends AccessPluginBase implements CacheablePluginInterface {
   /**
    * {@inheritdoc}
    */
-  public function isCacheable() {
-    return TRUE;
+  public function getCacheMaxAge() {
+    return Cache::PERMANENT;
   }
 
   /**
@@ -158,6 +158,13 @@ class Role extends AccessPluginBase implements CacheablePluginInterface {
    */
   public function getCacheContexts() {
     return ['user.roles'];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheTags() {
+    return [];
   }
 
 }

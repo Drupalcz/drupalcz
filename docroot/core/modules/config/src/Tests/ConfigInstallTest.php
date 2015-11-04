@@ -9,7 +9,6 @@ namespace Drupal\config\Tests;
 
 use Drupal\Core\Config\InstallStorage;
 use Drupal\Core\Config\PreExistingConfigException;
-use Drupal\Core\Config\StorageInterface;
 use Drupal\Core\Config\UnmetDependenciesException;
 use Drupal\simpletest\KernelTestBase;
 
@@ -211,7 +210,11 @@ class ConfigInstallTest extends KernelTestBase {
     }
     $this->installModules(['config_other_module_config_test']);
     $this->installModules(['config_install_dependency_test']);
-    $this->assertTrue(entity_load('config_test', 'other_module_test_with_dependency'), 'The config_test.dynamic.other_module_test_with_dependency configuration has been created during install.');
+    $entity = \Drupal::entityManager()->getStorage('config_test')->load('other_module_test_with_dependency');
+    $this->assertTrue($entity, 'The config_test.dynamic.other_module_test_with_dependency configuration has been created during install.');
+    // Ensure that dependencies can be added during module installation by
+    // hooks.
+    $this->assertIdentical('config_install_dependency_test', $entity->getDependencies()['module'][0]);
   }
 
   /**

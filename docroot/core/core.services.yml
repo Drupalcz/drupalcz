@@ -16,6 +16,7 @@ parameters:
       tags: []
   factory.keyvalue:
     default: keyvalue.database
+  http.response.debug_cacheability_headers: false
   factory.keyvalue.expirable:
     default: keyvalue.expirable.database
   filter_protocols:
@@ -250,17 +251,20 @@ services:
     class: Drupal\Core\PageCache\ResponsePolicy\KillSwitch
     tags:
       - { name: page_cache_response_policy }
+      - { name: dynamic_page_cache_response_policy }
   page_cache_no_cache_routes:
     class: Drupal\Core\PageCache\ResponsePolicy\DenyNoCacheRoutes
     arguments: ['@current_route_match']
     public: false
     tags:
       - { name: page_cache_response_policy }
+      - { name: dynamic_page_cache_response_policy }
   page_cache_no_server_error:
     class: Drupal\Core\PageCache\ResponsePolicy\NoServerError
     public: false
     tags:
       - { name: page_cache_response_policy }
+      - { name: dynamic_page_cache_response_policy }
   config.manager:
     class: Drupal\Core\Config\ConfigManager
     arguments: ['@entity.manager', '@config.factory', '@config.typed', '@string_translation', '@config.storage', '@event_dispatcher']
@@ -287,13 +291,13 @@ services:
     public: false
     tags:
       - { name: backend_overridable }
-  config.storage.file:
-    class: Drupal\Core\Config\FileStorage
-    factory: Drupal\Core\Config\FileStorageFactory::getActive
-    public: false
+  # @deprecated in Drupal 8.0.x and will be removed before 9.0.0. Use
+  #   config.storage.sync instead.
   config.storage.staging:
     class: Drupal\Core\Config\FileStorage
-    factory: Drupal\Core\Config\FileStorageFactory::getStaging
+    factory: Drupal\Core\Config\FileStorageFactory::getSync
+  config.storage.sync:
+    alias: config.storage.staging
   config.storage.snapshot:
     class: Drupal\Core\Config\DatabaseStorage
     arguments: ['@database', config_snapshot]
@@ -338,7 +342,6 @@ services:
     arguments: ['@request_stack', '@url_generator']
   form_error_handler:
     class: Drupal\Core\Form\FormErrorHandler
-    arguments: ['@string_translation', '@link_generator', '@renderer']
   form_cache:
     class: Drupal\Core\Form\FormCache
     arguments: ['@app.root', '@keyvalue.expirable', '@module_handler', '@current_user', '@csrf_token', '@logger.channel.form', '@request_stack', '@page_cache_request_policy']
@@ -493,10 +496,37 @@ services:
     arguments: ['@theme_handler', '@config.factory', '@config.installer', '@module_handler', '@config.manager', '@asset.css.collection_optimizer', '@router.builder', '@logger.channel.default', '@state']
   entity.manager:
     class: Drupal\Core\Entity\EntityManager
-    arguments: ['@container.namespaces', '@module_handler', '@cache.discovery', '@language_manager', '@string_translation', '@class_resolver', '@typed_data_manager', '@keyvalue', '@event_dispatcher']
+    parent: container.trait
+    # @todo Remove this tag in https://www.drupal.org/node/2549143.
+    tags:
+      - { name: plugin_manager_cache_clear }
+  entity_type.manager:
+    class: Drupal\Core\Entity\EntityTypeManager
+    arguments: ['@container.namespaces', '@module_handler', '@cache.discovery', '@string_translation', '@class_resolver']
     parent: container.trait
     tags:
       - { name: plugin_manager_cache_clear }
+  entity_type.repository:
+    class: Drupal\Core\Entity\EntityTypeRepository
+    arguments: ['@entity_type.manager']
+  entity_type.bundle.info:
+    class: Drupal\Core\Entity\EntityTypeBundleInfo
+    arguments: ['@entity_type.manager', '@language_manager', '@module_handler', '@typed_data_manager', '@cache.discovery']
+  entity.repository:
+    class: Drupal\Core\Entity\EntityRepository
+    arguments: ['@entity_type.manager', '@language_manager']
+  entity_display.repository:
+    class: Drupal\Core\Entity\EntityDisplayRepository
+    arguments: ['@entity_type.manager', '@module_handler', '@cache.discovery', '@language_manager']
+  entity_field.manager:
+    class: Drupal\Core\Entity\EntityFieldManager
+    arguments: ['@entity_type.manager', '@entity_type.bundle.info', '@entity_display.repository', '@typed_data_manager', '@language_manager', '@keyvalue', '@module_handler', '@cache.discovery']
+  entity_type.listener:
+    class: Drupal\Core\Entity\EntityTypeListener
+    arguments: ['@entity_type.manager', '@entity_field.manager', '@event_dispatcher', '@entity.last_installed_schema.repository']
+  entity_bundle.listener:
+    class: Drupal\Core\Entity\EntityBundleListener
+    arguments: ['@entity_type.manager', '@entity_type.bundle.info', '@entity_field.manager', '@module_handler']
   entity_route_subscriber:
     class: Drupal\Core\EventSubscriber\EntityRouteProviderSubscriber
     arguments: ['@entity.manager']
@@ -505,6 +535,15 @@ services:
   entity.definition_update_manager:
     class: Drupal\Core\Entity\EntityDefinitionUpdateManager
     arguments: ['@entity.manager']
+  entity.last_installed_schema.repository:
+    class: Drupal\Core\Entity\EntityLastInstalledSchemaRepository
+    arguments: ['@keyvalue']
+  field_storage_definition.listener:
+    class: Drupal\Core\Field\FieldStorageDefinitionListener
+    arguments: ['@entity_type.manager', '@event_dispatcher', '@entity.last_installed_schema.repository', '@entity_field.manager']
+  field_definition.listener:
+    class: Drupal\Core\Field\FieldDefinitionListener
+    arguments: ['@entity_type.manager', '@entity_field.manager', '@keyvalue', '@cache.discovery']
   entity.form_builder:
     class: Drupal\Core\Entity\EntityFormBuilder
     arguments: ['@entity.manager', '@form_builder']
@@ -672,9 +711,7 @@ services:
       - { name: string_translator, priority: 30 }
   string_translation:
     class: Drupal\Core\StringTranslation\TranslationManager
-    arguments: ['@language_manager', '@state']
-    calls:
-      - [initLanguageManager]
+    arguments: ['@language.default']
     tags:
       - { name: service_collector, tag: string_translator, call: addTranslator }
   database.replica:
@@ -1060,7 +1097,7 @@ services:
   html_response.attachments_processor:
     class: Drupal\Core\Render\HtmlResponseAttachmentsProcessor
     tags:
-    arguments: ['@asset.resolver', '@config.factory', '@asset.css.collection_renderer', '@asset.js.collection_renderer', '@request_stack', '@renderer']
+    arguments: ['@asset.resolver', '@config.factory', '@asset.css.collection_renderer', '@asset.js.collection_renderer', '@request_stack', '@renderer', '@module_handler']
   html_response.subscriber:
     class: Drupal\Core\EventSubscriber\HtmlResponseSubscriber
     tags:
@@ -1070,14 +1107,14 @@ services:
     class: Drupal\Core\EventSubscriber\FinishResponseSubscriber
     tags:
       - { name: event_subscriber }
-    arguments: ['@language_manager', '@config.factory', '@page_cache_request_policy', '@page_cache_response_policy', '@cache_contexts_manager']
+    arguments: ['@language_manager', '@config.factory', '@page_cache_request_policy', '@page_cache_response_policy', '@cache_contexts_manager', '%http.response.debug_cacheability_headers%']
   response_generator_subscriber:
     class: Drupal\Core\EventSubscriber\ResponseGeneratorSubscriber
     tags:
       - { name: event_subscriber }
   redirect_response_subscriber:
     class: Drupal\Core\EventSubscriber\RedirectResponseSubscriber
-    arguments: ['@url_generator', '@router.request_context']
+    arguments: ['@unrouted_url_assembler', '@router.request_context']
     tags:
       - { name: event_subscriber }
   redirect_leading_slashes_subscriber:
@@ -1423,7 +1460,7 @@ services:
     class: Drupal\Core\Asset\AssetDumper
   library.discovery:
     class: Drupal\Core\Asset\LibraryDiscovery
-    arguments: ['@library.discovery.collector', '@cache_tags.invalidator']
+    arguments: ['@library.discovery.collector']
   library.discovery.collector:
     class: Drupal\Core\Asset\LibraryDiscoveryCollector
     arguments: ['@cache.discovery', '@lock', '@library.discovery.parser', '@theme.manager']
@@ -1453,6 +1490,7 @@ services:
     calls:
       - [setUrlGenerator, ['@url_generator']]
       - [setThemeManager, ['@theme.manager']]
+      - [setDateFormatter, ['@date.formatter']]
   # @todo Figure out what to do about debugging functions.
   # @see https://www.drupal.org/node/1804998
   twig.extension.debug:
@@ -1492,19 +1530,43 @@ services:
     tags:
       - { name: mime_type_guesser }
     lazy: true
+  render_placeholder_generator:
+    class: Drupal\Core\Render\PlaceholderGenerator
+    arguments: ['%renderer.config%']
+    public: false
   render_cache:
-    class: Drupal\Core\Render\RenderCache
-    arguments: ['@request_stack', '@cache_factory', '@cache_contexts_manager']
+    class: Drupal\Core\Render\PlaceholderingRenderCache
+    arguments: ['@request_stack', '@cache_factory', '@cache_contexts_manager', '@render_placeholder_generator']
   renderer:
     class: Drupal\Core\Render\Renderer
-    arguments: ['@controller_resolver', '@theme.manager', '@plugin.manager.element_info', '@render_cache', '@request_stack', '%renderer.config%']
+    arguments: ['@controller_resolver', '@theme.manager', '@plugin.manager.element_info', '@render_placeholder_generator', '@render_cache', '@request_stack', '%renderer.config%']
   early_rendering_controller_wrapper_subscriber:
     class: Drupal\Core\EventSubscriber\EarlyRenderingControllerWrapperSubscriber
     arguments: ['@controller_resolver', '@renderer']
     tags:
       - { name: event_subscriber }
+  # Placeholder strategies for rendering placeholders.
+  html_response.placeholder_strategy_subscriber:
+    class: Drupal\Core\EventSubscriber\HtmlResponsePlaceholderStrategySubscriber
+    tags:
+      - { name: event_subscriber }
+    arguments: ['@placeholder_strategy']
+  placeholder_strategy:
+    class: Drupal\Core\Render\Placeholder\ChainedPlaceholderStrategy
+    tags:
+      - { name: service_collector, tag: placeholder_strategy, call: addPlaceholderStrategy }
+  placeholder_strategy.single_flush:
+    class: Drupal\Core\Render\Placeholder\SingleFlushStrategy
+    tags:
+      - { name: placeholder_strategy, priority: -1000 }
   email.validator:
     class: Egulias\EmailValidator\EmailValidator
+  update.post_update_registry:
+    class: Drupal\Core\Update\UpdateRegistry
+    factory: ['@update.post_update_registry_factory', create]
+  update.post_update_registry_factory:
+    class: Drupal\Core\Update\UpdateRegistryFactory
+    parent: container.trait
 
   response_filter.active_link:
     class: Drupal\Core\EventSubscriber\ActiveLinkResponseFilter

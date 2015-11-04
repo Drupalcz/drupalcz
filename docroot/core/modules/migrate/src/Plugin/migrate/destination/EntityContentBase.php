@@ -13,6 +13,7 @@ use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\TypedData\TypedDataInterface;
 use Drupal\migrate\Entity\MigrationInterface;
+use Drupal\migrate\Plugin\MigrateIdMapInterface;
 use Drupal\migrate\Row;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -43,8 +44,6 @@ class EntityContentBase extends Entity {
    *   The storage for this entity type.
    * @param array $bundles
    *   The list of bundles this entity type has.
-   * @param \Drupal\migrate\Plugin\MigratePluginManager $plugin_manager
-   *   The plugin manager.
    * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
    *   The entity manager service.
    */
@@ -73,6 +72,7 @@ class EntityContentBase extends Entity {
    * {@inheritdoc}
    */
   public function import(Row $row, array $old_destination_id_values = array()) {
+    $this->rollbackAction = MigrateIdMapInterface::ROLLBACK_DELETE;
     $entity = $this->getEntity($row, $old_destination_id_values);
     return $this->save($entity, $old_destination_id_values);
   }
@@ -111,12 +111,25 @@ class EntityContentBase extends Entity {
    *   The row object to update from.
    */
   protected function updateEntity(EntityInterface $entity, Row $row) {
+    // If the migration has specified a list of properties to be overwritten,
+    // clone the row with an empty set of destination values, and re-add only
+    // the specified properties.
+    if (isset($this->configuration['overwrite_properties'])) {
+      $clone = $row->cloneWithoutDestination();
+      foreach ($this->configuration['overwrite_properties'] as $property) {
+        $clone->setDestinationProperty($property, $row->getDestinationProperty($property));
+      }
+      $row = $clone;
+    }
+
     foreach ($row->getDestination() as $field_name => $values) {
       $field = $entity->$field_name;
       if ($field instanceof TypedDataInterface) {
         $field->setValue($values);
       }
     }
+
+    $this->setRollbackAction($row->getIdMap());
   }
 
 }

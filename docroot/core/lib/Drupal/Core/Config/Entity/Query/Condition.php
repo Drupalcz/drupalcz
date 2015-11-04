@@ -20,14 +20,14 @@ use Drupal\Core\Entity\Query\QueryException;
 class Condition extends ConditionBase {
 
   /**
-   * Implements \Drupal\Core\Entity\Query\ConditionInterface::compile().
+   * {@inheritdoc}
    */
   public function compile($configs) {
     $and = strtoupper($this->conjunction) == 'AND';
     $single_conditions = array();
     $condition_groups = array();
     foreach ($this->conditions as $condition) {
-      if ($condition['field'] instanceOf ConditionInterface) {
+      if ($condition['field'] instanceof ConditionInterface) {
         $condition_groups[] = $condition;
       }
       else {
@@ -86,14 +86,14 @@ class Condition extends ConditionBase {
   }
 
   /**
-   * Implements \Drupal\Core\Entity\Query\ConditionInterface::exists().
+   * {@inheritdoc}
    */
   public function exists($field, $langcode = NULL) {
     return $this->condition($field, NULL, 'IS NOT NULL', $langcode);
   }
 
   /**
-   * Implements \Drupal\Core\Entity\Query\ConditionInterface::notExists().
+   * {@inheritdoc}
    */
   public function notExists($field, $langcode = NULL) {
     return $this->condition($field, NULL, 'IS NULL', $langcode);

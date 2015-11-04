@@ -4,7 +4,6 @@
  * Install, update and uninstall functions for the standard installation profile.
  */
 
-use Drupal\comment\Plugin\Field\FieldType\CommentItemInterface;
 use Drupal\user\Entity\User;
 use Drupal\user\RoleInterface;
 
@@ -59,6 +58,10 @@ function standard_install() {
     'link' => array('uri' => 'internal:/admin/content'),
   ));
   $shortcut->save();
+
+  // Allow all users to use search.
+  user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, array('search content'));
+  user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, array('search content'));
 
   // Enable the admin theme.
   \Drupal::configFactory()->getEditable('node.settings')->set('use_admin_theme', TRUE)->save(TRUE);

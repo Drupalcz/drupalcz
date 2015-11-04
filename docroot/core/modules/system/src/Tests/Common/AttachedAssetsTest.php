@@ -9,7 +9,6 @@ namespace Drupal\system\Tests\Common;
 
 use Drupal\Component\Serialization\Json;
 use Drupal\Component\Utility\Unicode;
-use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Asset\AttachedAssets;
 use Drupal\simpletest\KernelTestBase;
 
@@ -109,8 +108,10 @@ class AttachedAssetsTest extends KernelTestBase {
     $build['#attached']['library'][] = 'core/drupalSettings';
     $assets = AttachedAssets::createFromRenderArray($build);
 
+    $this->assertEqual([], $assets->getSettings(), 'JavaScript settings on $assets are empty.');
     $javascript = $this->assetResolver->getJsAssets($assets, FALSE)[1];
     $this->assertTrue(array_key_exists('currentPath', $javascript['drupalSettings']['data']['path']), 'The current path JavaScript setting is set correctly.');
+    $this->assertTrue(array_key_exists('currentPath', $assets->getSettings()['path']), 'JavaScript settings on $assets are resolved after retrieving JavaScript assets, and are equal to the returned JavaScript settings.');
 
     $assets->setSettings(['drupal' => 'rocks', 'dries' => 280342800]);
     $javascript = $this->assetResolver->getJsAssets($assets, FALSE)[1];
@@ -183,12 +184,9 @@ class AttachedAssetsTest extends KernelTestBase {
     list($header_js, $footer_js) = $this->assetResolver->getJsAssets($assets, TRUE);
     $this->assertEqual([], \Drupal::service('asset.js.collection_renderer')->render($header_js), 'There are 0 JavaScript assets in the header.');
     $rendered_footer_js = \Drupal::service('asset.js.collection_renderer')->render($footer_js);
-    $this->assertTrue(
-      count($rendered_footer_js) == 2
-      && $rendered_footer_js[0]['#attributes']['data-drupal-selector'] === 'drupal-settings-json'
-      && substr($rendered_footer_js[1]['#attributes']['src'], 0, 7) === 'http://',
-      'There are 2 JavaScript assets in the footer: one with drupal settings, one with the sole aggregated JavaScript asset.'
-    );
+    $this->assertEqual(2, count($rendered_footer_js), 'There are 2 JavaScript assets in the footer.');
+    $this->assertEqual('drupal-settings-json', $rendered_footer_js[0]['#attributes']['data-drupal-selector'], 'The first of the two JavaScript assets in the footer has drupal settings.');
+    $this->assertEqual('http://', substr($rendered_footer_js[1]['#attributes']['src'], 0, 7), 'The second of the two JavaScript assets in the footer has the sole aggregated JavaScript asset.');
   }
 
   /**
@@ -288,7 +286,7 @@ class AttachedAssetsTest extends KernelTestBase {
     $js_render_array = \Drupal::service('asset.js.collection_renderer')->render($js);
 
     $rendered_js = $this->renderer->renderPlain($js_render_array);
-    $this->assertTrue(strpos($rendered_js, 'core/assets/vendor/backbone/backbone-min.js?v=1.2.1') > 0 && strpos($rendered_js, 'core/assets/vendor/domready/ready.min.js?v=1.0.8') > 0 , 'JavaScript version identifiers correctly appended to URLs');
+    $this->assertTrue(strpos($rendered_js, 'core/assets/vendor/backbone/backbone-min.js?v=1.2.3') > 0 && strpos($rendered_js, 'core/assets/vendor/domready/ready.min.js?v=1.0.8') > 0 , 'JavaScript version identifiers correctly appended to URLs');
   }
 
   /**

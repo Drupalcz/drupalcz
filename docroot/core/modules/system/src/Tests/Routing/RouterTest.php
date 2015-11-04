@@ -11,8 +11,8 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\EventSubscriber\MainContentViewSubscriber;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\simpletest\WebTestBase;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
+use Drupal\Core\Url;
 
 /**
  * Functional class for the full integrated routing system.
@@ -91,6 +91,18 @@ class RouterTest extends WebTestBase {
     $headers = $this->drupalGetHeaders();
     $this->assertEqual($headers['x-drupal-cache-contexts'], 'user.roles');
     $this->assertEqual($headers['x-drupal-cache-tags'], '');
+
+    // Finally, verify that the X-Drupal-Cache-Contexts and X-Drupal-Cache-Tags
+    // headers are not sent when their container parameter is set to FALSE.
+    $this->drupalGet('router_test/test18');
+    $headers = $this->drupalGetHeaders();
+    $this->assertTrue(isset($headers['x-drupal-cache-contexts']));
+    $this->assertTrue(isset($headers['x-drupal-cache-tags']));
+    $this->setHttpResponseDebugCacheabilityHeaders(FALSE);
+    $this->drupalGet('router_test/test18');
+    $headers = $this->drupalGetHeaders();
+    $this->assertFalse(isset($headers['x-drupal-cache-contexts']));
+    $this->assertFalse(isset($headers['x-drupal-cache-tags']));
   }
 
   /**
@@ -181,10 +193,10 @@ class RouterTest extends WebTestBase {
    * Checks the generate method on the url generator using the front router.
    */
   public function testUrlGeneratorFront() {
-    global $base_path;
-
-    $this->assertEqual($this->container->get('url_generator')->generate('<front>'), $base_path);
-    $this->assertEqual($this->container->get('url_generator')->generateFromPath('<front>'), $base_path);
+    $front_url = Url::fromRoute('<front>', [], ['absolute' => TRUE]);
+    // Compare to the site base URL.
+    $base_url = Url::fromUri('base:/', ['absolute' => TRUE]);
+    $this->assertIdentical($base_url->toString(), $front_url->toString());
   }
 
   /**
