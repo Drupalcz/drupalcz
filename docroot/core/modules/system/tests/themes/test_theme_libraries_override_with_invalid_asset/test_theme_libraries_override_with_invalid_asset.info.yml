@@ -10,8 +10,8 @@ libraries-override:
   core/drupal.dialog:
     css: false
 
-# Information added by Drupal.org packaging script on 2015-11-04
-version: '8.0.0-rc3'
+# Information added by Drupal.org packaging script on 2015-11-19
+version: '8.0.0'
 core: '8.x'
 project: 'drupal'
-datestamp: 1446633477
+datestamp: 1447942689
