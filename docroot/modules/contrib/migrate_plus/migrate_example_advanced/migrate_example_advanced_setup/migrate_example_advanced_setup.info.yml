@@ -1,12 +1,14 @@
 type: module
-name: Migrate Example
-description: 'Examples of how Drupal 8 migraton compares to previous versions.'
+name: Migrate Advanced Example Setup
+description: 'Separate site configuration for the example from the actual migration.'
 package: Migration
 # core: 8.x
+hidden: 1
 dependencies:
-  - migrate
-  - migrate_example_setup
-  - migrate_plus
+  - comment
+  - image
+  - text
+  - taxonomy
 
 # Information added by Drupal.org packaging script on 2015-11-17
 version: '8.x-1.0-beta1'
