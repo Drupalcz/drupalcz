@@ -3,7 +3,7 @@ label: Migrate Drupal.cz tags
 migration_tags:
   - Drupal 6
 source:
-  plugin: d6_taxonomy_term
+  plugin: taxonomy_term
   vocabulary:
     -
       4
