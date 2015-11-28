@@ -61,7 +61,7 @@ install:
   - git clone https://github.com/Drupalcz/drupalcz_db.git
   - mysql -uroot drupalcz_old < ./drupalcz_db/dcz_scrubbed_slim.sql
   - cd ./docroot
-  - console migrate:execute --db-host="localhost" --db-name="drupalcz_old" --db-user="root" --db-port=3306 all -n
+  - console migrate:execute --db-host="localhost" --db-name="drupalcz_old" --db-user="root" --db-port=3306 --db-type="mysql" all -n
   #  - drush migrate-manifest --legacy-db-url=mysql://root:@localhost/drupalcz_old manifest.yml
   - cd ..
 
