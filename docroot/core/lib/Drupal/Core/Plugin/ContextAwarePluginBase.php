@@ -30,6 +30,25 @@ abstract class ContextAwarePluginBase extends ComponentContextAwarePluginBase im
   /**
    * {@inheritdoc}
    *
+   * @return \Drupal\Core\Plugin\Context\ContextInterface[]
+   */
+  protected function createContextFromConfiguration(array $context_configuration) {
+    // This method is overridden so that it will use
+    // \Drupal\Core\Plugin\Context\Context instead.
+    $contexts = [];
+    foreach ($context_configuration as $key => $value) {
+      $context_definition = $this->getContextDefinition($key);
+      $contexts[$key] = new Context($context_definition, $value);
+    }
+    return $contexts;
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @return \Drupal\Core\Plugin\Context\ContextInterface
+   *   The context object.
+   *
    * This code is identical to the Component in order to pick up a different
    * Context class.
    */
@@ -55,6 +74,14 @@ abstract class ContextAwarePluginBase extends ComponentContextAwarePluginBase im
   /**
    * {@inheritdoc}
    */
+  public function setContextValue($name, $value) {
+    $this->context[$name] = Context::createFromContext($this->getContext($name), $value);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getContextMapping() {
     $configuration = $this instanceof ConfigurablePluginInterface ? $this->getConfiguration() : $this->configuration;
     return isset($configuration['context_mapping']) ? $configuration['context_mapping'] : [];
@@ -66,7 +93,7 @@ abstract class ContextAwarePluginBase extends ComponentContextAwarePluginBase im
   public function setContextMapping(array $context_mapping) {
     if ($this instanceof ConfigurablePluginInterface) {
       $configuration = $this->getConfiguration();
-      $configuration['context_mapping'] = $context_mapping;
+      $configuration['context_mapping'] = array_filter($context_mapping);
       $this->setConfiguration($configuration);
     }
     else {
@@ -82,6 +109,15 @@ abstract class ContextAwarePluginBase extends ComponentContextAwarePluginBase im
    */
   public function getContextDefinitions() {
     return parent::getContextDefinitions();
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @return \Drupal\Core\Plugin\Context\ContextDefinitionInterface
+   */
+  public function getContextDefinition($name) {
+    return parent::getContextDefinition($name);
   }
 
   /**

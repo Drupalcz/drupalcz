@@ -7,8 +7,8 @@
 
 namespace Drupal\simpletest;
 
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Component\Utility\Crypt;
-use Drupal\Component\Utility\Random;
 use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Config\ConfigImporter;
@@ -29,6 +29,7 @@ abstract class TestBase {
 
   use SessionTestTrait;
   use RandomGeneratorTrait;
+  use AssertHelperTrait;
 
   /**
    * The test run ID.
@@ -294,6 +295,22 @@ abstract class TestBase {
   protected $strictConfigSchema = TRUE;
 
   /**
+   * An array of config object names that are excluded from schema checking.
+   *
+   * @var string[]
+   */
+  protected static $configSchemaCheckerExclusions = array(
+    // Following are used to test lack of or partial schema. Where partial
+    // schema is provided, that is explicitly tested in specific tests.
+    'config_schema_test.noschema',
+    'config_schema_test.someschema',
+    'config_schema_test.schema_data_types',
+    'config_schema_test.no_schema_data_types',
+    // Used to test application of schema to filtering of configuration.
+    'config_test.dynamic.system',
+  );
+
+  /**
    * HTTP authentication method (specified as a CURLAUTH_* constant).
    *
    * @var int
@@ -359,7 +376,7 @@ abstract class TestBase {
    * @param $status
    *   Can be 'pass', 'fail', 'exception', 'debug'.
    *   TRUE is a synonym for 'pass', FALSE for 'fail'.
-   * @param $message
+   * @param string|\Drupal\Component\Render\MarkupInterface $message
    *   (optional) A message to display with the assertion. Do not translate
    *   messages: use \Drupal\Component\Utility\SafeMarkup::format() to embed
    *   variables in the message text, not t(). If left blank, a default message
@@ -377,6 +394,9 @@ abstract class TestBase {
    *   is the caller function itself.
    */
   protected function assert($status, $message = '', $group = 'Other', array $caller = NULL) {
+    if ($message instanceof MarkupInterface) {
+      $message = (string) $message;
+    }
     // Convert boolean status to string status.
     if (is_bool($status)) {
       $status = $status ? 'pass' : 'fail';
@@ -654,7 +674,17 @@ abstract class TestBase {
    *   TRUE if the assertion succeeded, FALSE otherwise.
    */
   protected function assertEqual($first, $second, $message = '', $group = 'Other') {
-    return $this->assert($first == $second, $message ? $message : SafeMarkup::format('Value @first is equal to value @second.', array('@first' => var_export($first, TRUE), '@second' => var_export($second, TRUE))), $group);
+    // Cast objects implementing MarkupInterface to string instead of
+    // relying on PHP casting them to string depending on what they are being
+    // comparing with.
+    $first = $this->castSafeStrings($first);
+    $second = $this->castSafeStrings($second);
+    $is_equal = $first == $second;
+    if (!$is_equal || !$message) {
+      $default_message = SafeMarkup::format('Value @first is equal to value @second.', array('@first' => var_export($first, TRUE), '@second' => var_export($second, TRUE)));
+      $message = $message ? $message . PHP_EOL . $default_message : $default_message;
+    }
+    return $this->assert($is_equal, $message, $group);
   }
 
   /**
@@ -679,7 +709,17 @@ abstract class TestBase {
    *   TRUE if the assertion succeeded, FALSE otherwise.
    */
   protected function assertNotEqual($first, $second, $message = '', $group = 'Other') {
-    return $this->assert($first != $second, $message ? $message : SafeMarkup::format('Value @first is not equal to value @second.', array('@first' => var_export($first, TRUE), '@second' => var_export($second, TRUE))), $group);
+    // Cast objects implementing MarkupInterface to string instead of
+    // relying on PHP casting them to string depending on what they are being
+    // comparing with.
+    $first = $this->castSafeStrings($first);
+    $second = $this->castSafeStrings($second);
+    $not_equal = $first != $second;
+    if (!$not_equal || !$message) {
+      $default_message = SafeMarkup::format('Value @first is not equal to value @second.', array('@first' => var_export($first, TRUE), '@second' => var_export($second, TRUE)));
+      $message = $message ? $message . PHP_EOL . $default_message : $default_message;
+    }
+    return $this->assert($not_equal, $message, $group);
   }
 
   /**
@@ -704,7 +744,12 @@ abstract class TestBase {
    *   TRUE if the assertion succeeded, FALSE otherwise.
    */
   protected function assertIdentical($first, $second, $message = '', $group = 'Other') {
-    return $this->assert($first === $second, $message ? $message : SafeMarkup::format('Value @first is identical to value @second.', array('@first' => var_export($first, TRUE), '@second' => var_export($second, TRUE))), $group);
+    $is_identical = $first === $second;
+    if (!$is_identical || !$message) {
+      $default_message = SafeMarkup::format('Value @first is identical to value @second.', array('@first' => var_export($first, TRUE), '@second' => var_export($second, TRUE)));
+      $message = $message ? $message . PHP_EOL . $default_message : $default_message;
+    }
+    return $this->assert($is_identical, $message, $group);
   }
 
   /**
@@ -729,7 +774,12 @@ abstract class TestBase {
    *   TRUE if the assertion succeeded, FALSE otherwise.
    */
   protected function assertNotIdentical($first, $second, $message = '', $group = 'Other') {
-    return $this->assert($first !== $second, $message ? $message : SafeMarkup::format('Value @first is not identical to value @second.', array('@first' => var_export($first, TRUE), '@second' => var_export($second, TRUE))), $group);
+    $not_identical = $first !== $second;
+    if (!$not_identical || !$message) {
+      $default_message = SafeMarkup::format('Value @first is not identical to value @second.', array('@first' => var_export($first, TRUE), '@second' => var_export($second, TRUE)));
+      $message = $message ? $message . PHP_EOL . $default_message : $default_message;
+    }
+    return $this->assert($not_identical, $message, $group);
   }
 
   /**
@@ -754,9 +804,9 @@ abstract class TestBase {
    *   TRUE if the assertion succeeded, FALSE otherwise.
    */
   protected function assertIdenticalObject($object1, $object2, $message = '', $group = 'Other') {
-    $message = $message ?: SafeMarkup::format('!object1 is identical to !object2', array(
-      '!object1' => var_export($object1, TRUE),
-      '!object2' => var_export($object2, TRUE),
+    $message = $message ?: SafeMarkup::format('@object1 is identical to @object2', array(
+      '@object1' => var_export($object1, TRUE),
+      '@object2' => var_export($object2, TRUE),
     ));
     $identical = TRUE;
     foreach ($object1 as $key => $value) {
@@ -771,13 +821,49 @@ abstract class TestBase {
    * @return bool
    *   TRUE if the assertion succeeded, FALSE otherwise.
    *
-   * @see TestBase::prepareEnvironment()
+   * @see \Drupal\simpletest\TestBase::prepareEnvironment()
    * @see \Drupal\Core\DrupalKernel::bootConfiguration()
    */
   protected function assertNoErrorsLogged() {
     // Since PHP only creates the error.log file when an actual error is
     // triggered, it is sufficient to check whether the file exists.
     return $this->assertFalse(file_exists(DRUPAL_ROOT . '/' . $this->siteDirectory . '/error.log'), 'PHP error.log is empty.');
+  }
+
+  /**
+   * Asserts that a specific error has been logged to the PHP error log.
+   *
+   * @param string $error_message
+   *   The expected error message.
+   *
+   * @return bool
+   *   TRUE if the assertion succeeded, FALSE otherwise.
+   *
+   * @see \Drupal\simpletest\TestBase::prepareEnvironment()
+   * @see \Drupal\Core\DrupalKernel::bootConfiguration()
+   */
+  protected function assertErrorLogged($error_message) {
+    $error_log_filename = DRUPAL_ROOT . '/' . $this->siteDirectory . '/error.log';
+    if (!file_exists($error_log_filename)) {
+      $this->error('No error logged yet.');
+    }
+
+    $content = file_get_contents($error_log_filename);
+    $rows = explode(PHP_EOL, $content);
+
+    // We iterate over the rows in order to be able to remove the logged error
+    // afterwards.
+    $found = FALSE;
+    foreach ($rows as $row_index => $row) {
+      if (strpos($content, $error_message) !== FALSE) {
+        $found = TRUE;
+        unset($rows[$row_index]);
+      }
+    }
+
+    file_put_contents($error_log_filename, implode("\n", $rows));
+
+    return $this->assertTrue($found, sprintf('The %s error message was logged.', $error_message));
   }
 
   /**
@@ -872,7 +958,8 @@ abstract class TestBase {
     $verbose_filename =  $this->verboseClassName . '-' . $this->verboseId . '-' . $this->testId . '.html';
     if (file_put_contents($this->verboseDirectory . '/' . $verbose_filename, $message)) {
       $url = $this->verboseDirectoryUrl . '/' . $verbose_filename;
-      // Not using _l() to avoid invoking the theme system, so that unit tests
+      // Not using \Drupal\Core\Utility\LinkGeneratorInterface::generate()
+      // to avoid invoking the theme system, so that unit tests
       // can use verbose() as well.
       $url = '<a href="' . $url . '" target="_blank">Verbose message</a>';
       $this->error($url, 'User notice');
@@ -932,6 +1019,10 @@ abstract class TestBase {
     if (!empty($username) && !empty($password)) {
       $this->httpAuthCredentials = $username . ':' . $password;
     }
+
+    // Force assertion failures to be thrown as AssertionError for PHP 5 & 7
+    // compatibility.
+    \Drupal\Component\Assertion\Handle::register();
 
     set_error_handler(array($this, 'errorHandler'));
     // Iterate through all the methods in this class, unless a specific list of
@@ -1139,7 +1230,7 @@ abstract class TestBase {
     $this->originalConf = isset($GLOBALS['conf']) ? $GLOBALS['conf'] : NULL;
 
     // Backup statics and globals.
-    $this->originalContainer = clone \Drupal::getContainer();
+    $this->originalContainer = \Drupal::getContainer();
     $this->originalLanguage = $language_interface;
     $this->originalConfigDirectories = $GLOBALS['config_directories'];
 
@@ -1478,7 +1569,7 @@ abstract class TestBase {
     if (!$this->configImporter) {
       // Set up the ConfigImporter object for testing.
       $storage_comparer = new StorageComparer(
-        $this->container->get('config.storage.staging'),
+        $this->container->get('config.storage.sync'),
         $this->container->get('config.storage'),
         $this->container->get('config.manager')
       );
@@ -1544,6 +1635,25 @@ abstract class TestBase {
    */
   public function getTempFilesDirectory() {
     return $this->tempFilesDirectory;
+  }
+
+  /**
+   * Gets the config schema exclusions for this test.
+   *
+   * @return string[]
+   *   An array of config object names that are excluded from schema checking.
+   */
+  protected function getConfigSchemaExclusions() {
+    $class = get_class($this);
+    $exceptions = [];
+    while ($class) {
+      if (property_exists($class, 'configSchemaCheckerExclusions')) {
+        $exceptions = array_merge($exceptions, $class::$configSchemaCheckerExclusions);
+      }
+      $class = get_parent_class($class);
+    }
+    // Filter out any duplicates.
+    return array_unique($exceptions);
   }
 
 }

@@ -8,7 +8,6 @@
  * API pattern.
  */
 
-use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Cache\Cache;
@@ -73,7 +72,7 @@ function node_help($route_name, RouteMatchInterface $route_match) {
       $message = t('The content access permissions need to be rebuilt.');
     }
     else {
-      $message = t('The content access permissions need to be rebuilt. <a href="@node_access_rebuild">Rebuild permissions</a>.', array('@node_access_rebuild' => \Drupal::url('node.configure_rebuild_confirm')));
+      $message = t('The content access permissions need to be rebuilt. <a href=":node_access_rebuild">Rebuild permissions</a>.', array(':node_access_rebuild' => \Drupal::url('node.configure_rebuild_confirm')));
     }
     drupal_set_message($message, 'error');
   }
@@ -82,19 +81,19 @@ function node_help($route_name, RouteMatchInterface $route_match) {
     case 'help.page.node':
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('The Node module manages the creation, editing, deletion, settings, and display of the main site content. Content items managed by the Node module are typically displayed as pages on your site, and include a title, some meta-data (author, creation time, content type, etc.), and optional fields containing text or other data (fields are managed by the <a href="!field">Field module</a>). For more information, see <a href="!node">the online documentation for the Node module</a>.', array('!node' => 'https://www.drupal.org/documentation/modules/node', '!field' => \Drupal::url('help.page', array('name' => 'field')))) . '</p>';
+      $output .= '<p>' . t('The Node module manages the creation, editing, deletion, settings, and display of the main site content. Content items managed by the Node module are typically displayed as pages on your site, and include a title, some meta-data (author, creation time, content type, etc.), and optional fields containing text or other data (fields are managed by the <a href=":field">Field module</a>). For more information, see the <a href=":node">online documentation for the Node module</a>.', array(':node' => 'https://www.drupal.org/documentation/modules/node', ':field' => \Drupal::url('help.page', array('name' => 'field')))) . '</p>';
       $output .= '<h3>' . t('Uses') . '</h3>';
       $output .= '<dl>';
       $output .= '<dt>' . t('Creating content') . '</dt>';
-      $output .= '<dd>' . t('When new content is created, the Node module records basic information about the content, including the author, date of creation, and the <a href="!content-type">Content type</a>. It also manages the <em>publishing options</em>, which define whether or not the content is published, promoted to the front page of the site, and/or sticky at the top of content lists. Default settings can be configured for each <a href="!content-type">type of content</a> on your site.', array('!content-type' => \Drupal::url('entity.node_type.collection'))) . '</dd>';
+      $output .= '<dd>' . t('When new content is created, the Node module records basic information about the content, including the author, date of creation, and the <a href=":content-type">Content type</a>. It also manages the <em>publishing options</em>, which define whether or not the content is published, promoted to the front page of the site, and/or sticky at the top of content lists. Default settings can be configured for each <a href=":content-type">type of content</a> on your site.', array(':content-type' => \Drupal::url('entity.node_type.collection'))) . '</dd>';
       $output .= '<dt>' . t('Creating custom content types') . '</dt>';
-      $output .= '<dd>' . t('The Node module gives users with the <em>Administer content types</em> permission the ability to <a href="!content-new">create new content types</a> in addition to the default ones already configured. Creating custom content types gives you the flexibility to add <a href="!field">fields</a> and configure default settings that suit the differing needs of various site content.', array('!content-new' => \Drupal::url('node.type_add'), '!field' => \Drupal::url('help.page', array('name' => 'field')))) . '</dd>';
+      $output .= '<dd>' . t('The Node module gives users with the <em>Administer content types</em> permission the ability to <a href=":content-new">create new content types</a> in addition to the default ones already configured. Creating custom content types gives you the flexibility to add <a href=":field">fields</a> and configure default settings that suit the differing needs of various site content.', array(':content-new' => \Drupal::url('node.type_add'), ':field' => \Drupal::url('help.page', array('name' => 'field')))) . '</dd>';
       $output .= '<dt>' . t('Administering content') . '</dt>';
-      $output .= '<dd>' . t('The <a href="!content">Content</a> page lists your content, allowing you add new content, filter, edit or delete existing content, or perform bulk operations on existing content.', array('!content' => \Drupal::url('system.admin_content'))) . '</dd>';
+      $output .= '<dd>' . t('The <a href=":content">Content</a> page lists your content, allowing you add new content, filter, edit or delete existing content, or perform bulk operations on existing content.', array(':content' => \Drupal::url('system.admin_content'))) . '</dd>';
       $output .= '<dt>' . t('Creating revisions') . '</dt>';
       $output .= '<dd>' . t('The Node module also enables you to create multiple versions of any content, and revert to older versions using the <em>Revision information</em> settings.') . '</dd>';
       $output .= '<dt>' . t('User permissions') . '</dt>';
-      $output .= '<dd>' . t('The Node module makes a number of permissions available for each content type, which can be set by role on the <a href="!permissions">permissions page</a>.', array('!permissions' => \Drupal::url('user.admin_permissions', array(), array('fragment' => 'module-node')))) . '</dd>';
+      $output .= '<dd>' . t('The Node module makes a number of permissions available for each content type, which can be set by role on the <a href=":permissions">permissions page</a>.', array(':permissions' => \Drupal::url('user.admin_permissions', array(), array('fragment' => 'module-node')))) . '</dd>';
       $output .= '</dl>';
       return $output;
 
@@ -182,7 +181,7 @@ function node_entity_view_display_alter(EntityViewDisplayInterface $display, $co
  * @param $title
  *   (optional) A heading for the resulting list.
  *
- * @return
+ * @return array|false
  *   A renderable array containing a list of linked node titles fetched from
  *   $result, or FALSE if there are no rows in $result.
  */
@@ -317,7 +316,8 @@ function node_type_load($name) {
  * @param string $label
  *   (optional) The label for the body instance.
  *
- * @return \Drupal\field\Entity\FieldConfig Body field.
+ * @return \Drupal\field\Entity\FieldConfig
+ *   A Body field object.
  */
 function node_add_body_field(NodeTypeInterface $type, $label = 'Body') {
    // Add or remove the body field, as needed.
@@ -466,7 +466,7 @@ function node_revision_load($vid = NULL) {
  * @param $revision_id
  *   The revision ID to delete.
  *
- * @return
+ * @return bool
  *   TRUE if the revision deletion was successful; otherwise, FALSE.
  */
 function node_revision_delete($revision_id) {
@@ -479,7 +479,7 @@ function node_revision_delete($revision_id) {
  * @param \Drupal\node\NodeInterface $node
  *   A node entity.
  *
- * @return
+ * @return int|false
  *   The ID of the node if this is a full page view, otherwise FALSE.
  */
 function node_is_page(NodeInterface $node) {
@@ -730,7 +730,7 @@ function node_user_predelete($account) {
  * @param $number
  *   (optional) The maximum number of nodes to find. Defaults to 10.
  *
- * @return
+ * @return \Drupal\node\NodeInterface[]
  *   An array of node entities or an empty array if there are no recent nodes
  *   visible to the current user.
  */
@@ -777,7 +777,7 @@ function node_get_recent($number = 10) {
  *   (optional) A language code to use for rendering. Defaults to NULL which is
  *   the global content language of the current request.
  *
- * @return
+ * @return array
  *   An array as expected by drupal_render().
  */
 function node_view(NodeInterface $node, $view_mode = 'full', $langcode = NULL) {
@@ -795,7 +795,7 @@ function node_view(NodeInterface $node, $view_mode = 'full', $langcode = NULL) {
  *   (optional) A language code to use for rendering. Defaults to the global
  *   content language of the current request.
  *
- * @return
+ * @return array
  *   An array in the format expected by drupal_render().
  */
 function node_view_multiple($nodes, $view_mode = 'teaser', $langcode = NULL) {
@@ -1064,6 +1064,14 @@ function node_query_node_access_alter(AlterableInterface $query) {
 
   // Update the query for the given storage method.
   \Drupal::service('node.grant_storage')->alterQuery($query, $tables, $op, $account, $base_table);
+
+  // Bubble the 'user.node_grants:$op' cache context to the current render
+  // context.
+  $renderer = \Drupal::service('renderer');
+  if ($renderer->hasRenderContext()) {
+    $build = ['#cache' => ['contexts' => ['user.node_grants:' . $op]]];
+    $renderer->render($build);
+  }
 }
 
 /**
@@ -1081,8 +1089,9 @@ function node_query_node_access_alter(AlterableInterface $query) {
  * @param $rebuild
  *   (optional) The boolean value to be written.
  *
- * @return
- *   The current value of the flag if no value was provided for $rebuild.
+ * @return bool|null
+ *   The current value of the flag if no value was provided for $rebuild. If a
+ *   value was provided for $rebuild, nothing (NULL) is returned.
  *
  * @see node_access_rebuild()
  */
@@ -1339,4 +1348,11 @@ function node_comment_delete($comment) {
   if ($comment->getCommentedEntityTypeId() == 'node') {
     node_reindex_node_search($comment->getCommentedEntityId());
   }
+}
+
+/**
+ * Implements hook_config_translation_info_alter().
+ */
+function node_config_translation_info_alter(&$info) {
+  $info['node_type']['class'] = 'Drupal\node\ConfigTranslation\NodeTypeMapper';
 }

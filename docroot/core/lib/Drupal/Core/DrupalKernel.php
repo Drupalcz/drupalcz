@@ -22,14 +22,12 @@ use Drupal\Core\Extension\ExtensionDiscovery;
 use Drupal\Core\File\MimeType\MimeTypeGuesser;
 use Drupal\Core\Http\TrustedHostsRequestFactory;
 use Drupal\Core\Language\Language;
-use Drupal\Core\PageCache\RequestPolicyInterface;
 use Drupal\Core\Site\Settings;
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
@@ -992,47 +990,32 @@ class DrupalKernel implements DrupalKernelInterface, TerminableInterface {
    * @todo D8: Eliminate this entirely in favor of Request object.
    */
   protected function initializeRequestGlobals(Request $request) {
-    // Provided by settings.php.
     global $base_url;
     // Set and derived from $base_url by this function.
     global $base_path, $base_root;
     global $base_secure_url, $base_insecure_url;
 
-    // @todo Refactor with the Symfony Request object.
-    if (isset($base_url)) {
-      // Parse fixed base URL from settings.php.
-      $parts = parse_url($base_url);
-      if (!isset($parts['path'])) {
-        $parts['path'] = '';
-      }
-      $base_path = $parts['path'] . '/';
-      // Build $base_root (everything until first slash after "scheme://").
-      $base_root = substr($base_url, 0, strlen($base_url) - strlen($parts['path']));
-    }
-    else {
-      // Create base URL.
-      $base_root = $request->getSchemeAndHttpHost();
+    // Create base URL.
+    $base_root = $request->getSchemeAndHttpHost();
+    $base_url = $base_root;
 
-      $base_url = $base_root;
-
-      // For a request URI of '/index.php/foo', $_SERVER['SCRIPT_NAME'] is
-      // '/index.php', whereas $_SERVER['PHP_SELF'] is '/index.php/foo'.
-      if ($dir = rtrim(dirname($request->server->get('SCRIPT_NAME')), '\/')) {
-        // Remove "core" directory if present, allowing install.php,
-        // authorize.php, and others to auto-detect a base path.
-        $core_position = strrpos($dir, '/core');
-        if ($core_position !== FALSE && strlen($dir) - 5 == $core_position) {
-          $base_path = substr($dir, 0, $core_position);
-        }
-        else {
-          $base_path = $dir;
-        }
-        $base_url .= $base_path;
-        $base_path .= '/';
+    // For a request URI of '/index.php/foo', $_SERVER['SCRIPT_NAME'] is
+    // '/index.php', whereas $_SERVER['PHP_SELF'] is '/index.php/foo'.
+    if ($dir = rtrim(dirname($request->server->get('SCRIPT_NAME')), '\/')) {
+      // Remove "core" directory if present, allowing install.php,
+      // authorize.php, and others to auto-detect a base path.
+      $core_position = strrpos($dir, '/core');
+      if ($core_position !== FALSE && strlen($dir) - 5 == $core_position) {
+        $base_path = substr($dir, 0, $core_position);
       }
       else {
-        $base_path = '/';
+        $base_path = $dir;
       }
+      $base_url .= $base_path;
+      $base_path .= '/';
+    }
+    else {
+      $base_path = '/';
     }
     $base_secure_url = str_replace('http://', 'https://', $base_url);
     $base_insecure_url = str_replace('https://', 'http://', $base_url);
@@ -1403,7 +1386,7 @@ class DrupalKernel implements DrupalKernelInterface, TerminableInterface {
    *   The request object
    *
    * @return bool
-   *   TRUE if the hostmame is valid, or FALSE otherwise.
+   *   TRUE if the hostname is valid, or FALSE otherwise.
    */
   public static function validateHostname(Request $request) {
     // $request->getHost() can throw an UnexpectedValueException if it
@@ -1429,7 +1412,7 @@ class DrupalKernel implements DrupalKernelInterface, TerminableInterface {
    * is possible to create an attack vectors against a site by overriding this.
    * Symfony provides a mechanism for creating a list of trusted Host values.
    *
-   * Host patterns (as regular expressions) can be configured throught
+   * Host patterns (as regular expressions) can be configured through
    * settings.php for multisite installations, sites using ServerAlias without
    * canonical redirection, or configurations where the site responds to default
    * requests. For example,

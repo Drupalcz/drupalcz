@@ -27,13 +27,13 @@ interface RendererInterface {
    * @param array $elements
    *   The structured array describing the data to be rendered.
    *
-   * @return \Drupal\Component\Utility\SafeStringInterface
+   * @return \Drupal\Component\Render\MarkupInterface
    *   The rendered HTML.
-   *
-   * @see ::render()
    *
    * @throws \LogicException
    *   When called from inside another renderRoot() call.
+   *
+   * @see \Drupal\Core\Render\RendererInterface::render()
    */
   public function renderRoot(&$elements);
 
@@ -42,7 +42,7 @@ interface RendererInterface {
    *
    * Calls ::render() in such a way that placeholders are replaced.
    *
-   * Useful for e.g. rendering the values of tokens or e-mails, which need a
+   * Useful for e.g. rendering the values of tokens or emails, which need a
    * render array being turned into a string, but don't need any of the
    * bubbleable metadata (the attached assets the cache tags).
    *
@@ -58,13 +58,31 @@ interface RendererInterface {
    * @param array $elements
    *   The structured array describing the data to be rendered.
    *
-   * @return \Drupal\Component\Utility\SafeStringInterface
+   * @return \Drupal\Component\Render\MarkupInterface
    *   The rendered HTML.
    *
-   * @see ::renderRoot()
-   * @see ::render()
+   * @see \Drupal\Core\Render\RendererInterface::renderRoot()
+   * @see \Drupal\Core\Render\RendererInterface::render()
    */
   public function renderPlain(&$elements);
+
+  /**
+   * Renders final HTML for a placeholder.
+   *
+   * Renders the placeholder in isolation.
+   *
+   * @param string $placeholder
+   *   An attached placeholder to render. (This must be a key of one of the
+   *   values of $elements['#attached']['placeholders'].)
+   * @param array $elements
+   *   The structured array describing the data to be rendered.
+   *
+   * @return array
+   *   The updated $elements.
+   *
+   * @see \Drupal\Core\Render\RendererInterface::render()
+   */
+  public function renderPlaceholder($placeholder, array $elements);
 
   /**
    * Renders HTML given a structured array tree.
@@ -209,7 +227,7 @@ interface RendererInterface {
    *     drupal_process_states().
    *   - If this element has #attached defined then any required libraries,
    *     JavaScript, CSS, or other custom data are added to the current page by
-   *     drupal_process_attached().
+   *     \Drupal\Core\Render\AttachmentsResponseProcessorInterface::processAttachments().
    *   - If this element has an array of #theme_wrappers defined and
    *     #render_children is not set, #children is then re-rendered by passing
    *     the element in its current state to ThemeManagerInterface::render()
@@ -302,7 +320,7 @@ interface RendererInterface {
    *   (Internal use only.) Whether this is a recursive call or not. See
    *   ::renderRoot().
    *
-   * @return \Drupal\Component\Utility\SafeStringInterface
+   * @return \Drupal\Component\Render\MarkupInterface
    *   The rendered HTML.
    *
    * @throws \LogicException
@@ -316,8 +334,8 @@ interface RendererInterface {
    * @see \Drupal\Core\Render\ElementInfoManagerInterface::getInfo()
    * @see \Drupal\Core\Theme\ThemeManagerInterface::render()
    * @see drupal_process_states()
-   * @see drupal_process_attached()
-   * @see ::renderRoot()
+   * @see \Drupal\Core\Render\AttachmentsResponseProcessorInterface::processAttachments()
+   * @see \Drupal\Core\Render\RendererInterface::renderRoot()
    */
   public function render(&$elements, $is_root_call = FALSE);
 
@@ -348,19 +366,19 @@ interface RendererInterface {
    * Any and all rendering must therefore happen within a render context, and it
    * is this method that provides that.
    *
-   * @see \Drupal\Core\Render\BubbleableMetadata
-   *
    * @param \Drupal\Core\Render\RenderContext $context
    *   The render context to execute the callable within.
    * @param callable $callable
    *   The callable to execute.
+   *
    * @return mixed
    *   The callable's return value.
    *
-   * @see \Drupal\Core\Render\RenderContext
-   *
    * @throws \LogicException
    *   In case bubbling has failed, can only happen in case of broken code.
+   *
+   * @see \Drupal\Core\Render\RenderContext
+   * @see \Drupal\Core\Render\BubbleableMetadata
    */
   public function executeInRenderContext(RenderContext $context, callable $callable);
 

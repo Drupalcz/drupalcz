@@ -86,6 +86,14 @@ class BlockUiTest extends WebTestBase {
     $this->clickLink(t('Demonstrate block regions (@theme)', array('@theme' => 'Classy')));
     $elements = $this->xpath('//div[contains(@class, "region-highlighted")]/div[contains(@class, "block-region") and contains(text(), :title)]', array(':title' => 'Highlighted'));
     $this->assertTrue(!empty($elements), 'Block demo regions are shown.');
+
+    \Drupal::service('theme_handler')->install(array('test_theme'));
+    $this->drupalGet('admin/structure/block/demo/test_theme');
+    $this->assertEscaped('<strong>Test theme</strong>');
+
+    \Drupal::service('theme_handler')->install(['stable']);
+    $this->drupalGet('admin/structure/block/demo/stable');
+    $this->assertResponse(404, 'Hidden themes that are not the default theme are not supported by the block demo screen');
   }
 
   /**
@@ -132,6 +140,28 @@ class BlockUiTest extends WebTestBase {
     $this->drupalGet('admin/structure/block');
     $element = $this->xpath('//tr[contains(@class, :class)]', [':class' => 'region-title-header']);
     $this->assertTrue(!empty($element));
+
+    // Ensure hidden themes do not appear in the UI. Enable another non base
+    // theme and place the local tasks block.
+    $this->assertTrue(\Drupal::service('theme_handler')->themeExists('classy'), 'The classy base theme is enabled');
+    $this->drupalPlaceBlock('local_tasks_block', ['region' => 'header']);
+    \Drupal::service('theme_installer')->install(['stable', 'stark']);
+    $this->drupalGet('admin/structure/block');
+    $theme_handler = \Drupal::service('theme_handler');
+    $this->assertLink($theme_handler->getName('classy'));
+    $this->assertLink($theme_handler->getName('stark'));
+    $this->assertNoLink($theme_handler->getName('stable'));
+
+    $this->drupalGet('admin/structure/block/list/stable');
+    $this->assertResponse(404, 'Placing blocks through UI is not possible for a hidden base theme.');
+
+    \Drupal::configFactory()->getEditable('system.theme')->set('admin', 'stable')->save();
+    \Drupal::service('router.builder')->rebuildIfNeeded();
+    $this->drupalPlaceBlock('local_tasks_block', ['region' => 'header', 'theme' => 'stable']);
+    $this->drupalGet('admin/structure/block');
+    $this->assertLink($theme_handler->getName('stable'));
+    $this->drupalGet('admin/structure/block/list/stable');
+    $this->assertResponse(200, 'Placing blocks through UI is possible for a hidden base theme that is the admin theme.');
   }
 
   /**
@@ -162,21 +192,65 @@ class BlockUiTest extends WebTestBase {
   }
 
   /**
-   * Tests the behavior of context-aware blocks.
+   * Tests the behavior of unsatisfied context-aware blocks.
    */
-  public function testContextAwareBlocks() {
+  public function testContextAwareUnsatisfiedBlocks() {
     $arguments = array(
-      ':ul_class' => 'block-list',
-      ':li_class' => 'test-context-aware',
-      ':href' => 'admin/structure/block/add/test_context_aware/classy',
-      ':text' => 'Test context-aware block',
+      ':category' => 'Block test',
+      ':href' => 'admin/structure/block/add/test_context_aware_unsatisfied/classy',
+      ':text' => 'Test context-aware unsatisfied block',
     );
 
     $this->drupalGet('admin/structure/block');
-    $elements = $this->xpath('//details[@id="edit-category-block-test"]//ul[contains(@class, :ul_class)]/li[contains(@class, :li_class)]/a[contains(@href, :href) and text()=:text]', $arguments);
+    $this->clickLinkPartialName('Place block');
+    $elements = $this->xpath('//tr[.//td/div[text()=:text] and .//td[text()=:category] and .//td//a[contains(@href, :href)]]', $arguments);
     $this->assertTrue(empty($elements), 'The context-aware test block does not appear.');
+
+    $definition = \Drupal::service('plugin.manager.block')->getDefinition('test_context_aware_unsatisfied');
+    $this->assertTrue(!empty($definition), 'The context-aware test block does not exist.');
+  }
+
+  /**
+   * Tests the behavior of context-aware blocks.
+   */
+  public function testContextAwareBlocks() {
+    $expected_text = '<div id="test_context_aware--username">' . \Drupal::currentUser()->getUsername() . '</div>';
+    $this->drupalGet('');
+    $this->assertNoText('Test context-aware block');
+    $this->assertNoRaw($expected_text);
+
+    $block_url = 'admin/structure/block/add/test_context_aware/classy';
+    $arguments = array(
+      ':title' => 'Test context-aware block',
+      ':category' => 'Block test',
+      ':href' => $block_url,
+    );
+    $pattern = '//tr[.//td/div[text()=:title] and .//td[text()=:category] and .//td//a[contains(@href, :href)]]';
+
+    $this->drupalGet('admin/structure/block');
+    $this->clickLinkPartialName('Place block');
+    $elements = $this->xpath($pattern, $arguments);
+    $this->assertTrue(!empty($elements), 'The context-aware test block appears.');
     $definition = \Drupal::service('plugin.manager.block')->getDefinition('test_context_aware');
     $this->assertTrue(!empty($definition), 'The context-aware test block exists.');
+    $edit = [
+      'region' => 'content',
+      'settings[context_mapping][user]' => '@block_test.multiple_static_context:user2',
+    ];
+    $this->drupalPostForm($block_url, $edit, 'Save block');
+
+    $this->drupalGet('');
+    $this->assertText('Test context-aware block');
+    $this->assertRaw($expected_text);
+
+    // Test context mapping allows empty selection for optional contexts.
+    $this->drupalGet('admin/structure/block/manage/testcontextawareblock');
+    $edit = [
+      'settings[context_mapping][user]' => '',
+    ];
+    $this->drupalPostForm(NULL, $edit, 'Save block');
+    $this->drupalGet('');
+    $this->assertText('No context mapping selected.');
   }
 
   /**

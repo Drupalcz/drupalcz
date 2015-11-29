@@ -8,6 +8,7 @@
 namespace Drupal\file\Plugin\Field\FieldType;
 
 use Drupal\Component\Utility\Bytes;
+use Drupal\Component\Render\PlainTextOutput;
 use Drupal\Component\Utility\Random;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
@@ -27,7 +28,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *   default_widget = "file_generic",
  *   default_formatter = "file_default",
  *   list_class = "\Drupal\file\Plugin\Field\FieldType\FileFieldItemList",
- *   constraints = {"ValidReference" = {}, "ReferenceAccess" = {}}
+ *   constraints = {"ReferenceAccess" = {}, "FileValidation" = {}}
  * )
  */
 class FileItem extends EntityReferenceItem {
@@ -50,7 +51,7 @@ class FileItem extends EntityReferenceItem {
   public static function defaultFieldSettings() {
     return array(
       'file_extensions' => 'txt',
-      'file_directory' => '',
+      'file_directory' => '[date:custom:Y]-[date:custom:m]',
       'max_filesize' => '',
       'description_field' => 0,
     ) + parent::defaultFieldSettings();
@@ -249,7 +250,7 @@ class FileItem extends EntityReferenceItem {
    */
   public static function validateMaxFilesize($element, FormStateInterface $form_state) {
     if (!empty($element['#value']) && !is_numeric(Bytes::toInt($element['#value']))) {
-      $form_state->setError($element, t('The "!name" option must contain a valid value. You may either leave the text field empty or enter a string like "512" (bytes), "80 KB" (kilobytes) or "50 MB" (megabytes).', array('!name' => t($element['title']))));
+      $form_state->setError($element, t('The "@name" option must contain a valid value. You may either leave the text field empty or enter a string like "512" (bytes), "80 KB" (kilobytes) or "50 MB" (megabytes).', array('@name' => $element['title'])));
     }
   }
 
@@ -260,17 +261,33 @@ class FileItem extends EntityReferenceItem {
    *   An array of token objects to pass to token_replace().
    *
    * @return string
-   *   A file directory URI with tokens replaced.
+   *   An unsanitized file directory URI with tokens replaced. The result of
+   *   the token replacement is then converted to plain text and returned.
    *
    * @see token_replace()
    */
   public function getUploadLocation($data = array()) {
-    $settings = $this->getSettings();
+    return static::doGetUploadLocation($this->getSettings(), $data);
+  }
+
+  /**
+   * Determines the URI for a file field.
+   *
+   * @param array $settings
+   *   The array of field settings.
+   * @param array $data
+   *   An array of token objects to pass to token_replace().
+   *
+   * @return string
+   *   An unsanitized file directory URI with tokens replaced. The result of
+   *   the token replacement is then converted to plain text and returned.
+   */
+  protected static function doGetUploadLocation(array $settings, $data = []) {
     $destination = trim($settings['file_directory'], '/');
 
-    // Replace tokens.
-    $destination = \Drupal::token()->replace($destination, $data);
-
+    // Replace tokens. As the tokens might contain HTML we convert it to plain
+    // text.
+    $destination = PlainTextOutput::renderFromHtml(\Drupal::token()->replace($destination, $data));
     return $settings['uri_scheme'] . '://' . $destination;
   }
 
@@ -309,8 +326,12 @@ class FileItem extends EntityReferenceItem {
     $random = new Random();
     $settings = $field_definition->getSettings();
 
+    // Prepare destination.
+    $dirname = static::doGetUploadLocation($settings);
+    file_prepare_directory($dirname, FILE_CREATE_DIRECTORY);
+
     // Generate a file entity.
-    $destination = $settings['uri_scheme'] . '://' . $settings['file_directory'] . $random->name(10, TRUE) . '.txt';
+    $destination = $dirname . '/' . $random->name(10, TRUE) . '.txt';
     $data = $random->paragraphs(3);
     $file = file_save_data($data, $destination, FILE_EXISTS_ERROR);
     $values = array(
@@ -332,6 +353,13 @@ class FileItem extends EntityReferenceItem {
       return (bool) $this->display;
     }
     return TRUE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function getPreconfiguredOptions() {
+    return [];
   }
 
 }

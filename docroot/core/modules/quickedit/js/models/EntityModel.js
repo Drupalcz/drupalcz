@@ -5,7 +5,7 @@
 
 (function (_, $, Backbone, Drupal) {
 
-  "use strict";
+  'use strict';
 
   Drupal.quickedit.EntityModel = Drupal.quickedit.BaseModel.extend(/** @lends Drupal.quickedit.EntityModel# */{
 
@@ -410,7 +410,7 @@
                 entityModel.set('state', 'opened', {reason: 'networkerror'});
                 // Show a modal to inform the user of the network error.
                 var message = Drupal.t('Your changes to <q>@entity-title</q> could not be saved, either due to a website problem or a network connection problem.<br>Please try again.', {'@entity-title': entityModel.get('label')});
-                Drupal.quickedit.util.networkErrorModal(Drupal.t('Sorry!'), message);
+                Drupal.quickedit.util.networkErrorModal(Drupal.t('Network problem!'), message);
               }
             });
           }
@@ -536,7 +536,7 @@
         }
       }
       else if (currentIsCommitting === true && nextIsCommitting === true) {
-        return "isCommitting is a mutex, hence only changes are allowed";
+        return 'isCommitting is a mutex, hence only changes are allowed';
       }
     },
 

@@ -10,7 +10,6 @@ namespace Drupal\Tests\forum\Unit\Breadcrumb;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Link;
 use Drupal\Tests\UnitTestCase;
-use Symfony\Cmf\Component\Routing\RouteObjectInterface;
 use Symfony\Component\DependencyInjection\Container;
 
 /**
@@ -28,8 +27,7 @@ class ForumListingBreadcrumbBuilderTest extends UnitTestCase {
     $cache_contexts_manager = $this->getMockBuilder('Drupal\Core\Cache\Context\CacheContextsManager')
       ->disableOriginalConstructor()
       ->getMock();
-    $cache_contexts_manager->expects($this->any())
-      ->method('validate_tokens');
+    $cache_contexts_manager->method('assertValidTokens')->willReturn(TRUE);
     $container = new Container();
     $container->set('cache_contexts_manager', $cache_contexts_manager);
     \Drupal::setContainer($container);

@@ -71,7 +71,7 @@ class ImageWidget extends FileWidget {
       $preview_image_style = t('Preview image style: @style', array('@style' => $image_styles[$image_style_setting]));
     }
     else {
-      $preview_image_style = t('Original image');
+      $preview_image_style = t('No preview');
     }
 
     array_unshift($summary, $preview_image_style);
@@ -160,7 +160,6 @@ class ImageWidget extends FileWidget {
     $item['fids'] = $element['fids']['#value'];
 
     $element['#theme'] = 'image_widget';
-    $element['#attached']['library'][] = 'image/form';
 
     // Add the image preview.
     if (!empty($element['#files']) && $element['#preview_image_style']) {

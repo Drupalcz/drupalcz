@@ -20,9 +20,7 @@ class MigrateUpdateConfigsTest extends MigrateDrupal6TestBase {
   use SchemaCheckTestTrait;
 
   /**
-   * Modules to enable.
-   *
-   * @var array
+   * {@inheritdoc}
    */
   public static $modules = array('update');
 
@@ -31,7 +29,7 @@ class MigrateUpdateConfigsTest extends MigrateDrupal6TestBase {
    */
   protected function setUp() {
     parent::setUp();
-    $this->executeMigration('d6_update_settings');
+    $this->executeMigration('update_settings');
   }
 
   /**

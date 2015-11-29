@@ -21,6 +21,11 @@ class ModuleHandlerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
+  public static $modules = ['system'];
+
+  /**
+   * {@inheritdoc}
+   */
   protected function setUp() {
     parent::setUp();
 
@@ -48,7 +53,7 @@ class ModuleHandlerTest extends KernelTestBase {
    * The basic functionality of retrieving enabled modules.
    */
   function testModuleList() {
-    $module_list = array();
+    $module_list = ['system'];
 
     $this->assertModuleList($module_list, 'Initial');
 

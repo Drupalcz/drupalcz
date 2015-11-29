@@ -3,10 +3,8 @@ type: theme
 base theme: classy
 description: 'A flexible, recolorable theme with many regions and a responsive, mobile-first layout.'
 package: Core
-version: VERSION
-core: 8.x
-stylesheets-remove:
-  - '@classy/css/layout.css'
+# version: VERSION
+# core: 8.x
 libraries:
   - bartik/global-styling
 ckeditor_stylesheets:
@@ -34,3 +32,8 @@ regions:
   footer_fourth: 'Footer fourth'
   footer_fifth: 'Footer fifth'
 
+# Information added by Drupal.org packaging script on 2015-11-19
+version: '8.0.0'
+core: '8.x'
+project: 'drupal'
+datestamp: 1447942689

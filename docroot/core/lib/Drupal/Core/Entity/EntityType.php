@@ -110,7 +110,15 @@ class EntityType implements EntityTypeInterface {
   /**
    * The name of a callback that returns the label of the entity.
    *
-   * @var string|null
+   * @var callable|null
+   *
+   * @deprecated in Drupal 8.0.x-dev and will be removed before Drupal 9.0.0.
+   *   Use Drupal\Core\Entity\EntityInterface::label() for complex label
+   *   generation as needed.
+   *
+   * @see \Drupal\Core\Entity\EntityInterface::label()
+   *
+   * @todo Remove usages of label_callback https://www.drupal.org/node/2450793.
    */
   protected $label_callback = NULL;
 
@@ -268,6 +276,9 @@ class EntityType implements EntityTypeInterface {
     $this->handlers += array(
       'access' => 'Drupal\Core\Entity\EntityAccessControlHandler',
     );
+    if (isset($this->handlers['storage'])) {
+      $this->checkStorageClass($this->handlers['storage']);
+    }
 
     // Automatically add the EntityChanged constraint if the entity type tracks
     // the changed time.
@@ -451,7 +462,18 @@ class EntityType implements EntityTypeInterface {
    * {@inheritdoc}
    */
   public function setStorageClass($class) {
+    $this->checkStorageClass($class);
     $this->handlers['storage'] = $class;
+  }
+
+  /**
+   * Checks that the provided class is an instance of ConfigEntityStorage.
+   *
+   * @param string $class
+   *   The class to check.
+   */
+  protected function checkStorageClass($class) {
+    // Nothing to check by default.
   }
 
   /**
@@ -688,7 +710,7 @@ class EntityType implements EntityTypeInterface {
    * {@inheritdoc}
    */
   public function getLabel() {
-    return (string) $this->label;
+    return $this->label;
   }
 
   /**
@@ -725,7 +747,7 @@ class EntityType implements EntityTypeInterface {
    * {@inheritdoc}
    */
   public function getGroupLabel() {
-    return !empty($this->group_label) ? (string) $this->group_label : $this->t('Other', array(), array('context' => 'Entity type group'));
+    return !empty($this->group_label) ? $this->group_label : $this->t('Other', array(), array('context' => 'Entity type group'));
   }
 
   /**

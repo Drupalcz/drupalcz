@@ -25,7 +25,7 @@ class ConfigOverrideTest extends KernelTestBase {
 
   protected function setUp() {
     parent::setUp();
-    $this->copyConfig($this->container->get('config.storage'), $this->container->get('config.storage.staging'));
+    $this->copyConfig($this->container->get('config.storage'), $this->container->get('config.storage.sync'));
   }
 
   /**
@@ -93,15 +93,15 @@ class ConfigOverrideTest extends KernelTestBase {
     $this->assertIdentical($config->getOriginal('baz', FALSE), $expected_original_data['baz']);
     $this->assertIdentical($config->getOriginal('404', FALSE), $expected_original_data['404']);
 
-    // Write file to staging.
-    $staging = $this->container->get('config.storage.staging');
+    // Write file to sync.
+    $sync = $this->container->get('config.storage.sync');
     $expected_new_data = array(
       'foo' => 'barbar',
       '404' => 'herpderp',
     );
-    $staging->write('config_test.system', $expected_new_data);
+    $sync->write('config_test.system', $expected_new_data);
 
-    // Import changed data from staging to active.
+    // Import changed data from sync to active.
     $this->configImporter()->import();
     $data = $active->read('config_test.system');
 
@@ -132,6 +132,8 @@ class ConfigOverrideTest extends KernelTestBase {
       ->save();
     // Ensure override is preserved but all other data has been updated
     // accordingly.
+    $config = \Drupal::config('config_test.new');
+    $this->assertFalse($config->isNew(), 'The configuration object config_test.new is not new');
     $this->assertIdentical($config->get('key'), 'override');
     $this->assertIdentical($config->get('new_key'), 'new_value');
     $raw_data = $config->getRawData();

@@ -8,13 +8,9 @@
 namespace Drupal\editor;
 
 use Drupal\Core\Ajax\AjaxResponse;
-use Drupal\Core\Ajax\OpenModalDialogCommand;
-use Drupal\Core\Ajax\CloseModalDialogCommand;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\editor\Ajax\GetUntransformedTextCommand;
-use Drupal\editor\Form\EditorImageDialog;
-use Drupal\editor\Form\EditorLinkDialog;
 use Drupal\filter\Plugin\FilterInterface;
 use Drupal\filter\FilterFormatInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -63,6 +59,9 @@ class EditorController extends ControllerBase {
    *
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   A JSON response containing the XSS-filtered value.
+   *
+   * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+   *   Thrown if no value to filter is specified.
    *
    * @see editor_filter_xss()
    */

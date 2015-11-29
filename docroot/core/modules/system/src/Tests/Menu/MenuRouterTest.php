@@ -44,6 +44,7 @@ class MenuRouterTest extends WebTestBase {
 
     $this->drupalPlaceBlock('system_menu_block:tools');
     $this->drupalPlaceBlock('local_tasks_block');
+    $this->drupalPlaceBlock('page_title_block');
   }
 
   /**
@@ -203,6 +204,7 @@ class MenuRouterTest extends WebTestBase {
       "éøïвβ中國書۞"; // Characters from various non-ASCII alphabets.
     $this->drupalGet($path);
     $this->assertRaw('This is the menuTestCallback content.');
+    $this->assertNoText(t('The website encountered an unexpected error. Please try again later.'));
   }
 
   /**

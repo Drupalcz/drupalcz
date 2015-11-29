@@ -35,8 +35,7 @@ class FileFieldValidateTest extends FileFieldTestBase {
     $edit = array();
     $edit['title[0][value]'] = $this->randomMachineName();
     $this->drupalPostForm('node/add/' . $type_name, $edit, t('Save and publish'));
-    $this->assertText('1 error has been found:   ' . $field->label(), 'Node save failed when required file field was empty.');
-    $this->assertIdentical(1, count($this->xpath('//div[contains(concat(" ", normalize-space(@class), " "), :class)]//a', [':class' => ' messages--error '])), 'There is one link in the error message.');
+    $this->assertRaw(t('@title field is required.', array('@title' => $field->getLabel())), 'Node save failed when required file field was empty.');
 
     // Create a new node with the uploaded file.
     $nid = $this->uploadNodeFile($test_file, $field_name, $type_name);
@@ -57,8 +56,7 @@ class FileFieldValidateTest extends FileFieldTestBase {
     $edit = array();
     $edit['title[0][value]'] = $this->randomMachineName();
     $this->drupalPostForm('node/add/' . $type_name, $edit, t('Save and publish'));
-    $this->assertText('1 error has been found:   '  . $field->label(), 'Node save failed when required multiple value file field was empty.');
-    $this->assertIdentical(1, count($this->xpath('//div[contains(concat(" ", normalize-space(@class), " "), :class)]//a', [':class' => ' messages--error '])), 'There is one link in the error message.');
+    $this->assertRaw(t('@title field is required.', array('@title' => $field->getLabel())), 'Node save failed when required multiple value file field was empty.');
 
     // Create a new node with the uploaded file into the multivalue field.
     $nid = $this->uploadNodeFile($test_file, $field_name, $type_name);
@@ -159,6 +157,37 @@ class FileFieldValidateTest extends FileFieldTestBase {
     $node_file = File::load($node->{$field_name}->target_id);
     $this->assertFileExists($node_file, 'File exists after uploading a file with extension checking.');
     $this->assertFileEntryExists($node_file, 'File entry exists after uploading a file with extension checking.');
+  }
+
+  /**
+   * Checks that a file can always be removed if it does not pass validation.
+   */
+  public function testFileRemoval() {
+    $node_storage = $this->container->get('entity.manager')->getStorage('node');
+    $type_name = 'article';
+    $field_name = 'file_test';
+    $this->createFileField($field_name, 'node', $type_name);
+
+    $test_file = $this->getTestFile('image');
+
+    // Disable extension checking.
+    $this->updateFileField($field_name, $type_name, array('file_extensions' => ''));
+
+    // Check that the file can be uploaded with no extension checking.
+    $nid = $this->uploadNodeFile($test_file, $field_name, $type_name);
+    $node_storage->resetCache(array($nid));
+    $node = $node_storage->load($nid);
+    $node_file = File::load($node->{$field_name}->target_id);
+    $this->assertFileExists($node_file, 'File exists after uploading a file with no extension checking.');
+    $this->assertFileEntryExists($node_file, 'File entry exists after uploading a file with no extension checking.');
+
+    // Enable extension checking for text files.
+    $this->updateFileField($field_name, $type_name, array('file_extensions' => 'txt'));
+
+    // Check that the file can still be removed.
+    $this->removeNodeFile($nid);
+    $this->assertNoText('Only files with the following extensions are allowed: txt.');
+    $this->assertText('Article ' . $node->getTitle() . ' has been updated.');
   }
 
 }

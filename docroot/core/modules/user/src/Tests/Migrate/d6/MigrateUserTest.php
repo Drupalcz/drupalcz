@@ -7,6 +7,8 @@
 
 namespace Drupal\user\Tests\Migrate\d6;
 
+use Drupal\migrate\Entity\Migration;
+use Drupal\migrate\MigrateExecutable;
 use Drupal\user\Entity\User;
 use Drupal\file\Entity\File;
 use Drupal\Core\Database\Database;
@@ -21,20 +23,6 @@ use Drupal\migrate_drupal\Tests\d6\MigrateDrupal6TestBase;
 class MigrateUserTest extends MigrateDrupal6TestBase {
 
   /**
-   * The modules to be enabled during the test.
-   *
-   * @var array
-   */
-  static $modules = array(
-    'link',
-    'options',
-    'datetime',
-    'text',
-    'file',
-    'image',
-  );
-
-  /**
    * {@inheritdoc}
    */
   protected function setUp() {
@@ -42,24 +30,12 @@ class MigrateUserTest extends MigrateDrupal6TestBase {
 
     $this->installEntitySchema('file');
     $this->installSchema('file', ['file_usage']);
+    $this->installEntitySchema('node');
+    $this->installSchema('user', ['users_data']);
+    // Make sure uid 1 is created.
+    user_install();
 
-    // Create the user profile field and instance.
-    entity_create('field_storage_config', array(
-      'entity_type' => 'user',
-      'field_name' => 'user_picture',
-      'type' => 'image',
-      'translatable' => '0',
-    ))->save();
-    entity_create('field_config', array(
-      'label' => 'User Picture',
-      'description' => '',
-      'field_name' => 'user_picture',
-      'entity_type' => 'user',
-      'bundle' => 'user',
-      'required' => 0,
-    ))->save();
-
-    $file = entity_create('file', array(
+    $file = File::create(array(
       'fid' => 2,
       'uid' => 2,
       'filename' => 'image-test.jpg',
@@ -73,7 +49,7 @@ class MigrateUserTest extends MigrateDrupal6TestBase {
     file_put_contents($file->getFileUri(), file_get_contents('core/modules/simpletest/files/image-1.png'));
     $file->save();
 
-    $file = entity_create('file', array(
+    $file = File::create(array(
       'fid' => 8,
       'uid' => 8,
       'filename' => 'image-test.png',
@@ -87,29 +63,7 @@ class MigrateUserTest extends MigrateDrupal6TestBase {
     file_put_contents($file->getFileUri(), file_get_contents('core/modules/simpletest/files/image-2.jpg'));
     $file->save();
 
-    $id_mappings = array(
-      'd6_user_role' => array(
-        array(array(1), array('anonymous user')),
-        array(array(2), array('authenticated user')),
-        array(array(3), array('migrate test role 1')),
-        array(array(4), array('migrate test role 2')),
-        array(array(5), array('migrate test role 3')),
-      ),
-      'user_picture_entity_display' => array(
-        array(array(1), array('user', 'user', 'default', 'user_picture')),
-      ),
-      'user_picture_entity_form_display' => array(
-        array(array(1), array('user', 'user', 'default', 'user_picture')),
-      ),
-      'd6_user_picture_file' => array(
-        array(array(2), array(2)),
-        array(array(8), array(8)),
-      ),
-    );
-
-    $this->prepareMigrations($id_mappings);
-
-    $this->executeMigration('d6_user');
+    $this->migrateUsers();
   }
 
   /**
@@ -119,6 +73,7 @@ class MigrateUserTest extends MigrateDrupal6TestBase {
     $users = Database::getConnection('default', 'migrate')
       ->select('users', 'u')
       ->fields('u')
+      ->condition('uid', 0, '>')
       ->execute()
       ->fetchAll();
 
@@ -131,9 +86,9 @@ class MigrateUserTest extends MigrateDrupal6TestBase {
         ->execute()
         ->fetchCol();
       $roles = array(RoleInterface::AUTHENTICATED_ID);
-      $migration_role = entity_load('migration', 'd6_user_role');
+      $id_map = Migration::load('d6_user_role')->getIdMap();
       foreach ($rids as $rid) {
-        $role = $migration_role->getIdMap()->lookupDestinationId(array($rid));
+        $role = $id_map->lookupDestinationId(array($rid));
         $roles[] = reset($role);
       }
 
@@ -164,8 +119,28 @@ class MigrateUserTest extends MigrateDrupal6TestBase {
       }
 
       // Use the API to check if the password has been salted and re-hashed to
-      // conform the Drupal >= 7.
-      $this->assertTrue(\Drupal::service('password')->check($source->pass_plain, $user->getPassword()));
+      // conform to Drupal >= 7 for non-admin users.
+      if ($user->id() != 1) {
+        $this->assertTrue(\Drupal::service('password')
+          ->check($source->pass_plain, $user->getPassword()));
+      }
+    }
+    // Rollback the migration and make sure everything is deleted but uid 1.
+    (new MigrateExecutable($this->migration, $this))->rollback();
+    $users = Database::getConnection('default', 'migrate')
+      ->select('users', 'u')
+      ->fields('u', ['uid'])
+      ->condition('uid', 0, '>')
+      ->execute()
+      ->fetchCol();
+    foreach ($users as $uid) {
+      $account = User::load($uid);
+      if ($uid == 1) {
+        $this->assertNotNull($account, 'User 1 was preserved after rollback');
+      }
+      else {
+        $this->assertNull($account);
+      }
     }
   }
 

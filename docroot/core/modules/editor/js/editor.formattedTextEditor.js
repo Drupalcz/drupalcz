@@ -13,7 +13,7 @@
 
 (function ($, Drupal, drupalSettings) {
 
-  "use strict";
+  'use strict';
 
   Drupal.quickedit.editors.editor = Drupal.quickedit.EditorView.extend(/** @lends Drupal.quickedit.editors.editor# */{
 
@@ -63,7 +63,7 @@
 
       // Store the actual value of this field. We'll need this to restore the
       // original value when the user discards his modifications.
-      var $fieldItems = this.$el.find('.field__item');
+      var $fieldItems = this.$el.find('.quickedit-field');
       if ($fieldItems.length) {
         this.$textElement = $fieldItems.eq(0);
       }

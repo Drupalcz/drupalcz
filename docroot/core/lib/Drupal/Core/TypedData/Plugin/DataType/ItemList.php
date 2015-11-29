@@ -38,7 +38,7 @@ class ItemList extends TypedData implements \IteratorAggregate, ListInterface {
   protected $list = array();
 
   /**
-   * Overrides \Drupal\Core\TypedData\TypedData::getValue().
+   * {@inheritdoc}
    */
   public function getValue() {
     $values = array();
@@ -84,7 +84,7 @@ class ItemList extends TypedData implements \IteratorAggregate, ListInterface {
   }
 
   /**
-   * Overrides \Drupal\Core\TypedData\TypedData::getString().
+   * {@inheritdoc}
    */
   public function getString() {
     $strings = array();
@@ -172,7 +172,7 @@ class ItemList extends TypedData implements \IteratorAggregate, ListInterface {
   }
 
   /**
-   * Implements \ArrayAccess::offsetExists().
+   * {@inheritdoc}
    */
   public function offsetExists($offset) {
     // We do not want to throw exceptions here, so we do not use get().
@@ -180,7 +180,7 @@ class ItemList extends TypedData implements \IteratorAggregate, ListInterface {
   }
 
   /**
-   * Implements \ArrayAccess::offsetUnset().
+   * {@inheritdoc}
    */
   public function offsetUnset($offset) {
     $this->removeItem($offset);
@@ -222,32 +222,32 @@ class ItemList extends TypedData implements \IteratorAggregate, ListInterface {
    * @return \Drupal\Core\TypedData\TypedDataInterface
    */
   protected function createItem($offset = 0, $value = NULL) {
-    return \Drupal::typedDataManager()->getPropertyInstance($this, $offset, $value);
+    return $this->getTypedDataManager()->getPropertyInstance($this, $offset, $value);
   }
 
   /**
-   * Implements \Drupal\Core\TypedData\ListInterface::getItemDefinition().
+   * {@inheritdoc}
    */
   public function getItemDefinition() {
     return $this->definition->getItemDefinition();
   }
 
   /**
-   * Implements \IteratorAggregate::getIterator().
+   * {@inheritdoc}
    */
   public function getIterator() {
     return new \ArrayIterator($this->list);
   }
 
   /**
-   * Implements \Countable::count().
+   * {@inheritdoc}
    */
   public function count() {
     return count($this->list);
   }
 
   /**
-   * Implements \Drupal\Core\TypedData\ListInterface::isEmpty().
+   * {@inheritdoc}
    */
   public function isEmpty() {
     foreach ($this->list as $item) {
@@ -287,7 +287,7 @@ class ItemList extends TypedData implements \IteratorAggregate, ListInterface {
   }
 
   /**
-   * Implements \Drupal\Core\TypedData\ListInterface::onChange().
+   * {@inheritdoc}
    */
   public function onChange($delta) {
     // Notify the parent of changes.

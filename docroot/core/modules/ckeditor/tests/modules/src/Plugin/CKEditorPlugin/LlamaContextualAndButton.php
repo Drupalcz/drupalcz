@@ -10,7 +10,6 @@ namespace Drupal\ckeditor_test\Plugin\CKEditorPlugin;
 use Drupal\ckeditor\CKEditorPluginButtonsInterface;
 use Drupal\ckeditor\CKEditorPluginContextualInterface;
 use Drupal\ckeditor\CKEditorPluginConfigurableInterface;
-use Drupal\Component\Plugin\PluginBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\editor\Entity\Editor;
 
@@ -26,7 +25,7 @@ use Drupal\editor\Entity\Editor;
 class LlamaContextualAndButton extends Llama implements CKEditorPluginContextualInterface, CKEditorPluginButtonsInterface, CKEditorPluginConfigurableInterface {
 
   /**
-   * Implements \Drupal\ckeditor\Plugin\CKEditorPluginContextualInterface::isEnabled().
+   * {@inheritdoc}
    */
   function isEnabled(Editor $editor) {
     // Automatically enable this plugin if the Strike button is enabled.
@@ -42,7 +41,7 @@ class LlamaContextualAndButton extends Llama implements CKEditorPluginContextual
   }
 
   /**
-   * Implements \Drupal\ckeditor\Plugin\CKEditorPluginButtonsInterface::getButtons().
+   * {@inheritdoc}
    */
   function getButtons() {
     return array(
@@ -53,14 +52,14 @@ class LlamaContextualAndButton extends Llama implements CKEditorPluginContextual
   }
 
   /**
-   * Implements \Drupal\ckeditor\Plugin\CKEditorPluginInterface::getFile().
+   * {@inheritdoc}
    */
   function getFile() {
     return drupal_get_path('module', 'ckeditor_test') . '/js/llama_contextual_and_button.js';
   }
 
   /**
-   * Implements \Drupal\ckeditor\Plugin\CKEditorPluginConfigurableInterface::settingsForm().
+   * {@inheritdoc}
    */
   function settingsForm(array $form, FormStateInterface $form_state, Editor $editor) {
     // Defaults.

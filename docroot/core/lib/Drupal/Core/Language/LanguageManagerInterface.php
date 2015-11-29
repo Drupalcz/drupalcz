@@ -7,21 +7,12 @@
 
 namespace Drupal\Core\Language;
 
-use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\Core\Url;
 
 /**
  * Common interface for the language manager service.
  */
 interface LanguageManagerInterface {
-
-  /**
-   * Injects the string translation service.
-   *
-   * @param \Drupal\Core\StringTranslation\TranslationInterface $translation
-   *   The string translation service.
-   */
-  public function setTranslation(TranslationInterface $translation);
 
   /**
    * Returns whether or not the site has more than one language added.

@@ -11,7 +11,6 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Link;
 use Drupal\Core\Access\AccessResultAllowed;
-use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Utility\LinkGeneratorInterface;
@@ -21,7 +20,6 @@ use Symfony\Cmf\Component\Routing\RouteObjectInterface;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Route;
 
 /**
@@ -124,6 +122,7 @@ class PathBasedBreadcrumbBuilderTest extends UnitTestCase {
     $cache_contexts_manager = $this->getMockBuilder('Drupal\Core\Cache\Context\CacheContextsManager')
       ->disableOriginalConstructor()
       ->getMock();
+    $cache_contexts_manager->method('assertValidTokens')->willReturn(TRUE);
     $cache_contexts_manager->expects($this->any())
       ->method('validate_tokens');
     $container = new Container();

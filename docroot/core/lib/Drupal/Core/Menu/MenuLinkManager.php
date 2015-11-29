@@ -41,10 +41,10 @@ class MenuLinkManager implements MenuLinkManagerInterface {
     // The external URL if this link has one (required if route_name is empty).
     'url' => '',
     // The static title for the menu link. If this came from a YAML definition
-    // or other safe source this may be a TranslationWrapper object.
+    // or other safe source this may be a TranslatableMarkup object.
     'title' => '',
     // The description. If this came from a YAML definition or other safe source
-    // this may be be a TranslationWrapper object.
+    // this may be be a TranslatableMarkup object.
     'description' => '',
     // The plugin ID of the parent link (or NULL for a top-level link).
     'parent' => '',
@@ -351,8 +351,11 @@ class MenuLinkManager implements MenuLinkManagerInterface {
    * {@inheritdoc}
    */
   public function addDefinition($id, array $definition) {
-    if ($this->treeStorage->load($id) || $id === '') {
-      throw new PluginException("The ID $id already exists as a plugin definition or is not valid");
+    if ($this->treeStorage->load($id)) {
+      throw new PluginException("The menu link ID $id already exists as a plugin definition");
+    }
+    elseif ($id === '') {
+      throw new PluginException("The menu link ID cannot be empty");
     }
     // Add defaults, so there is no requirement to specify everything.
     $this->processDefinition($definition, $id);

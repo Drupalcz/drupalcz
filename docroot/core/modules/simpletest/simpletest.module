@@ -2,7 +2,6 @@
 
 use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Database\Database;
-use Drupal\Core\Extension\ExtensionDiscovery;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\simpletest\TestBase;
@@ -22,11 +21,11 @@ function simpletest_help($route_name, RouteMatchInterface $route_match) {
     case 'help.page.simpletest':
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('The Testing module provides a framework for running automated tests. It can be used to verify a working state of Drupal before and after any code changes, or as a means for developers to write and execute tests for their modules. For more information, see <a href="!simpletest">the online documentation for the Testing module</a>.', array('!simpletest' => 'https://www.drupal.org/documentation/modules/simpletest')) . '</p>';
+      $output .= '<p>' . t('The Testing module provides a framework for running automated tests. It can be used to verify a working state of Drupal before and after any code changes, or as a means for developers to write and execute tests for their modules. For more information, see the <a href=":simpletest">online documentation for the Testing module</a>.', array(':simpletest' => 'https://www.drupal.org/documentation/modules/simpletest')) . '</p>';
       $output .= '<h3>' . t('Uses') . '</h3>';
       $output .= '<dl>';
       $output .= '<dt>' . t('Running tests') . '</dt>';
-      $output .= '<dd><p>' . t('Visit the <a href="!admin-simpletest">Testing page</a> to display a list of available tests. For comprehensive testing, select <em>all</em> tests, or individually select tests for more targeted testing. Note that it might take several minutes for all tests to complete.', array('!admin-simpletest' => \Drupal::url('simpletest.test_form'))) . '</p>';
+      $output .= '<dd><p>' . t('Visit the <a href=":admin-simpletest">Testing page</a> to display a list of available tests. For comprehensive testing, select <em>all</em> tests, or individually select tests for more targeted testing. Note that it might take several minutes for all tests to complete.', array(':admin-simpletest' => \Drupal::url('simpletest.test_form'))) . '</p>';
       $output .= '<p>' . t('After the tests run, a message will be displayed next to each test group indicating whether tests within it passed, failed, or had exceptions. A pass means that the test returned the expected results, while fail means that it did not. An exception normally indicates an error outside of the test, such as a PHP warning or notice. If there were failures or exceptions, the results will be expanded to show details, and the tests that had failures or exceptions will be indicated in red or pink rows. You can then use these results to refine your code and tests, until all tests pass.') . '</p></dd>';
       $output .= '</dl>';
       return $output;
@@ -171,15 +170,37 @@ function simpletest_run_tests($test_list) {
  * @param $unescaped_test_classnames
  *   An array of test class names, including full namespaces, to be passed as
  *   a regular expression to PHPUnit's --filter option.
+ * @param int $status
+ *   (optional) The exit status code of the PHPUnit process will be assigned to
+ *   this variable.
  *
  * @return array
  *   The parsed results of PHPUnit's JUnit XML output, in the format of
  *   {simpletest}'s schema.
  */
-function simpletest_run_phpunit_tests($test_id, array $unescaped_test_classnames) {
+function simpletest_run_phpunit_tests($test_id, array $unescaped_test_classnames, &$status = NULL) {
   $phpunit_file = simpletest_phpunit_xml_filepath($test_id);
-  simpletest_phpunit_run_command($unescaped_test_classnames, $phpunit_file);
-  return simpletest_phpunit_xml_to_rows($test_id, $phpunit_file);
+  simpletest_phpunit_run_command($unescaped_test_classnames, $phpunit_file, $status);
+  // A $status of 0 = passed test, 1 = failed test, > 1 indicates segfault
+  // timeout, or other type of failure.
+  if ($status > 1) {
+    // Something broke during the execution of phpunit.
+    // Return an error record of all failed classes.
+    $rows[] = [
+      'test_id' => '1',
+      'test_class' => implode(",", $unescaped_test_classnames),
+      'status' => 'fail',
+      'message' => 'PHPunit Test failed to complete',
+      'message_group' => 'Other',
+      'function' => implode(",", $unescaped_test_classnames),
+      'line' => '0',
+      'file' => $phpunit_file,
+    ];
+  }
+  else {
+    $rows = simpletest_phpunit_xml_to_rows($test_id, $phpunit_file);
+  }
+  return $rows;
 }
 
 /**
@@ -212,7 +233,7 @@ function simpletest_process_phpunit_results($phpunit_results) {
  *   Path to the PHPUnit XML file to use for the current $test_id.
  */
 function simpletest_phpunit_xml_filepath($test_id) {
-  return drupal_realpath('public://simpletest') . '/phpunit-' . $test_id . '.xml';
+  return \Drupal::service('file_system')->realpath('public://simpletest') . '/phpunit-' . $test_id . '.xml';
 }
 
 /**
@@ -233,11 +254,14 @@ function simpletest_phpunit_configuration_filepath() {
  *   a regular expression to PHPUnit's --filter option.
  * @param string $phpunit_file
  *   A filepath to use for PHPUnit's --log-junit option.
+ * @param int $status
+ *   (optional) The exit status code of the PHPUnit process will be assigned to
+ *   this variable.
  *
  * @return string
  *  The results as returned by exec().
  */
-function simpletest_phpunit_run_command(array $unescaped_test_classnames, $phpunit_file) {
+function simpletest_phpunit_run_command(array $unescaped_test_classnames, $phpunit_file, &$status = NULL) {
   // Setup an environment variable containing the database connection so that
   // functional tests can connect to the database.
   putenv('SIMPLETEST_DB=' . Database::getConnectionInfoAsUrl());
@@ -274,7 +298,8 @@ function simpletest_phpunit_run_command(array $unescaped_test_classnames, $phpun
 
   // exec in a subshell so that the environment is isolated when running tests
   // via the simpletest UI.
-  $ret = exec(join($command, " "));
+  $ret = exec(join($command, " "), $output, $status);
+
   chdir($old_cwd);
   putenv('SIMPLETEST_DB=');
   return $ret;
@@ -516,24 +541,24 @@ function simpletest_classloader_register() {
  */
 function simpletest_generate_file($filename, $width, $lines, $type = 'binary-text') {
   $text = '';
-    for ($i = 0; $i < $lines; $i++) {
-      // Generate $width - 1 characters to leave space for the "\n" character.
-      for ($j = 0; $j < $width - 1; $j++) {
-        switch ($type) {
-          case 'text':
-            $text .= chr(rand(32, 126));
-            break;
-          case 'binary':
-            $text .= chr(rand(0, 31));
-            break;
-          case 'binary-text':
-          default:
-            $text .= rand(0, 1);
-            break;
-        }
+  for ($i = 0; $i < $lines; $i++) {
+    // Generate $width - 1 characters to leave space for the "\n" character.
+    for ($j = 0; $j < $width - 1; $j++) {
+      switch ($type) {
+        case 'text':
+          $text .= chr(rand(32, 126));
+          break;
+        case 'binary':
+          $text .= chr(rand(0, 31));
+          break;
+        case 'binary-text':
+        default:
+          $text .= rand(0, 1);
+          break;
       }
-      $text .= "\n";
     }
+    $text .= "\n";
+  }
 
   // Create filename.
   file_put_contents('public://' . $filename . '.txt', $text);

@@ -7,7 +7,6 @@
 
 namespace Drupal\rest\Tests\Views;
 
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\entity_test\Entity\EntityTest;
@@ -51,7 +50,7 @@ class StyleSerializerTest extends PluginTestBase {
    *
    * @var array
    */
-  public static $testViews = array('test_serializer_display_field', 'test_serializer_display_entity', 'test_serializer_node_display_field');
+  public static $testViews = array('test_serializer_display_field', 'test_serializer_display_entity', 'test_serializer_node_display_field', 'test_serializer_node_exposed_filter');
 
   /**
    * A user with administrative privileges to look at test entity and configure views.
@@ -395,7 +394,7 @@ class StyleSerializerTest extends PluginTestBase {
       $expected[] = $expected_row;
     }
 
-    $this->assertIdentical($this->drupalGetJSON('test/serialize/field'), $expected);
+    $this->assertIdentical($this->drupalGetJSON('test/serialize/field'), $this->castSafeStrings($expected));
 
     // Test a random aliases for fields, they should be replaced.
     $alias_map = array(
@@ -430,7 +429,7 @@ class StyleSerializerTest extends PluginTestBase {
       $expected[] = $expected_row;
     }
 
-    $this->assertIdentical($this->drupalGetJSON('test/serialize/field'), $expected);
+    $this->assertIdentical($this->drupalGetJSON('test/serialize/field'), $this->castSafeStrings($expected));
   }
 
   /**
@@ -609,5 +608,65 @@ class StyleSerializerTest extends PluginTestBase {
       $expected[] = [$field_name => $grouped_field_value];
     }
     $this->assertEqual($serializer->serialize($expected, 'json'), (string) $renderer->renderRoot($build));
+  }
+
+  /**
+   * Tests the exposed filter works.
+   *
+   * There is an exposed filter on the title field which takes a title query
+   * parameter. This is set to filter nodes by those whose title starts with
+   * the value provided.
+   */
+  public function testRestViewExposedFilter() {
+    $this->drupalCreateContentType(array('type' => 'page'));
+    $node0 = $this->drupalCreateNode(array('title' => 'Node 1'));
+    $node1 = $this->drupalCreateNode(array('title' => 'Node 11'));
+    $node2 = $this->drupalCreateNode(array('title' => 'Node 111'));
+
+    // Test that no filter brings back all three nodes.
+    $result = $this->drupalGetJSON('test/serialize/node-exposed-filter');
+
+    $expected = array(
+      0 => array(
+        'nid' => $node0->id(),
+        'body' => $node0->body->processed,
+      ),
+      1 => array(
+        'nid' => $node1->id(),
+        'body' => $node1->body->processed,
+      ),
+      2 => array(
+        'nid' => $node2->id(),
+        'body' => $node2->body->processed,
+      ),
+    );
+
+    $this->assertEqual($result, $expected, 'Querying a view with no exposed filter returns all nodes.');
+
+    // Test that title starts with 'Node 11' query finds 2 of the 3 nodes.
+    $result = $this->drupalGetJSON('test/serialize/node-exposed-filter', ['query' => ['title' => 'Node 11']]);
+
+    $expected = array(
+      0 => array(
+        'nid' => $node1->id(),
+        'body' => $node1->body->processed,
+      ),
+      1 => array(
+        'nid' => $node2->id(),
+        'body' => $node2->body->processed,
+      ),
+    );
+
+    $cache_contexts = [
+      'languages:language_content',
+      'languages:language_interface',
+      'theme',
+      'request_format',
+      'user.node_grants:view',
+      'url',
+    ];
+
+    $this->assertEqual($result, $expected, 'Querying a view with a starts with exposed filter on the title returns nodes whose title starts with value provided.');
+    $this->assertCacheContexts($cache_contexts);
   }
 }

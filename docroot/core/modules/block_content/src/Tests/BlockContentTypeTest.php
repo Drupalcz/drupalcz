@@ -9,7 +9,6 @@ namespace Drupal\block_content\Tests;
 
 use Drupal\block_content\Entity\BlockContentType;
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Url;
 
 /**
  * Ensures that custom block type functions work correctly.
@@ -42,6 +41,12 @@ class BlockContentTypeTest extends BlockContentTestBase {
    */
   protected $autoCreateBasicBlockType = FALSE;
 
+  protected function setUp() {
+    parent::setUp();
+
+    $this->drupalPlaceBlock('page_title_block');
+  }
+
   /**
    * Tests creating a block type programmatically and via a form.
    */
@@ -52,35 +57,39 @@ class BlockContentTypeTest extends BlockContentTestBase {
     // Test the page with no block-types.
     $this->drupalGet('block/add');
     $this->assertResponse(200);
-    $this->assertRaw(t('You have not created any block types yet. Go to the <a href="!url">block type creation page</a> to add a new block type.', [
-      '!url' => Url::fromRoute('block_content.type_add')->toString(),
-    ]));
-    // Now create an initial block-type.
-    $this->createBlockContentType('basic', TRUE);
-    // Create a block type programmatically.
-    $type = $this->createBlockContentType('other');
-
-    $block_type = BlockContentType::load('other');
-    $this->assertTrue($block_type, 'The new block type has been created.');
-
-    $this->drupalGet('block/add/' . $type->id());
-    $this->assertResponse(200, 'The new block type can be accessed at block/add.');
+    $this->assertText('You have not created any block types yet');
+    $this->clickLink('block type creation page');
 
     // Create a block type via the user interface.
     $edit = array(
       'id' => 'foo',
       'label' => 'title for foo',
     );
-    $this->drupalPostForm('admin/structure/block/block-content/types/add', $edit, t('Save'));
+    $this->drupalPostForm(NULL, $edit, t('Save'));
     $block_type = BlockContentType::load('foo');
     $this->assertTrue($block_type, 'The new block type has been created.');
 
     $field_definitions = \Drupal::entityManager()->getFieldDefinitions('block_content', 'foo');
-    $this->assertTrue(isset($field_definitions['body']), 'Body field was created when using the UI to create block content types.');
+    $this->assertTrue(isset($field_definitions['body']), 'Body field created when using the UI to create block content types.');
 
     // Check that the block type was created in site default language.
     $default_langcode = \Drupal::languageManager()->getDefaultLanguage()->getId();
     $this->assertEqual($block_type->language()->getId(), $default_langcode);
+
+    // Create block types programmatically.
+    $this->createBlockContentType('basic', TRUE);
+    $field_definitions = \Drupal::entityManager()->getFieldDefinitions('block_content', 'basic');
+    $this->assertTrue(isset($field_definitions['body']), "Body field for 'basic' block type created when using the testing API to create block content types.");
+
+    $this->createBlockContentType('other');
+    $field_definitions = \Drupal::entityManager()->getFieldDefinitions('block_content', 'other');
+    $this->assertFalse(isset($field_definitions['body']), "Body field for 'other' block type not created when using the testing API to create block content types.");
+
+    $block_type = BlockContentType::load('other');
+    $this->assertTrue($block_type, 'The new block type has been created.');
+
+    $this->drupalGet('block/add/' . $block_type->id());
+    $this->assertResponse(200);
   }
 
   /**
@@ -106,7 +115,9 @@ class BlockContentTypeTest extends BlockContentTestBase {
     $edit = array(
       'label' => 'Bar',
     );
-    $this->drupalPostForm('admin/structure/block/block-content/manage/basic', $edit, t('Save'));
+    $this->drupalGet('admin/structure/block/block-content/manage/basic');
+    $this->assertTitle(format_string('Edit @type custom block type | Drupal', ['@type' => 'basic']));
+    $this->drupalPostForm(NULL, $edit, t('Save'));
     \Drupal::entityManager()->clearCachedFieldDefinitions();
 
     $this->drupalGet('block/add');
@@ -174,17 +185,15 @@ class BlockContentTypeTest extends BlockContentTestBase {
       ->getStorage('block_content');
 
     // Install all themes.
-    \Drupal::service('theme_handler')->install(array('bartik', 'seven'));
-    $themes = array('bartik', 'seven', 'classy');
+    \Drupal::service('theme_handler')->install(['bartik', 'seven', 'stark']);
     $theme_settings = $this->config('system.theme');
-    foreach ($themes as $default_theme) {
+    foreach (['bartik', 'seven', 'stark'] as $default_theme) {
       // Change the default theme.
       $theme_settings->set('default', $default_theme)->save();
       \Drupal::service('router.builder')->rebuild();
 
       // For each installed theme, go to its block page and test the redirects.
-      $themes = array('bartik', 'classy', 'seven');
-      foreach ($themes as $theme) {
+      foreach (['bartik', 'seven', 'stark'] as $theme) {
         // Test that adding a block from the 'place blocks' form sends you to the
         // block configure form.
         $path = $theme == $default_theme ? 'admin/structure/block' : "admin/structure/block/list/$theme";

@@ -26,7 +26,7 @@ use Drupal\Core\Form\FormStateInterface;
 class Full extends SqlBase {
 
   /**
-   * Overrides \Drupal\views\Plugin\views\SqlBase::defineOptions().
+   * {@inheritdoc}
    */
   protected function defineOptions() {
     $options = parent::defineOptions();
@@ -34,14 +34,14 @@ class Full extends SqlBase {
     // Use the same default quantity that core uses by default.
     $options['quantity'] = array('default' => 9);
 
-    $options['tags']['contains']['first'] = array('default' => $this->t('« first'));
-    $options['tags']['contains']['last'] = array('default' => $this->t('last »'));
+    $options['tags']['contains']['first'] = array('default' => $this->t('« First'));
+    $options['tags']['contains']['last'] = array('default' => $this->t('Last »'));
 
     return $options;
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\SqlBase::buildOptionsForm().
+   * {@inheritdoc}
    */
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     parent::buildOptionsForm($form, $form_state);
@@ -69,7 +69,7 @@ class Full extends SqlBase {
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\pager\PagerPluginBase::summaryTitle().
+   * {@inheritdoc}
    */
   public function summaryTitle() {
     if (!empty($this->options['offset'])) {

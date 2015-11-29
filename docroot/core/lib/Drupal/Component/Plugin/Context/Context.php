@@ -31,24 +31,20 @@ class Context implements ContextInterface {
   protected $contextDefinition;
 
   /**
-   * Sets the contextDefinition for us without needing to call the setter.
+   * Create a context object.
    *
    * @param \Drupal\Component\Plugin\Context\ContextDefinitionInterface $context_definition
    *   The context definition.
+   * @param mixed|null $context_value
+   *   The value of the context.
    */
-  public function __construct(ContextDefinitionInterface $context_definition) {
+  public function __construct(ContextDefinitionInterface $context_definition, $context_value = NULL) {
     $this->contextDefinition = $context_definition;
+    $this->contextValue = $context_value;
   }
 
   /**
-   * Implements \Drupal\Component\Plugin\Context\ContextInterface::setContextValue().
-   */
-  public function setContextValue($value) {
-    $this->contextValue = $value;
-  }
-
-  /**
-   * Implements \Drupal\Component\Plugin\Context\ContextInterface::getContextValue().
+   * {@inheritdoc}
    */
   public function getContextValue() {
     // Support optional contexts.
@@ -77,19 +73,12 @@ class Context implements ContextInterface {
   /**
    * {@inheritdoc}
    */
-  public function setContextDefinition(ContextDefinitionInterface $context_definition) {
-    $this->contextDefinition = $context_definition;
-  }
-
-  /**
-   * Implements \Drupal\Component\Plugin\Context\ContextInterface::getContextDefinition().
-   */
   public function getContextDefinition() {
     return $this->contextDefinition;
   }
 
   /**
-   * Implements \Drupal\Component\Plugin\Context\ContextInterface::getConstraints().
+   * {@inheritdoc}
    */
   public function getConstraints() {
     if (empty($this->contextDefinition['class'])) {
@@ -99,7 +88,7 @@ class Context implements ContextInterface {
   }
 
   /**
-   * Implements \Drupal\Component\Plugin\Context\ContextInterface::validate().
+   * {@inheritdoc}
    */
   public function validate() {
     $validator = Validation::createValidatorBuilder()

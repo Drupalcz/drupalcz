@@ -30,7 +30,7 @@ class EntityFieldTest extends EntityUnitTestBase  {
    *
    * @var array
    */
-  public static $modules = array('filter', 'text', 'node', 'user');
+  public static $modules = array('filter', 'text', 'node', 'user', 'field_test');
 
   /**
    * @var string
@@ -688,13 +688,11 @@ class EntityFieldTest extends EntityUnitTestBase  {
       ->save();
     $definition = BaseFieldDefinition::create('entity_reference')
       ->setLabel('Test entity')
-      ->setSettings(array(
-        'target_type' => 'node',
-        'target_bundle' => 'article',
-      ));
+      ->setSetting('target_type', 'node')
+      ->setSetting('handler_settings', ['target_bundles' => ['article' => 'article']]);
     $reference_field = \Drupal::TypedDataManager()->create($definition);
-    $reference = $reference_field->appendItem(array('entity' => $node))->get('entity');
-    $violations = $reference->validate();
+    $reference_field->appendItem(array('entity' => $node));
+    $violations = $reference_field->validate();
     $this->assertEqual($violations->count(), 1);
 
     $node = entity_create('node', array(
@@ -703,8 +701,8 @@ class EntityFieldTest extends EntityUnitTestBase  {
       'title' => $this->randomString(),
     ));
     $node->save();
-    $reference->setValue($node);
-    $violations = $reference->validate();
+    $reference_field->entity = $node;
+    $violations = $reference_field->validate();
     $this->assertEqual($violations->count(), 0);
   }
 

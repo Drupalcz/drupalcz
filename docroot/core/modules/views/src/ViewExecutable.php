@@ -8,15 +8,11 @@
 namespace Drupal\views;
 
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Drupal\Core\Form\FormState;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Url;
 use Drupal\views\Plugin\views\display\DisplayRouterInterface;
-use Drupal\views\Plugin\views\query\QueryPluginBase;
-use Drupal\views\ViewEntityInterface;
 use Drupal\Component\Utility\Tags;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -399,11 +395,11 @@ class ViewExecutable implements \Serializable {
    *
    * @var array
    *
-   * @see drupal_process_attached
+   * @see \Drupal\Core\Render\AttachmentsResponseProcessorInterface::processAttachments()
    */
   public $element = [
     '#attached' => [
-      'library' => [],
+      'library' => ['views/views.module'],
       'drupalSettings' => [],
     ],
     '#cache' => [],
@@ -456,9 +452,6 @@ class ViewExecutable implements \Serializable {
     $this->user = $user;
     $this->viewsData = $views_data;
     $this->routeProvider = $route_provider;
-
-    // Add the default css for a view.
-    $this->element['#attached']['library'][] = 'views/views.module';
   }
 
   /**
@@ -560,7 +553,11 @@ class ViewExecutable implements \Serializable {
    *   The items per page.
    */
   public function setItemsPerPage($items_per_page) {
-    $this->element['#cache']['keys'][] = 'items_per_page:' . $items_per_page;
+    // Check whether the element is pre rendered. At that point, the cache keys
+    // cannot longer be manipulated.
+    if (empty($this->element['#pre_rendered'])) {
+      $this->element['#cache']['keys'][] = 'items_per_page:' . $items_per_page;
+    }
     $this->items_per_page = $items_per_page;
 
     // If the pager is already initialized, pass it through to the pager.
@@ -590,8 +587,14 @@ class ViewExecutable implements \Serializable {
    *   The pager offset.
    */
   public function setOffset($offset) {
-    $this->element['#cache']['keys'][] = 'offset:' . $offset;
+    // Check whether the element is pre rendered. At that point, the cache keys
+    // cannot longer be manipulated.
+    if (empty($this->element['#pre_rendered'])) {
+      $this->element['#cache']['keys'][] = 'offset:' . $offset;
+    }
+
     $this->offset = $offset;
+
 
     // If the pager is already initialized, pass it through to the pager.
     if (!empty($this->pager)) {
@@ -1028,8 +1031,8 @@ class ViewExecutable implements \Serializable {
         }
 
         // Add this argument's substitution
-        $substitutions['%' . ($position + 1)] = $arg_title;
-        $substitutions['!' . ($position + 1)] = strip_tags(Html::decodeEntities($arg));
+        $substitutions["{{ arguments.$id }}"] = $arg_title;
+        $substitutions["{{ raw_arguments.$id }}"] = strip_tags(Html::decodeEntities($arg));
 
         // Test to see if we should use this argument's title
         if (!empty($argument->options['title_enable']) && !empty($argument->options['title'])) {
@@ -1862,11 +1865,11 @@ class ViewExecutable implements \Serializable {
    * @param string $display_id
    *   (Optional) The display id. ( Used only to detail an exception. )
    *
-   * @throws \InvalidArgumentException
-   *   Thrown when the display plugin does not have a URL to return.
-   *
    * @return \Drupal\Core\Url
    *   The display handlers URL object.
+   *
+   * @throws \InvalidArgumentException
+   *   Thrown when the display plugin does not have a URL to return.
    */
   public function getUrlInfo($display_id = '') {
     $this->initDisplay();
@@ -2318,15 +2321,16 @@ class ViewExecutable implements \Serializable {
   }
 
   /**
-   * Calculates dependencies for the view.
+   * Gets dependencies for the view.
    *
    * @see \Drupal\views\Entity\View::calculateDependencies()
+   * @see \Drupal\views\Entity\View::getDependencies()
    *
    * @return array
    *   An array of dependencies grouped by type (module, theme, entity).
    */
-  public function calculateDependencies() {
-    return $this->storage->calculateDependencies();
+  public function getDependencies() {
+    return $this->storage->calculateDependencies()->getDependencies();
   }
 
   /**

@@ -7,7 +7,6 @@
 
 namespace Drupal\filter;
 
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Entity\Query\QueryFactory;
 use Drupal\Core\Form\FormStateInterface;
@@ -79,7 +78,7 @@ abstract class FilterFormatFormBase extends EntityForm {
     $form['roles'] = array(
       '#type' => 'checkboxes',
       '#title' => $this->t('Roles'),
-      '#options' => array_map('\Drupal\Component\Utility\SafeMarkup::checkPlain', user_role_names()),
+      '#options' => array_map('\Drupal\Component\Utility\Html::escape', user_role_names()),
       '#disabled' => $is_fallback,
       '#weight' => -10,
     );

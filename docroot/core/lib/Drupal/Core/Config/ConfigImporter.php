@@ -367,8 +367,8 @@ class ConfigImporter {
     $current_extensions = $this->storageComparer->getTargetStorage()->read('core.extension');
     $new_extensions = $this->storageComparer->getSourceStorage()->read('core.extension');
 
-    // If there is no extension information in staging then exit. This is
-    // probably due to an empty staging directory.
+    // If there is no extension information in sync then exit. This is probably
+    // due to an empty sync directory.
     if (!$new_extensions) {
       return;
     }
@@ -454,10 +454,10 @@ class ConfigImporter {
   /**
    * Imports the changelist to the target storage.
    *
-   * @throws \Drupal\Core\Config\ConfigException
-   *
    * @return \Drupal\Core\Config\ConfigImporter
    *   The ConfigImporter instance.
+   *
+   * @throws \Drupal\Core\Config\ConfigException
    */
   public function import() {
     if ($this->hasUnprocessedConfigurationChanges()) {
@@ -511,8 +511,6 @@ class ConfigImporter {
    *   If the configuration is already importing.
    */
   public function initialize() {
-    $this->createExtensionChangelist();
-
     // Ensure that the changes have been validated.
     $this->validate();
 
@@ -710,19 +708,21 @@ class ConfigImporter {
    * @throws \Drupal\Core\Config\ConfigImporterException
    *   Exception thrown if the validate event logged any errors.
    */
-  protected function validate() {
+  public function validate() {
     if (!$this->validated) {
+      // Create the list of installs and uninstalls.
+      $this->createExtensionChangelist();
       // Validate renames.
       foreach ($this->getUnprocessedConfiguration('rename') as $name) {
         $names = $this->storageComparer->extractRenameNames($name);
         $old_entity_type_id = $this->configManager->getEntityTypeIdByName($names['old_name']);
         $new_entity_type_id = $this->configManager->getEntityTypeIdByName($names['new_name']);
         if ($old_entity_type_id != $new_entity_type_id) {
-          $this->logError($this->t('Entity type mismatch on rename. !old_type not equal to !new_type for existing configuration !old_name and staged configuration !new_name.', array('old_type' => $old_entity_type_id, 'new_type' => $new_entity_type_id, 'old_name' => $names['old_name'], 'new_name' => $names['new_name'])));
+          $this->logError($this->t('Entity type mismatch on rename. @old_type not equal to @new_type for existing configuration @old_name and staged configuration @new_name.', array('@old_type' => $old_entity_type_id, '@new_type' => $new_entity_type_id, '@old_name' => $names['old_name'], '@new_name' => $names['new_name'])));
         }
         // Has to be a configuration entity.
         if (!$old_entity_type_id) {
-          $this->logError($this->t('Rename operation for simple configuration. Existing configuration !old_name and staged configuration !new_name.', array('old_name' => $names['old_name'], 'new_name' => $names['new_name'])));
+          $this->logError($this->t('Rename operation for simple configuration. Existing configuration @old_name and staged configuration @new_name.', array('@old_name' => $names['old_name'], '@new_name' => $names['new_name'])));
         }
       }
       $this->eventDispatcher->dispatch(ConfigEvents::IMPORT_VALIDATE, new ConfigImporterEvent($this));
@@ -762,7 +762,7 @@ class ConfigImporter {
       }
     }
     catch (\Exception $e) {
-      $this->logError($this->t('Unexpected error during import with operation @op for @name: !message', array('@op' => $op, '@name' => $name, '!message' => $e->getMessage())));
+      $this->logError($this->t('Unexpected error during import with operation @op for @name: @message', array('@op' => $op, '@name' => $name, '@message' => $e->getMessage())));
       // Error for that operation was logged, mark it as processed so that
       // the import can continue.
       $this->setProcessedConfiguration($collection, $op, $name);
@@ -780,7 +780,7 @@ class ConfigImporter {
    *   The name of the extension to process.
    */
   protected function processExtension($type, $op, $name) {
-    // Set the config installer to use the staging directory instead of the
+    // Set the config installer to use the sync directory instead of the
     // extensions own default config directories.
     \Drupal::service('config.installer')
       ->setSyncing(TRUE)
@@ -828,10 +828,10 @@ class ConfigImporter {
    * @param string $name
    *   The name of the configuration to process.
    *
-   * @throws \Drupal\Core\Config\ConfigImporterException
-   *
    * @return bool
    *   TRUE is to continue processing, FALSE otherwise.
+   *
+   * @throws \Drupal\Core\Config\ConfigImporterException
    */
   protected function checkOp($collection, $op, $name) {
     if ($op == 'rename') {
@@ -939,13 +939,13 @@ class ConfigImporter {
    * @param string $name
    *   The name of the configuration to process.
    *
-   * @throws \Drupal\Core\Entity\EntityStorageException
-   *   Thrown if the data is owned by an entity type, but the entity storage
-   *   does not support imports.
-   *
    * @return bool
    *   TRUE if the configuration was imported as a configuration entity. FALSE
    *   otherwise.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   *   Thrown if the data is owned by an entity type, but the entity storage
+   *   does not support imports.
    */
   protected function importInvokeOwner($collection, $op, $name) {
     // Renames are handled separately.
@@ -989,13 +989,13 @@ class ConfigImporter {
    *   The rename configuration name, as provided by
    *   \Drupal\Core\Config\StorageComparer::createRenameName().
    *
-   * @throws \Drupal\Core\Entity\EntityStorageException
-   *   Thrown if the data is owned by an entity type, but the entity storage
-   *   does not support imports.
-   *
    * @return bool
    *   TRUE if the configuration was imported as a configuration entity. FALSE
    *   otherwise.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   *   Thrown if the data is owned by an entity type, but the entity storage
+   *   does not support imports.
    *
    * @see \Drupal\Core\Config\ConfigImporter::createRenameName()
    */

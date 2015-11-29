@@ -7,11 +7,11 @@
 
 namespace Drupal\block\Controller;
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Extension\ThemeHandler;
 use Drupal\Core\Extension\ThemeHandlerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Controller routines for admin block routes.
@@ -54,8 +54,12 @@ class BlockController extends ControllerBase {
    *   A #type 'page' render array containing the block region demo.
    */
   public function demo($theme) {
+    if (!$this->themeHandler->hasUi($theme)) {
+      throw new NotFoundHttpException();
+    }
+
     $page = [
-      '#title' => $this->themeHandler->getName($theme),
+      '#title' => Html::escape($this->themeHandler->getName($theme)),
       '#type' => 'page',
       '#attached' => array(
         'drupalSettings' => [

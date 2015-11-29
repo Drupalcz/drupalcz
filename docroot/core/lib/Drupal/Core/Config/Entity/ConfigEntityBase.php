@@ -7,15 +7,14 @@
 
 namespace Drupal\Core\Config\Entity;
 
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Config\ConfigException;
 use Drupal\Core\Config\Schema\SchemaIncompleteException;
 use Drupal\Core\Entity\Entity;
 use Drupal\Core\Config\ConfigDuplicateUUIDException;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityWithPluginCollectionInterface;
-use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Plugin\PluginDependencyTrait;
 
 /**
@@ -112,7 +111,7 @@ abstract class ConfigEntityBase extends Entity implements ConfigEntityInterface 
   protected $trustedData = FALSE;
 
   /**
-   * Overrides Entity::__construct().
+   * {@inheritdoc}
    */
   public function __construct(array $values, $entity_type) {
     parent::__construct($values, $entity_type);
@@ -341,7 +340,7 @@ abstract class ConfigEntityBase extends Entity implements ConfigEntityInterface 
         throw new ConfigDuplicateUUIDException("Attempt to save a configuration entity '{$this->id()}' with UUID '{$this->uuid()}' when this entity already exists with UUID '{$original->uuid()}'");
       }
     }
-    if (!$this->isSyncing() && !$this->trustedData) {
+    if (!$this->isSyncing()) {
       // Ensure the correct dependencies are present. If the configuration is
       // being written during a configuration synchronization then there is no
       // need to recalculate the dependencies.
@@ -353,16 +352,9 @@ abstract class ConfigEntityBase extends Entity implements ConfigEntityInterface 
    * {@inheritdoc}
    */
   public function calculateDependencies() {
-    // Dependencies should be recalculated on every save. This ensures stale
-    // dependencies are never saved.
-    if (isset($this->dependencies['enforced'])) {
-      $dependencies = $this->dependencies['enforced'];
-      $this->dependencies = $dependencies;
-      $this->dependencies['enforced'] = $dependencies;
-    }
-    else {
-      $this->dependencies = array();
-    }
+    // All dependencies should be recalculated on every save apart from enforced
+    // dependencies. This ensures stale dependencies are never saved.
+    $this->dependencies = array_intersect_key($this->dependencies, ['enforced' => '']);
     if ($this instanceof EntityWithPluginCollectionInterface) {
       // Configuration entities need to depend on the providers of any plugins
       // that they store the configuration for.
@@ -379,13 +371,15 @@ abstract class ConfigEntityBase extends Entity implements ConfigEntityInterface 
         $this->addDependency('module', $provider);
       }
     }
-    return $this->dependencies;
+    return $this;
   }
 
   /**
    * {@inheritdoc}
    */
   public function urlInfo($rel = 'edit-form', array $options = []) {
+    // Unless language was already provided, avoid setting an explicit language.
+    $options += ['language' => NULL];
     return parent::urlInfo($rel, $options);
   }
 
@@ -393,6 +387,7 @@ abstract class ConfigEntityBase extends Entity implements ConfigEntityInterface 
    * {@inheritdoc}
    */
   public function url($rel = 'edit-form', $options = array()) {
+    // Do not remove this override: the default value of $rel is different.
     return parent::url($rel, $options);
   }
 
@@ -400,7 +395,17 @@ abstract class ConfigEntityBase extends Entity implements ConfigEntityInterface 
    * {@inheritdoc}
    */
   public function link($text = NULL, $rel = 'edit-form', array $options = []) {
+    // Do not remove this override: the default value of $rel is different.
     return parent::link($text, $rel, $options);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function toUrl($rel = 'edit-form', array $options = []) {
+    // Unless language was already provided, avoid setting an explicit language.
+    $options += ['language' => NULL];
+    return parent::toUrl($rel, $options);
   }
 
   /**
@@ -436,7 +441,14 @@ abstract class ConfigEntityBase extends Entity implements ConfigEntityInterface 
    * {@inheritdoc}
    */
   public function getDependencies() {
-    return $this->dependencies;
+    $dependencies = $this->dependencies;
+    if (isset($dependencies['enforced'])) {
+      // Merge the enforced dependencies into the list of dependencies.
+      $enforced_dependencies = $dependencies['enforced'];
+      unset($dependencies['enforced']);
+      $dependencies = NestedArray::mergeDeep($dependencies, $enforced_dependencies);
+    }
+    return $dependencies;
   }
 
   /**

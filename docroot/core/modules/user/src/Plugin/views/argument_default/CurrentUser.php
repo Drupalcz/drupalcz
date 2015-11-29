@@ -7,7 +7,8 @@
 
 namespace Drupal\user\Plugin\views\argument_default;
 
-use Drupal\views\Plugin\CacheablePluginInterface;
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\views\Plugin\views\argument_default\ArgumentDefaultPluginBase;
 
 /**
@@ -20,8 +21,11 @@ use Drupal\views\Plugin\views\argument_default\ArgumentDefaultPluginBase;
  *   title = @Translation("User ID from logged in user")
  * )
  */
-class CurrentUser extends ArgumentDefaultPluginBase implements CacheablePluginInterface {
+class CurrentUser extends ArgumentDefaultPluginBase implements CacheableDependencyInterface {
 
+  /**
+   * {@inheritdoc}
+   */
   public function getArgument() {
     return \Drupal::currentUser()->id();
   }
@@ -29,8 +33,8 @@ class CurrentUser extends ArgumentDefaultPluginBase implements CacheablePluginIn
   /**
    * {@inheritdoc}
    */
-  public function isCacheable() {
-    return TRUE;
+  public function getCacheMaxAge() {
+    return Cache::PERMANENT;
   }
 
   /**

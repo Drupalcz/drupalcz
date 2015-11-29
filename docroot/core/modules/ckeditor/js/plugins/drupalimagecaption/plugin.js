@@ -12,7 +12,7 @@
 
 (function (CKEDITOR) {
 
-  "use strict";
+  'use strict';
 
   CKEDITOR.plugins.add('drupalimagecaption', {
     requires: 'drupalimage',
@@ -50,9 +50,16 @@
           }
         }, true);
 
-        // Override requiredContent & allowedContent.
-        widgetDefinition.requiredContent = 'img[alt,src,width,height,data-entity-type,data-entity-uuid,data-align,data-caption]';
-        widgetDefinition.allowedContent.img.attributes += ',!data-align,!data-caption';
+        // Extend requiredContent & allowedContent.
+        // CKEDITOR.style is an immutable object: we cannot modify its
+        // definition to extend requiredContent. Hence we get the definition,
+        // modify it, and pass it to a new CKEDITOR.style instance.
+        var requiredContent = widgetDefinition.requiredContent.getDefinition();
+        requiredContent.attributes['data-align'] = '';
+        requiredContent.attributes['data-caption'] = '';
+        widgetDefinition.requiredContent = new CKEDITOR.style(requiredContent);
+        widgetDefinition.allowedContent.img.attributes['!data-align'] = true;
+        widgetDefinition.allowedContent.img.attributes['!data-caption'] = true;
 
         // Override allowedContent setting for the 'caption' nested editable.
         // This must match what caption_filter enforces.
@@ -63,9 +70,11 @@
         // Override downcast(): ensure we *only* output <img>, but also ensure
         // we include the data-entity-type, data-entity-uuid, data-align and
         // data-caption attributes.
+        var originalDowncast = widgetDefinition.downcast;
         widgetDefinition.downcast = function (element) {
-          // Find an image element in the one being downcasted (can be itself).
           var img = findElementByName(element, 'img');
+          originalDowncast.call(this, img);
+
           var caption = this.editables.caption;
           var captionHtml = caption && caption.getData();
           var attrs = img.attributes;
@@ -82,10 +91,14 @@
               attrs['data-align'] = this.data.align;
             }
           }
-          attrs['data-entity-type'] = this.data['data-entity-type'];
-          attrs['data-entity-uuid'] = this.data['data-entity-uuid'];
 
-          return img;
+          // If img is wrapped with a link, we want to return that link.
+          if (img.parent.name === 'a') {
+            return img.parent;
+          }
+          else {
+            return img;
+          }
         };
 
         // We want to upcast <img> elements to a DOM structure required by the
@@ -94,6 +107,7 @@
         //   - <img> tag in a paragraph (non-captioned, centered image),
         //   - <figure> tag (captioned image).
         // We take the same attributes into account as downcast() does.
+        var originalUpcast = widgetDefinition.upcast;
         widgetDefinition.upcast = function (element, data) {
           if (element.name !== 'img' || !element.attributes['data-entity-type'] || !element.attributes['data-entity-uuid']) {
             return;
@@ -103,7 +117,13 @@
             return;
           }
 
+          element = originalUpcast.call(this, element, data);
           var attrs = element.attributes;
+
+          if (element.parent.name === 'a') {
+            element = element.parent;
+          }
+
           var retElement = element;
           var caption;
 
@@ -210,6 +230,15 @@
             // upcasting existing elements (see widgetDefinition.upcast).
             if (dialogReturnValues.attributes.hasCaption) {
               actualWidget.editables.caption.setAttribute('data-placeholder', placeholderText);
+
+              // Some browsers will add a <br> tag to a newly created DOM
+              // element with no content. Remove this <br> if it is the only
+              // thing in the caption. Our placeholder support requires the
+              // element be entirely empty. See filter-caption.css.
+              var captionElement = actualWidget.editables.caption.$;
+              if (captionElement.childNodes.length === 1 && captionElement.childNodes.item(0).nodeName === 'BR') {
+                captionElement.removeChild(captionElement.childNodes.item(0));
+              }
             }
           };
         };

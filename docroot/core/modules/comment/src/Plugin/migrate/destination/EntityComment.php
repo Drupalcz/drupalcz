@@ -9,8 +9,11 @@ namespace Drupal\comment\Plugin\migrate\destination;
 
 use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\Entity\Query\QueryFactory;
+use Drupal\Core\Field\FieldTypePluginManagerInterface;
 use Drupal\Core\State\StateInterface;
 use Drupal\migrate\Entity\MigrationInterface;
+use Drupal\migrate\MigrateException;
 use Drupal\migrate\Plugin\migrate\destination\EntityContentBase;
 use Drupal\migrate\Row;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -30,6 +33,20 @@ class EntityComment extends EntityContentBase {
   protected $state;
 
   /**
+   * The entity query object.
+   *
+   * @var \Drupal\Core\Entity\Query\QueryInterface
+   */
+  protected $entityQuery;
+
+  /**
+   * An array of entity IDs for the 'commented entity' keyed by entity type.
+   *
+   * @var array
+   */
+  protected $stubCommentedEntityIds;
+
+  /**
    * Builds an comment entity destination.
    *
    * @param array $configuration
@@ -46,12 +63,17 @@ class EntityComment extends EntityContentBase {
    *   The list of bundles this entity type has.
    * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
    *   The entity manager service.
+   * @param \Drupal\Core\Field\FieldTypePluginManagerInterface $field_type_manager
+   *   The field type plugin manager service.
    * @param \Drupal\Core\State\StateInterface $state
    *   The state storage object.
+   * @param \Drupal\Core\Entity\Query\QueryFactory $entity_query
+   *   The query object that can query the given entity type.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration, EntityStorageInterface $storage, array $bundles, EntityManagerInterface $entity_manager, StateInterface $state) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $migration, $storage, $bundles, $entity_manager);
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration, EntityStorageInterface $storage, array $bundles, EntityManagerInterface $entity_manager, FieldTypePluginManagerInterface $field_type_manager, StateInterface $state, QueryFactory $entity_query) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $migration, $storage, $bundles, $entity_manager, $field_type_manager);
     $this->state = $state;
+    $this->entityQuery = $entity_query;
   }
 
   /**
@@ -67,7 +89,9 @@ class EntityComment extends EntityContentBase {
       $container->get('entity.manager')->getStorage($entity_type),
       array_keys($container->get('entity.manager')->getBundleInfo($entity_type)),
       $container->get('entity.manager'),
-      $container->get('state')
+      $container->get('plugin.manager.field.field_type'),
+      $container->get('state'),
+      $container->get('entity.query')
     );
   }
 
@@ -83,6 +107,16 @@ class EntityComment extends EntityContentBase {
       $this->state->set('comment.maintain_entity_statistics', $state);
     }
     return $return;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function processStubRow(Row $row) {
+    parent::processStubRow($row);
+    // Neither uid nor name is required in itself, but it is required to set one
+    // of them.
+    $row->setDestinationProperty('name', 'anonymous_stub');
   }
 
 }

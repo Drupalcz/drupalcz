@@ -5,14 +5,12 @@
  * API for handling file uploads and server file management.
  */
 
-use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Component\PhpStorage\FileStorage;
 use Drupal\Component\Utility\Bytes;
 use Drupal\Core\File\FileSystem;
 use Drupal\Core\StreamWrapper\PublicStream;
-use Drupal\Core\StreamWrapper\StreamWrapperInterface;
 use Drupal\Core\StreamWrapper\PrivateStream;
 
 /**
@@ -158,7 +156,7 @@ function file_default_scheme() {
  *   The normalized URI.
  */
 function file_stream_wrapper_uri_normalize($uri) {
-  $scheme = file_uri_scheme($uri);
+  $scheme = \Drupal::service('file_system')->uriScheme($uri);
 
   if (file_stream_wrapper_valid_scheme($scheme)) {
     $target = file_uri_target($uri);
@@ -201,7 +199,7 @@ function file_create_url($uri) {
   // file server.
   \Drupal::moduleHandler()->alter('file_url', $uri);
 
-  $scheme = file_uri_scheme($uri);
+  $scheme = \Drupal::service('file_system')->uriScheme($uri);
 
   if (!$scheme) {
     // Allow for:
@@ -268,7 +266,6 @@ function file_url_transform_relative($file_url) {
   // Unfortunately, we pretty much have to duplicate Symfony's
   // Request::getHttpHost() method because Request::getPort() may return NULL
   // instead of a port number.
-  $http_host = '';
   $request = \Drupal::request();
   $host = $request->getHost();
   $scheme = $request->getScheme();
@@ -302,7 +299,7 @@ function file_url_transform_relative($file_url) {
  *   otherwise.
  */
 function file_prepare_directory(&$directory, $options = FILE_MODIFY_PERMISSIONS) {
-  if (!file_stream_wrapper_valid_scheme(file_uri_scheme($directory))) {
+  if (!file_stream_wrapper_valid_scheme(\Drupal::service('file_system')->uriScheme($directory))) {
     // Only trim if we're not dealing with a stream.
     $directory = rtrim($directory, '/\\');
   }
@@ -335,8 +332,7 @@ function file_ensure_htaccess() {
     file_save_htaccess('private://', TRUE);
   }
   file_save_htaccess('temporary://', TRUE);
-  file_save_htaccess(config_get_config_directory(), TRUE);
-  file_save_htaccess(config_get_config_directory(CONFIG_STAGING_DIRECTORY), TRUE);
+  file_save_htaccess(config_get_config_directory(CONFIG_SYNC_DIRECTORY), TRUE);
 }
 
 /**
@@ -352,7 +348,7 @@ function file_ensure_htaccess() {
  *   if one is already present. Defaults to FALSE.
  */
 function file_save_htaccess($directory, $private = TRUE, $force_overwrite = FALSE) {
-  if (file_uri_scheme($directory)) {
+  if (\Drupal::service('file_system')->uriScheme($directory)) {
     $htaccess_path = file_stream_wrapper_uri_normalize($directory . '/.htaccess');
   }
   else {
@@ -371,8 +367,8 @@ function file_save_htaccess($directory, $private = TRUE, $force_overwrite = FALS
     return drupal_chmod($htaccess_path, 0444);
   }
   else {
-    $variables = array('%directory' => $directory, '!htaccess' => '<br />' . nl2br(Html::escape($htaccess_lines)));
-    \Drupal::logger('security')->error("Security warning: Couldn't write .htaccess file. Please create a .htaccess file in your %directory directory which contains the following lines: <code>!htaccess</code>", $variables);
+    $variables = array('%directory' => $directory, '@htaccess' => $htaccess_lines);
+    \Drupal::logger('security')->error("Security warning: Couldn't write .htaccess file. Please create a .htaccess file in your %directory directory which contains the following lines: <pre><code>@htaccess</code></pre>", $variables);
     return FALSE;
   }
 }
@@ -410,7 +406,7 @@ function file_htaccess_lines($private = TRUE) {
  */
 function file_valid_uri($uri) {
   // Assert that the URI has an allowed scheme. Bare paths are not allowed.
-  $uri_scheme = file_uri_scheme($uri);
+  $uri_scheme = \Drupal::service('file_system')->uriScheme($uri);
   if (!file_stream_wrapper_valid_scheme($uri_scheme)) {
     return FALSE;
   }

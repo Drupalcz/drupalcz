@@ -31,17 +31,6 @@ interface MigrateSourceInterface extends \Countable, \Iterator, PluginInspection
   public function fields();
 
   /**
-   * Returns the iterator that will yield the row arrays to be processed.
-   *
-   * @return \Iterator
-   *   The iterator object.
-   *
-   * @throws \Exception
-   *   Cannot obtain a valid iterator.
-   */
-  public function getIterator();
-
-  /**
    * Add additional data to the row.
    *
    * @param \Drupal\Migrate\Row $row
@@ -55,10 +44,14 @@ interface MigrateSourceInterface extends \Countable, \Iterator, PluginInspection
   public function __toString();
 
   /**
-   * Get the source ids.
+   * Defines the source fields uniquely identifying a source row. None of these
+   * fields should contain a NULL value - if necessary, use prepareRow() or
+   * hook_migrate_prepare_row() to rewrite NULL values to appropriate empty
+   * values (such as '' or 0).
    *
    * @return array
-   *   The source ids.
+   *   Array keyed by source field name, with values being a schema array
+   *   describing the field (such as ['type' => 'string]).
    */
   public function getIds();
 

@@ -5,7 +5,7 @@
 
 (function ($, Drupal, drupalSettings, Backbone) {
 
-  "use strict";
+  'use strict';
 
   Drupal.toolbar.ToolbarVisualView = Backbone.View.extend(/** @lends Drupal.toolbar.ToolbarVisualView# */{
 
@@ -124,7 +124,7 @@
       var orientation = this.model.get('orientation');
       // Determine the toggle-to orientation.
       var antiOrientation = (orientation === 'vertical') ? 'horizontal' : 'vertical';
-      var locked = (antiOrientation === 'vertical') ? true : false;
+      var locked = antiOrientation === 'vertical';
       // Remember the locked state.
       if (locked) {
         localStorage.setItem('Drupal.toolbar.trayVerticalLocked', 'true');

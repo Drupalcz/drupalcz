@@ -7,13 +7,11 @@
 
 namespace Drupal\views\Plugin\views\display;
 
-use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\CacheableResponse;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -47,9 +45,9 @@ class Feed extends PathPluginBase implements ResponseDisplayPluginInterface {
   protected $usesPager = FALSE;
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\DisplayPluginBase::getType().
+   * {@inheritdoc}
    */
-  protected function getType() {
+  public function getType() {
     return 'feed';
   }
 
@@ -91,7 +89,7 @@ class Feed extends PathPluginBase implements ResponseDisplayPluginInterface {
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\PathPluginBase::preview().
+   * {@inheritdoc}
    */
   public function preview() {
     $output = $this->view->render();
@@ -108,7 +106,7 @@ class Feed extends PathPluginBase implements ResponseDisplayPluginInterface {
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\PathPluginBase::render().
+   * {@inheritdoc}
    */
   public function render() {
     $build = $this->view->style_plugin->render($this->view->result);
@@ -119,7 +117,7 @@ class Feed extends PathPluginBase implements ResponseDisplayPluginInterface {
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\displays\DisplayPluginBase::defaultableSections().
+   * {@inheritdoc}
    */
   public function defaultableSections($section = NULL) {
     $sections = parent::defaultableSections($section);
@@ -139,7 +137,7 @@ class Feed extends PathPluginBase implements ResponseDisplayPluginInterface {
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\PathPluginBase::defineOptions().
+   * {@inheritdoc}
    */
   protected function defineOptions() {
     $options = parent::defineOptions();
@@ -177,7 +175,7 @@ class Feed extends PathPluginBase implements ResponseDisplayPluginInterface {
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\DisplayPluginBase::optionsSummary().
+   * {@inheritdoc}
    */
   public function optionsSummary(&$categories, &$options) {
     parent::optionsSummary($categories, $options);
@@ -204,7 +202,7 @@ class Feed extends PathPluginBase implements ResponseDisplayPluginInterface {
       $display = array_shift($displays);
       $displays = $this->view->storage->get('display');
       if (!empty($displays[$display])) {
-        $attach_to = SafeMarkup::checkPlain($displays[$display]['display_title']);
+        $attach_to = $displays[$display]['display_title'];
       }
     }
 
@@ -220,7 +218,7 @@ class Feed extends PathPluginBase implements ResponseDisplayPluginInterface {
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\PathPluginBase::buildOptionsForm().
+   * {@inheritdoc}
    */
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     // It is very important to call the parent function here.
@@ -256,7 +254,7 @@ class Feed extends PathPluginBase implements ResponseDisplayPluginInterface {
           '#title' => $this->t('Displays'),
           '#type' => 'checkboxes',
           '#description' => $this->t('The feed icon will be available only to the selected displays.'),
-          '#options' => $displays,
+          '#options' => array_map('\Drupal\Component\Utility\Html::escape', $displays),
           '#default_value' => $this->getOption('displays'),
         );
         break;
@@ -266,7 +264,7 @@ class Feed extends PathPluginBase implements ResponseDisplayPluginInterface {
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\DisplayPluginBase::submitOptionsForm().
+   * {@inheritdoc}
    */
   public function submitOptionsForm(&$form, FormStateInterface $form_state) {
     parent::submitOptionsForm($form, $form_state);
@@ -308,7 +306,7 @@ class Feed extends PathPluginBase implements ResponseDisplayPluginInterface {
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\DisplayPluginBase::usesLinkDisplay().
+   * {@inheritdoc}
    */
   public function usesLinkDisplay() {
     return TRUE;

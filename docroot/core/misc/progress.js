@@ -5,7 +5,7 @@
 
 (function ($, Drupal) {
 
-  "use strict";
+  'use strict';
 
   /**
    * Theme function for the progress bar.
@@ -120,6 +120,7 @@
           type: this.method,
           url: uri,
           data: '',
+          dataType: 'json',
           success: function (progress) {
             // Display errors.
             if (progress.status === 0) {

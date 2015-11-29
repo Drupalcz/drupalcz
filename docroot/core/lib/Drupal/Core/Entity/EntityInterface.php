@@ -101,7 +101,29 @@ interface EntityInterface extends AccessibleInterface, CacheableDependencyInterf
   public function label();
 
   /**
-   * Gets the URI elements of the entity.
+   * Gets the URL object for the entity.
+   *
+   * @param string $rel
+   *   The link relationship type, for example: canonical or edit-form.
+   * @param array $options
+   *   See \Drupal\Core\Routing\UrlGeneratorInterface::generateFromRoute() for
+   *   the available options.
+   *
+   * @return \Drupal\Core\Url
+   *   The URL object.
+   *
+   * @deprecated in Drupal 8.0.0, intended to be removed in Drupal 9.0.0
+   *   Use toUrl() instead.
+   *
+   * @see \Drupal\Core\Entity\EntityInterface::toUrl
+   */
+  public function urlInfo($rel = 'canonical', array $options = array());
+
+  /**
+   * Gets the URL object for the entity.
+   *
+   * The entity must have an id already. Content entities usually get their IDs
+   * by saving them.
    *
    * URI templates might be set in the links array in an annotation, for
    * example:
@@ -128,8 +150,12 @@ interface EntityInterface extends AccessibleInterface, CacheableDependencyInterf
    *   the available options.
    *
    * @return \Drupal\Core\Url
+   *   The URL object.
+   *
+   * @throws \Drupal\Core\Entity\EntityMalformedException
+   * @throws \Drupal\Core\Entity\Exception\UndefinedLinkTemplateException
    */
-  public function urlInfo($rel = 'canonical', array $options = array());
+  public function toUrl($rel = 'canonical', array $options = array());
 
   /**
    * Gets the public URL for this entity.
@@ -142,8 +168,35 @@ interface EntityInterface extends AccessibleInterface, CacheableDependencyInterf
    *
    * @return string
    *   The URL for this entity.
+   *
+   * @deprecated in Drupal 8.0.0, intended to be removed in Drupal 9.0.0
+   *   Please use toUrl() instead.
+   *
+   * @see \Drupal\Core\Entity\EntityInterface::toUrl
    */
   public function url($rel = 'canonical', $options = array());
+
+  /**
+   * Deprecated way of generating a link to the entity. See toLink().
+   *
+   * @param string|null $text
+   *   (optional) The link text for the anchor tag as a translated string.
+   *   If NULL, it will use the entity's label. Defaults to NULL.
+   * @param string $rel
+   *   (optional) The link relationship type. Defaults to 'canonical'.
+   * @param array $options
+   *   See \Drupal\Core\Routing\UrlGeneratorInterface::generateFromRoute() for
+   *   the available options.
+   *
+   * @return string
+   *   An HTML string containing a link to the entity.
+   *
+   * @deprecated in Drupal 8.0.0, intended to be removed in Drupal 9.0.0
+   *   Please use toLink() instead.
+   *
+   * @see \Drupal\Core\Entity\EntityInterface::toLink
+   */
+  public function link($text = NULL, $rel = 'canonical', array $options = []);
 
   /**
    * Generates the HTML for a link to this entity.
@@ -157,10 +210,13 @@ interface EntityInterface extends AccessibleInterface, CacheableDependencyInterf
    *   See \Drupal\Core\Routing\UrlGeneratorInterface::generateFromRoute() for
    *   the available options.
    *
-   * @return string
-   *   An HTML string containing a link to the entity.
+   * @return \Drupal\Core\Link
+   *   A Link to the entity.
+   *
+   * @throws \Drupal\Core\Entity\EntityMalformedException
+   * @throws \Drupal\Core\Entity\Exception\UndefinedLinkTemplateException
    */
-  public function link($text = NULL, $rel = 'canonical', array $options = []);
+  public function toLink($text = NULL, $rel = 'canonical', array $options = []);
 
   /**
    * Indicates if a link template exists for a given key.
@@ -240,10 +296,19 @@ interface EntityInterface extends AccessibleInterface, CacheableDependencyInterf
   /**
    * Acts on an entity before the presave hook is invoked.
    *
-   * Used before the entity is saved and before invoking the presave hook.
+   * Used before the entity is saved and before invoking the presave hook. Note
+   * that in case of translatable content entities this callback is only fired
+   * on their current translation. It is up to the developer to iterate
+   * over all translations if needed. This is different from its counterpart in
+   * the Field API, FieldItemListInterface::preSave(), which is fired on all
+   * field translations automatically.
+   * @todo Adjust existing implementations and the documentation according to
+   *   https://www.drupal.org/node/2577609 to have a consistent API.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $storage
    *   The entity storage object.
+   *
+   * @see \Drupal\Core\Field\FieldItemListInterface::preSave()
    */
   public function preSave(EntityStorageInterface $storage);
 
@@ -251,7 +316,9 @@ interface EntityInterface extends AccessibleInterface, CacheableDependencyInterf
    * Acts on a saved entity before the insert or update hook is invoked.
    *
    * Used after the entity is saved, but before invoking the insert or update
-   * hook.
+   * hook. Note that in case of translatable content entities this callback is
+   * only fired on their current translation. It is up to the developer to
+   * iterate over all translations if needed.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $storage
    *   The entity storage object.

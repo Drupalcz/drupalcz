@@ -81,7 +81,7 @@ class Drupal {
   /**
    * The current system version.
    */
-  const VERSION = '8.0.0-beta15';
+  const VERSION = '8.0.0';
 
   /**
    * Core API compatibility.
@@ -120,9 +120,9 @@ class Drupal {
   /**
    * Returns the currently active global container.
    *
-   * @throws \Drupal\Core\DependencyInjection\ContainerNotInitializedException
-   *
    * @return \Symfony\Component\DependencyInjection\ContainerInterface|null
+   *
+   * @throws \Drupal\Core\DependencyInjection\ContainerNotInitializedException
    */
   public static function getContainer() {
     if (static::$container === NULL) {
@@ -150,6 +150,7 @@ class Drupal {
    *
    * @param string $id
    *   The ID of the service to retrieve.
+   *
    * @return mixed
    *   The specified service.
    */
@@ -251,9 +252,25 @@ class Drupal {
    *
    * @return \Drupal\Core\Entity\EntityManagerInterface
    *   The entity manager service.
+   *
+   * @deprecated in Drupal 8.0.0 and will be removed before Drupal 9.0.0.
+   *   Use \Drupal::entityTypeManager() instead in most cases. If the needed
+   *   method is not on \Drupal\Core\Entity\EntityTypeManagerInterface, see the
+   *   deprecated \Drupal\Core\Entity\EntityManager to find the
+   *   correct interface or service.
    */
   public static function entityManager() {
     return static::getContainer()->get('entity.manager');
+  }
+
+  /**
+   * Retrieves the entity type manager.
+   *
+   * @return \Drupal\Core\Entity\EntityTypeManagerInterface
+   *   The entity type manager.
+   */
+  public static function entityTypeManager() {
+    return static::getContainer()->get('entity_type.manager');
   }
 
   /**
@@ -459,7 +476,7 @@ class Drupal {
    *
    * Use the typed data manager service for creating typed data objects.
    *
-   * @return \Drupal\Core\TypedData\TypedDataManager
+   * @return \Drupal\Core\TypedData\TypedDataManagerInterface
    *   The typed data manager.
    *
    * @see \Drupal\Core\TypedData\TypedDataManager::create()
@@ -517,6 +534,10 @@ class Drupal {
    * @see \Drupal\Core\Url
    * @see \Drupal\Core\Url::fromRoute()
    * @see \Drupal\Core\Url::fromUri()
+   *
+   * @deprecated as of Drupal 8.0.x, will be removed before Drupal 9.0.0.
+   *   Instead create a \Drupal\Core\Url object directly, for example using
+   *   Url::fromRoute().
    */
   public static function url($route_name, $route_parameters = array(), $options = array(), $collect_bubbleable_metadata = FALSE) {
     return static::getContainer()->get('url_generator')->generateFromRoute($route_name, $route_parameters, $options, $collect_bubbleable_metadata);
@@ -542,20 +563,16 @@ class Drupal {
    *   The link text for the anchor tag.
    * @param \Drupal\Core\Url $url
    *   The URL object used for the link.
-   * @param bool $collect_bubbleable_metadata
-   *   (optional) Defaults to FALSE. When TRUE, both the generated URL and its
-   *   associated bubbleable metadata are returned.
    *
-   * @return string|\Drupal\Core\GeneratedLink
-   *   An HTML string containing a link to the given route and parameters.
-   *   When $collect_bubbleable_metadata is TRUE, a GeneratedLink object is
-   *   returned, containing the generated link plus bubbleable metadata.
+   * @return \Drupal\Core\GeneratedLink
+   *   A GeneratedLink object containing a link to the given route and
+   *   parameters and bubbleable metadata.
    *
    * @see \Drupal\Core\Utility\LinkGeneratorInterface::generate()
    * @see \Drupal\Core\Url
    */
-  public static function l($text, Url $url, $collect_bubbleable_metadata = FALSE) {
-    return static::getContainer()->get('link_generator')->generate($text, $url, $collect_bubbleable_metadata);
+  public static function l($text, Url $url) {
+    return static::getContainer()->get('link_generator')->generate($text, $url);
   }
 
   /**

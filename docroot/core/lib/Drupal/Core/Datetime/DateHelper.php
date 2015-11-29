@@ -16,8 +16,6 @@
  */
 namespace Drupal\Core\Datetime;
 
-use Drupal\Core\Datetime\DrupalDateTime;
-
 /**
  * Defines Gregorian Calendar date values.
  */
@@ -256,14 +254,24 @@ class DateHelper {
    *   An array of weekdays.
    *
    * @return array
-   *   An array of weekdays reordered to match the first day of the week.
+   *   An array of weekdays reordered to match the first day of the week. The
+   *   keys will remain unchanged. For example, if the first day of the week is
+   *   set to be Monday, the array keys will be [1, 2, 3, 4, 5, 6, 0].
    */
   public static function weekDaysOrdered($weekdays) {
     $first_day = \Drupal::config('system.date')->get('first_day');
     if ($first_day > 0) {
       for ($i = 1; $i <= $first_day; $i++) {
-        $last = array_shift($weekdays);
-        array_push($weekdays, $last);
+        // Reset the array to the first element.
+        reset($weekdays);
+        // Retrieve the first week day value.
+        $last = current($weekdays);
+        // Store the corresponding key.
+        $key = key($weekdays);
+        // Remove this week day from the beginning of the array.
+        unset($weekdays[$key]);
+        // Add this week day to the end of the array.
+        $weekdays[$key] = $last;
       }
     }
     return $weekdays;
@@ -442,14 +450,14 @@ class DateHelper {
    * Identifies the number of days in a month for a date.
    *
    * @param mixed $date
-   *   (optional) A date object, timestamp, or a date string.
+   *   (optional) A DrupalDateTime object or a date string.
    *   Defaults to NULL, which means to use the current date.
    *
    * @return int
    *   The number of days in the month.
    */
   public static function daysInMonth($date = NULL) {
-    if (!$date instanceOf DrupalDateTime) {
+    if (!$date instanceof DrupalDateTime) {
       $date = new DrupalDateTime($date);
     }
     if (!$date->hasErrors()) {
@@ -462,14 +470,14 @@ class DateHelper {
    * Identifies the number of days in a year for a date.
    *
    * @param mixed $date
-   *   (optional) A date object, timestamp, or a date string.
+   *   (optional) A DrupalDateTime object or a date string.
    *   Defaults to NULL, which means to use the current date.
    *
    * @return int
    *   The number of days in the year.
    */
   public static function daysInYear($date = NULL) {
-    if (!$date instanceOf DrupalDateTime) {
+    if (!$date instanceof DrupalDateTime) {
       $date = new DrupalDateTime($date);
     }
     if (!$date->hasErrors()) {
@@ -487,14 +495,14 @@ class DateHelper {
    * Returns day of week for a given date (0 = Sunday).
    *
    * @param mixed $date
-   *   (optional) A date object, timestamp, or a date string.
+   *   (optional) A DrupalDateTime object or a date string.
    *   Defaults to NULL, which means use the current date.
    *
    * @return int
    *   The number of the day in the week.
    */
   public static function dayOfWeek($date = NULL) {
-    if (!$date instanceOf DrupalDateTime) {
+    if (!$date instanceof DrupalDateTime) {
       $date = new DrupalDateTime($date);
     }
     if (!$date->hasErrors()) {
@@ -507,7 +515,7 @@ class DateHelper {
    * Returns translated name of the day of week for a given date.
    *
    * @param mixed $date
-   *   (optional) A date object, timestamp, or a date string.
+   *   (optional) A DrupalDateTime object or a date string.
    *   Defaults to NULL, which means use the current date.
    * @param string $abbr
    *   (optional) Whether to return the abbreviated name for that day.
@@ -517,7 +525,7 @@ class DateHelper {
    *   The name of the day in the week for that date.
    */
   public static function dayOfWeekName($date = NULL, $abbr = TRUE) {
-    if (!$date instanceOf DrupalDateTime) {
+    if (!$date instanceof DrupalDateTime) {
       $date = new DrupalDateTime($date);
     }
     $dow = self::dayOfWeek($date);

@@ -5,7 +5,7 @@
 
 (function ($, Drupal) {
 
-  "use strict";
+  'use strict';
 
   /**
    * Marks changes of translations.
@@ -19,7 +19,7 @@
    */
   Drupal.behaviors.localeTranslateDirty = {
     attach: function () {
-      var $form = $("#locale-translate-edit-form").once('localetranslatedirty');
+      var $form = $('#locale-translate-edit-form').once('localetranslatedirty');
       if ($form.length) {
         // Display a notice if any row changed.
         $form.one('formUpdated.localeTranslateDirty', 'table', function () {
@@ -36,14 +36,14 @@
           $row.addClass('changed');
           // Add an asterisk only once if row changed.
           if ($rowToMark.length) {
-            $rowToMark.find('td:first-child .form-item').append(marker);
+            $rowToMark.find('td:first-child .js-form-item').append(marker);
           }
         });
       }
     },
     detach: function (context, settings, trigger) {
       if (trigger === 'unload') {
-        var $form = $("#locale-translate-edit-form").removeOnce('localetranslatedirty');
+        var $form = $('#locale-translate-edit-form').removeOnce('localetranslatedirty');
         if ($form.length) {
           $form.off('formUpdated.localeTranslateDirty');
         }

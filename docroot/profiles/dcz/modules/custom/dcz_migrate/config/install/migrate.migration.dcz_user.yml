@@ -4,6 +4,8 @@ dependencies:
   enforced:
     module:
       - migrate
+migration_tags:
+  - 'Drupal 6'
 source:
   plugin: dcz_user
 destination:

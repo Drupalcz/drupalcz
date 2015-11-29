@@ -52,6 +52,9 @@ class ThemeTest extends WebTestBase {
     $this->assertResponse(404, 'The theme settings form URL for a uninstalled theme could not be found.');
     $this->drupalGet('admin/appearance/settings/' . $this->randomMachineName());
     $this->assertResponse(404, 'The theme settings form URL for a non-existent theme could not be found.');
+    $this->assertTrue(\Drupal::service('theme_installer')->install(['stable']));
+    $this->drupalGet('admin/appearance/settings/stable');
+    $this->assertResponse(404, 'The theme settings form URL for a hidden theme is unavailable.');
 
     // Specify a filesystem path to be used for the logo.
     $file = current($this->drupalGetTestFiles('image'));
@@ -96,7 +99,7 @@ class ThemeTest extends WebTestBase {
 
       // Verify logo path examples.
       $elements = $this->xpath('//div[contains(@class, :item)]/div[@class=:description]/code', array(
-        ':item' => 'form-item-logo-path',
+        ':item' => 'js-form-item-logo-path',
         ':description' => 'description',
       ));
       // Expected default values (if all else fails).
@@ -123,9 +126,11 @@ class ThemeTest extends WebTestBase {
       $this->assertEqual((string) $elements[1], $explicit_file);
       $this->assertEqual((string) $elements[2], $local_file);
 
-      // Verify the actual 'src' attribute of the logo being output.
+      // Verify the actual 'src' attribute of the logo being output in a site
+      // branding block.
+      $this->drupalPlaceBlock('system_branding_block', ['region' => 'header']);
       $this->drupalGet('');
-      $elements = $this->xpath('//header/a[@rel=:rel]/img', array(
+      $elements = $this->xpath('//header//a[@rel=:rel]/img', array(
           ':rel' => 'home',
         )
       );
@@ -175,12 +180,36 @@ class ThemeTest extends WebTestBase {
     $fields = $this->xpath($this->constructFieldXpath('name', 'logo_path'));
     $uploaded_filename = 'public://' . $fields[0]['value'];
 
+    $this->drupalPlaceBlock('system_branding_block', ['region' => 'header']);
     $this->drupalGet('');
-    $elements = $this->xpath('//header/a[@rel=:rel]/img', array(
+    $elements = $this->xpath('//header//a[@rel=:rel]/img', array(
         ':rel' => 'home',
       )
     );
     $this->assertEqual($elements[0]['src'], file_create_url($uploaded_filename));
+
+    $this->container->get('theme_handler')->install(array('bartik'));
+    $this->drupalGet('admin/appearance/settings/bartik');
+    // The logo field should only be present on the global theme settings form.
+    $this->assertNoFieldByName('logo_path');
+    $this->drupalPostForm(NULL, [], t('Save configuration'));
+
+    // Ensure only valid themes are listed in the local tasks.
+    $this->drupalPlaceBlock('local_tasks_block', ['region' => 'header']);
+    $this->drupalGet('admin/appearance/settings');
+    $theme_handler = \Drupal::service('theme_handler');
+    $this->assertLink($theme_handler->getName('classy'));
+    $this->assertLink($theme_handler->getName('bartik'));
+    $this->assertNoLink($theme_handler->getName('stable'));
+
+    // If a hidden theme is an admin theme it should be viewable.
+    \Drupal::configFactory()->getEditable('system.theme')->set('admin', 'stable')->save();
+    \Drupal::service('router.builder')->rebuildIfNeeded();
+    $this->drupalPlaceBlock('local_tasks_block', ['region' => 'header', 'theme' => 'stable']);
+    $this->drupalGet('admin/appearance/settings');
+    $this->assertLink($theme_handler->getName('stable'));
+    $this->drupalGet('admin/appearance/settings/stable');
+    $this->assertResponse(200, 'The theme settings form URL for a hidden theme that is the admin theme is available.');
   }
 
   /**
@@ -246,8 +275,14 @@ class ThemeTest extends WebTestBase {
    * Test switching the default theme.
    */
   function testSwitchDefaultTheme() {
+    /** @var \Drupal\Core\Extension\ThemeHandlerInterface $theme_handler */
+    $theme_handler = \Drupal::service('theme_handler');
+    // First, install Stark and set it as the default theme programmatically.
+    $theme_handler->install(array('stark'));
+    $theme_handler->setDefault('stark');
+
     // Install Bartik and set it as the default theme.
-    \Drupal::service('theme_handler')->install(array('bartik'));
+    $theme_handler->install(array('bartik'));
     $this->drupalGet('admin/appearance');
     $this->clickLink(t('Set as default'));
     $this->assertEqual($this->config('system.theme')->get('default'), 'bartik');
@@ -257,10 +292,10 @@ class ThemeTest extends WebTestBase {
     $this->assertText('Bartik(' . t('active tab') . ')', 'Default local task on blocks admin page is the default theme.');
     // Switch back to Stark and test again to test that the menu cache is cleared.
     $this->drupalGet('admin/appearance');
-    // Classy is the first 'Set as default' link.
-    $this->clickLink(t('Set as default'), 0);
+    // Stark is the first 'Set as default' link.
+    $this->clickLink(t('Set as default'));
     $this->drupalGet('admin/structure/block');
-    $this->assertText('Classy(' . t('active tab') . ')', 'Default local task on blocks admin page has changed.');
+    $this->assertText('Stark(' . t('active tab') . ')', 'Default local task on blocks admin page has changed.');
   }
 
   /**
@@ -319,8 +354,8 @@ class ThemeTest extends WebTestBase {
     // base theme of bartik.
     $this->assertNoRaw('Uninstall Classy theme', 'A link to uninstall the Classy theme does not appear on the theme settings page.');
 
-    // Change the default theme to stark, stark is third in the list.
-    $this->clickLink(t('Set as default'), 2);
+    // Change the default theme to stark, stark is second in the list.
+    $this->clickLink(t('Set as default'), 1);
 
     // Check that bartik can be uninstalled now.
     $this->assertRaw('Uninstall Bartik theme', 'A link to uninstall the Bartik theme does appear on the theme settings page.');
@@ -335,9 +370,9 @@ class ThemeTest extends WebTestBase {
     // Seven is the second in the list.
     $this->clickLink(t('Uninstall'));
     $this->assertRaw('The <em class="placeholder">Seven</em> theme has been uninstalled');
-    // Now uninstall classy.
-    $this->clickLink(t('Uninstall'));
-    $this->assertRaw('The <em class="placeholder">Classy</em> theme has been uninstalled');
+
+    // Check that the classy theme still can't be uninstalled as it is hidden.
+    $this->assertNoRaw('Uninstall Classy theme', 'A link to uninstall the Classy theme does not appear on the theme settings page.');
   }
 
   /**
@@ -345,9 +380,9 @@ class ThemeTest extends WebTestBase {
    */
   function testInstallAndSetAsDefault() {
     $this->drupalGet('admin/appearance');
-    // Bartik is uninstalled in the test profile and has the second "Install and
+    // Bartik is uninstalled in the test profile and has the third "Install and
     // set as default" link.
-    $this->clickLink(t('Install and set as default'), 1);
+    $this->clickLink(t('Install and set as default'), 2);
     // Test the confirmation message.
     $this->assertText('Bartik is now the default theme.');
     // Make sure Bartik is now set as the default theme in config.

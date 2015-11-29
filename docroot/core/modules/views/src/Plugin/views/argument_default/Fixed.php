@@ -7,8 +7,9 @@
 
 namespace Drupal\views\Plugin\views\argument_default;
 
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\views\Plugin\CacheablePluginInterface;
 
 /**
  * The fixed argument default handler.
@@ -20,8 +21,11 @@ use Drupal\views\Plugin\CacheablePluginInterface;
  *   title = @Translation("Fixed")
  * )
  */
-class Fixed extends ArgumentDefaultPluginBase implements CacheablePluginInterface {
+class Fixed extends ArgumentDefaultPluginBase implements CacheableDependencyInterface {
 
+  /**
+   * {@inheritdoc}
+   */
   protected function defineOptions() {
     $options = parent::defineOptions();
     $options['argument'] = array('default' => '');
@@ -29,6 +33,9 @@ class Fixed extends ArgumentDefaultPluginBase implements CacheablePluginInterfac
     return $options;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     parent::buildOptionsForm($form, $form_state);
     $form['argument'] = array(
@@ -39,7 +46,7 @@ class Fixed extends ArgumentDefaultPluginBase implements CacheablePluginInterfac
   }
 
   /**
-   * Return the default argument.
+   * {@inheritdoc}
    */
   public function getArgument() {
     return $this->options['argument'];
@@ -48,8 +55,8 @@ class Fixed extends ArgumentDefaultPluginBase implements CacheablePluginInterfac
   /**
    * {@inheritdoc}
    */
-  public function isCacheable() {
-    return TRUE;
+  public function getCacheMaxAge() {
+    return Cache::PERMANENT;
   }
 
   /**

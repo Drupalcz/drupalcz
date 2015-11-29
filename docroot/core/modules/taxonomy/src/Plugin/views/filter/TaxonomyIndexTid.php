@@ -8,7 +8,6 @@
 namespace Drupal\taxonomy\Plugin\views\filter;
 
 use Drupal\Core\Entity\Element\EntityAutocomplete;
-use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermStorageInterface;
@@ -16,8 +15,6 @@ use Drupal\taxonomy\VocabularyStorageInterface;
 use Drupal\views\ViewExecutable;
 use Drupal\views\Plugin\views\display\DisplayPluginBase;
 use Drupal\views\Plugin\views\filter\ManyToOne;
-use Drupal\Component\Utility\SafeMarkup;
-use Drupal\Component\Utility\Tags;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -80,7 +77,7 @@ class TaxonomyIndexTid extends ManyToOne {
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\filter\ManyToOne::init().
+   * {@inheritdoc}
    */
   public function init(ViewExecutable $view, DisplayPluginBase $display, array &$options = NULL) {
     parent::init($view, $display, $options);
@@ -154,7 +151,7 @@ class TaxonomyIndexTid extends ManyToOne {
     $vocabulary = $this->vocabularyStorage->load($this->options['vid']);
     if (empty($vocabulary) && $this->options['limit']) {
       $form['markup'] = array(
-        '#markup' => '<div class="form-item">' . $this->t('An invalid vocabulary is selected. Please change it in the options.') . '</div>',
+        '#markup' => '<div class="js-form-item form-item">' . $this->t('An invalid vocabulary is selected. Please change it in the options.') . '</div>',
       );
       return;
     }
@@ -183,7 +180,7 @@ class TaxonomyIndexTid extends ManyToOne {
         if ($tree) {
           foreach ($tree as $term) {
             $choice = new \stdClass();
-            $choice->option = array($term->id() => str_repeat('-', $term->depth) . SafeMarkup::checkPlain(\Drupal::entityManager()->getTranslationFromContext($term)->label()));
+            $choice->option = array($term->id() => str_repeat('-', $term->depth) . \Drupal::entityManager()->getTranslationFromContext($term)->label());
             $options[] = $choice;
           }
         }
@@ -201,7 +198,7 @@ class TaxonomyIndexTid extends ManyToOne {
         }
         $terms = Term::loadMultiple($query->execute());
         foreach ($terms as $term) {
-          $options[$term->id()] = SafeMarkup::checkPlain(\Drupal::entityManager()->getTranslationFromContext($term)->label());
+          $options[$term->id()] = \Drupal::entityManager()->getTranslationFromContext($term)->label();
         }
       }
 
@@ -359,7 +356,7 @@ class TaxonomyIndexTid extends ManyToOne {
       $this->value = array_filter($this->value);
       $terms = Term::loadMultiple($this->value);
       foreach ($terms as $term) {
-        $this->valueOptions[$term->id()] = SafeMarkup::checkPlain(\Drupal::entityManager()->getTranslationFromContext($term)->label());
+        $this->valueOptions[$term->id()] = \Drupal::entityManager()->getTranslationFromContext($term)->label();
       }
     }
     return parent::adminSummary();

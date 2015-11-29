@@ -19,7 +19,7 @@ use Drupal\Core\Entity\Query\QueryBase;
 class ConditionAggregate extends ConditionAggregateBase {
 
   /**
-   * Implements \Drupal\Core\Entity\Query\ConditionInterface::compile().
+   * {@inheritdoc}
    */
   public function compile($conditionContainer) {
     // If this is not the top level condition group then the sql query is
@@ -30,7 +30,7 @@ class ConditionAggregate extends ConditionAggregateBase {
     $sql_query = ($conditionContainer instanceof SelectInterface) ? $conditionContainer : $conditionContainer->sqlQuery;
     $tables = new Tables($sql_query);
     foreach ($this->conditions as $condition) {
-      if ($condition['field'] instanceOf ConditionAggregateInterface) {
+      if ($condition['field'] instanceof ConditionAggregateInterface) {
         $sql_condition = new SqlCondition($condition['field']->getConjunction());
         // Add the SQL query to the object before calling this method again.
         $sql_condition->sqlQuery = $sql_query;
@@ -50,14 +50,14 @@ class ConditionAggregate extends ConditionAggregateBase {
   }
 
   /**
-   * Implements \Drupal\Core\Entity\Query\ConditionInterface::exists().
+   * {@inheritdoc}
    */
   public function exists($field, $function, $langcode = NULL) {
     return $this->condition($field, $function, NULL, 'IS NOT NULL', $langcode);
   }
 
   /**
-   * Implements \Drupal\Core\Entity\Query\ConditionInterface::notExists().
+   * {@inheritdoc}
    */
   public function notExists($field, $function, $langcode = NULL) {
     return $this->condition($field, $function, NULL, 'IS NULL', $langcode);

@@ -14,7 +14,7 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\Core\State\StateInterface;
 use Drupal\views\Plugin\views\display\ResponseDisplayPluginInterface;
-use Drupal\views\Render\ViewsRenderPipelineSafeString;
+use Drupal\views\Render\ViewsRenderPipelineMarkup;
 use Drupal\views\ViewExecutable;
 use Drupal\views\Plugin\views\display\PathPluginBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -37,27 +37,27 @@ use Symfony\Component\Routing\RouteCollection;
 class RestExport extends PathPluginBase implements ResponseDisplayPluginInterface {
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\DisplayPluginBase::$usesAJAX.
+   * {@inheritdoc}
    */
   protected $usesAJAX = FALSE;
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\DisplayPluginBase::$usesPager.
+   * {@inheritdoc}
    */
   protected $usesPager = FALSE;
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\DisplayPluginBase::$usesMore.
+   * {@inheritdoc}
    */
   protected $usesMore = FALSE;
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\DisplayPluginBase::$usesAreas.
+   * {@inheritdoc}
    */
   protected $usesAreas = FALSE;
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\DisplayPluginBase::$usesAreas.
+   * {@inheritdoc}
    */
   protected $usesOptions = FALSE;
 
@@ -143,7 +143,7 @@ class RestExport extends PathPluginBase implements ResponseDisplayPluginInterfac
   /**
    * {@inheritdoc}
    */
-  protected function getType() {
+  public function getType() {
     return 'data';
   }
 
@@ -151,7 +151,7 @@ class RestExport extends PathPluginBase implements ResponseDisplayPluginInterfac
    * {@inheritdoc}
    */
   public function usesExposed() {
-    return FALSE;
+    return TRUE;
   }
 
   /**
@@ -335,7 +335,7 @@ class RestExport extends PathPluginBase implements ResponseDisplayPluginInterfac
       // executed by an HTML agent.
       // @todo Decide how to support non-HTML in the render API in
       //   https://www.drupal.org/node/2501313.
-      $build['#markup'] = ViewsRenderPipelineSafeString::create($build['#markup']);
+      $build['#markup'] = ViewsRenderPipelineMarkup::create($build['#markup']);
     }
 
     parent::applyDisplayCachablityMetadata($build);

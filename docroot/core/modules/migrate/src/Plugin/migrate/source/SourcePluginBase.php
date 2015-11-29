@@ -10,7 +10,6 @@ namespace Drupal\migrate\Plugin\migrate\source;
 use Drupal\Core\Plugin\PluginBase;
 use Drupal\migrate\Entity\MigrationInterface;
 use Drupal\migrate\MigrateException;
-use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\MigrateSkipRowException;
 use Drupal\migrate\Plugin\MigrateIdMapInterface;
 use Drupal\migrate\Plugin\MigrateSourceInterface;
@@ -126,14 +125,6 @@ abstract class SourcePluginBase extends PluginBase implements MigrateSourceInter
   protected $iterator;
 
   /**
-   * @TODO, find out how to remove this.
-   * @see https://www.drupal.org/node/2443617
-   *
-   * @var MigrateExecutableInterface
-   */
-  public $migrateExecutable;
-
-  /**
    * {@inheritdoc}
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration) {
@@ -145,6 +136,7 @@ abstract class SourcePluginBase extends PluginBase implements MigrateSourceInter
     $this->skipCount = !empty($configuration['skip_count']);
     $this->cacheKey = !empty($configuration['cache_key']) ? !empty($configuration['cache_key']) : NULL;
     $this->trackChanges = !empty($configuration['track_changes']) ? $configuration['track_changes'] : FALSE;
+    $this->idMap = $this->migration->getIdMap();
 
     // Pull out the current highwater mark if we have a highwater property.
     if ($this->highWaterProperty = $this->migration->get('highWaterProperty')) {
@@ -199,11 +191,8 @@ abstract class SourcePluginBase extends PluginBase implements MigrateSourceInter
     if ($skip) {
       // Make sure we replace any previous messages for this item with any
       // new ones.
-      $id_map = $this->migration->getIdMap();
-      $id_map->delete($this->currentSourceIds, TRUE);
-      $this->migrateExecutable->saveQueuedMessages();
       if ($save_to_map) {
-        $id_map->saveIdMapping($row, array(), MigrateIdMapInterface::STATUS_IGNORED, $this->migrateExecutable->rollbackAction);
+        $this->idMap->saveIdMapping($row, array(), MigrateIdMapInterface::STATUS_IGNORED);
         $this->currentRow = NULL;
         $this->currentSourceIds = NULL;
       }
@@ -224,7 +213,7 @@ abstract class SourcePluginBase extends PluginBase implements MigrateSourceInter
    *
    * @return \Iterator
    */
-  public function getIterator() {
+  protected function getIterator() {
     if (!isset($this->iterator)) {
       $this->iterator = $this->initializeIterator();
     }
@@ -268,7 +257,6 @@ abstract class SourcePluginBase extends PluginBase implements MigrateSourceInter
    * source records.
    */
   public function rewind() {
-    $this->idMap = $this->migration->getIdMap();
     $this->getIterator()->rewind();
     $this->next();
   }
@@ -305,6 +293,12 @@ abstract class SourcePluginBase extends PluginBase implements MigrateSourceInter
       // Pick up the existing map row, if any, unless getNextRow() did it.
       if (!$this->mapRowAdded && ($id_map = $this->idMap->getRowBySource($this->currentSourceIds))) {
         $row->setIdMap($id_map);
+      }
+
+      // Clear any previous messages for this row before potentially adding
+      // new ones.
+      if (!empty($this->currentSourceIds)) {
+        $this->idMap->delete($this->currentSourceIds, TRUE);
       }
 
       // Preparing the row gives source plugins the chance to skip.

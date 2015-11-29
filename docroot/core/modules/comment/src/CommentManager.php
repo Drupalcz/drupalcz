@@ -8,7 +8,6 @@
 namespace Drupal\comment;
 
 use Drupal\comment\Plugin\Field\FieldType\CommentItemInterface;
-use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
@@ -175,15 +174,15 @@ class CommentManager implements CommentManagerInterface {
 
       if ($this->userConfig->get('register') != USER_REGISTER_ADMINISTRATORS_ONLY) {
         // Users can register themselves.
-        return $this->t('<a href="@login">Log in</a> or <a href="@register">register</a> to post comments', array(
-          '@login' => $this->urlGenerator->generateFromRoute('user.login', array(), array('query' => $destination)),
-          '@register' => $this->urlGenerator->generateFromRoute('user.register', array(), array('query' => $destination)),
+        return $this->t('<a href=":login">Log in</a> or <a href=":register">register</a> to post comments', array(
+          ':login' => $this->urlGenerator->generateFromRoute('user.login', array(), array('query' => $destination)),
+          ':register' => $this->urlGenerator->generateFromRoute('user.register', array(), array('query' => $destination)),
         ));
       }
       else {
         // Only admins can add new users, no public registration.
-        return $this->t('<a href="@login">Log in</a> to post comments', array(
-          '@login' => $this->urlGenerator->generateFromRoute('user.login', array(), array('query' => $destination)),
+        return $this->t('<a href=":login">Log in</a> to post comments', array(
+          ':login' => $this->urlGenerator->generateFromRoute('user.login', array(), array('query' => $destination)),
         ));
       }
     }

@@ -35,11 +35,7 @@ services:
       - { name: theme_negotiator, priority: 100 }
   system.config_subscriber:
     class: Drupal\system\SystemConfigSubscriber
-    tags:
-      - { name: event_subscriber }
-  system.automatic_cron:
-    class: Drupal\system\EventSubscriber\AutomaticCron
-    arguments: ['@cron', '@config.factory', '@state']
+    arguments: ['@router.builder']
     tags:
       - { name: event_subscriber }
   system.config_cache_tag:

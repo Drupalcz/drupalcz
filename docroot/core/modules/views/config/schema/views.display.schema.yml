@@ -43,6 +43,9 @@ views.display.page:
         context:
           type: string
           label: 'Context'
+        expanded:
+          type: boolean
+          label: 'Expanded'
     tab_options:
       type: mapping
       label: 'Tab options'
@@ -127,3 +130,7 @@ views.display.attachment:
     render_pager:
       type: boolean
       label: 'Render pager'
+
+views.display.entity_reference:
+  type: views_display
+  label: 'Entity Reference'

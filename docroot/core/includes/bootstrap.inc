@@ -4,22 +4,15 @@
  * Functions that need to be loaded on every Drupal request.
  */
 
-use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Component\Utility\Crypt;
-use Drupal\Component\Utility\Environment;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Component\Utility\Unicode;
-use Drupal\Core\DrupalKernel;
-use Drupal\Core\Extension\ExtensionDiscovery;
 use Drupal\Core\Logger\RfcLogLevel;
+use Drupal\Core\Render\Markup;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\Utility\Error;
-use Symfony\Component\ClassLoader\ApcClassLoader;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Drupal\Core\Language\LanguageInterface;
 
 /**
  * Minimum supported version of PHP.
@@ -101,13 +94,27 @@ const DRUPAL_PHP_FUNCTION_PATTERN = '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*';
  * $config_directories key for active directory.
  *
  * @see config_get_config_directory()
+ *
+ * @deprecated in Drupal 8.0.x and will be removed before 9.0.0. Drupal core no
+ *   longer creates an active directory.
  */
 const CONFIG_ACTIVE_DIRECTORY = 'active';
+
+/**
+ * $config_directories key for sync directory.
+ *
+ * @see config_get_config_directory()
+ */
+const CONFIG_SYNC_DIRECTORY = 'sync';
 
 /**
  * $config_directories key for staging directory.
  *
  * @see config_get_config_directory()
+ * @see CONFIG_SYNC_DIRECTORY
+ *
+ * @deprecated in Drupal 8.0.x and will be removed before 9.0.0. The staging
+ *   directory was renamed to sync.
  */
 const CONFIG_STAGING_DIRECTORY = 'staging';
 
@@ -119,58 +126,27 @@ const CONFIG_STAGING_DIRECTORY = 'staging';
 define('DRUPAL_ROOT', dirname(dirname(__DIR__)));
 
 /**
- * Returns the appropriate configuration directory.
- *
- * @param bool $require_settings
- *   Only configuration directories with an existing settings.php file
- *   will be recognized. Defaults to TRUE. During initial installation,
- *   this is set to FALSE so that Drupal can detect a matching directory,
- *   then create a new settings.php file in it.
- * @param bool $reset
- *   Force a full search for matching directories even if one had been
- *   found previously. Defaults to FALSE.
- * @param \Symfony\Component\HttpFoundation\Request $request
- *   (optional) The current request. Defaults to \Drupal::request() or a new
- *   request created from globals.
- *
- * @return string
- *   The path of the matching directory.@see default.settings.php
- *
- * @deprecated in Drupal 8.x-dev, will be removed before Drupal 8.0.
- *   Use \Drupal\Core\DrupalKernel::getSitePath() instead. If the kernel is
- *   unavailable or the site path needs to be recalculated then
- *   Drupal\Core\DrupalKernel::findSitePath() can be used.
- */
-function conf_path($require_settings = TRUE, $reset = FALSE, Request $request = NULL) {
-  if (!isset($request)) {
-    if (\Drupal::hasRequest()) {
-      $request = \Drupal::request();
-    }
-    // @todo Remove once external CLI scripts (Drush) are updated.
-    else {
-      $request = Request::createFromGlobals();
-    }
-  }
-  if (\Drupal::hasService('kernel')) {
-    $site_path = \Drupal::service('kernel')->getSitePath();
-  }
-  if (!isset($site_path) || empty($site_path)) {
-    $site_path = DrupalKernel::findSitePath($request, $require_settings);
-  }
-  return $site_path;
-}
-/**
  * Returns the path of a configuration directory.
  *
+ * Configuration directories are configured using $config_directories in
+ * settings.php.
+ *
  * @param string $type
- *   (optional) The type of config directory to return. Drupal core provides
- *   'active' and 'staging'. Defaults to CONFIG_ACTIVE_DIRECTORY.
+ *   The type of config directory to return. Drupal core provides the
+ *   CONFIG_SYNC_DIRECTORY constant to access the sync directory.
  *
  * @return string
  *   The configuration directory path.
+ *
+ * @throws \Exception
  */
-function config_get_config_directory($type = CONFIG_ACTIVE_DIRECTORY) {
+function config_get_config_directory($type) {
   global $config_directories;
+
+  // @todo Remove fallback in Drupal 9. https://www.drupal.org/node/2574943
+  if ($type == CONFIG_SYNC_DIRECTORY && !isset($config_directories[CONFIG_SYNC_DIRECTORY]) && isset($config_directories[CONFIG_STAGING_DIRECTORY])) {
+    $type = CONFIG_STAGING_DIRECTORY;
+  }
 
   if (!empty($config_directories[$type])) {
     return $config_directories[$type];
@@ -224,7 +200,6 @@ function drupal_get_filename($type, $name, $filename = NULL) {
 
   // Profiles are converted into modules in system_rebuild_module_data().
   // @todo Remove false-exposure of profiles as modules.
-  $original_type = $type;
   if ($type == 'profile') {
     $type = 'module';
   }
@@ -282,56 +257,39 @@ function drupal_get_path($type, $name) {
 /**
  * Translates a string to the current language or to a given language.
  *
- * The t() function serves two purposes. First, at run-time it translates
- * user-visible text into the appropriate language. Second, various mechanisms
- * that figure out what text needs to be translated work off t() -- the text
- * inside t() calls is added to the database of strings to be translated.
- * These strings are expected to be in English, so the first argument should
- * always be in English. To enable a fully-translatable site, it is important
- * that all human-readable text that will be displayed on the site or sent to
- * a user is passed through the t() function, or a related function. See the
- * @link https://www.drupal.org/node/322729 Localization API @endlink pages for
- * more information, including recommendations on how to break up or not
- * break up strings for translation.
+ * In order for strings to be localized, make them available in one of the ways
+ * supported by the
+ * @link https://www.drupal.org/node/322729 Localization API @endlink. When
+ * possible, use the \Drupal\Core\StringTranslation\StringTranslationTrait
+ * $this->t(). Otherwise create a new
+ * \Drupal\Core\StringTranslation\TranslatableMarkup object directly.
  *
- * @section sec_translating_vars Translating Variables
- * You should never use t() to translate variables, such as calling t($text)
- * unless the text that the variable holds has been passed through t()
- * elsewhere (e.g., $text is one of several translated literal strings in an
- * array). It is especially important never to call t($user_text) where
- * $user_text is some text that a user entered - doing that can lead to
- * cross-site scripting and other security problems. However, you can use
- * variable substitution in your string, to put variable text such as user
- * names or link URLs into translated text. Variable substitution looks like
- * this:
- * @code
- * $text = t("@name's blog", array('@name' => user_format_name($account)));
- * @endcode
- * Basically, you can put variables like @name into your string, and t() will
- * substitute their sanitized values at translation time. (See the
- * Localization API pages referenced above and the documentation of
- * \Drupal\Component\Utility\SafeMarkup::format() for details about how to
- * define variables in your string.). Translators can then rearrange the string
- * as necessary for the language (e.g., in Spanish, it might be "blog de
- * @name").
+ * See \Drupal\Core\StringTranslation\TranslatableMarkup::__construct() for
+ * important security information and usage guidelines.
  *
- * @param $string
- *   A string containing the English string to translate.
- * @param $args
- *   An associative array of replacements to make after translation. Based
- *   on the first character of the key, the value is escaped and/or themed.
- *   See \Drupal\Component\Utility\SafeMarkup::format() for details.
- * @param $options
- *   An associative array of additional options, with the following elements:
- *   - 'langcode' (defaults to the current language): The language code to
+ * @param string $string
+ *   A string containing the English text to translate.
+ * @param array $args
+ *   (optional) An associative array of replacements to make after translation.
+ *   Based on the first character of the key, the value is escaped and/or
+ *   themed. See
+ *   \Drupal\Component\Render\FormattableMarkup::placeholderFormat() for
+ *   details.
+ * @param array $options
+ *   (optional) An associative array of additional options, with the following
+ *   elements:
+ *   - 'langcode' (defaults to the current language): A language code, to
  *     translate to a language other than what is used to display the page.
  *   - 'context' (defaults to the empty context): The context the source string
  *     belongs to.
  *
- * @return
- *   The translated string.
+ * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+ *   An object that, when cast to a string, returns the translated string.
  *
- * @see \Drupal\Component\Utility\SafeMarkup::format()
+ * @see \Drupal\Component\Render\FormattableMarkup::placeholderFormat()
+ * @see \Drupal\Core\StringTranslation\StringTranslationTrait::t()
+ * @see \Drupal\Core\StringTranslation\TranslatableMarkup::__construct()
+ *
  * @ingroup sanitization
  */
 function t($string, array $args = array(), array $options = array()) {
@@ -373,7 +331,7 @@ function format_string($string, array $args) {
  * @param $text
  *   The text to check.
  *
- * @return
+ * @return bool
  *   TRUE if the text is valid UTF-8, FALSE if not.
  *
  * @see \Drupal\Component\Utility\Unicode::validateUtf8()
@@ -435,7 +393,7 @@ function watchdog_exception($type, Exception $exception, $message = NULL, $varia
  * drupal_set_message(t('An error occurred and processing did not complete.'), 'error');
  * @endcode
  *
- * @param string|\Drupal\Component\Utility\SafeStringInterface $message
+ * @param string|\Drupal\Component\Render\MarkupInterface $message
  *   (optional) The translated message to be displayed to the user. For
  *   consistency with other messages, it should begin with a capital letter and
  *   end with a period.
@@ -482,13 +440,13 @@ function drupal_set_message($message = NULL, $type = 'status', $repeat = FALSE) 
       $_SESSION['messages'][$type] = array();
     }
 
-    // Convert strings which are in the safe markup list to SafeString objects.
-    if (is_string($message) && SafeMarkup::isSafe($message)) {
-      $message = \Drupal\Core\Render\SafeString::create($message);
+    // Convert strings which are safe to the simplest Markup objects.
+    if (!($message instanceof Markup) && SafeMarkup::isSafe($message)) {
+      $message = Markup::create((string) $message);
     }
 
     // Do not use strict type checking so that equivalent string and
-    // SafeStringInterface objects are detected.
+    // MarkupInterface objects are detected.
     if ($repeat || !in_array($message, $_SESSION['messages'][$type])) {
       $_SESSION['messages'][$type][] = $message;
     }
@@ -606,7 +564,7 @@ function _drupal_exception_handler($exception) {
   catch (\Throwable $error) {
     _drupal_exception_handler_additional($exception, $error);
   }
-  // In order to be compatibile with PHP 5 we also catch regular Exceptions.
+  // In order to be compatible with PHP 5 we also catch regular Exceptions.
   catch (\Exception $exception2) {
     _drupal_exception_handler_additional($exception, $exception2);
   }
@@ -1022,7 +980,7 @@ function _drupal_shutdown_function() {
   catch (\Throwable $error) {
     _drupal_shutdown_function_handle_exception($error);
   }
-  // In order to be compatibile with PHP 5 we also catch regular Exceptions.
+  // In order to be compatible with PHP 5 we also catch regular Exceptions.
   catch (\Exception $exception) {
     _drupal_shutdown_function_handle_exception($exception);
   }

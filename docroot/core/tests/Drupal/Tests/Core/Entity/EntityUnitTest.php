@@ -11,9 +11,7 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Entity\Entity;
-use Drupal\Core\Entity\Exception\NoCorrespondingEntityClassException;
 use Drupal\Core\Language\Language;
-use Drupal\entity_test\Entity\EntityTest;
 use Drupal\entity_test\Entity\EntityTestMul;
 use Drupal\Tests\UnitTestCase;
 
@@ -518,6 +516,8 @@ class EntityUnitTest extends UnitTestCase {
     $cache_contexts_manager = $this->getMockBuilder('Drupal\Core\Cache\Context\CacheContextsManager')
       ->disableOriginalConstructor()
       ->getMock();
+    $cache_contexts_manager->method('assertValidTokens')->willReturn(TRUE);
+
     $container = new ContainerBuilder();
     $container->set('cache_contexts_manager', $cache_contexts_manager);
     \Drupal::setContainer($container);

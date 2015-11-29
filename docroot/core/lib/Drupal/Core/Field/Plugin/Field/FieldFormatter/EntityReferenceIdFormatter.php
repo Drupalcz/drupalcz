@@ -26,10 +26,10 @@ class EntityReferenceIdFormatter extends EntityReferenceFormatterBase {
   /**
    * {@inheritdoc}
    */
-  public function viewElements(FieldItemListInterface $items) {
+  public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = array();
 
-    foreach ($this->getEntitiesToView($items) as $delta => $entity) {
+    foreach ($this->getEntitiesToView($items, $langcode) as $delta => $entity) {
       if ($entity->id()) {
         $elements[$delta] = array(
           '#plain_text' => $entity->id(),

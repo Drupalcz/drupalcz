@@ -8,8 +8,6 @@
 namespace Drupal\Core\Database\Driver\pgsql;
 
 use Drupal\Component\Utility\Unicode;
-use Drupal\Core\Database\Database;
-use Drupal\Core\Database\Query\Condition;
 use Drupal\Core\Database\SchemaObjectExistsException;
 use Drupal\Core\Database\SchemaObjectDoesNotExistException;
 use Drupal\Core\Database\Schema as DatabaseSchema;
@@ -19,6 +17,9 @@ use Drupal\Core\Database\Schema as DatabaseSchema;
  * @{
  */
 
+/**
+ * PostgreSQL implementation of \Drupal\Core\Database\Schema.
+ */
 class Schema extends DatabaseSchema {
 
   /**
@@ -726,17 +727,23 @@ class Schema extends DatabaseSchema {
     // Usually, we do this via a simple typecast 'USING fieldname::type'. But
     // the typecast does not work for conversions to bytea.
     // @see http://www.postgresql.org/docs/current/static/datatype-binary.html
+    $table_information = $this->queryTableInformation($table);
+    $is_bytea = !empty($table_information->blob_fields[$field]);
     if ($spec['pgsql_type'] != 'bytea') {
-      $this->connection->query('ALTER TABLE {' . $table . '} ALTER "' . $field . '" TYPE ' . $field_def . ' USING "' . $field . '"::' . $field_def);
+      if ($is_bytea) {
+        $this->connection->query('ALTER TABLE {' . $table . '} ALTER "' . $field . '" TYPE ' . $field_def . ' USING convert_from("' . $field . '"' . ", 'UTF8')");
+      }
+      else {
+        $this->connection->query('ALTER TABLE {' . $table . '} ALTER "' . $field . '" TYPE ' . $field_def . ' USING "' . $field . '"::' . $field_def);
+      }
     }
     else {
       // Do not attempt to convert a field that is bytea already.
-      $table_information = $this->queryTableInformation($table);
-      if (!in_array($field, $table_information->blob_fields)) {
+      if (!$is_bytea) {
         // Convert to a bytea type by using the SQL replace() function to
         // convert any single backslashes in the field content to double
         // backslashes ('\' to '\\').
-        $this->connection->query('ALTER TABLE {' . $table . '} ALTER "' . $field . '" TYPE ' . $field_def . ' USING decode(replace("' . $field . '"' . ", '\\', '\\\\'), 'escape');");
+        $this->connection->query('ALTER TABLE {' . $table . '} ALTER "' . $field . '" TYPE ' . $field_def . ' USING decode(replace("' . $field . '"' . ", E'\\\\', E'\\\\\\\\'), 'escape');");
       }
     }
 

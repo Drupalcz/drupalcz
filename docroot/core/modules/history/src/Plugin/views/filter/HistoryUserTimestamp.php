@@ -81,8 +81,7 @@ class HistoryUserTimestamp extends FilterPluginBase {
 
     $clause = '';
     $clause2 = '';
-    if (\Drupal::moduleHandler()->moduleExists('comment')) {
-      $ces = $this->query->ensureTable('comment_entity_statistics', $this->relationship);
+    if ($ces = $this->query->ensureTable('comment_entity_statistics', $this->relationship)) {
       $clause = ("OR $ces.last_comment_timestamp > (***CURRENT_TIME*** - $limit)");
       $clause2 = "OR $field < $ces.last_comment_timestamp";
     }
@@ -102,9 +101,9 @@ class HistoryUserTimestamp extends FilterPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function isCacheable() {
+  public function getCacheMaxAge() {
     // This filter depends on the current time and therefore is never cacheable.
-    return FALSE;
+    return 0;
   }
 
 }

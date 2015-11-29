@@ -8,7 +8,6 @@
 namespace Drupal\views\Plugin\views\display;
 
 use Drupal\Component\Utility\UrlHelper;
-use Drupal\Core\Access\AccessManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Routing\UrlGeneratorTrait;
@@ -17,7 +16,6 @@ use Drupal\Core\Routing\RouteCompiler;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\Core\Url;
 use Drupal\views\Views;
-
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -82,7 +80,7 @@ abstract class PathPluginBase extends DisplayPluginBase implements DisplayRouter
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\DisplayPluginBase::hasPath().
+   * {@inheritdoc}
    */
   public function hasPath() {
     return TRUE;
@@ -136,6 +134,7 @@ abstract class PathPluginBase extends DisplayPluginBase implements DisplayRouter
   protected function getRoute($view_id, $display_id) {
     $defaults = array(
       '_controller' => 'Drupal\views\Routing\ViewPageController::handle',
+      '_title' => $this->view->getTitle(),
       'view_id' => $view_id,
       'display_id' => $display_id,
       '_view_display_show_admin_links' => $this->getOption('show_admin_links'),
@@ -343,7 +342,7 @@ abstract class PathPluginBase extends DisplayPluginBase implements DisplayRouter
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\DisplayPluginBase::execute().
+   * {@inheritdoc}
    */
   public function execute() {
     // Prior to this being called, the $view should already be set to this
@@ -360,7 +359,7 @@ abstract class PathPluginBase extends DisplayPluginBase implements DisplayRouter
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\DisplayPluginBase::optionsSummary().
+   * {@inheritdoc}
    */
   public function optionsSummary(&$categories, &$options) {
     parent::optionsSummary($categories, $options);
@@ -390,7 +389,7 @@ abstract class PathPluginBase extends DisplayPluginBase implements DisplayRouter
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\DisplayPluginBase::buildOptionsForm().
+   * {@inheritdoc}
    */
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     parent::buildOptionsForm($form, $form_state);
@@ -414,7 +413,7 @@ abstract class PathPluginBase extends DisplayPluginBase implements DisplayRouter
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\DisplayPluginBase::validateOptionsForm().
+   * {@inheritdoc}
    */
   public function validateOptionsForm(&$form, FormStateInterface $form_state) {
     parent::validateOptionsForm($form, $form_state);
@@ -431,7 +430,7 @@ abstract class PathPluginBase extends DisplayPluginBase implements DisplayRouter
   }
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\DisplayPluginBase::submitOptionsForm().
+   * {@inheritdoc}
    */
   public function submitOptionsForm(&$form, FormStateInterface $form_state) {
     parent::submitOptionsForm($form, $form_state);

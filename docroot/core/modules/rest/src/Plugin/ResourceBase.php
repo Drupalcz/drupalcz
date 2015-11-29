@@ -7,7 +7,6 @@
 
 namespace Drupal\rest\Plugin;
 
-use Drupal\Core\Access\AccessManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\PluginBase;
 use Psr\Log\LoggerInterface;
@@ -94,7 +93,7 @@ abstract class ResourceBase extends PluginBase implements ContainerFactoryPlugin
   }
 
   /**
-   * Implements ResourceInterface::routes().
+   * {@inheritdoc}
    */
   public function routes() {
     $collection = new RouteCollection();
@@ -170,7 +169,7 @@ abstract class ResourceBase extends PluginBase implements ContainerFactoryPlugin
   }
 
   /**
-   * Implements ResourceInterface::availableMethods().
+   * {@inheritdoc}
    */
   public function availableMethods() {
     $methods = $this->requestMethods();

@@ -87,23 +87,23 @@ class CKEditorAdminTest extends WebTestBase {
           // Button groups
           array(
             array(
-              'name' => t('Formatting'),
+              'name' => 'Formatting',
               'items' => array('Bold', 'Italic',),
             ),
             array(
-              'name' => t('Links'),
+              'name' => 'Links',
               'items' => array('DrupalLink', 'DrupalUnlink',),
             ),
             array(
-              'name' => t('Lists'),
+              'name' => 'Lists',
               'items' => array('BulletedList', 'NumberedList',),
             ),
             array(
-              'name' => t('Media'),
+              'name' => 'Media',
               'items' => array('Blockquote', 'DrupalImage',),
             ),
             array(
-              'name' => t('Tools'),
+              'name' => 'Tools',
               'items' => array('Source',),
             ),
           ),
@@ -111,7 +111,7 @@ class CKEditorAdminTest extends WebTestBase {
       ),
       'plugins' => array(),
     );
-    $this->assertIdentical($ckeditor->getDefaultSettings(), $expected_default_settings);
+    $this->assertIdentical($this->castSafeStrings($ckeditor->getDefaultSettings()), $expected_default_settings);
 
     // Keep the "CKEditor" editor selected and click the "Configure" button.
     $this->drupalPostAjaxForm(NULL, $edit, 'editor_configure');
@@ -261,6 +261,9 @@ class CKEditorAdminTest extends WebTestBase {
     $expected_buttons_value = json_encode($default_settings['toolbar']['rows']);
     $this->assertFieldByName('editor[settings][toolbar][button_groups]', $expected_buttons_value);
 
+    // Regression test for https://www.drupal.org/node/2606460.
+    $this->assertTrue(strpos($this->drupalSettings['ckeditor']['toolbarAdmin'], '<li data-drupal-ckeditor-button-name="Bold" class="ckeditor-button"><a href="#" class="cke-icon-only cke_ltr" role="button" title="bold" aria-label="bold"><span class="cke_button_icon cke_button__bold_icon">bold</span></a></li>') !== FALSE);
+
     // Ensure the styles textarea exists and is initialized empty.
     $styles_textarea = $this->xpath('//textarea[@name="editor[settings][plugins][stylescombo][styles]"]');
     $this->assertFieldByXPath('//textarea[@name="editor[settings][plugins][stylescombo][styles]"]', '', 'The styles textarea exists and is empty.');
@@ -279,7 +282,7 @@ class CKEditorAdminTest extends WebTestBase {
     $expected_settings['plugins']['stylescombo']['styles'] = '';
     $editor = entity_load('editor', 'amazing_format');
     $this->assertTrue($editor instanceof Editor, 'An Editor config entity exists now.');
-    $this->assertIdentical($expected_settings, $editor->getSettings(), 'The Editor config entity has the correct settings.');
+    $this->assertIdentical($this->castSafeStrings($expected_settings), $this->castSafeStrings($editor->getSettings()), 'The Editor config entity has the correct settings.');
   }
 
 }

@@ -1,5 +1,5 @@
 id: d6_node_revision
-label: Drupal 6 node revisions
+label: Node revisions
 migration_tags:
   - Drupal 6
 builder:
@@ -39,6 +39,3 @@ process:
 
 destination:
   plugin: entity_revision:node
-migration_dependencies:
-  required:
-    - d6_node:*

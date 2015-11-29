@@ -24,7 +24,7 @@ class NodeViewsData extends EntityViewsData {
     $data['node_field_data']['table']['base']['access query tag'] = 'node_access';
     $data['node_field_data']['table']['wizard_id'] = 'node';
 
-    $data['node_field_data']['nid']['field']['argument'] = [
+    $data['node_field_data']['nid']['argument'] = [
       'id' => 'node_nid',
       'name field' => 'title',
       'numeric' => TRUE,
@@ -240,7 +240,7 @@ class NodeViewsData extends EntityViewsData {
         'title' => t('Content'),
         'label' => t('Get the actual content from a content revision.'),
       ),
-    ) + $data['node_revision']['vid'];
+    ) + $data['node_field_revision']['vid'];
 
     $data['node_field_revision']['langcode']['help'] = t('The language the original content is in.');
 

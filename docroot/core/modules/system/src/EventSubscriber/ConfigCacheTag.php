@@ -7,7 +7,6 @@
 
 namespace Drupal\system\EventSubscriber;
 
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Config\ConfigCrudEvent;
 use Drupal\Core\Config\ConfigEvents;
@@ -60,8 +59,8 @@ class ConfigCacheTag implements EventSubscriberInterface {
       $this->cacheTagsInvalidator->invalidateTags(['route_match', 'rendered']);
     }
 
-    // Global theme settings.
-    if ($event->getConfig()->getName() === 'system.theme.global') {
+    // Theme configuration and global theme settings.
+    if (in_array($event->getConfig()->getName(), ['system.theme', 'system.theme.global'], TRUE)) {
       $this->cacheTagsInvalidator->invalidateTags(['rendered']);
     }
 

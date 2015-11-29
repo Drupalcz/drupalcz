@@ -7,7 +7,6 @@
 
 namespace Drupal\Core\Field;
 
-use Drupal\Component\Plugin\DependentPluginInterface;
 use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
@@ -145,7 +144,7 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
    *
    * @var array
    */
-  public $default_value = array();
+  protected $default_value = array();
 
   /**
    * The name of a callback function that returns default values.
@@ -178,13 +177,6 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
    * @var \Drupal\Core\Field\TypedData\FieldItemDataDefinition
    */
   protected $itemDefinition;
-
-  /**
-   * Flag indicating whether the bundle name can be renamed or not.
-   *
-   * @var bool
-   */
-  protected $bundleRenameAllowed = FALSE;
 
   /**
    * Array of constraint options keyed by constraint plugin ID.
@@ -252,16 +244,19 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
     $bundle_config_dependency = $this->entityManager()->getDefinition($this->entity_type)->getBundleConfigDependency($this->bundle);
     $this->addDependency($bundle_config_dependency['type'], $bundle_config_dependency['name']);
 
-    return $this->dependencies;
+    return $this;
   }
 
   /**
    * {@inheritdoc}
    */
   public function onDependencyRemoval(array $dependencies) {
+    $changed = parent::onDependencyRemoval($dependencies);
     $field_type_manager = \Drupal::service('plugin.manager.field.field_type');
     $definition = $field_type_manager->getDefinition($this->getType());
-    $changed = $definition['class']::onDependencyRemoval($this, $dependencies);
+    if ($definition['class']::onDependencyRemoval($this, $dependencies)) {
+      $changed = TRUE;
+    }
     return $changed;
   }
 
@@ -350,7 +345,7 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
    * {@inheritdoc}
    */
   public function setSettings(array $settings) {
-    $this->settings = $settings;
+    $this->settings = $settings + $this->settings;
     return $this;
   }
 
@@ -371,6 +366,7 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
    */
   public function setSetting($setting_name, $value) {
     $this->settings[$setting_name] = $value;
+    return $this;
   }
 
   /**
@@ -393,23 +389,56 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
    */
   public function getDefaultValue(FieldableEntityInterface $entity) {
     // Allow custom default values function.
-    if ($callback = $this->default_value_callback) {
+    if ($callback = $this->getDefaultValueCallback()) {
       $value = call_user_func($callback, $entity, $this);
     }
     else {
-      $value = $this->default_value;
-    }
-    // Normalize into the "array keyed by delta" format.
-    if (isset($value) && !is_array($value)) {
-      $properties = $this->getFieldStorageDefinition()->getPropertyNames();
-      $property = reset($properties);
-      $value = array(
-        array($property => $value),
-      );
+      $value = $this->getDefaultValueLiteral();
     }
     // Allow the field type to process default values.
     $field_item_list_class = $this->getClass();
     return $field_item_list_class::processDefaultValue($value, $entity, $this);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getDefaultValueLiteral() {
+    return $this->default_value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setDefaultValue($value) {
+    if (!is_array($value)) {
+      if ($value === NULL) {
+        $value = [];
+      }
+      $key = $this->getFieldStorageDefinition()->getPropertyNames()[0];
+      // Convert to the multi value format to support fields with a cardinality
+      // greater than 1.
+      $value = array(
+        array($key => $value),
+      );
+    }
+    $this->default_value = $value;
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getDefaultValueCallback() {
+    return $this->default_value_callback;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setDefaultValueCallback($callback) {
+    $this->default_value_callback = $callback;
+    return $this;
   }
 
   /**
@@ -423,7 +452,7 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
     // Only serialize necessary properties, excluding those that can be
     // recalculated.
     $properties = get_object_vars($this);
-    unset($properties['fieldStorage'], $properties['itemDefinition'], $properties['bundleRenameAllowed'], $properties['original']);
+    unset($properties['fieldStorage'], $properties['itemDefinition'], $properties['original']);
     return array_keys($properties);
   }
 
@@ -498,29 +527,6 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
   /**
    * {@inheritdoc}
    */
-  public function setDefaultValue($value) {
-    if (!is_array($value)) {
-      $key = $this->getFieldStorageDefinition()->getPropertyNames()[0];
-      // Convert to the multi value format to support fields with a cardinality
-      // greater than 1.
-      $value = array(
-        array($key => $value),
-      );
-    }
-    $this->default_value = $value;
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function allowBundleRename() {
-    $this->bundleRenameAllowed = TRUE;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getConfig($bundle) {
     return $this;
   }
@@ -530,6 +536,7 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
    */
   public function setConstraints(array $constraints) {
     $this->constraints = $constraints;
+    return $this;
   }
 
   /**
@@ -537,6 +544,7 @@ abstract class FieldConfigBase extends ConfigEntityBase implements FieldConfigIn
    */
   public function addConstraint($constraint_name, $options = NULL) {
     $this->constraints[$constraint_name] = $options;
+    return $this;
   }
 
   /**

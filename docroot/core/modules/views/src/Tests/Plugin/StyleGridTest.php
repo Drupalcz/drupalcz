@@ -9,7 +9,6 @@ namespace Drupal\views\Tests\Plugin;
 
 use Drupal\views\Views;
 use Drupal\views\ViewExecutable;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Tests the grid style plugin.
@@ -51,6 +50,10 @@ class StyleGridTest extends PluginTestBase {
       $this->assertGrid($view, $alignment, 2);
       $this->assertGrid($view, $alignment, 1);
     }
+
+    // Ensure styles are properly added for grid views.
+    $this->drupalGet('test-grid');
+    $this->assertRaw('stable/css/views/views.module.css');
   }
 
   /**

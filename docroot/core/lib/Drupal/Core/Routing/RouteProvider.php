@@ -19,8 +19,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\RouteCollection;
-use Symfony\Component\Routing\Exception\ResourceNotFoundException;
-
 use \Drupal\Core\Database\Connection;
 
 /**
@@ -248,7 +246,7 @@ class RouteProvider implements PreloadableRouteProviderInterface, PagedRouteProv
    * @return array
    *   An array of outlines that could match the specified path parts.
    */
-  public function getCandidateOutlines(array $parts) {
+  protected function getCandidateOutlines(array $parts) {
     $number_parts = count($parts);
     $ancestors = array();
     $length = $number_parts - 1;
@@ -357,7 +355,7 @@ class RouteProvider implements PreloadableRouteProviderInterface, PagedRouteProv
   /**
    * Comparison function for usort on routes.
    */
-  public function routeProviderRouteCompare(array $a, array $b) {
+  protected function routeProviderRouteCompare(array $a, array $b) {
     if ($a['fit'] == $b['fit']) {
       return strcmp($a['name'], $b['name']);
     }

@@ -10,9 +10,7 @@ namespace Drupal\Core\Menu;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Controller\ControllerResolverInterface;
-use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\Core\Template\Attribute;
 
@@ -179,6 +177,7 @@ class MenuLinkTree implements MenuLinkTreeInterface {
       // Add the theme wrapper for outer markup.
       // Allow menu-specific theme overrides.
       $build['#theme'] = 'menu__' . strtr($menu_name, '-', '_');
+      $build['#menu_name'] = $menu_name;
       $build['#items'] = $items;
       // Set cache tag.
       $build['#cache']['tags'][] = 'config:system.menu.' . $menu_name;
@@ -243,26 +242,28 @@ class MenuLinkTree implements MenuLinkTreeInterface {
       if ($data->access instanceof AccessResultInterface && !$data->access->isAllowed()) {
         continue;
       }
+      $element = [];
 
-      $class = ['menu-item'];
-      // Set a class for the <li>-tag. Only set 'expanded' class if the link
-      // also has visible children within the current tree.
+      // Set a variable for the <li> tag. Only set 'expanded' to true if the
+      // link also has visible children within the current tree.
+      $element['is_expanded'] = FALSE;
+      $element['is_collapsed'] = FALSE;
       if ($data->hasChildren && !empty($data->subtree)) {
-        $class[] = 'menu-item--expanded';
+        $element['is_expanded'] = TRUE;
       }
       elseif ($data->hasChildren) {
-        $class[] = 'menu-item--collapsed';
+        $element['is_collapsed'] = TRUE;
       }
-      // Set a class if the link is in the active trail.
+      // Set a helper variable to indicate whether the link is in the active
+      // trail.
+      $element['in_active_trail'] = FALSE;
       if ($data->inActiveTrail) {
-        $class[] = 'menu-item--active-trail';
+        $element['in_active_trail'] = TRUE;
       }
 
       // Note: links are rendered in the menu.html.twig template; and they
       // automatically bubble their associated cacheability metadata.
-      $element = array();
       $element['attributes'] = new Attribute();
-      $element['attributes']['class'] = $class;
       $element['title'] = $link->getTitle();
       $element['url'] = $link->getUrlObject();
       $element['url']->setOption('set_active_class', TRUE);

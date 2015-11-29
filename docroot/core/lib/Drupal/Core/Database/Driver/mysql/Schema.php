@@ -7,7 +7,6 @@
 
 namespace Drupal\Core\Database\Driver\mysql;
 
-use Drupal\Core\Database\Database;
 use Drupal\Core\Database\Query\Condition;
 use Drupal\Core\Database\SchemaException;
 use Drupal\Core\Database\SchemaObjectExistsException;
@@ -20,6 +19,9 @@ use Drupal\Component\Utility\Unicode;
  * @{
  */
 
+/**
+ * MySQL implementation of \Drupal\Core\Database\Schema.
+ */
 class Schema extends DatabaseSchema {
 
   /**
@@ -539,7 +541,8 @@ class Schema extends DatabaseSchema {
       // Add table prefixes before truncating.
       $comment = Unicode::truncate($this->connection->prefixTables($comment), $length, TRUE, TRUE);
     }
-
+    // Remove semicolons to avoid triggering multi-statement check.
+    $comment = strtr($comment, array(';' => '.'));
     return $this->connection->quote($comment);
   }
 

@@ -7,6 +7,7 @@
 
 namespace Drupal\locale\Tests;
 
+use Drupal\Core\StringTranslation\PluralTranslatableMarkup;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -130,14 +131,77 @@ class LocalePluralFormatTest extends WebTestBase {
         // expected index as per the logic for translation lookups.
         $expected_plural_index = ($count == 1) ? 0 : $expected_plural_index;
         $expected_plural_string = str_replace('@count', $count, $plural_strings[$langcode][$expected_plural_index]);
-        $this->assertIdentical(\Drupal::translation()->formatPlural($count, '1 hour', '@count hours', array(), array('langcode' => $langcode)), $expected_plural_string, 'Plural translation of 1 hours / @count hours for count ' . $count . ' in ' . $langcode . ' is ' . $expected_plural_string);
-        // DO NOT use translation to pass into formatPluralTranslated() this
-        // way. It is designed to be used with *already* translated text like
-        // settings from configuration. We use PHP translation here just because
-        // we have the expected result data in that format.
-        $this->assertIdentical(\Drupal::translation()->formatPluralTranslated($count, \Drupal::translation()->translate('1 hour' . LOCALE_PLURAL_DELIMITER . '@count hours', array(), array('langcode' => $langcode)), array(), array('langcode' => $langcode)), $expected_plural_string, 'Translated plural lookup of 1 hours / @count hours for count ' . $count . ' in ' . $langcode . ' is ' . $expected_plural_string);
+        $this->assertIdentical(\Drupal::translation()->formatPlural($count, '1 hour', '@count hours', array(), array('langcode' => $langcode))->render(), $expected_plural_string, 'Plural translation of 1 hours / @count hours for count ' . $count . ' in ' . $langcode . ' is ' . $expected_plural_string);
+        // DO NOT use translation to pass translated strings into
+        // PluralTranslatableMarkup::createFromTranslatedString() this way. It
+        // is designed to be used with *already* translated text like settings
+        // from configuration. We use PHP translation here just because we have
+        // the expected result data in that format.
+        $translated_string = \Drupal::translation()->translate('1 hour' . PluralTranslatableMarkup::DELIMITER . '@count hours', array(), array('langcode' => $langcode));
+        $plural = PluralTranslatableMarkup::createFromTranslatedString($count, $translated_string, array(), array('langcode' => $langcode));
+        $this->assertIdentical($plural->render(), $expected_plural_string);
       }
     }
+  }
+
+  /**
+   * Tests plural editing of DateFormatter strings
+   */
+  public function testPluralEditDateFormatter() {
+
+    // Import some .po files with formulas to set up the environment.
+    // These will also add the languages to the system.
+    $this->importPoFile($this->getPoFileWithSimplePlural(), array(
+      'langcode' => 'fr',
+    ));
+
+    // Set French as the site default language.
+    $this->config('system.site')->set('default_langcode', 'fr')->save();
+
+    // Visit User Info page before updating translation strings.
+    $this->drupalGet('user');
+
+    // Member for time should be translated.
+    $this->assertText("seconde", "'Member for' text is translated.");
+
+    $path = 'admin/config/regional/translate/';
+    $search = array(
+      'langcode' => 'fr',
+      // Limit to only translated strings to ensure that database ordering does
+      // not break the test.
+      'translation' => 'translated',
+    );
+    $this->drupalPostForm($path, $search, t('Filter'));
+    // Plural values for the langcode fr.
+    $this->assertText('@count seconde');
+    $this->assertText('@count secondes');
+
+    // Inject a plural source string to the database. We need to use a specific
+    // langcode here because the language will be English by default and will
+    // not save our source string for performance optimization if we do not ask
+    // specifically for a language.
+    \Drupal::translation()->formatPlural(1, '1 second', '@count seconds', array(), array('langcode' => 'fr'))->render();
+    $lid = db_query("SELECT lid FROM {locales_source} WHERE source = :source AND context = ''", array(':source' => "1 second" . LOCALE_PLURAL_DELIMITER . "@count seconds"))->fetchField();
+    // Look up editing page for this plural string and check fields.
+    $search = array(
+      'string' => '1 second',
+      'langcode' => 'fr',
+    );
+    $this->drupalPostForm('admin/config/regional/translate', $search, t('Filter'));
+
+    // Save complete translations for the string in langcode fr.
+    $edit = array(
+      "strings[$lid][translations][0]" => '1 seconde updated',
+      "strings[$lid][translations][1]" => '@count secondes updated',
+    );
+    $this->drupalPostForm($path, $edit, t('Save translations'));
+
+    // User interface input for translating seconds should not be duplicated
+    $this->assertUniqueText('@count seconds', 'Interface translation input for @count seconds only appears once.');
+
+    // Member for time should be translated.
+    $this->drupalGet('user');
+    $this->assertText("seconde", "'Member for' text is translated.");
   }
 
   /**
@@ -223,7 +287,7 @@ class LocalePluralFormatTest extends WebTestBase {
     // langcode here because the language will be English by default and will
     // not save our source string for performance optimization if we do not ask
     // specifically for a language.
-    \Drupal::translation()->formatPlural(1, '1 day', '@count days', array(), array('langcode' => 'fr'));
+    \Drupal::translation()->formatPlural(1, '1 day', '@count days', array(), array('langcode' => 'fr'))->render();
     $lid = db_query("SELECT lid FROM {locales_source} WHERE source = :source AND context = ''", array(':source' => "1 day" . LOCALE_PLURAL_DELIMITER . "@count days"))->fetchField();
     // Look up editing page for this plural string and check fields.
     $search = array(
@@ -303,6 +367,11 @@ msgid "1 hour"
 msgid_plural "@count hours"
 msgstr[0] "@count heure"
 msgstr[1] "@count heures"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "@count seconde"
+msgstr[1] "@count secondes"
 
 msgid "Monday"
 msgstr "lundi"

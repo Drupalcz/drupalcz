@@ -59,7 +59,7 @@ interface MigrateDestinationInterface extends PluginInspectionInterface {
    * Import the row.
    *
    * Derived classes must implement import(), to construct one new object
-   * (pre-populated) using ID mappings in the Migration).
+   * (pre-populated) using ID mappings in the Migration.
    *
    * @param \Drupal\migrate\Row $row
    *   The row object.
@@ -72,11 +72,27 @@ interface MigrateDestinationInterface extends PluginInspectionInterface {
   public function import(Row $row, array $old_destination_id_values = array());
 
   /**
-   * Delete the specified IDs from the target Drupal.
+   * Delete the specified destination object from the target Drupal.
    *
-   * @param array $destination_identifiers
-   *   The destination ids to delete.
+   * @param array $destination_identifier
+   *   The ID of the destination object to delete.
    */
-  public function rollbackMultiple(array $destination_identifiers);
+  public function rollback(array $destination_identifier);
 
+  /**
+   * Whether the destination can be rolled back or not.
+   *
+   * @return bool
+   *   TRUE if rollback is supported, FALSE if not.
+   */
+  public function supportsRollback();
+
+  /**
+   * The rollback action for the last imported item.
+   *
+   * @return int
+   *   The MigrateIdMapInterface::ROLLBACK_ constant indicating how an imported
+   *   item should be handled on rollback.
+   */
+  public function rollbackAction();
 }

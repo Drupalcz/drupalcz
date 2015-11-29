@@ -35,13 +35,13 @@ class FileDownloadController extends ControllerBase {
    * @param string $scheme
    *   The file scheme, defaults to 'private'.
    *
+   * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+   *   The transferred file as response.
+   *
    * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
    *   Thrown when the requested file does not exist.
    * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
    *   Thrown when the user does not have access to the file.
-   *
-   * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
-   *   The transferred file as response.
    */
   public function download(Request $request, $scheme = 'private') {
     $target = $request->query->get('file');
@@ -59,7 +59,11 @@ class FileDownloadController extends ControllerBase {
       }
 
       if (count($headers)) {
-        return new BinaryFileResponse($uri, 200, $headers);
+        // \Drupal\Core\EventSubscriber\FinishResponseSubscriber::onRespond()
+        // sets response as not cacheable if the Cache-Control header is not
+        // already modified. We pass in FALSE for non-private schemes for the
+        // $public parameter to make sure we don't change the headers.
+        return new BinaryFileResponse($uri, 200, $headers, $scheme !== 'private');
       }
 
       throw new AccessDeniedHttpException();

@@ -7,9 +7,7 @@
 
 namespace Drupal\user\Tests;
 
-use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Field\Plugin\Field\FieldType\EmailItem;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Render\Element\Email;
 use Drupal\simpletest\KernelTestBase;
@@ -134,9 +132,9 @@ class UserValidationTest extends KernelTestBase {
     $this->assertEqual($violations[0]->getMessage(), t('The email address %mail is already taken.', array('%mail' => 'existing@example.com')));
     $user->set('mail', NULL);
     $violations = $user->validate();
-    $this->assertEqual(count($violations), 1, 'E-mail addresses may not be removed');
+    $this->assertEqual(count($violations), 1, 'Email addresses may not be removed');
     $this->assertEqual($violations[0]->getPropertyPath(), 'mail');
-    $this->assertEqual($violations[0]->getMessage(), t('!name field is required.', array('!name' => $user->getFieldDefinition('mail')->getLabel())));
+    $this->assertEqual($violations[0]->getMessage(), t('@name field is required.', array('@name' => $user->getFieldDefinition('mail')->getLabel())));
     $user->set('mail', 'someone@example.com');
 
     $user->set('timezone', $this->randomString(33));
@@ -178,7 +176,7 @@ class UserValidationTest extends KernelTestBase {
     $user->roles[1]->target_id = 'unknown_role';
     $violations = $user->validate();
     $this->assertEqual(count($violations), 1);
-    $this->assertEqual($violations[0]->getPropertyPath(), 'roles.1');
+    $this->assertEqual($violations[0]->getPropertyPath(), 'roles.1.target_id');
     $this->assertEqual($violations[0]->getMessage(), t('The referenced entity (%entity_type: %name) does not exist.', array('%entity_type' => 'user_role', '%name' => 'unknown_role')));
   }
 

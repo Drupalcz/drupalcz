@@ -8,7 +8,6 @@
 namespace Drupal\taxonomy\Tests;
 
 use Drupal\Component\Utility\Unicode;
-use Drupal\field\Entity\FieldConfig;
 use Drupal\taxonomy\Entity\Vocabulary;
 
 /**
@@ -140,37 +139,6 @@ class VocabularyCrudTest extends TaxonomyTestBase {
       'vid' => $vocabulary2->id(),
     )));
     $this->assertEqual($vocabulary->id(), $vocabulary2->id(), 'Vocabulary loaded successfully by name and ID.');
-  }
-
-  /**
-   * Tests that machine name changes are properly reflected.
-   */
-  function testTaxonomyVocabularyChangeMachineName() {
-    // Add a field to the vocabulary.
-    entity_create('field_storage_config', array(
-      'field_name' => 'field_test',
-      'entity_type' => 'taxonomy_term',
-      'type' => 'test_field',
-    ))->save();
-    entity_create('field_config', array(
-      'field_name' => 'field_test',
-      'entity_type' => 'taxonomy_term',
-      'bundle' => $this->vocabulary->id(),
-    ))->save();
-
-    // Change the machine name.
-    $old_name = $this->vocabulary->id();
-    $new_name = Unicode::strtolower($this->randomMachineName());
-    $this->vocabulary->set('vid', $new_name);
-    $this->vocabulary->save();
-
-    // Check that entity bundles are properly updated.
-    $info = entity_get_bundles('taxonomy_term');
-    $this->assertFalse(isset($info[$old_name]), 'The old bundle name does not appear in entity_get_bundles().');
-    $this->assertTrue(isset($info[$new_name]), 'The new bundle name appears in entity_get_bundles().');
-
-    // Check that the field is still attached to the vocabulary.
-    $this->assertTrue(FieldConfig::loadByName('taxonomy_term', $new_name, 'field_test'), 'The bundle name was updated correctly.');
   }
 
   /**
