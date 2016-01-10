@@ -1,0 +1,24 @@
+assignment:
+  enabled:
+    - base
+    - core
+    - dependency
+    - exclude
+    - existing
+    - namespace
+    - packages
+    - profile
+  method_weights:
+    base: -2
+    core: 0
+    dependency: 10
+    exclude: -8
+    existing: -10
+    namespace: 5
+    packages: -20
+    profile: -5
+export:
+  folder: 'custom'
+bundle:
+  settings: []
+langcode: en

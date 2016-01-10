@@ -1,0 +1,39 @@
+name: Drupal.cz
+type: profile
+core: 8.x
+version: 8.x-1.0
+dependencies:
+  - node
+  - block
+  - user
+  - breakpoint
+  - ckeditor
+  - color
+  - config
+  - comment
+  - contact
+  - menu_link_content
+  - datetime
+  - editor
+  - entity_reference
+  - image
+  - menu_ui
+  - options
+  - path
+  - page_cache
+  - taxonomy
+  - dblog
+  - shortcut
+  - toolbar
+  - field_ui
+  - file
+  - views
+  - views_ui
+  - dcz_article
+  - dcz_user
+  - dcz_tags_taxonomy
+  - dcz_migrate
+themes:
+  - bartik
+  - seven
+distribution: true

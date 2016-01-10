@@ -1,0 +1,84 @@
+language: php
+
+php:
+  - 5.5
+
+mysql:
+  database: drupalcz
+  username: root
+  encoding: utf8
+
+addons:
+  apt:
+    packages:
+      - apache2
+      - libapache2-mod-fastcgi
+
+env:
+  global:
+    - DISPLAY=:99.0
+
+before_install:
+  - composer self-update
+
+install:
+  # Create MySQL Database.
+  - mysql -e 'create database drupalcz;'
+
+  # Set up Apache.
+  - sudo a2enmod rewrite actions fastcgi alias
+  - sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
+  - if [[ -f ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.d/www.conf.default ]] ; then sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.d/www.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.d/www.conf ; fi
+  - echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
+
+  # Configure apache virtual hosts.
+  - sudo cp -f tests/build/travis-ci-apache /etc/apache2/sites-available/default
+  - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
+
+  # Restart the server.
+  - sudo service apache2 restart
+  - cat /etc/apache2/sites-available/default
+
+  # Install latest Drush 7.
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  - composer global require --prefer-dist --no-interaction drush/drush:dev-master
+
+  # Install Drupal console
+  - composer global require drupal/console
+  - echo "PATH=$PATH:~/.composer/vendor/bin" >> ~/.bash_profile
+
+  # Disable sendmail.
+  - echo sendmail_path=`which true` >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+
+  # Set up site.
+  - cd ./docroot
+  - drush si dcz install_configure_form.update_status_module='array(FALSE,FALSE)' --sites-subdir=default --db-url=mysql://root:@127.0.0.1/drupalcz --verbose --account-name=admin --account-pass=admin --site-mail=drupalcz_travis_dev@klaska.net --site-name="Drupal.cz" --yes
+  - cd ..
+
+  # Set up and run migrations.
+  - mysql -e 'create database drupalcz_old;'
+  - git clone https://github.com/Drupalcz/drupalcz_db.git
+  - mysql -uroot drupalcz_old < ./drupalcz_db/dcz_scrubbed_slim.sql
+  - cd ./docroot
+  - console migrate:execute --db-host="localhost" --db-name="drupalcz_old" --db-user="root" --db-port=3306 --db-type="mysql" all -n
+  #  - drush migrate-manifest --legacy-db-url=mysql://root:@localhost/drupalcz_old manifest.yml
+  - cd ..
+
+  # Setup behat.
+  - cd ./tests/behat
+  - composer install --prefer-dist --no-interaction
+  - cd ../..
+
+  # Setup display for selenium.
+  - sh -e /etc/init.d/xvfb start
+
+  # Get Selenium.
+  - if [[ ! -e "$HOME/custom/selenium-server-standalone-2.44.0.jar" ]]; then wget --directory-prefix="$HOME/custom" http://selenium-release.storage.googleapis.com/2.44/selenium-server-standalone-2.44.0.jar; fi;
+  - java -jar $HOME/custom/selenium-server-standalone-2.44.0.jar -p 4444 > /dev/null 2>&1 &
+
+script:
+  # Run behat tests.
+  - cd ./tests/behat
+  - ./vendor/behat/behat/bin/behat
+  - cd ../..
