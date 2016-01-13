@@ -1,0 +1,24 @@
+uuid: 10268af3-5722-4409-9204-4b8e3f74170e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.dcz_article.body
+    - node.type.dcz_article
+  module:
+    - text
+    - user
+id: node.dcz_article.default
+targetEntityType: node
+bundle: dcz_article
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 100
+hidden: {  }
