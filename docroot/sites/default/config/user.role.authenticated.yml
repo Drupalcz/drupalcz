@@ -1,0 +1,10 @@
+uuid: 150f6545-fc70-4c6e-a109-9c8aba43107d
+langcode: en
+status: true
+dependencies: {  }
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access content'

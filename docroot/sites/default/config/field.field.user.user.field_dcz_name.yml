@@ -1,0 +1,20 @@
+uuid: 0bd4eb75-6b9d-4e09-8e5a-904d5444ad04
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_dcz_name
+  module:
+    - user
+id: user.user.field_dcz_name
+field_name: field_dcz_name
+entity_type: user
+bundle: user
+label: Name
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
