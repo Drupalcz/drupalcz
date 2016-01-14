@@ -59,8 +59,8 @@ class InOperator extends FilterPluginBase {
    * This can use a guard to be used to reduce database hits as much as
    * possible.
    *
-   * @return
-   *   Return the stored values in $this->valueOptions if someone expects it.
+   * @return array|NULL
+   *   The stored values from $this->valueOptions.
    */
   public function getValueOptions() {
     if (isset($this->valueOptions)) {
@@ -349,7 +349,7 @@ class InOperator extends FilterPluginBase {
       if (count($this->value) == 0) {
         $values = $this->t('Unknown');
       }
-      else if (count($this->value) == 1) {
+      elseif (count($this->value) == 1) {
         // If any, use the 'single' short name of the operator instead.
         if (isset($info[$this->operator]['short_single'])) {
           $operator = $info[$this->operator]['short_single'];

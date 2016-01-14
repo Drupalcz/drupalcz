@@ -1010,6 +1010,12 @@ abstract class WebTestBase extends TestBase {
   /**
    * Install modules defined by `static::$modules`.
    *
+   * To install test modules outside of the testing environment, add
+   * @code
+   * $settings['extension_discovery_scan_tests'] = TRUE;
+   * @encode
+   * to your settings.php.
+   *
    * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
    *   The container.
    */
@@ -2970,7 +2976,7 @@ abstract class WebTestBase extends TestBase {
     }
     // The URL generator service is not necessarily available yet; e.g., in
     // interactive installer tests.
-    else if ($this->container->has('url_generator')) {
+    elseif ($this->container->has('url_generator')) {
       $force_internal = isset($options['external']) && $options['external'] == FALSE;
       if (!$force_internal && UrlHelper::isExternal($path)) {
         return Url::fromUri($path, $options)->toString();
