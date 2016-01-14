@@ -1,0 +1,22 @@
+uuid: 8146f70b-9012-4453-a324-36f6190a3612
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.dcz_landing_page
+  module:
+    - text
+id: node.dcz_landing_page.body
+field_name: body
+entity_type: node
+bundle: dcz_landing_page
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

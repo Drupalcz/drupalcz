@@ -1,0 +1,30 @@
+uuid: 5c737c01-f16b-4237-8a07-7b8b6d87ee3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.dcz_landing_page.body
+    - field.field.node.dcz_landing_page.field_content_widget
+    - field.field.node.dcz_landing_page.field_hero_widget
+    - node.type.dcz_landing_page
+  module:
+    - text
+    - user
+id: node.dcz_landing_page.teaser
+targetEntityType: node
+bundle: dcz_landing_page
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  links:
+    weight: 100
+hidden:
+  field_content_widget: true
+  field_hero_widget: true

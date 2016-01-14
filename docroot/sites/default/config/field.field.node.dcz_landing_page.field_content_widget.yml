@@ -1,0 +1,48 @@
+uuid: 70dcc578-a753-4295-b009-9bde94281070
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_widget
+    - node.type.dcz_landing_page
+  module:
+    - entity_reference_revisions
+id: node.dcz_landing_page.field_content_widget
+field_name: field_content_widget
+entity_type: node
+bundle: dcz_landing_page
+label: 'Content widget'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      para_content: para_content
+      para_block_reference: para_block_reference
+      para_gallery: para_gallery
+      para_image: para_image
+      para_video: para_video
+    target_bundles_drag_drop:
+      para_content:
+        enabled: true
+        weight: 6
+      para_block_reference:
+        enabled: true
+        weight: 7
+      para_gallery:
+        enabled: true
+        weight: 7
+      para_hero:
+        weight: 8
+        enabled: false
+      para_image:
+        enabled: true
+        weight: 9
+      para_video:
+        enabled: true
+        weight: 10
+field_type: entity_reference_revisions
