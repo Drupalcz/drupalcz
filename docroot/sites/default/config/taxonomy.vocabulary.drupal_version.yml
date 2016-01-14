@@ -1,0 +1,9 @@
+uuid: 83f0a013-df0c-476d-ae00-ccb1b5c19b44
+langcode: en
+status: true
+dependencies: {  }
+name: 'Drupal version'
+vid: drupal_version
+description: 'Which version of Drupal is your question about.'
+hierarchy: 0
+weight: 0
