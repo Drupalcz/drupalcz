@@ -1,0 +1,27 @@
+uuid: 2c685dd1-39b0-41d2-9900-cd1d98d7e5c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.para_image.field_p_image
+    - field.field.paragraph.para_image.field_p_title
+    - field.field.paragraph.para_image.field_para_class
+    - paragraphs.paragraphs_type.para_image
+id: paragraph.para_image.preview
+targetEntityType: paragraph
+bundle: para_image
+mode: preview
+content:
+  field_p_title:
+    type: string
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_p_image: true
+  field_para_class: true
+  uid: true

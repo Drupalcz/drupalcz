@@ -1,0 +1,22 @@
+uuid: 1597eea3-be75-45b5-9e5c-921ac2d5a673
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_block_reference
+    - paragraphs.paragraphs_type.para_block_reference
+id: paragraph.para_block_reference.field_p_block_reference
+field_name: field_p_block_reference
+entity_type: paragraph
+bundle: para_block_reference
+label: 'Block reference'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:block'
+  handler_settings:
+    target_bundles: null
+field_type: entity_reference

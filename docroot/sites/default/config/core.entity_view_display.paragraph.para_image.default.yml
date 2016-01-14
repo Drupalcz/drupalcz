@@ -1,0 +1,29 @@
+uuid: 0a7a66e1-325c-409d-a617-236878bd0b11
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.para_image.field_p_image
+    - field.field.paragraph.para_image.field_p_title
+    - field.field.paragraph.para_image.field_para_class
+    - paragraphs.paragraphs_type.para_image
+  module:
+    - image
+id: paragraph.para_image.default
+targetEntityType: paragraph
+bundle: para_image
+mode: default
+content:
+  field_p_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: large
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+hidden:
+  created: true
+  field_p_title: true
+  field_para_class: true
+  uid: true

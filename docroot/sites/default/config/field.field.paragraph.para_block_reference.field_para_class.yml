@@ -1,0 +1,21 @@
+uuid: 07d097ad-e4fc-41bd-aa2a-42c06130b019
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_para_class
+    - paragraphs.paragraphs_type.para_block_reference
+  module:
+    - options
+id: paragraph.para_block_reference.field_para_class
+field_name: field_para_class
+entity_type: paragraph
+bundle: para_block_reference
+label: 'Para class'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

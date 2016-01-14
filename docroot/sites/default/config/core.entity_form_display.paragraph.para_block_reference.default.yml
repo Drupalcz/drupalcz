@@ -1,0 +1,37 @@
+uuid: 3ea305ef-780e-49f4-a700-fdba96809d31
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.para_block_reference.field_p_block_reference
+    - field.field.paragraph.para_block_reference.field_p_title
+    - field.field.paragraph.para_block_reference.field_para_class
+    - paragraphs.paragraphs_type.para_block_reference
+id: paragraph.para_block_reference.default
+targetEntityType: paragraph
+bundle: para_block_reference
+mode: default
+content:
+  field_p_block_reference:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: 'Start typing block name…'
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_p_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_para_class:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+hidden:
+  created: true
+  uid: true

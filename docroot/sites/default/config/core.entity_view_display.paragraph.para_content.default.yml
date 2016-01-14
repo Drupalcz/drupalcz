@@ -1,0 +1,27 @@
+uuid: 88718292-b4bf-4c42-8200-ae8cf4ecd052
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.para_content.field_p_content
+    - field.field.paragraph.para_content.field_p_title
+    - field.field.paragraph.para_content.field_para_class
+    - paragraphs.paragraphs_type.para_content
+  module:
+    - text
+id: paragraph.para_content.default
+targetEntityType: paragraph
+bundle: para_content
+mode: default
+content:
+  field_p_content:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+hidden:
+  created: true
+  field_p_title: true
+  field_para_class: true
+  uid: true

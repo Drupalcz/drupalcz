@@ -1,0 +1,21 @@
+uuid: 1d7c0f32-e87b-43e0-a800-a9217f5a1d79
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_para_class
+    - paragraphs.paragraphs_type.para_content
+  module:
+    - options
+id: paragraph.para_content.field_para_class
+field_name: field_para_class
+entity_type: paragraph
+bundle: para_content
+label: 'Para class'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
