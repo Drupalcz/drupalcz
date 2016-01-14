@@ -1,0 +1,20 @@
+uuid: d9001700-0fb0-11e4-9191-0800200c9a66
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - juicebox
+_core:
+  default_config_hash: 6s8io2UT5DklcufGYHv4YacXPlJ1rG9dNP_x_JIhHY4
+name: juicebox_medium
+label: 'Juicebox medium (1024x1024)'
+effects:
+  1f8a8fc0-0fb1-11e4-9191-0800200c9a66:
+    uuid: 1f8a8fc0-0fb1-11e4-9191-0800200c9a66
+    id: image_scale
+    weight: 0
+    data:
+      width: 1024
+      height: 1024
+      upscale: false

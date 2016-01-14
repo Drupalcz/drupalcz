@@ -1,0 +1,8 @@
+library_definitions:
+  local:
+    path: 'public://library-definitions'
+  remote:
+    enable: false
+    url: ''
+_core:
+  default_config_hash: sagWCPZp0ozZk48F0iBkKDbBWR0lwLkIs4HL_8EhBw8

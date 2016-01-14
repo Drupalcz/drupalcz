@@ -1,0 +1,9 @@
+apply_markup_filter: true
+enable_cors: false
+translate_interface: false
+base_languagelist: ''
+juicebox_multisize_small: juicebox_small
+juicebox_multisize_medium: juicebox_medium
+juicebox_multisize_large: juicebox_large
+_core:
+  default_config_hash: bWO6SM83RWkQcqI5ALeNV1b23-TN8x25u4q5lz5J0Ag
