@@ -4,8 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.dcz_article.body
+    - field.field.node.dcz_article.field_attachment
+    - field.field.node.dcz_article.field_comments_article
+    - field.field.node.dcz_article.field_tags
     - node.type.dcz_article
   module:
+    - comment
+    - file
     - text
     - user
 id: node.dcz_article.default
@@ -19,6 +24,26 @@ content:
     weight: 101
     settings: {  }
     third_party_settings: {  }
+  field_attachment:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: file_default
+  field_comments_article:
+    weight: 104
+    label: above
+    settings:
+      pager_id: 0
+    third_party_settings: {  }
+    type: comment_default
+  field_tags:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
   links:
     weight: 100
 hidden: {  }
