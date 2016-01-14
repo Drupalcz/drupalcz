@@ -22,6 +22,8 @@ module:
   filter: 0
   history: 0
   image: 0
+  juicebox: 0
+  libraries: 0
   link: 0
   menu_ui: 0
   migrate: 0
