@@ -1,0 +1,4 @@
+services:
+  juicebox.formatter:
+    class: Drupal\juicebox\JuiceboxFormatter
+    arguments: ['@config.factory', '@string_translation', '@url_generator', '@module_handler', '@path.current', '@request_stack']

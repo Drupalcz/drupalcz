@@ -1,0 +1,214 @@
+<?php
+/**
+ * @file
+ * Module file for Juicebox.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\juicebox\JuiceboxGalleryInterface;
+use Drupal\juicebox\JuiceboxGalleryDrupalInterface;
+
+
+/**
+ * Implements hook_theme().
+ */
+function juicebox_theme() {
+  return array(
+    // Template for the main Juicebox embed markup.
+    'juicebox_embed_markup' => array(
+      'template' => 'juicebox-embed-markup',
+      'file' => 'templates/juicebox.theme.inc',
+      'render element' => 'element',
+    ),
+    // Field template for use with relative-width galleries.
+    'field__juicebox_relative_width' => array(
+      'base hook' => 'field',
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function juicebox_theme_suggestions_field_alter(array &$suggestions, array $variables) {
+  // Some themes (e.g. Bartik) style fields in special ways that breaks
+  // Juicebox output. Specifically they target a theme-specific selector,
+  // that identifies the field type (e.g. "field-type-image"), with special CSS.
+  // This CSS often assumes an inline list of images that have layout/width is
+  // being renderd, and apply float or table positioning on the field wrapper.
+  // This positioning can make relative width galleries display in very
+  // unpredictable ways. To address this we implement our own field template,
+  // based on the base core field template, for fields that contains a
+  // relative-width Juicebox gallery.
+  // @see https://www.drupal.org/node/2625806
+  if (isset($variables['element']['#formatter']) && $variables['element']['#formatter'] == 'juicebox_formatter'
+      && isset($variables['element'][0]['#gallery']) && $variables['element'][0]['#gallery'] instanceof JuiceboxGalleryInterface) {
+    $options = $variables['element'][0]['#gallery']->getOptions();
+    // If the gallery has a "%" char in the width configuration it's a
+    // relative-width gallery.
+    if (array_key_exists('gallerywidth', $options) && strpos($options['gallerywidth'], '%')) {
+      $suggestions[] = 'field__juicebox_relative_width';
+    }
+  }
+}
+
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function juicebox_library_info_alter(&$libraries, $module) {
+  if ($module != 'juicebox') {
+    return;
+  }
+  // We don't currently have a way to process library details from Libraries
+  // API automatically, so extract a core library definition manually.
+  // see: https://www.drupal.org/node/2350877
+  if (isset($libraries['juicebox'])) {
+    $library = \Drupal::service('juicebox.formatter')->getLibrary();
+    if (!empty($library['installed']) && !empty($library['files']) && !empty($library['library path'])) {
+      foreach ($library['files'] as $type => $file) {
+        foreach ($file as $filename => $options) {
+          $uri = '/' . $library['library path'] . '/' . $filename;
+          $libraries['juicebox'][$type][$uri] = $options;
+        }
+      }
+    }
+  }
+}
+
+
+/**
+ * Implements hook_libraries_info().
+ */
+function juicebox_libraries_info() {
+  $libraries['juicebox'] = array(
+    'name' => 'Juicebox',
+    'vendor url' => 'http://www.juicebox.net/',
+    'download url' => 'http://www.juicebox.net/download/',
+    'version arguments' => array(
+      'file' => 'juicebox.js',
+      'pattern' => '/Juicebox.([a-zA-Z]+[0-9\.\ -]+)/',
+      'lines' => 5,
+    ),
+    'files' => array(
+      // Note that we do not want the Juicebox library javascript to be
+      // aggregated by Drupal (set preprocess option = FALSE). This is because
+      // some supporting library CSS files must be at a specific location
+      // RELATIVE to to the main js file. Aggregation breaks this.
+      'js' => array('juicebox.js' => array('preprocess' => FALSE, 'group' => JS_LIBRARY)),
+    ),
+    'callbacks' => array(
+      'info' => array('juicebox_library_add_info'),
+      'post-detect' => array('juicebox_library_post_detect'),
+    ),
+  );
+  return $libraries;
+}
+
+
+/**
+ * Libraries API Info Callback
+ *
+ * Add baseline variables to a Juicebox library array that are not version
+ * specific but should always be defined. These values are generic to all
+ * Juicebox libraries and may be referenced even when the local library info
+ * cannot be loaded or is not used.
+ *
+ * @see juicebox_libraries_info()
+ */
+function juicebox_library_add_info(&$library) {
+  $library['disallowed_conf'] = array();
+  $library['compatible_mimetypes'] = array('image/gif', 'image/jpeg', 'image/png');
+  $library['base_languagelist'] = 'Show Thumbnails|Hide Thumbnails|Expand Gallery|Close Gallery|Open Image in New Window';
+}
+
+
+/**
+ * Libraries API Post-Detect Callback
+ *
+ * Add detailed variables to a Juicebox library array after the version info can
+ * be detected.
+ *
+ * @see juicebox_libraries_info()
+ */
+function juicebox_library_post_detect(&$library) {
+  $pro = FALSE;
+  $disallowed_conf = array();
+  if (!empty($library['version'])) {
+    // Check if this is a Pro version.
+    if (stripos($library['version'], "Pro") !== FALSE) {
+      $pro = TRUE;
+      $library['base_languagelist'] = 'Show Thumbnails|Hide Thumbnails|Expand Gallery|Close Gallery|Open Image in New Window|Next Image|Previous Image|Play Audio|Pause Audio|Show Information|Hide Information|Start AutoPlay|Stop AutoPlay|AutoPlay ON|AutoPlay OFF|Go Back|Buy this Image|Share on Facebook|Share on Twitter|Share on Google+|Share on Pinterest|Share on Tumblr|of';
+    }
+    // Get numeric part of the version statement.
+    $version_number = 0;
+    $matches = array();
+    preg_match("/[0-9\.]+[^\.]$/u", $library['version'], $matches);
+    if (!empty($matches[0])) {
+      $version_number = $matches[0];
+    }
+    // Some options are not available as LITE options < v1.3.
+    if (!$pro && version_compare($version_number, '1.3', '<')) {
+      $disallowed_conf = array_merge($disallowed_conf, array('jlib_textColor', 'jlib_thumbFrameColor', 'jlib_useFullscreenExpand', 'jlib_useThumbDots'));
+    }
+    // Multisize features are only available in PRO >= v1.4
+    if (!$pro || version_compare($version_number, '1.4', '<')) {
+      $disallowed_conf = array_merge($disallowed_conf, array('juicebox_multisize_image_style'));
+    }
+  }
+  $library['pro'] = $pro;
+  $library['disallowed_conf'] = $disallowed_conf;
+}
+
+
+/**
+ * Form validation callback: validate width/height inputs.
+ */
+function juicebox_element_validate_dimension($element, FormStateInterface $form_state, $form) {
+  if (!preg_match('/^[0-9]+?(%|px|em|in|cm|mm|ex|pt|pc)$/u', $element['#value'])) {
+    $form_state->setError($element, t('Please ensure that your width and height values are entered in a standard numeric format (such as <strong>100%</strong> or <strong>300px</strong>).'));
+  }
+}
+
+
+/**
+ * Form validation callback: validate Juicebox configuration options.
+ */
+function juicebox_element_validate_config($element, FormStateInterface $form_state, $form) {
+  // We are looking for input in the format of: optionName="optionValue".
+  // The check here is not too strict, it is just meant to catch general
+  // formatting issues.
+  $custom_options = explode("\n", $element['#value']);
+  foreach ($custom_options as $key => $option) {
+    $option = trim($option);
+    $line_number = $key + 1;
+    if (!empty($option) && !preg_match('/^[A-Za-z0-9]+?="[^"]+?"$/u', $option)) {
+      $form_state->setError($element, t('One of your manual configuration options appears to be formatted incorrectly. Please check line @line of this field and ensure that you are using the format <strong>optionName="optionValue"</strong> and that all spaces have been removed.', array('@line' => $line_number)));
+    }
+  }
+}
+
+
+/**
+ * Form pre-render callback: visually render fieldsets without affecting
+ * tree-based variable storage.
+ *
+ * This technique/code is taken almost directly from the D7 Views module in
+ * views_ui_pre_render_add_fieldset_markup()
+ */
+function juicebox_form_pre_render_fieldsets($form) {
+  foreach (Element::children($form) as $key) {
+    $element = $form[$key];
+    // In our form builder functions, we added an arbitrary #jb_fieldset
+    // property to any element that belongs in a fieldset. If this form element
+    // has that property, move it into its fieldset.
+    if (isset($element['#jb_fieldset']) && isset($form[$element['#jb_fieldset']])) {
+      $form[$element['#jb_fieldset']][$key] = $element;
+      // Remove the original element this duplicates.
+      unset($form[$key]);
+    }
+  }
+  return $form;
+}

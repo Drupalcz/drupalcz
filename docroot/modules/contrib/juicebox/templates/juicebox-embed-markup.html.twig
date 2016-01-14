@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display the embed code for a Juicebox
+ * gallery.
+ *
+ * Available variables:
+ * - gallery_id: The unique identifier for this gallery.
+ * - gallery_images: Image data for all the images in the gallery.
+ * - gallery_options: Options to be passed to the Juicebox javascript library
+ *   for this gallery.
+ * - attributes: Any overall attributes for the parent wrapper.
+ * - title_suffix: Title suffix data as typically provided by contextual links.
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes }}>
+  {{ title_suffix }}
+  <div id="{{ gallery_id }}" class="juicebox-container">
+    <noscript>
+      <!-- Image gallery content for non-javascript devices -->
+      {% if gallery_options.gallerytitle is defined %}
+      <h1 class="jb-name">{{ gallery_options.gallerytitle}}</h1>
+      {% endif %}
+      {% if gallery_options.gallerydescription is defined %}
+      <p class="jb-description">{{ gallery_options.gallerydescription}}</p>
+      {% endif %}
+      {% for image in gallery_images %}
+      <p class="jb-image">
+        {{ image.image_plain }}<br/>
+        <span class="jb-title">{{ image.title }}</span><br/>
+        <span class="jb-caption">{{ image.caption }}</span>
+      </p>
+      {% endfor %}
+    </noscript>
+  </div>
+</div>
