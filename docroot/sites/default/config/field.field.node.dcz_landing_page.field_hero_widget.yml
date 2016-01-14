@@ -21,21 +21,21 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      para_hero: para_hero
+      dcz_para_hero: dcz_para_hero
     target_bundles_drag_drop:
-      para_content:
+      dcz_para_content:
         weight: 6
         enabled: false
-      para_gallery:
+      dcz_para_gallery:
         weight: 7
         enabled: false
-      para_hero:
+      dcz_para_hero:
         enabled: true
         weight: 8
-      para_image:
+      dcz_para_image:
         weight: 9
         enabled: false
-      para_video:
+      dcz_para_video:
         weight: 10
         enabled: false
 field_type: entity_reference_revisions

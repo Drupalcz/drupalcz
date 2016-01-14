@@ -1,0 +1,19 @@
+uuid: 6b16f1b6-0df7-496f-854f-79cd796e3896
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_title
+    - paragraphs.paragraphs_type.dcz_para_hero
+id: paragraph.dcz_para_hero.field_p_title
+field_name: field_p_title
+entity_type: paragraph
+bundle: dcz_para_hero
+label: Title
+description: 'Used on node edit form in paragraph preview.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

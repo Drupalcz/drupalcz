@@ -1,0 +1,47 @@
+uuid: fc4df7e7-b850-48cd-b600-e545978f1ec7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dcz_para_gallery.field_p_gallery
+    - field.field.paragraph.dcz_para_gallery.field_p_title
+    - field.field.paragraph.dcz_para_gallery.field_dcz_para_class
+    - paragraphs.paragraphs_type.dcz_para_gallery
+  module:
+    - juicebox
+id: paragraph.dcz_para_gallery.default
+targetEntityType: paragraph
+bundle: dcz_para_gallery
+mode: default
+content:
+  field_p_gallery:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: juicebox_medium
+      thumb_style: juicebox_square_thumb
+      caption_source: alt
+      title_source: ''
+      jlib_galleryWidth: 100%
+      jlib_galleryHeight: 100%
+      jlib_backgroundColor: '#222222'
+      jlib_textColor: 'rgba(255,255,255,1)'
+      jlib_thumbFrameColor: 'rgba(255,255,255,.5)'
+      jlib_showOpenButton: true
+      jlib_showExpandButton: true
+      jlib_showThumbsButton: true
+      manual_config: ''
+      incompatible_file_action: show_icon_and_link
+      linkurl_source: ''
+      linkurl_target: _blank
+      custom_parent_classes: ''
+      jlib_useFullscreenExpand: '0'
+      jlib_useThumbDots: false
+      apply_markup_filter: true
+    third_party_settings: {  }
+    type: juicebox_formatter
+hidden:
+  created: true
+  field_p_title: true
+  field_dcz_para_class: true
+  uid: true

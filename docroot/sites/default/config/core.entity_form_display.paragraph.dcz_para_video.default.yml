@@ -1,0 +1,36 @@
+uuid: deab7b86-5573-4355-824b-756cd2eb5227
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dcz_para_video.field_p_title
+    - field.field.paragraph.dcz_para_video.field_p_video
+    - field.field.paragraph.dcz_para_video.field_dcz_para_class
+    - paragraphs.paragraphs_type.dcz_para_video
+  module:
+    - youtube
+id: paragraph.dcz_para_video.default
+targetEntityType: paragraph
+bundle: dcz_para_video
+mode: default
+content:
+  field_p_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_p_video:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: youtube
+  field_dcz_para_class:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+hidden:
+  created: true
+  uid: true
