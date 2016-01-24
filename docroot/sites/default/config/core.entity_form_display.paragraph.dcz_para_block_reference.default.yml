@@ -12,6 +12,11 @@ targetEntityType: paragraph
 bundle: dcz_para_block_reference
 mode: default
 content:
+  field_dcz_para_class:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
   field_p_block_reference:
     weight: 1
     settings:
@@ -27,11 +32,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-  field_dcz_para_class:
-    weight: 2
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
 hidden:
   created: true
   uid: true

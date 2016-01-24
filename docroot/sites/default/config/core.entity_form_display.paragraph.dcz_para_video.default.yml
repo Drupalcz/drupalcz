@@ -14,6 +14,11 @@ targetEntityType: paragraph
 bundle: dcz_para_video
 mode: default
 content:
+  field_dcz_para_class:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
   field_p_title:
     weight: 0
     settings:
@@ -26,11 +31,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: youtube
-  field_dcz_para_class:
-    weight: 2
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
 hidden:
   created: true
   uid: true

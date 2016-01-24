@@ -22,6 +22,6 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  field_p_image: true
   field_dcz_para_class: true
+  field_p_image: true
   uid: true

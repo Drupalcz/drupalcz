@@ -42,6 +42,6 @@ content:
     type: juicebox_formatter
 hidden:
   created: true
-  field_p_title: true
   field_dcz_para_class: true
+  field_p_title: true
   uid: true
