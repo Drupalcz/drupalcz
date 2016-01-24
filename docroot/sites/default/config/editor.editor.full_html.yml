@@ -1,0 +1,61 @@
+uuid: 37c20d86-eb03-4ab1-9c00-de300c8c5bd7
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.full_html
+  module:
+    - ckeditor
+format: full_html
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Formatting
+          items:
+            - Bold
+            - Italic
+            - RemoveFormat
+            - Styles
+        -
+          name: Input
+          items:
+            - Paste
+            - PasteText
+            - PasteFromWord
+            - SpecialChar
+        -
+          name: Links
+          items:
+            - DrupalLink
+            - DrupalUnlink
+        -
+          name: Lists
+          items:
+            - BulletedList
+            - NumberedList
+            - Indent
+            - Outdent
+        -
+          name: Media
+          items:
+            - Blockquote
+            - DrupalImage
+            - Table
+        -
+          name: Tools
+          items:
+            - Source
+  plugins:
+    stylescombo:
+      styles: "h1|H1\r\nh2|H2\r\nh3|H3\r\nh4|H4\r\na.btn.btn-primary|Button\r\np.lead|Leading text"
+image_upload:
+  status: true
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: 2048
+    height: 2048
