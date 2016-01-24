@@ -1,0 +1,21 @@
+//Import bootstrap
+@import "../../bootstrap/assets/stylesheets/_bootstrap.scss";
+
+// Import compass
+@import "compass";
+
+// Import variables
+@import "library/variables";
+
+// Mixins
+@import "mixins/mixins";
+
+// Custom partials
+@import "base";
+@import "partials/paragraphs";
+@import "partials/layouts";
+@import "partials/forms";
+
+// Sections sections
+@import "sections/header";
+@import "sections/main_content";

@@ -1,0 +1,21 @@
+//
+// Layouts
+// --------------------------------------------------
+
+.dcz-layout.edgy {
+  .region-top {
+    .field {
+      @extend .container;
+    }
+  }
+  .region-content {
+    .field-name-body {
+      @extend .container;
+    }
+  }
+  .region-bottom {
+    .field {
+      @extend .container;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+//
+// Header
+// --------------------------------------------------
+.navbar-default {
+  background-color: $brand-primary; // Old browsers
+  @include background-image(linear-gradient(top,  $brand-primary 0%,$brand-secondary 100%));
+  border: none;
+  padding: 0.5em;
+}
+
+.navbar-header {
+  @extend .container;
+  float: none;
+}
+.navbar-brand {
+  @extend .hidden;
+}
+nav#block-mainnavigation {
+  float: right;
+}
+.navbar-default .navbar-nav {
+  > li > a {
+    color: #ffffff;
+  }
+
+  &.secondary {
+    @extend .col-sm-4;
+    @extend .col-sm-push-9;
+    padding: 0;
+  }
+}

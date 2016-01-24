@@ -1,0 +1,24 @@
+// Forms
+
+.form-control {
+  @include box-shadow(none);
+  background: $gray-lighter;
+  border-radius: 3px;
+}
+
+button,
+.button {
+  @include button-variant(#FFFFFF, $brand-success, $brand-success);
+  @include button-size(10px, 20px, 2em, auto, 3px);
+  @include base_font;
+  @include transition(all 900ms ease-in-out);
+  font-weight: 200;
+  text-transform: uppercase;
+  border: none;
+
+  &:hover {
+    text-decoration: none;
+    @include box-shadow(inset 0 -5px darken($brand-success, 20%));
+    @include transition(all 300ms ease-in-out);
+  }
+}
