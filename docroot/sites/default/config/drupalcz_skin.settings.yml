@@ -15,3 +15,13 @@ logo:
   use_default: 1
 breadcrumb_home: 1
 navbar_position: fixed-top
+region_wells:
+  navigation: ''
+  navigation_collapsible: ''
+  header: ''
+  highlighted: ''
+  help: ''
+  content: ''
+  sidebar_first: ''
+  sidebar_second: ''
+  footer: ''
