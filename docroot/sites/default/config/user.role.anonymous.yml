@@ -8,3 +8,7 @@ weight: 0
 is_admin: false
 permissions:
   - 'access content'
+  - 'post comments'
+  - 'access comments'
+  - 'use text format basic_html'
+  - 'access user profiles'
