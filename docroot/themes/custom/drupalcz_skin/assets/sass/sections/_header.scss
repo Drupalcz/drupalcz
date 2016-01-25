@@ -3,9 +3,8 @@
 // --------------------------------------------------
 .navbar-default {
   background-color: $brand-primary; // Old browsers
-  @include background-image(linear-gradient(top,  $brand-primary 0%,$brand-secondary 100%));
   border: none;
-  padding: 0.5em;
+  padding: 0;
 }
 
 .navbar-header {
@@ -15,12 +14,18 @@
 .navbar-brand {
   @extend .hidden;
 }
-nav#block-mainnavigation {
-  float: right;
+
+.navbar-collapse {
+  background: $gray-lighter;
+
+  .region {
+    @extend .container;
+  }
 }
 .navbar-default .navbar-nav {
   > li > a {
-    color: #ffffff;
+    border-right: 1px solid $light-color;
+    padding: 0.5em;
   }
 
   &.secondary {

@@ -2347,36 +2347,36 @@ pre code {
 }
 
 /* line 10, ../../bootstrap/assets/stylesheets/bootstrap/_grid.scss */
-.container, .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-bottom .field, .navbar-header, .region-footer {
+.container, .main-container.landing-page .paragraph .para-content, .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-bottom .field, .navbar-header, .navbar-collapse .region, .region-footer {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
 }
 /* line 14, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
-.container:before, .dcz-layout.edgy .region-top .field:before, .dcz-layout.edgy .region-content .field-name-body:before, .dcz-layout.edgy .region-bottom .field:before, .navbar-header:before, .region-footer:before, .container:after, .dcz-layout.edgy .region-top .field:after, .dcz-layout.edgy .region-content .field-name-body:after, .dcz-layout.edgy .region-bottom .field:after, .navbar-header:after, .region-footer:after {
+.container:before, .main-container.landing-page .paragraph .para-content:before, .dcz-layout.edgy .region-top .field:before, .dcz-layout.edgy .region-content .field-name-body:before, .dcz-layout.edgy .region-bottom .field:before, .navbar-header:before, .navbar-collapse .region:before, .region-footer:before, .container:after, .main-container.landing-page .paragraph .para-content:after, .dcz-layout.edgy .region-top .field:after, .dcz-layout.edgy .region-content .field-name-body:after, .dcz-layout.edgy .region-bottom .field:after, .navbar-header:after, .navbar-collapse .region:after, .region-footer:after {
   content: " ";
   display: table;
 }
 /* line 19, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
-.container:after, .dcz-layout.edgy .region-top .field:after, .dcz-layout.edgy .region-content .field-name-body:after, .dcz-layout.edgy .region-bottom .field:after, .navbar-header:after, .region-footer:after {
+.container:after, .main-container.landing-page .paragraph .para-content:after, .dcz-layout.edgy .region-top .field:after, .dcz-layout.edgy .region-content .field-name-body:after, .dcz-layout.edgy .region-bottom .field:after, .navbar-header:after, .navbar-collapse .region:after, .region-footer:after {
   clear: both;
 }
 @media (min-width: 768px) {
   /* line 10, ../../bootstrap/assets/stylesheets/bootstrap/_grid.scss */
-  .container, .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-bottom .field, .navbar-header, .region-footer {
+  .container, .main-container.landing-page .paragraph .para-content, .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-bottom .field, .navbar-header, .navbar-collapse .region, .region-footer {
     width: 750px;
   }
 }
 @media (min-width: 992px) {
   /* line 10, ../../bootstrap/assets/stylesheets/bootstrap/_grid.scss */
-  .container, .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-bottom .field, .navbar-header, .region-footer {
+  .container, .main-container.landing-page .paragraph .para-content, .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-bottom .field, .navbar-header, .navbar-collapse .region, .region-footer {
     width: 970px;
   }
 }
 @media (min-width: 1200px) {
   /* line 10, ../../bootstrap/assets/stylesheets/bootstrap/_grid.scss */
-  .container, .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-bottom .field, .navbar-header, .region-footer {
+  .container, .main-container.landing-page .paragraph .para-content, .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-bottom .field, .navbar-header, .navbar-collapse .region, .region-footer {
     width: 1170px;
   }
 }
@@ -5699,12 +5699,14 @@ tbody.collapse.in {
 }
 
 /* line 108, ../../bootstrap/assets/stylesheets/bootstrap/_navbar.scss */
-.container > .navbar-header, .dcz-layout.edgy .region-top .field > .navbar-header, .dcz-layout.edgy .region-content .field-name-body > .navbar-header, .dcz-layout.edgy .region-bottom .field > .navbar-header, .navbar-header > .navbar-header, .region-footer > .navbar-header,
+.container > .navbar-header, .main-container.landing-page .paragraph .para-content > .navbar-header, .dcz-layout.edgy .region-top .field > .navbar-header, .dcz-layout.edgy .region-content .field-name-body > .navbar-header, .dcz-layout.edgy .region-bottom .field > .navbar-header, .navbar-header > .navbar-header, .navbar-collapse .region > .navbar-header, .region-footer > .navbar-header,
 .container > .navbar-collapse,
+.main-container.landing-page .paragraph .para-content > .navbar-collapse,
 .dcz-layout.edgy .region-top .field > .navbar-collapse,
 .dcz-layout.edgy .region-content .field-name-body > .navbar-collapse,
 .dcz-layout.edgy .region-bottom .field > .navbar-collapse,
 .navbar-header > .navbar-collapse,
+.navbar-collapse .region > .navbar-collapse,
 .region-footer > .navbar-collapse,
 .container-fluid > .navbar-header,
 .container-fluid > .navbar-collapse {
@@ -5713,12 +5715,14 @@ tbody.collapse.in {
 }
 @media (min-width: 768px) {
   /* line 108, ../../bootstrap/assets/stylesheets/bootstrap/_navbar.scss */
-  .container > .navbar-header, .dcz-layout.edgy .region-top .field > .navbar-header, .dcz-layout.edgy .region-content .field-name-body > .navbar-header, .dcz-layout.edgy .region-bottom .field > .navbar-header, .navbar-header > .navbar-header, .region-footer > .navbar-header,
+  .container > .navbar-header, .main-container.landing-page .paragraph .para-content > .navbar-header, .dcz-layout.edgy .region-top .field > .navbar-header, .dcz-layout.edgy .region-content .field-name-body > .navbar-header, .dcz-layout.edgy .region-bottom .field > .navbar-header, .navbar-header > .navbar-header, .navbar-collapse .region > .navbar-header, .region-footer > .navbar-header,
   .container > .navbar-collapse,
+  .main-container.landing-page .paragraph .para-content > .navbar-collapse,
   .dcz-layout.edgy .region-top .field > .navbar-collapse,
   .dcz-layout.edgy .region-content .field-name-body > .navbar-collapse,
   .dcz-layout.edgy .region-bottom .field > .navbar-collapse,
   .navbar-header > .navbar-collapse,
+  .navbar-collapse .region > .navbar-collapse,
   .region-footer > .navbar-collapse,
   .container-fluid > .navbar-header,
   .container-fluid > .navbar-collapse {
@@ -5786,7 +5790,7 @@ tbody.collapse.in {
 }
 @media (min-width: 768px) {
   /* line 180, ../../bootstrap/assets/stylesheets/bootstrap/_navbar.scss */
-  .navbar > .container .navbar-brand, .dcz-layout.edgy .region-top .navbar > .field .navbar-brand, .dcz-layout.edgy .region-content .navbar > .field-name-body .navbar-brand, .dcz-layout.edgy .region-bottom .navbar > .field .navbar-brand, .navbar > .navbar-header .navbar-brand, .navbar > .region-footer .navbar-brand, .navbar > .container-fluid .navbar-brand {
+  .navbar > .container .navbar-brand, .main-container.landing-page .paragraph .navbar > .para-content .navbar-brand, .dcz-layout.edgy .region-top .navbar > .field .navbar-brand, .dcz-layout.edgy .region-content .navbar > .field-name-body .navbar-brand, .dcz-layout.edgy .region-bottom .navbar > .field .navbar-brand, .navbar > .navbar-header .navbar-brand, .navbar-collapse .navbar > .region .navbar-brand, .navbar > .region-footer .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-left: -15px;
   }
 }
@@ -6597,11 +6601,11 @@ a.badge:hover, a.badge:focus {
   border-top-color: #d5d5d5;
 }
 /* line 28, ../../bootstrap/assets/stylesheets/bootstrap/_jumbotron.scss */
-.container .jumbotron, .dcz-layout.edgy .region-top .field .jumbotron, .dcz-layout.edgy .region-content .field-name-body .jumbotron, .dcz-layout.edgy .region-bottom .field .jumbotron, .navbar-header .jumbotron, .region-footer .jumbotron, .container-fluid .jumbotron {
+.container .jumbotron, .main-container.landing-page .paragraph .para-content .jumbotron, .dcz-layout.edgy .region-top .field .jumbotron, .dcz-layout.edgy .region-content .field-name-body .jumbotron, .dcz-layout.edgy .region-bottom .field .jumbotron, .navbar-header .jumbotron, .navbar-collapse .region .jumbotron, .region-footer .jumbotron, .container-fluid .jumbotron {
   border-radius: 6px;
 }
 /* line 33, ../../bootstrap/assets/stylesheets/bootstrap/_jumbotron.scss */
-.jumbotron .container, .jumbotron .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-top .jumbotron .field, .jumbotron .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-content .jumbotron .field-name-body, .jumbotron .dcz-layout.edgy .region-bottom .field, .dcz-layout.edgy .region-bottom .jumbotron .field, .jumbotron .navbar-header, .jumbotron .region-footer {
+.jumbotron .container, .jumbotron .main-container.landing-page .paragraph .para-content, .main-container.landing-page .paragraph .jumbotron .para-content, .jumbotron .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-top .jumbotron .field, .jumbotron .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-content .jumbotron .field-name-body, .jumbotron .dcz-layout.edgy .region-bottom .field, .dcz-layout.edgy .region-bottom .jumbotron .field, .jumbotron .navbar-header, .jumbotron .navbar-collapse .region, .navbar-collapse .jumbotron .region, .jumbotron .region-footer {
   max-width: 100%;
 }
 @media screen and (min-width: 768px) {
@@ -6611,7 +6615,7 @@ a.badge:hover, a.badge:focus {
     padding-bottom: 48px;
   }
   /* line 41, ../../bootstrap/assets/stylesheets/bootstrap/_jumbotron.scss */
-  .container .jumbotron, .dcz-layout.edgy .region-top .field .jumbotron, .dcz-layout.edgy .region-content .field-name-body .jumbotron, .dcz-layout.edgy .region-bottom .field .jumbotron, .navbar-header .jumbotron, .region-footer .jumbotron, .container-fluid .jumbotron {
+  .container .jumbotron, .main-container.landing-page .paragraph .para-content .jumbotron, .dcz-layout.edgy .region-top .field .jumbotron, .dcz-layout.edgy .region-content .field-name-body .jumbotron, .dcz-layout.edgy .region-bottom .field .jumbotron, .navbar-header .jumbotron, .navbar-collapse .region .jumbotron, .region-footer .jumbotron, .container-fluid .jumbotron {
     padding-left: 60px;
     padding-right: 60px;
   }
@@ -8790,6 +8794,40 @@ img {
   padding: 3em 0;
 }
 
+/* line 16, ../sass/partials/_paragraphs.scss */
+.dcz_para_black {
+  background: #333333;
+  color: white;
+}
+
+/* line 21, ../sass/partials/_paragraphs.scss */
+.dcz_para_dark {
+  background: rgba(51, 122, 183, 0.9);
+  color: white;
+}
+
+/* line 26, ../sass/partials/_paragraphs.scss */
+.dcz_para_light {
+  background: rgba(3, 146, 211, 0.2);
+}
+
+/* line 30, ../sass/partials/_paragraphs.scss */
+.dcz_para_box_shadow {
+  -moz-box-shadow: 0 0 35px rgba(51, 51, 51, 0.5);
+  -webkit-box-shadow: 0 0 35px rgba(51, 51, 51, 0.5);
+  box-shadow: 0 0 35px rgba(51, 51, 51, 0.5);
+}
+
+/* line 34, ../sass/partials/_paragraphs.scss */
+.dcz_para_text_center {
+  text-align: center;
+}
+
+/* line 38, ../sass/partials/_paragraphs.scss */
+.dcz_para_text_shadow {
+  text-shadow: 5px 5px 10px rgba(51, 51, 51, 0.6);
+}
+
 /* line 3, ../sass/partials/_forms.scss */
 .form-control {
   -moz-box-shadow: none;
@@ -8910,31 +8948,26 @@ button:hover,
 /* line 4, ../sass/sections/_header.scss */
 .navbar-default {
   background-color: #337ab7;
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzMzN2FiNyIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAzOTJkMyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
-  background-size: 100%;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #337ab7), color-stop(100%, #0392d3));
-  background-image: -moz-linear-gradient(top, #337ab7 0%, #0392d3 100%);
-  background-image: -webkit-linear-gradient(top, #337ab7 0%, #0392d3 100%);
-  background-image: linear-gradient(to bottom, #337ab7 0%, #0392d3 100%);
   border: none;
-  padding: 0.5em;
+  padding: 0;
 }
 
-/* line 11, ../sass/sections/_header.scss */
+/* line 10, ../sass/sections/_header.scss */
 .navbar-header {
   float: none;
 }
 
 /* line 18, ../sass/sections/_header.scss */
-nav#block-mainnavigation {
-  float: right;
+.navbar-collapse {
+  background: #eeeeee;
 }
 
-/* line 22, ../sass/sections/_header.scss */
-.navbar-default .navbar-nav > li > a {
-  color: #ffffff;
-}
 /* line 26, ../sass/sections/_header.scss */
+.navbar-default .navbar-nav > li > a {
+  border-right: 1px solid white;
+  padding: 0.5em;
+}
+/* line 31, ../sass/sections/_header.scss */
 .navbar-default .navbar-nav.secondary {
   padding: 0;
 }
@@ -8943,12 +8976,17 @@ nav#block-mainnavigation {
 .main-container {
   padding-top: 98px;
 }
+/* line 4, ../sass/sections/_main_content.scss */
+.main-container.landing-page {
+  padding-left: 0;
+  padding-right: 0;
+}
 
 /* line 4, ../sass/sections/_footer.scss */
 footer.footer {
   background-color: #337ab7;
   border: none;
-  color: #ffffff;
+  color: white;
   padding: 1em;
 }
 
@@ -8961,4 +8999,15 @@ footer a {
 footer a:hover {
   color: #ffffff;
   text-decoration: none;
+}
+
+/* line 2, ../sass/sections/_landing_page.scss */
+.main-container.landing-page > .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+/* line 6, ../sass/sections/_landing_page.scss */
+.main-container.landing-page > .row > section {
+  padding-left: 0;
+  padding-right: 0;
 }

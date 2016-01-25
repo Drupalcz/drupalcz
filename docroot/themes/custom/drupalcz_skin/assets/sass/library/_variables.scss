@@ -23,7 +23,10 @@ $brand-danger:          #d9534f !default;
 
 //Custom colors
 $brand-secondary:       #0392D3;
-$light-color:           #ffffff;
+$light-color:           lighten($brand-secondary, 60%);
+$light-background:      transparentize($brand-secondary, 0.8);
+$dark-background:       transparentize($brand-primary, 0.1);
+
 
 
 //== Scaffolding
