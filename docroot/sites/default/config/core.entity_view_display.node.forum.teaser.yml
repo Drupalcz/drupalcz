@@ -6,6 +6,8 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.forum.body
     - field.field.node.forum.comment_forum
+    - field.field.node.forum.field_attachment
+    - field.field.node.forum.field_drupal_version
     - field.field.node.forum.taxonomy_forums
     - node.type.forum
   module:
