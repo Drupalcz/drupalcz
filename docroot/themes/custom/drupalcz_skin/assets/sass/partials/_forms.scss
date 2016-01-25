@@ -9,7 +9,7 @@
 button,
 .button {
   @include button-variant(#FFFFFF, $brand-success, $brand-success);
-  @include button-size(10px, 20px, 2em, auto, 3px);
+  @include button-size(10px, 20px, 1em, auto, 3px);
   @include base_font;
   @include transition(all 900ms ease-in-out);
   font-weight: 200;

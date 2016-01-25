@@ -66,11 +66,11 @@
 {% if page.navigation %}
   {% block navbar %}
     {%
-      set navbar_classes = [
-        'navbar',
-        theme.settings.navbar_inverse ? 'navbar-inverse' : 'navbar-default',
-        theme.settings.navbar_position ? 'navbar-' ~ theme.settings.navbar_position|clean_class : container,
-      ]
+    set navbar_classes = [
+    'navbar',
+    theme.settings.navbar_inverse ? 'navbar-inverse' : 'navbar-default',
+    theme.settings.navbar_position ? 'navbar-' ~ theme.settings.navbar_position|clean_class : container,
+    ]
     %}
     <header{{ navbar_attributes.addClass(navbar_classes) }} id="navbar" role="banner">
       <div class="navbar-header">
@@ -96,7 +96,7 @@
 
 {# Main #}
 {% block main %}
-  <div role="main" class="main-container {{ container }} js-quickedit-main-content">
+  <div role="main" class="main-container {{container}} forum js-quickedit-main-content">
     <div class="row">
 
       {# Header #}
@@ -108,52 +108,45 @@
         {% endblock %}
       {% endif %}
 
-      {# Sidebar First #}
-      {% if page.sidebar_first %}
-        {% block sidebar_first %}
-          <aside class="col-sm-3" role="complementary">
-            {{ page.sidebar_first }}
-          </aside>
-        {% endblock %}
-      {% endif %}
-
       {# Content #}
       {%
-        set content_classes = [
-          page.sidebar_first and page.sidebar_second ? 'col-sm-6',
-          page.sidebar_first or page.sidebar_second ? 'col-sm-7 col-md-9',
-          page.sidebar_first is empty and page.sidebar_second is empty ? 'col-sm-12'
-        ]
+      set content_classes = [
+      page.sidebar_first and page.sidebar_second ? 'col-sm-6',
+      page.sidebar_first or page.sidebar_second ? 'col-sm-8 col-md-9',
+      page.sidebar_first is empty and page.sidebar_second is empty ? 'col-sm-12'
+      ]
       %}
       <section{{ content_attributes.addClass(content_classes) }}>
+        <aside class="container">
 
-        {# Highlighted #}
-        {% if page.highlighted %}
-          {% block highlighted %}
-            <div class="highlighted">{{ page.highlighted }}</div>
-          {% endblock %}
-        {% endif %}
+          {# Highlighted #}
+          {% if page.highlighted %}
+            {% block highlighted %}
+              <div class="highlighted">{{ page.highlighted }}</div>
+            {% endblock %}
+          {% endif %}
 
-        {# Breadcrumbs #}
-        {% if breadcrumb %}
-          {% block breadcrumb %}
-            {{ breadcrumb }}
-          {% endblock %}
-        {% endif %}
+          {# Breadcrumbs #}
+          {% if breadcrumb %}
+            {% block breadcrumb %}
+              {{ breadcrumb }}
+            {% endblock %}
+          {% endif %}
 
-        {# Action Links #}
-        {% if action_links %}
-          {% block action_links %}
-            <ul class="action-links">{{ action_links }}</ul>
-          {% endblock %}
-        {% endif %}
+          {# Action Links #}
+          {% if action_links %}
+            {% block action_links %}
+              <ul class="action-links">{{ action_links }}</ul>
+            {% endblock %}
+          {% endif %}
 
-        {# Help #}
-        {% if page.help %}
-          {% block help %}
-            {{ page.help }}
-          {% endblock %}
-        {% endif %}
+          {# Help #}
+          {% if page.help %}
+            {% block help %}
+              {{ page.help }}
+            {% endblock %}
+          {% endif %}
+        </aside>
 
         {# Content #}
         {% block content %}
@@ -165,7 +158,7 @@
       {# Sidebar Second #}
       {% if page.sidebar_second %}
         {% block sidebar_second %}
-          <aside class="col-sm-5 col-md-3" role="complementary">
+          <aside class="col-sm-4 col-md-3" role="complementary">
             {{ page.sidebar_second }}
           </aside>
         {% endblock %}

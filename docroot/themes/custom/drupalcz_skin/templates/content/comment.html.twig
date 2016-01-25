@@ -85,7 +85,7 @@
   <mark class="hidden" data-comment-timestamp="{{ new_indicator_timestamp }}"></mark>
 
   <footer class="comment__meta">
-    {{ user_picture }}
+    {{ permalink }}
     <p class="comment__submitted">{{ submitted }}</p>
 
     {#
@@ -96,8 +96,6 @@
     {% if parent %}
       <p class="parent visually-hidden">{{ parent }}</p>
     {% endif %}
-
-    {{ permalink }}
   </footer>
 
   <div{{ content_attributes.addClass('content') }}>

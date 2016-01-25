@@ -6,3 +6,7 @@
     padding-right: 0;
   }
 }
+
+.content__submitted {
+  @extend %submitted_by;
+}
