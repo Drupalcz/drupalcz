@@ -1,0 +1,39 @@
+uuid: cb2a5702-f02e-411b-9c00-ff5f51122f75
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.comments_recent
+  module:
+    - node
+    - system
+    - views
+  theme:
+    - drupalcz_skin
+id: views_block__comments_recent_block_1
+theme: drupalcz_skin
+region: sidebar_second
+weight: -4
+provider: null
+plugin: 'views_block:comments_recent-block_1'
+settings:
+  id: 'views_block:comments_recent-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      dcz_article: dcz_article
+      forum: forum
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

@@ -1,0 +1,36 @@
+//
+// Header
+// --------------------------------------------------
+.navbar-default {
+  background-color: $brand-primary; // Old browsers
+  border: none;
+  padding: 0;
+}
+
+.navbar-header {
+  @extend .container;
+  float: none;
+}
+.navbar-brand {
+  @extend .hidden;
+}
+
+.navbar-collapse {
+  background: $gray-lighter;
+
+  .region {
+    @extend .container;
+  }
+}
+.navbar-default .navbar-nav {
+  > li > a {
+    border-right: 1px solid $light-color;
+    padding: 0.5em;
+  }
+
+  &.secondary {
+    @extend .col-sm-4;
+    @extend .col-sm-push-9;
+    padding: 0;
+  }
+}

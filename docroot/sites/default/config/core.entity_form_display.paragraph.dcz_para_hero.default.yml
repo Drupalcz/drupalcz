@@ -1,0 +1,38 @@
+uuid: ed470df2-b7db-4900-b200-f3ec899d0b76
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dcz_para_hero.field_p_image
+    - field.field.paragraph.dcz_para_hero.field_p_title
+    - field.field.paragraph.dcz_para_hero.field_dcz_para_class
+    - paragraphs.paragraphs_type.dcz_para_hero
+  module:
+    - image
+id: paragraph.dcz_para_hero.default
+targetEntityType: paragraph
+bundle: dcz_para_hero
+mode: default
+content:
+  field_dcz_para_class:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+  field_p_image:
+    weight: 1
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_p_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden:
+  created: true
+  uid: true

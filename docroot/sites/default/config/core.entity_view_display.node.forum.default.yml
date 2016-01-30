@@ -24,36 +24,38 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 0
+    weight: 2
     settings: {  }
     third_party_settings: {  }
   comment_forum:
     label: hidden
     type: comment_default
-    weight: 20
+    weight: 5
     settings:
       pager_id: 0
     third_party_settings: {  }
   field_attachment:
-    weight: 101
+    weight: 3
     label: above
     settings: {  }
     third_party_settings: {  }
     type: file_default
   field_drupal_version:
-    weight: 102
-    label: above
+    weight: 1
+    label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     type: entity_reference_label
   links:
-    weight: 100
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
   taxonomy_forums:
     type: entity_reference_label
-    weight: -1
-    label: above
+    weight: 0
+    label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
 hidden: {  }

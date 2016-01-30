@@ -1,0 +1,21 @@
+uuid: 4edf9040-604c-457f-8d00-d799e5f1554f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_content
+    - paragraphs.paragraphs_type.dcz_para_content
+  module:
+    - text
+id: paragraph.dcz_para_content.field_p_content
+field_name: field_p_content
+entity_type: paragraph
+bundle: dcz_para_content
+label: Content
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
