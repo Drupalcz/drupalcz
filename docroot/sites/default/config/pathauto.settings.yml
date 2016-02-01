@@ -1,0 +1,13 @@
+punctuation:
+  hyphen: 1
+verbose: false
+separator: '-'
+max_length: 100
+max_component_length: 100
+transliterate: false
+reduce_ascii: false
+ignore_words: ', in, is,that, the  , this, with, '
+case: true
+update_action: 2
+_core:
+  default_config_hash: 7FmqmyM01T9eXGFIPSKQcwYVc98izMkhlcoN9Ywvb64
