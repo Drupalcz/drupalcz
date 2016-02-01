@@ -4,7 +4,7 @@ verbose: false
 separator: '-'
 max_length: 100
 max_component_length: 100
-transliterate: false
+transliterate: true
 reduce_ascii: false
 ignore_words: ', in, is,that, the  , this, with, '
 case: true
