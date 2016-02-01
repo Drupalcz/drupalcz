@@ -1,8 +1,9 @@
-uuid: 10268af3-5722-4409-9204-4b8e3f74170e
+uuid: 5229a181-8f8d-4c4e-ae00-aa91aa2cd94d
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.full
     - field.field.node.dcz_article.body
     - field.field.node.dcz_article.field_attachment
     - field.field.node.dcz_article.field_comments_article
@@ -13,39 +14,39 @@ dependencies:
     - file
     - text
     - user
-id: node.dcz_article.default
+id: node.dcz_article.full
 targetEntityType: node
 bundle: dcz_article
-mode: default
+mode: full
 content:
   body:
     label: hidden
     type: text_default
-    weight: 101
+    weight: 0
     settings: {  }
     third_party_settings: {  }
   field_attachment:
-    weight: 103
+    weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
     type: file_default
   field_comments_article:
-    weight: 104
+    weight: 4
     label: above
     settings:
       pager_id: 0
     third_party_settings: {  }
     type: comment_default
   field_tags:
-    weight: 102
-    label: above
+    weight: 1
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
   links:
-    weight: 100
+    weight: 3
     settings: {  }
     third_party_settings: {  }
 hidden: {  }

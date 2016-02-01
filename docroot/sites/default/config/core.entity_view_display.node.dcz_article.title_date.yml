@@ -1,34 +1,24 @@
-uuid: f56f19c9-41e3-49bf-be4b-75d09e39660a
+uuid: 30139df6-4791-4d6d-8a00-dfcc583c4406
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.title_date
     - field.field.node.dcz_article.body
     - field.field.node.dcz_article.field_attachment
     - field.field.node.dcz_article.field_comments_article
     - field.field.node.dcz_article.field_tags
     - node.type.dcz_article
   module:
-    - text
     - user
-id: node.dcz_article.teaser
+id: node.dcz_article.title_date
 targetEntityType: node
 bundle: dcz_article
-mode: teaser
-content:
-  body:
-    label: hidden
-    type: text_summary_or_trimmed
-    weight: 0
-    settings:
-      trim_length: 200
-    third_party_settings: {  }
-  links:
-    weight: 1
-    settings: {  }
-    third_party_settings: {  }
+mode: title_date
+content: {  }
 hidden:
+  body: true
   field_attachment: true
   field_comments_article: true
   field_tags: true
+  links: true

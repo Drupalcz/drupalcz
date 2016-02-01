@@ -15,6 +15,7 @@ module:
   dcz_migrate: 0
   dcz_tags_taxonomy: 0
   dcz_user: 0
+  devel_generate: 0
   editor: 0
   entity_reference: 0
   entity_reference_revisions: 0
