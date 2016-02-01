@@ -9079,6 +9079,42 @@ mark {
   text-align: center;
 }
 
+/* line 1, ../sass/partials/_views.scss */
+.view-filters {
+  margin: 01em 0;
+}
+@media (min-width: 768px) {
+  /* line 4, ../sass/partials/_views.scss */
+  .view-filters .form-inline {
+    display: -webkit-flex;
+    display: flex;
+  }
+}
+/* line 11, ../sass/partials/_views.scss */
+.view-filters .form-item {
+  flex-grow: 1;
+  margin-right: 1em;
+}
+/* line 15, ../sass/partials/_views.scss */
+.view-filters .form-item input {
+  max-width: 100%;
+}
+@media (min-width: 768px) {
+  /* line 20, ../sass/partials/_views.scss */
+  .view-filters button {
+    margin-top: 1.2em;
+  }
+}
+
+/* line 1, ../sass/partials/_tags.scss */
+.field--name-field-tags {
+  margin: 1em 0;
+}
+/* line 3, ../sass/partials/_tags.scss */
+.field--name-field-tags .field--item {
+  display: inline-block;
+}
+
 /* line 4, ../sass/sections/_header.scss */
 .navbar-default {
   background-color: #337ab7;
