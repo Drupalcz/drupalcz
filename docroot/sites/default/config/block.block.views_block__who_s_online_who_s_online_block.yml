@@ -5,8 +5,6 @@ dependencies:
   config:
     - views.view.who_s_online
   module:
-    - node
-    - system
     - views
   theme:
     - drupalcz_skin
@@ -23,17 +21,4 @@ settings:
   label_display: visible
   views_label: ''
   items_per_page: none
-visibility:
-  node_type:
-    id: node_type
-    bundles:
-      dcz_article: dcz_article
-      forum: forum
-    negate: false
-    context_mapping:
-      node: '@node.node_route_context:node'
-  request_path:
-    id: request_path
-    pages: '<front>'
-    negate: true
-    context_mapping: {  }
+visibility: {  }
