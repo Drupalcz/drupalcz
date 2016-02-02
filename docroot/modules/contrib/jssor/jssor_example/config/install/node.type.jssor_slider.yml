@@ -1,0 +1,17 @@
+uuid: f1c51466-6978-4a6e-9600-c477aef3a7c2
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Jssor slider'
+type: jssor_slider
+description: 'Use Jssor slider for your slider content.'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

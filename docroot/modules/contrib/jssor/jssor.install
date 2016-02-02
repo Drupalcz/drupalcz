@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the jssor module.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function jssor_requirements($phase) {
+  $requirements = array();
+
+  // @todo.
+
+  return $requirements;
+}

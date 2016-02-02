@@ -26,6 +26,7 @@ module:
   filter: 0
   history: 0
   image: 0
+  jssor: 0
   juicebox: 0
   libraries: 0
   link: 0
