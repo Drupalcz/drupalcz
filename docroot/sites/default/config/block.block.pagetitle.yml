@@ -7,7 +7,7 @@ dependencies:
 id: pagetitle
 theme: drupalcz_skin
 region: content
-weight: -3
+weight: -6
 provider: null
 plugin: page_title_block
 settings:

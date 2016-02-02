@@ -55,7 +55,7 @@ content:
     weight: 2
     settings:
       placeholder_url: 'https://www.whitehouse.gov/'
-      placeholder_title: ''
+      placeholder_title: 'White House (USA)'
     third_party_settings: {  }
     type: link_default
   path:

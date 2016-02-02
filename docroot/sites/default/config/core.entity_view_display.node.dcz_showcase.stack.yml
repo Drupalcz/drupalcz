@@ -1,8 +1,9 @@
-uuid: 34497b37-5ca3-4f03-b400-cc76dbbd3cbb
+uuid: 60e07b51-11ae-4312-b837-5558091c9d23
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.stack
     - field.field.node.dcz_showcase.body
     - field.field.node.dcz_showcase.field_drupal_version
     - field.field.node.dcz_showcase.field_main_screenshot
@@ -10,44 +11,77 @@ dependencies:
     - field.field.node.dcz_showcase.field_url
     - node.type.dcz_showcase
   module:
+    - ds
     - image
     - juicebox
     - link
     - text
     - user
-id: node.dcz_showcase.default
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      path: modules/contrib/ds
+      library: ''
+      disable_css: false
+      settings:
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+    regions:
+      ds_content:
+        - field_main_screenshot
+        - node_title
+        - field_drupal_version
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 1
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: strong
+          class: ''
+id: node.dcz_showcase.stack
 targetEntityType: node
 bundle: dcz_showcase
-mode: default
+mode: stack
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 2
+    weight: 13
+    label: above
     settings: {  }
     third_party_settings: {  }
   field_drupal_version:
-    weight: 1
-    label: inline
+    type: entity_reference_label
+    weight: 2
+    label: hidden
     settings:
       link: false
     third_party_settings: {  }
-    type: entity_reference_label
   field_main_screenshot:
     weight: 0
     label: hidden
     settings:
-      image_style: screenshot_large
-      image_link: ''
+      image_style: screenshot_small
+      image_link: content
     third_party_settings: {  }
     type: image
   field_other_screenshots:
-    weight: 4
-    label: hidden
+    type: juicebox_formatter
+    weight: 9
+    label: above
     settings:
       image_style: juicebox_medium
       thumb_style: juicebox_square_thumb
-      caption_source: alt
+      caption_source: ''
       title_source: ''
       jlib_galleryWidth: 100%
       jlib_galleryHeight: 100%
@@ -57,16 +91,15 @@ content:
       jlib_showOpenButton: true
       jlib_showExpandButton: true
       jlib_showThumbsButton: true
+      jlib_useThumbDots: false
+      jlib_useFullscreenExpand: '0'
       manual_config: ''
-      incompatible_file_action: show_icon_and_link
+      custom_parent_classes: ''
+      apply_markup_filter: true
       linkurl_source: ''
       linkurl_target: _blank
-      custom_parent_classes: ''
-      jlib_useFullscreenExpand: '0'
-      jlib_useThumbDots: false
-      apply_markup_filter: true
+      incompatible_file_action: show_icon_and_link
     third_party_settings: {  }
-    type: juicebox_formatter
   field_url:
     weight: 3
     label: hidden
@@ -77,9 +110,9 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    type: link
+    type: link_separate
   links:
-    weight: 5
+    weight: 10
     settings: {  }
     third_party_settings: {  }
 hidden: {  }
