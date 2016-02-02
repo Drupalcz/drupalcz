@@ -46,3 +46,14 @@
   width: 600px;
   height: 450px;
 }
+
+#block-views-block-showcase-block-2 {
+  background: $gray-lighter;
+  padding: 1em 0;
+
+  h2,
+  .view {
+    @extend .container;
+  }
+
+}

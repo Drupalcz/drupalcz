@@ -2356,36 +2356,43 @@ pre code {
 }
 
 /* line 10, ../../bootstrap/assets/stylesheets/bootstrap/_grid.scss */
-.container, .main-container.landing-page .paragraph .para-content, .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-bottom .field, .navbar-header, .navbar-collapse .region, .region-footer {
+.container, .main-container.landing-page .paragraph .para-content, .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-bottom .field, .navbar-header, .navbar-collapse .region, .region-footer, #block-views-block-showcase-block-2 h2,
+#block-views-block-showcase-block-2 .view {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
 }
 /* line 14, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
-.container:before, .main-container.landing-page .paragraph .para-content:before, .dcz-layout.edgy .region-top .field:before, .dcz-layout.edgy .region-content .field-name-body:before, .dcz-layout.edgy .region-bottom .field:before, .navbar-header:before, .navbar-collapse .region:before, .region-footer:before, .container:after, .main-container.landing-page .paragraph .para-content:after, .dcz-layout.edgy .region-top .field:after, .dcz-layout.edgy .region-content .field-name-body:after, .dcz-layout.edgy .region-bottom .field:after, .navbar-header:after, .navbar-collapse .region:after, .region-footer:after {
+.container:before, .main-container.landing-page .paragraph .para-content:before, .dcz-layout.edgy .region-top .field:before, .dcz-layout.edgy .region-content .field-name-body:before, .dcz-layout.edgy .region-bottom .field:before, .navbar-header:before, .navbar-collapse .region:before, .region-footer:before, #block-views-block-showcase-block-2 h2:before,
+#block-views-block-showcase-block-2 .view:before, .container:after, .main-container.landing-page .paragraph .para-content:after, .dcz-layout.edgy .region-top .field:after, .dcz-layout.edgy .region-content .field-name-body:after, .dcz-layout.edgy .region-bottom .field:after, .navbar-header:after, .navbar-collapse .region:after, .region-footer:after, #block-views-block-showcase-block-2 h2:after,
+#block-views-block-showcase-block-2 .view:after {
   content: " ";
   display: table;
 }
 /* line 19, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
-.container:after, .main-container.landing-page .paragraph .para-content:after, .dcz-layout.edgy .region-top .field:after, .dcz-layout.edgy .region-content .field-name-body:after, .dcz-layout.edgy .region-bottom .field:after, .navbar-header:after, .navbar-collapse .region:after, .region-footer:after {
+.container:after, .main-container.landing-page .paragraph .para-content:after, .dcz-layout.edgy .region-top .field:after, .dcz-layout.edgy .region-content .field-name-body:after, .dcz-layout.edgy .region-bottom .field:after, .navbar-header:after, .navbar-collapse .region:after, .region-footer:after, #block-views-block-showcase-block-2 h2:after,
+#block-views-block-showcase-block-2 .view:after {
   clear: both;
 }
 @media (min-width: 768px) {
   /* line 10, ../../bootstrap/assets/stylesheets/bootstrap/_grid.scss */
-  .container, .main-container.landing-page .paragraph .para-content, .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-bottom .field, .navbar-header, .navbar-collapse .region, .region-footer {
+  .container, .main-container.landing-page .paragraph .para-content, .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-bottom .field, .navbar-header, .navbar-collapse .region, .region-footer, #block-views-block-showcase-block-2 h2,
+  #block-views-block-showcase-block-2 .view {
     width: 750px;
   }
 }
 @media (min-width: 992px) {
   /* line 10, ../../bootstrap/assets/stylesheets/bootstrap/_grid.scss */
-  .container, .main-container.landing-page .paragraph .para-content, .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-bottom .field, .navbar-header, .navbar-collapse .region, .region-footer {
+  .container, .main-container.landing-page .paragraph .para-content, .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-bottom .field, .navbar-header, .navbar-collapse .region, .region-footer, #block-views-block-showcase-block-2 h2,
+  #block-views-block-showcase-block-2 .view {
     width: 970px;
   }
 }
 @media (min-width: 1200px) {
   /* line 10, ../../bootstrap/assets/stylesheets/bootstrap/_grid.scss */
-  .container, .main-container.landing-page .paragraph .para-content, .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-bottom .field, .navbar-header, .navbar-collapse .region, .region-footer {
+  .container, .main-container.landing-page .paragraph .para-content, .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-bottom .field, .navbar-header, .navbar-collapse .region, .region-footer, #block-views-block-showcase-block-2 h2,
+  #block-views-block-showcase-block-2 .view {
     width: 1170px;
   }
 }
@@ -5770,7 +5777,8 @@ tbody.collapse.in {
 }
 
 /* line 108, ../../bootstrap/assets/stylesheets/bootstrap/_navbar.scss */
-.container > .navbar-header, .main-container.landing-page .paragraph .para-content > .navbar-header, .dcz-layout.edgy .region-top .field > .navbar-header, .dcz-layout.edgy .region-content .field-name-body > .navbar-header, .dcz-layout.edgy .region-bottom .field > .navbar-header, .navbar-header > .navbar-header, .navbar-collapse .region > .navbar-header, .region-footer > .navbar-header,
+.container > .navbar-header, .main-container.landing-page .paragraph .para-content > .navbar-header, .dcz-layout.edgy .region-top .field > .navbar-header, .dcz-layout.edgy .region-content .field-name-body > .navbar-header, .dcz-layout.edgy .region-bottom .field > .navbar-header, .navbar-header > .navbar-header, .navbar-collapse .region > .navbar-header, .region-footer > .navbar-header, #block-views-block-showcase-block-2 h2 > .navbar-header,
+#block-views-block-showcase-block-2 .view > .navbar-header,
 .container > .navbar-collapse,
 .main-container.landing-page .paragraph .para-content > .navbar-collapse,
 .dcz-layout.edgy .region-top .field > .navbar-collapse,
@@ -5779,6 +5787,8 @@ tbody.collapse.in {
 .navbar-header > .navbar-collapse,
 .navbar-collapse .region > .navbar-collapse,
 .region-footer > .navbar-collapse,
+#block-views-block-showcase-block-2 h2 > .navbar-collapse,
+#block-views-block-showcase-block-2 .view > .navbar-collapse,
 .container-fluid > .navbar-header,
 .container-fluid > .navbar-collapse {
   margin-right: -15px;
@@ -5786,7 +5796,8 @@ tbody.collapse.in {
 }
 @media (min-width: 768px) {
   /* line 108, ../../bootstrap/assets/stylesheets/bootstrap/_navbar.scss */
-  .container > .navbar-header, .main-container.landing-page .paragraph .para-content > .navbar-header, .dcz-layout.edgy .region-top .field > .navbar-header, .dcz-layout.edgy .region-content .field-name-body > .navbar-header, .dcz-layout.edgy .region-bottom .field > .navbar-header, .navbar-header > .navbar-header, .navbar-collapse .region > .navbar-header, .region-footer > .navbar-header,
+  .container > .navbar-header, .main-container.landing-page .paragraph .para-content > .navbar-header, .dcz-layout.edgy .region-top .field > .navbar-header, .dcz-layout.edgy .region-content .field-name-body > .navbar-header, .dcz-layout.edgy .region-bottom .field > .navbar-header, .navbar-header > .navbar-header, .navbar-collapse .region > .navbar-header, .region-footer > .navbar-header, #block-views-block-showcase-block-2 h2 > .navbar-header,
+  #block-views-block-showcase-block-2 .view > .navbar-header,
   .container > .navbar-collapse,
   .main-container.landing-page .paragraph .para-content > .navbar-collapse,
   .dcz-layout.edgy .region-top .field > .navbar-collapse,
@@ -5795,6 +5806,8 @@ tbody.collapse.in {
   .navbar-header > .navbar-collapse,
   .navbar-collapse .region > .navbar-collapse,
   .region-footer > .navbar-collapse,
+  #block-views-block-showcase-block-2 h2 > .navbar-collapse,
+  #block-views-block-showcase-block-2 .view > .navbar-collapse,
   .container-fluid > .navbar-header,
   .container-fluid > .navbar-collapse {
     margin-right: 0;
@@ -5861,7 +5874,8 @@ tbody.collapse.in {
 }
 @media (min-width: 768px) {
   /* line 180, ../../bootstrap/assets/stylesheets/bootstrap/_navbar.scss */
-  .navbar > .container .navbar-brand, .main-container.landing-page .paragraph .navbar > .para-content .navbar-brand, .dcz-layout.edgy .region-top .navbar > .field .navbar-brand, .dcz-layout.edgy .region-content .navbar > .field-name-body .navbar-brand, .dcz-layout.edgy .region-bottom .navbar > .field .navbar-brand, .navbar > .navbar-header .navbar-brand, .navbar-collapse .navbar > .region .navbar-brand, .navbar > .region-footer .navbar-brand, .navbar > .container-fluid .navbar-brand {
+  .navbar > .container .navbar-brand, .main-container.landing-page .paragraph .navbar > .para-content .navbar-brand, .dcz-layout.edgy .region-top .navbar > .field .navbar-brand, .dcz-layout.edgy .region-content .navbar > .field-name-body .navbar-brand, .dcz-layout.edgy .region-bottom .navbar > .field .navbar-brand, .navbar > .navbar-header .navbar-brand, .navbar-collapse .navbar > .region .navbar-brand, .navbar > .region-footer .navbar-brand, #block-views-block-showcase-block-2 .navbar > h2 .navbar-brand,
+  #block-views-block-showcase-block-2 .navbar > .view .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-left: -15px;
   }
 }
@@ -6672,11 +6686,14 @@ a.badge:hover, a.badge:focus {
   border-top-color: #d5d5d5;
 }
 /* line 28, ../../bootstrap/assets/stylesheets/bootstrap/_jumbotron.scss */
-.container .jumbotron, .main-container.landing-page .paragraph .para-content .jumbotron, .dcz-layout.edgy .region-top .field .jumbotron, .dcz-layout.edgy .region-content .field-name-body .jumbotron, .dcz-layout.edgy .region-bottom .field .jumbotron, .navbar-header .jumbotron, .navbar-collapse .region .jumbotron, .region-footer .jumbotron, .container-fluid .jumbotron {
+.container .jumbotron, .main-container.landing-page .paragraph .para-content .jumbotron, .dcz-layout.edgy .region-top .field .jumbotron, .dcz-layout.edgy .region-content .field-name-body .jumbotron, .dcz-layout.edgy .region-bottom .field .jumbotron, .navbar-header .jumbotron, .navbar-collapse .region .jumbotron, .region-footer .jumbotron, #block-views-block-showcase-block-2 h2 .jumbotron,
+#block-views-block-showcase-block-2 .view .jumbotron, .container-fluid .jumbotron {
   border-radius: 6px;
 }
 /* line 33, ../../bootstrap/assets/stylesheets/bootstrap/_jumbotron.scss */
-.jumbotron .container, .jumbotron .main-container.landing-page .paragraph .para-content, .main-container.landing-page .paragraph .jumbotron .para-content, .jumbotron .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-top .jumbotron .field, .jumbotron .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-content .jumbotron .field-name-body, .jumbotron .dcz-layout.edgy .region-bottom .field, .dcz-layout.edgy .region-bottom .jumbotron .field, .jumbotron .navbar-header, .jumbotron .navbar-collapse .region, .navbar-collapse .jumbotron .region, .jumbotron .region-footer {
+.jumbotron .container, .jumbotron .main-container.landing-page .paragraph .para-content, .main-container.landing-page .paragraph .jumbotron .para-content, .jumbotron .dcz-layout.edgy .region-top .field, .dcz-layout.edgy .region-top .jumbotron .field, .jumbotron .dcz-layout.edgy .region-content .field-name-body, .dcz-layout.edgy .region-content .jumbotron .field-name-body, .jumbotron .dcz-layout.edgy .region-bottom .field, .dcz-layout.edgy .region-bottom .jumbotron .field, .jumbotron .navbar-header, .jumbotron .navbar-collapse .region, .navbar-collapse .jumbotron .region, .jumbotron .region-footer, .jumbotron #block-views-block-showcase-block-2 h2, #block-views-block-showcase-block-2 .jumbotron h2,
+.jumbotron #block-views-block-showcase-block-2 .view,
+#block-views-block-showcase-block-2 .jumbotron .view {
   max-width: 100%;
 }
 @media screen and (min-width: 768px) {
@@ -6686,7 +6703,8 @@ a.badge:hover, a.badge:focus {
     padding-bottom: 48px;
   }
   /* line 41, ../../bootstrap/assets/stylesheets/bootstrap/_jumbotron.scss */
-  .container .jumbotron, .main-container.landing-page .paragraph .para-content .jumbotron, .dcz-layout.edgy .region-top .field .jumbotron, .dcz-layout.edgy .region-content .field-name-body .jumbotron, .dcz-layout.edgy .region-bottom .field .jumbotron, .navbar-header .jumbotron, .navbar-collapse .region .jumbotron, .region-footer .jumbotron, .container-fluid .jumbotron {
+  .container .jumbotron, .main-container.landing-page .paragraph .para-content .jumbotron, .dcz-layout.edgy .region-top .field .jumbotron, .dcz-layout.edgy .region-content .field-name-body .jumbotron, .dcz-layout.edgy .region-bottom .field .jumbotron, .navbar-header .jumbotron, .navbar-collapse .region .jumbotron, .region-footer .jumbotron, #block-views-block-showcase-block-2 h2 .jumbotron,
+  #block-views-block-showcase-block-2 .view .jumbotron, .container-fluid .jumbotron {
     padding-left: 60px;
     padding-right: 60px;
   }
@@ -9342,12 +9360,35 @@ footer.footer {
   height: 450px;
 }
 
-/* line 10, ../sass/sections/_showcase.scss */
+/* line 50, ../sass/sections/_frontpage.scss */
+#block-views-block-showcase-block-2 {
+  background: #eeeeee;
+  padding: 1em 0;
+}
+
+/* line 11, ../sass/sections/_showcase.scss */
 .field--name-field-main-screenshot {
   margin-bottom: 1em;
 }
 
-/* line 14, ../sass/sections/_showcase.scss */
+/* line 15, ../sass/sections/_showcase.scss */
 .field--name-field-url {
   margin: 1em 0;
+}
+
+@media (min-width: 480px) {
+  /* line 24, ../sass/sections/_showcase.scss */
+  .view-showcase.view-display-id-block_2 .view-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+/* line 31, ../sass/sections/_showcase.scss */
+.view-showcase.view-display-id-block_2 .views-row {
+  margin: 1em;
+}
+/* line 34, ../sass/sections/_showcase.scss */
+.view-showcase.view-display-id-block_2 .views-row img {
+  margin: 0 auto;
 }

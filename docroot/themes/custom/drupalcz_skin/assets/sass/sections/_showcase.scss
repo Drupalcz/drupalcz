@@ -1,3 +1,4 @@
+// Showcase page
 .view-showcase.view-display-id-page_1 {
   .view-content {
     @extend .row;
@@ -15,5 +16,23 @@
   margin: 1em 0;
   a {
     @extend .btn, .btn-lg, .btn-primary;
+  }
+}
+
+//Logo block
+.view-showcase.view-display-id-block_2 {
+  .view-content {
+    @media (min-width: $screen-xs-min) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .views-row {
+    margin: 1em;
+
+    img {
+      margin: 0 auto;
+    }
   }
 }
