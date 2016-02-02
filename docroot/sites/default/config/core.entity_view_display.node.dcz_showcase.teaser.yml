@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.dcz_showcase.body
     - field.field.node.dcz_showcase.field_drupal_version
+    - field.field.node.dcz_showcase.field_logo
     - field.field.node.dcz_showcase.field_main_screenshot
     - field.field.node.dcz_showcase.field_other_screenshots
     - field.field.node.dcz_showcase.field_url
@@ -29,6 +30,7 @@ content:
     weight: 100
 hidden:
   field_drupal_version: true
+  field_logo: true
   field_main_screenshot: true
   field_other_screenshots: true
   field_url: true

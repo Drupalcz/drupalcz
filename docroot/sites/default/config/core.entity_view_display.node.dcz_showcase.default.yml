@@ -4,7 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.node.dcz_showcase.body
+    - field.field.node.dcz_showcase.field_display_options
     - field.field.node.dcz_showcase.field_drupal_version
+    - field.field.node.dcz_showcase.field_logo
     - field.field.node.dcz_showcase.field_main_screenshot
     - field.field.node.dcz_showcase.field_other_screenshots
     - field.field.node.dcz_showcase.field_url
@@ -13,6 +15,7 @@ dependencies:
     - image
     - juicebox
     - link
+    - options
     - text
     - user
 id: node.dcz_showcase.default
@@ -23,9 +26,15 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
+  field_display_options:
+    weight: 7
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
   field_drupal_version:
     weight: 1
     label: inline
@@ -33,6 +42,14 @@ content:
       link: false
     third_party_settings: {  }
     type: entity_reference_label
+  field_logo:
+    weight: 2
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings: {  }
+    type: image
   field_main_screenshot:
     weight: 0
     label: hidden
@@ -42,7 +59,7 @@ content:
     third_party_settings: {  }
     type: image
   field_other_screenshots:
-    weight: 4
+    weight: 5
     label: hidden
     settings:
       image_style: juicebox_medium
@@ -68,7 +85,7 @@ content:
     third_party_settings: {  }
     type: juicebox_formatter
   field_url:
-    weight: 3
+    weight: 4
     label: hidden
     settings:
       trim_length: null
@@ -79,7 +96,7 @@ content:
     third_party_settings: {  }
     type: link
   links:
-    weight: 5
+    weight: 6
     settings: {  }
     third_party_settings: {  }
 hidden: {  }

@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.stack
     - field.field.node.dcz_showcase.body
     - field.field.node.dcz_showcase.field_drupal_version
+    - field.field.node.dcz_showcase.field_logo
     - field.field.node.dcz_showcase.field_main_screenshot
     - field.field.node.dcz_showcase.field_other_screenshots
     - field.field.node.dcz_showcase.field_url
@@ -115,4 +116,5 @@ content:
     weight: 10
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_logo: true

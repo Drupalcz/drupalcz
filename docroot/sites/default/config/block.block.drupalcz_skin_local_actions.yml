@@ -7,7 +7,7 @@ dependencies:
 id: drupalcz_skin_local_actions
 theme: drupalcz_skin
 region: content
-weight: -7
+weight: -9
 provider: null
 plugin: local_actions_block
 settings:
