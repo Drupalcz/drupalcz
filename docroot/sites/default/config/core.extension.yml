@@ -28,6 +28,7 @@ module:
   image: 0
   jssor: 0
   juicebox: 0
+  layout_plugin: 0
   libraries: 0
   link: 0
   menu_ui: 0
@@ -48,6 +49,7 @@ module:
   user: 0
   views_ui: 0
   youtube: 0
+  ds: 1
   forum: 1
   menu_link_content: 1
   pathauto: 1
