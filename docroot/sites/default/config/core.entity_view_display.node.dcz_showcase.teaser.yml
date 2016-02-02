@@ -1,0 +1,34 @@
+uuid: 4ffc3c74-c3d6-4951-9a55-85fcec2bc16f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.dcz_showcase.body
+    - field.field.node.dcz_showcase.field_drupal_version
+    - field.field.node.dcz_showcase.field_main_screenshot
+    - field.field.node.dcz_showcase.field_other_screenshots
+    - field.field.node.dcz_showcase.field_url
+    - node.type.dcz_showcase
+  module:
+    - text
+    - user
+id: node.dcz_showcase.teaser
+targetEntityType: node
+bundle: dcz_showcase
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  links:
+    weight: 100
+hidden:
+  field_drupal_version: true
+  field_main_screenshot: true
+  field_other_screenshots: true
+  field_url: true
