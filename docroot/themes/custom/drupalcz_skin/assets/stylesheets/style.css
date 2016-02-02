@@ -339,9 +339,10 @@ th {
   }
 
   /* line 77, ../../bootstrap/assets/stylesheets/bootstrap/_print.scss */
-  .btn > .caret, .links li a > .caret,
+  .btn > .caret, .links li a > .caret, .field--name-field-url a > .caret,
   .dropup > .btn > .caret,
-  .links li .dropup > a > .caret {
+  .links li .dropup > a > .caret,
+  .field--name-field-url .dropup > a > .caret {
     border-top-color: #000 !important;
   }
 
@@ -2250,7 +2251,8 @@ blockquote .small:before {
 
 /* line 274, ../../bootstrap/assets/stylesheets/bootstrap/_type.scss */
 .blockquote-reverse,
-blockquote.pull-right {
+blockquote.pull-right,
+blockquote#block-views-block-showcase-block-1 {
   padding-right: 15px;
   padding-left: 0;
   border-right: 5px solid #eeeeee;
@@ -2262,8 +2264,11 @@ blockquote.pull-right {
 .blockquote-reverse small:before,
 .blockquote-reverse .small:before,
 blockquote.pull-right footer:before,
+blockquote#block-views-block-showcase-block-1 footer:before,
 blockquote.pull-right small:before,
-blockquote.pull-right .small:before {
+blockquote#block-views-block-showcase-block-1 small:before,
+blockquote.pull-right .small:before,
+blockquote#block-views-block-showcase-block-1 .small:before {
   content: '';
 }
 /* line 287, ../../bootstrap/assets/stylesheets/bootstrap/_type.scss */
@@ -2271,8 +2276,11 @@ blockquote.pull-right .small:before {
 .blockquote-reverse small:after,
 .blockquote-reverse .small:after,
 blockquote.pull-right footer:after,
+blockquote#block-views-block-showcase-block-1 footer:after,
 blockquote.pull-right small:after,
-blockquote.pull-right .small:after {
+blockquote#block-views-block-showcase-block-1 small:after,
+blockquote.pull-right .small:after,
+blockquote#block-views-block-showcase-block-1 .small:after {
   content: '\00A0 \2014';
 }
 
@@ -2400,22 +2408,22 @@ pre code {
 }
 
 /* line 39, ../../bootstrap/assets/stylesheets/bootstrap/_grid.scss */
-.row {
+.row, .view-showcase.view-display-id-page_1 .view-content {
   margin-left: -15px;
   margin-right: -15px;
 }
 /* line 14, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
-.row:before, .row:after {
+.row:before, .view-showcase.view-display-id-page_1 .view-content:before, .row:after, .view-showcase.view-display-id-page_1 .view-content:after {
   content: " ";
   display: table;
 }
 /* line 19, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
-.row:after {
+.row:after, .view-showcase.view-display-id-page_1 .view-content:after {
   clear: both;
 }
 
 /* line 11, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .navbar-default .navbar-nav.secondary, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .navbar-default .navbar-nav.secondary, #block-frontpagetopusage, .col-md-4, .col-lg-4, .view-showcase.view-display-id-page_1 .views-row, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, #block-frontpagetopcojedrupal, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, #block-views-block-showcase-block-1, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row, .col-sm-12, #block-frontpagetopcojedrupal, .col-md-12, .col-lg-12 {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -2423,7 +2431,7 @@ pre code {
 }
 
 /* line 27, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row {
   float: left;
 }
 
@@ -2483,7 +2491,7 @@ pre code {
 }
 
 /* line 35, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-.col-xs-12 {
+.col-xs-12, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row {
   width: 100%;
 }
 
@@ -2684,7 +2692,7 @@ pre code {
 
 @media (min-width: 768px) {
   /* line 27, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .navbar-default .navbar-nav.secondary, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .navbar-default .navbar-nav.secondary, #block-frontpagetopusage, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, #block-views-block-showcase-block-1, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, #block-frontpagetopcojedrupal {
     float: left;
   }
 
@@ -2704,7 +2712,7 @@ pre code {
   }
 
   /* line 35, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-sm-4, .navbar-default .navbar-nav.secondary {
+  .col-sm-4, .navbar-default .navbar-nav.secondary, #block-frontpagetopusage {
     width: 33.33333%;
   }
 
@@ -2724,7 +2732,7 @@ pre code {
   }
 
   /* line 35, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-sm-8 {
+  .col-sm-8, #block-views-block-showcase-block-1 {
     width: 66.66667%;
   }
 
@@ -2744,7 +2752,7 @@ pre code {
   }
 
   /* line 35, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-sm-12 {
+  .col-sm-12, #block-frontpagetopcojedrupal {
     width: 100%;
   }
 
@@ -2945,7 +2953,7 @@ pre code {
 }
 @media (min-width: 992px) {
   /* line 27, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, #block-frontpagetopcojedrupal, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
     float: left;
   }
 
@@ -2975,7 +2983,7 @@ pre code {
   }
 
   /* line 35, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-md-6 {
+  .col-md-6, #block-frontpagetopcojedrupal, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row {
     width: 50%;
   }
 
@@ -3206,7 +3214,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   /* line 27, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+  .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .view-showcase.view-display-id-page_1 .views-row, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
     float: left;
   }
 
@@ -3226,7 +3234,7 @@ pre code {
   }
 
   /* line 35, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-lg-4 {
+  .col-lg-4, .view-showcase.view-display-id-page_1 .views-row {
     width: 33.33333%;
   }
 
@@ -4016,10 +4024,12 @@ input[type="checkbox"] {
 .form-control-static.input-lg, .input-group-lg > .form-control-static.form-control,
 .input-group-lg > .form-control-static.input-group-addon,
 .input-group-lg > .input-group-btn > .form-control-static.btn,
-.links li .input-group-lg > .input-group-btn > a.form-control-static, .form-control-static.input-sm, .input-group-sm > .form-control-static.form-control,
+.links li .input-group-lg > .input-group-btn > a.form-control-static,
+.field--name-field-url .input-group-lg > .input-group-btn > a.form-control-static, .form-control-static.input-sm, .input-group-sm > .form-control-static.form-control,
 .input-group-sm > .form-control-static.input-group-addon,
 .input-group-sm > .input-group-btn > .form-control-static.btn,
-.links li .input-group-sm > .input-group-btn > a.form-control-static {
+.links li .input-group-sm > .input-group-btn > a.form-control-static,
+.field--name-field-url .input-group-sm > .input-group-btn > a.form-control-static {
   padding-left: 0;
   padding-right: 0;
 }
@@ -4028,7 +4038,8 @@ input[type="checkbox"] {
 .input-sm, .input-group-sm > .form-control,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn,
-.links li .input-group-sm > .input-group-btn > a {
+.links li .input-group-sm > .input-group-btn > a,
+.field--name-field-url .input-group-sm > .input-group-btn > a {
   height: 33px;
   padding: 5px 10px;
   font-size: 14px;
@@ -4086,7 +4097,8 @@ select[multiple].input-sm,
 .input-lg, .input-group-lg > .form-control,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn,
-.links li .input-group-lg > .input-group-btn > a {
+.links li .input-group-lg > .input-group-btn > a,
+.field--name-field-url .input-group-lg > .input-group-btn > a {
   height: 49px;
   padding: 10px 16px;
   font-size: 20px;
@@ -4168,6 +4180,7 @@ select[multiple].input-lg,
 .input-group-lg > .input-group-addon + .form-control-feedback,
 .input-group-lg > .input-group-btn > .btn + .form-control-feedback,
 .links li .input-group-lg > .input-group-btn > a + .form-control-feedback,
+.field--name-field-url .input-group-lg > .input-group-btn > a + .form-control-feedback,
 .input-group-lg + .form-control-feedback,
 .form-group-lg .form-control + .form-control-feedback {
   width: 49px;
@@ -4180,6 +4193,7 @@ select[multiple].input-lg,
 .input-group-sm > .input-group-addon + .form-control-feedback,
 .input-group-sm > .input-group-btn > .btn + .form-control-feedback,
 .links li .input-group-sm > .input-group-btn > a + .form-control-feedback,
+.field--name-field-url .input-group-sm > .input-group-btn > a + .form-control-feedback,
 .input-group-sm + .form-control-feedback,
 .form-group-sm .form-control + .form-control-feedback {
   width: 33px;
@@ -4418,7 +4432,7 @@ select[multiple].input-lg,
 }
 
 /* line 9, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn, .links li a {
+.btn, .links li a, .field--name-field-url a {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -4439,25 +4453,25 @@ select[multiple].input-lg,
   user-select: none;
 }
 /* line 26, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn:focus, .links li a:focus, .btn.focus, .links li a.focus, .btn:active:focus, .links li a:active:focus, .btn:active.focus, .links li a:active.focus, .btn.active:focus, .links li a.active:focus, .btn.active.focus, .links li a.active.focus {
+.btn:focus, .links li a:focus, .field--name-field-url a:focus, .btn.focus, .links li a.focus, .field--name-field-url a.focus, .btn:active:focus, .links li a:active:focus, .field--name-field-url a:active:focus, .btn:active.focus, .links li a:active.focus, .field--name-field-url a:active.focus, .btn.active:focus, .links li a.active:focus, .field--name-field-url a.active:focus, .btn.active.focus, .links li a.active.focus, .field--name-field-url a.active.focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
 /* line 32, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn:hover, .links li a:hover, .btn:focus, .links li a:focus, .btn.focus, .links li a.focus {
+.btn:hover, .links li a:hover, .field--name-field-url a:hover, .btn:focus, .links li a:focus, .field--name-field-url a:focus, .btn.focus, .links li a.focus, .field--name-field-url a.focus {
   color: #333;
   text-decoration: none;
 }
 /* line 39, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn:active, .links li a:active, .btn.active, .links li a.active {
+.btn:active, .links li a:active, .field--name-field-url a:active, .btn.active, .links li a.active, .field--name-field-url a.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 /* line 46, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn.disabled, .links li a.disabled, .btn[disabled], .links li a[disabled], fieldset[disabled] .btn, fieldset[disabled] .links li a, .links li fieldset[disabled] a {
+.btn.disabled, .links li a.disabled, .field--name-field-url a.disabled, .btn[disabled], .links li a[disabled], .field--name-field-url a[disabled], fieldset[disabled] .btn, fieldset[disabled] .links li a, .links li fieldset[disabled] a, fieldset[disabled] .field--name-field-url a, .field--name-field-url fieldset[disabled] a {
   cursor: not-allowed;
   opacity: 0.65;
   filter: alpha(opacity=65);
@@ -4466,7 +4480,7 @@ select[multiple].input-lg,
 }
 
 /* line 58, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-a.btn.disabled, .links li a.disabled, fieldset[disabled] a.btn, fieldset[disabled] .links li a, .links li fieldset[disabled] a {
+a.btn.disabled, .links li a.disabled, .field--name-field-url a.disabled, fieldset[disabled] a.btn, fieldset[disabled] .links li a, .links li fieldset[disabled] a, fieldset[disabled] .field--name-field-url a, .field--name-field-url fieldset[disabled] a {
   pointer-events: none;
 }
 
@@ -4516,46 +4530,46 @@ a.btn.disabled, .links li a.disabled, fieldset[disabled] a.btn, fieldset[disable
 }
 
 /* line 71, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn-primary {
+.btn-primary, .field--name-field-url a {
   color: #fff;
   background-color: #337ab7;
   border-color: #2e6da4;
 }
 /* line 11, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:focus, .btn-primary.focus {
+.btn-primary:focus, .field--name-field-url a:focus, .btn-primary.focus, .field--name-field-url a.focus {
   color: #fff;
   background-color: #286090;
   border-color: #122b40;
 }
 /* line 17, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:hover {
+.btn-primary:hover, .field--name-field-url a:hover {
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
 }
 /* line 22, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
+.btn-primary:active, .field--name-field-url a:active, .btn-primary.active, .field--name-field-url a.active, .open > .btn-primary.dropdown-toggle, .field--name-field-url .open > a.dropdown-toggle {
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
 }
 /* line 29, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:active:hover, .btn-primary:active:focus, .btn-primary:active.focus, .btn-primary.active:hover, .btn-primary.active:focus, .btn-primary.active.focus, .open > .btn-primary.dropdown-toggle:hover, .open > .btn-primary.dropdown-toggle:focus, .open > .btn-primary.dropdown-toggle.focus {
+.btn-primary:active:hover, .field--name-field-url a:active:hover, .btn-primary:active:focus, .field--name-field-url a:active:focus, .btn-primary:active.focus, .field--name-field-url a:active.focus, .btn-primary.active:hover, .field--name-field-url a.active:hover, .btn-primary.active:focus, .field--name-field-url a.active:focus, .btn-primary.active.focus, .field--name-field-url a.active.focus, .open > .btn-primary.dropdown-toggle:hover, .field--name-field-url .open > a.dropdown-toggle:hover, .open > .btn-primary.dropdown-toggle:focus, .field--name-field-url .open > a.dropdown-toggle:focus, .open > .btn-primary.dropdown-toggle.focus, .field--name-field-url .open > a.dropdown-toggle.focus {
   color: #fff;
   background-color: #204d74;
   border-color: #122b40;
 }
 /* line 37, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
+.btn-primary:active, .field--name-field-url a:active, .btn-primary.active, .field--name-field-url a.active, .open > .btn-primary.dropdown-toggle, .field--name-field-url .open > a.dropdown-toggle {
   background-image: none;
 }
 /* line 45, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled.focus, .btn-primary.disabled:active, .btn-primary.disabled.active, .btn-primary[disabled], .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled].focus, .btn-primary[disabled]:active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary.active {
+.btn-primary.disabled, .field--name-field-url a.disabled, .btn-primary.disabled:hover, .field--name-field-url a.disabled:hover, .btn-primary.disabled:focus, .field--name-field-url a.disabled:focus, .btn-primary.disabled.focus, .field--name-field-url a.disabled.focus, .btn-primary.disabled:active, .field--name-field-url a.disabled:active, .btn-primary.disabled.active, .field--name-field-url a.disabled.active, .btn-primary[disabled], .field--name-field-url a[disabled], .btn-primary[disabled]:hover, .field--name-field-url a[disabled]:hover, .btn-primary[disabled]:focus, .field--name-field-url a[disabled]:focus, .btn-primary[disabled].focus, .field--name-field-url a[disabled].focus, .btn-primary[disabled]:active, .field--name-field-url a[disabled]:active, .btn-primary[disabled].active, .field--name-field-url a[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled] .field--name-field-url a, .field--name-field-url fieldset[disabled] a, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .field--name-field-url a:hover, .field--name-field-url fieldset[disabled] a:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .field--name-field-url a:focus, .field--name-field-url fieldset[disabled] a:focus, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .field--name-field-url a.focus, .field--name-field-url fieldset[disabled] a.focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .field--name-field-url a:active, .field--name-field-url fieldset[disabled] a:active, fieldset[disabled] .btn-primary.active, fieldset[disabled] .field--name-field-url a.active, .field--name-field-url fieldset[disabled] a.active {
   background-color: #337ab7;
   border-color: #2e6da4;
 }
 /* line 56, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary .badge {
+.btn-primary .badge, .field--name-field-url a .badge {
   color: #337ab7;
   background-color: #fff;
 }
@@ -4769,7 +4783,7 @@ a.btn.disabled, .links li a.disabled, fieldset[disabled] a.btn, fieldset[disable
 }
 
 /* line 135, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn-lg, .btn-group-lg > .btn, .links li .btn-group-lg > a {
+.btn-lg, .btn-group-lg > .btn, .links li .btn-group-lg > a, .field--name-field-url .btn-group-lg > a, .field--name-field-url a {
   padding: 10px 16px;
   font-size: 20px;
   line-height: 1.33333;
@@ -4777,7 +4791,7 @@ a.btn.disabled, .links li a.disabled, fieldset[disabled] a.btn, fieldset[disable
 }
 
 /* line 139, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn-sm, .btn-group-sm > .btn, .links li .btn-group-sm > a, .links li a {
+.btn-sm, .btn-group-sm > .btn, .links li .btn-group-sm > a, .field--name-field-url .btn-group-sm > a, .links li a {
   padding: 5px 10px;
   font-size: 14px;
   line-height: 1.5;
@@ -4785,7 +4799,7 @@ a.btn.disabled, .links li a.disabled, fieldset[disabled] a.btn, fieldset[disable
 }
 
 /* line 143, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn-xs, .btn-group-xs > .btn, .links li .btn-group-xs > a {
+.btn-xs, .btn-group-xs > .btn, .links li .btn-group-xs > a, .field--name-field-url .btn-group-xs > a {
   padding: 1px 5px;
   font-size: 14px;
   line-height: 1.5;
@@ -4901,7 +4915,7 @@ tbody.collapse.in {
   background-clip: padding-box;
 }
 /* line 54, ../../bootstrap/assets/stylesheets/bootstrap/_dropdowns.scss */
-.dropdown-menu.pull-right {
+.dropdown-menu.pull-right, .dropdown-menu#block-views-block-showcase-block-1 {
   right: 0;
   left: auto;
 }
@@ -4993,7 +5007,7 @@ tbody.collapse.in {
 }
 
 /* line 173, ../../bootstrap/assets/stylesheets/bootstrap/_dropdowns.scss */
-.pull-right > .dropdown-menu {
+.pull-right > .dropdown-menu, #block-views-block-showcase-block-1 > .dropdown-menu {
   right: 0;
   left: auto;
 }
@@ -5034,33 +5048,42 @@ tbody.collapse.in {
   vertical-align: middle;
 }
 /* line 11, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn, .links li .btn-group > a,
+.btn-group > .btn, .links li .btn-group > a, .field--name-field-url .btn-group > a,
 .btn-group-vertical > .btn,
-.links li .btn-group-vertical > a {
+.links li .btn-group-vertical > a,
+.field--name-field-url .btn-group-vertical > a {
   position: relative;
   float: left;
 }
 /* line 15, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn:hover, .links li .btn-group > a:hover, .btn-group > .btn:focus, .links li .btn-group > a:focus, .btn-group > .btn:active, .links li .btn-group > a:active, .btn-group > .btn.active, .links li .btn-group > a.active,
+.btn-group > .btn:hover, .links li .btn-group > a:hover, .field--name-field-url .btn-group > a:hover, .btn-group > .btn:focus, .links li .btn-group > a:focus, .field--name-field-url .btn-group > a:focus, .btn-group > .btn:active, .links li .btn-group > a:active, .field--name-field-url .btn-group > a:active, .btn-group > .btn.active, .links li .btn-group > a.active, .field--name-field-url .btn-group > a.active,
 .btn-group-vertical > .btn:hover,
 .links li .btn-group-vertical > a:hover,
+.field--name-field-url .btn-group-vertical > a:hover,
 .btn-group-vertical > .btn:focus,
 .links li .btn-group-vertical > a:focus,
+.field--name-field-url .btn-group-vertical > a:focus,
 .btn-group-vertical > .btn:active,
 .links li .btn-group-vertical > a:active,
+.field--name-field-url .btn-group-vertical > a:active,
 .btn-group-vertical > .btn.active,
-.links li .btn-group-vertical > a.active {
+.links li .btn-group-vertical > a.active,
+.field--name-field-url .btn-group-vertical > a.active {
   z-index: 2;
 }
 
 /* line 26, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group .btn + .btn, .btn-group .links li a + .btn, .links li .btn-group a + .btn, .btn-group .links li .btn + a, .links li .btn-group .btn + a, .btn-group .links li a + a, .links li .btn-group a + a,
+.btn-group .btn + .btn, .btn-group .links li a + .btn, .links li .btn-group a + .btn, .btn-group .field--name-field-url a + .btn, .field--name-field-url .btn-group a + .btn, .btn-group .links li .btn + a, .links li .btn-group .btn + a, .btn-group .links li a + a, .links li .btn-group a + a, .btn-group .field--name-field-url .links li a + a, .links li .field--name-field-url .btn-group a + a, .btn-group .field--name-field-url .btn + a, .field--name-field-url .btn-group .btn + a, .btn-group .links li .field--name-field-url a + a, .field--name-field-url .btn-group .links li a + a, .links li .btn-group .field--name-field-url a + a, .field--name-field-url .links li .btn-group a + a, .btn-group .field--name-field-url a + a, .field--name-field-url .btn-group a + a,
 .btn-group .btn + .btn-group,
 .btn-group .links li a + .btn-group,
 .links li .btn-group a + .btn-group,
+.btn-group .field--name-field-url a + .btn-group,
+.field--name-field-url .btn-group a + .btn-group,
 .btn-group .btn-group + .btn,
 .btn-group .links li .btn-group + a,
 .links li .btn-group .btn-group + a,
+.btn-group .field--name-field-url .btn-group + a,
+.field--name-field-url .btn-group .btn-group + a,
 .btn-group .btn-group + .btn-group {
   margin-left: -1px;
 }
@@ -5079,35 +5102,35 @@ tbody.collapse.in {
   clear: both;
 }
 /* line 39, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-toolbar .btn, .btn-toolbar .links li a, .links li .btn-toolbar a,
+.btn-toolbar .btn, .btn-toolbar .links li a, .links li .btn-toolbar a, .btn-toolbar .field--name-field-url a, .field--name-field-url .btn-toolbar a,
 .btn-toolbar .btn-group,
 .btn-toolbar .input-group {
   float: left;
 }
 /* line 44, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-toolbar > .btn, .links li .btn-toolbar > a,
+.btn-toolbar > .btn, .links li .btn-toolbar > a, .field--name-field-url .btn-toolbar > a,
 .btn-toolbar > .btn-group,
 .btn-toolbar > .input-group {
   margin-left: 5px;
 }
 
 /* line 51, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .links li .btn-group > a:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .links li .btn-group > a:not(:first-child):not(:last-child):not(.dropdown-toggle), .field--name-field-url .btn-group > a:not(:first-child):not(:last-child):not(.dropdown-toggle) {
   border-radius: 0;
 }
 
 /* line 56, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn:first-child, .links li .btn-group > a:first-child {
+.btn-group > .btn:first-child, .links li .btn-group > a:first-child, .field--name-field-url .btn-group > a:first-child {
   margin-left: 0;
 }
 /* line 58, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), .links li .btn-group > a:first-child:not(:last-child):not(.dropdown-toggle) {
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), .links li .btn-group > a:first-child:not(:last-child):not(.dropdown-toggle), .field--name-field-url .btn-group > a:first-child:not(:last-child):not(.dropdown-toggle) {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
 
 /* line 63, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn:last-child:not(:first-child), .links li .btn-group > a:last-child:not(:first-child),
+.btn-group > .btn:last-child:not(:first-child), .links li .btn-group > a:last-child:not(:first-child), .field--name-field-url .btn-group > a:last-child:not(:first-child),
 .btn-group > .dropdown-toggle:not(:first-child) {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
@@ -5119,19 +5142,19 @@ tbody.collapse.in {
 }
 
 /* line 72, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn, .links li .btn-group > .btn-group:not(:first-child):not(:last-child) > a {
+.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn, .links li .btn-group > .btn-group:not(:first-child):not(:last-child) > a, .field--name-field-url .btn-group > .btn-group:not(:first-child):not(:last-child) > a {
   border-radius: 0;
 }
 
 /* line 76, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child, .links li .btn-group > .btn-group:first-child:not(:last-child) > a:last-child,
+.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child, .links li .btn-group > .btn-group:first-child:not(:last-child) > a:last-child, .field--name-field-url .btn-group > .btn-group:first-child:not(:last-child) > a:last-child,
 .btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
 
 /* line 81, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child, .links li .btn-group > .btn-group:last-child:not(:first-child) > a:first-child {
+.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child, .links li .btn-group > .btn-group:last-child:not(:first-child) > a:first-child, .field--name-field-url .btn-group > .btn-group:last-child:not(:first-child) > a:first-child {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
@@ -5143,13 +5166,13 @@ tbody.collapse.in {
 }
 
 /* line 105, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn + .dropdown-toggle, .links li .btn-group > a + .dropdown-toggle {
+.btn-group > .btn + .dropdown-toggle, .links li .btn-group > a + .dropdown-toggle, .field--name-field-url .btn-group > a + .dropdown-toggle {
   padding-left: 8px;
   padding-right: 8px;
 }
 
 /* line 109, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn-lg + .dropdown-toggle, .btn-group-lg.btn-group > .btn + .dropdown-toggle, .links li .btn-group-lg.btn-group > a + .dropdown-toggle {
+.btn-group > .btn-lg + .dropdown-toggle, .btn-group-lg.btn-group > .btn + .dropdown-toggle, .links li .btn-group-lg.btn-group > a + .dropdown-toggle, .field--name-field-url .btn-group > a + .dropdown-toggle {
   padding-left: 12px;
   padding-right: 12px;
 }
@@ -5166,26 +5189,27 @@ tbody.collapse.in {
 }
 
 /* line 127, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn .caret, .links li a .caret {
+.btn .caret, .links li a .caret, .field--name-field-url a .caret {
   margin-left: 0;
 }
 
 /* line 131, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-lg .caret, .btn-group-lg > .btn .caret, .links li .btn-group-lg > a .caret {
+.btn-lg .caret, .btn-group-lg > .btn .caret, .links li .btn-group-lg > a .caret, .field--name-field-url a .caret {
   border-width: 5px 5px 0;
   border-bottom-width: 0;
 }
 
 /* line 136, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.dropup .btn-lg .caret, .dropup .btn-group-lg > .btn .caret, .dropup .links li .btn-group-lg > a .caret, .links li .dropup .btn-group-lg > a .caret {
+.dropup .btn-lg .caret, .dropup .btn-group-lg > .btn .caret, .dropup .links li .btn-group-lg > a .caret, .links li .dropup .btn-group-lg > a .caret, .dropup .field--name-field-url a .caret, .field--name-field-url .dropup a .caret {
   border-width: 0 5px 5px;
 }
 
 /* line 145, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn, .links li .btn-group-vertical > a,
+.btn-group-vertical > .btn, .links li .btn-group-vertical > a, .field--name-field-url .btn-group-vertical > a,
 .btn-group-vertical > .btn-group,
 .btn-group-vertical > .btn-group > .btn,
-.links li .btn-group-vertical > .btn-group > a {
+.links li .btn-group-vertical > .btn-group > a,
+.field--name-field-url .btn-group-vertical > .btn-group > a {
   display: block;
   float: none;
   width: 100%;
@@ -5201,51 +5225,53 @@ tbody.collapse.in {
   clear: both;
 }
 /* line 157, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn-group > .btn, .links li .btn-group-vertical > .btn-group > a {
+.btn-group-vertical > .btn-group > .btn, .links li .btn-group-vertical > .btn-group > a, .field--name-field-url .btn-group-vertical > .btn-group > a {
   float: none;
 }
 /* line 162, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn + .btn, .links li .btn-group-vertical > a + .btn, .links li .btn-group-vertical > .btn + a, .links li .btn-group-vertical > a + a,
+.btn-group-vertical > .btn + .btn, .links li .btn-group-vertical > a + .btn, .field--name-field-url .btn-group-vertical > a + .btn, .links li .btn-group-vertical > .btn + a, .links li .btn-group-vertical > a + a, .field--name-field-url .btn-group-vertical > .btn + a, .links li .field--name-field-url .btn-group-vertical > a + a, .field--name-field-url .links li .btn-group-vertical > a + a, .field--name-field-url .btn-group-vertical > a + a,
 .btn-group-vertical > .btn + .btn-group,
 .links li .btn-group-vertical > a + .btn-group,
+.field--name-field-url .btn-group-vertical > a + .btn-group,
 .btn-group-vertical > .btn-group + .btn,
 .links li .btn-group-vertical > .btn-group + a,
+.field--name-field-url .btn-group-vertical > .btn-group + a,
 .btn-group-vertical > .btn-group + .btn-group {
   margin-top: -1px;
   margin-left: 0;
 }
 
 /* line 172, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn:not(:first-child):not(:last-child), .links li .btn-group-vertical > a:not(:first-child):not(:last-child) {
+.btn-group-vertical > .btn:not(:first-child):not(:last-child), .links li .btn-group-vertical > a:not(:first-child):not(:last-child), .field--name-field-url .btn-group-vertical > a:not(:first-child):not(:last-child) {
   border-radius: 0;
 }
 /* line 175, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn:first-child:not(:last-child), .links li .btn-group-vertical > a:first-child:not(:last-child) {
+.btn-group-vertical > .btn:first-child:not(:last-child), .links li .btn-group-vertical > a:first-child:not(:last-child), .field--name-field-url .btn-group-vertical > a:first-child:not(:last-child) {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 /* line 179, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn:last-child:not(:first-child), .links li .btn-group-vertical > a:last-child:not(:first-child) {
+.btn-group-vertical > .btn:last-child:not(:first-child), .links li .btn-group-vertical > a:last-child:not(:first-child), .field--name-field-url .btn-group-vertical > a:last-child:not(:first-child) {
   border-bottom-left-radius: 4px;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
 
 /* line 184, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn, .links li .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > a {
+.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn, .links li .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > a, .field--name-field-url .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > a {
   border-radius: 0;
 }
 
 /* line 188, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child, .links li .btn-group-vertical > .btn-group:first-child:not(:last-child) > a:last-child,
+.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child, .links li .btn-group-vertical > .btn-group:first-child:not(:last-child) > a:last-child, .field--name-field-url .btn-group-vertical > .btn-group:first-child:not(:last-child) > a:last-child,
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
 /* line 193, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child, .links li .btn-group-vertical > .btn-group:last-child:not(:first-child) > a:first-child {
+.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child, .links li .btn-group-vertical > .btn-group:last-child:not(:first-child) > a:first-child, .field--name-field-url .btn-group-vertical > .btn-group:last-child:not(:first-child) > a:first-child {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
@@ -5258,14 +5284,14 @@ tbody.collapse.in {
   border-collapse: separate;
 }
 /* line 206, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-justified > .btn, .links li .btn-group-justified > a,
+.btn-group-justified > .btn, .links li .btn-group-justified > a, .field--name-field-url .btn-group-justified > a,
 .btn-group-justified > .btn-group {
   float: none;
   display: table-cell;
   width: 1%;
 }
 /* line 212, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-justified > .btn-group .btn, .btn-group-justified > .btn-group .links li a, .links li .btn-group-justified > .btn-group a {
+.btn-group-justified > .btn-group .btn, .btn-group-justified > .btn-group .links li a, .links li .btn-group-justified > .btn-group a, .btn-group-justified > .btn-group .field--name-field-url a, .field--name-field-url .btn-group-justified > .btn-group a {
   width: 100%;
 }
 /* line 216, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
@@ -5274,13 +5300,16 @@ tbody.collapse.in {
 }
 
 /* line 237, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-[data-toggle="buttons"] > .btn input[type="radio"], .links li [data-toggle="buttons"] > a input[type="radio"],
+[data-toggle="buttons"] > .btn input[type="radio"], .links li [data-toggle="buttons"] > a input[type="radio"], .field--name-field-url [data-toggle="buttons"] > a input[type="radio"],
 [data-toggle="buttons"] > .btn input[type="checkbox"],
 .links li [data-toggle="buttons"] > a input[type="checkbox"],
+.field--name-field-url [data-toggle="buttons"] > a input[type="checkbox"],
 [data-toggle="buttons"] > .btn-group > .btn input[type="radio"],
 .links li [data-toggle="buttons"] > .btn-group > a input[type="radio"],
+.field--name-field-url [data-toggle="buttons"] > .btn-group > a input[type="radio"],
 [data-toggle="buttons"] > .btn-group > .btn input[type="checkbox"],
-.links li [data-toggle="buttons"] > .btn-group > a input[type="checkbox"] {
+.links li [data-toggle="buttons"] > .btn-group > a input[type="checkbox"],
+.field--name-field-url [data-toggle="buttons"] > .btn-group > a input[type="checkbox"] {
   position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
@@ -5344,7 +5373,8 @@ tbody.collapse.in {
 .input-group-addon.input-sm,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .input-group-addon.btn,
-.links li .input-group-sm > .input-group-btn > a.input-group-addon {
+.links li .input-group-sm > .input-group-btn > a.input-group-addon,
+.field--name-field-url .input-group-sm > .input-group-btn > a.input-group-addon {
   padding: 5px 10px;
   font-size: 14px;
   border-radius: 3px;
@@ -5353,7 +5383,8 @@ tbody.collapse.in {
 .input-group-addon.input-lg,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .input-group-addon.btn,
-.links li .input-group-lg > .input-group-btn > a.input-group-addon {
+.links li .input-group-lg > .input-group-btn > a.input-group-addon,
+.field--name-field-url .input-group-lg > .input-group-btn > a.input-group-addon {
   padding: 10px 16px;
   font-size: 20px;
   border-radius: 6px;
@@ -5369,13 +5400,17 @@ tbody.collapse.in {
 .input-group-addon:first-child,
 .input-group-btn:first-child > .btn,
 .links li .input-group-btn:first-child > a,
+.field--name-field-url .input-group-btn:first-child > a,
 .input-group-btn:first-child > .btn-group > .btn,
 .links li .input-group-btn:first-child > .btn-group > a,
+.field--name-field-url .input-group-btn:first-child > .btn-group > a,
 .input-group-btn:first-child > .dropdown-toggle,
 .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),
 .links li .input-group-btn:last-child > a:not(:last-child):not(.dropdown-toggle),
+.field--name-field-url .input-group-btn:last-child > a:not(:last-child):not(.dropdown-toggle),
 .input-group-btn:last-child > .btn-group:not(:last-child) > .btn,
-.links li .input-group-btn:last-child > .btn-group:not(:last-child) > a {
+.links li .input-group-btn:last-child > .btn-group:not(:last-child) > a,
+.field--name-field-url .input-group-btn:last-child > .btn-group:not(:last-child) > a {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
@@ -5390,13 +5425,17 @@ tbody.collapse.in {
 .input-group-addon:last-child,
 .input-group-btn:last-child > .btn,
 .links li .input-group-btn:last-child > a,
+.field--name-field-url .input-group-btn:last-child > a,
 .input-group-btn:last-child > .btn-group > .btn,
 .links li .input-group-btn:last-child > .btn-group > a,
+.field--name-field-url .input-group-btn:last-child > .btn-group > a,
 .input-group-btn:last-child > .dropdown-toggle,
 .input-group-btn:first-child > .btn:not(:first-child),
 .links li .input-group-btn:first-child > a:not(:first-child),
+.field--name-field-url .input-group-btn:first-child > a:not(:first-child),
 .input-group-btn:first-child > .btn-group:not(:first-child) > .btn,
-.links li .input-group-btn:first-child > .btn-group:not(:first-child) > a {
+.links li .input-group-btn:first-child > .btn-group:not(:first-child) > a,
+.field--name-field-url .input-group-btn:first-child > .btn-group:not(:first-child) > a {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
@@ -5413,24 +5452,24 @@ tbody.collapse.in {
   white-space: nowrap;
 }
 /* line 140, ../../bootstrap/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn > .btn, .links li .input-group-btn > a {
+.input-group-btn > .btn, .links li .input-group-btn > a, .field--name-field-url .input-group-btn > a {
   position: relative;
 }
 /* line 142, ../../bootstrap/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn > .btn + .btn, .links li .input-group-btn > a + .btn, .links li .input-group-btn > .btn + a, .links li .input-group-btn > a + a {
+.input-group-btn > .btn + .btn, .links li .input-group-btn > a + .btn, .field--name-field-url .input-group-btn > a + .btn, .links li .input-group-btn > .btn + a, .links li .input-group-btn > a + a, .field--name-field-url .input-group-btn > .btn + a, .links li .field--name-field-url .input-group-btn > a + a, .field--name-field-url .links li .input-group-btn > a + a, .field--name-field-url .input-group-btn > a + a {
   margin-left: -1px;
 }
 /* line 146, ../../bootstrap/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn > .btn:hover, .links li .input-group-btn > a:hover, .input-group-btn > .btn:focus, .links li .input-group-btn > a:focus, .input-group-btn > .btn:active, .links li .input-group-btn > a:active {
+.input-group-btn > .btn:hover, .links li .input-group-btn > a:hover, .field--name-field-url .input-group-btn > a:hover, .input-group-btn > .btn:focus, .links li .input-group-btn > a:focus, .field--name-field-url .input-group-btn > a:focus, .input-group-btn > .btn:active, .links li .input-group-btn > a:active, .field--name-field-url .input-group-btn > a:active {
   z-index: 2;
 }
 /* line 155, ../../bootstrap/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn:first-child > .btn, .links li .input-group-btn:first-child > a,
+.input-group-btn:first-child > .btn, .links li .input-group-btn:first-child > a, .field--name-field-url .input-group-btn:first-child > a,
 .input-group-btn:first-child > .btn-group {
   margin-right: -1px;
 }
 /* line 161, ../../bootstrap/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn:last-child > .btn, .links li .input-group-btn:last-child > a,
+.input-group-btn:last-child > .btn, .links li .input-group-btn:last-child > a, .field--name-field-url .input-group-btn:last-child > a,
 .input-group-btn:last-child > .btn-group {
   z-index: 2;
   margin-left: -1px;
@@ -6033,12 +6072,12 @@ tbody.collapse.in {
   margin-bottom: 7px;
 }
 /* line 346, ../../bootstrap/assets/stylesheets/bootstrap/_navbar.scss */
-.navbar-btn.btn-sm, .btn-group-sm > .navbar-btn.btn, .links li a.navbar-btn {
+.navbar-btn.btn-sm, .btn-group-sm > .navbar-btn.btn, .field--name-field-url .btn-group-sm > a.navbar-btn, .links li a.navbar-btn {
   margin-top: 8.5px;
   margin-bottom: 8.5px;
 }
 /* line 349, ../../bootstrap/assets/stylesheets/bootstrap/_navbar.scss */
-.navbar-btn.btn-xs, .btn-group-xs > .navbar-btn.btn, .links li .btn-group-xs > a.navbar-btn {
+.navbar-btn.btn-xs, .btn-group-xs > .navbar-btn.btn, .links li .btn-group-xs > a.navbar-btn, .field--name-field-url .btn-group-xs > a.navbar-btn {
   margin-top: 14px;
   margin-bottom: 14px;
 }
@@ -6489,7 +6528,7 @@ tbody.collapse.in {
   display: none;
 }
 /* line 25, ../../bootstrap/assets/stylesheets/bootstrap/_labels.scss */
-.btn .label, .links li a .label {
+.btn .label, .links li a .label, .field--name-field-url a .label {
   position: relative;
   top: -1px;
 }
@@ -6575,12 +6614,12 @@ a.label:hover, a.label:focus {
   display: none;
 }
 /* line 27, ../../bootstrap/assets/stylesheets/bootstrap/_badges.scss */
-.btn .badge, .links li a .badge {
+.btn .badge, .links li a .badge, .field--name-field-url a .badge {
   position: relative;
   top: -1px;
 }
 /* line 32, ../../bootstrap/assets/stylesheets/bootstrap/_badges.scss */
-.btn-xs .badge, .btn-group-xs > .btn .badge, .links li .btn-group-xs > a .badge, .btn-group-xs > .btn .badge, .links li .btn-group-xs > a .badge {
+.btn-xs .badge, .btn-group-xs > .btn .badge, .links li .btn-group-xs > a .badge, .field--name-field-url .btn-group-xs > a .badge, .btn-group-xs > .btn .badge, .links li .btn-group-xs > a .badge, .field--name-field-url .btn-group-xs > a .badge {
   top: 0;
   padding: 1px 5px;
 }
@@ -6930,7 +6969,8 @@ a.thumbnail.active {
 
 /* line 29, ../../bootstrap/assets/stylesheets/bootstrap/_media.scss */
 .media-right,
-.media > .pull-right {
+.media > .pull-right,
+.media > #block-views-block-showcase-block-1 {
   padding-left: 10px;
 }
 
@@ -7854,12 +7894,12 @@ button.close {
   clear: both;
 }
 /* line 110, ../../bootstrap/assets/stylesheets/bootstrap/_modals.scss */
-.modal-footer .btn + .btn, .modal-footer .links li a + .btn, .links li .modal-footer a + .btn, .modal-footer .links li .btn + a, .links li .modal-footer .btn + a, .modal-footer .links li a + a, .links li .modal-footer a + a {
+.modal-footer .btn + .btn, .modal-footer .links li a + .btn, .links li .modal-footer a + .btn, .modal-footer .field--name-field-url a + .btn, .field--name-field-url .modal-footer a + .btn, .modal-footer .links li .btn + a, .links li .modal-footer .btn + a, .modal-footer .links li a + a, .links li .modal-footer a + a, .modal-footer .field--name-field-url .links li a + a, .links li .field--name-field-url .modal-footer a + a, .modal-footer .field--name-field-url .btn + a, .field--name-field-url .modal-footer .btn + a, .modal-footer .links li .field--name-field-url a + a, .field--name-field-url .modal-footer .links li a + a, .links li .modal-footer .field--name-field-url a + a, .field--name-field-url .links li .modal-footer a + a, .modal-footer .field--name-field-url a + a, .field--name-field-url .modal-footer a + a {
   margin-left: 5px;
   margin-bottom: 0;
 }
 /* line 115, ../../bootstrap/assets/stylesheets/bootstrap/_modals.scss */
-.modal-footer .btn-group .btn + .btn, .modal-footer .btn-group .links li a + .btn, .links li .modal-footer .btn-group a + .btn, .modal-footer .btn-group .links li .btn + a, .links li .modal-footer .btn-group .btn + a, .modal-footer .btn-group .links li a + a, .links li .modal-footer .btn-group a + a {
+.modal-footer .btn-group .btn + .btn, .modal-footer .btn-group .links li a + .btn, .links li .modal-footer .btn-group a + .btn, .modal-footer .btn-group .field--name-field-url a + .btn, .field--name-field-url .modal-footer .btn-group a + .btn, .modal-footer .btn-group .links li .btn + a, .links li .modal-footer .btn-group .btn + a, .modal-footer .btn-group .links li a + a, .links li .modal-footer .btn-group a + a, .modal-footer .btn-group .field--name-field-url .links li a + a, .links li .field--name-field-url .modal-footer .btn-group a + a, .modal-footer .btn-group .field--name-field-url .btn + a, .field--name-field-url .modal-footer .btn-group .btn + a, .modal-footer .btn-group .links li .field--name-field-url a + a, .field--name-field-url .modal-footer .btn-group .links li a + a, .links li .modal-footer .btn-group .field--name-field-url a + a, .field--name-field-url .links li .modal-footer .btn-group a + a, .modal-footer .btn-group .field--name-field-url a + a, .field--name-field-url .modal-footer .btn-group a + a {
   margin-left: -1px;
 }
 /* line 119, ../../bootstrap/assets/stylesheets/bootstrap/_modals.scss */
@@ -8415,7 +8455,7 @@ button.close {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 /* line 228, ../../bootstrap/assets/stylesheets/bootstrap/_carousel.scss */
-.carousel-caption .btn, .carousel-caption .links li a, .links li .carousel-caption a {
+.carousel-caption .btn, .carousel-caption .links li a, .links li .carousel-caption a, .carousel-caption .field--name-field-url a, .field--name-field-url .carousel-caption a {
   text-shadow: none;
 }
 
@@ -8471,7 +8511,7 @@ button.close {
 }
 
 /* line 15, ../../bootstrap/assets/stylesheets/bootstrap/_utilities.scss */
-.pull-right {
+.pull-right, #block-views-block-showcase-block-1 {
   float: right !important;
 }
 
@@ -8875,6 +8915,17 @@ img {
   text-shadow: 5px 5px 10px rgba(51, 51, 51, 0.6);
 }
 
+/* line 5, ../sass/partials/_layouts.scss */
+body {
+  margin-top: 64px !important;
+}
+@media (min-width: 768px) {
+  /* line 5, ../sass/partials/_layouts.scss */
+  body {
+    margin-top: 98px !important;
+  }
+}
+
 /* line 3, ../sass/partials/_forms.scss */
 .form-control {
   -moz-box-shadow: none;
@@ -9123,6 +9174,41 @@ mark {
   padding: 0.5em 0;
 }
 
+/* line 1, ../sass/partials/_view_modes.scss */
+.view-mode-stack {
+  margin-bottom: 30px;
+  position: relative;
+}
+/* line 5, ../sass/partials/_view_modes.scss */
+.view-mode-stack .field--name-field-main-screenshot img {
+  width: 100%;
+}
+/* line 9, ../sass/partials/_view_modes.scss */
+.view-mode-stack .field--name-node-title {
+  background: rgba(255, 255, 255, 0.65);
+  border-top: 4px solid white;
+  border-bottom: 4px solid white;
+  bottom: 1.5em;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0.35em;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+/* line 21, ../sass/partials/_view_modes.scss */
+.view-mode-stack .field--name-node-title a {
+  color: #333333;
+}
+/* line 26, ../sass/partials/_view_modes.scss */
+.view-mode-stack .field--name-field-drupal-version {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.1em 0.3em;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 /* line 4, ../sass/sections/_header.scss */
 .navbar-default {
   background-color: #337ab7;
@@ -9150,11 +9236,7 @@ mark {
   padding: 0;
 }
 
-/* line 1, ../sass/sections/_main_content.scss */
-.main-container {
-  padding-top: 98px;
-}
-/* line 4, ../sass/sections/_main_content.scss */
+/* line 3, ../sass/sections/_main_content.scss */
 .main-container.landing-page {
   padding-left: 0;
   padding-right: 0;
@@ -9180,12 +9262,12 @@ footer.footer {
 }
 
 /* line 2, ../sass/sections/_landing_page.scss */
-.main-container.landing-page > .row {
+.main-container.landing-page > .row, .view-showcase.view-display-id-page_1 .main-container.landing-page > .view-content {
   margin-left: 0;
   margin-right: 0;
 }
 /* line 6, ../sass/sections/_landing_page.scss */
-.main-container.landing-page > .row > section {
+.main-container.landing-page > .row > section, .view-showcase.view-display-id-page_1 .main-container.landing-page > .view-content > section {
   padding-left: 0;
   padding-right: 0;
 }
@@ -9206,4 +9288,66 @@ footer.footer {
 /* line 13, ../sass/sections/_sidebar_second.scss */
 .region-sidebar-second .block .more-link {
   text-align: right;
+}
+
+/* line 3, ../sass/sections/_frontpage.scss */
+.region-highlighted {
+  padding: 2em 0;
+}
+
+/* line 7, ../sass/sections/_frontpage.scss */
+#block-frontpagetopcojedrupal {
+  margin-bottom: 2em;
+}
+@media (min-width: 1200px) {
+  /* line 7, ../sass/sections/_frontpage.scss */
+  #block-frontpagetopcojedrupal {
+    margin-top: 5em;
+  }
+}
+/* line 15, ../sass/sections/_frontpage.scss */
+#block-frontpagetopcojedrupal h2 {
+  margin-top: 0;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  /* line 19, ../sass/sections/_frontpage.scss */
+  #block-frontpagetopusage {
+    margin-top: 3em;
+  }
+}
+/* line 26, ../sass/sections/_frontpage.scss */
+#block-frontpagetopusage h3 {
+  margin-top: 0;
+}
+
+/* line 31, ../sass/sections/_frontpage.scss */
+#block-views-block-showcase-block-1 {
+  margin-bottom: 2em;
+  position: relative;
+}
+/* line 36, ../sass/sections/_frontpage.scss */
+#block-views-block-showcase-block-1 .field--name-node-title {
+  font-size: 28px;
+}
+
+/* line 41, ../sass/sections/_frontpage.scss */
+.region-content > article {
+  clear: both;
+}
+
+/* line 45, ../sass/sections/_frontpage.scss */
+.custom_jssor {
+  width: 600px;
+  height: 450px;
+}
+
+/* line 10, ../sass/sections/_showcase.scss */
+.field--name-field-main-screenshot {
+  margin-bottom: 1em;
+}
+
+/* line 14, ../sass/sections/_showcase.scss */
+.field--name-field-url {
+  margin: 1em 0;
 }

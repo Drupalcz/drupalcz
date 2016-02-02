@@ -1,0 +1,19 @@
+.view-showcase.view-display-id-page_1 {
+  .view-content {
+    @extend .row;
+  }
+  .views-row {
+    @extend .col-xs-12, .col-md-6, .col-lg-4;
+  }
+}
+
+.field--name-field-main-screenshot {
+  margin-bottom: 1em;
+}
+
+.field--name-field-url {
+  margin: 1em 0;
+  a {
+    @extend .btn, .btn-lg, .btn-primary;
+  }
+}

@@ -1,4 +1,18 @@
 //
+// Base Layout styling
+// --------------------------------------------------
+
+body {
+  margin-top: 64px !important;
+
+  @media (min-width: $screen-sm-min) {
+    margin-top: 98px !important;
+  }
+}
+
+
+
+//
 // Layouts
 // --------------------------------------------------
 

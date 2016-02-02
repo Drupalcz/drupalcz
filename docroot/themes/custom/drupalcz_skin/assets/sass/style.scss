@@ -24,6 +24,7 @@
 @import "partials/views";
 @import "partials/tags";
 @import "partials/breadcrumbs";
+@import "partials/view_modes";
 
 // Sections sections
 @import "sections/header";
@@ -32,3 +33,5 @@
 @import "sections/landing_page";
 @import "sections/forum";
 @import "sections/sidebar_second";
+@import "sections/frontpage";
+@import "sections/showcase";
