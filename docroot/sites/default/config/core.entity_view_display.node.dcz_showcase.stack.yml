@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.stack
     - field.field.node.dcz_showcase.body
+    - field.field.node.dcz_showcase.field_display_options
     - field.field.node.dcz_showcase.field_drupal_version
     - field.field.node.dcz_showcase.field_logo
     - field.field.node.dcz_showcase.field_main_screenshot
@@ -117,4 +118,5 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_display_options: true
   field_logo: true

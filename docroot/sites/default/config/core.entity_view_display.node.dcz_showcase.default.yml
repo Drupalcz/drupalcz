@@ -15,7 +15,6 @@ dependencies:
     - image
     - juicebox
     - link
-    - options
     - text
     - user
 id: node.dcz_showcase.default
@@ -29,12 +28,6 @@ content:
     weight: 3
     settings: {  }
     third_party_settings: {  }
-  field_display_options:
-    weight: 7
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
   field_drupal_version:
     weight: 1
     label: inline
@@ -99,4 +92,5 @@ content:
     weight: 6
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_display_options: true

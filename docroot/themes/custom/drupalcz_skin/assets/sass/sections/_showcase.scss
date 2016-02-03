@@ -8,17 +8,6 @@
   }
 }
 
-.field--name-field-main-screenshot {
-  margin-bottom: 1em;
-}
-
-.field--name-field-url {
-  margin: 1em 0;
-  a {
-    @extend .btn, .btn-lg, .btn-primary;
-  }
-}
-
 //Logo block
 .view-showcase.view-display-id-block_2 {
   .view-content {
@@ -33,6 +22,33 @@
 
     img {
       margin: 0 auto;
+    }
+  }
+}
+
+// Showcase full node
+.page-node-type-dcz-showcase {
+  .field--name-field-drupal-version {
+    float: left;
+  }
+
+  .field--name-field-logo {
+    float: right;
+    margin-bottom: 1em;
+  }
+
+  .field--name-body {
+    clear: both;
+  }
+
+  .field--name-field-main-screenshot {
+    margin-bottom: 1em;
+  }
+
+  .field--name-field-url {
+    margin: 1em 0;
+    a {
+      @extend .btn, .btn-lg, .btn-primary;
     }
   }
 }

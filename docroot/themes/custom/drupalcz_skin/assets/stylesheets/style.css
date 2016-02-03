@@ -339,10 +339,10 @@ th {
   }
 
   /* line 77, ../../bootstrap/assets/stylesheets/bootstrap/_print.scss */
-  .btn > .caret, .links li a > .caret, .field--name-field-url a > .caret,
+  .btn > .caret, .links li a > .caret, .page-node-type-dcz-showcase .field--name-field-url a > .caret,
   .dropup > .btn > .caret,
   .links li .dropup > a > .caret,
-  .field--name-field-url .dropup > a > .caret {
+  .page-node-type-dcz-showcase .field--name-field-url .dropup > a > .caret {
     border-top-color: #000 !important;
   }
 
@@ -4032,11 +4032,11 @@ input[type="checkbox"] {
 .input-group-lg > .form-control-static.input-group-addon,
 .input-group-lg > .input-group-btn > .form-control-static.btn,
 .links li .input-group-lg > .input-group-btn > a.form-control-static,
-.field--name-field-url .input-group-lg > .input-group-btn > a.form-control-static, .form-control-static.input-sm, .input-group-sm > .form-control-static.form-control,
+.page-node-type-dcz-showcase .field--name-field-url .input-group-lg > .input-group-btn > a.form-control-static, .form-control-static.input-sm, .input-group-sm > .form-control-static.form-control,
 .input-group-sm > .form-control-static.input-group-addon,
 .input-group-sm > .input-group-btn > .form-control-static.btn,
 .links li .input-group-sm > .input-group-btn > a.form-control-static,
-.field--name-field-url .input-group-sm > .input-group-btn > a.form-control-static {
+.page-node-type-dcz-showcase .field--name-field-url .input-group-sm > .input-group-btn > a.form-control-static {
   padding-left: 0;
   padding-right: 0;
 }
@@ -4046,7 +4046,7 @@ input[type="checkbox"] {
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn,
 .links li .input-group-sm > .input-group-btn > a,
-.field--name-field-url .input-group-sm > .input-group-btn > a {
+.page-node-type-dcz-showcase .field--name-field-url .input-group-sm > .input-group-btn > a {
   height: 33px;
   padding: 5px 10px;
   font-size: 14px;
@@ -4105,7 +4105,7 @@ select[multiple].input-sm,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn,
 .links li .input-group-lg > .input-group-btn > a,
-.field--name-field-url .input-group-lg > .input-group-btn > a {
+.page-node-type-dcz-showcase .field--name-field-url .input-group-lg > .input-group-btn > a {
   height: 49px;
   padding: 10px 16px;
   font-size: 20px;
@@ -4187,7 +4187,7 @@ select[multiple].input-lg,
 .input-group-lg > .input-group-addon + .form-control-feedback,
 .input-group-lg > .input-group-btn > .btn + .form-control-feedback,
 .links li .input-group-lg > .input-group-btn > a + .form-control-feedback,
-.field--name-field-url .input-group-lg > .input-group-btn > a + .form-control-feedback,
+.page-node-type-dcz-showcase .field--name-field-url .input-group-lg > .input-group-btn > a + .form-control-feedback,
 .input-group-lg + .form-control-feedback,
 .form-group-lg .form-control + .form-control-feedback {
   width: 49px;
@@ -4200,7 +4200,7 @@ select[multiple].input-lg,
 .input-group-sm > .input-group-addon + .form-control-feedback,
 .input-group-sm > .input-group-btn > .btn + .form-control-feedback,
 .links li .input-group-sm > .input-group-btn > a + .form-control-feedback,
-.field--name-field-url .input-group-sm > .input-group-btn > a + .form-control-feedback,
+.page-node-type-dcz-showcase .field--name-field-url .input-group-sm > .input-group-btn > a + .form-control-feedback,
 .input-group-sm + .form-control-feedback,
 .form-group-sm .form-control + .form-control-feedback {
   width: 33px;
@@ -4439,7 +4439,7 @@ select[multiple].input-lg,
 }
 
 /* line 9, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn, .links li a, .field--name-field-url a {
+.btn, .links li a, .page-node-type-dcz-showcase .field--name-field-url a {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -4460,25 +4460,25 @@ select[multiple].input-lg,
   user-select: none;
 }
 /* line 26, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn:focus, .links li a:focus, .field--name-field-url a:focus, .btn.focus, .links li a.focus, .field--name-field-url a.focus, .btn:active:focus, .links li a:active:focus, .field--name-field-url a:active:focus, .btn:active.focus, .links li a:active.focus, .field--name-field-url a:active.focus, .btn.active:focus, .links li a.active:focus, .field--name-field-url a.active:focus, .btn.active.focus, .links li a.active.focus, .field--name-field-url a.active.focus {
+.btn:focus, .links li a:focus, .page-node-type-dcz-showcase .field--name-field-url a:focus, .btn.focus, .links li a.focus, .page-node-type-dcz-showcase .field--name-field-url a.focus, .btn:active:focus, .links li a:active:focus, .page-node-type-dcz-showcase .field--name-field-url a:active:focus, .btn:active.focus, .links li a:active.focus, .page-node-type-dcz-showcase .field--name-field-url a:active.focus, .btn.active:focus, .links li a.active:focus, .page-node-type-dcz-showcase .field--name-field-url a.active:focus, .btn.active.focus, .links li a.active.focus, .page-node-type-dcz-showcase .field--name-field-url a.active.focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
 /* line 32, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn:hover, .links li a:hover, .field--name-field-url a:hover, .btn:focus, .links li a:focus, .field--name-field-url a:focus, .btn.focus, .links li a.focus, .field--name-field-url a.focus {
+.btn:hover, .links li a:hover, .page-node-type-dcz-showcase .field--name-field-url a:hover, .btn:focus, .links li a:focus, .page-node-type-dcz-showcase .field--name-field-url a:focus, .btn.focus, .links li a.focus, .page-node-type-dcz-showcase .field--name-field-url a.focus {
   color: #333;
   text-decoration: none;
 }
 /* line 39, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn:active, .links li a:active, .field--name-field-url a:active, .btn.active, .links li a.active, .field--name-field-url a.active {
+.btn:active, .links li a:active, .page-node-type-dcz-showcase .field--name-field-url a:active, .btn.active, .links li a.active, .page-node-type-dcz-showcase .field--name-field-url a.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 /* line 46, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn.disabled, .links li a.disabled, .field--name-field-url a.disabled, .btn[disabled], .links li a[disabled], .field--name-field-url a[disabled], fieldset[disabled] .btn, fieldset[disabled] .links li a, .links li fieldset[disabled] a, fieldset[disabled] .field--name-field-url a, .field--name-field-url fieldset[disabled] a {
+.btn.disabled, .links li a.disabled, .page-node-type-dcz-showcase .field--name-field-url a.disabled, .btn[disabled], .links li a[disabled], .page-node-type-dcz-showcase .field--name-field-url a[disabled], fieldset[disabled] .btn, fieldset[disabled] .links li a, .links li fieldset[disabled] a, fieldset[disabled] .page-node-type-dcz-showcase .field--name-field-url a, .page-node-type-dcz-showcase .field--name-field-url fieldset[disabled] a {
   cursor: not-allowed;
   opacity: 0.65;
   filter: alpha(opacity=65);
@@ -4487,7 +4487,7 @@ select[multiple].input-lg,
 }
 
 /* line 58, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-a.btn.disabled, .links li a.disabled, .field--name-field-url a.disabled, fieldset[disabled] a.btn, fieldset[disabled] .links li a, .links li fieldset[disabled] a, fieldset[disabled] .field--name-field-url a, .field--name-field-url fieldset[disabled] a {
+a.btn.disabled, .links li a.disabled, .page-node-type-dcz-showcase .field--name-field-url a.disabled, fieldset[disabled] a.btn, fieldset[disabled] .links li a, .links li fieldset[disabled] a, fieldset[disabled] .page-node-type-dcz-showcase .field--name-field-url a, .page-node-type-dcz-showcase .field--name-field-url fieldset[disabled] a {
   pointer-events: none;
 }
 
@@ -4537,46 +4537,46 @@ a.btn.disabled, .links li a.disabled, .field--name-field-url a.disabled, fieldse
 }
 
 /* line 71, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn-primary, .field--name-field-url a {
+.btn-primary, .page-node-type-dcz-showcase .field--name-field-url a {
   color: #fff;
   background-color: #337ab7;
   border-color: #2e6da4;
 }
 /* line 11, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:focus, .field--name-field-url a:focus, .btn-primary.focus, .field--name-field-url a.focus {
+.btn-primary:focus, .page-node-type-dcz-showcase .field--name-field-url a:focus, .btn-primary.focus, .page-node-type-dcz-showcase .field--name-field-url a.focus {
   color: #fff;
   background-color: #286090;
   border-color: #122b40;
 }
 /* line 17, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:hover, .field--name-field-url a:hover {
+.btn-primary:hover, .page-node-type-dcz-showcase .field--name-field-url a:hover {
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
 }
 /* line 22, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:active, .field--name-field-url a:active, .btn-primary.active, .field--name-field-url a.active, .open > .btn-primary.dropdown-toggle, .field--name-field-url .open > a.dropdown-toggle {
+.btn-primary:active, .page-node-type-dcz-showcase .field--name-field-url a:active, .btn-primary.active, .page-node-type-dcz-showcase .field--name-field-url a.active, .open > .btn-primary.dropdown-toggle, .page-node-type-dcz-showcase .field--name-field-url .open > a.dropdown-toggle {
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
 }
 /* line 29, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:active:hover, .field--name-field-url a:active:hover, .btn-primary:active:focus, .field--name-field-url a:active:focus, .btn-primary:active.focus, .field--name-field-url a:active.focus, .btn-primary.active:hover, .field--name-field-url a.active:hover, .btn-primary.active:focus, .field--name-field-url a.active:focus, .btn-primary.active.focus, .field--name-field-url a.active.focus, .open > .btn-primary.dropdown-toggle:hover, .field--name-field-url .open > a.dropdown-toggle:hover, .open > .btn-primary.dropdown-toggle:focus, .field--name-field-url .open > a.dropdown-toggle:focus, .open > .btn-primary.dropdown-toggle.focus, .field--name-field-url .open > a.dropdown-toggle.focus {
+.btn-primary:active:hover, .page-node-type-dcz-showcase .field--name-field-url a:active:hover, .btn-primary:active:focus, .page-node-type-dcz-showcase .field--name-field-url a:active:focus, .btn-primary:active.focus, .page-node-type-dcz-showcase .field--name-field-url a:active.focus, .btn-primary.active:hover, .page-node-type-dcz-showcase .field--name-field-url a.active:hover, .btn-primary.active:focus, .page-node-type-dcz-showcase .field--name-field-url a.active:focus, .btn-primary.active.focus, .page-node-type-dcz-showcase .field--name-field-url a.active.focus, .open > .btn-primary.dropdown-toggle:hover, .page-node-type-dcz-showcase .field--name-field-url .open > a.dropdown-toggle:hover, .open > .btn-primary.dropdown-toggle:focus, .page-node-type-dcz-showcase .field--name-field-url .open > a.dropdown-toggle:focus, .open > .btn-primary.dropdown-toggle.focus, .page-node-type-dcz-showcase .field--name-field-url .open > a.dropdown-toggle.focus {
   color: #fff;
   background-color: #204d74;
   border-color: #122b40;
 }
 /* line 37, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:active, .field--name-field-url a:active, .btn-primary.active, .field--name-field-url a.active, .open > .btn-primary.dropdown-toggle, .field--name-field-url .open > a.dropdown-toggle {
+.btn-primary:active, .page-node-type-dcz-showcase .field--name-field-url a:active, .btn-primary.active, .page-node-type-dcz-showcase .field--name-field-url a.active, .open > .btn-primary.dropdown-toggle, .page-node-type-dcz-showcase .field--name-field-url .open > a.dropdown-toggle {
   background-image: none;
 }
 /* line 45, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary.disabled, .field--name-field-url a.disabled, .btn-primary.disabled:hover, .field--name-field-url a.disabled:hover, .btn-primary.disabled:focus, .field--name-field-url a.disabled:focus, .btn-primary.disabled.focus, .field--name-field-url a.disabled.focus, .btn-primary.disabled:active, .field--name-field-url a.disabled:active, .btn-primary.disabled.active, .field--name-field-url a.disabled.active, .btn-primary[disabled], .field--name-field-url a[disabled], .btn-primary[disabled]:hover, .field--name-field-url a[disabled]:hover, .btn-primary[disabled]:focus, .field--name-field-url a[disabled]:focus, .btn-primary[disabled].focus, .field--name-field-url a[disabled].focus, .btn-primary[disabled]:active, .field--name-field-url a[disabled]:active, .btn-primary[disabled].active, .field--name-field-url a[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled] .field--name-field-url a, .field--name-field-url fieldset[disabled] a, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .field--name-field-url a:hover, .field--name-field-url fieldset[disabled] a:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .field--name-field-url a:focus, .field--name-field-url fieldset[disabled] a:focus, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .field--name-field-url a.focus, .field--name-field-url fieldset[disabled] a.focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .field--name-field-url a:active, .field--name-field-url fieldset[disabled] a:active, fieldset[disabled] .btn-primary.active, fieldset[disabled] .field--name-field-url a.active, .field--name-field-url fieldset[disabled] a.active {
+.btn-primary.disabled, .page-node-type-dcz-showcase .field--name-field-url a.disabled, .btn-primary.disabled:hover, .page-node-type-dcz-showcase .field--name-field-url a.disabled:hover, .btn-primary.disabled:focus, .page-node-type-dcz-showcase .field--name-field-url a.disabled:focus, .btn-primary.disabled.focus, .page-node-type-dcz-showcase .field--name-field-url a.disabled.focus, .btn-primary.disabled:active, .page-node-type-dcz-showcase .field--name-field-url a.disabled:active, .btn-primary.disabled.active, .page-node-type-dcz-showcase .field--name-field-url a.disabled.active, .btn-primary[disabled], .page-node-type-dcz-showcase .field--name-field-url a[disabled], .btn-primary[disabled]:hover, .page-node-type-dcz-showcase .field--name-field-url a[disabled]:hover, .btn-primary[disabled]:focus, .page-node-type-dcz-showcase .field--name-field-url a[disabled]:focus, .btn-primary[disabled].focus, .page-node-type-dcz-showcase .field--name-field-url a[disabled].focus, .btn-primary[disabled]:active, .page-node-type-dcz-showcase .field--name-field-url a[disabled]:active, .btn-primary[disabled].active, .page-node-type-dcz-showcase .field--name-field-url a[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled] .page-node-type-dcz-showcase .field--name-field-url a, .page-node-type-dcz-showcase .field--name-field-url fieldset[disabled] a, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .page-node-type-dcz-showcase .field--name-field-url a:hover, .page-node-type-dcz-showcase .field--name-field-url fieldset[disabled] a:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .page-node-type-dcz-showcase .field--name-field-url a:focus, .page-node-type-dcz-showcase .field--name-field-url fieldset[disabled] a:focus, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .page-node-type-dcz-showcase .field--name-field-url a.focus, .page-node-type-dcz-showcase .field--name-field-url fieldset[disabled] a.focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .page-node-type-dcz-showcase .field--name-field-url a:active, .page-node-type-dcz-showcase .field--name-field-url fieldset[disabled] a:active, fieldset[disabled] .btn-primary.active, fieldset[disabled] .page-node-type-dcz-showcase .field--name-field-url a.active, .page-node-type-dcz-showcase .field--name-field-url fieldset[disabled] a.active {
   background-color: #337ab7;
   border-color: #2e6da4;
 }
 /* line 56, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary .badge, .field--name-field-url a .badge {
+.btn-primary .badge, .page-node-type-dcz-showcase .field--name-field-url a .badge {
   color: #337ab7;
   background-color: #fff;
 }
@@ -4790,7 +4790,7 @@ a.btn.disabled, .links li a.disabled, .field--name-field-url a.disabled, fieldse
 }
 
 /* line 135, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn-lg, .btn-group-lg > .btn, .links li .btn-group-lg > a, .field--name-field-url .btn-group-lg > a, .field--name-field-url a {
+.btn-lg, .btn-group-lg > .btn, .links li .btn-group-lg > a, .page-node-type-dcz-showcase .field--name-field-url a {
   padding: 10px 16px;
   font-size: 20px;
   line-height: 1.33333;
@@ -4798,7 +4798,7 @@ a.btn.disabled, .links li a.disabled, .field--name-field-url a.disabled, fieldse
 }
 
 /* line 139, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn-sm, .btn-group-sm > .btn, .links li .btn-group-sm > a, .field--name-field-url .btn-group-sm > a, .links li a {
+.btn-sm, .btn-group-sm > .btn, .links li .btn-group-sm > a, .page-node-type-dcz-showcase .field--name-field-url .btn-group-sm > a, .links li a {
   padding: 5px 10px;
   font-size: 14px;
   line-height: 1.5;
@@ -4806,7 +4806,7 @@ a.btn.disabled, .links li a.disabled, .field--name-field-url a.disabled, fieldse
 }
 
 /* line 143, ../../bootstrap/assets/stylesheets/bootstrap/_buttons.scss */
-.btn-xs, .btn-group-xs > .btn, .links li .btn-group-xs > a, .field--name-field-url .btn-group-xs > a {
+.btn-xs, .btn-group-xs > .btn, .links li .btn-group-xs > a, .page-node-type-dcz-showcase .field--name-field-url .btn-group-xs > a {
   padding: 1px 5px;
   font-size: 14px;
   line-height: 1.5;
@@ -5055,42 +5055,42 @@ tbody.collapse.in {
   vertical-align: middle;
 }
 /* line 11, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn, .links li .btn-group > a, .field--name-field-url .btn-group > a,
+.btn-group > .btn, .links li .btn-group > a, .page-node-type-dcz-showcase .field--name-field-url .btn-group > a,
 .btn-group-vertical > .btn,
 .links li .btn-group-vertical > a,
-.field--name-field-url .btn-group-vertical > a {
+.page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > a {
   position: relative;
   float: left;
 }
 /* line 15, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn:hover, .links li .btn-group > a:hover, .field--name-field-url .btn-group > a:hover, .btn-group > .btn:focus, .links li .btn-group > a:focus, .field--name-field-url .btn-group > a:focus, .btn-group > .btn:active, .links li .btn-group > a:active, .field--name-field-url .btn-group > a:active, .btn-group > .btn.active, .links li .btn-group > a.active, .field--name-field-url .btn-group > a.active,
+.btn-group > .btn:hover, .links li .btn-group > a:hover, .page-node-type-dcz-showcase .field--name-field-url .btn-group > a:hover, .btn-group > .btn:focus, .links li .btn-group > a:focus, .page-node-type-dcz-showcase .field--name-field-url .btn-group > a:focus, .btn-group > .btn:active, .links li .btn-group > a:active, .page-node-type-dcz-showcase .field--name-field-url .btn-group > a:active, .btn-group > .btn.active, .links li .btn-group > a.active, .page-node-type-dcz-showcase .field--name-field-url .btn-group > a.active,
 .btn-group-vertical > .btn:hover,
 .links li .btn-group-vertical > a:hover,
-.field--name-field-url .btn-group-vertical > a:hover,
+.page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > a:hover,
 .btn-group-vertical > .btn:focus,
 .links li .btn-group-vertical > a:focus,
-.field--name-field-url .btn-group-vertical > a:focus,
+.page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > a:focus,
 .btn-group-vertical > .btn:active,
 .links li .btn-group-vertical > a:active,
-.field--name-field-url .btn-group-vertical > a:active,
+.page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > a:active,
 .btn-group-vertical > .btn.active,
 .links li .btn-group-vertical > a.active,
-.field--name-field-url .btn-group-vertical > a.active {
+.page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > a.active {
   z-index: 2;
 }
 
 /* line 26, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group .btn + .btn, .btn-group .links li a + .btn, .links li .btn-group a + .btn, .btn-group .field--name-field-url a + .btn, .field--name-field-url .btn-group a + .btn, .btn-group .links li .btn + a, .links li .btn-group .btn + a, .btn-group .links li a + a, .links li .btn-group a + a, .btn-group .field--name-field-url .links li a + a, .links li .field--name-field-url .btn-group a + a, .btn-group .field--name-field-url .btn + a, .field--name-field-url .btn-group .btn + a, .btn-group .links li .field--name-field-url a + a, .field--name-field-url .btn-group .links li a + a, .links li .btn-group .field--name-field-url a + a, .field--name-field-url .links li .btn-group a + a, .btn-group .field--name-field-url a + a, .field--name-field-url .btn-group a + a,
+.btn-group .btn + .btn, .btn-group .links li a + .btn, .links li .btn-group a + .btn, .btn-group .page-node-type-dcz-showcase .field--name-field-url a + .btn, .page-node-type-dcz-showcase .field--name-field-url .btn-group a + .btn, .btn-group .links li .btn + a, .links li .btn-group .btn + a, .btn-group .links li a + a, .links li .btn-group a + a, .btn-group .page-node-type-dcz-showcase .field--name-field-url .links li a + a, .btn-group .page-node-type-dcz-showcase .field--name-field-url .btn + a, .page-node-type-dcz-showcase .field--name-field-url .btn-group .btn + a, .page-node-type-dcz-showcase .field--name-field-url .btn-group .links li a + a, .btn-group .page-node-type-dcz-showcase .field--name-field-url a + a, .page-node-type-dcz-showcase .field--name-field-url .btn-group a + a,
 .btn-group .btn + .btn-group,
 .btn-group .links li a + .btn-group,
 .links li .btn-group a + .btn-group,
-.btn-group .field--name-field-url a + .btn-group,
-.field--name-field-url .btn-group a + .btn-group,
+.btn-group .page-node-type-dcz-showcase .field--name-field-url a + .btn-group,
+.page-node-type-dcz-showcase .field--name-field-url .btn-group a + .btn-group,
 .btn-group .btn-group + .btn,
 .btn-group .links li .btn-group + a,
 .links li .btn-group .btn-group + a,
-.btn-group .field--name-field-url .btn-group + a,
-.field--name-field-url .btn-group .btn-group + a,
+.btn-group .page-node-type-dcz-showcase .field--name-field-url .btn-group + a,
+.page-node-type-dcz-showcase .field--name-field-url .btn-group .btn-group + a,
 .btn-group .btn-group + .btn-group {
   margin-left: -1px;
 }
@@ -5109,35 +5109,35 @@ tbody.collapse.in {
   clear: both;
 }
 /* line 39, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-toolbar .btn, .btn-toolbar .links li a, .links li .btn-toolbar a, .btn-toolbar .field--name-field-url a, .field--name-field-url .btn-toolbar a,
+.btn-toolbar .btn, .btn-toolbar .links li a, .links li .btn-toolbar a, .btn-toolbar .page-node-type-dcz-showcase .field--name-field-url a, .page-node-type-dcz-showcase .field--name-field-url .btn-toolbar a,
 .btn-toolbar .btn-group,
 .btn-toolbar .input-group {
   float: left;
 }
 /* line 44, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-toolbar > .btn, .links li .btn-toolbar > a, .field--name-field-url .btn-toolbar > a,
+.btn-toolbar > .btn, .links li .btn-toolbar > a, .page-node-type-dcz-showcase .field--name-field-url .btn-toolbar > a,
 .btn-toolbar > .btn-group,
 .btn-toolbar > .input-group {
   margin-left: 5px;
 }
 
 /* line 51, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .links li .btn-group > a:not(:first-child):not(:last-child):not(.dropdown-toggle), .field--name-field-url .btn-group > a:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .links li .btn-group > a:not(:first-child):not(:last-child):not(.dropdown-toggle), .page-node-type-dcz-showcase .field--name-field-url .btn-group > a:not(:first-child):not(:last-child):not(.dropdown-toggle) {
   border-radius: 0;
 }
 
 /* line 56, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn:first-child, .links li .btn-group > a:first-child, .field--name-field-url .btn-group > a:first-child {
+.btn-group > .btn:first-child, .links li .btn-group > a:first-child, .page-node-type-dcz-showcase .field--name-field-url .btn-group > a:first-child {
   margin-left: 0;
 }
 /* line 58, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), .links li .btn-group > a:first-child:not(:last-child):not(.dropdown-toggle), .field--name-field-url .btn-group > a:first-child:not(:last-child):not(.dropdown-toggle) {
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), .links li .btn-group > a:first-child:not(:last-child):not(.dropdown-toggle), .page-node-type-dcz-showcase .field--name-field-url .btn-group > a:first-child:not(:last-child):not(.dropdown-toggle) {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
 
 /* line 63, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn:last-child:not(:first-child), .links li .btn-group > a:last-child:not(:first-child), .field--name-field-url .btn-group > a:last-child:not(:first-child),
+.btn-group > .btn:last-child:not(:first-child), .links li .btn-group > a:last-child:not(:first-child), .page-node-type-dcz-showcase .field--name-field-url .btn-group > a:last-child:not(:first-child),
 .btn-group > .dropdown-toggle:not(:first-child) {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
@@ -5149,19 +5149,19 @@ tbody.collapse.in {
 }
 
 /* line 72, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn, .links li .btn-group > .btn-group:not(:first-child):not(:last-child) > a, .field--name-field-url .btn-group > .btn-group:not(:first-child):not(:last-child) > a {
+.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn, .links li .btn-group > .btn-group:not(:first-child):not(:last-child) > a, .page-node-type-dcz-showcase .field--name-field-url .btn-group > .btn-group:not(:first-child):not(:last-child) > a {
   border-radius: 0;
 }
 
 /* line 76, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child, .links li .btn-group > .btn-group:first-child:not(:last-child) > a:last-child, .field--name-field-url .btn-group > .btn-group:first-child:not(:last-child) > a:last-child,
+.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child, .links li .btn-group > .btn-group:first-child:not(:last-child) > a:last-child, .page-node-type-dcz-showcase .field--name-field-url .btn-group > .btn-group:first-child:not(:last-child) > a:last-child,
 .btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
 
 /* line 81, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child, .links li .btn-group > .btn-group:last-child:not(:first-child) > a:first-child, .field--name-field-url .btn-group > .btn-group:last-child:not(:first-child) > a:first-child {
+.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child, .links li .btn-group > .btn-group:last-child:not(:first-child) > a:first-child, .page-node-type-dcz-showcase .field--name-field-url .btn-group > .btn-group:last-child:not(:first-child) > a:first-child {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
@@ -5173,13 +5173,13 @@ tbody.collapse.in {
 }
 
 /* line 105, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn + .dropdown-toggle, .links li .btn-group > a + .dropdown-toggle, .field--name-field-url .btn-group > a + .dropdown-toggle {
+.btn-group > .btn + .dropdown-toggle, .links li .btn-group > a + .dropdown-toggle, .page-node-type-dcz-showcase .field--name-field-url .btn-group > a + .dropdown-toggle {
   padding-left: 8px;
   padding-right: 8px;
 }
 
 /* line 109, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn-lg + .dropdown-toggle, .btn-group-lg.btn-group > .btn + .dropdown-toggle, .links li .btn-group-lg.btn-group > a + .dropdown-toggle, .field--name-field-url .btn-group > a + .dropdown-toggle {
+.btn-group > .btn-lg + .dropdown-toggle, .btn-group-lg.btn-group > .btn + .dropdown-toggle, .links li .btn-group-lg.btn-group > a + .dropdown-toggle, .page-node-type-dcz-showcase .field--name-field-url .btn-group > a + .dropdown-toggle {
   padding-left: 12px;
   padding-right: 12px;
 }
@@ -5196,27 +5196,27 @@ tbody.collapse.in {
 }
 
 /* line 127, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn .caret, .links li a .caret, .field--name-field-url a .caret {
+.btn .caret, .links li a .caret, .page-node-type-dcz-showcase .field--name-field-url a .caret {
   margin-left: 0;
 }
 
 /* line 131, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-lg .caret, .btn-group-lg > .btn .caret, .links li .btn-group-lg > a .caret, .field--name-field-url a .caret {
+.btn-lg .caret, .btn-group-lg > .btn .caret, .links li .btn-group-lg > a .caret, .page-node-type-dcz-showcase .field--name-field-url a .caret {
   border-width: 5px 5px 0;
   border-bottom-width: 0;
 }
 
 /* line 136, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.dropup .btn-lg .caret, .dropup .btn-group-lg > .btn .caret, .dropup .links li .btn-group-lg > a .caret, .links li .dropup .btn-group-lg > a .caret, .dropup .field--name-field-url a .caret, .field--name-field-url .dropup a .caret {
+.dropup .btn-lg .caret, .dropup .btn-group-lg > .btn .caret, .dropup .links li .btn-group-lg > a .caret, .links li .dropup .btn-group-lg > a .caret, .dropup .page-node-type-dcz-showcase .field--name-field-url a .caret, .page-node-type-dcz-showcase .field--name-field-url .dropup a .caret {
   border-width: 0 5px 5px;
 }
 
 /* line 145, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn, .links li .btn-group-vertical > a, .field--name-field-url .btn-group-vertical > a,
+.btn-group-vertical > .btn, .links li .btn-group-vertical > a, .page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > a,
 .btn-group-vertical > .btn-group,
 .btn-group-vertical > .btn-group > .btn,
 .links li .btn-group-vertical > .btn-group > a,
-.field--name-field-url .btn-group-vertical > .btn-group > a {
+.page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > .btn-group > a {
   display: block;
   float: none;
   width: 100%;
@@ -5232,53 +5232,53 @@ tbody.collapse.in {
   clear: both;
 }
 /* line 157, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn-group > .btn, .links li .btn-group-vertical > .btn-group > a, .field--name-field-url .btn-group-vertical > .btn-group > a {
+.btn-group-vertical > .btn-group > .btn, .links li .btn-group-vertical > .btn-group > a, .page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > .btn-group > a {
   float: none;
 }
 /* line 162, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn + .btn, .links li .btn-group-vertical > a + .btn, .field--name-field-url .btn-group-vertical > a + .btn, .links li .btn-group-vertical > .btn + a, .links li .btn-group-vertical > a + a, .field--name-field-url .btn-group-vertical > .btn + a, .links li .field--name-field-url .btn-group-vertical > a + a, .field--name-field-url .links li .btn-group-vertical > a + a, .field--name-field-url .btn-group-vertical > a + a,
+.btn-group-vertical > .btn + .btn, .links li .btn-group-vertical > a + .btn, .page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > a + .btn, .links li .btn-group-vertical > .btn + a, .links li .btn-group-vertical > a + a, .page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > .btn + a, .page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > a + a,
 .btn-group-vertical > .btn + .btn-group,
 .links li .btn-group-vertical > a + .btn-group,
-.field--name-field-url .btn-group-vertical > a + .btn-group,
+.page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > a + .btn-group,
 .btn-group-vertical > .btn-group + .btn,
 .links li .btn-group-vertical > .btn-group + a,
-.field--name-field-url .btn-group-vertical > .btn-group + a,
+.page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > .btn-group + a,
 .btn-group-vertical > .btn-group + .btn-group {
   margin-top: -1px;
   margin-left: 0;
 }
 
 /* line 172, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn:not(:first-child):not(:last-child), .links li .btn-group-vertical > a:not(:first-child):not(:last-child), .field--name-field-url .btn-group-vertical > a:not(:first-child):not(:last-child) {
+.btn-group-vertical > .btn:not(:first-child):not(:last-child), .links li .btn-group-vertical > a:not(:first-child):not(:last-child), .page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > a:not(:first-child):not(:last-child) {
   border-radius: 0;
 }
 /* line 175, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn:first-child:not(:last-child), .links li .btn-group-vertical > a:first-child:not(:last-child), .field--name-field-url .btn-group-vertical > a:first-child:not(:last-child) {
+.btn-group-vertical > .btn:first-child:not(:last-child), .links li .btn-group-vertical > a:first-child:not(:last-child), .page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > a:first-child:not(:last-child) {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 /* line 179, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn:last-child:not(:first-child), .links li .btn-group-vertical > a:last-child:not(:first-child), .field--name-field-url .btn-group-vertical > a:last-child:not(:first-child) {
+.btn-group-vertical > .btn:last-child:not(:first-child), .links li .btn-group-vertical > a:last-child:not(:first-child), .page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > a:last-child:not(:first-child) {
   border-bottom-left-radius: 4px;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
 
 /* line 184, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn, .links li .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > a, .field--name-field-url .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > a {
+.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn, .links li .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > a, .page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > a {
   border-radius: 0;
 }
 
 /* line 188, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child, .links li .btn-group-vertical > .btn-group:first-child:not(:last-child) > a:last-child, .field--name-field-url .btn-group-vertical > .btn-group:first-child:not(:last-child) > a:last-child,
+.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child, .links li .btn-group-vertical > .btn-group:first-child:not(:last-child) > a:last-child, .page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > .btn-group:first-child:not(:last-child) > a:last-child,
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
 /* line 193, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child, .links li .btn-group-vertical > .btn-group:last-child:not(:first-child) > a:first-child, .field--name-field-url .btn-group-vertical > .btn-group:last-child:not(:first-child) > a:first-child {
+.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child, .links li .btn-group-vertical > .btn-group:last-child:not(:first-child) > a:first-child, .page-node-type-dcz-showcase .field--name-field-url .btn-group-vertical > .btn-group:last-child:not(:first-child) > a:first-child {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
@@ -5291,14 +5291,14 @@ tbody.collapse.in {
   border-collapse: separate;
 }
 /* line 206, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-justified > .btn, .links li .btn-group-justified > a, .field--name-field-url .btn-group-justified > a,
+.btn-group-justified > .btn, .links li .btn-group-justified > a, .page-node-type-dcz-showcase .field--name-field-url .btn-group-justified > a,
 .btn-group-justified > .btn-group {
   float: none;
   display: table-cell;
   width: 1%;
 }
 /* line 212, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-justified > .btn-group .btn, .btn-group-justified > .btn-group .links li a, .links li .btn-group-justified > .btn-group a, .btn-group-justified > .btn-group .field--name-field-url a, .field--name-field-url .btn-group-justified > .btn-group a {
+.btn-group-justified > .btn-group .btn, .btn-group-justified > .btn-group .links li a, .links li .btn-group-justified > .btn-group a, .btn-group-justified > .btn-group .page-node-type-dcz-showcase .field--name-field-url a, .page-node-type-dcz-showcase .field--name-field-url .btn-group-justified > .btn-group a {
   width: 100%;
 }
 /* line 216, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
@@ -5307,16 +5307,16 @@ tbody.collapse.in {
 }
 
 /* line 237, ../../bootstrap/assets/stylesheets/bootstrap/_button-groups.scss */
-[data-toggle="buttons"] > .btn input[type="radio"], .links li [data-toggle="buttons"] > a input[type="radio"], .field--name-field-url [data-toggle="buttons"] > a input[type="radio"],
+[data-toggle="buttons"] > .btn input[type="radio"], .links li [data-toggle="buttons"] > a input[type="radio"], .page-node-type-dcz-showcase .field--name-field-url [data-toggle="buttons"] > a input[type="radio"],
 [data-toggle="buttons"] > .btn input[type="checkbox"],
 .links li [data-toggle="buttons"] > a input[type="checkbox"],
-.field--name-field-url [data-toggle="buttons"] > a input[type="checkbox"],
+.page-node-type-dcz-showcase .field--name-field-url [data-toggle="buttons"] > a input[type="checkbox"],
 [data-toggle="buttons"] > .btn-group > .btn input[type="radio"],
 .links li [data-toggle="buttons"] > .btn-group > a input[type="radio"],
-.field--name-field-url [data-toggle="buttons"] > .btn-group > a input[type="radio"],
+.page-node-type-dcz-showcase .field--name-field-url [data-toggle="buttons"] > .btn-group > a input[type="radio"],
 [data-toggle="buttons"] > .btn-group > .btn input[type="checkbox"],
 .links li [data-toggle="buttons"] > .btn-group > a input[type="checkbox"],
-.field--name-field-url [data-toggle="buttons"] > .btn-group > a input[type="checkbox"] {
+.page-node-type-dcz-showcase .field--name-field-url [data-toggle="buttons"] > .btn-group > a input[type="checkbox"] {
   position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
@@ -5381,7 +5381,7 @@ tbody.collapse.in {
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .input-group-addon.btn,
 .links li .input-group-sm > .input-group-btn > a.input-group-addon,
-.field--name-field-url .input-group-sm > .input-group-btn > a.input-group-addon {
+.page-node-type-dcz-showcase .field--name-field-url .input-group-sm > .input-group-btn > a.input-group-addon {
   padding: 5px 10px;
   font-size: 14px;
   border-radius: 3px;
@@ -5391,7 +5391,7 @@ tbody.collapse.in {
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .input-group-addon.btn,
 .links li .input-group-lg > .input-group-btn > a.input-group-addon,
-.field--name-field-url .input-group-lg > .input-group-btn > a.input-group-addon {
+.page-node-type-dcz-showcase .field--name-field-url .input-group-lg > .input-group-btn > a.input-group-addon {
   padding: 10px 16px;
   font-size: 20px;
   border-radius: 6px;
@@ -5407,17 +5407,17 @@ tbody.collapse.in {
 .input-group-addon:first-child,
 .input-group-btn:first-child > .btn,
 .links li .input-group-btn:first-child > a,
-.field--name-field-url .input-group-btn:first-child > a,
+.page-node-type-dcz-showcase .field--name-field-url .input-group-btn:first-child > a,
 .input-group-btn:first-child > .btn-group > .btn,
 .links li .input-group-btn:first-child > .btn-group > a,
-.field--name-field-url .input-group-btn:first-child > .btn-group > a,
+.page-node-type-dcz-showcase .field--name-field-url .input-group-btn:first-child > .btn-group > a,
 .input-group-btn:first-child > .dropdown-toggle,
 .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),
 .links li .input-group-btn:last-child > a:not(:last-child):not(.dropdown-toggle),
-.field--name-field-url .input-group-btn:last-child > a:not(:last-child):not(.dropdown-toggle),
+.page-node-type-dcz-showcase .field--name-field-url .input-group-btn:last-child > a:not(:last-child):not(.dropdown-toggle),
 .input-group-btn:last-child > .btn-group:not(:last-child) > .btn,
 .links li .input-group-btn:last-child > .btn-group:not(:last-child) > a,
-.field--name-field-url .input-group-btn:last-child > .btn-group:not(:last-child) > a {
+.page-node-type-dcz-showcase .field--name-field-url .input-group-btn:last-child > .btn-group:not(:last-child) > a {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
@@ -5432,17 +5432,17 @@ tbody.collapse.in {
 .input-group-addon:last-child,
 .input-group-btn:last-child > .btn,
 .links li .input-group-btn:last-child > a,
-.field--name-field-url .input-group-btn:last-child > a,
+.page-node-type-dcz-showcase .field--name-field-url .input-group-btn:last-child > a,
 .input-group-btn:last-child > .btn-group > .btn,
 .links li .input-group-btn:last-child > .btn-group > a,
-.field--name-field-url .input-group-btn:last-child > .btn-group > a,
+.page-node-type-dcz-showcase .field--name-field-url .input-group-btn:last-child > .btn-group > a,
 .input-group-btn:last-child > .dropdown-toggle,
 .input-group-btn:first-child > .btn:not(:first-child),
 .links li .input-group-btn:first-child > a:not(:first-child),
-.field--name-field-url .input-group-btn:first-child > a:not(:first-child),
+.page-node-type-dcz-showcase .field--name-field-url .input-group-btn:first-child > a:not(:first-child),
 .input-group-btn:first-child > .btn-group:not(:first-child) > .btn,
 .links li .input-group-btn:first-child > .btn-group:not(:first-child) > a,
-.field--name-field-url .input-group-btn:first-child > .btn-group:not(:first-child) > a {
+.page-node-type-dcz-showcase .field--name-field-url .input-group-btn:first-child > .btn-group:not(:first-child) > a {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
@@ -5459,24 +5459,24 @@ tbody.collapse.in {
   white-space: nowrap;
 }
 /* line 140, ../../bootstrap/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn > .btn, .links li .input-group-btn > a, .field--name-field-url .input-group-btn > a {
+.input-group-btn > .btn, .links li .input-group-btn > a, .page-node-type-dcz-showcase .field--name-field-url .input-group-btn > a {
   position: relative;
 }
 /* line 142, ../../bootstrap/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn > .btn + .btn, .links li .input-group-btn > a + .btn, .field--name-field-url .input-group-btn > a + .btn, .links li .input-group-btn > .btn + a, .links li .input-group-btn > a + a, .field--name-field-url .input-group-btn > .btn + a, .links li .field--name-field-url .input-group-btn > a + a, .field--name-field-url .links li .input-group-btn > a + a, .field--name-field-url .input-group-btn > a + a {
+.input-group-btn > .btn + .btn, .links li .input-group-btn > a + .btn, .page-node-type-dcz-showcase .field--name-field-url .input-group-btn > a + .btn, .links li .input-group-btn > .btn + a, .links li .input-group-btn > a + a, .page-node-type-dcz-showcase .field--name-field-url .input-group-btn > .btn + a, .page-node-type-dcz-showcase .field--name-field-url .input-group-btn > a + a {
   margin-left: -1px;
 }
 /* line 146, ../../bootstrap/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn > .btn:hover, .links li .input-group-btn > a:hover, .field--name-field-url .input-group-btn > a:hover, .input-group-btn > .btn:focus, .links li .input-group-btn > a:focus, .field--name-field-url .input-group-btn > a:focus, .input-group-btn > .btn:active, .links li .input-group-btn > a:active, .field--name-field-url .input-group-btn > a:active {
+.input-group-btn > .btn:hover, .links li .input-group-btn > a:hover, .page-node-type-dcz-showcase .field--name-field-url .input-group-btn > a:hover, .input-group-btn > .btn:focus, .links li .input-group-btn > a:focus, .page-node-type-dcz-showcase .field--name-field-url .input-group-btn > a:focus, .input-group-btn > .btn:active, .links li .input-group-btn > a:active, .page-node-type-dcz-showcase .field--name-field-url .input-group-btn > a:active {
   z-index: 2;
 }
 /* line 155, ../../bootstrap/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn:first-child > .btn, .links li .input-group-btn:first-child > a, .field--name-field-url .input-group-btn:first-child > a,
+.input-group-btn:first-child > .btn, .links li .input-group-btn:first-child > a, .page-node-type-dcz-showcase .field--name-field-url .input-group-btn:first-child > a,
 .input-group-btn:first-child > .btn-group {
   margin-right: -1px;
 }
 /* line 161, ../../bootstrap/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn:last-child > .btn, .links li .input-group-btn:last-child > a, .field--name-field-url .input-group-btn:last-child > a,
+.input-group-btn:last-child > .btn, .links li .input-group-btn:last-child > a, .page-node-type-dcz-showcase .field--name-field-url .input-group-btn:last-child > a,
 .input-group-btn:last-child > .btn-group {
   z-index: 2;
   margin-left: -1px;
@@ -6086,12 +6086,12 @@ tbody.collapse.in {
   margin-bottom: 7px;
 }
 /* line 346, ../../bootstrap/assets/stylesheets/bootstrap/_navbar.scss */
-.navbar-btn.btn-sm, .btn-group-sm > .navbar-btn.btn, .field--name-field-url .btn-group-sm > a.navbar-btn, .links li a.navbar-btn {
+.navbar-btn.btn-sm, .btn-group-sm > .navbar-btn.btn, .page-node-type-dcz-showcase .field--name-field-url .btn-group-sm > a.navbar-btn, .links li a.navbar-btn {
   margin-top: 8.5px;
   margin-bottom: 8.5px;
 }
 /* line 349, ../../bootstrap/assets/stylesheets/bootstrap/_navbar.scss */
-.navbar-btn.btn-xs, .btn-group-xs > .navbar-btn.btn, .links li .btn-group-xs > a.navbar-btn, .field--name-field-url .btn-group-xs > a.navbar-btn {
+.navbar-btn.btn-xs, .btn-group-xs > .navbar-btn.btn, .links li .btn-group-xs > a.navbar-btn, .page-node-type-dcz-showcase .field--name-field-url .btn-group-xs > a.navbar-btn {
   margin-top: 14px;
   margin-bottom: 14px;
 }
@@ -6542,7 +6542,7 @@ tbody.collapse.in {
   display: none;
 }
 /* line 25, ../../bootstrap/assets/stylesheets/bootstrap/_labels.scss */
-.btn .label, .links li a .label, .field--name-field-url a .label {
+.btn .label, .links li a .label, .page-node-type-dcz-showcase .field--name-field-url a .label {
   position: relative;
   top: -1px;
 }
@@ -6628,12 +6628,12 @@ a.label:hover, a.label:focus {
   display: none;
 }
 /* line 27, ../../bootstrap/assets/stylesheets/bootstrap/_badges.scss */
-.btn .badge, .links li a .badge, .field--name-field-url a .badge {
+.btn .badge, .links li a .badge, .page-node-type-dcz-showcase .field--name-field-url a .badge {
   position: relative;
   top: -1px;
 }
 /* line 32, ../../bootstrap/assets/stylesheets/bootstrap/_badges.scss */
-.btn-xs .badge, .btn-group-xs > .btn .badge, .links li .btn-group-xs > a .badge, .field--name-field-url .btn-group-xs > a .badge, .btn-group-xs > .btn .badge, .links li .btn-group-xs > a .badge, .field--name-field-url .btn-group-xs > a .badge {
+.btn-xs .badge, .btn-group-xs > .btn .badge, .links li .btn-group-xs > a .badge, .page-node-type-dcz-showcase .field--name-field-url .btn-group-xs > a .badge, .btn-group-xs > .btn .badge, .links li .btn-group-xs > a .badge, .page-node-type-dcz-showcase .field--name-field-url .btn-group-xs > a .badge {
   top: 0;
   padding: 1px 5px;
 }
@@ -7912,12 +7912,12 @@ button.close {
   clear: both;
 }
 /* line 110, ../../bootstrap/assets/stylesheets/bootstrap/_modals.scss */
-.modal-footer .btn + .btn, .modal-footer .links li a + .btn, .links li .modal-footer a + .btn, .modal-footer .field--name-field-url a + .btn, .field--name-field-url .modal-footer a + .btn, .modal-footer .links li .btn + a, .links li .modal-footer .btn + a, .modal-footer .links li a + a, .links li .modal-footer a + a, .modal-footer .field--name-field-url .links li a + a, .links li .field--name-field-url .modal-footer a + a, .modal-footer .field--name-field-url .btn + a, .field--name-field-url .modal-footer .btn + a, .modal-footer .links li .field--name-field-url a + a, .field--name-field-url .modal-footer .links li a + a, .links li .modal-footer .field--name-field-url a + a, .field--name-field-url .links li .modal-footer a + a, .modal-footer .field--name-field-url a + a, .field--name-field-url .modal-footer a + a {
+.modal-footer .btn + .btn, .modal-footer .links li a + .btn, .links li .modal-footer a + .btn, .modal-footer .page-node-type-dcz-showcase .field--name-field-url a + .btn, .page-node-type-dcz-showcase .field--name-field-url .modal-footer a + .btn, .modal-footer .links li .btn + a, .links li .modal-footer .btn + a, .modal-footer .links li a + a, .links li .modal-footer a + a, .modal-footer .page-node-type-dcz-showcase .field--name-field-url .links li a + a, .modal-footer .page-node-type-dcz-showcase .field--name-field-url .btn + a, .page-node-type-dcz-showcase .field--name-field-url .modal-footer .btn + a, .page-node-type-dcz-showcase .field--name-field-url .modal-footer .links li a + a, .modal-footer .page-node-type-dcz-showcase .field--name-field-url a + a, .page-node-type-dcz-showcase .field--name-field-url .modal-footer a + a {
   margin-left: 5px;
   margin-bottom: 0;
 }
 /* line 115, ../../bootstrap/assets/stylesheets/bootstrap/_modals.scss */
-.modal-footer .btn-group .btn + .btn, .modal-footer .btn-group .links li a + .btn, .links li .modal-footer .btn-group a + .btn, .modal-footer .btn-group .field--name-field-url a + .btn, .field--name-field-url .modal-footer .btn-group a + .btn, .modal-footer .btn-group .links li .btn + a, .links li .modal-footer .btn-group .btn + a, .modal-footer .btn-group .links li a + a, .links li .modal-footer .btn-group a + a, .modal-footer .btn-group .field--name-field-url .links li a + a, .links li .field--name-field-url .modal-footer .btn-group a + a, .modal-footer .btn-group .field--name-field-url .btn + a, .field--name-field-url .modal-footer .btn-group .btn + a, .modal-footer .btn-group .links li .field--name-field-url a + a, .field--name-field-url .modal-footer .btn-group .links li a + a, .links li .modal-footer .btn-group .field--name-field-url a + a, .field--name-field-url .links li .modal-footer .btn-group a + a, .modal-footer .btn-group .field--name-field-url a + a, .field--name-field-url .modal-footer .btn-group a + a {
+.modal-footer .btn-group .btn + .btn, .modal-footer .btn-group .links li a + .btn, .links li .modal-footer .btn-group a + .btn, .modal-footer .btn-group .page-node-type-dcz-showcase .field--name-field-url a + .btn, .page-node-type-dcz-showcase .field--name-field-url .modal-footer .btn-group a + .btn, .modal-footer .btn-group .links li .btn + a, .links li .modal-footer .btn-group .btn + a, .modal-footer .btn-group .links li a + a, .links li .modal-footer .btn-group a + a, .modal-footer .btn-group .page-node-type-dcz-showcase .field--name-field-url .links li a + a, .modal-footer .btn-group .page-node-type-dcz-showcase .field--name-field-url .btn + a, .page-node-type-dcz-showcase .field--name-field-url .modal-footer .btn-group .btn + a, .page-node-type-dcz-showcase .field--name-field-url .modal-footer .btn-group .links li a + a, .modal-footer .btn-group .page-node-type-dcz-showcase .field--name-field-url a + a, .page-node-type-dcz-showcase .field--name-field-url .modal-footer .btn-group a + a {
   margin-left: -1px;
 }
 /* line 119, ../../bootstrap/assets/stylesheets/bootstrap/_modals.scss */
@@ -8473,7 +8473,7 @@ button.close {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 /* line 228, ../../bootstrap/assets/stylesheets/bootstrap/_carousel.scss */
-.carousel-caption .btn, .carousel-caption .links li a, .links li .carousel-caption a, .carousel-caption .field--name-field-url a, .field--name-field-url .carousel-caption a {
+.carousel-caption .btn, .carousel-caption .links li a, .links li .carousel-caption a, .carousel-caption .page-node-type-dcz-showcase .field--name-field-url a, .page-node-type-dcz-showcase .field--name-field-url .carousel-caption a {
   text-shadow: none;
 }
 
@@ -9366,29 +9366,41 @@ footer.footer {
   padding: 1em 0;
 }
 
-/* line 11, ../sass/sections/_showcase.scss */
-.field--name-field-main-screenshot {
-  margin-bottom: 1em;
-}
-
-/* line 15, ../sass/sections/_showcase.scss */
-.field--name-field-url {
-  margin: 1em 0;
-}
-
 @media (min-width: 480px) {
-  /* line 24, ../sass/sections/_showcase.scss */
+  /* line 13, ../sass/sections/_showcase.scss */
   .view-showcase.view-display-id-block_2 .view-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 }
-/* line 31, ../sass/sections/_showcase.scss */
+/* line 20, ../sass/sections/_showcase.scss */
 .view-showcase.view-display-id-block_2 .views-row {
   margin: 1em;
 }
-/* line 34, ../sass/sections/_showcase.scss */
+/* line 23, ../sass/sections/_showcase.scss */
 .view-showcase.view-display-id-block_2 .views-row img {
   margin: 0 auto;
+}
+
+/* line 31, ../sass/sections/_showcase.scss */
+.page-node-type-dcz-showcase .field--name-field-drupal-version {
+  float: left;
+}
+/* line 35, ../sass/sections/_showcase.scss */
+.page-node-type-dcz-showcase .field--name-field-logo {
+  float: right;
+  margin-bottom: 1em;
+}
+/* line 40, ../sass/sections/_showcase.scss */
+.page-node-type-dcz-showcase .field--name-body {
+  clear: both;
+}
+/* line 44, ../sass/sections/_showcase.scss */
+.page-node-type-dcz-showcase .field--name-field-main-screenshot {
+  margin-bottom: 1em;
+}
+/* line 48, ../sass/sections/_showcase.scss */
+.page-node-type-dcz-showcase .field--name-field-url {
+  margin: 1em 0;
 }
