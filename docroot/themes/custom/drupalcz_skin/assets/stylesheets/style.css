@@ -2415,22 +2415,27 @@ pre code {
 }
 
 /* line 39, ../../bootstrap/assets/stylesheets/bootstrap/_grid.scss */
-.row, .view-showcase.view-display-id-page_1 .view-content {
+.row, #block-views-block-blog-block-1 .view-content,
+#block-views-block-blog-block-1 .attachment, .view-showcase.view-display-id-page_1 .view-content {
   margin-left: -15px;
   margin-right: -15px;
 }
 /* line 14, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
-.row:before, .view-showcase.view-display-id-page_1 .view-content:before, .row:after, .view-showcase.view-display-id-page_1 .view-content:after {
+.row:before, #block-views-block-blog-block-1 .view-content:before,
+#block-views-block-blog-block-1 .attachment:before, .view-showcase.view-display-id-page_1 .view-content:before, .row:after, #block-views-block-blog-block-1 .view-content:after,
+#block-views-block-blog-block-1 .attachment:after, .view-showcase.view-display-id-page_1 .view-content:after {
   content: " ";
   display: table;
 }
 /* line 19, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
-.row:after, .view-showcase.view-display-id-page_1 .view-content:after {
+.row:after, #block-views-block-blog-block-1 .view-content:after,
+#block-views-block-blog-block-1 .attachment:after, .view-showcase.view-display-id-page_1 .view-content:after {
   clear: both;
 }
 
 /* line 11, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .navbar-default .navbar-nav.secondary, #block-frontpagetopusage, .col-md-4, .col-lg-4, .view-showcase.view-display-id-page_1 .views-row, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, #block-frontpagetopcojedrupal, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, #block-views-block-showcase-block-1, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row, .col-sm-12, #block-frontpagetopcojedrupal, .col-md-12, .col-lg-12 {
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .navbar-default .navbar-nav.secondary, #block-frontpagetopusage, .col-md-4, #block-views-block-blog-tags-block-1, .col-lg-4, .view-showcase.view-display-id-page_1 .views-row, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, #block-views-block-blog-block-1 .view-content,
+#block-views-block-blog-block-1 .attachment, .col-md-6, #block-frontpagetopcojedrupal, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, #block-views-block-showcase-block-1, .col-md-8, #block-views-block-blog-block-1, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row, .col-sm-12, #block-frontpagetopcojedrupal, .col-md-12, .col-lg-12 {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -2699,7 +2704,8 @@ pre code {
 
 @media (min-width: 768px) {
   /* line 27, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .navbar-default .navbar-nav.secondary, #block-frontpagetopusage, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, #block-views-block-showcase-block-1, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, #block-frontpagetopcojedrupal {
+  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .navbar-default .navbar-nav.secondary, #block-frontpagetopusage, .col-sm-5, .col-sm-6, #block-views-block-blog-block-1 .view-content,
+  #block-views-block-blog-block-1 .attachment, .col-sm-7, .col-sm-8, #block-views-block-showcase-block-1, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, #block-frontpagetopcojedrupal {
     float: left;
   }
 
@@ -2729,7 +2735,8 @@ pre code {
   }
 
   /* line 35, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-sm-6 {
+  .col-sm-6, #block-views-block-blog-block-1 .view-content,
+  #block-views-block-blog-block-1 .attachment {
     width: 50%;
   }
 
@@ -2960,7 +2967,7 @@ pre code {
 }
 @media (min-width: 992px) {
   /* line 27, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, #block-frontpagetopcojedrupal, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+  .col-md-1, .col-md-2, .col-md-3, .col-md-4, #block-views-block-blog-tags-block-1, .col-md-5, .col-md-6, #block-frontpagetopcojedrupal, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row, .col-md-7, .col-md-8, #block-views-block-blog-block-1, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
     float: left;
   }
 
@@ -2980,7 +2987,7 @@ pre code {
   }
 
   /* line 35, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-md-4 {
+  .col-md-4, #block-views-block-blog-tags-block-1 {
     width: 33.33333%;
   }
 
@@ -3000,7 +3007,7 @@ pre code {
   }
 
   /* line 35, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-md-8 {
+  .col-md-8, #block-views-block-blog-block-1 {
     width: 66.66667%;
   }
 
@@ -8879,6 +8886,13 @@ img {
   max-width: 100%;
 }
 
+/* line 6, ../sass/_base.scss */
+h2.block-title {
+  font-size: 20px;
+  font-weight: normal;
+  margin-top: 0;
+}
+
 /* line 1, ../sass/partials/_submittedby.scss */
 .comment__meta, article.comment.by-anonymous .comment__meta, .content__submitted {
   background: #eeeeee;
@@ -9175,6 +9189,12 @@ mark {
   }
 }
 
+/* line 27, ../sass/partials/_views.scss */
+.more-link {
+  clear: both;
+  text-align: right;
+}
+
 /* line 1, ../sass/partials/_tags.scss */
 .field--name-field-tags {
   margin: 1em 0;
@@ -9280,12 +9300,14 @@ footer.footer {
 }
 
 /* line 2, ../sass/sections/_landing_page.scss */
-.main-container.landing-page > .row, .view-showcase.view-display-id-page_1 .main-container.landing-page > .view-content {
+.main-container.landing-page > .row, #block-views-block-blog-block-1 .main-container.landing-page > .view-content,
+#block-views-block-blog-block-1 .main-container.landing-page > .attachment, .view-showcase.view-display-id-page_1 .main-container.landing-page > .view-content {
   margin-left: 0;
   margin-right: 0;
 }
 /* line 6, ../sass/sections/_landing_page.scss */
-.main-container.landing-page > .row > section, .view-showcase.view-display-id-page_1 .main-container.landing-page > .view-content > section {
+.main-container.landing-page > .row > section, #block-views-block-blog-block-1 .main-container.landing-page > .view-content > section,
+#block-views-block-blog-block-1 .main-container.landing-page > .attachment > section, .view-showcase.view-display-id-page_1 .main-container.landing-page > .view-content > section {
   padding-left: 0;
   padding-right: 0;
 }
@@ -9298,12 +9320,9 @@ footer.footer {
 /* line 6, ../sass/sections/_sidebar_second.scss */
 .region-sidebar-second .block h2.block-title {
   background: #eeeeee;
-  font-size: 20px;
-  font-weight: normal;
-  margin-top: 0;
   padding: 0.5em 1em;
 }
-/* line 13, ../sass/sections/_sidebar_second.scss */
+/* line 10, ../sass/sections/_sidebar_second.scss */
 .region-sidebar-second .block .more-link {
   text-align: right;
 }
@@ -9339,31 +9358,79 @@ footer.footer {
   margin-top: 0;
 }
 
-/* line 31, ../sass/sections/_frontpage.scss */
+/* line 32, ../sass/sections/_frontpage.scss */
 #block-views-block-showcase-block-1 {
   margin-bottom: 2em;
   position: relative;
 }
-/* line 36, ../sass/sections/_frontpage.scss */
+/* line 37, ../sass/sections/_frontpage.scss */
 #block-views-block-showcase-block-1 .field--name-node-title {
   font-size: 28px;
 }
 
-/* line 41, ../sass/sections/_frontpage.scss */
+/* line 42, ../sass/sections/_frontpage.scss */
 .region-content > article {
   clear: both;
 }
 
-/* line 45, ../sass/sections/_frontpage.scss */
+/* line 46, ../sass/sections/_frontpage.scss */
 .custom_jssor {
   width: 600px;
   height: 450px;
 }
 
-/* line 50, ../sass/sections/_frontpage.scss */
+/* line 51, ../sass/sections/_frontpage.scss */
 #block-views-block-showcase-block-2 {
   background: #eeeeee;
   padding: 1em 0;
+}
+
+/* line 74, ../sass/sections/_frontpage.scss */
+#block-views-block-blog-block-1 .view-content .views-row,
+#block-views-block-blog-block-1 .attachment .views-row {
+  margin-bottom: 1em;
+}
+/* line 78, ../sass/sections/_frontpage.scss */
+#block-views-block-blog-block-1 .view-content .field--name-node-title h3,
+#block-views-block-blog-block-1 .attachment .field--name-node-title h3 {
+  font-size: 16px;
+  margin: 0;
+}
+/* line 82, ../sass/sections/_frontpage.scss */
+#block-views-block-blog-block-1 .view-content .field--name-node-title h3 a,
+#block-views-block-blog-block-1 .attachment .field--name-node-title h3 a {
+  color: #333333;
+}
+/* line 86, ../sass/sections/_frontpage.scss */
+#block-views-block-blog-block-1 .view-content .field--name-node-author,
+#block-views-block-blog-block-1 .attachment .field--name-node-author {
+  display: inline;
+  font-size: 14px;
+  margin-right: 0.5em;
+}
+/* line 91, ../sass/sections/_frontpage.scss */
+#block-views-block-blog-block-1 .view-content .field--name-node-post-date,
+#block-views-block-blog-block-1 .attachment .field--name-node-post-date {
+  display: inline;
+  font-size: 14px;
+}
+/* line 97, ../sass/sections/_frontpage.scss */
+#block-views-block-blog-block-1 .attachment .view-content {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* line 110, ../sass/sections/_frontpage.scss */
+#block-views-block-blog-tags-block-1 .views-field-name {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: #eeeeee;
+  float: left;
+  margin: 0 0.3em 0.3em 0;
+  padding: 0.2em 0.35em;
 }
 
 @media (min-width: 480px) {
