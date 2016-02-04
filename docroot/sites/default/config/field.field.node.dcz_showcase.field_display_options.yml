@@ -1,0 +1,21 @@
+uuid: 2fb6a27f-7281-4f8e-8d53-8352fae1467b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_display_options
+    - node.type.dcz_showcase
+  module:
+    - options
+id: node.dcz_showcase.field_display_options
+field_name: field_display_options
+entity_type: node
+bundle: dcz_showcase
+label: 'Display options'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

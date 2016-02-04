@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - children: The rendered child elements of the container.
+ * - arrownavigator: Weither or not use arrows navigator.
+ * - bulletnavigator: Weither or not use bullets navigator.
+ *
+ * @see template_preprocess_images_jssor_formatter()
+ */
+#}
+<div {{ attributes.addClass(classes) }} style="position: relative; margin: 0 auto; top: 0; left: 0; width: 1300px; height: 600px; overflow: hidden;">
+
+  <!-- Slides Container -->
+  <div data-u="slides" style="cursor: move; position: absolute; left: 0; top: 0; width: 1300px; height: 600px; overflow: hidden;">
+    {{ children }}
+  </div>
+
+  {% if arrownavigator %}
+    <!-- Arrows navigator -->
+    <span data-u="arrowleft" class="jssora01l"></span>
+    <span data-u="arrowright" class="jssora01r"></span>
+  {% endif %}
+
+  {% if bulletnavigator %}
+    <!-- Bullets navigator -->
+    <div u="navigator" class="jssorb01" style="position: absolute; bottom: 16px; right: 6px;">
+      <div u="prototype" style="position: absolute; width: 16px; height: 16px;"></div>
+    </div>
+  {% endif %}
+
+</div>

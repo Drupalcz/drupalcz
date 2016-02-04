@@ -1,0 +1,14 @@
+uuid: 3c5be4d2-f82b-4970-945f-95ce74f23f5b
+langcode: en
+status: true
+dependencies: {  }
+name: screenshot_small
+label: 'Screenshot small (600x450)'
+effects:
+  4a70e64d-0ddd-42b8-9200-a8367e53150a:
+    uuid: 4a70e64d-0ddd-42b8-9200-a8367e53150a
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 600
+      height: 450

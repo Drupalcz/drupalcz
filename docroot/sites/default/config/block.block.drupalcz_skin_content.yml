@@ -9,7 +9,7 @@ dependencies:
 id: drupalcz_skin_content
 theme: drupalcz_skin
 region: content
-weight: -1
+weight: -6
 provider: null
 plugin: system_main_block
 settings:

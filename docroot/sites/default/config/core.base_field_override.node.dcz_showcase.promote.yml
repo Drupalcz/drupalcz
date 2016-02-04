@@ -1,0 +1,22 @@
+uuid: f247dd6f-3bf7-4b7a-ab1a-26a6e0ac56fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.dcz_showcase
+id: node.dcz_showcase.promote
+field_name: promote
+entity_type: node
+bundle: dcz_showcase
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

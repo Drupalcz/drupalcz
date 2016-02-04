@@ -5,6 +5,9 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.dcz_article.body
+    - field.field.node.dcz_article.field_attachment
+    - field.field.node.dcz_article.field_comments_article
+    - field.field.node.dcz_article.field_tags
     - node.type.dcz_article
   module:
     - text
@@ -17,10 +20,15 @@ content:
   body:
     label: hidden
     type: text_summary_or_trimmed
-    weight: 101
+    weight: 0
     settings:
-      trim_length: 600
+      trim_length: 200
     third_party_settings: {  }
   links:
-    weight: 100
-hidden: {  }
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_attachment: true
+  field_comments_article: true
+  field_tags: true

@@ -8,8 +8,8 @@ dependencies:
     - drupalcz_skin
 id: drupalcz_skin_messages
 theme: drupalcz_skin
-region: highlighted
-weight: 0
+region: header
+weight: -7
 provider: null
 plugin: system_messages_block
 settings:

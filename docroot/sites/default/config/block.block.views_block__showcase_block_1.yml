@@ -1,0 +1,30 @@
+uuid: cafc36c9-9206-4d17-8114-207943c3062f
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.showcase
+  module:
+    - system
+    - views
+  theme:
+    - drupalcz_skin
+id: views_block__showcase_block_1
+theme: drupalcz_skin
+region: highlighted
+weight: -8
+provider: null
+plugin: 'views_block:showcase-block_1'
+settings:
+  id: 'views_block:showcase-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

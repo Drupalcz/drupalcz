@@ -1,0 +1,54 @@
+// Showcase page
+.view-showcase.view-display-id-page_1 {
+  .view-content {
+    @extend .row;
+  }
+  .views-row {
+    @extend .col-xs-12, .col-md-6, .col-lg-4;
+  }
+}
+
+//Logo block
+.view-showcase.view-display-id-block_2 {
+  .view-content {
+    @media (min-width: $screen-xs-min) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .views-row {
+    margin: 1em;
+
+    img {
+      margin: 0 auto;
+    }
+  }
+}
+
+// Showcase full node
+.page-node-type-dcz-showcase {
+  .field--name-field-drupal-version {
+    float: left;
+  }
+
+  .field--name-field-logo {
+    float: right;
+    margin-bottom: 1em;
+  }
+
+  .field--name-body {
+    clear: both;
+  }
+
+  .field--name-field-main-screenshot {
+    margin-bottom: 1em;
+  }
+
+  .field--name-field-url {
+    margin: 1em 0;
+    a {
+      @extend .btn, .btn-lg, .btn-primary;
+    }
+  }
+}

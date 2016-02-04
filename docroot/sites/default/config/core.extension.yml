@@ -9,12 +9,14 @@ module:
   config: 0
   contact: 0
   contextual: 0
+  ctools: 0
   datetime: 0
   dblog: 0
   dcz_article: 0
   dcz_migrate: 0
   dcz_tags_taxonomy: 0
   dcz_user: 0
+  devel_generate: 0
   editor: 0
   entity_reference: 0
   entity_reference_revisions: 0
@@ -24,7 +26,9 @@ module:
   filter: 0
   history: 0
   image: 0
+  jssor: 0
   juicebox: 0
+  layout_plugin: 0
   libraries: 0
   link: 0
   menu_ui: 0
@@ -39,13 +43,16 @@ module:
   system: 0
   taxonomy: 0
   text: 0
+  token: 0
   toolbar: 0
   update: 0
   user: 0
   views_ui: 0
   youtube: 0
+  ds: 1
   forum: 1
   menu_link_content: 1
+  pathauto: 1
   views: 10
   dcz: 1000
 theme:

@@ -7,7 +7,7 @@ dependencies:
 id: drupalcz_skin_local_tasks
 theme: drupalcz_skin
 region: content
-weight: -2
+weight: -7
 provider: null
 plugin: local_tasks_block
 settings:

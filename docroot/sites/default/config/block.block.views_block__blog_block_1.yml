@@ -1,0 +1,30 @@
+uuid: 3c7cf447-55fa-414a-8d00-fbf2a2cc2359
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.blog
+  module:
+    - system
+    - views
+  theme:
+    - drupalcz_skin
+id: views_block__blog_block_1
+theme: drupalcz_skin
+region: sidebar_first
+weight: -10
+provider: null
+plugin: 'views_block:blog-block_1'
+settings:
+  id: 'views_block:blog-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }
