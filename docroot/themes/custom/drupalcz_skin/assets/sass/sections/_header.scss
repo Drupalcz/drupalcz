@@ -5,6 +5,25 @@
   background-color: $brand-primary; // Old browsers
   border: none;
   padding: 0;
+
+  .navbar-toggle {
+    border: none;
+    position: absolute;
+    right: 0;
+
+    &:hover,
+    &:focus {
+      @include box-shadow(none);
+      background-color: transparent;
+      .icon-bar {
+        background-color: transparentize($light-color, 0.4);
+      }
+    }
+
+    .icon-bar {
+      background-color: $light-color;
+    }
+  }
 }
 
 .navbar-header {
@@ -14,6 +33,7 @@
 .navbar-brand {
   @extend .hidden;
 }
+
 
 .navbar-collapse {
   background: $gray-lighter;
@@ -43,6 +63,11 @@
     @extend .col-sm-push-9;
     padding: 0;
   }
+}
+
+.search-block-form {
+  @extend .col-sm-4, .col-md-3;
+  float: right;
 }
 
 #block-useraccountmenu-2 {
