@@ -1,22 +1,22 @@
-uuid: dd0d5f2f-13e6-4117-b424-36eb0b8d68c2
+uuid: 010fafd3-a50e-4e17-b400-bb3b0a3c031e
 langcode: en
 status: true
 dependencies:
   config:
-    - system.menu.main
+    - system.menu.account
   module:
     - system
   theme:
     - drupalcz_skin
-id: mainnavigation
+id: useraccountmenu_2
 theme: drupalcz_skin
 region: navigation_collapsible
-weight: -10
+weight: -9
 provider: null
-plugin: 'system_menu_block:main'
+plugin: 'system_menu_block:account'
 settings:
-  id: 'system_menu_block:main'
-  label: 'Main navigation'
+  id: 'system_menu_block:account'
+  label: 'User account menu'
   provider: system
   label_display: '0'
   level: 1
