@@ -1,0 +1,26 @@
+.table {
+  margin-bottom: 1em;
+  margin-top: 1em;
+
+  > thead {
+    background: $brand-primary;
+    color: $light-color;
+
+    a {
+      color: $light-color;
+    }
+
+    > tr {
+      > th {
+        border-bottom: none;
+      }
+    }
+  }
+
+  a {
+  }
+
+ .indent {
+    margin-left: 1em;
+  }
+}
