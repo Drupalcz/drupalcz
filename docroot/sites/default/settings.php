@@ -66,28 +66,12 @@ if (!empty($aliases[$full])) {
  * Acquia environment settings - by Acquia.
  */
 if (file_exists('/var/www/site-php')) {
+  // Copy of D6 db for imports.
+  require '/var/www/site-php/drupalcz/d6_migration_source-settings.inc';
   // D8 db.
   require '/var/www/site-php/drupalcz/drupalcz-settings.inc';
-
-  // Connect second db if possible.
-  if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
-    // Copy of D6 db for imports.
-    require '/var/www/site-php/drupalcz/d6_migration_source-settings.inc';
-    // Make sure D8 can run.
-    switch ($_ENV['AH_SITE_ENVIRONMENT']) {
-      case 'dev':
-        $extention = 'dev';
-            break;
-      case 'test':
-        $extention = 'stg';
-            break;
-      default:
-        // Prod.
-        $extention = '';
-    }
-    // Make sure D8 db is active.
-    Database::setActiveConnection('drupalcz' . $env);
-  }
+  // Make sure D8 can run.
+  Database::setActiveConnection('drupalcz');
 }
 
 /**
