@@ -5,6 +5,25 @@
   background-color: $brand-primary; // Old browsers
   border: none;
   padding: 0;
+
+  .navbar-toggle {
+    border: none;
+    position: absolute;
+    right: 0;
+
+    &:hover,
+    &:focus {
+      @include box-shadow(none);
+      background-color: transparent;
+      .icon-bar {
+        background-color: transparentize($light-color, 0.4);
+      }
+    }
+
+    .icon-bar {
+      background-color: $light-color;
+    }
+  }
 }
 
 .navbar-header {
@@ -15,6 +34,7 @@
   @extend .hidden;
 }
 
+
 .navbar-collapse {
   background: $gray-lighter;
 
@@ -24,8 +44,18 @@
 }
 .navbar-default .navbar-nav {
   > li > a {
-    border-right: 1px solid $light-color;
-    padding: 0.5em;
+    @include transition(all 350ms ease-in-out);
+    text-align: center;
+    @media (min-width: $screen-sm-min) {
+      border-right: 1px solid $light-color;
+      padding: 0.5em;
+      text-align: left;
+    }
+    &:hover,
+    &.is-active {
+      @include box-shadow(inset 0 3px 0 0 $brand-primary);
+      @include transition(all 200ms ease-in-out);
+    }
   }
 
   &.secondary {
@@ -33,4 +63,56 @@
     @extend .col-sm-push-9;
     padding: 0;
   }
+}
+
+.search-block-form {
+  @extend .col-sm-4, .col-md-3;
+  float: right;
+}
+
+#block-useraccountmenu-2 {
+  border-top: 1px solid transparentize($gray-light, 0.5);
+  margin: 1em 0 0 0;
+  padding: 1em 0 0 0;
+  @media (min-width: $screen-sm-min) {
+    border-top: none;
+    float: right;
+    margin: 0;
+    padding: 0;
+  }
+  .menu.nav {
+    li {
+      @media (min-width: $screen-sm-min) {
+        display: inline-block;
+      }
+      // On larger screen show only first and last item.
+      @media (min-width: $screen-sm-min) {
+        &:not(:first-child):not(:last-child) {
+          display: none;
+        }
+      }
+    }
+    a {
+      color: $gray-light;
+      font-size: $font-size-small;
+      padding: 0.55em;
+
+      &:hover {
+        background: none;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Styling registration link as button for anonymous user.
+body.user-anonymous #block-useraccountmenu-2 .menu.nav li:last-child a {
+  @extend .btn, .btn-sm, .btn-success;
+  padding: 0.3em 0.5em;
+}
+
+// Styling account link as button for logged in user.
+body.user-logged-in #block-useraccountmenu-2 .menu.nav li:first-child a {
+  @extend .btn, .btn-sm, .btn-success;
+  padding: 0.3em 0.5em;
 }

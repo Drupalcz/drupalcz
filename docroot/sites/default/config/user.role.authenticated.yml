@@ -13,3 +13,4 @@ permissions:
   - 'post comments'
   - 'access comments'
   - 'access user profiles'
+  - 'access user contact forms'

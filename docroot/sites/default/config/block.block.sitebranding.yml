@@ -9,7 +9,7 @@ dependencies:
 id: sitebranding
 theme: drupalcz_skin
 region: navigation
-weight: -5
+weight: -11
 provider: null
 plugin: system_branding_block
 settings:
