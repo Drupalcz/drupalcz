@@ -66,12 +66,7 @@ if (!empty($aliases[$full])) {
  * Acquia environment settings - by Acquia.
  */
 if (file_exists('/var/www/site-php')) {
-  // Copy of D6 db for imports.
-  require '/var/www/site-php/drupalcz/d6_migration_source-settings.inc';
-  // D8 db.
   require '/var/www/site-php/drupalcz/drupalcz-settings.inc';
-  // Make sure D8 can run.
-  Database::setActiveConnection('drupalcz');
 }
 
 /**
