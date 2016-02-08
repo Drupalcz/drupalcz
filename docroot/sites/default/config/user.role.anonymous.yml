@@ -7,8 +7,10 @@ label: 'Anonymous user'
 weight: 0
 is_admin: false
 permissions:
-  - 'access content'
-  - 'post comments'
-  - 'access comments'
-  - 'use text format basic_html'
-  - 'access user profiles'
+  0: 'access content'
+  1: 'post comments'
+  2: 'access comments'
+  3: 'use text format basic_html'
+  5: 'skip comment approval'
+  6: 'create forum content'
+  7: 'search content'
