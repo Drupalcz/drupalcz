@@ -28,13 +28,20 @@ class AdminToolbarToolsAlterTest extends WebTestBase {
    *
    * @var array
    */
-  public static $modules = array('toolbar', 'admin_toolbar', 'admin_toolbar_tools');
+  public static $modules = array(
+    'toolbar',
+    'admin_toolbar',
+    'admin_toolbar_tools'
+  );
 
   protected function setUp() {
     parent::setUp();
 
     // Create an administrative user and log it in.
-    $this->adminUser = $this->drupalCreateUser(array('access toolbar', 'access administration pages'));
+    $this->adminUser = $this->drupalCreateUser(array(
+        'access toolbar',
+        'access administration pages'
+      ));
     $this->drupalLogin($this->adminUser);
   }
 

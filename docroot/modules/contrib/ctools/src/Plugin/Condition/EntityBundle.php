@@ -83,7 +83,7 @@ class EntityBundle extends ConditionPluginBase implements ConstraintConditionInt
       $options[$id] = $info['label'];
     }
     $form['bundles'] = array(
-      '#title' => $this->bundleOf->getBundleLabel(),
+      '#title' => $this->pluginDefinition['label'],
       '#type' => 'checkboxes',
       '#options' => $options,
       '#default_value' => $this->configuration['bundles'],

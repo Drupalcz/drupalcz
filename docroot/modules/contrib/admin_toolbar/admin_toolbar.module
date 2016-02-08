@@ -27,10 +27,48 @@ function admin_toolbar_prerender_toolbar_administration_tray(array $element) {
   $manipulators = array(
     array('callable' => 'menu.default_tree_manipulators:checkAccess'),
     array('callable' => 'menu.default_tree_manipulators:generateIndexAndSort'),
-    array('callable' => 'toolbar_menu_navigation_links'),
+    array('callable' => 'toolbar_tools_menu_navigation_links'),
   );
   $tree = $menu_tree->transform($tree, $manipulators);
   $element['administration_menu'] = $menu_tree->build($tree);
 
   return $element;
+}
+
+
+/**
+ * Adds toolbar-specific attributes to the menu link tree.
+ *
+ * @param \Drupal\Core\Menu\MenuLinkTreeElement[] $tree
+ *   The menu link tree to manipulate.
+ *
+ * @return \Drupal\Core\Menu\MenuLinkTreeElement[]
+ *   The manipulated menu link tree.
+ */
+function toolbar_tools_menu_navigation_links(array $tree) {
+  foreach ($tree as $element) {
+    if ($element->subtree) {
+      toolbar_tools_menu_navigation_links($element->subtree);
+    }
+
+    // Make sure we have a path specific ID in place, so we can attach icons
+    // and behaviors to the menu links.
+    $link = $element->link;
+    $url = $link->getUrlObject();
+    if (!$url->isRouted()) {
+      // This is an unusual case, so just get a distinct, safe string.
+      $id = substr(\Drupal\Component\Utility\Crypt::hashBase64($url->getUri()), 0, 16);
+    }
+    else {
+      $id = str_replace(array('.', '<', '>'), array('-', '', ''), $url->getRouteName());
+    }
+
+    // Get the non-localized title to make the icon class.
+    $definition = $link->getPluginDefinition();
+
+    $element->options['attributes']['class'][] = 'toolbar-icon';
+    $element->options['attributes']['class'][] = 'toolbar-icon-' . strtolower(str_replace(array('.', ' ', '_'), array('-', '-', '-'), $definition['id']));
+    $element->options['attributes']['title'] = $link->getDescription();
+  }
+  return $tree;
 }
