@@ -4,8 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.dcz_article.body
+    - field.field.node.dcz_article.field_attachment
+    - field.field.node.dcz_article.field_comments_article
+    - field.field.node.dcz_article.field_tags
     - node.type.dcz_article
   module:
+    - comment
+    - file
     - path
     - text
 id: node.dcz_article.default
@@ -15,7 +20,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 31
+    weight: 2
     settings:
       rows: 9
       summary_rows: 3
@@ -23,29 +28,48 @@ content:
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 6
     settings: {  }
     third_party_settings: {  }
+  field_attachment:
+    weight: 3
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+  field_comments_article:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: comment_default
+  field_tags:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: 'drupal commerce, theming, …'
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
   path:
     type: path
-    weight: 30
+    weight: 9
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 15
+    weight: 7
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 16
+    weight: 8
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: -5
+    weight: 0
     settings:
       size: 60
       placeholder: ''

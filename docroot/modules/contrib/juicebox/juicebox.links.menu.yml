@@ -1,0 +1,5 @@
+juicebox.admin_settings:
+  title: 'Juicebox'
+  description: 'Adjust global Juicebox settings.'
+  parent: system.admin_config_media
+  route_name: juicebox.admin_settings

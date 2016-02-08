@@ -1,0 +1,22 @@
+uuid: 38d469c0-76ac-465c-8c04-4ebc57aa3353
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.dcz_landing_page
+id: node.dcz_landing_page.promote
+field_name: promote
+entity_type: node
+bundle: dcz_landing_page
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

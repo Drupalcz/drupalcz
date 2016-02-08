@@ -1,0 +1,14 @@
+.region-sidebar-second {
+  .block {
+    clear: both;
+    margin-bottom: 2em;
+
+    h2.block-title {
+      background: $gray-lighter;
+      padding: 0.5em 1em;
+    }
+    .more-link {
+      text-align: right;
+    }
+  }
+}

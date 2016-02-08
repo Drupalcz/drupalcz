@@ -1,0 +1,20 @@
+uuid: 34978210-0fb1-11e4-9191-0800200c9a66
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - juicebox
+_core:
+  default_config_hash: OpRd2kp9UPgW-e201TOASWnRaUdnnA_pOzVulVIA0jM
+name: juicebox_small
+label: 'Juicebox small (800x800)'
+effects:
+  39fda630-0fb1-11e4-9191-0800200c9a66:
+    uuid: 39fda630-0fb1-11e4-9191-0800200c9a66
+    id: image_scale
+    weight: 0
+    data:
+      width: 800
+      height: 800
+      upscale: false

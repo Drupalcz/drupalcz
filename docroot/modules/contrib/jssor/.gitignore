@@ -1,0 +1,8 @@
+# Ignore the node modules folder (created by 'npm install').
+node_modules
+bower_components
+
+.idea
+.idea/*
+
+.DS_Store

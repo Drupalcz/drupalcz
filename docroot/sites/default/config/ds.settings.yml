@@ -1,0 +1,9 @@
+disabled: false
+field_template: false
+ft-default: default
+ft-show-colon: false
+classes:
+  region: {  }
+  field: {  }
+_core:
+  default_config_hash: lz8YH8XFMscDlAcGq8boqcomZ5kTuXaDjRFjiKu0cEA

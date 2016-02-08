@@ -1,0 +1,35 @@
+//
+// Base Layout styling
+// --------------------------------------------------
+
+body {
+  margin-top: 64px !important;
+
+  @media (min-width: $screen-sm-min) {
+    margin-top: 98px !important;
+  }
+}
+
+
+
+//
+// Layouts
+// --------------------------------------------------
+
+.dcz-layout.edgy {
+  .region-top {
+    .field {
+      @extend .container;
+    }
+  }
+  .region-content {
+    .field-name-body {
+      @extend .container;
+    }
+  }
+  .region-bottom {
+    .field {
+      @extend .container;
+    }
+  }
+}

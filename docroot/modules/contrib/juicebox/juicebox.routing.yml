@@ -1,0 +1,21 @@
+juicebox.xml_field:
+  path: '/juicebox/xml/field/{entityType}/{entityId}/{fieldName}/{displayName}'
+  defaults:
+    _controller: '\Drupal\juicebox\Controller\JuiceboxXmlControllerField::xmlController'
+  requirements:
+    _access: 'TRUE'
+
+juicebox.xml_viewsstyle:
+   path: '/juicebox/xml/viewsstyle/{viewName}/{displayName}'
+   defaults:
+     _controller: '\Drupal\juicebox\Controller\JuiceboxXmlControllerViewsStyle::xmlController'
+   requirements:
+     _access: 'TRUE'
+
+juicebox.admin_settings:
+  path: '/admin/config/media/juicebox'
+  defaults:
+    _form: '\Drupal\juicebox\Form\SettingsForm'
+    _title: 'Juicebox Global Configuration'
+  requirements:
+    _permission: 'administer site configuration'

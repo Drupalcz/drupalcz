@@ -1,0 +1,23 @@
+//
+// Footer
+// --------------------------------------------------
+footer.footer {
+  background-color: $brand-primary;
+  border: none;
+  color: $light-color;
+  padding: 1em;
+}
+
+.region-footer {
+  @extend .container;
+
+  a {
+    color: #ffffff;
+    text-decoration: underline;
+
+    &:hover {
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
+}

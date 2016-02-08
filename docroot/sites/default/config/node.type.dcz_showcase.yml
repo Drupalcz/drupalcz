@@ -1,0 +1,17 @@
+uuid: 12503a6c-0e0d-4130-ad12-18ed2bff2003
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Showcase
+type: dcz_showcase
+description: 'Allows adding showcases to Drupal.cz front page.'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

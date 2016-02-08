@@ -1,0 +1,55 @@
+.field--widget-entity-reference-paragraphs .paragraph-type-top .paragraph-type-title {
+    float: left;
+}
+
+.field--widget-entity-reference-paragraphs .paragraph-type-top .paragraphs-dropbutton-wrapper {
+    float:right;
+    margin: 0em;
+}
+
+.field--widget-entity-reference-paragraphs .paragraphs-dropbutton-wrapper > input {
+    margin-right: 0em;
+}
+
+.field--widget-entity-reference-paragraphs .paragraphs-dropbutton-wrapper .dropbutton-wrapper {
+    padding-right: 0em;
+    margin-right: 0em;
+}
+
+.js .field--widget-entity-reference-paragraphs .paragraphs-dropbutton-wrapper .dropbutton-wrapper {
+    padding-right: 0em;
+    margin-right: 0em;
+}
+
+.js .field--widget-entity-reference-paragraphs td .paragraph-type-top .paragraphs-dropbutton-wrapper .dropbutton-wrapper .dropbutton-widget,
+.js .field--widget-entity-reference-paragraphs .paragraph-type-top .paragraphs-dropbutton-wrapper .dropbutton-wrapper .dropbutton-widget {
+    position: relative;
+}
+
+.field--widget-entity-reference-paragraphs .paragraph-type-top {
+    clear: both;
+    float: left;
+    margin-bottom: 1em;
+    width: 100%;
+}
+.field--widget-entity-reference-paragraphs .paragraphs-subform {
+    clear: both;
+    float: left;
+    width: 100%;
+}
+
+.paragraphs-dropbutton-wrapper {
+    margin-top: 1em;
+    display: block;
+    position: relative;
+    min-height: 2em;
+}
+
+.paragraphs-dropbutton-wrapper .dropbutton-widget {
+    position: absolute;
+    display: block;
+}
+
+.paragraphs-dropbutton-wrapper .field-add-more-submit {
+    margin-right: 1em;
+}

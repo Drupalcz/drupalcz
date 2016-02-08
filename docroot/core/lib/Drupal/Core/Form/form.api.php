@@ -53,7 +53,7 @@
  *     such as how many total items were processed.
  */
 function callback_batch_operation($MULTIPLE_PARAMS, &$context) {
-  $node_storage = $this->container->get('entity.manager')->getStorage('node');
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
 
   if (!isset($context['sandbox']['progress'])) {
     $context['sandbox']['progress'] = 0;
@@ -146,8 +146,6 @@ function callback_batch_finished($success, $results, $operations) {
  *
  * @param \Drupal\Core\Ajax\CommandInterface[] $data
  *   An array of all the rendered commands that will be sent to the client.
- *
- * @see \Drupal\Core\Ajax\AjaxResponse::ajaxRender()
  */
 function hook_ajax_render_alter(array &$data) {
   // Inject any new status messages into the content area.
@@ -162,6 +160,9 @@ function hook_ajax_render_alter(array &$data) {
  * One popular use of this hook is to add form elements to the node form. When
  * altering a node form, the node entity can be retrieved by invoking
  * $form_state->getFormObject()->getEntity().
+ *
+ * Implementations are responsible for adding cache contexts/tags/max-age as
+ * needed. See https://www.drupal.org/developing/api/8/cache.
  *
  * In addition to hook_form_alter(), which is called for all forms, there are
  * two more specific form hooks available. The first,
@@ -191,7 +192,8 @@ function hook_ajax_render_alter(array &$data) {
  *
  * @see hook_form_BASE_FORM_ID_alter()
  * @see hook_form_FORM_ID_alter()
- * @see forms_api_reference.html
+ *
+ * @ingroup form_api
  */
 function hook_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   if (isset($form['type']) && $form['type']['#value'] . '_node_settings' == $form_id) {
@@ -209,6 +211,9 @@ function hook_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_stat
 
 /**
  * Provide a form-specific alteration instead of the global hook_form_alter().
+ *
+ * Implementations are responsible for adding cache contexts/tags/max-age as
+ * needed. See https://www.drupal.org/developing/api/8/cache.
  *
  * Modules can implement hook_form_FORM_ID_alter() to modify a specific form,
  * rather than implementing hook_form_alter() and checking the form ID, or
@@ -231,7 +236,8 @@ function hook_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_stat
  * @see hook_form_alter()
  * @see hook_form_BASE_FORM_ID_alter()
  * @see \Drupal\Core\Form\FormBuilderInterface::prepareForm()
- * @see forms_api_reference.html
+ *
+ * @ingroup form_api
  */
 function hook_form_FORM_ID_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   // Modification for the form with the given form ID goes here. For example, if
@@ -248,6 +254,9 @@ function hook_form_FORM_ID_alter(&$form, \Drupal\Core\Form\FormStateInterface $f
 
 /**
  * Provide a form-specific alteration for shared ('base') forms.
+ *
+ * Implementations are responsible for adding cache contexts/tags/max-age as
+ * needed. See https://www.drupal.org/developing/api/8/cache.
  *
  * By default, when \Drupal::formBuilder()->getForm() is called, Drupal looks
  * for a function with the same name as the form ID, and uses that function to
@@ -277,6 +286,8 @@ function hook_form_FORM_ID_alter(&$form, \Drupal\Core\Form\FormStateInterface $f
  * @see hook_form_alter()
  * @see hook_form_FORM_ID_alter()
  * @see \Drupal\Core\Form\FormBuilderInterface::prepareForm()
+ *
+ * @ingroup form_api
  */
 function hook_form_BASE_FORM_ID_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   // Modification for the form with the given BASE_FORM_ID goes here. For

@@ -1,0 +1,31 @@
+uuid: 29667280-ae7b-4b2e-9722-34ca7f43c58b
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:content_block:addf26da-1a29-4685-ad00-bd164462f493'
+  module:
+    - block_content
+    - system
+  theme:
+    - drupalcz_skin
+id: frontpagetopusage
+theme: drupalcz_skin
+region: highlighted
+weight: -7
+provider: null
+plugin: 'block_content:addf26da-1a29-4685-ad00-bd164462f493'
+settings:
+  id: 'block_content:addf26da-1a29-4685-ad00-bd164462f493'
+  label: 'Front page top - usage'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

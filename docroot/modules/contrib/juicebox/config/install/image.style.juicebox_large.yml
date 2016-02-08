@@ -1,0 +1,17 @@
+name: juicebox_large
+uuid: bff08830-0fb0-11e4-9191-0800200c9a66
+label: 'Juicebox large (2048x2048)'
+effects:
+  ca5fe360-0fb0-11e4-9191-0800200c9a66:
+    id: image_scale
+    data:
+      width: 2048
+      height: 2048
+      upscale: false
+    weight: 0
+    uuid: ca5fe360-0fb0-11e4-9191-0800200c9a66
+langcode: en
+dependencies:
+  enforced:
+    module:
+      - juicebox

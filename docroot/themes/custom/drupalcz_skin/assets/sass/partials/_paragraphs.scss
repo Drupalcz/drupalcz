@@ -1,0 +1,40 @@
+//
+// Paragraphs
+// --------------------------------------------------
+
+$padding-size: 3em;
+
+.paragraph {
+  padding: $padding-size 0;
+}
+
+.main-container.landing-page .paragraph .para-content {
+  @extend .container;
+}
+
+// Classes for paragraph
+.dcz_para_black {
+  background: $gray-dark;
+  color: $light-color;
+}
+
+.dcz_para_dark {
+  background: $dark-background;
+  color: $light-color;
+}
+
+.dcz_para_light {
+  background: $light-background;
+}
+
+.dcz_para_box_shadow {
+  @include box-shadow(0 0 35px transparentize($gray-dark, 0.5));
+}
+
+.dcz_para_text_center {
+  text-align: center;
+}
+
+.dcz_para_text_shadow {
+  @include text-shadow(5px 5px 10px transparentize($gray-dark, 0.4));
+}

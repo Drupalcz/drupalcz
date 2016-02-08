@@ -1,0 +1,96 @@
+uuid: 34497b37-5ca3-4f03-b400-cc76dbbd3cbb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.dcz_showcase.body
+    - field.field.node.dcz_showcase.field_display_options
+    - field.field.node.dcz_showcase.field_drupal_version
+    - field.field.node.dcz_showcase.field_logo
+    - field.field.node.dcz_showcase.field_main_screenshot
+    - field.field.node.dcz_showcase.field_other_screenshots
+    - field.field.node.dcz_showcase.field_url
+    - node.type.dcz_showcase
+  module:
+    - image
+    - juicebox
+    - link
+    - text
+    - user
+id: node.dcz_showcase.default
+targetEntityType: node
+bundle: dcz_showcase
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+  field_drupal_version:
+    weight: 1
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_logo:
+    weight: 2
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_main_screenshot:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: screenshot_large
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_other_screenshots:
+    weight: 5
+    label: hidden
+    settings:
+      image_style: juicebox_medium
+      thumb_style: juicebox_square_thumb
+      caption_source: alt
+      title_source: ''
+      jlib_galleryWidth: 100%
+      jlib_galleryHeight: 100%
+      jlib_backgroundColor: '#222222'
+      jlib_textColor: 'rgba(255,255,255,1)'
+      jlib_thumbFrameColor: 'rgba(255,255,255,.5)'
+      jlib_showOpenButton: true
+      jlib_showExpandButton: true
+      jlib_showThumbsButton: true
+      manual_config: ''
+      incompatible_file_action: show_icon_and_link
+      linkurl_source: ''
+      linkurl_target: _blank
+      custom_parent_classes: ''
+      jlib_useFullscreenExpand: '0'
+      jlib_useThumbDots: false
+      apply_markup_filter: true
+    third_party_settings: {  }
+    type: juicebox_formatter
+  field_url:
+    weight: 4
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+  links:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_display_options: true

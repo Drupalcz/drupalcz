@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a formatted image field.
+ *
+ * Available variables:
+ * - image: A collection of image data.
+ * - image_style: An optional image style.
+ * - url: An optional URL the image can be linked to.
+ * - caption: Weither or not to display a caption.
+ * - caption_text: Caption text.
+ *
+ * @see template_preprocess_image_jssor_formatter()
+ *
+ * @ingroup themeable
+ */
+#}
+<div>
+  {% if url %}
+    <a href="{{ url }}">{{ image }}</a>
+  {% else %}
+    {{ image }}
+  {% endif %}
+  {% if caption %}
+    <div u="caption" t='{{ play_in_transition }}' t2='{{ play_out_transition }}' class="slider__caption">
+      <div class="slider__caption--background">
+      </div>
+      <div class="slider__caption--title">
+        {{ caption_text }}
+      </div>
+    </div>
+  {% endif %}
+</div>

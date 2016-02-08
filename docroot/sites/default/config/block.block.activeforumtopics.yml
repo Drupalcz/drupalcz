@@ -1,0 +1,23 @@
+uuid: 4fe8cf0a-29bf-4aa4-8a00-c477daf0deb7
+langcode: en
+status: true
+dependencies:
+  module:
+    - forum
+  theme:
+    - drupalcz_skin
+id: activeforumtopics
+theme: drupalcz_skin
+region: sidebar_second
+weight: -5
+provider: null
+plugin: forum_active_block
+settings:
+  id: forum_active_block
+  label: 'Active forum topics'
+  provider: forum
+  label_display: visible
+  properties:
+    administrative: '1'
+  block_count: 5
+visibility: {  }

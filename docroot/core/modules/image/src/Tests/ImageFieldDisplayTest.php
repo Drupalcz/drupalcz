@@ -127,6 +127,8 @@ class ImageFieldDisplayTest extends ImageFieldTestBase {
     $default_output = '<a href="' . file_create_url($image_uri) . '">' . $renderer->renderRoot($image) . '</a>';
     $this->drupalGet('node/' . $nid);
     $this->assertCacheTag($file->getCacheTags()[0]);
+    // @todo Remove in https://www.drupal.org/node/2646744.
+    $this->assertCacheContext('url.site');
     $cache_tags_header = $this->drupalGetHeader('X-Drupal-Cache-Tags');
     $this->assertTrue(!preg_match('/ image_style\:/', $cache_tags_header), 'No image style cache tag found.');
     $this->assertRaw($default_output, 'Image linked to file formatter displaying correctly on full node view.');
@@ -136,7 +138,7 @@ class ImageFieldDisplayTest extends ImageFieldTestBase {
       // Only verify HTTP headers when using private scheme and the headers are
       // sent by Drupal.
       $this->assertEqual($this->drupalGetHeader('Content-Type'), 'image/png', 'Content-Type header was sent.');
-      $this->assertTrue(strstr($this->drupalGetHeader('Cache-Control'),'private') !== FALSE, 'Cache-Control header was sent.');
+      $this->assertTrue(strstr($this->drupalGetHeader('Cache-Control'), 'private') !== FALSE, 'Cache-Control header was sent.');
 
       // Log out and try to access the file.
       $this->drupalLogout();
@@ -165,7 +167,7 @@ class ImageFieldDisplayTest extends ImageFieldTestBase {
       '//a[@href=:path]/img[@src=:url and @alt=:alt and @width=:width and @height=:height]',
       array(
         ':path' => $node->url(),
-        ':url' => file_create_url($image['#uri']),
+        ':url' => file_url_transform_relative(file_create_url($image['#uri'])),
         ':width' => $image['#width'],
         ':height' => $image['#height'],
         ':alt' => $alt,
@@ -256,7 +258,7 @@ class ImageFieldDisplayTest extends ImageFieldTestBase {
     $node = $node_storage->load($nid);
     $file = $node->{$field_name}->entity;
 
-    $url = file_create_url(ImageStyle::load('medium')->buildUrl($file->getFileUri()));
+    $url = file_url_transform_relative(file_create_url(ImageStyle::load('medium')->buildUrl($file->getFileUri())));
     $this->assertTrue($this->cssSelect('img[width=40][height=20][class=image-style-medium][src="' . $url . '"]'));
 
     // Add alt/title fields to the image and verify that they are displayed.
@@ -346,6 +348,7 @@ class ImageFieldDisplayTest extends ImageFieldTestBase {
     $alt = $this->randomString(512);
     $title = $this->randomString(1024);
     $edit = array(
+      // Get the path of the 'image-test.png' file.
       'files[settings_default_image_uuid]' => drupal_realpath($images[0]->uri),
       'settings[default_image][alt]' => $alt,
       'settings[default_image][title]' => $title,
@@ -378,7 +381,8 @@ class ImageFieldDisplayTest extends ImageFieldTestBase {
     // Create alt text for the image.
     $alt = $this->randomMachineName();
 
-    $nid = $this->uploadNodeImage($images[1], $field_name, 'article', $alt);
+    // Upload the 'image-test.gif' file.
+    $nid = $this->uploadNodeImage($images[2], $field_name, 'article', $alt);
     $node_storage->resetCache(array($nid));
     $node = $node_storage->load($nid);
     $file = $node->{$field_name}->entity;
@@ -413,7 +417,8 @@ class ImageFieldDisplayTest extends ImageFieldTestBase {
     $this->createImageField($private_field_name, 'article', array('uri_scheme' => 'private'));
     // Add a default image to the new field.
     $edit = array(
-      'files[settings_default_image_uuid]' => drupal_realpath($images[1]->uri),
+      // Get the path of the 'image-test.gif' file.
+      'files[settings_default_image_uuid]' => drupal_realpath($images[2]->uri),
       'settings[default_image][alt]' => $alt,
       'settings[default_image][title]' => $title,
     );

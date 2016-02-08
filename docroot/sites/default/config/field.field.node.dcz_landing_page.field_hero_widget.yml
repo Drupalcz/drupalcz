@@ -1,0 +1,41 @@
+uuid: 6ca518d5-c12d-4cf0-b400-c2d67ea48e2c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hero_widget
+    - node.type.dcz_landing_page
+  module:
+    - entity_reference_revisions
+id: node.dcz_landing_page.field_hero_widget
+field_name: field_hero_widget
+entity_type: node
+bundle: dcz_landing_page
+label: 'Hero widget'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      dcz_para_hero: dcz_para_hero
+    target_bundles_drag_drop:
+      dcz_para_content:
+        weight: 6
+        enabled: false
+      dcz_para_gallery:
+        weight: 7
+        enabled: false
+      dcz_para_hero:
+        enabled: true
+        weight: 8
+      dcz_para_image:
+        weight: 9
+        enabled: false
+      dcz_para_video:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

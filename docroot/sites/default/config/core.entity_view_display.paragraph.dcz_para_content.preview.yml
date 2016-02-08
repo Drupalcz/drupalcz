@@ -1,0 +1,27 @@
+uuid: 93687649-6782-4032-9d00-faa935a13f24
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.dcz_para_content.field_p_content
+    - field.field.paragraph.dcz_para_content.field_p_title
+    - field.field.paragraph.dcz_para_content.field_dcz_para_class
+    - paragraphs.paragraphs_type.dcz_para_content
+id: paragraph.dcz_para_content.preview
+targetEntityType: paragraph
+bundle: dcz_para_content
+mode: preview
+content:
+  field_p_title:
+    type: string
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_dcz_para_class: true
+  field_p_content: true
+  uid: true

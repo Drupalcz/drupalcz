@@ -1,0 +1,46 @@
+uuid: 5e250e5a-b944-4a3f-bf00-0f1b023e7e71
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.dcz_landing_page.body
+    - field.field.node.dcz_landing_page.field_content_widget
+    - field.field.node.dcz_landing_page.field_hero_widget
+    - node.type.dcz_landing_page
+  module:
+    - entity_reference_revisions
+    - text
+    - user
+id: node.dcz_landing_page.full
+targetEntityType: node
+bundle: dcz_landing_page
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+  field_content_widget:
+    type: entity_reference_revisions_entity_view
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  field_hero_widget:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  links:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

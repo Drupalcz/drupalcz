@@ -1,0 +1,29 @@
+uuid: 14563171-bf7b-4116-8800-e2e83167d582
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dcz_para_hero.field_p_image
+    - field.field.paragraph.dcz_para_hero.field_p_title
+    - field.field.paragraph.dcz_para_hero.field_dcz_para_class
+    - paragraphs.paragraphs_type.dcz_para_hero
+  module:
+    - image
+id: paragraph.dcz_para_hero.default
+targetEntityType: paragraph
+bundle: dcz_para_hero
+mode: default
+content:
+  field_p_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+hidden:
+  created: true
+  field_dcz_para_class: true
+  field_p_title: true
+  uid: true

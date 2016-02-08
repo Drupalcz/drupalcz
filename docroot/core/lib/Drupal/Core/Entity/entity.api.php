@@ -592,7 +592,8 @@ function hook_ENTITY_TYPE_access(\Drupal\Core\Entity\EntityInterface $entity, $o
  *   The account trying to access the entity.
  * @param array $context
  *   An associative array of additional context values. By default it contains
- *   language:
+ *   language and the entity type ID:
+ *   - entity_type_id - the entity type ID.
  *   - langcode - the current language code.
  * @param string $entity_bundle
  *   The entity bundle name.
@@ -1051,7 +1052,7 @@ function hook_ENTITY_TYPE_translation_create(\Drupal\Core\Entity\EntityInterface
  */
 function hook_entity_translation_insert(\Drupal\Core\Entity\EntityInterface $translation) {
   $variables = array(
-    '@language' => $translation->language()->name,
+    '@language' => $translation->language()->getName(),
     '@label' => $translation->getUntranslated()->label(),
   );
   \Drupal::logger('example')->notice('The @language translation of @label has just been stored.', $variables);
@@ -1071,7 +1072,7 @@ function hook_entity_translation_insert(\Drupal\Core\Entity\EntityInterface $tra
  */
 function hook_ENTITY_TYPE_translation_insert(\Drupal\Core\Entity\EntityInterface $translation) {
   $variables = array(
-    '@language' => $translation->language()->name,
+    '@language' => $translation->language()->getName(),
     '@label' => $translation->getUntranslated()->label(),
   );
   \Drupal::logger('example')->notice('The @language translation of @label has just been stored.', $variables);
@@ -1089,10 +1090,9 @@ function hook_ENTITY_TYPE_translation_insert(\Drupal\Core\Entity\EntityInterface
  * @see hook_ENTITY_TYPE_translation_delete()
  */
 function hook_entity_translation_delete(\Drupal\Core\Entity\EntityInterface $translation) {
-  $languages = \Drupal::languageManager()->getLanguages();
   $variables = array(
-    '@language' => $languages[$langcode]->name,
-    '@label' => $entity->label(),
+    '@language' => $translation->language()->getName(),
+    '@label' => $translation->label(),
   );
   \Drupal::logger('example')->notice('The @language translation of @label has just been deleted.', $variables);
 }
@@ -1109,10 +1109,9 @@ function hook_entity_translation_delete(\Drupal\Core\Entity\EntityInterface $tra
  * @see hook_entity_translation_delete()
  */
 function hook_ENTITY_TYPE_translation_delete(\Drupal\Core\Entity\EntityInterface $translation) {
-  $languages = \Drupal::languageManager()->getLanguages();
   $variables = array(
-    '@language' => $languages[$langcode]->name,
-    '@label' => $entity->label(),
+    '@language' => $translation->language()->getName(),
+    '@label' => $translation->label(),
   );
   \Drupal::logger('example')->notice('The @language translation of @label has just been deleted.', $variables);
 }
@@ -1966,7 +1965,7 @@ function hook_ENTITY_TYPE_field_values_init(\Drupal\Core\Entity\FieldableEntityI
  *
  * @return array
  *   The array structure is identical to that of the return value of
- *   \Drupal\Core\Entity\EntityManagerInterface::getExtraFields().
+ *   \Drupal\Core\Entity\EntityFieldManagerInterface::getExtraFields().
  */
 function hook_entity_extra_field_info() {
   $extra = array();
