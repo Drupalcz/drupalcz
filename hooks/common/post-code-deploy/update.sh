@@ -21,10 +21,10 @@ repo_type="$6"
 alias=$site.$target_env
 
 # Run updates and import config.
-drush @$alias vset --always-set maintenance_mode 1 --yes
+drush @$alias state-set system.maintenance_mode 1 --format=integer
 # drush @$alias rr
 drush @$alias cr --yes
 drush @$alias updb --yes
 drush @$alias cim --yes
 drush @$alias cr --yes
-drush @$alias vset --always-set maintenance_mode 0 --yes
+drush @$alias state-set system.maintenance_mode 0 --format=integer
