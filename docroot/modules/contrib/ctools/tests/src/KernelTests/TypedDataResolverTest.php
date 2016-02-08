@@ -14,6 +14,11 @@ use Drupal\entity_test\Entity\EntityTest;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\user\Entity\User;
 
+/**
+ * @coversDefaultClass \Drupal\ctools\TypedDataResolver
+ *
+ * @group CTools
+ */
 class TypedDataResolverTest extends KernelTestBase {
 
   /**
