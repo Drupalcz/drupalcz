@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.dcz_showcase.field_main_screenshot
     - field.field.node.dcz_showcase.field_other_screenshots
     - field.field.node.dcz_showcase.field_url
+    - image.style.screenshot_large
     - node.type.dcz_showcase
   module:
     - image
@@ -94,3 +95,4 @@ content:
     third_party_settings: {  }
 hidden:
   field_display_options: true
+  langcode: true

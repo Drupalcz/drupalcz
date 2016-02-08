@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.dcz_showcase.field_main_screenshot
     - field.field.node.dcz_showcase.field_other_screenshots
     - field.field.node.dcz_showcase.field_url
+    - image.style.thumbnail
     - node.type.dcz_showcase
   module:
     - image
@@ -72,6 +73,11 @@ content:
       placeholder_title: 'White House (USA)'
     third_party_settings: {  }
     type: link_default
+  langcode:
+    type: language_select
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
   path:
     type: path
     weight: 11

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.forums.forum_container
     - taxonomy.vocabulary.forums
   module:
     - text
@@ -21,3 +22,4 @@ content:
     label: above
 hidden:
   forum_container: true
+  langcode: true

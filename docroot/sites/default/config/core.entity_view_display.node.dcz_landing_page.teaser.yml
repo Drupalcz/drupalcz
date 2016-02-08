@@ -28,3 +28,4 @@ content:
 hidden:
   field_content_widget: true
   field_hero_widget: true
+  langcode: true
