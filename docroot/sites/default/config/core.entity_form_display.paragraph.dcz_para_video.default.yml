@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.dcz_para_video.field_dcz_para_class
     - field.field.paragraph.dcz_para_video.field_p_title
     - field.field.paragraph.dcz_para_video.field_p_video
-    - field.field.paragraph.dcz_para_video.field_dcz_para_class
     - paragraphs.paragraphs_type.dcz_para_video
   module:
     - youtube

@@ -4,9 +4,9 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.dcz_para_gallery.field_dcz_para_class
     - field.field.paragraph.dcz_para_gallery.field_p_gallery
     - field.field.paragraph.dcz_para_gallery.field_p_title
-    - field.field.paragraph.dcz_para_gallery.field_dcz_para_class
     - paragraphs.paragraphs_type.dcz_para_gallery
 id: paragraph.dcz_para_gallery.preview
 targetEntityType: paragraph

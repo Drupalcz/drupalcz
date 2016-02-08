@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.forums.forum_container
     - taxonomy.vocabulary.forums
   module:
     - path
@@ -17,6 +18,11 @@ content:
   description:
     type: text_textfield
     weight: 0
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
     settings: {  }
     third_party_settings: {  }
   name:

@@ -28,9 +28,11 @@ module:
   image: 0
   jssor: 0
   juicebox: 0
+  language: 0
   layout_plugin: 0
   libraries: 0
   link: 0
+  locale: 0
   menu_ui: 0
   migrate: 0
   migrate_drupal: 0

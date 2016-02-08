@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.dcz_showcase.field_main_screenshot
     - field.field.node.dcz_showcase.field_other_screenshots
     - field.field.node.dcz_showcase.field_url
+    - image.style.screenshot_small
     - node.type.dcz_showcase
   module:
     - ds
@@ -120,3 +121,4 @@ content:
 hidden:
   field_display_options: true
   field_logo: true
+  langcode: true

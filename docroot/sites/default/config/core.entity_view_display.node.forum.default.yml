@@ -58,4 +58,5 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  langcode: true
