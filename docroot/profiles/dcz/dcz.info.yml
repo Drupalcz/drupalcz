@@ -34,6 +34,6 @@ dependencies:
   - dcz_tags_taxonomy
   - dcz_migrate
 themes:
-  - bartik
+  - drupalcz_skin
   - seven
 distribution: true
