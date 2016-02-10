@@ -1,6 +1,6 @@
-uuid: 756812bb-1d1d-45db-9c2f-47b38aa2988a
+uuid: 534132bf-f2b8-4c73-a100-a6b59a09f0ad
 langcode: cs
-status: false
+status: true
 dependencies:
   content:
     - 'block_content:content_block:3c19f38d-01f1-43d2-9900-cabedd8612cd'
@@ -8,17 +8,17 @@ dependencies:
     - block_content
   theme:
     - drupalcz_skin
-id: dcz_footer_copyright
+id: footercopyright
 theme: drupalcz_skin
-region: '-1'
+region: footer
 weight: -13
-provider: block_content
+provider: null
 plugin: 'block_content:3c19f38d-01f1-43d2-9900-cabedd8612cd'
 settings:
   id: 'block_content:3c19f38d-01f1-43d2-9900-cabedd8612cd'
-  label: ''
+  label: 'Footer copyright'
   provider: block_content
-  label_display: visible
+  label_display: '0'
   status: true
   info: ''
   view_mode: full
