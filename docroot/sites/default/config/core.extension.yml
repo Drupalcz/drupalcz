@@ -13,6 +13,7 @@ module:
   datetime: 0
   dblog: 0
   dcz_article: 0
+  dcz_custom_blocks: 0
   dcz_migrate: 0
   dcz_tags_taxonomy: 0
   dcz_user: 0
@@ -65,3 +66,4 @@ theme:
   seven: 0
   bootstrap: 0
   drupalcz_skin: 0
+langcode: cs

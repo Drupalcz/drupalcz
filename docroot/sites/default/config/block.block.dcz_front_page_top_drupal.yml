@@ -1,0 +1,25 @@
+uuid: 70e5b07e-95f6-4a7e-9b62-98e6e26fc337
+langcode: cs
+status: true
+dependencies:
+  content:
+    - 'block_content:content_block:9824f582-41db-4e96-b14c-766d837a6a46'
+  module:
+    - block_content
+  theme:
+    - drupalcz_skin
+id: dcz_front_page_top_drupal
+theme: drupalcz_skin
+region: '-1'
+weight: null
+provider: block_content
+plugin: 'block_content:9824f582-41db-4e96-b14c-766d837a6a46'
+settings:
+  id: 'block_content:9824f582-41db-4e96-b14c-766d837a6a46'
+  label: ''
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
