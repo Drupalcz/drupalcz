@@ -10,3 +10,4 @@ youtube_thumb_dir: youtube
 youtube_thumb_hires: true
 _core:
   default_config_hash: gjWACmdgM98qKcoioBj1rHrixrAVm2ZQXf1Ipl76bw8
+langcode: cs

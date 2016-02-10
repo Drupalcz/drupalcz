@@ -6,3 +6,4 @@ library_definitions:
     url: ''
 _core:
   default_config_hash: sagWCPZp0ozZk48F0iBkKDbBWR0lwLkIs4HL_8EhBw8
+langcode: cs
