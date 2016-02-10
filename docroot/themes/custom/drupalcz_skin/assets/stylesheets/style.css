@@ -2437,7 +2437,7 @@ pre code {
 
 /* line 11, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .search-block-form, .col-lg-3, .col-xs-4, .col-sm-4, .navbar-default .navbar-nav.secondary, .search-block-form, #block-frontpagetopusage, .col-md-4, #block-views-block-blog-tags-block-1, .col-lg-4, .view-showcase.view-display-id-page_1 .views-row, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, #block-views-block-blog-block-1 .view-content,
-#block-views-block-blog-block-1 .attachment, .col-md-6, #block-frontpagetopcojedrupal, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, #block-views-block-showcase-block-1, .col-md-8, #block-views-block-blog-block-1, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row, .col-sm-12, #block-frontpagetopcojedrupal, .col-md-12, .col-lg-12 {
+#block-views-block-blog-block-1 .attachment, .col-md-6, #block-frontpagetopdrupal, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, #block-views-block-showcase-block-1, .col-md-8, #block-views-block-blog-block-1, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row, .col-sm-12, #block-frontpagetopdrupal, .col-md-12, .col-lg-12 {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -2707,7 +2707,7 @@ pre code {
 @media (min-width: 768px) {
   /* line 27, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
   .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .navbar-default .navbar-nav.secondary, .search-block-form, #block-frontpagetopusage, .col-sm-5, .col-sm-6, #block-views-block-blog-block-1 .view-content,
-  #block-views-block-blog-block-1 .attachment, .col-sm-7, .col-sm-8, #block-views-block-showcase-block-1, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, #block-frontpagetopcojedrupal {
+  #block-views-block-blog-block-1 .attachment, .col-sm-7, .col-sm-8, #block-views-block-showcase-block-1, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, #block-frontpagetopdrupal {
     float: left;
   }
 
@@ -2768,7 +2768,7 @@ pre code {
   }
 
   /* line 35, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-sm-12, #block-frontpagetopcojedrupal {
+  .col-sm-12, #block-frontpagetopdrupal {
     width: 100%;
   }
 
@@ -2969,7 +2969,7 @@ pre code {
 }
 @media (min-width: 992px) {
   /* line 27, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-md-1, .col-md-2, .col-md-3, .search-block-form, .col-md-4, #block-views-block-blog-tags-block-1, .col-md-5, .col-md-6, #block-frontpagetopcojedrupal, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row, .col-md-7, .col-md-8, #block-views-block-blog-block-1, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+  .col-md-1, .col-md-2, .col-md-3, .search-block-form, .col-md-4, #block-views-block-blog-tags-block-1, .col-md-5, .col-md-6, #block-frontpagetopdrupal, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row, .col-md-7, .col-md-8, #block-views-block-blog-block-1, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
     float: left;
   }
 
@@ -2999,7 +2999,7 @@ pre code {
   }
 
   /* line 35, ../../bootstrap/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-md-6, #block-frontpagetopcojedrupal, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row {
+  .col-md-6, #block-frontpagetopdrupal, #block-frontpagetopusage, #block-views-block-showcase-block-1, .view-showcase.view-display-id-page_1 .views-row {
     width: 50%;
   }
 
@@ -9649,17 +9649,17 @@ footer.footer {
 }
 
 /* line 7, ../sass/sections/_frontpage.scss */
-#block-frontpagetopcojedrupal {
+#block-frontpagetopdrupal {
   margin-bottom: 2em;
 }
 @media (min-width: 1200px) {
   /* line 7, ../sass/sections/_frontpage.scss */
-  #block-frontpagetopcojedrupal {
+  #block-frontpagetopdrupal {
     margin-top: 5em;
   }
 }
 /* line 15, ../sass/sections/_frontpage.scss */
-#block-frontpagetopcojedrupal h2 {
+#block-frontpagetopdrupal h2 {
   margin-top: 0;
 }
 
