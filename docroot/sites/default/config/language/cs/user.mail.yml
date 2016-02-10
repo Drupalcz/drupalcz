@@ -1,0 +1,2 @@
+register_admin_created:
+  subject: 'Administrátor pro vás vytvořil účet na webu [site:name]'
