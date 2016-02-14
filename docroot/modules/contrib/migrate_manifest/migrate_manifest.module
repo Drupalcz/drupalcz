@@ -1,0 +1,9 @@
+<?php
+
+/**
+ * @file
+ * Migrate manifest module.
+ *
+ * Empty module file to satisfy some old assumptions in things like drush that
+ * require it exist.
+ */
