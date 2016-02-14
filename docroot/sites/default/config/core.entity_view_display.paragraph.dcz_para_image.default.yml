@@ -3,9 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.dcz_para_image.field_dcz_para_class
     - field.field.paragraph.dcz_para_image.field_p_image
     - field.field.paragraph.dcz_para_image.field_p_title
-    - field.field.paragraph.dcz_para_image.field_dcz_para_class
+    - image.style.large
     - paragraphs.paragraphs_type.dcz_para_image
   module:
     - image

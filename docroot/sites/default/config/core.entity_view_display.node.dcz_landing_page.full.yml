@@ -43,4 +43,5 @@ content:
     weight: 3
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  langcode: true

@@ -50,6 +50,11 @@ content:
       placeholder: 'drupal commerce, theming, …'
     third_party_settings: {  }
     type: entity_reference_autocomplete_tags
+  langcode:
+    type: language_select
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
   path:
     type: path
     weight: 9

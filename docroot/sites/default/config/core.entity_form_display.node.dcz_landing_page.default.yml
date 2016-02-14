@@ -49,6 +49,11 @@ content:
       add_mode: button
       form_display_mode: default
     third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
   path:
     type: path
     weight: 8

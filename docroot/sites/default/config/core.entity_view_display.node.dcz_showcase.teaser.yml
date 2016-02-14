@@ -36,3 +36,4 @@ hidden:
   field_main_screenshot: true
   field_other_screenshots: true
   field_url: true
+  langcode: true
