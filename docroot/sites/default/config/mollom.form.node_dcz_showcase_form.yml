@@ -1,0 +1,23 @@
+langcode: cs
+id: node_dcz_showcase_form
+uuid: b2a58bd0-ab49-4834-a102-2b46363c87d9
+label: 'Showcase form'
+mode: '2'
+enabled_fields:
+  - 'title][0][value'
+  - revision_log
+  - body
+checks:
+  - spam
+strictness: normal
+unsure: captcha
+discard: '1'
+moderation: null
+mapping:
+  author_name: name
+  context_id: nid
+  post_title: 'title][0][value'
+  post_id: nid
+module: node
+entity: node
+bundle: dcz_showcase

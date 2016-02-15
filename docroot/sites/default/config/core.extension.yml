@@ -38,6 +38,7 @@ module:
   menu_ui: 0
   migrate: 0
   migrate_drupal: 0
+  mollom: 0
   node: 0
   options: 0
   page_cache: 0

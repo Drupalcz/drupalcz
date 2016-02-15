@@ -1,0 +1,10 @@
+id: mollom_comment_unpublish_action
+label: 'Report to Mollom and unpublish'
+status: true
+langcode: en
+type: comment
+plugin: mollom_comment_unpublish_action
+dependencies:
+  module:
+    - mollom
+    - comment
