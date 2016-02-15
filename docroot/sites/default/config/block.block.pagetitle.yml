@@ -2,6 +2,8 @@ uuid: 6d3ebe48-85e6-4f0b-a645-69b325d9bbf0
 langcode: en
 status: true
 dependencies:
+  module:
+    - ctools
   theme:
     - drupalcz_skin
 id: pagetitle
@@ -15,4 +17,11 @@ settings:
   label: 'Page title'
   provider: core
   label_display: '0'
-visibility: {  }
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      dcz_landing_page: dcz_landing_page
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
