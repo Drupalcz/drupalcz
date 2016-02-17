@@ -92,7 +92,7 @@ if (!empty($path) && file_exists($path)) {
 /*
  * Travis settings.
  */
-if (isset($_ENV["DCZ_TRAVIS_ENV"])) {
+if (isset($_ENV["TRAVIS_BUILD_ID"])) {
   $path = DRUPAL_ROOT . "/sites/default/settings.travis.php";
   if (file_exists($path)) {
     require $path;
