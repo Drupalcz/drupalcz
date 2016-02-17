@@ -1,5 +1,7 @@
 <VirtualHost *:80>
 
+  SetEnv DCZ_TRAVIS_ENV TRUE
+
   DocumentRoot %TRAVIS_BUILD_DIR%/docroot
 
   <Directory "%TRAVIS_BUILD_DIR%/docroot">

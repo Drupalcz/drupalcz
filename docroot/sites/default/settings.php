@@ -89,6 +89,13 @@ if (!empty($path) && file_exists($path)) {
   require $path;
 }
 
+/*
+ * Travis settings.
+ */
+if (isset($_ENV["DCZ_TRAVIS_ENV"])) {
+  include DRUPAL_ROOT . "/sites/default/settings.travis.php";
+}
+
 /**
  * If there is a local settings file, then include it.
  */
