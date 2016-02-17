@@ -40,9 +40,9 @@ install:
   - sudo service apache2 restart
   - cat /etc/apache2/sites-available/default
 
-  # Install latest Drush 7.
+  # Install stable Drush 8.
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - composer global require --prefer-dist --no-interaction drush/drush:dev-master
+  - composer global require --prefer-dist --no-interaction drush/drush:8.0.3
 
   # Disable sendmail.
   - echo sendmail_path=`which true` >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
