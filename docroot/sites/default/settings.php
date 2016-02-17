@@ -104,5 +104,5 @@ if (isset($_ENV["TRAVIS_BUILD_ID"])) {
  */
 $local_settings = DRUPAL_ROOT . "/sites/default/settings.local.php";
 if (file_exists($local_settings)) {
-//  include $local_settings;
+  include $local_settings;
 }
