@@ -92,6 +92,7 @@ if (!empty($path) && file_exists($path)) {
 /*
  * Travis settings.
  */
+var_dump($_ENV);
 if (isset($_ENV["DCZ_TRAVIS_ENV"])) {
   include DRUPAL_ROOT . "/sites/default/settings.travis.php";
 }
@@ -101,5 +102,5 @@ if (isset($_ENV["DCZ_TRAVIS_ENV"])) {
  */
 $local_settings = DRUPAL_ROOT . "/sites/default/settings.local.php";
 if (file_exists($local_settings)) {
-  include $local_settings;
+//  include $local_settings;
 }
