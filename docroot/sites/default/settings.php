@@ -73,7 +73,7 @@ if (file_exists('/var/www/site-php')) {
  * Location of the site configuration files.
  */
 $config_directories = array(
-  CONFIG_SYNC_DIRECTORY => "sites/default/config",
+  CONFIG_SYNC_DIRECTORY => DRUPAL_ROOT . "/../config",
 );
 
 /**
