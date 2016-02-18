@@ -1,0 +1,30 @@
+id: dcz_d6_taxonomy_vocabulary
+label: Taxonomy vocabularies
+migration_group: dcz6
+migration_tags:
+  - Drupal 6
+source:
+  plugin: dcz_d6_taxonomy_vocabulary
+process:
+  vid:
+    -
+      plugin: machine_name
+      source: name
+    -
+      plugin: dedupe_entity
+      entity_type: taxonomy_vocabulary
+      field: vid
+      length: 32
+    -
+      plugin: static_map
+      source: vid
+      map:
+        1: forums
+      bypass: true
+  label: name
+  name: name
+  description: description
+  hierarchy: hierarchy
+  weight: weight
+destination:
+  plugin: entity:taxonomy_vocabulary

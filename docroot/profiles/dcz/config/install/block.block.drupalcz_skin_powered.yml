@@ -1,0 +1,20 @@
+uuid: 58dafeac-0910-47ed-a500-fcf7b0d50da4
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - drupalcz_skin
+id: drupalcz_skin_powered
+theme: drupalcz_skin
+region: '-1'
+weight: -4
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }
