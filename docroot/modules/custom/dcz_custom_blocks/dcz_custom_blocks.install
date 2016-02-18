@@ -4,9 +4,9 @@ use Drupal\block\Entity\Block;
 use Drupal\block_content\Entity\BlockContent;
 
 /**
- * Implements hook_install().
+ * Implements hook_update_N().
  */
-function dcz_custom_blocks_install() {
+function dcz_custom_blocks_update_8001() {
   $block_content = BlockContent::create([
     'type' => 'content_block',
     'info' => 'Front page top Drupal',
