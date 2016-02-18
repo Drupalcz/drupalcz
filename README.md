@@ -35,6 +35,10 @@ Branch | Build status
 * Install the site (it will use the Drupal.cz distribution).
   * `cd docroot`
   * `drush si`
+  * Import configuration:
+  * `drush cim -y`
+  * Login to new site:
+  * `drush uli`
 * Migrate data from D6 Drupal.cz
   * Get the database snapshot: https://github.com/Drupalcz/drupalcz_db
   * Import it into new database separarate from D8 version.
