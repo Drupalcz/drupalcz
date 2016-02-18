@@ -11,7 +11,9 @@ Branch | Build status
 
 ## Contents
 * acquia-utils/ - Acquia cloud specific tools.
+* config/ - Exported Drupal configutation.
 * docroot/ - Website directory.
+* hooks/ - Acquia cloud hooks. (See https://docs.acquia.com/cloud/manage/cloud-hooks )
 * library/ - Acquia cloud libraries.
 * tests/ - Collection of tests for Travis CI and local development.
 * .gitignore - Gitignore.
