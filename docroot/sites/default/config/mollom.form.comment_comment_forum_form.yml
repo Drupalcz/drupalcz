@@ -1,0 +1,29 @@
+langcode: cs
+id: comment_comment_forum_form
+uuid: f85ab832-29bf-4399-b359-89023bc1ade6
+label: 'Comment_forum form'
+mode: '2'
+enabled_fields:
+  - 'subject][0][value'
+  - 'comment_body][0][value'
+  - name
+  - mail
+  - homepage
+  - hostname
+  - thread
+  - entity_type
+  - field_name
+checks:
+  - spam
+strictness: normal
+unsure: captcha
+discard: '1'
+moderation: null
+mapping:
+  post_title: 'subject][0][value'
+  author_name: name
+  author_mail: mail
+  post_id: cid
+module: comment
+entity: comment
+bundle: comment

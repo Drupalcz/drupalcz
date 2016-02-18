@@ -1,0 +1,10 @@
+entity.mollom_form.list:
+  title: 'Mollom content moderation'
+  description: 'Configure how the Mollom service moderates user-submitted content such as spam and profanity.'
+  route_name: entity.mollom_form.list
+  parent: system.admin_config_content
+mollom.statistics:
+  title: 'Mollom statistics'
+  description: 'Reports and usage statistics for the Mollom module.'
+  route_name: mollom.statistics
+  parent: system.admin_reports

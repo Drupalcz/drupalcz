@@ -14,6 +14,11 @@ use Drupal\user\Entity\User;
  * @see system_install()
  */
 function dcz_install() {
+  // Fix site UUID.
+  $user_settings = \Drupal::configFactory()->getEditable('system.site');
+  $user_settings->set('uuid', '4ac9fc2e-f80a-4276-9b03-03f030798435')
+    ->save(TRUE);
+
   // Set front page to "node".
   \Drupal::configFactory()
     ->getEditable('system.site')

@@ -1,0 +1,55 @@
+mollom.form.*:
+  type: config_object
+  label : 'Mollom form'
+  mapping:
+    id:
+      type: string
+      label: 'Machine name'
+    uuid:
+      type: string
+      label: 'UUID'
+    label:
+      type: label
+      label: 'Name'
+    mode:
+      type: string
+      label: 'Protection Mode'
+    enabled_fields:
+      type: sequence
+      label: 'Fields to analyze'
+      sequence:
+        - type: string
+          label: 'Selected field'
+    checks:
+      type: sequence
+      label: 'How to analyze'
+      sequence:
+        - type: string
+          label: 'Selected Spam protection methods'
+    strictness:
+      type: string
+      label: 'Strictness of the analyzer'
+    unsure:
+      type: string
+      label: 'what to do if Mollom is not sure'
+    discard:
+      type: string
+      label: 'What to do if Mollom identified it as spam'
+    moderation:
+      type: boolean
+      label: 'Moderation platform'
+    mapping:
+      type: sequence
+      label: 'mapping Drupal fields to Mollom fields'
+      sequence:
+        - type: string
+          label: 'mapped Drupal field to a Mollom field'
+    module:
+      type: string
+      label: Originating module
+    entity:
+      type: string
+      description: Entity type of the form.
+    bundle:
+      type: string
+      description:  Entity bundle of the form.

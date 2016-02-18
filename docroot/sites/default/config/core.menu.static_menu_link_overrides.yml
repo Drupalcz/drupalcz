@@ -11,3 +11,4 @@ definitions:
     parent: ''
     expanded: false
     enabled: true
+langcode: cs

@@ -9,7 +9,7 @@ dependencies:
 id: searchform
 theme: drupalcz_skin
 region: navigation
-weight: null
+weight: -13
 provider: null
 plugin: search_form_block
 settings:

@@ -1,23 +1,23 @@
-uuid: bc976357-5109-49c4-ac00-a11ed85776d8
-langcode: en
+uuid: cf72bfa3-b2bf-4cc2-9b07-7d90a2f8a8e6
+langcode: cs
 status: true
 dependencies:
   content:
-    - 'block_content:content_block:2fc7dc26-f94e-41a7-8e00-f987398d19fe'
+    - 'block_content:content_block:9824f582-41db-4e96-b14c-766d837a6a46'
   module:
     - block_content
     - system
   theme:
     - drupalcz_skin
-id: frontpagetopcojedrupal
+id: frontpagetopdrupal
 theme: drupalcz_skin
 region: highlighted
-weight: -9
+weight: -12
 provider: null
-plugin: 'block_content:2fc7dc26-f94e-41a7-8e00-f987398d19fe'
+plugin: 'block_content:9824f582-41db-4e96-b14c-766d837a6a46'
 settings:
-  id: 'block_content:2fc7dc26-f94e-41a7-8e00-f987398d19fe'
-  label: 'Front page top Co je Drupal'
+  id: 'block_content:9824f582-41db-4e96-b14c-766d837a6a46'
+  label: 'Front page top Drupal'
   provider: block_content
   label_display: '0'
   status: true

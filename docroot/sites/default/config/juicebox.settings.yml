@@ -7,3 +7,4 @@ juicebox_multisize_medium: juicebox_medium
 juicebox_multisize_large: juicebox_large
 _core:
   default_config_hash: bWO6SM83RWkQcqI5ALeNV1b23-TN8x25u4q5lz5J0Ag
+langcode: cs

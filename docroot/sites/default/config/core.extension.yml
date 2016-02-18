@@ -13,6 +13,8 @@ module:
   datetime: 0
   dblog: 0
   dcz_article: 0
+  dcz_custom_blocks: 0
+  dcz_migrate: 0
   dcz_tags_taxonomy: 0
   dcz_user: 0
   devel_generate: 0
@@ -23,6 +25,7 @@ module:
   field_ui: 0
   file: 0
   filter: 0
+  google_analytics: 0
   history: 0
   image: 0
   jssor: 0
@@ -35,8 +38,9 @@ module:
   menu_ui: 0
   migrate: 0
   migrate_drupal: 0
-  migrate_plus: 1
-  migrate_tools: 1
+  migrate_plus: 0
+  migrate_tools: 0
+  mollom: 1
   node: 0
   options: 0
   page_cache: 0
@@ -66,3 +70,4 @@ theme:
   seven: 0
   bootstrap: 0
   drupalcz_skin: 0
+langcode: cs

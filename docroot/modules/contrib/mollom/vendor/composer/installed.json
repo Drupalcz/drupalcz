@@ -1,0 +1,38 @@
+[
+    {
+        "name": "mollom/client",
+        "version": "dev-psr4",
+        "version_normalized": "dev-psr4",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mollom/MollomPHP",
+            "reference": "82087c7e4e736f188933698869a5d443c628c476"
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2014-09-10 17:51:43",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Mollom\\": "src/"
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "See contributors",
+                "homepage": "https://github.com/mollom/MollomPHP/graphs/contributors"
+            }
+        ],
+        "description": "Generic PHP library for Mollom's REST API.",
+        "keywords": [
+            "acquia",
+            "mollom",
+            "spam"
+        ]
+    }
+]

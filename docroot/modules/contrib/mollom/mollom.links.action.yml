@@ -1,0 +1,11 @@
+entity.mollom_form.add:
+  route_name: entity.mollom_form.add
+  title: 'Add Form'
+  appears_on:
+    - entity.mollom_form.list
+
+mollom.blacklist.add:
+  route_name: mollom.blacklist.add
+  title: 'Add Blacklist'
+  appears_on:
+    - mollom.blacklist.list

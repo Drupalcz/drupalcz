@@ -1,0 +1,35 @@
+display:
+  default:
+    display_title: Nadřízené
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Použít
+          reset_button_label: Reset
+          exposed_sorts_label: 'Řadit dle'
+          sort_asc_label: Vzestupně
+          sort_desc_label: Sestupně
+      pager:
+        options:
+          expose:
+            items_per_page_label: 'Položek na stránku'
+            items_per_page_options_all_label: '- Vše -'
+            offset_label: 'Vynechat položky'
+      fields:
+        info:
+          label: 'Popis bloku'
+        type:
+          label: 'Typ bloku'
+        changed:
+          label: Aktualizováno
+        operations:
+          label: Operace
+      filters:
+        info:
+          expose:
+            label: 'Popis bloku'
+        type:
+          expose:
+            label: 'Typ bloku'
+  page_1:
+    display_title: Stránka

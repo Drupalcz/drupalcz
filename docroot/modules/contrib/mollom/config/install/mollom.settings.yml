@@ -1,0 +1,20 @@
+keys:
+  public: ''
+  private: ''
+fallback: 1
+languages_expected: []
+test_mode:
+  enabled: false
+  api_endpoint: 'dev.mollom.com'
+  keys:
+    public: ''
+    private: ''
+  invalid:
+    api_endpoint: 'fake-host'
+privacy_link: true
+log_level: 4
+connection_timeout_seconds: 3
+api_endpoint: 'rest.mollom.com'
+captcha:
+  audio:
+    enabled: true

@@ -1,0 +1,111 @@
+# Site API
+mollom_test_server.site.list:
+  path: 'mollom-test/rest/v1/site'
+  defaults:
+    _controller: '\Drupal\mollom_test_server\ServerController::getSites'
+  requirements:
+    _permission: 'access content'
+    methods: GET
+
+mollom_test_server.site.read:
+  path: 'mollom-test/rest/v1/site/{publicKey}'
+  defaults:
+    _controller: '\Drupal\mollom_test_server\ServerController::getSite'
+    publicKey: ''
+  requirements:
+    _permission: 'access content'
+
+mollom_test_server.site.create:
+  path: 'mollom-test/rest/v1/site'
+  defaults:
+    _controller: '\Drupal\mollom_test_server\ServerController::createSite'
+    publicKey: ''
+  requirements:
+    _permission: 'access content'
+    methods: POST
+
+mollom_test_server.site.update:
+  path: 'mollom-test/rest/v1/site/{publicKey}'
+  defaults:
+    _controller: '\Drupal\mollom_test_server\ServerController::updateSite'
+  requirements:
+    _permission: 'access content'
+    methods: POST
+
+mollom_test_server.delete:
+  path: 'mollom-test/rest/v1/site/{publicKey}/delete'
+  defaults:
+    _controller: '\Drupal\mollom_test_server\ServerController::deleteSite'
+  requirements:
+    _permission: 'access content'
+    methods: POST
+
+# Content API
+mollom_test_server.content:
+  path: 'mollom-test/rest/v1/content/{contentId}'
+  defaults:
+    _controller: '\Drupal\mollom_test_server\ServerController::content'
+    contentId: ''
+  requirements:
+    _permission: 'access content'
+    methods: POST
+
+# CAPTCHA API
+mollom_test_server.captcha.create:
+  path: 'mollom-test/rest/v1/captcha'
+  defaults:
+    _controller: '\Drupal\mollom_test_server\ServerController::captcha'
+  requirements:
+    _permission: 'access content'
+    methods: POST
+
+mollom_test_server.captcha.verify:
+  path: 'mollom-test/rest/v1/captcha/{captchaId}'
+  defaults:
+    _controller: '\Drupal\mollom_test_server\ServerController::captcha'
+  requirements:
+    _permission: 'access content'
+    methods: POST
+
+# Feedback API
+mollom_test_server.feedback:
+  path: 'mollom-test/rest/v1/feedback'
+  defaults:
+    _controller: '\Drupal\mollom_test_server\ServerController::feedback'
+  requirements:
+    _permission: 'access content'
+    methods: POST
+
+# Blacklist API
+mollom_test_server.blacklist.create:
+  path: 'mollom-test/rest/v1/blacklist/{publicKey}'
+  defaults:
+    _controller: '\Drupal\mollom_test_server\ServerController::blacklist'
+  requirements:
+    _permission: 'access content'
+    methods: POST
+
+mollom_test_server.blacklist.list:
+  path: 'mollom-test/rest/v1/blacklist/{publicKey}'
+  defaults:
+    _controller: '\Drupal\mollom_test_server\ServerController::blacklist'
+  requirements:
+    _permission: 'access content'
+    methods: GET
+
+mollom_test_server.blacklist.read:
+  path: 'mollom-test/rest/v1/blacklist/{publicKey}/{entryId}'
+  defaults:
+    _controller: '\Drupal\mollom_test_server\ServerController::blacklist'
+    entryId: ''
+  requirements:
+    _permission: 'access content'
+    methods: GET
+
+mollom_test_server.blacklist.delete:
+  path: 'mollom-test/rest/v1/blacklist/{publicKey}/{entryId}/delete'
+  defaults:
+    _controller: '\Drupal\mollom_test_server\ServerController::blacklist'
+  requirements:
+    _permission: 'access content'
+    methods: POST

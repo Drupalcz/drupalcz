@@ -1,0 +1,13 @@
+name: Mollom Test
+type: module
+# core: 8.x
+package: Testing
+#hidden: true
+dependencies:
+  - mollom
+
+# Information added by Drupal.org packaging script on 2015-11-30
+version: '8.x-1.1'
+core: '8.x'
+project: 'mollom'
+datestamp: 1448903943

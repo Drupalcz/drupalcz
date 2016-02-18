@@ -1,0 +1,27 @@
+langcode: cs
+id: user_profile_form
+uuid: 170823bc-ebbb-43e5-9100-bf3554e9d32e
+label: 'User profile form'
+mode: '1'
+enabled_fields:
+  - name
+  - mail
+  - timezone
+  - init
+  - field_dcz_name
+  - field_dcz_pos_lat
+  - field_dcz_pos_long
+  - field_dcz_surname
+checks:
+  - spam
+strictness: normal
+unsure: captcha
+discard: '1'
+moderation: null
+mapping:
+  author_name: name
+  author_mail: mail
+  post_id: uid
+module: user
+entity: user
+bundle: user

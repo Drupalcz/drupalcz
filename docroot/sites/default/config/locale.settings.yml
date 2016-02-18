@@ -13,3 +13,4 @@ translation:
   import_enabled: true
 _core:
   default_config_hash: Lqw8pAQIfr4sRSts2RRWG97eNG6vRT7FhqF_b5COPGk
+langcode: cs

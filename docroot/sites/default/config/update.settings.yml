@@ -8,3 +8,4 @@ fetch:
 notification:
   emails: {  }
   threshold: all
+langcode: cs

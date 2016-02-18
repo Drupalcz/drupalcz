@@ -1,9 +1,9 @@
-uuid: 29667280-ae7b-4b2e-9722-34ca7f43c58b
-langcode: en
+uuid: 97cf5724-22bd-433b-b806-6e4cfc5eafc8
+langcode: cs
 status: true
 dependencies:
   content:
-    - 'block_content:content_block:addf26da-1a29-4685-ad00-bd164462f493'
+    - 'block_content:content_block:d39789af-35ac-469e-9108-8c09daebb415'
   module:
     - block_content
     - system
@@ -12,12 +12,12 @@ dependencies:
 id: frontpagetopusage
 theme: drupalcz_skin
 region: highlighted
-weight: -7
+weight: -10
 provider: null
-plugin: 'block_content:addf26da-1a29-4685-ad00-bd164462f493'
+plugin: 'block_content:d39789af-35ac-469e-9108-8c09daebb415'
 settings:
-  id: 'block_content:addf26da-1a29-4685-ad00-bd164462f493'
-  label: 'Front page top - usage'
+  id: 'block_content:d39789af-35ac-469e-9108-8c09daebb415'
+  label: 'Front page top Usage'
   provider: block_content
   label_display: '0'
   status: true
