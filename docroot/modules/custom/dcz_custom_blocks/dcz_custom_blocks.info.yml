@@ -5,4 +5,3 @@ package: Custom
 type: module
 dependencies:
   - block
-  - block_content
