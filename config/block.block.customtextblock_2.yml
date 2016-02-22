@@ -9,7 +9,7 @@ dependencies:
     - drupalcz_skin
 id: customtextblock_2
 theme: drupalcz_skin
-region: content
+region: highlighted
 weight: null
 provider: null
 plugin: dcz_custom_blocks_text
