@@ -73,7 +73,7 @@ if (file_exists('/var/www/site-php')) {
  * Location of the site configuration files.
  */
 $config_directories = array(
-  CONFIG_SYNC_DIRECTORY => "sites/default/config",
+  CONFIG_SYNC_DIRECTORY => DRUPAL_ROOT . "/../config",
 );
 
 /**
@@ -87,6 +87,16 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
 // Load settings.
 if (!empty($path) && file_exists($path)) {
   require $path;
+}
+
+/*
+ * Travis settings.
+ */
+if (isset($_ENV["TRAVIS_BUILD_ID"])) {
+  $path = DRUPAL_ROOT . "/sites/default/settings.travis.php";
+  if (file_exists($path)) {
+    require $path;
+  }
 }
 
 /**

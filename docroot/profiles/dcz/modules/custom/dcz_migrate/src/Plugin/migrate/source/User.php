@@ -11,10 +11,10 @@ use Drupal\migrate\Row;
 use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 
 /**
- * Extract users from Drupal 7 database.
+ * Drupal 6 user source from database.
  *
  * @MigrateSource(
- *   id = "dcz_user"
+ *   id = "dcz_d6_user"
  * )
  */
 class User extends DrupalSqlBase {
@@ -29,43 +29,21 @@ class User extends DrupalSqlBase {
   }
 
   /**
-   * Returns the user base fields to be migrated.
-   *
-   * @return array
-   *   Associative array having field name as key and description as value.
-   */
-  protected function baseFields() {
-    $fields = array(
-      'uid' => $this->t('User ID'),
-      'name' => $this->t('Username'),
-      'pass' => $this->t('Password'),
-      'mail' => $this->t('Email address'),
-      'created' => $this->t('Registered timestamp'),
-      'access' => $this->t('Last access timestamp'),
-      'login' => $this->t('Last login timestamp'),
-      'status' => $this->t('Status'),
-      'timezone' => $this->t('Timezone'),
-      'picture' => $this->t('Picture'),
-      'init' => $this->t('Init'),
-      'data' => $this->t('Data'),
-    );
-    return $fields;
-
-  }
-
-  /**
    * {@inheritdoc}
    */
   public function fields() {
     $fields = $this->baseFields();
-    $fields['dcz_name'] = $this->t('Name');
-    $fields['dcz_surname'] = $this->t('Surname');
-    $fields['dcz_bio'] = $this->t('Bio');
-    $fields['dcz_lat'] = $this->t('Latitude');
-    $fields['dcz_long'] = $this->t('Longitude');
 
     // Add roles field.
     $fields['roles'] = $this->t('Roles');
+
+    // Profile fields.
+    if ($this->moduleExists('profile')) {
+      $fields += $this->select('profile_fields', 'pf')
+        ->fields('pf', array('name', 'title'))
+        ->execute()
+        ->fetchAllKeyed();
+    }
 
     return $fields;
   }
@@ -84,6 +62,21 @@ class User extends DrupalSqlBase {
       ->fetchCol();
     $row->setSourceProperty('roles', $roles);
 
+    // We are adding here the Event contributed module column.
+    // @see https://api.drupal.org/api/drupal/modules%21user%21user.install/function/user_update_7002/7
+    if ($row->hasSourceProperty('timezone_id') && $row->getSourceProperty('timezone_id')) {
+      if ($this->getDatabase()->schema()->tableExists('event_timezones')) {
+        $event_timezone = $this->select('event_timezones', 'e')
+          ->fields('e', array('name'))
+          ->condition('e.timezone', $row->getSourceProperty('timezone_id'))
+          ->execute()
+          ->fetchField();
+        if ($event_timezone) {
+          $row->setSourceProperty('event_timezone', $event_timezone);
+        }
+      }
+    }
+
     // Name & surname.
     $result = $this->getDatabase()->query('
       SELECT
@@ -96,10 +89,9 @@ class User extends DrupalSqlBase {
     ', array(':uid' => $uid));
     foreach ($result as $record) {
       $names = explode(' ', $record->value, 2);
-      $row->setSourceProperty('dcz_name', $names[0]);
-      $row->setSourceProperty('dcz_surname', $names[1]);
+      $row->setSourceProperty('dcz6_name', array_shift($names));
+      $row->setSourceProperty('dcz6_surname', implode($names));
     }
-
     // Latitude & longitude.
     $result = $this->getDatabase()->query('
       SELECT
@@ -112,14 +104,21 @@ class User extends DrupalSqlBase {
         lic.uid = :uid
     ', array(':uid' => $uid));
     foreach ($result as $record) {
-      $row->setSourceProperty('dcz_lat', $record->latitude);
-      $row->setSourceProperty('dcz_long', $record->longitude);
+      $row->setSourceProperty('dcz6_lat', $record->latitude);
+      $row->setSourceProperty('dcz6_long', $record->longitude);
     }
 
     // Bio.
     $info = unserialize($row->getSourceProperty('data'));
-    $row->setSourceProperty('dcz_bio_value', $info['info']);
-    $row->setSourceProperty('dcz_bio_format', 1);
+    if (isset($info['info'])) {
+      $row->setSourceProperty('dcz6_bio_value', $info['info']);
+    } else{
+      $row->setSourceProperty('dcz6_bio_value', '');
+    }
+
+
+    // Unserialize Data.
+    $row->setSourceProperty('data', unserialize($row->getSourceProperty('data')));
 
     return parent::prepareRow($row);
   }
@@ -135,4 +134,45 @@ class User extends DrupalSqlBase {
       ),
     );
   }
+
+  /**
+   * Returns the user base fields to be migrated.
+   *
+   * @return array
+   *   Associative array having field name as key and description as value.
+   */
+  protected function baseFields() {
+    $fields = array(
+      'uid' => $this->t('User ID'),
+      'name' => $this->t('Username'),
+      'pass' => $this->t('Password'),
+      'mail' => $this->t('Email address'),
+      'signature' => $this->t('Signature'),
+      'signature_format' => $this->t('Signature format'),
+      'created' => $this->t('Registered timestamp'),
+      'access' => $this->t('Last access timestamp'),
+      'login' => $this->t('Last login timestamp'),
+      'status' => $this->t('Status'),
+      'timezone' => $this->t('Timezone'),
+      'language' => $this->t('Language'),
+      'picture' => $this->t('Picture'),
+      'init' => $this->t('Init'),
+      'data' => $this->t('User data'),
+    );
+
+    // Possible field added by Date contributed module.
+    // @see https://api.drupal.org/api/drupal/modules%21user%21user.install/function/user_update_7002/7
+    if ($this->getDatabase()->schema()->fieldExists('users', 'timezone_name')) {
+      $fields['timezone_name'] = $this->t('Timezone (Date)');
+    }
+
+    // Possible field added by Event contributed module.
+    // @see https://api.drupal.org/api/drupal/modules%21user%21user.install/function/user_update_7002/7
+    if ($this->getDatabase()->schema()->fieldExists('users', 'timezone_id')) {
+      $fields['timezone_id'] = $this->t('Timezone (Event)');
+    }
+
+    return $fields;
+  }
+
 }
