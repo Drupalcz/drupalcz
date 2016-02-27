@@ -3,3 +3,5 @@ core: 8.x
 description: Custom blocks with pieces of information.
 package: Custom
 type: module
+dependencies:
+  - block

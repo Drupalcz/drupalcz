@@ -1,0 +1,27 @@
+uuid: ada94069-3a0a-4f35-bf00-d523600f2424
+langcode: cs
+status: true
+dependencies:
+  module:
+    - dcz_custom_blocks
+    - system
+  theme:
+    - drupalcz_skin
+id: customtextblock_2
+theme: drupalcz_skin
+region: highlighted
+weight: null
+provider: null
+plugin: dcz_custom_blocks_text
+settings:
+  id: dcz_custom_blocks_text
+  label: 'Custom text block'
+  provider: dcz_custom_blocks
+  label_display: visible
+  value: 'Custom text here...'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }
