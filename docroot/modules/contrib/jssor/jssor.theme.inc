@@ -71,7 +71,7 @@ function template_preprocess_views_view_jssor(&$variables) {
   // $settings['$MinDragOffsetToSlide'] = 20;
 
   // Space between each slide in pixels.
-  $settings['$SlideSpacing'] = $options['general']['slide_spacing'];;
+  $settings['$SlideSpacing'] = isset($options['general']['slide_spacing']) ? $options['general']['slide_spacing'] : 0;
 
   // Number of slides to display in the 'slides' container (slideshow would be
   // disabled if the value is greater than 1)
