@@ -94,6 +94,7 @@ class EntityViewsDataTest extends UnitTestCase {
       'id' => 'entity_test',
       'label' => 'Entity test',
       'entity_keys' => [
+        'uuid' => 'uuid',
         'id' => 'id',
         'langcode' => 'langcode',
         'bundle' => 'type',
@@ -282,16 +283,21 @@ class EntityViewsDataTest extends UnitTestCase {
 
     // Ensure the join information is set up properly.
     // Tests the join definition between the base and the revision table.
-    $revision_data = $data['entity_test_mulrev_property_revision'];
-    $this->assertCount(2, $revision_data['table']['join']);
+    $revision_field_data = $data['entity_test_mulrev_property_revision'];
+    $this->assertCount(1, $revision_field_data['table']['join']);
     $this->assertEquals([
       'entity_test_mul_property_data' => [
         'left_field' => 'revision_id', 'field' => 'revision_id', 'type' => 'INNER'
       ],
-      'entity_test_mulrev_revision' => [
+    ], $revision_field_data['table']['join']);
+
+    $revision_base_data = $data['entity_test_mulrev_revision'];
+    $this->assertCount(1, $revision_base_data['table']['join']);
+    $this->assertEquals([
+      'entity_test_mulrev_property_revision' => [
         'left_field' => 'revision_id', 'field' => 'revision_id', 'type' => 'INNER'
       ],
-    ], $revision_data['table']['join']);
+    ], $revision_base_data['table']['join']);
 
     $this->assertFalse(isset($data['data_table']));
   }
@@ -321,12 +327,21 @@ class EntityViewsDataTest extends UnitTestCase {
 
     // Ensure the join information is set up properly.
     // Tests the join definition between the base and the revision table.
-    $revision_data = $data['entity_test_mulrev_property_revision'];
-    $this->assertCount(2, $revision_data['table']['join']);
+    $revision_field_data = $data['entity_test_mulrev_property_revision'];
+    $this->assertCount(1, $revision_field_data['table']['join']);
     $this->assertEquals([
-      'entity_test_mulrev_field_data' => ['left_field' => 'revision_id', 'field' => 'revision_id', 'type' => 'INNER'],
-      'entity_test_mulrev_revision' => ['left_field' => 'revision_id', 'field' => 'revision_id', 'type' => 'INNER'],
-    ], $revision_data['table']['join']);
+      'entity_test_mulrev_field_data' => [
+        'left_field' => 'revision_id', 'field' => 'revision_id', 'type' => 'INNER'
+      ],
+    ], $revision_field_data['table']['join']);
+
+    $revision_base_data = $data['entity_test_mulrev_revision'];
+    $this->assertCount(1, $revision_base_data['table']['join']);
+    $this->assertEquals([
+      'entity_test_mulrev_property_revision' => [
+        'left_field' => 'revision_id', 'field' => 'revision_id', 'type' => 'INNER'
+      ],
+    ], $revision_base_data['table']['join']);
     $this->assertFalse(isset($data['data_table']));
   }
 
@@ -977,4 +992,3 @@ namespace Drupal\entity_test\Entity {
     }
   }
 }
-

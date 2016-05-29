@@ -1,13 +1,10 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\image\Tests\ImageFieldTestBase.
- */
-
 namespace Drupal\image\Tests;
 
+use Drupal\field\Entity\FieldConfig;
 use Drupal\simpletest\WebTestBase;
+use Drupal\field\Entity\FieldStorageConfig;
 
 /**
  * TODO: Test the following functions.
@@ -69,9 +66,11 @@ abstract class ImageFieldTestBase extends WebTestBase {
    *   Widget settings to be added to the widget defaults.
    * @param array $formatter_settings
    *   Formatter settings to be added to the formatter defaults.
+   * @param string $description
+   *   A description for the field.
    */
-  function createImageField($name, $type_name, $storage_settings = array(), $field_settings = array(), $widget_settings = array(), $formatter_settings = array()) {
-    entity_create('field_storage_config', array(
+  function createImageField($name, $type_name, $storage_settings = array(), $field_settings = array(), $widget_settings = array(), $formatter_settings = array(), $description = '') {
+    FieldStorageConfig::create(array(
       'field_name' => $name,
       'entity_type' => 'node',
       'type' => 'image',
@@ -79,14 +78,15 @@ abstract class ImageFieldTestBase extends WebTestBase {
       'cardinality' => !empty($storage_settings['cardinality']) ? $storage_settings['cardinality'] : 1,
     ))->save();
 
-    $field_config = entity_create('field_config', array(
+    $field_config = FieldConfig::create([
       'field_name' => $name,
       'label' => $name,
       'entity_type' => 'node',
       'bundle' => $type_name,
       'required' => !empty($field_settings['required']),
       'settings' => $field_settings,
-    ));
+      'description' => $description,
+    ]);
     $field_config->save();
 
     entity_get_form_display('node', $type_name, 'default')
@@ -135,7 +135,7 @@ abstract class ImageFieldTestBase extends WebTestBase {
    * @param $type
    *   The type of node to create.
    * @param $alt
-   *  The alt text for the image. Use if the field settings require alt text.
+   *   The alt text for the image. Use if the field settings require alt text.
    */
   function uploadNodeImage($image, $field_name, $type, $alt = '') {
     $edit = array(
@@ -152,6 +152,13 @@ abstract class ImageFieldTestBase extends WebTestBase {
     $matches = array();
     preg_match('/node\/([0-9]+)/', $this->getUrl(), $matches);
     return isset($matches[1]) ? $matches[1] : FALSE;
+  }
+
+  /**
+   * Retrieves the fid of the last inserted file.
+   */
+  protected function getLastFileId() {
+    return (int) db_query('SELECT MAX(fid) FROM {file_managed}')->fetchField();
   }
 
 }
