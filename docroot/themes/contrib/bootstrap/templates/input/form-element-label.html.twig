@@ -20,7 +20,7 @@
   set classes = [
     'control-label',
     title_display == 'after' ? 'option',
-    title_display == 'invisible' ? 'visually-hidden',
+    title_display == 'invisible' ? 'sr-only',
     required ? 'js-form-required',
     required ? 'form-required',
   ]
@@ -31,7 +31,7 @@
       <p class="help-block">{{ description }}</p>
     {%- endif -%}
   </label>
-  {%- if required -%}
+  {%- if required and title_display == 'before' or title_display == 'after'-%}
     <span class="form-required">*</span>
   {%- endif -%}
 {%- endif -%}

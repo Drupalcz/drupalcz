@@ -50,7 +50,7 @@
   ]
 %}
 <div{{ attributes.addClass(classes) }} role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <a href="#" role="button" class="close" data-dismiss="alert" aria-label="{{ 'Close'|t }}"><span aria-hidden="true">&times;</span></a>
   {% if status_headings[type] %}
     <h4 class="sr-only">{{ status_headings[type] }}</h4>
   {% endif %}
