@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_migrate_example_image
+    - field.storage.node.field_migrate_example_adv_image
     - node.type.migrate_example_wine
   module:
     - image
-id: node.migrate_example_wine.field_migrate_example_image
-field_name: field_migrate_example_image
+id: node.migrate_example_wine.field_migrate_example_adv_image
+field_name: field_migrate_example_adv_image
 entity_type: node
 bundle: migrate_example_wine
 label: Image

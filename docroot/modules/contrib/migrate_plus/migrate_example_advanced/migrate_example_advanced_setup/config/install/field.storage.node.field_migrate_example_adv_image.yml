@@ -5,8 +5,8 @@ dependencies:
     - file
     - image
     - node
-id: node.field_migrate_example_image
-field_name: field_migrate_example_image
+id: node.field_migrate_example_adv_image
+field_name: field_migrate_example_adv_image
 entity_type: node
 type: image
 settings:

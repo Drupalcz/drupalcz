@@ -1,5 +1,5 @@
 # Migration configuration for user accounts. We've described most of what goes
-# into migration configuration in migrate.migration.beer_term.yml, so won't
+# into migration configuration in migrate_plus.migration.beer_term.yml, so won't
 # repeat that here.
 id: beer_user
 label: Beer Drinkers of the world
@@ -71,6 +71,10 @@ process:
     map:
       0: Male
       1: Female
+    # If the input is missing, leave the field empty. Without this, an empty
+    # or invalid source value would cause the user record to be skipped
+    # entirely.
+    bypass: true
 
   field_migrate_example_favbeers: beers
   # The following is blocked on https://www.drupal.org/node/2590993.
@@ -92,3 +96,5 @@ process:
 #    plugin: migration
 #    source: beers
 #    migration: beer_node
+
+migration_dependencies: {}

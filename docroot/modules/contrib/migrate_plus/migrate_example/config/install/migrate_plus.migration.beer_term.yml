@@ -1,4 +1,4 @@
-# A "migration" is, in technical terms, a configuration entity which describes
+# A "migration" is, in technical terms, a plugin whose configuration describes
 # how to read source data, process it (generally by mapping source fields to
 # destination fields), and write it to Drupal.
 
@@ -8,8 +8,8 @@ id: beer_term
 # A human-friendly description of the migration.
 label: Migrate style categories from the source database to taxonomy terms
 
-# The machine name of the group containing this migration (which contains
-# shared configuration to be merged with our own configuration here).
+# The machine name of the group containing this migration (which contains shared
+# configuration to be merged with our own configuration here).
 migration_group: beer
 
 # Every migration must have a source plugin, which controls the delivery of our
@@ -73,3 +73,6 @@ process:
     # with the Drupal term ID of the referenced style (or NULL if style_parent
     # was empty).
     source: style_parent
+
+# We'll learn more about dependencies in beer_node - here, we leave them empty.
+migration_dependencies: {}
