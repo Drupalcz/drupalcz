@@ -1,5 +1,7 @@
 name: Drupal.cz
 type: profile
+distribution:
+  name: Drupal.cz
 core: 8.x
 version: 8.x-1.0
 dependencies:
@@ -35,4 +37,3 @@ dependencies:
 themes:
   - drupalcz_skin
   - seven
-distribution: true
