@@ -1,16 +1,11 @@
 <?php
-/**
- * @file
- * Contains \Drupal\entity_reference_revisions\EntityReferenceRevisionsAutocompleteTest.
- *
- * entity_reference_revisions configuration test functions.
- *
- */
 
 namespace Drupal\entity_reference_revisions\Tests;
 
-use Drupal\Component\Utility\SafeMarkup;
+use Drupal\block_content\Entity\BlockContent;
+use Drupal\Component\Utility\Html;
 use Drupal\field_ui\Tests\FieldUiTestTrait;
+use Drupal\node\Entity\Node;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -95,12 +90,19 @@ class EntityReferenceRevisionsAutocompleteTest extends WebTestBase {
     $edit = array(
       'title[0][value]' => $title,
       'body[0][value]' => 'Revision 1',
-      'field_entity_reference_revisions[0][target_id]' => $block_label . '(' . $block->id() . ')',
+      'field_entity_reference_revisions[0][target_id]' => $block_label . ' (' . $block->id() . ')',
       'revision' => TRUE,
     );
     $this->drupalPostForm('node/add/article', $edit, t('Save and publish'));
     $this->assertText($title);
-    $this->assertText(SafeMarkup::checkPlain($block_content));
+    $this->assertText(Html::escape($block_content));
+
+    // Check if the block content is not deleted since there is no composite
+    // relationship.
+    $node = $this->drupalGetNodeByTitle($edit['title[0][value]']);
+    $node = Node::load($node->id());
+    $node->delete();
+    $this->assertNotNull(BlockContent::load($block->id()));
   }
 
   /**
@@ -116,9 +118,9 @@ class EntityReferenceRevisionsAutocompleteTest extends WebTestBase {
    */
   function drupalGetBlockByInfo($info, $reset = FALSE) {
     if ($reset) {
-      \Drupal::entityManager()->getStorage('block_content')->resetCache();
+      \Drupal::entityTypeManager()->getStorage('block_content')->resetCache();
     }
-    $blocks = entity_load_multiple_by_properties('block_content', array('info' => $info));
+    $blocks = \Drupal::entityTypeManager()->getStorage('block_content')->loadByProperties(array('info' => $info));
     // Get the first block returned from the database.
     $returned_block = reset($blocks);
     return $returned_block;

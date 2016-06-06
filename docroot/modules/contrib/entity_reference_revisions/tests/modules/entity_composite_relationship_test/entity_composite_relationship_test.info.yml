@@ -1,12 +1,12 @@
-name: Entity Reference Revisions
+name: 'ERR Composite relationship test'
 type: module
-description: Adds a Entity Reference field type with revision support.
+description: 'Entity with parent type and ID.'
+package: Testing
 # core: 8.x
-package: Field types
 
-test_dependencies:
-  - diff
-
+dependencies:
+ - entity_reference_revisions
+ - entity_test
 # Information added by Drupal.org packaging script on 2016-05-31
 version: '8.x-1.0-rc7'
 core: '8.x'
