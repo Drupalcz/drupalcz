@@ -1,13 +1,8 @@
 <?php
-/**
- * @file
- * Contains Drupal\migrate_tools\Controller\MigrationGroupListBuilder.
- */
 
 namespace Drupal\migrate_tools\Controller;
 
 use Drupal\Core\Config\Entity\ConfigEntityListBuilder;
-use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Url;
 
@@ -47,8 +42,8 @@ class MigrationGroupListBuilder extends ConfigEntityListBuilder {
    *
    * @see Drupal\Core\Entity\EntityListController::render()
    */
-  public function buildRow(ConfigEntityInterface $entity) {
-    $row['label'] = $this->getLabel($entity);
+  public function buildRow(EntityInterface $entity) {
+    $row['label'] = $entity->label();
     $row['machine_name'] = $entity->id();
     $row['description'] = $entity->get('description');
     $row['source_type'] = $entity->get('source_type');
