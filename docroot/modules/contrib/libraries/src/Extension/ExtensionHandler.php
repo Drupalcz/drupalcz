@@ -1,16 +1,10 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\libraries\Extension\ExtensionHandler.
- */
-
 namespace Drupal\libraries\Extension;
 
 use Drupal\Core\Extension\Extension as CoreExtension;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Extension\ThemeHandlerInterface;
-
 
 /**
  * @todo
@@ -89,6 +83,4 @@ class ExtensionHandler implements ExtensionHandlerInterface {
     );
   }
 
-
 }
-

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\libraries\Extension\Core\ExtensionInterface.
- */
-
 namespace Drupal\libraries\Extension\Core;
 
 /**
@@ -74,4 +69,3 @@ interface ExtensionInterface extends \Serializable {
   public function load();
 
 }
-
