@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * @file
  * Class to define a Drupal service with common formatter methods.
@@ -10,8 +9,6 @@ namespace Drupal\juicebox;
 
 use Symfony\Component\HttpFoundation\RequestStack;
 use Drupal\Core\Path\CurrentPathStack;
-use Drupal\juicebox\JuiceboxFormatterInterface;
-use Drupal\juicebox\JuiceboxGalleryInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\Core\Routing\UrlGeneratorInterface;
@@ -21,21 +18,60 @@ use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\Unicode;
 use Drupal\file\FileInterface;
 
-
 /**
  * Class to define a Drupal service with common formatter methods.
  */
 class JuiceboxFormatter implements JuiceboxFormatterInterface {
 
-  // Injected properties.
+  /**
+   * A Drupal configuration factory service.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
   protected $configFactory;
+
+  /**
+   * A Drupal string translation service.
+   *
+   * @var \Drupal\Core\StringTranslation\TranslationInterface
+   */
   protected $stringTranslation;
+
+  /**
+   * A Drupal URL generator service.
+   *
+   * @var \Drupal\Core\Routing\UrlGeneratorInterface
+   */
   protected $urlGenerator;
+
+  /**
+   * A Drupal module manager service.
+   *
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
   protected $moduleManager;
+
+  /**
+   * A Drupal current path service.
+   *
+   * @var \Drupal\Core\Path\CurrentPathStack
+   */
   protected $current_path_stack;
+
+  /**
+   * A Symfony request object for the current request.
+   *
+   * @var \Symfony\Component\HttpFoundation\Request
+   */
   protected $request;
-  // Storage of library details as defined by Libraries API.
+
+  /**
+   * Storage of library details as defined by Libraries API.
+   *
+   * @var array
+   */
   static protected $library = array();
+
 
   /**
    * Constructor.

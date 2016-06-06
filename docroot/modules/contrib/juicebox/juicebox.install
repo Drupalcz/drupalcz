@@ -1,14 +1,9 @@
 <?php
 
-
 /**
  * @file
  * Install, update and uninstall functions for the Juicebox module.
  */
-
-
-use Drupal\juicebox\JuiceboxFormatter;
-
 
 /**
  * Implements hook_requirements().

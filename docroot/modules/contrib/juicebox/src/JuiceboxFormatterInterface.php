@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * @file
  * Interface definition for a Juicebox Formatter service.
@@ -8,9 +7,7 @@
 
 namespace Drupal\juicebox;
 
-use Drupal\juicebox\JuiceboxGalleryInterface;
 use Drupal\file\FileInterface;
-
 
 /**
  * Interface definition for a Juicebox Formatter service.
