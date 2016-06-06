@@ -2,24 +2,23 @@
 
 /**
  * @file
- * Contains \Drupal\pathauto\Tests\PathautoUnitTest.
+ * Contains \Drupal\Tests\pathauto\Kernel\PathautoKernelTest.
  */
 
-namespace Drupal\pathauto\Tests;
+namespace Drupal\Tests\pathauto\Kernel;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\Core\Plugin\Context\Context;
-use Drupal\Core\Plugin\Context\ContextDefinition;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\node\Entity\NodeType;
 use Drupal\pathauto\PathautoGeneratorInterface;
 use Drupal\pathauto\PathautoState;
-use Drupal\simpletest\KernelTestBase;
+use Drupal\pathauto\Tests\PathautoTestHelperTrait;
+use Drupal\KernelTests\KernelTestBase;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\Entity\Vocabulary;
 
@@ -28,7 +27,7 @@ use Drupal\taxonomy\Entity\Vocabulary;
  *
  * @group pathauto
  */
-class PathautoUnitTest extends KernelTestBase {
+class PathautoKernelTest extends KernelTestBase {
 
   use PathautoTestHelperTrait;
 
@@ -103,9 +102,7 @@ class PathautoUnitTest extends KernelTestBase {
       ]
     );
 
-    $new_definition = new ContextDefinition('language', 'Language');
-    $new_context = new Context($new_definition);
-    $pattern->addContext('node:langcode:language', $new_context);
+    $pattern->addRelationship('node:langcode:language');
     $pattern->save();
 
     $pattern = $this->createPattern('node', '/[node:title]', -1);
@@ -172,22 +169,23 @@ class PathautoUnitTest extends KernelTestBase {
    */
   public function testCleanString() {
 
-    $config = $this->config('pathauto.settings');
+    // Test with default settings defined in pathauto.settings.yml.
+    $this->installConfig(array('pathauto'));
+    \Drupal::service('pathauto.generator')->resetCaches();
 
     $tests = array();
-    $config->set('ignore_words', ', in, is,that, the  , this, with, ');
-    $config->set('max_component_length', 35);
-    $config->set('transliterate', TRUE);
-    $config->save();
-    \Drupal::service('pathauto.generator')->resetCaches();
 
     // Test the 'ignored words' removal.
     $tests['this'] = 'this';
     $tests['this with that'] = 'this-with-that';
     $tests['this thing with that thing'] = 'thing-thing';
 
-    // Test length truncation and duplicate separator removal.
-    $tests[' - Pathauto is the greatest - module ever in Drupal hiarticle - '] = 'pathauto-greatest-module-ever';
+    // Test 'ignored words' removal and duplicate separator removal.
+    $tests[' - Pathauto is the greatest - module ever - '] = 'pathauto-greatest-module-ever';
+
+    // Test length truncation and lowering of strings.
+    $long_string = $this->randomMachineName(120);
+    $tests[$long_string] = strtolower(substr($long_string, 0, 100));
 
     // Test that HTML tags are removed.
     $tests['This <span class="text">text</span> has <br /><a href="http://example.com"><strong>HTML tags</strong></a>.'] = 'text-has-html-tags';
@@ -459,6 +457,30 @@ class PathautoUnitTest extends KernelTestBase {
     // If it doesn't path alias result would be content/thequick-brownf-0
     $this->assertEntityAlias($node_1, '/content/thequick-brownfox');
     $this->assertEntityAlias($node_2, '/content/thequick-0');
+  }
+
+  /**
+   * Test if aliases are (not) generated with enabled/disabled patterns.
+   */
+  function testPatternStatus() {
+    // Create a node to get an alias for.
+    $title = 'Pattern enabled';
+    $alias = '/content/pattern-enabled';
+    $node1 = $this->drupalCreateNode(['title' => $title, 'type' => 'page']);
+    $this->assertEntityAlias($node1, $alias);
+
+    // Disable the pattern, save the node again and make sure the alias is still
+    // working.
+    $this->nodePattern->setStatus(FALSE)->save();
+
+    $node1->save();
+    $this->assertEntityAlias($node1, $alias);
+
+    // Create a new node with disabled pattern and make sure there is no new
+    // alias created.
+    $title = 'Pattern disabled';
+    $node2 = $this->drupalCreateNode(['title' => $title, 'type' => 'page']);
+    $this->assertNoEntityAlias($node2);
   }
 
   /**

@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Contains \Drupal\pathauto\Tests\PathautoTokenTest.
+ * Contains \Drupal\Tests\pathauto\Kernel\PathautoTokenTest.
  */
 
-namespace Drupal\pathauto\Tests;
+namespace Drupal\Tests\pathauto\Kernel;
 
 use Drupal\Core\Render\BubbleableMetadata;
-use Drupal\simpletest\KernelTestBase;
+use Drupal\KernelTests\KernelTestBase;
 
 /**
  * Tests tokens provided by Pathauto.
