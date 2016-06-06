@@ -1,9 +1,10 @@
 /**
  * @file
- *   CSS for the YouTube Field module.
+ * Responsive embed CSS for the YouTube Field module output.
+ *
+ * Added to the page when when a field's 'size' display setting is 'responsive'.
  */
 
-/* Takes effect when a field's 'size' display setting is 'responsive'. */
 .youtube-container--responsive {
   overflow: hidden;
   position: relative;
