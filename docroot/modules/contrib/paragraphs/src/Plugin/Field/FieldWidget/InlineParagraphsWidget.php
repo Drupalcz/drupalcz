@@ -9,13 +9,16 @@ namespace Drupal\paragraphs\Plugin\Field\FieldWidget;
 
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Component\Utility\Html;
-use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Core\Entity\Entity;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Field\FieldFilteredMarkup;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Render\Element;
 use Drupal\paragraphs;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 
@@ -37,15 +40,22 @@ use Symfony\Component\Validator\ConstraintViolationInterface;
 class InlineParagraphsWidget extends WidgetBase {
 
   /**
+   * Indicates whether the current widget instance is in translation.
+   *
+   * @var bool
+   */
+  private $isTranslating;
+
+  /**
    * {@inheritdoc}
    */
   public static function defaultSettings() {
     return array(
-      'title' => PARAGRAPHS_DEFAULT_TITLE,
-      'title_plural' => PARAGRAPHS_DEFAULT_TITLE_PLURAL,
-      'edit_mode' => PARAGRAPHS_DEFAULT_EDIT_MODE,
-      'add_mode' => PARAGRAPHS_DEFAULT_ADD_MODE,
-      'form_display_mode' => PARAGRAPHS_DEFAULT_FORM_DISPLAY_MODE,
+      'title' => t('Paragraph'),
+      'title_plural' => t('Paragraphs'),
+      'edit_mode' => 'open',
+      'add_mode' => 'dropdown',
+      'form_display_mode' => 'default',
     );
   }
 
@@ -160,6 +170,7 @@ class InlineParagraphsWidget extends WidgetBase {
     $parents = $element['#field_parents'];
 
     $paragraphs_entity = NULL;
+    $host = $items->getEntity();
     $widget_state = static::getWidgetState($parents, $field_name, $form_state);
 
     $entity_manager = \Drupal::entityManager();
@@ -208,17 +219,39 @@ class InlineParagraphsWidget extends WidgetBase {
     }
 
     if ($paragraphs_entity) {
-      // If target translation is not yet available, populate it with data from the original paragraph.
-      $target_langcode = $this->getCurrentLangcode($form_state, $items);
-      if ($paragraphs_entity->language()->getId() != $target_langcode && !$paragraphs_entity->hasTranslation($target_langcode)) {
-        $paragraphs_entity->addTranslation($target_langcode, $paragraphs_entity->toArray());
-      }
+      // Detect if we are translating.
+      $this->initIsTranslating($form_state, $host);
+      $langcode = $form_state->get('langcode');
 
-      // Initiate the paragraph with the correct translation.
-      if ($paragraphs_entity->hasTranslation($this->getCurrentLangcode($form_state, $items))) {
-        $paragraphs_entity = $paragraphs_entity->getTranslation($this->getCurrentLangcode($form_state, $items));
-      } else {
-        $paragraphs_entity = $paragraphs_entity->addTranslation($this->getCurrentLangcode($form_state, $items));
+      if (!$this->isTranslating) {
+        // Set the langcode if we are not translating.
+        if ($paragraphs_entity->get('langcode') != $langcode) {
+          // If a translation in the given language already exists, switch to
+          // that. If there is none yet, update the language.
+          if ($paragraphs_entity->hasTranslation($langcode)) {
+            $paragraphs_entity = $paragraphs_entity->getTranslation($langcode);
+          }
+          else {
+            $paragraphs_entity->set('langcode', $langcode);
+          }
+        }
+      }
+      else {
+        // Add translation if missing for the target language.
+        if (!$paragraphs_entity->hasTranslation($langcode)) {
+          // Get the selected translation of the paragraph entity.
+          $entity_langcode = $paragraphs_entity->language()->getId();
+          $source = $form_state->get(['content_translation', 'source']);
+          $source_langcode = $source ? $source->getId() : $entity_langcode;
+          $paragraphs_entity = $paragraphs_entity->getTranslation($source_langcode);
+          // Initialise the translation with source language values.
+          $paragraphs_entity->addTranslation($langcode, $paragraphs_entity->toArray());
+          $translation = $paragraphs_entity->getTranslation($langcode);
+          $manager = \Drupal::service('content_translation.manager');
+          $manager->getTranslationMetadata($translation)->setSource($paragraphs_entity->language()->getId());
+        }
+        // Switch the paragraph to the translation.
+        $paragraphs_entity = $paragraphs_entity->getTranslation($langcode);
       }
 
       $element_parents = $parents;
@@ -266,7 +299,7 @@ class InlineParagraphsWidget extends WidgetBase {
         );
 
         $element['top']['paragraph_type_title']['info'] = array(
-          '#markup' => t('@title type: %type', array('@title' => $this->getSetting('title'), '%type' => $bundle_info['label'])),
+          '#markup' => '<strong>' . $bundle_info['label'] . '</strong>',
         );
 
         $actions = array();
@@ -282,7 +315,6 @@ class InlineParagraphsWidget extends WidgetBase {
               '#name' => strtr($id_prefix, '-', '_') . '_collapse',
               '#weight' => 499,
               '#submit' => array(array(get_class($this), 'collapseItemSubmit')),
-              '#limit_validation_errors' => array(array_merge($parents, array($field_name, 'add_more'))),
               '#delta' => $delta,
               '#ajax' => array(
                 'callback' => array(get_class($this), 'itemAjax'),
@@ -296,7 +328,7 @@ class InlineParagraphsWidget extends WidgetBase {
           }
 
           // Hide the button when translating.
-          $button_access = $paragraphs_entity->access('delete') && $paragraphs_entity->language()->getId() == $paragraphs_entity->getUntranslated()->language()->getId();
+          $button_access = $paragraphs_entity->access('delete') && !$this->isTranslating;
           $links['remove_button'] = array(
             '#type' => 'submit',
             '#value' => t('Remove'),
@@ -511,6 +543,17 @@ class InlineParagraphsWidget extends WidgetBase {
 
       if ($item_mode == 'edit') {
         $display->buildForm($paragraphs_entity, $element['subform'], $form_state);
+        foreach (Element::children($element['subform']) as $field) {
+          if ($paragraphs_entity->hasField($field)) {
+            $translatable = $paragraphs_entity->{$field}->getFieldDefinition()->isTranslatable();
+            if ($translatable) {
+              $element['subform'][$field]['widget']['#after_build'][] = [
+                static::class,
+                'removeTranslatabilityClue'
+              ];
+            }
+          }
+        }
       }
       elseif ($item_mode == 'preview') {
         $element['subform'] = array();
@@ -554,36 +597,29 @@ class InlineParagraphsWidget extends WidgetBase {
     $target_type = $this->getFieldSetting('target_type');
     $bundles = $entity_manager->getBundleInfo($target_type);
 
+    if ($this->getSelectionHandlerSetting('target_bundles') !== NULL) {
+      $bundles = array_intersect_key($bundles, $this->getSelectionHandlerSetting('target_bundles'));
+    }
 
     // Support for the paragraphs reference type.
-    $dragdrop_settings = $this->getSelectionHandlerSetting('target_bundles_drag_drop');
-    if ($dragdrop_settings) {
-      $drag_drop_settings = $this->getSelectionHandlerSetting('target_bundles_drag_drop');
-      $enable_count = 0;
+    $drag_drop_settings = $this->getSelectionHandlerSetting('target_bundles_drag_drop');
+    if ($drag_drop_settings) {
       $max_weight = count($bundles);
 
-      // Check how much types are enabled as none enabled = all enabled.
-      foreach($drag_drop_settings as $bundle_info) {
-        if (isset($bundle_info['enabled']) && $bundle_info['enabled']) {
-          $enable_count++;
-        }
+      foreach ($drag_drop_settings as $bundle_info) {
         if (isset($bundle_info['weight']) && $bundle_info['weight'] && $bundle_info['weight'] > $max_weight) {
           $max_weight = $bundle_info['weight'];
         }
       }
 
-
       // Default weight for new items.
       $weight = $max_weight + 1;
       foreach ($bundles as $machine_name => $bundle) {
-
-        if ((isset($drag_drop_settings[$machine_name]['enabled']) && $drag_drop_settings[$machine_name]['enabled']) || $enable_count === 0) {
-          $return_bundles[$machine_name] = array(
-            'label' => $bundle['label'],
-            'weight' => isset($drag_drop_settings[$machine_name]['weight']) ? $drag_drop_settings[$machine_name]['weight'] : $weight,
-          );
-          $weight++;
-        }
+        $return_bundles[$machine_name] = array(
+          'label' => $bundle['label'],
+          'weight' => isset($drag_drop_settings[$machine_name]['weight']) ? $drag_drop_settings[$machine_name]['weight'] : $weight,
+        );
+        $weight++;
       }
     }
     // Support for other reference types.
@@ -709,40 +745,64 @@ class InlineParagraphsWidget extends WidgetBase {
         '#description' => $description,
         '#max_delta' => $max-1,
       );
-    } else {
-
-      // @todo: properize this.
-      $add_text = 'No @title_multiple have been added yet. Select a @title type and press the button below to add one.';
-      $element_text = '<label>' . $title . "</label>";
-      $element_text .= '<p><em>' . t($add_text, array('@title_multiple' => $this->getSetting('title_plural'), '@title' => $this->getSetting('title'))) . '</em></p>';
-      $element_text .= $description ? '<div class="description">' . $description . '</div>' : '';
-
-      $elements += array(
+    }
+    else {
+      $elements += [
         '#type' => 'container',
-        '#theme_wrappers' => array('container'),
+        '#theme_wrappers' => ['container'],
         '#field_name' => $field_name,
         '#cardinality' => $cardinality,
         '#cardinality_multiple' => TRUE,
         '#max_delta' => $max-1,
-        'text' => array(
-          '#markup' => $element_text,
-        ),
-      );
+        'title' => [
+          '#type' => 'html_tag',
+          '#tag' => 'strong',
+          '#value' => $title,
+        ],
+        'text' => [
+          '#type' => 'container',
+          'value' => [
+            '#markup' => $this->t('No @title added yet.', ['@title' => $this->getSetting('title')]),
+            '#prefix' => '<em>',
+            '#suffix' => '</em>',
+          ]
+        ],
+      ];
+
+      if ($description) {
+        $elements['description'] = [
+          '#type' => 'container',
+          'value' => ['#markup' => $description],
+          '#attributes' => ['class' => ['description']],
+        ];
+      }
     }
 
     // Add 'add more' button, if not working with a programmed form.
     if (($real_item_count < $cardinality || $cardinality == FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED) && !$form_state->isProgrammed()) {
       // Hide the button when translating.
-      $add_more_access = $this->getCurrentLangcode($form_state, $items) == $items->getEntity()->getUntranslated()->language()->getId();
       $elements['add_more'] = array(
         '#type' => 'container',
         '#theme_wrappers' => array('paragraphs_dropbutton_wrapper'),
-        '#access' => $add_more_access,
+        '#access' => !$this->isTranslating,
       );
 
       if (count($access_options)) {
-        if ($this->getSetting('add_mode') == 'button' || ($this->getSetting('add_mode') == 'dropdown' && count($access_options) === 1)) {
-
+        if ($this->getSetting('add_mode') == 'button' || $this->getSetting('add_mode') == 'dropdown') {
+          $drop_button = FALSE;
+          if (count($access_options) > 1 && $this->getSetting('add_mode') == 'dropdown') {
+            $drop_button = TRUE;
+            $elements['add_more']['#theme_wrappers'] = array('dropbutton_wrapper');
+            $elements['add_more']['prefix'] = array(
+              '#markup' => '<ul class="dropbutton">',
+              '#weight' => -999,
+            );
+            $elements['add_more']['suffix'] = array(
+              '#markup' => '</ul>',
+              '#weight' => 999,
+            );
+            $elements['add_more']['#suffix'] = $this->t(' to %type', array('%type' => $title));
+          }
           foreach ($access_options as $machine_name => $label) {
             $elements['add_more']['add_more_button_' . $machine_name] = array(
               '#type' => 'submit',
@@ -758,36 +818,11 @@ class InlineParagraphsWidget extends WidgetBase {
               ),
               '#bundle_machine_name' => $machine_name,
             );
+            if ($drop_button) {
+              $elements['add_more']['add_more_button_' . $machine_name]['#prefix'] = '<li>';
+              $elements['add_more']['add_more_button_' . $machine_name]['#suffix'] = '<li>';
+            }
           }
-        }
-        elseif($this->getSetting('add_mode') == 'dropdown') {
-          foreach ($access_options as $machine_name => $label) {
-            $elements['add_more']['add_more_button_' . $machine_name] = array(
-              '#type' => 'submit',
-              '#name' => strtr($id_prefix, '-', '_') . '_' . $machine_name . '_add_more',
-              '#value' => t('Add @type', array('@type' => $label)),
-              '#attributes' => array('class' => array('field-add-more-submit')),
-              '#limit_validation_errors' => array(array_merge($parents, array($field_name, 'add_more'))),
-              '#submit' => array(array(get_class($this), 'addMoreSubmit')),
-              '#ajax' => array(
-                'callback' => array(get_class($this), 'addMoreAjax'),
-                'wrapper' => $wrapper_id,
-                'effect' => 'fade',
-              ),
-              '#bundle_machine_name' => $machine_name,
-              '#prefix' => '<li>',
-              '#suffix' => '</li>',
-            );
-          }
-          $elements['add_more']['#theme_wrappers'] = array('dropbutton_wrapper', 'paragraphs_dropbutton_wrapper');
-          $elements['add_more']['prefix'] = array(
-            '#markup' => '<ul class="dropbutton">',
-            '#weight' => -999,
-          );
-          $elements['add_more']['suffix'] = array(
-            '#markup' => '</ul>',
-            '#weight' => 999,
-          );
         }
         else {
           $elements['add_more']['add_more_select'] = array(
@@ -816,6 +851,7 @@ class InlineParagraphsWidget extends WidgetBase {
               'effect' => 'fade',
             ),
           );
+          $elements['add_more']['add_more_button']['#suffix'] = $this->t(' to %type', array('%type' => $title));
         }
       }
       else {
@@ -878,7 +914,6 @@ class InlineParagraphsWidget extends WidgetBase {
 
     // Go one level up in the form, to the widgets container.
     $element = NestedArray::getValue($form, array_slice($button['#array_parents'], 0, -2));
-    $values = NestedArray::getValue($form_state->getValues(), array_slice($button['#array_parents'], 0, -3));
     $field_name = $element['#field_name'];
     $parents = $element['#field_parents'];
 
@@ -893,7 +928,7 @@ class InlineParagraphsWidget extends WidgetBase {
       $widget_state['selected_bundle'] = $button['#bundle_machine_name'];
     }
     else {
-      $widget_state['selected_bundle'] = $values['add_more']['add_more_select'];
+      $widget_state['selected_bundle'] = $element['add_more']['add_more_select']['#value'];
     }
 
     static::setWidgetState($parents, $field_name, $form_state, $widget_state);
@@ -1063,7 +1098,8 @@ class InlineParagraphsWidget extends WidgetBase {
       /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $display */
       $display = $widget_state['paragraphs'][$delta]['display'];
 
-      if ($widget_state['paragraphs'][$delta]['mode'] != 'remove' && $widget_state['paragraphs'][$delta]['mode'] != 'removed') {
+      if ($widget_state['paragraphs'][$delta]['mode'] == 'edit') {
+        // Extract the form values on submit for getting the current paragraph.
         $display->extractFormValues($entity, $element['subform'], $form_state);
         $display->validateFormValues($entity, $element['subform'], $form_state);
       }
@@ -1076,14 +1112,25 @@ class InlineParagraphsWidget extends WidgetBase {
    * {@inheritdoc}
    */
   public function massageFormValues(array $values, array $form, FormStateInterface $form_state) {
-    // Don't do entity saving when we have validation erors.
-    if (count($form_state->getErrors()) || !$form_state->isValidationComplete()) {
-      return $values;
-    }
-
+    $entity = $form_state->getFormObject()->getEntity();
     $field_name = $this->fieldDefinition->getName();
     $widget_state = static::getWidgetState($form['#parents'], $field_name, $form_state);
     $element = NestedArray::getValue($form_state->getCompleteForm(), $widget_state['array_parents']);
+
+    $new_revision = FALSE;
+    if ($entity instanceof RevisionableInterface) {
+      if ($entity->isNewRevision()) {
+        $new_revision = TRUE;
+      }
+      // Most of the time we don't know yet if the host entity is going to be
+      // saved as a new revision using RevisionableInterface::isNewRevision().
+      // Most entity types (at least nodes) however use a boolean property named
+      // "revision" to indicate whether a new revision should be saved. Use that
+      // property.
+      elseif ($entity->getEntityType()->hasKey('revision') && $form_state->getValue('revision')) {
+        $new_revision = TRUE;
+      }
+    }
 
     foreach ($values as $delta => &$item) {
       if (isset($widget_state['paragraphs'][$item['_original_delta']]['entity'])
@@ -1094,10 +1141,22 @@ class InlineParagraphsWidget extends WidgetBase {
         /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $display */
         $display =  $widget_state['paragraphs'][$item['_original_delta']]['display'];
         $display->extractFormValues($paragraphs_entity, $element[$item['_original_delta']]['subform'], $form_state);
-        $display->validateFormValues($paragraphs_entity, $element[$item['_original_delta']]['subform'], $form_state);
 
-        $paragraphs_entity->setNewRevision(TRUE);
-        $paragraphs_entity->save();
+        $paragraphs_entity->setNewRevision($new_revision);
+        // A content entity form saves without any rebuild. It needs to set the
+        // language to update it in case of language change.
+        if ($paragraphs_entity->get('langcode') != $form_state->get('langcode')) {
+          // If a translation in the given language already exists, switch to
+          // that. If there is none yet, update the language.
+          if ($paragraphs_entity->hasTranslation($form_state->get('langcode'))) {
+            $paragraphs_entity = $paragraphs_entity->getTranslation($form_state->get('langcode'));
+          }
+          else {
+            $paragraphs_entity->set('langcode', $form_state->get('langcode'));
+          }
+        }
+        $paragraphs_entity->setNeedsSave(TRUE);
+        $item['entity'] = $paragraphs_entity;
         $item['target_id'] = $paragraphs_entity->id();
         $item['target_revision_id'] = $paragraphs_entity->getRevisionId();
       }
@@ -1109,5 +1168,63 @@ class InlineParagraphsWidget extends WidgetBase {
       }
     }
     return $values;
+  }
+
+  /**
+   * Initializes the translation form state.
+   *
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   * @param \Drupal\Core\Entity\EntityInterface $host
+   */
+  protected function initIsTranslating(FormStateInterface $form_state, EntityInterface $host) {
+    if ($this->isTranslating != NULL) {
+      return;
+    }
+    $this->isTranslating = FALSE;
+
+    if (!empty($form_state->get('content_translation'))) {
+      // Adding a language through the ContentTranslationController.
+      $this->isTranslating = TRUE;
+    }
+    if ($host->hasTranslation($form_state->get('langcode')) && $host->getTranslation($form_state->get('langcode'))->get($host->getEntityType()->getKey('default_langcode'))->value == 0) {
+      // Editing a translation.
+      $this->isTranslating = TRUE;
+    }
+  }
+
+  /**
+   * After-build callback for removing the translatability clue from the widget.
+   *
+   * If the fields on the paragraph type are translatable,
+   * ContentTranslationHandler::addTranslatabilityClue()adds an
+   * "(all languages)" suffix to the widget title. That suffix is incorrect and
+   * is being removed by this method using a #after_build on the field widget.
+   *
+   * @param array $element
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *
+   * @return array
+   */
+  public static function removeTranslatabilityClue(array $element, FormStateInterface $form_state) {
+    // Widgets could have multiple elements with their own titles, so remove the
+    // suffix if it exists, do not recurse lower than this to avoid going into
+    // nested paragraphs or similar nested field types.
+    $suffix = ' <span class="translation-entity-all-languages">(' . t('all languages') . ')</span>';
+    if (isset($element['#title']) && strpos($element['#title'], $suffix)) {
+      $element['#title'] = str_replace($suffix, '', $element['#title']);
+    }
+    // Loop over all widget deltas.
+    foreach (Element::children($element) as $delta) {
+      if (isset($element[$delta]['#title']) && strpos($element[$delta]['#title'], $suffix)) {
+        $element[$delta]['#title'] = str_replace($suffix, '', $element[$delta]['#title']);
+      }
+      // Loop over all form elements within the current delta.
+      foreach (Element::children($element[$delta]) as $field) {
+        if (isset($element[$delta][$field]['#title']) && strpos($element[$delta][$field]['#title'], $suffix)) {
+          $element[$delta][$field]['#title'] = str_replace($suffix, '', $element[$delta][$field]['#title']);
+        }
+      }
+    }
+    return $element;
   }
 }

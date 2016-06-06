@@ -7,7 +7,6 @@
 
 namespace Drupal\paragraphs\Plugin\EntityReferenceSelection;
 
-use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Entity\Plugin\EntityReferenceSelection\SelectionBase;
 use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
@@ -40,10 +39,6 @@ class ParagraphSelection extends SelectionBase {
     $selection_handler_settings += array(
       'target_bundles' => array(),
       'target_bundles_drag_drop' => array(),
-      'add_mode' => PARAGRAPHS_DEFAULT_ADD_MODE,
-      'edit_mode' => PARAGRAPHS_DEFAULT_EDIT_MODE,
-      'title' => PARAGRAPHS_DEFAULT_TITLE,
-      'title_plural' => PARAGRAPHS_DEFAULT_TITLE_PLURAL,
     );
 
     $bundle_options = array();
@@ -124,10 +119,10 @@ class ParagraphSelection extends SelectionBase {
     }
 
     if (!count($bundle_options)) {
-      $form['allowed_bundles_explain'] = array(
+      $form['allowed_bundles_explain'] = [
         '#type' => 'markup',
-        '#markup' => t('You did not add any paragraph types yet, click !here to add one.', array('!here' => \Drupal::l(t('here'), new Url('paragraphs.type_add', array()))))
-      );
+        '#markup' => t('You did not add any paragraph types yet, click <a href=":here">here</a> to add one.', [':here' => Url::fromRoute('paragraphs.type_add')->toString()]),
+      ];
     }
 
     return $form;
@@ -156,9 +151,7 @@ class ParagraphSelection extends SelectionBase {
 
       // All disabled = all enabled.
       if ($enabled === 0) {
-        foreach ($element_values as $machine_name => $bundle_info) {
-          $bundle_options[$machine_name] = $machine_name;
-        }
+        $bundle_options = NULL;
       }
     }
 
