@@ -14,7 +14,7 @@ use Drupal\ctools\TypedDataResolver;
 use Drupal\user\SharedTempStoreFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-abstract class RelationshipDelete extends ConfirmFormBase {
+abstract class ResolverRelationshipDelete extends ConfirmFormBase {
 
   /**
    * @var \Drupal\user\SharedTempStoreFactory
@@ -63,7 +63,7 @@ abstract class RelationshipDelete extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'ctools_relationship_delete';
+    return 'ctools_resolver_relationship_delete';
   }
 
   /**

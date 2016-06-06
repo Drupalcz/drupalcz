@@ -5,7 +5,7 @@
  * Contains \Drupal\KernelTests\ctools\TypedDataResolverTest.
  */
 
-namespace Drupal\KernelTests\ctools;
+namespace Drupal\Tests\ctools\Kernel;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Plugin\Context\Context;
