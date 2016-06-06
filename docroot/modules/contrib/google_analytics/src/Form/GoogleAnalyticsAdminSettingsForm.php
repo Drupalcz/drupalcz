@@ -38,25 +38,25 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
 
     $form['general'] = [
       '#type' => 'details',
-      '#title' => t('General settings'),
+      '#title' => $this->t('General settings'),
       '#open' => TRUE,
     ];
 
     $form['general']['google_analytics_account'] = [
       '#default_value' => $config->get('account'),
-      '#description' => t('This ID is unique to each site you want to track separately, and is in the form of UA-xxxxxxx-yy. To get a Web Property ID, <a href=":analytics">register your site with Google Analytics</a>, or if you already have registered your site, go to your Google Analytics Settings page to see the ID next to every site profile. <a href=":webpropertyid">Find more information in the documentation</a>.', [':analytics' => 'http://www.google.com/analytics/', ':webpropertyid' => Url::fromUri('https://developers.google.com/analytics/resources/concepts/gaConceptsAccounts', ['fragment' => 'webProperty'])->toString()]),
+      '#description' => $this->t('This ID is unique to each site you want to track separately, and is in the form of UA-xxxxxxx-yy. To get a Web Property ID, <a href=":analytics">register your site with Google Analytics</a>, or if you already have registered your site, go to your Google Analytics Settings page to see the ID next to every site profile. <a href=":webpropertyid">Find more information in the documentation</a>.', [':analytics' => 'http://www.google.com/analytics/', ':webpropertyid' => Url::fromUri('https://developers.google.com/analytics/resources/concepts/gaConceptsAccounts', ['fragment' => 'webProperty'])->toString()]),
       '#maxlength' => 20,
       '#placeholder' => 'UA-',
       '#required' => TRUE,
       '#size' => 15,
-      '#title' => t('Web Property ID'),
+      '#title' => $this->t('Web Property ID'),
       '#type' => 'textfield',
     ];
 
     // Visibility settings.
     $form['tracking_scope'] = [
       '#type' => 'vertical_tabs',
-      '#title' => t('Tracking scope'),
+      '#title' => $this->t('Tracking scope'),
       '#attached' => [
         'library' => [
           'google_analytics/google_analytics.admin',
@@ -66,7 +66,7 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
 
     $form['tracking']['domain_tracking'] = [
       '#type' => 'details',
-      '#title' => t('Domains'),
+      '#title' => $this->t('Domains'),
       '#group' => 'tracking_scope',
     ];
 
@@ -97,28 +97,28 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
 
     $form['tracking']['domain_tracking']['google_analytics_domain_mode'] = [
       '#type' => 'radios',
-      '#title' => t('What are you tracking?'),
+      '#title' => $this->t('What are you tracking?'),
       '#options' => [
-        0 => t('A single domain (default)'),
-        1 => t('One domain with multiple subdomains'),
-        2 => t('Multiple top-level domains'),
+        0 => $this->t('A single domain (default)'),
+        1 => $this->t('One domain with multiple subdomains'),
+        2 => $this->t('Multiple top-level domains'),
       ],
       0 => [
-        '#description' => t('Domain: @domain', ['@domain' => $_SERVER['HTTP_HOST']]),
+        '#description' => $this->t('Domain: @domain', ['@domain' => $_SERVER['HTTP_HOST']]),
       ],
       1 => [
-        '#description' => t('Examples: @domains', ['@domains' => implode(', ', $multiple_sub_domains)]),
+        '#description' => $this->t('Examples: @domains', ['@domains' => implode(', ', $multiple_sub_domains)]),
       ],
       2 => [
-        '#description' => t('Examples: @domains', ['@domains' => implode(', ', $multiple_toplevel_domains)]),
+        '#description' => $this->t('Examples: @domains', ['@domains' => implode(', ', $multiple_toplevel_domains)]),
       ],
       '#default_value' => $config->get('domain_mode'),
     ];
     $form['tracking']['domain_tracking']['google_analytics_cross_domains'] = [
-      '#title' => t('List of top-level domains'),
+      '#title' => $this->t('List of top-level domains'),
       '#type' => 'textarea',
       '#default_value' => $config->get('cross_domains'),
-      '#description' => t('If you selected "Multiple top-level domains" above, enter all related top-level domains. Add one domain per line. By default, the data in your reports only includes the path and name of the page, and not the domain name. For more information see section <em>Show separate domain names</em> in <a href=":url">Tracking Multiple Domains</a>.', [':url' => 'https://support.google.com/analytics/answer/1034342']),
+      '#description' => $this->t('If you selected "Multiple top-level domains" above, enter all related top-level domains. Add one domain per line. By default, the data in your reports only includes the path and name of the page, and not the domain name. For more information see section <em>Show separate domain names</em> in <a href=":url">Tracking Multiple Domains</a>.', [':url' => 'https://support.google.com/analytics/answer/1034342']),
       '#states' => [
         'enabled' => [
           ':input[name="google_analytics_domain_mode"]' => ['value' => '2'],
@@ -136,7 +136,7 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
 
     $form['tracking']['page_visibility_settings'] = [
       '#type' => 'details',
-      '#title' => t('Pages'),
+      '#title' => $this->t('Pages'),
       '#group' => 'tracking_scope',
     ];
 
@@ -162,7 +162,7 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
       }
       $form['tracking']['page_visibility_settings']['google_analytics_visibility_request_path_mode'] = [
         '#type' => 'radios',
-        '#title' => t('Add tracking to specific pages'),
+        '#title' => $this->t('Add tracking to specific pages'),
         '#options' => $options,
         '#default_value' => $config->get('visibility.request_path_mode'),
       ];
@@ -181,13 +181,13 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
 
     $form['tracking']['role_visibility_settings'] = [
       '#type' => 'details',
-      '#title' => t('Roles'),
+      '#title' => $this->t('Roles'),
       '#group' => 'tracking_scope',
     ];
 
     $form['tracking']['role_visibility_settings']['google_analytics_visibility_user_role_mode'] = [
       '#type' => 'radios',
-      '#title' => t('Add tracking for specific roles'),
+      '#title' => $this->t('Add tracking for specific roles'),
       '#options' => [
         t('Add to the selected roles only'),
         t('Add to every role except the selected ones'),
@@ -196,10 +196,10 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
     ];
     $form['tracking']['role_visibility_settings']['google_analytics_visibility_user_role_roles'] = [
       '#type' => 'checkboxes',
-      '#title' => t('Roles'),
+      '#title' => $this->t('Roles'),
       '#default_value' => !empty($visibility_user_role_roles) ? $visibility_user_role_roles : [],
       '#options' => array_map('\Drupal\Component\Utility\Html::escape', user_role_names()),
-      '#description' => t('If none of the roles are selected, all users will be tracked. If a user has any of the roles checked, that user will be tracked (or excluded, depending on the setting above).'),
+      '#description' => $this->t('If none of the roles are selected, all users will be tracked. If a user has any of the roles checked, that user will be tracked (or excluded, depending on the setting above).'),
     ];
 
     // Standard tracking configurations.
@@ -207,13 +207,13 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
 
     $form['tracking']['user_visibility_settings'] = [
       '#type' => 'details',
-      '#title' => t('Users'),
+      '#title' => $this->t('Users'),
       '#group' => 'tracking_scope',
     ];
-    $t_permission = ['%permission' => t('opt-in or out of tracking')];
+    $t_permission = ['%permission' => $this->t('opt-in or out of tracking')];
     $form['tracking']['user_visibility_settings']['google_analytics_visibility_user_account_mode'] = [
       '#type' => 'radios',
-      '#title' => t('Allow users to customize tracking on their account page'),
+      '#title' => $this->t('Allow users to customize tracking on their account page'),
       '#options' => [
         t('No customization allowed'),
         t('Tracking on by default, users with %permission permission can opt out', $t_permission),
@@ -223,38 +223,38 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
     ];
     $form['tracking']['user_visibility_settings']['google_analytics_trackuserid'] = [
       '#type' => 'checkbox',
-      '#title' => t('Track User ID'),
+      '#title' => $this->t('Track User ID'),
       '#default_value' => $config->get('track.userid'),
-      '#description' => t('User ID enables the analysis of groups of sessions, across devices, using a unique, persistent, and non-personally identifiable ID string representing a user. <a href=":url">Learn more about the benefits of using User ID</a>.', [':url' => 'https://support.google.com/analytics/answer/3123663']),
+      '#description' => $this->t('User ID enables the analysis of groups of sessions, across devices, using a unique, persistent, and non-personally identifiable ID string representing a user. <a href=":url">Learn more about the benefits of using User ID</a>.', [':url' => 'https://support.google.com/analytics/answer/3123663']),
     ];
 
     // Link specific configurations.
     $form['tracking']['linktracking'] = [
       '#type' => 'details',
-      '#title' => t('Links and downloads'),
+      '#title' => $this->t('Links and downloads'),
       '#group' => 'tracking_scope',
     ];
     $form['tracking']['linktracking']['google_analytics_trackoutbound'] = [
       '#type' => 'checkbox',
-      '#title' => t('Track clicks on outbound links'),
+      '#title' => $this->t('Track clicks on outbound links'),
       '#default_value' => $config->get('track.outbound'),
     ];
     $form['tracking']['linktracking']['google_analytics_trackmailto'] = [
       '#type' => 'checkbox',
-      '#title' => t('Track clicks on mailto links'),
+      '#title' => $this->t('Track clicks on mailto links'),
       '#default_value' => $config->get('track.mailto'),
     ];
     $form['tracking']['linktracking']['google_analytics_trackfiles'] = [
       '#type' => 'checkbox',
-      '#title' => t('Track downloads (clicks on file links) for the following extensions'),
+      '#title' => $this->t('Track downloads (clicks on file links) for the following extensions'),
       '#default_value' => $config->get('track.files'),
     ];
     $form['tracking']['linktracking']['google_analytics_trackfiles_extensions'] = [
-      '#title' => t('List of download file extensions'),
+      '#title' => $this->t('List of download file extensions'),
       '#title_display' => 'invisible',
       '#type' => 'textfield',
       '#default_value' => $config->get('track.files_extensions'),
-      '#description' => t('A file extension list separated by the | character that will be tracked as download when clicked. Regular expressions are supported. For example: @extensions', ['@extensions' => GOOGLE_ANALYTICS_TRACKFILES_EXTENSIONS]),
+      '#description' => $this->t('A file extension list separated by the | character that will be tracked as download when clicked. Regular expressions are supported. For example: @extensions', ['@extensions' => GOOGLE_ANALYTICS_TRACKFILES_EXTENSIONS]),
       '#maxlength' => 500,
       '#states' => [
         'enabled' => [
@@ -273,47 +273,47 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
 
     $form['tracking']['linktracking']['google_analytics_trackcolorbox'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Track content in colorbox modal dialogs'),
-      '#description' => t('Enable to track the content shown in colorbox modal windows.') . $colorbox_dependencies,
+      '#title' => $this->t('Track content in colorbox modal dialogs'),
+      '#description' => $this->t('Enable to track the content shown in colorbox modal windows.') . $colorbox_dependencies,
       '#default_value' => $config->get('track.colorbox'),
       '#disabled' => (\Drupal::moduleHandler()->moduleExists('colorbox') ? FALSE : TRUE),
     );
 
     $form['tracking']['linktracking']['google_analytics_tracklinkid'] = [
       '#type' => 'checkbox',
-      '#title' => t('Track enhanced link attribution'),
+      '#title' => $this->t('Track enhanced link attribution'),
       '#default_value' => $config->get('track.linkid'),
-      '#description' => t('Enhanced Link Attribution improves the accuracy of your In-Page Analytics report by automatically differentiating between multiple links to the same URL on a single page by using link element IDs. <a href=":url">Enable enhanced link attribution</a> in the Admin UI of your Google Analytics account.', [':url' => 'https://support.google.com/analytics/answer/2558867']),
+      '#description' => $this->t('Enhanced Link Attribution improves the accuracy of your In-Page Analytics report by automatically differentiating between multiple links to the same URL on a single page by using link element IDs. <a href=":url">Enable enhanced link attribution</a> in the Admin UI of your Google Analytics account.', [':url' => 'https://support.google.com/analytics/answer/2558867']),
     ];
     $form['tracking']['linktracking']['google_analytics_trackurlfragments'] = [
       '#type' => 'checkbox',
-      '#title' => t('Track changing URL fragments as pageviews'),
+      '#title' => $this->t('Track changing URL fragments as pageviews'),
       '#default_value' => $config->get('track.urlfragments'),
-      '#description' => t('By default, the URL reported to Google Analytics will not include the "fragment identifier" (i.e. the portion of the URL beginning with a hash sign), and hash changes by themselves will not cause new pageviews to be reported. Checking this box will cause hash changes to be reported as pageviews (in modern browsers) and all pageview URLs to include the fragment where applicable.'),
+      '#description' => $this->t('By default, the URL reported to Google Analytics will not include the "fragment identifier" (i.e. the portion of the URL beginning with a hash sign), and hash changes by themselves will not cause new pageviews to be reported. Checking this box will cause hash changes to be reported as pageviews (in modern browsers) and all pageview URLs to include the fragment where applicable.'),
     ];
 
     // Message specific configurations.
     $form['tracking']['messagetracking'] = [
       '#type' => 'details',
-      '#title' => t('Messages'),
+      '#title' => $this->t('Messages'),
       '#group' => 'tracking_scope',
     ];
     $track_messages = $config->get('track.messages');
     $form['tracking']['messagetracking']['google_analytics_trackmessages'] = [
       '#type' => 'checkboxes',
-      '#title' => t('Track messages of type'),
+      '#title' => $this->t('Track messages of type'),
       '#default_value' => !empty($track_messages) ? $track_messages : [],
-      '#description' => t('This will track the selected message types shown to users. Tracking of form validation errors may help you identifying usability issues in your site. For each visit (user session), a maximum of approximately 500 combined GATC requests (both events and page views) can be tracked. Every message is tracked as one individual event. Note that - as the number of events in a session approaches the limit - additional events might not be tracked. Messages from excluded pages cannot tracked.'),
+      '#description' => $this->t('This will track the selected message types shown to users. Tracking of form validation errors may help you identifying usability issues in your site. For each visit (user session), a maximum of approximately 500 combined GATC requests (both events and page views) can be tracked. Every message is tracked as one individual event. Note that - as the number of events in a session approaches the limit - additional events might not be tracked. Messages from excluded pages cannot tracked.'),
       '#options' => [
-        'status' => t('Status message'),
-        'warning' => t('Warning message'),
-        'error' => t('Error message'),
+        'status' => $this->t('Status message'),
+        'warning' => $this->t('Warning message'),
+        'error' => $this->t('Error message'),
       ],
     ];
 
     $form['tracking']['search_and_advertising'] = [
       '#type' => 'details',
-      '#title' => t('Search and Advertising'),
+      '#title' => $this->t('Search and Advertising'),
       '#group' => 'tracking_scope',
     ];
 
@@ -323,41 +323,41 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
 
     $form['tracking']['search_and_advertising']['google_analytics_site_search'] = [
       '#type' => 'checkbox',
-      '#title' => t('Track internal search'),
-      '#description' => t('If checked, internal search keywords are tracked. You must configure your Google account to use the internal query parameter <strong>search</strong>. For more information see <a href=":url">Setting Up Site Search for a Profile</a>.', [':url' => 'https://support.google.com/analytics/answer/1012264']) . $site_search_dependencies,
+      '#title' => $this->t('Track internal search'),
+      '#description' => $this->t('If checked, internal search keywords are tracked. You must configure your Google account to use the internal query parameter <strong>search</strong>. For more information see <a href=":url">Setting Up Site Search for a Profile</a>.', [':url' => 'https://support.google.com/analytics/answer/1012264']) . $site_search_dependencies,
       '#default_value' => $config->get('track.site_search'),
       '#disabled' => (\Drupal::moduleHandler()->moduleExists('search') ? FALSE : TRUE),
     ];
     $form['tracking']['search_and_advertising']['google_analytics_trackadsense'] = [
        '#type' => 'checkbox',
-       '#title' => t('Track AdSense ads'),
-       '#description' => t('If checked, your AdSense ads will be tracked in your Google Analytics account.'),
+       '#title' => $this->t('Track AdSense ads'),
+       '#description' => $this->t('If checked, your AdSense ads will be tracked in your Google Analytics account.'),
        '#default_value' => $config->get('track.adsense'),
     ];
     $form['tracking']['search_and_advertising']['google_analytics_trackdisplayfeatures'] = [
       '#type' => 'checkbox',
-      '#title' => t('Track display features'),
-      '#description' => t('The display features plugin can be used to enable Display Advertising Features in Google Analytics, such as Remarketing, Demographics and Interest Reporting, and more. <a href=":displayfeatures">Learn more about Display Advertising Features in Google Analytics</a>. If you choose this option you will need to <a href=":privacy">update your privacy policy</a>.', [':displayfeatures' => 'https://support.google.com/analytics/answer/3450482', ':privacy' => 'https://support.google.com/analytics/answer/2700409']),
+      '#title' => $this->t('Track display features'),
+      '#description' => $this->t('The display features plugin can be used to enable Display Advertising Features in Google Analytics, such as Remarketing, Demographics and Interest Reporting, and more. <a href=":displayfeatures">Learn more about Display Advertising Features in Google Analytics</a>. If you choose this option you will need to <a href=":privacy">update your privacy policy</a>.', [':displayfeatures' => 'https://support.google.com/analytics/answer/3450482', ':privacy' => 'https://support.google.com/analytics/answer/2700409']),
       '#default_value' => $config->get('track.displayfeatures'),
     ];
 
     // Privacy specific configurations.
     $form['tracking']['privacy'] = [
       '#type' => 'details',
-      '#title' => t('Privacy'),
+      '#title' => $this->t('Privacy'),
       '#group' => 'tracking_scope',
     ];
     $form['tracking']['privacy']['google_analytics_tracker_anonymizeip'] = [
       '#type' => 'checkbox',
-      '#title' => t('Anonymize visitors IP address'),
-      '#description' => t('Tell Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage. Note that this will slightly reduce the accuracy of geographic reporting. In some countries it is not allowed to collect personally identifying information for privacy reasons and this setting may help you to comply with the local laws.'),
+      '#title' => $this->t('Anonymize visitors IP address'),
+      '#description' => $this->t('Tell Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage. Note that this will slightly reduce the accuracy of geographic reporting. In some countries it is not allowed to collect personally identifying information for privacy reasons and this setting may help you to comply with the local laws.'),
       '#default_value' => $config->get('privacy.anonymizeip'),
     ];
 
     // Custom Dimensions.
     $form['google_analytics_custom_dimension'] = [
-      '#description' => t('You can set values for Google Analytics <a href=":custom_var_documentation">Custom Dimensions</a> here. You must have already configured your custom dimensions in the <a href=":setup_documentation">Google Analytics Management Interface</a>. You may use tokens. Global and user tokens are always available; on node pages, node tokens are also available. A dimension <em>value</em> is allowed to have a maximum length of 150 bytes. Expect longer values to get trimmed.', [':custom_var_documentation' => 'https://developers.google.com/analytics/devguides/collection/analyticsjs/custom-dims-mets', ':setup_documentation' => 'https://support.google.com/analytics/answer/2709829']),
-      '#title' => t('Custom dimensions'),
+      '#description' => $this->t('You can set values for Google Analytics <a href=":custom_var_documentation">Custom Dimensions</a> here. You must have already configured your custom dimensions in the <a href=":setup_documentation">Google Analytics Management Interface</a>. You may use tokens. Global and user tokens are always available; on node pages, node tokens are also available. A dimension <em>value</em> is allowed to have a maximum length of 150 bytes. Expect longer values to get trimmed.', [':custom_var_documentation' => 'https://developers.google.com/analytics/devguides/collection/analyticsjs/custom-dims-mets', ':setup_documentation' => 'https://support.google.com/analytics/answer/2709829']),
+      '#title' => $this->t('Custom dimensions'),
       '#tree' => TRUE,
       '#type' => 'details',
     ];
@@ -365,8 +365,8 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
     $form['google_analytics_custom_dimension']['indexes'] = [
       '#type' => 'table',
       '#header' => [
-        ['data' => t('Index')],
-        ['data' => t('Value')],
+        ['data' => $this->t('Index')],
+        ['data' => $this->t('Value')],
       ],
     ];
 
@@ -376,18 +376,18 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
     for ($i = 1; $i <= 20; $i++) {
       $form['google_analytics_custom_dimension']['indexes'][$i]['index'] = [
         '#default_value' => $i,
-        '#description' => t('Index number'),
+        '#description' => $this->t('Index number'),
         '#disabled' => TRUE,
-        '#size' => 1,
-        '#title' => t('Custom dimension index #@index', ['@index' => $i]),
+        '#size' => 2,
+        '#title' => $this->t('Custom dimension index #@index', ['@index' => $i]),
         '#title_display' => 'invisible',
         '#type' => 'textfield',
       ];
       $form['google_analytics_custom_dimension']['indexes'][$i]['value'] = [
         '#default_value' => isset($google_analytics_custom_dimension[$i]['value']) ? $google_analytics_custom_dimension[$i]['value'] : '',
-        '#description' => t('The custom dimension value.'),
+        '#description' => $this->t('The custom dimension value.'),
         '#maxlength' => 255,
-        '#title' => t('Custom dimension value #@index', ['@index' => $i]),
+        '#title' => $this->t('Custom dimension value #@index', ['@index' => $i]),
         '#title_display' => 'invisible',
         '#type' => 'textfield',
         '#element_validate' => [[get_class($this), 'tokenElementValidate']],
@@ -400,20 +400,19 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
 
     $form['google_analytics_custom_dimension']['google_analytics_description'] = [
       '#type' => 'item',
-      '#description' => t('You can supplement Google Analytics\' basic IP address tracking of visitors by segmenting users based on custom dimensions. Section 7 of the <a href=":ga_tos">Google Analytics terms of service</a> requires that You will not (and will not allow any third party to) use the Service to track, collect or upload any data that personally identifies an individual (such as a name, userid, email address or billing information), or other data which can be reasonably linked to such information by Google. You will have and abide by an appropriate Privacy Policy and will comply with all applicable laws and regulations relating to the collection of information from Visitors. You must post a Privacy Policy and that Privacy Policy must provide notice of Your use of cookies that are used to collect traffic data, and You must not circumvent any privacy features (e.g., an opt-out) that are part of the Service.', [':ga_tos' => 'http://www.google.com/analytics/terms/gb.html']),
+      '#description' => $this->t('You can supplement Google Analytics\' basic IP address tracking of visitors by segmenting users based on custom dimensions. Section 7 of the <a href=":ga_tos">Google Analytics terms of service</a> requires that You will not (and will not allow any third party to) use the Service to track, collect or upload any data that personally identifies an individual (such as a name, userid, email address or billing information), or other data which can be reasonably linked to such information by Google. You will have and abide by an appropriate Privacy Policy and will comply with all applicable laws and regulations relating to the collection of information from Visitors. You must post a Privacy Policy and that Privacy Policy must provide notice of Your use of cookies that are used to collect traffic data, and You must not circumvent any privacy features (e.g., an opt-out) that are part of the Service.', [':ga_tos' => 'http://www.google.com/analytics/terms/gb.html']),
     ];
     if (\Drupal::moduleHandler()->moduleExists('token')) {
       $form['google_analytics_custom_dimension']['google_analytics_token_tree'] = [
-        '#theme' => 'token_tree',
+        '#theme' => 'token_tree_link',
         '#token_types' => ['node'],
-        '#dialog' => TRUE,
       ];
     }
 
     // Custom Metrics.
     $form['google_analytics_custom_metric'] = [
-      '#description' => t('You can add Google Analytics <a href=":custom_var_documentation">Custom Metrics</a> here. You must have already configured your custom metrics in the <a href=":setup_documentation">Google Analytics Management Interface</a>. You may use tokens. Global and user tokens are always available; on node pages, node tokens are also available.', [':custom_var_documentation' => 'https://developers.google.com/analytics/devguides/collection/analyticsjs/custom-dims-mets', ':setup_documentation' => 'https://support.google.com/analytics/answer/2709829']),
-      '#title' => t('Custom metrics'),
+      '#description' => $this->t('You can add Google Analytics <a href=":custom_var_documentation">Custom Metrics</a> here. You must have already configured your custom metrics in the <a href=":setup_documentation">Google Analytics Management Interface</a>. You may use tokens. Global and user tokens are always available; on node pages, node tokens are also available.', [':custom_var_documentation' => 'https://developers.google.com/analytics/devguides/collection/analyticsjs/custom-dims-mets', ':setup_documentation' => 'https://support.google.com/analytics/answer/2709829']),
+      '#title' => $this->t('Custom metrics'),
       '#tree' => TRUE,
       '#type' => 'details',
     ];
@@ -421,8 +420,8 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
     $form['google_analytics_custom_metric']['indexes'] = [
       '#type' => 'table',
       '#header' => [
-        ['data' => t('Index')],
-        ['data' => t('Value')],
+        ['data' => $this->t('Index')],
+        ['data' => $this->t('Value')],
       ],
     ];
 
@@ -432,18 +431,18 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
     for ($i = 1; $i <= 20; $i++) {
       $form['google_analytics_custom_metric']['indexes'][$i]['index'] = [
         '#default_value' => $i,
-        '#description' => t('Index number'),
+        '#description' => $this->t('Index number'),
         '#disabled' => TRUE,
-        '#size' => 1,
-        '#title' => t('Custom metric index #@index', ['@index' => $i]),
+        '#size' => 2,
+        '#title' => $this->t('Custom metric index #@index', ['@index' => $i]),
         '#title_display' => 'invisible',
         '#type' => 'textfield',
       ];
       $form['google_analytics_custom_metric']['indexes'][$i]['value'] = [
         '#default_value' => isset($google_analytics_custom_metric[$i]['value']) ? $google_analytics_custom_metric[$i]['value'] : '',
-        '#description' => t('The custom metric value.'),
+        '#description' => $this->t('The custom metric value.'),
         '#maxlength' => 255,
-        '#title' => t('Custom metric value #@index', ['@index' => $i]),
+        '#title' => $this->t('Custom metric value #@index', ['@index' => $i]),
         '#title_display' => 'invisible',
         '#type' => 'textfield',
         '#element_validate' => [[get_class($this), 'tokenElementValidate']],
@@ -456,27 +455,26 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
 
     $form['google_analytics_custom_metric']['google_analytics_description'] = [
       '#type' => 'item',
-      '#description' => t('You can supplement Google Analytics\' basic IP address tracking of visitors by segmenting users based on custom metrics. Section 7 of the <a href=":ga_tos">Google Analytics terms of service</a> requires that You will not (and will not allow any third party to) use the Service to track, collect or upload any data that personally identifies an individual (such as a name, userid, email address or billing information), or other data which can be reasonably linked to such information by Google. You will have and abide by an appropriate Privacy Policy and will comply with all applicable laws and regulations relating to the collection of information from Visitors. You must post a Privacy Policy and that Privacy Policy must provide notice of Your use of cookies that are used to collect traffic data, and You must not circumvent any privacy features (e.g., an opt-out) that are part of the Service.', [':ga_tos' => 'http://www.google.com/analytics/terms/gb.html']),
+      '#description' => $this->t('You can supplement Google Analytics\' basic IP address tracking of visitors by segmenting users based on custom metrics. Section 7 of the <a href=":ga_tos">Google Analytics terms of service</a> requires that You will not (and will not allow any third party to) use the Service to track, collect or upload any data that personally identifies an individual (such as a name, userid, email address or billing information), or other data which can be reasonably linked to such information by Google. You will have and abide by an appropriate Privacy Policy and will comply with all applicable laws and regulations relating to the collection of information from Visitors. You must post a Privacy Policy and that Privacy Policy must provide notice of Your use of cookies that are used to collect traffic data, and You must not circumvent any privacy features (e.g., an opt-out) that are part of the Service.', [':ga_tos' => 'http://www.google.com/analytics/terms/gb.html']),
     ];
     if (\Drupal::moduleHandler()->moduleExists('token')) {
       $form['google_analytics_custom_metric']['google_analytics_token_tree'] = [
-        '#theme' => 'token_tree',
+        '#theme' => 'token_tree_link',
         '#token_types' => ['node'],
-        '#dialog' => TRUE,
       ];
     }
 
     // Advanced feature configurations.
     $form['advanced'] = [
       '#type' => 'details',
-      '#title' => t('Advanced settings'),
+      '#title' => $this->t('Advanced settings'),
       '#open' => FALSE,
     ];
 
     $form['advanced']['google_analytics_cache'] = [
       '#type' => 'checkbox',
-      '#title' => t('Locally cache tracking code file'),
-      '#description' => t("If checked, the tracking code file is retrieved from Google Analytics and cached locally. It is updated daily from Google's servers to ensure updates to tracking code are reflected in the local copy. Do not activate this until after Google Analytics has confirmed that site tracking is working!"),
+      '#title' => $this->t('Locally cache tracking code file'),
+      '#description' => $this->t("If checked, the tracking code file is retrieved from Google Analytics and cached locally. It is updated daily from Google's servers to ensure updates to tracking code are reflected in the local copy. Do not activate this until after Google Analytics has confirmed that site tracking is working!"),
       '#default_value' => $config->get('cache'),
     ];
 
@@ -484,45 +482,45 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
     if (\Drupal::moduleHandler()->moduleExists('content_translation')) {
       $form['advanced']['google_analytics_translation_set'] = [
         '#type' => 'checkbox',
-        '#title' => t('Track translation sets as one unit'),
-        '#description' => t('When a node is part of a translation set, record statistics for the originating node instead. This allows for a translation set to be treated as a single unit.'),
+        '#title' => $this->t('Track translation sets as one unit'),
+        '#description' => $this->t('When a node is part of a translation set, record statistics for the originating node instead. This allows for a translation set to be treated as a single unit.'),
         '#default_value' => $config->get('translation_set'),
       ];
     }
 
     $form['advanced']['codesnippet'] = [
       '#type' => 'details',
-      '#title' => t('Custom JavaScript code'),
+      '#title' => $this->t('Custom JavaScript code'),
       '#open' => TRUE,
-      '#description' => t('You can add custom Google Analytics <a href=":snippets">code snippets</a> here. These will be added every time tracking is in effect. Before you add your custom code, you should read the <a href=":ga_concepts_overview">Google Analytics Tracking Code - Functional Overview</a> and the <a href=":ga_js_api">Google Analytics Tracking API</a> documentation. <strong>Do not include the &lt;script&gt; tags</strong>, and always end your code with a semicolon (;).', [':snippets' => 'http://drupal.org/node/248699', ':ga_concepts_overview' => 'https://developers.google.com/analytics/resources/concepts/gaConceptsTrackingOverview', ':ga_js_api' => 'https://developers.google.com/analytics/devguides/collection/analyticsjs/method-reference']),
+      '#description' => $this->t('You can add custom Google Analytics <a href=":snippets">code snippets</a> here. These will be added every time tracking is in effect. Before you add your custom code, you should read the <a href=":ga_concepts_overview">Google Analytics Tracking Code - Functional Overview</a> and the <a href=":ga_js_api">Google Analytics Tracking API</a> documentation. <strong>Do not include the &lt;script&gt; tags</strong>, and always end your code with a semicolon (;).', [':snippets' => 'http://drupal.org/node/248699', ':ga_concepts_overview' => 'https://developers.google.com/analytics/resources/concepts/gaConceptsTrackingOverview', ':ga_js_api' => 'https://developers.google.com/analytics/devguides/collection/analyticsjs/method-reference']),
     ];
     $form['advanced']['codesnippet']['google_analytics_codesnippet_create'] = [
       '#type' => 'textarea',
-      '#title' => t('Create only fields'),
+      '#title' => $this->t('Create only fields'),
       '#default_value' => $this->getNameValueString($config->get('codesnippet.create')),
       '#rows' => 5,
-      '#description' => t('Enter one value per line, in the format name|value. Settings in this textarea will be added to <code>ga("create", "UA-XXXX-Y", {"name":"value"});</code>. For more information, read <a href=":url">create only fields</a> documentation in the Analytics.js field reference.', [':url' => 'https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#create']),
+      '#description' => $this->t('Enter one value per line, in the format name|value. Settings in this textarea will be added to <code>ga("create", "UA-XXXX-Y", {"name":"value"});</code>. For more information, read <a href=":url">create only fields</a> documentation in the Analytics.js field reference.', [':url' => 'https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#create']),
       '#element_validate' => [[get_class($this), 'validateCreateFieldValues']],
     ];
     $form['advanced']['codesnippet']['google_analytics_codesnippet_before'] = [
       '#type' => 'textarea',
-      '#title' => t('Code snippet (before)'),
+      '#title' => $this->t('Code snippet (before)'),
       '#default_value' => $config->get('codesnippet.before'),
       '#rows' => 5,
-      '#description' => t('Code in this textarea will be added <strong>before</strong> <code>ga("send", "pageview");</code>.'),
+      '#description' => $this->t('Code in this textarea will be added <strong>before</strong> <code>ga("send", "pageview");</code>.'),
     ];
     $form['advanced']['codesnippet']['google_analytics_codesnippet_after'] = [
       '#type' => 'textarea',
-      '#title' => t('Code snippet (after)'),
+      '#title' => $this->t('Code snippet (after)'),
       '#default_value' => $config->get('codesnippet.after'),
       '#rows' => 5,
-      '#description' => t('Code in this textarea will be added <strong>after</strong> <code>ga("send", "pageview");</code>. This is useful if you\'d like to track a site in two accounts.'),
+      '#description' => $this->t('Code in this textarea will be added <strong>after</strong> <code>ga("send", "pageview");</code>. This is useful if you\'d like to track a site in two accounts.'),
     ];
 
     $form['advanced']['google_analytics_debug'] = [
       '#type' => 'checkbox',
-      '#title' => t('Enable debugging'),
-      '#description' => t('If checked, the Google Universal Analytics debugging script will be loaded. You should not enable your production site to use this version of the JavaScript. The analytics_debug.js script is larger than the analytics.js tracking code and it is not typically cached. Using it in your production site will slow down your site for all of your users. Again, this is only for your own testing purposes. Debug messages are printed to the <code>window.console</code> object.'),
+      '#title' => $this->t('Enable debugging'),
+      '#description' => $this->t('If checked, the Google Universal Analytics debugging script will be loaded. You should not enable your production site to use this version of the JavaScript. The analytics_debug.js script is larger than the analytics.js tracking code and it is not typically cached. Using it in your production site will slow down your site for all of your users. Again, this is only for your own testing purposes. Debug messages are printed to the <code>window.console</code> object.'),
       '#default_value' => $config->get('debug'),
     ];
 
@@ -666,7 +664,7 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
    * @code
    * $form['my_node_text_element'] = [
    *   '#type' => 'textfield',
-   *   '#title' => t('Some text to token-ize that has a node context.'),
+   *   '#title' => $this->t('Some text to token-ize that has a node context.'),
    *   '#default_value' => 'The title of this node is [node:title].',
    *   '#element_validate' => [[get_class($this), 'tokenElementValidate']],
    * ];

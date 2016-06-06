@@ -19,6 +19,7 @@ source:
     - googleanalytics_roles
     - googleanalytics_site_search
     - googleanalytics_trackadsense
+    - googleanalytics_trackcolorbox
     - googleanalytics_trackdoubleclick
     - googleanalytics_trackmessages
     - googleanalytics_tracker_anonymizeip
@@ -44,6 +45,7 @@ process:
   domain_mode: googleanalytics_domain_mode
   'privacy/anonymizeip': googleanalytics_tracker_anonymizeip
   'track/adsense': googleanalytics_trackadsense
+  'track/colorbox': googleanalytics_trackcolorbox
   'track/displayfeatures': googleanalytics_trackdoubleclick
   'track/files': googleanalytics_trackfiles
   'track/files_extensions': googleanalytics_trackfiles_extensions

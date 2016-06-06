@@ -121,12 +121,12 @@
   /**
    * Check whether the hostname is part of the cross domains or not.
    *
-   * @param string hostname
+   * @param {string} hostname
    *   The hostname of the clicked URL.
-   * @param array crossDomains
+   * @param {array} crossDomains
    *   All cross domain hostnames as JS array.
    *
-   * @return boolean
+   * @return {boolean} isCrossDomain
    */
   Drupal.google_analytics.isCrossDomain = function (hostname, crossDomains) {
     return $.inArray(hostname, crossDomains) > -1 ? true : false;
@@ -135,10 +135,10 @@
   /**
    * Check whether this is a download URL or not.
    *
-   * @param string url
+   * @param {string} url
    *   The web url to check.
    *
-   * @return boolean
+   * @return {boolean} isDownload
    */
   Drupal.google_analytics.isDownload = function (url) {
     var isDownload = new RegExp("\\.(" + drupalSettings.google_analytics.trackDownloadExtensions + ")([\?#].*)?$", "i");
@@ -148,10 +148,10 @@
   /**
    * Check whether this is an absolute internal URL or not.
    *
-   * @param string url
+   * @param {string} url
    *   The web url to check.
    *
-   * @return boolean
+   * @return {boolean} isInternal
    */
   Drupal.google_analytics.isInternal = function (url) {
     var isInternal = new RegExp("^(https?):\/\/" + window.location.host, "i");
@@ -164,10 +164,10 @@
    * URL types:
    *  - gotwo.module /go/* links.
    *
-   * @param string url
+   * @param {string} url
    *   The web url to check.
    *
-   * @return boolean
+   * @return {boolean} isInternalSpecial
    */
   Drupal.google_analytics.isInternalSpecial = function (url) {
     var isInternalSpecial = new RegExp("(\/go\/.*)$", "i");
@@ -181,10 +181,10 @@
    * - http://mydomain.com/node/1 -> /node/1
    * - http://example.com/foo/bar -> http://example.com/foo/bar
    *
-   * @param string url
+   * @param {string} url
    *   The web url to check.
    *
-   * @return string
+   * @return {string} getPageUrl
    *   Internal website URL.
    */
   Drupal.google_analytics.getPageUrl = function (url) {
@@ -195,10 +195,10 @@
   /**
    * Extract the download file extension from the URL.
    *
-   * @param string url
+   * @param {string} url
    *   The web url to check.
    *
-   * @return string
+   * @return {string} getDownloadExtension
    *   The file extension of the passed url. e.g. "zip", "txt"
    */
   Drupal.google_analytics.getDownloadExtension = function (url) {

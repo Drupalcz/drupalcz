@@ -141,7 +141,7 @@ function google_analytics_page_attachments(array &$page) {
     }
 
     // Site search tracking support.
-    if (\Drupal::moduleHandler()->moduleExists('search') && $config->get('track.site_search') && (strpos(\Drupal::routeMatch()->getRouteName(), 'search.view') === 0) && $keys = google_analytics_search_get_keys()) {
+    if (\Drupal::moduleHandler()->moduleExists('search') && $config->get('track.site_search') && (strpos(\Drupal::routeMatch()->getRouteName(), 'search.view') === 0) && $keys = ($request->query->has('keys') ? trim($request->get('keys')) : '')) {
       // hook_item_list__search_results() is not executed if search result is
       // empty. Make sure the counter is set to 0 if there are no results.
       $entity_id = \Drupal::routeMatch()->getParameter('entity')->id();
@@ -267,10 +267,7 @@ function google_analytics_page_attachments(array &$page) {
 
     // Track logged in users across all devices.
     if ($config->get('track.userid') && $account->isAuthenticated()) {
-      // The USER_ID value should be a unique, persistent, and non-personally
-      // identifiable string identifier that represents a user or signed-in
-      // account across devices.
-      $create_only_fields['userId'] = Crypt::hmacBase64($account->id(), \Drupal::service('private_key')->get() . Settings::getHashSalt());
+      $create_only_fields['userId'] = google_analytics_user_id_hash($account->id());
     }
 
     // Create a tracker.
@@ -336,6 +333,23 @@ function google_analytics_page_attachments(array &$page) {
       'google_analytics_tracking_script'
     ];
   }
+}
+
+/**
+ * Generate user id hash to implement USER_ID.
+ *
+ * The USER_ID value should be a unique, persistent, and non-personally
+ * identifiable string identifier that represents a user or signed-in
+ * account across devices.
+ *
+ * @param int $uid
+ *   User id.
+ *
+ * @return string
+ *   User id hash.
+ */
+function google_analytics_user_id_hash($uid) {
+  return Crypt::hmacBase64($uid, \Drupal::service('private_key')->get() . Settings::getHashSalt());
 }
 
 /**
@@ -437,28 +451,6 @@ function google_analytics_preprocess_item_list__search_results(&$variables) {
       'google_analytics_search_script'
     ];
   }
-}
-
-/**
- * Helper function for grabbing search keys. Function is missing in D8.
- *
- * http://api.drupal.org/api/function/search_get_keys/6
- */
-function google_analytics_search_get_keys() {
-  static $return;
-  if (!isset($return)) {
-    // Extract keys as remainder of path.
-    $path = explode('/', Url::fromRoute('<current>')->toString(), 3);
-
-    // Based on Drupal\search\Controller\SearchController::view
-    // Build the form first, because it may redirect during the submit,
-    // and we don't want to build the results based on last time's request.
-    $request = \Drupal::request();
-    $keys = ($request->query->has('keys') ? trim($request->get('keys')) : '');
-
-    $return = count($path) == 3 ? $path[2] : $keys;
-  }
-  return $return;
 }
 
 /**

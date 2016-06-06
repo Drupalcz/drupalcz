@@ -5,6 +5,8 @@
  * Installation file for Google Analytics module.
  */
 
+use Drupal\Core\Url;
+
 /**
  * Implements hook_uninstall().
  *
@@ -27,7 +29,7 @@ function google_analytics_requirements($phase) {
     if (!preg_match('/^UA-\d+-\d+$/', $config->get('account'))) {
       $requirements['google_analytics_account'] = [
         'title' => t('Google Analytics module'),
-        'description' => t('Google Analytics module has not been configured yet. Please configure its settings from the <a href=":url">Google Analytics settings page</a>.', [':url' => \Drupal::url('google_analytics.admin_settings_form')]),
+        'description' => t('Google Analytics module has not been configured yet. Please configure its settings from the <a href=":url">Google Analytics settings page</a>.', [':url' => Url::fromRoute('google_analytics.admin_settings_form')->toString()]),
         'severity' => REQUIREMENT_WARNING,
         'value' => t('Not configured'),
       ];
@@ -36,7 +38,7 @@ function google_analytics_requirements($phase) {
     if ($config->get('debug')) {
       $requirements['google_analytics_debugging'] = [
         'title' => t('Google Analytics module'),
-        'description' => t('Google Analytics module has debugging enabled. Please disable debugging setting in production sites from the <a href=":url">Google Analytics settings page</a>.', [':url' => \Drupal::url('google_analytics.admin_settings_form')]),
+        'description' => t('Google Analytics module has debugging enabled. Please disable debugging setting in production sites from the <a href=":url">Google Analytics settings page</a>.', [':url' => Url::fromRoute('google_analytics.admin_settings_form')->toString()]),
         'severity' => REQUIREMENT_WARNING,
         'value' => t('Debugging enabled'),
       ];

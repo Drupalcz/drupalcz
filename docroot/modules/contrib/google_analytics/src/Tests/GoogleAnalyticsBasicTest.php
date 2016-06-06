@@ -8,6 +8,7 @@
 namespace Drupal\google_analytics\Tests;
 
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -248,7 +249,7 @@ class GoogleAnalyticsBasicTest extends WebTestBase {
     // Check if text and link is shown on 'Status Reports' page.
     // Requires 'administer site configuration' permission.
     $this->drupalGet('admin/reports/status');
-    $this->assertRaw(t('Google Analytics module has debugging enabled. Please disable debugging setting in production sites from the <a href=":url">Google Analytics settings page</a>.', [':url' => \Drupal::url('google_analytics.admin_settings_form')]), '[testGoogleAnalyticsConfiguration]: Debugging enabled is shown on Status Reports page.');
+    $this->assertRaw(t('Google Analytics module has debugging enabled. Please disable debugging setting in production sites from the <a href=":url">Google Analytics settings page</a>.', [':url' => Url::fromRoute('google_analytics.admin_settings_form')->toString()]), '[testGoogleAnalyticsConfiguration]: Debugging enabled is shown on Status Reports page.');
 
     // Test whether debugging script has been disabled.
     $this->config('google_analytics.settings')->set('debug', 0)->save();
