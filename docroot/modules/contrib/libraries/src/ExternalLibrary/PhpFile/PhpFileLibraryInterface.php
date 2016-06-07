@@ -1,13 +1,8 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\libraries\ExternalLibrary\PhpFile\PhpFileLibraryInterface.
- */
-
 namespace Drupal\libraries\ExternalLibrary\PhpFile;
 
-use Drupal\libraries\ExternalLibrary\LocalLibraryInterface;
+use Drupal\libraries\ExternalLibrary\Local\LocalLibraryInterface;
 
 /**
  * Provides an interface for libraries which can be loaded.

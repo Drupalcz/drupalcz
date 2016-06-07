@@ -152,6 +152,10 @@ abstract class BlockDisplayVariant extends VariantBase implements ContextAwareVa
    * {@inheritdoc}
    */
   public function setConfiguration(array $configuration) {
+    // preserve the uuid.
+    if ($this->configuration && !empty($this->configuration['uuid'])) {
+      $configuration['uuid'] = $this->configuration['uuid'];
+    }
     parent::setConfiguration($configuration);
     $this->getBlockCollection()->setConfiguration($this->configuration['blocks']);
     return $this;
@@ -199,6 +203,20 @@ abstract class BlockDisplayVariant extends VariantBase implements ContextAwareVa
    */
   protected function uuidGenerator() {
     return $this->uuidGenerator;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function __sleep() {
+    $vars = parent::__sleep();
+
+    // Gathered contexts objects should not be serialized.
+    if (($key = array_search('contexts', $vars)) !== FALSE) {
+      unset($vars[$key]);
+    }
+
+    return $vars;
   }
 
 }

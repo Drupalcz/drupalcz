@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\views\Plugin\views\display\DisplayPluginInterface.
- */
-
 namespace Drupal\views\Plugin\views\display;
 
 use Drupal\views\ViewExecutable;
@@ -550,7 +545,6 @@ interface DisplayPluginInterface {
    *
    * @return bool
    *   Returns whether the identifier is unique on all handlers.
-   *
    */
   public function isIdentifierUnique($id, $identifier);
 

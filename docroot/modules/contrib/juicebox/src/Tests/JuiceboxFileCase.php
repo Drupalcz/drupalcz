@@ -54,7 +54,7 @@ class JuiceboxFileCase extends JuiceboxBaseCase {
     $this->drupalGet('node/' . $node->id());
     $this->assertRaw(trim(json_encode(array('configUrl' => $xml_url)), '{}"'), 'Gallery setting found in Drupal.settings.');
     $this->assertRaw('id="node--' . $node->id() . '--' . str_replace('_', '-', $this->instFieldName) . '--full"', 'Embed code wrapper found.');
-    $this->assertRaw(Html::escape($test_image_url), 'Test image found in embed code');
+    $this->assertRaw(Html::escape(file_url_transform_relative($test_image_url)), 'Test image found in embed code');
     // Check for correct XML.
     $this->drupalGet($xml_path);
     $this->assertRaw('<?xml version="1.0" encoding="UTF-8"?>', 'Valid XML detected.');

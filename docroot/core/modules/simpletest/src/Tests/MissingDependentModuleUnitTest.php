@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\simpletest\Tests\MissingDependentModuleUnitTest.
- */
-
 namespace Drupal\simpletest\Tests;
 
 use Drupal\simpletest\KernelTestBase;
@@ -23,4 +18,5 @@ class MissingDependentModuleUnitTest extends KernelTestBase {
   function testFail() {
     $this->fail('Running test with missing required module.');
   }
+
 }

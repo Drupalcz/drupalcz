@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Core\Database\Driver\sqlite\Install\Tasks.
- */
-
 namespace Drupal\Core\Database\Driver\sqlite\Install;
 
 use Drupal\Core\Database\Database;
@@ -108,4 +103,5 @@ class Tasks extends InstallTasks {
     }
     return TRUE;
   }
+
 }

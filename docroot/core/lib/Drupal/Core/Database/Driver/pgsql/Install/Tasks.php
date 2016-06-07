@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Core\Database\Driver\pgsql\Install\Tasks.
- */
-
 namespace Drupal\Core\Database\Driver\pgsql\Install;
 
 use Drupal\Core\Database\Database;
@@ -287,4 +282,5 @@ class Tasks extends InstallTasks {
     }
     return $form;
   }
+
 }

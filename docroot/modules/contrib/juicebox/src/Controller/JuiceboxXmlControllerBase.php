@@ -7,31 +7,67 @@
 
 namespace Drupal\juicebox\Controller;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Cache\CacheableResponseInterface;
-use Drupal\Core\Entity\EntityManagerInterface;
+
 
 /**
  * Controller routines for Juicebox XML.
  */
 abstract class JuiceboxXmlControllerBase implements ContainerInjectionInterface {
 
+  /**
+   * A Drupal configuration factory service.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
   protected $configFactory;
-  protected $entityManager;
+
+  /**
+   * A Symfony request object for the current request.
+   *
+   * @var \Symfony\Component\HttpFoundation\Request
+   */
   protected $request;
+
+  /**
+   * The Symfony http kernel service.
+   *
+   * @var \Symfony\Component\HttpKernel\HttpKernelInterface
+   */
   protected $httpKernel;
+
+  /**
+   * The global Juicebox configuration.
+   *
+   * @var array
+   */
   protected $settings = array();
+
+  /**
+   * An array for Drupal cache tags that applies to the page request.
+   *
+   * @var array
+   */
   protected $cacheTags = array('juicebox_gallery');
+
+
+  /**
+   * Factory to fetch required dependencies from container.
+   */
+  public static function create(ContainerInterface $container) {
+    // Create the actual controller instance.
+    return new static($container->get('config.factory'), $container->get('request_stack'), $container->get('http_kernel'));
+  }
 
   /**
    * Constructor
@@ -39,16 +75,13 @@ abstract class JuiceboxXmlControllerBase implements ContainerInjectionInterface 
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The Drupal config factory that can be used to derive global Juicebox
    *   settings.
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
-   *   A Drupal entity manager service.
    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The Symfony request stack from which to extract the current request.
    * @param \Symfony\Component\HttpKernel\HttpKernelInterface $http_kernel
    *   The Symfony http kernel service.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, EntityManagerInterface $entity_manager, RequestStack $request_stack, HttpKernelInterface $http_kernel) {
+  public function __construct(ConfigFactoryInterface $config_factory, RequestStack $request_stack, HttpKernelInterface $http_kernel) {
     $this->configFactory = $config_factory;
-    $this->entityManager = $entity_manager;
     // Fetch and store the Juicebox-specific global settings.
     $this->settings = $config_factory->get('juicebox.settings')->get();
     $this->request = $request_stack->getCurrentRequest();
@@ -56,18 +89,8 @@ abstract class JuiceboxXmlControllerBase implements ContainerInjectionInterface 
   }
 
   /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    // Create the actual controller instance.
-    return new static($container->get('config.factory'), $container->get('entity.manager'), $container->get('request_stack'), $container->get('http_kernel'));
-  }
-
-  /**
    * Common controller for the Juicebox XML.
    *
-   * @param string $args
-   *   The arguments passed from the router.
    * @return Response $xml
    *   A Symfony response object containing the XML information.
    */

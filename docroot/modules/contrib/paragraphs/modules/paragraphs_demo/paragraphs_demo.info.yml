@@ -1,4 +1,4 @@
-description: Multilingual demo for paragraphs. It adds CSS for responsive wrapping as well as the following paragraph types: User, Images, Text, Image + Text, Text + Image
+description: 'Provides multilingual demo paragraphs types.'
 # core: 8.x
 dependencies:
   - paragraphs
@@ -9,13 +9,19 @@ dependencies:
   - language
   - content_translation
   - node
+  - search_api_db
+  - search_api
+  - views
+test_dependencies:
+  - search_api_db
+  - search_api
 hidden: false
-name: Paragraphs demo
+name: Paragraphs Demo
 package: Paragraphs
 type: module
 
-# Information added by Drupal.org packaging script on 2015-11-17
-version: '8.x-1.0-rc4'
+# Information added by Drupal.org packaging script on 2016-05-31
+version: '8.x-1.0-rc5'
 core: '8.x'
 project: 'paragraphs'
-datestamp: 1447767778
+datestamp: 1464728053

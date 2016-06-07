@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * @file
  * A php-only set of methods to create the script and markup components of a
@@ -9,9 +8,7 @@
 
 namespace Drupal\juicebox;
 
-use Drupal\juicebox\JuiceboxGalleryInterface;
 use \DOMDocument;
-
 
 /**
  * Class to generate the script and markup for a Juicebox gallery.

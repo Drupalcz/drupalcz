@@ -4,7 +4,7 @@ dependencies:
   config:
     - field.field.node.migrate_example_wine.body
     - field.field.node.migrate_example_wine.field_migrate_example_comments
-    - field.field.node.migrate_example_wine.field_migrate_example_image
+    - field.field.node.migrate_example_wine.field_migrate_example_adv_image
     - field.field.node.migrate_example_wine.field_migrate_example_top_vintag
     - field.field.node.migrate_example_wine.field_migrate_example_wine_best
     - field.field.node.migrate_example_wine.field_migrate_example_wine_ratin
@@ -34,7 +34,7 @@ content:
       pager_id: 0
     third_party_settings: {  }
     type: comment_default
-  field_migrate_example_image:
+  field_migrate_example_adv_image:
     weight: 105
     label: hidden
     settings:

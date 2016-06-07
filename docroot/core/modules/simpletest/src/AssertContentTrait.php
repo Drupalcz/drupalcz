@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\simpletest\AssertContentTrait.
- */
-
 namespace Drupal\simpletest;
 
 use Drupal\Component\Serialization\Json;
@@ -12,7 +7,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Render\RenderContext;
-use Symfony\Component\CssSelector\CssSelector;
+use Symfony\Component\CssSelector\CssSelectorConverter;
 
 /**
  * Provides test methods to assert content.
@@ -252,7 +247,7 @@ trait AssertContentTrait {
    *   selector to an XPath selector.
    */
   protected function cssSelect($selector) {
-    return $this->xpath(CssSelector::toXPath($selector));
+    return $this->xpath((new CssSelectorConverter())->toXPath($selector));
   }
 
   /**

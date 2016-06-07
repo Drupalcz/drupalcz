@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\field_ui\Tests\ManageFieldsTest.
- */
-
 namespace Drupal\field_ui\Tests;
 
 use Drupal\Component\Utility\SafeMarkup;
@@ -83,8 +78,8 @@ class ManageFieldsTest extends WebTestBase {
 
     // Create random field name with markup to test escaping.
     $this->fieldLabel = '<em>' . $this->randomMachineName(8) . '</em>';
-    $this->fieldNameInput =  strtolower($this->randomMachineName(8));
-    $this->fieldName = 'field_'. $this->fieldNameInput;
+    $this->fieldNameInput = strtolower($this->randomMachineName(8));
+    $this->fieldName = 'field_' . $this->fieldNameInput;
 
     // Create Basic page and Article node types.
     $this->drupalCreateContentType(array('type' => 'page', 'name' => 'Basic page'));

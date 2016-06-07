@@ -1,17 +1,18 @@
 <?php
 
+/**
+ * @file
+ * Provides testing functionality.
+ */
+
 use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\simpletest\TestBase;
+use Drupal\Core\Test\TestDatabase;
 use Drupal\simpletest\TestDiscovery;
 use Symfony\Component\Process\PhpExecutableFinder;
-
-/**
- * @file
- * Provides testing functionality.
- */
 
 /**
  * Implements hook_help().
@@ -181,6 +182,8 @@ function simpletest_run_tests($test_list) {
 function simpletest_run_phpunit_tests($test_id, array $unescaped_test_classnames, &$status = NULL) {
   $phpunit_file = simpletest_phpunit_xml_filepath($test_id);
   simpletest_phpunit_run_command($unescaped_test_classnames, $phpunit_file, $status);
+
+  $rows = simpletest_phpunit_xml_to_rows($test_id, $phpunit_file);
   // A $status of 0 = passed test, 1 = failed test, > 1 indicates segfault
   // timeout, or other type of failure.
   if ($status > 1) {
@@ -197,9 +200,6 @@ function simpletest_run_phpunit_tests($test_id, array $unescaped_test_classnames
       'file' => $phpunit_file,
     ];
   }
-  else {
-    $rows = simpletest_phpunit_xml_to_rows($test_id, $phpunit_file);
-  }
   return $rows;
 }
 
@@ -213,7 +213,7 @@ function simpletest_process_phpunit_results($phpunit_results) {
   // Insert the results of the PHPUnit test run into the database so the results
   // are displayed along with Simpletest's results.
   if (!empty($phpunit_results)) {
-    $query = TestBase::getDatabaseConnection()
+    $query = TestDatabase::getConnection()
       ->insert('simpletest')
       ->fields(array_keys($phpunit_results[0]));
     foreach ($phpunit_results as $result) {
@@ -429,12 +429,12 @@ function _simpletest_batch_finished($success, $results, $operations, $elapsed) {
  *   that ran.
  */
 function simpletest_last_test_get($test_id) {
-  $last_prefix = TestBase::getDatabaseConnection()
+  $last_prefix = TestDatabase::getConnection()
     ->queryRange('SELECT last_prefix FROM {simpletest_test_id} WHERE test_id = :test_id', 0, 1, array(
       ':test_id' => $test_id,
     ))
     ->fetchField();
-  $last_test_class = TestBase::getDatabaseConnection()
+  $last_test_class = TestDatabase::getConnection()
     ->queryRange('SELECT test_class FROM {simpletest} WHERE test_id = :test_id ORDER BY message_id DESC', 0, 1, array(
       ':test_id' => $test_id,
     ))
@@ -489,9 +489,10 @@ function simpletest_log_read($test_id, $database_prefix, $test_class) {
  * each module for files matching the PSR-0 standard. Once loaded the test list
  * is cached and stored in a static variable.
  *
- * @param string $module
- *   Name of a module. If set then only tests belonging to this module are
- *   returned.
+ * @param string $extension
+ *   (optional) The name of an extension to limit discovery to; e.g., 'node'.
+ * @param string[] $types
+ *   An array of included test types.
  *
  * @return array[]
  *   An array of tests keyed with the groups, and then keyed by test classes.
@@ -506,8 +507,8 @@ function simpletest_log_read($test_id, $database_prefix, $test_class) {
  *     );
  *   @endcode
  */
-function simpletest_test_get_all($module = NULL) {
-  return \Drupal::service('test_discovery')->getTestClasses($module);
+function simpletest_test_get_all($extension = NULL, array $types = []) {
+  return \Drupal::service('test_discovery')->getTestClasses($extension, $types);
 }
 
 /**
@@ -643,7 +644,7 @@ function simpletest_clean_temporary_directories() {
  */
 function simpletest_clean_results_table($test_id = NULL) {
   if (\Drupal::config('simpletest.settings')->get('clear_results')) {
-    $connection = TestBase::getDatabaseConnection();
+    $connection = TestDatabase::getConnection();
     if ($test_id) {
       $count = $connection->query('SELECT COUNT(test_id) FROM {simpletest_test_id} WHERE test_id = :test_id', array(':test_id' => $test_id))->fetchField();
 

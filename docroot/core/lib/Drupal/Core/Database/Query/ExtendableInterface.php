@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Core\Database\Query\ExtendableInterface.
- */
-
 namespace Drupal\Core\Database\Query;
 
 /**
@@ -30,4 +25,5 @@ interface ExtendableInterface {
    *   The extender object, which now contains a reference to this object.
    */
   public function extend($extender_name);
+
 }

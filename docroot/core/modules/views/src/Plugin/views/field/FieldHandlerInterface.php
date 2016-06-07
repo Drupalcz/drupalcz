@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\views\Plugin\views\field\FieldHandlerInterface.
- */
-
 namespace Drupal\views\Plugin\views\field;
 
 use Drupal\views\ResultRow;
@@ -121,8 +116,9 @@ interface FieldHandlerInterface extends ViewsHandlerInterface {
    * @param \Drupal\views\ResultRow $values
    *   An object containing all retrieved values.
    *
-   * @return \Drupal\Core\Entity\EntityInterface
-   *   Returns the entity matching the values.
+   * @return \Drupal\Core\Entity\EntityInterface|null
+   *   Returns the entity matching the values or NULL if there is no matching
+   *   entity.
    */
   public function getEntity(ResultRow $values);
 
@@ -136,7 +132,6 @@ interface FieldHandlerInterface extends ViewsHandlerInterface {
    *   An object containing all retrieved values.
    * @param string $field
    *   Optional name of the field where the value is stored.
-   *
    */
   public function getValue(ResultRow $values, $field = NULL);
 
@@ -157,7 +152,6 @@ interface FieldHandlerInterface extends ViewsHandlerInterface {
    *
    * @param \Drupal\views\ResultRow[] $values
    *   An array of all ResultRow objects returned from the query.
-   *
    */
   public function preRender(&$values);
 
@@ -171,7 +165,6 @@ interface FieldHandlerInterface extends ViewsHandlerInterface {
    *   The rendered output. If the output is safe it will be wrapped in an
    *   object that implements MarkupInterface. If it is empty or unsafe it
    *   will be a string.
-   *
    */
   public function render(ResultRow $values);
 
@@ -208,7 +201,6 @@ interface FieldHandlerInterface extends ViewsHandlerInterface {
    *   The advanced rendered output. If the output is safe it will be wrapped in
    *   an object that implements MarkupInterface. If it is empty or unsafe
    *   it will be a string.
-   *
    */
   public function advancedRender(ResultRow $values);
 

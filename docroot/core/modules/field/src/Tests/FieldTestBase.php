@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\field\Tests\FieldTestBase.
- */
-
 namespace Drupal\field\Tests;
 
 use Drupal\Core\Entity\EntityInterface;
@@ -63,4 +58,5 @@ abstract class FieldTestBase extends WebTestBase {
       $this->assertEqual($values[$key][$column], $value, format_string('Value @value was saved correctly.', array('@value' => $value)));
     }
   }
+
 }

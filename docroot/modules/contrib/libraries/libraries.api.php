@@ -6,6 +6,102 @@
  */
 
 /**
+ * @defgroup libraries External libraries
+ * @{
+ * External libraries are not shipped as part of contributed modules for
+ * licensing and maintenance reasons. The Libraries API module aims to solve the
+ * problem of integrating with and loading external libraries as part of the
+ * Drupal request-response process in a generic way.
+ *
+ * @section sec_definitions Library definitions
+ * In order to be useful to other modules Libraries API needs a list of known
+ * libraries and metadata about each of the libraries. Because multiple modules
+ * themes may integrate with the same external library a key objective of
+ * Libraries API is to keep this information separate from any one module or
+ * theme.
+ *
+ * Definitions are accessed via a discovery that is responsible for checking
+ * whether a given definition exists and fetching it, if it is. See
+ * LibraryRegistryInterface and StreamDefinitionDiscovery for more information.
+ *
+ * @subsection sub_definitions_machine_name
+ * A central part of a library's metadata is the library's machine name or ID.
+ * For maximum interoperability it must consist of only lowercase ASCII letters,
+ * numbers, and underscores. As the machine name is the single identifier of a
+ * library and is independent of any given module or theme name it must be
+ * unique among all libraries known to Libraries API.
+ *
+ * @subsection sub_definitions_history Historical background
+ * In Drupal 7 library information could already be provided by
+ * module-independent info files, but this was not widely used, because there
+ * was no way to distribute these info files properly. The information was
+ * predominantly provided by a hook that modules could implement, which caused
+ * race conditions between modules providing information for the same library.
+ * Thus, in Drupal 8 there is no longer a hook making it necessary to properly
+ * solve the problem of centrally maintaining and distributing library info
+ * files. This has yet to be done. See https://www.drupal.org/node/773508 for
+ * more information.
+ *
+ * @section sec_definitions Library types
+ * Libraries are classed objects that implement LibraryInterface. This generic
+ * interface only dictates that a library is aware of its ID. Any further
+ * functionality depends on the type of library, each type of library comes with
+ * a dedicated interface.
+ *
+ * @see \Drupal\libraries\ExternalLibrary\Definition\DefinitionDiscoveryInterface
+ * @see \Drupal\libraries\ExternalLibrary\Definition\StreamDefinitionDiscovery
+ * @see \Drupal\libraries\ExternalLibrary\LibraryInterface
+ *
+ * @}
+ */
+
+/**
+ * Alter library type information.
+ *
+ * @param array $library_types
+ *   An array of library types keyed by ID. Each library type is an array with
+ *   the following keys:
+ *   - id: The ID of the library type.
+ *   - class: The class to use for this library type.
+ *   - provider: The provider of this library type.
+ */
+function hook_libraries_library_type_info_alter(array &$library_types) {
+  // Use a different class for the asset library type. Note that this class is
+  // distinct from the class actually for asset libraries themselves.
+  $library_types['asset']['class'] = 'Drupal\mymodule\ExternalLibrary\BetterAssetLibraryType';
+}
+
+/**
+ * Alter library locator information.
+ *
+ * @param array $locators
+ *   An array of library locators keyed by ID. Each locator is an array with the
+ *   following keys:
+ *   - id: The ID of the library locator.
+ *   - class: The class to use for this library locator.
+ *   - provider: The provider of this library locator.
+ */
+function hook_libraries_locator_info_alter(array &$locators) {
+  // Use a different class for the stream locator.
+  $locators['stream']['class'] = 'Drupal\mymodule\ExternalLibrary\BetterStreamLocator';
+}
+
+/**
+ * Alter library version detector information.
+ *
+ * @param array $version_detectors
+ *   An array of library version detectors keyed by ID. Each detector is an
+ *   array with the following keys:
+ *   - id: The ID of the library version detector.
+ *   - class: The class to use for this library version detector.
+ *   - provider: The provider of this library version detector.
+ */
+function hook_libraries_version_detector_info_alter(array &$version_detectors) {
+  // Use a different class for the line pattern locator.
+  $version_detectors['line_pattern']['class'] = 'Drupal\mymodule\ExternalLibrary\BetterLinePatternDetector';
+}
+
+/**
  * Return information about external libraries.
  *
  * @return
@@ -172,6 +268,8 @@
  *   Additional top-level properties can be registered as needed.
  *
  * @see hook_library()
+ *
+ * @deprecated Will be removed before a stable Drupal 8 release.
  */
 function hook_libraries_info() {
   // The following is a full explanation of all properties. See below for more
@@ -411,6 +509,8 @@ function hook_libraries_info() {
  * integration files inside of an array, whose key is the module name.
  *
  * @see hook_libraries_info()
+ *
+ * @deprecated Will be removed before a stable Drupal 8 release.
  */
 function hook_libraries_info_alter(&$libraries) {
   $files = array(
@@ -435,6 +535,8 @@ function hook_libraries_info_alter(&$libraries) {
  *
  * @return
  *   An array of paths.
+ *
+ * @deprecated Will be removed before a stable Drupal 8 release.
  */
 function hook_libraries_info_file_paths() {
   // Taken from the Libraries test module, which needs to specify the path to

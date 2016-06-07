@@ -20,4 +20,4 @@ selection_criteria:
     uuid: 8aec4629-7854-4b66-a529-415eb7f1b7a5
 selection_logic: and
 weight: -5
-context_definitions: {  }
+relationships: {  }

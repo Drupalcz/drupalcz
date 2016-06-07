@@ -9,8 +9,6 @@ namespace Drupal\juicebox\Tests;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Serialization\Json;
-use Drupal\views\Tests\ViewTestData;
-
 
 /**
  * Tests integration with Views module.
@@ -59,7 +57,7 @@ class JuiceboxViewsCase extends JuiceboxBaseCase {
     $this->drupalGet('juicebox-views-test');
     $this->assertRaw(trim(json_encode(array('configUrl' => $xml_url)), '{}"'), 'Gallery setting found in Drupal.settings.');
     $this->assertRaw('juicebox-views-test--page-1', 'Embed code wrapper found.');
-    $this->assertRaw(Html::escape($test_image_url), 'Test image found in embed code');
+    $this->assertRaw(Html::escape(file_url_transform_relative($test_image_url)), 'Test image found in embed code');
     // Check for correct XML.
     $this->drupalGet($xml_path);
     $this->assertRaw('<?xml version="1.0" encoding="UTF-8"?>', 'Valid XML detected.');
@@ -117,7 +115,7 @@ class JuiceboxViewsCase extends JuiceboxBaseCase {
     $this->drupalGet('juicebox-views-test-advanced');
     $this->assertRaw(trim(json_encode(array('configUrl' => $xml_url)), '{}"'), 'Gallery setting found in Drupal.settings.');
     $this->assertRaw('juicebox-views-test--page-2', 'Embed code wrapper found.');
-    $this->assertRaw(Html::escape($test_image_url), 'Test image found in embed code');
+    $this->assertRaw(Html::escape(file_url_transform_relative($test_image_url)), 'Test image found in embed code');
     // Check for correct XML.
     $this->drupalGet($xml_path);
     $this->assertRaw('<?xml version="1.0" encoding="UTF-8"?>', 'Valid XML detected.');
@@ -145,7 +143,7 @@ class JuiceboxViewsCase extends JuiceboxBaseCase {
     $this->drupalGet('juicebox-views-files-test');
     $this->assertRaw(trim(json_encode(array('configUrl' => $xml_url)), '{}"'), 'Gallery setting found in Drupal.settings.');
     $this->assertRaw('juicebox-views-files-test--page-1', 'Embed code wrapper found.');
-    $this->assertRaw(Html::escape($test_image_url), 'Test image found in embed code');
+    $this->assertRaw(Html::escape(file_url_transform_relative($test_image_url)), 'Test image found in embed code');
     // Check for correct XML.
     $this->drupalGet($xml_path);
     $this->assertRaw('<?xml version="1.0" encoding="UTF-8"?>', 'Valid XML detected.');

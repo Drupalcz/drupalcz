@@ -10,10 +10,7 @@ namespace Drupal\juicebox\Form;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Cache\Cache;
-use Drupal\juicebox\JuiceboxFormatter;
 use Drupal\Component\Utility\SafeMarkup;
-use Drupal\Core\Url;
-
 
 /**
  * Defines a form that configures global Juicebox settings.
