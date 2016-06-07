@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - comment
+    - node
     - user
 id: comments_recent
 label: 'Recent comments'

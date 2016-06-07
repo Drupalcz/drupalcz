@@ -11,4 +11,4 @@ pattern: 'user/[user:account-name]'
 selection_criteria: {  }
 selection_logic: and
 weight: 0
-context_definitions: {  }
+relationships: {  }

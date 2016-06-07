@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.stack
     - field.storage.node.field_logo
+    - image.style.thumbnail
     - node.type.dcz_showcase
   module:
     - image
