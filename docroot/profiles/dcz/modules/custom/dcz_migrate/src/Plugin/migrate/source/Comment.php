@@ -38,15 +38,16 @@ class Comment extends DrupalSqlBase {
    * {@inheritdoc}
    */
   public function prepareRow(Row $row) {
-    if ($this->variableGet('comment_subject_field_' . $row->getSourceProperty('type'), 1)) {
-      // Comment subject visible.
-      $row->setSourceProperty('field_name', 'comment');
-      $row->setSourceProperty('comment_type', 'comment');
-    }
-    else {
-      $row->setSourceProperty('field_name', 'comment_no_subject');
-      $row->setSourceProperty('comment_type', 'comment_no_subject');
-    }
+    // if ($this->variableGet('comment_subject_field_' . $row->getSourceProperty('type'), 1)) {
+    //   // Comment subject visible.
+    //   $row->setSourceProperty('field_name', 'comment');
+    //   $row->setSourceProperty('comment_type', 'comment');
+    // }
+    // else {
+    //   $row->setSourceProperty('field_name', 'comment_no_subject');
+    //   $row->setSourceProperty('comment_type', 'comment_no_subject');
+    // }
+    
     // In D6, status=0 means published, while in D8 means the opposite.
     // See https://www.drupal.org/node/237636.
     $row->setSourceProperty('status', !$row->getSourceProperty('status'));
