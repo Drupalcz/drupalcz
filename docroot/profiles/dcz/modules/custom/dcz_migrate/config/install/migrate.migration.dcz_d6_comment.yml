@@ -43,10 +43,15 @@ process:
   status: status #In D6, published=0. We reverse the value in prepareRow.
   thread: thread
   'comment_body/value': comment
-#  'comment_body/format':
-#    plugin: migration
-#    migration: d6_filter_format
-#    source: format
+  'comment_body/format':
+    plugin: static_map
+    source: format
+    map:
+      1: basic_html # Filtered HTML
+      2: plain_text # PHP
+      3: full_html # Full HTML
+      4: plain_text # Messaging plain text
+      6: basic_html # Comments
 destination:
   plugin: entity:comment
 migration_dependencies:

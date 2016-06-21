@@ -47,10 +47,27 @@ class Comment extends DrupalSqlBase {
     //   $row->setSourceProperty('field_name', 'comment_no_subject');
     //   $row->setSourceProperty('comment_type', 'comment_no_subject');
     // }
-    
+
     // In D6, status=0 means published, while in D8 means the opposite.
     // See https://www.drupal.org/node/237636.
     $row->setSourceProperty('status', !$row->getSourceProperty('status'));
+
+    // Go body through Texy.
+    $texy_formats = array(
+      '1',
+      '6',
+    );
+    if (in_array($row->getSourceProperty('format'), $texy_formats)) {
+      require_once DRUPAL_ROOT . '/libraries/texy/src/texy.php';
+
+      $comment = $row->getSourceProperty('comment');
+
+      $texy = new \Texy\Texy;
+      $comment = $texy->process($comment);
+
+      $row->setSourceProperty('comment', $comment);
+    }
+
     return parent::prepareRow($row);
   }
 
