@@ -51,6 +51,14 @@ process:
   revision_uid: revision_uid
   revision_log: log
   revision_timestamp: timestamp
+  field_tags:
+    plugin: migration
+    migration: dcz_d6_taxonomy_term
+    source: tids
+  taxonomy_forums:
+    plugin: migration
+    migration: dcz_d6_taxonomy_term
+    source: tids
 
 #  unmapped d6 fields.
 #  tnid
@@ -63,6 +71,7 @@ destination:
 migration_dependencies:
   required:
     - dcz_d6_user
+    - dcz_d6_taxonomy_term
 #    - d6_node_type
 #    - d6_node_settings
 #    - d6_filter_format

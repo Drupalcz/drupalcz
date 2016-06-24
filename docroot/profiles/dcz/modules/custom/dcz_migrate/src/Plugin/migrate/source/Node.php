@@ -144,6 +144,19 @@ class Node extends DrupalSqlBase {
       $row->setSourceProperty('body', $body);
     }
 
+    // Terms.
+    $tids = array();
+    db_set_active('migrate');
+    $result = db_select('term_node', 'tn')
+      ->fields('tn', array('tid'))
+      ->condition('tn.nid', $row->getSourceProperty('nid'), '=')
+      ->execute();
+    foreach ($result as $row_term_node) {
+      $tids[] = $row_term_node->tid;
+    }
+    db_set_active('default');
+    $row->setSourceProperty('tids', $tids);
+
     return parent::prepareRow($row);
   }
 
