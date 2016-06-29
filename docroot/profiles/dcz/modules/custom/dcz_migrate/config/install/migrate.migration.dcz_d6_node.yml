@@ -31,7 +31,11 @@ process:
 # @ToDo: Set to cs?
     default_value: "und"
   title: title
-  uid: node_uid
+  # uid: node_uid
+  uid:
+    plugin: migration
+    migration: dcz_d6_user
+    source: node_uid
   status: status
   created: created
   changed: changed
@@ -43,7 +47,11 @@ process:
 #    source: format
   'body/value': body
   'body/summary': teaser
-  revision_uid: revision_uid
+  # revision_uid: revision_uid
+  revision_uid:
+    plugin: migration
+    migration: dcz_d6_user
+    source: revision_uid
   revision_log: log
   revision_timestamp: timestamp
 
