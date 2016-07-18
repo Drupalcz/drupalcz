@@ -1,0 +1,19 @@
+entity.mollom_form.list:
+  route_name: entity.mollom_form.list
+  base_route: entity.mollom_form.list
+  title: 'Forms'
+
+mollom.statistics:
+  route_name: mollom.statistics
+  base_route: entity.mollom_form.list
+  title: 'Statistics'
+
+mollom.blacklist:
+  route_name: mollom.blacklist.list
+  base_route: entity.mollom_form.list
+  title: 'Blacklists'
+
+mollom.settings:
+  route_name: mollom.settings
+  base_route: entity.mollom_form.list
+  title: 'Settings'

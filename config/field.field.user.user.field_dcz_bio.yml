@@ -1,0 +1,21 @@
+uuid: d32f0d0b-32e0-4325-9419-25c3ccbb5ffb
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_dcz_bio
+  module:
+    - text
+    - user
+id: user.user.field_dcz_bio
+field_name: field_dcz_bio
+entity_type: user
+bundle: user
+label: Bio
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

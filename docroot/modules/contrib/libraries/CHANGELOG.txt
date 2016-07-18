@@ -1,6 +1,16 @@
 
 Libraries 8.x-3.x, xxxx-xx-xx
 -----------------------------
+#2742333 by jrockowitz: Fix missing @group in LinePatternDetectorTest
+by tstoeckler: Document plugin alter hooks
+by tstoeckler: Fix coding standards
+by tstoeckler: Split out library dependencies to a separate interface
+by tstoeckler: Implement version detection for libraries
+by tstoeckler: Add deprecation notices to all legacy functions and hooks
+#2090623 by tstoeckler: Introduce the notion of library types
+#2090623 by tstoeckler: Provide support for remote asset libraries
+#2090623 by tstoeckler: Introduce a stream wrapper for asset libraries
+#2090623 by tstoeckler: Introduce the concept of locators
 #2606420 by googletorp, tstoeckler: Fix profile library detection
 #2090623 by tstoeckler: Add an external library registry
 #2572401 by rjacobs, yas: Fix missing @group annotation in PhpFileLibraryTest

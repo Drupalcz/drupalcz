@@ -1,0 +1,16 @@
+uuid: 2f4da5b8-75f3-4531-b700-00062545d135
+langcode: cs
+status: true
+dependencies: {  }
+id: anonymous
+label: 'Anonymous user'
+weight: 0
+is_admin: false
+permissions:
+  0: 'access content'
+  1: 'post comments'
+  2: 'access comments'
+  3: 'use text format basic_html'
+  5: 'skip comment approval'
+  6: 'create forum content'
+  7: 'search content'

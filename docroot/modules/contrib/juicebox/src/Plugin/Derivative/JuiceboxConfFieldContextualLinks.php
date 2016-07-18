@@ -9,7 +9,7 @@ namespace Drupal\juicebox\Plugin\Derivative;
 
 use Drupal\Component\Plugin\Derivative\DeriverBase;
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
@@ -18,18 +18,22 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class JuiceboxConfFieldContextualLinks extends DeriverBase implements ContainerDeriverInterface {
 
-  // We'll use the injected entity manager service to calculate contextual
-  // links.
-  protected $entityManager;
+  /**
+   * A Drupal entity type manager service.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
 
   /**
    * Constructor
    *
-   * @param \Drupal\Core\Entity\EntityManagerInterface
-   *   The entity manager service.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager service.
    */
-  public function __construct(EntityManagerInterface $entity_manager) {
-    $this->entityManager = $entity_manager;
+  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
+    $this->entityTypeManager = $entity_type_manager;
   }
 
   /**
@@ -40,7 +44,7 @@ class JuiceboxConfFieldContextualLinks extends DeriverBase implements ContainerD
     // services from the container and inject them into our deriver via its own
     // constructor as needed.
     return new static(
-      $container->get('entity.manager')
+      $container->get('entity_type.manager')
     );
   }
 
@@ -52,7 +56,7 @@ class JuiceboxConfFieldContextualLinks extends DeriverBase implements ContainerD
     // a Juicebox gallery) in order to provide a link to the relevant edit
     // display screen. These link definitions must be unique because the related
     // route to the edit display screen is different for each entity type.
-    foreach ($this->entityManager->getDefinitions() as $entity_type_id => $entity_type) {
+    foreach ($this->entityTypeManager->getDefinitions() as $entity_type_id => $entity_type) {
       // Only fieldable entity are candidates.
       if ($entity_type->isSubclassOf('\Drupal\Core\Entity\ContentEntityInterface')) {
         $bundle_entity_type = $entity_type->getBundleEntityType();

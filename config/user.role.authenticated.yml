@@ -1,0 +1,24 @@
+uuid: 150f6545-fc70-4c6e-a109-9c8aba43107d
+langcode: cs
+status: true
+dependencies: {  }
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access content'
+  - 'use text format basic_html'
+  - 'edit own comments'
+  - 'post comments'
+  - 'access comments'
+  - 'access user profiles'
+  - 'access user contact forms'
+  - 'skip comment approval'
+  - 'create dcz_article content'
+  - 'delete own dcz_article content'
+  - 'edit own dcz_article content'
+  - 'create forum content'
+  - 'edit own forum content'
+  - 'search content'
+  - 'change own username'

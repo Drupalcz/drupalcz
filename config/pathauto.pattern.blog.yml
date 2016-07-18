@@ -1,0 +1,23 @@
+uuid: 0a26df23-a953-41a1-ac00-d659fe9cac9a
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - node
+id: blog
+label: 'Blog nodes'
+type: 'canonical_entities:node'
+pattern: 'blog/[node:author]/[node:title]'
+selection_criteria:
+  32680b3b-0b0a-43f1-8227-393156da568a:
+    id: node_type
+    bundles:
+      dcz_article: dcz_article
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 32680b3b-0b0a-43f1-8227-393156da568a
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -1,13 +1,9 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\libraries\ExternalLibrary\Asset\AssetLibraryInterface.
- */
-
 namespace Drupal\libraries\ExternalLibrary\Asset;
 
-use Drupal\libraries\ExternalLibrary\ExternalLibraryInterface;
+use Drupal\libraries\ExternalLibrary\LibraryInterface;
+use Drupal\libraries\ExternalLibrary\LibraryManagerInterface;
 
 /**
  * Provides an interface for library with assets.
@@ -16,10 +12,13 @@ use Drupal\libraries\ExternalLibrary\ExternalLibraryInterface;
  *
  * @todo Explain
  */
-interface AssetLibraryInterface extends ExternalLibraryInterface {
+interface AssetLibraryInterface extends LibraryInterface {
 
   /**
    * Returns a core asset library array structure for this library.
+   *
+   * @param \Drupal\libraries\ExternalLibrary\LibraryManagerInterface $library_manager
+   *   The library manager that can be used to fetch dependencies.
    *
    * @return array
    *
@@ -29,7 +28,8 @@ interface AssetLibraryInterface extends ExternalLibraryInterface {
    * @throws \Drupal\libraries\ExternalLibrary\Exception\InvalidLibraryDependencyException
    *
    * @todo Document the return value.
+   * @todo Reconsider passing the library manager.
    */
-  public function getAttachableAssetLibraries();
+  public function getAttachableAssetLibraries(LibraryManagerInterface $library_manager);
 
 }

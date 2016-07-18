@@ -8,8 +8,6 @@
 namespace Drupal\juicebox\Controller;
 
 use Drupal\juicebox\JuiceboxGalleryInterface;
-use Drupal\Core\Cache\CacheableDependencyInterface;
-use Drupal\Core\Cache\Cache;
 use Drupal\views\Views;
 use Drupal\views\ViewExecutable;
 
@@ -19,11 +17,35 @@ use Drupal\views\ViewExecutable;
  */
 class JuiceboxXmlControllerViewsStyle extends JuiceboxXmlControllerBase {
 
-  // Base properties that reference source data.
+  /**
+   * The view machine name for the view involved in this XML request.
+   *
+   * @var string
+   */
   protected $viewName;
+
+  /**
+   * The view display name for the view involved in this XML request.
+   *
+   * @var string
+   */
   protected $displayName;
+
+  /**
+   * The loaded view involved in this XML request.
+   *
+   * @var \Drupal\views\ViewExecutable
+   */
   protected $view;
+
+  /**
+   * An indexed array of view args that apply to the view used in this XML
+   * request.
+   *
+   * @var array
+   */
   protected $viewArgs = array();
+
 
   /**
    * {@inheritdoc}
@@ -76,7 +98,7 @@ class JuiceboxXmlControllerViewsStyle extends JuiceboxXmlControllerBase {
    * Utility to extract the current set of view args from query params.
    *
    * @return array
-   *   A simple indexed array of the view args.
+   *   A indexed array of the view args.
    */
   protected function queryToArgs() {
     $args = array();

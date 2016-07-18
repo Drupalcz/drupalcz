@@ -1,12 +1,6 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\libraries\Extension\ExtensionHandlerInterface.
- */
-
 namespace Drupal\libraries\Extension;
-
 
 /**
  * Provides an interface for extension handlers.
@@ -22,4 +16,3 @@ interface ExtensionHandlerInterface {
   public function getExtensions();
 
 }
-

@@ -11,15 +11,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Drupal\views\Plugin\views\style\StylePluginBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Utility\LinkGeneratorInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
-use Drupal\file\Entity\File;
-use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\juicebox\JuiceboxFormatterInterface;
 use Drupal\juicebox\JuiceboxGalleryInterface;
-
 
 /**
  * Plugin implementation of the 'juicebox' display style.
@@ -36,24 +34,85 @@ use Drupal\juicebox\JuiceboxGalleryInterface;
  */
 class JuiceboxDisplayStyle extends StylePluginBase {
 
-  // Injected properties.
+  /**
+   * A Juicebox formatter service.
+   *
+   * @var \Drupal\juicebox\JuiceboxFormatterInterface
+   */
   protected $juicebox;
-  protected $entityManager;
+
+  /**
+   * A Drupal entity type manager service.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * A Drupal entity field manager service.
+   *
+   * @var \Drupal\Core\Entity\EntityFieldManagerInterface
+   */
+  protected $entityFieldManager;
+
+  /**
+   * A Drupal string translation service.
+   *
+   * @var \Drupal\Core\StringTranslation\TranslationInterface
+   */
   protected $stringTranslation;
+
+  /**
+   * A Symfony request object for the current request.
+   *
+   * @var \Symfony\Component\HttpFoundation\Request
+   */
   protected $request;
 
+  /**
+   * {@inheritdoc}
+   */
   protected $usesGrouping = FALSE;
+
+  /**
+   * {@inheritdoc}
+   */
   protected $usesFields = TRUE;
+
+  /**
+   * {@inheritdoc}
+   */
   protected $usesRowPlugin = FALSE;
+
+  /**
+   * {@inheritdoc}
+   */
   protected $usesRowClass = FALSE;
+
+  /**
+   * {@inheritdoc}
+   */
   protected $usesOptions = TRUE;
+
+
+  /**
+   * Factory to fetch required dependencies from container.
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    // Create a new instance of the plugin. This also allows us to extract
+    // services from the container and inject them into our plugin via its own
+    // constructor as needed.
+    return new static($configuration, $plugin_id, $plugin_definition, $container->get('entity_type.manager'), $container->get('entity_field.manager'), $container->get('link_generator'), $container->get('string_translation'), $container->get('request_stack'), $container->get('juicebox.formatter'));
+  }
 
   /**
    * Constructor.
    *
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
-   *   A Drupal entity manager service.
-   * @param \Drupal\Core\Utility\LinkGeneratorInterface $translation
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   A Drupal entity type manager service.
+   * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
+   *   A Drupal entity field manager service.
+   * @param \Drupal\Core\Utility\LinkGeneratorInterface $link_generator
    *   A link generator service.
    * @param \Drupal\Core\StringTranslation\TranslationInterface $translation
    *   A string translation service.
@@ -62,22 +121,13 @@ class JuiceboxDisplayStyle extends StylePluginBase {
    * @param \Drupal\juicebox\JuiceboxFormatterInterface
    *   A Juicebox formatter service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityManagerInterface $entity_manager, LinkGeneratorInterface $link_generator, TranslationInterface $translation, RequestStack $request_stack, JuiceboxFormatterInterface $juicebox) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, EntityFieldManagerInterface $entity_field_manager, LinkGeneratorInterface $link_generator, TranslationInterface $translation, RequestStack $request_stack, JuiceboxFormatterInterface $juicebox) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->entityManager = $entity_manager;
+    $this->entityTypeManager = $entity_type_manager;
+    $this->entityFieldManager = $entity_field_manager;
     $this->stringTranslation = $translation;
     $this->request = $request_stack->getCurrentRequest();
     $this->juicebox = $juicebox;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    // Create a new instance of the plugin. This also allows us to extract
-    // services from the container and inject them into our plugin via its own
-    // constructor as needed.
-    return new static($configuration, $plugin_id, $plugin_definition, $container->get('entity.manager'), $container->get('link_generator'), $container->get('string_translation'), $container->get('request_stack'), $container->get('juicebox.formatter'));
   }
 
   /**
@@ -122,7 +172,7 @@ class JuiceboxDisplayStyle extends StylePluginBase {
       '#type' => 'select',
       '#title' => t('Image Source'),
       '#default_value' => $settings['image_field'],
-      '#description' => t('The field source to use for each image in the gallery. Must be an image field, file field or a file ID.'),
+      '#description' => t('The field source to use for each image in the gallery. Must be an image field, file field or a file ID. If using a multivalued field (*) only the <em>first</em> value from each entity will be used.'),
       '#suffix' => $missing_field_warning,
       '#options' => $options['field_options_images'],
       '#empty_option' => t('- Select -'),
@@ -255,7 +305,7 @@ class JuiceboxDisplayStyle extends StylePluginBase {
       }
       // Check if the linkURL should be customized based on view settings.
       if (!empty($settings['linkurl_source']) && !empty($this->rendered_fields[$row_index][$settings['linkurl_source']])) {
-        $src_data['link_url'] = $this->rendered_fields[$row_index][$settings['linkurl_source']];
+        $src_data['linkURL'] = (string) $this->rendered_fields[$row_index][$settings['linkurl_source']];
       }
       // Set the image title.
       $title = '';
@@ -345,14 +395,19 @@ class JuiceboxDisplayStyle extends StylePluginBase {
           // The source is a file field so we fetch the fid through the
           // target_id property if the field item.
           $target_ids = $view->field[$source_field]->getValue($row, 'target_id');
-          if (!empty($target_ids[0]) && is_numeric($target_ids[0])) {
-            $fids[$row_index] = $target_ids[0];
+          // The target IDs value comes in a mixed format depending on
+          // cardinality. We can only use one ID as each view row can only
+          // reference one image (to ensure appropriate matching with the
+          // thumb/title/caption data already specified on the row).
+          $target_id = is_array($target_ids) ? reset($target_ids) : $target_ids;
+          if (!empty($target_id) && is_numeric($target_id)) {
+            $fids[$row_index] = $target_id;
           }
       }
     }
     if (empty($items)) {
       // Bulk load all file entities.
-      $file_entities = $this->entityManager->getStorage('file')->loadMultiple($fids);
+      $file_entities = $this->entityTypeManager->getStorage('file')->loadMultiple($fids);
       // Pass 2 - Ensure the file entities are keyed by row.
       foreach ($fids as $row_index => $fid) {
         $items[$row_index] = $file_entities[$fid];
@@ -398,11 +453,12 @@ class JuiceboxDisplayStyle extends StylePluginBase {
         // it's protected so we can't access it. This means we have to take the
         // long road (via our own injected entity manager) to get the field type
         // info.
-        $field_map = $this->entityManager->getFieldMap();
         $entity_type = $handler->getEntityType();
-        $field_type = $field_map[$entity_type][$field]['type'];
+        $field_definition = $this->entityFieldManager->getFieldStorageDefinitions($entity_type)[$field];
+        $field_type = $field_definition->getType();
         if ($field_type == 'image' || $field_type == 'file') {
-          $options['field_options_images'][$field] = $name;
+          $field_cardinality = $field_definition->get('cardinality');
+          $options['field_options_images'][$field] = $name . ($field_cardinality == 1 ? '' : '*');
           $options['field_options_images_type'][$field] = 'file_field';
           $is_image = TRUE;
         }

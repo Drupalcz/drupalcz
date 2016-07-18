@@ -1,0 +1,20 @@
+uuid: 354467f6-f0d9-41ec-9744-6843c963e3fb
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_dcz_pos_long
+  module:
+    - user
+id: user.user.field_dcz_pos_long
+field_name: field_dcz_pos_long
+entity_type: user
+bundle: user
+label: Longitude
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

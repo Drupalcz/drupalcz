@@ -1,16 +1,16 @@
-/*---------------------- menu horizontal hover---------*/
-.menu-item:hover {
+/*---------------------- menu horizontal hover---- Krout Fethi FrontEnd Developer-----*/
+.toolbar-tray-horizontal .menu-item:hover {
     background: #fff;
 }
-.menu-item:focus {
+.toolbar-tray-horizontal .menu-item:focus {
     background: #abeae4;
 }
-.menu-item--expanded .menu {
+.toolbar-tray-horizontal .menu-item--expanded .menu {
     background: #fff;
     width: auto;
     height: auto;
 }
-.menu-item--expanded {
+.toolbar-tray-horizontal .menu-item--expanded {
     background-color: #f5f5f2;
 
 }
@@ -41,14 +41,10 @@
     position: absolute;
     width: 200px;
 
-
 }
 .toolbar-tray-horizontal ul li.menu-item--expanded .menu-item > ul
 {
     display: none;
-
-
-
 }
 .toolbar-tray-horizontal ul li.menu-item--expanded ul li.menu-item--expanded {
     background-position: center right;
@@ -71,9 +67,27 @@
     left: 200px;
     width: 200px;
 }
-/*.toolbar .toolbar-tray-vertical li.open > ul.toolbar-menu {
-    display: none;
-}*/
+
 .toolbar .toolbar-tray-vertical li.open > ul.toolbar-menu.clearfix {
     display: block;
+}
+[dir="rtl"] .toolbar-tray-horizontal .toolbar .level-2 > ul {
+    position: absolute;
+    padding-top: 0;
+    top: 0;
+    right: 200px;
+    width: 200px;
+}
+[dir="rtl"] .toolbar-tray-horizontal li:hover ul li{ float: none !important;}
+[dir="rtl"] .toolbar .toolbar-menu ul .toolbar-icon {
+    padding-left: 1.3333em;
+
+}
+
+
+[dir="rtl"] .toolbar-tray-horizontal ul li.menu-item--expanded .menu-item:hover ul{margin: -40px 197px 0 0;}
+[dir="rtl"] .toolbar-tray-horizontal ul li.menu-item--expanded ul li.menu-item--expanded {
+    background-position: center left;
+    background-image: url('/core/misc/icons/0074bd/chevron-left.svg');
+    background-repeat: no-repeat;
 }

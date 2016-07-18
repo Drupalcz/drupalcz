@@ -1,0 +1,55 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "58631e967f707f4ae63ad2c92de7b141",
+    "packages": [
+        {
+            "name": "mollom/client",
+            "version": "dev-psr4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mollom/MollomPHP",
+                "reference": "82087c7e4e736f188933698869a5d443c628c476"
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mollom\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "See contributors",
+                    "homepage": "https://github.com/mollom/MollomPHP/graphs/contributors"
+                }
+            ],
+            "description": "Generic PHP library for Mollom's REST API.",
+            "keywords": [
+                "acquia",
+                "mollom",
+                "spam"
+            ],
+            "time": "2014-09-10 17:51:43"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "mollom/client": 20
+    },
+    "prefer-stable": false,
+    "platform": {
+        "php": ">=5.3.0"
+    },
+    "platform-dev": []
+}

@@ -1,0 +1,30 @@
+mollom_test.post_add_form:
+  path: '/mollom-test/form'
+  defaults:
+    _entity_form: mollom_test_post.add
+    _title: 'Add post'
+  requirements:
+    _permission: 'access content'
+
+entity.mollom_test_post.edit_form:
+  path: '/mollom-test/form/{mollom_test_post}'
+  defaults:
+    _entity_form: 'mollom_test_post.edit'
+    _title: 'Edit post'
+  requirements:
+    _permission: 'access content'
+
+mollom_test.post_delete_form:
+  path: '/mollom-test/form/{mollom_test_post}/delete'
+  defaults:
+    _entity_form: mollom_test_post.delete
+    _title: 'Delete post'
+  requirements:
+    _permission: 'access content'
+
+mollom_test.views_reset:
+  path: '/mollom-test/form/views/reset'
+  defaults:
+    _controller: '\Drupal\mollom_test\TestController::resetViewCount'
+  requirements:
+    _permission: 'access content'

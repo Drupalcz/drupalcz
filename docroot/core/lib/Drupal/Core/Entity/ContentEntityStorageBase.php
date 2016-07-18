@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Core\Entity\ContentEntityStorageBase.
- */
-
 namespace Drupal\Core\Entity;
 
 use Drupal\Core\Cache\Cache;
@@ -139,7 +134,7 @@ abstract class ContentEntityStorageBase extends EntityStorageBase implements Con
     $values[$this->langcodeKey] = $langcode;
     $values[$this->getEntityType()->getKey('default_langcode')] = FALSE;
     $this->initFieldValues($translation, $values, $field_names);
-    $this->invokeHook('translation_create', $entity);
+    $this->invokeHook('translation_create', $translation);
     return $translation;
   }
 

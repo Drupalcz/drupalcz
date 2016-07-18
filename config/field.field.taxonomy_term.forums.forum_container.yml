@@ -1,0 +1,25 @@
+uuid: 2c8127d4-a7b0-456d-9608-08e483438747
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.forum_container
+    - taxonomy.vocabulary.forums
+_core:
+  default_config_hash: g67eGTa6nkP37d5TscXzfsM4JTtuvZMZMcgZe63tZsc
+id: taxonomy_term.forums.forum_container
+field_name: forum_container
+entity_type: taxonomy_term
+bundle: forums
+label: Container
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

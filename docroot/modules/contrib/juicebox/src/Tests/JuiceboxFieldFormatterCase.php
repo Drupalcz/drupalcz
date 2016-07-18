@@ -54,7 +54,7 @@ class JuiceboxFieldFormatterCase extends JuiceboxBaseCase {
     $this->drupalGet('node/' . $node->id());
     $this->assertRaw(trim(json_encode(array('configUrl' => $xml_url)), '{}"'), 'Gallery setting found in Drupal.settings.');
     $this->assertRaw('id="node--' . $node->id() . '--' . str_replace('_', '-', $this->instFieldName) . '--full"', 'Embed code wrapper found.');
-    $this->assertRaw(Html::escape($test_image_url), 'Test image found in embed code');
+    $this->assertRaw(Html::escape(file_url_transform_relative($test_image_url)), 'Test image found in embed code');
     // Check for correct XML.
     $this->drupalGet($xml_path);
     $this->assertRaw('<?xml version="1.0" encoding="UTF-8"?>', 'Valid XML detected.');
@@ -101,7 +101,7 @@ class JuiceboxFieldFormatterCase extends JuiceboxBaseCase {
     // Check for correct embed markup as anon user.
     $this->drupalLogout();
     $this->drupalGet('node/' . $node->id());
-    $this->assertRaw(Html::escape($test_formatted_image_url), 'Test styled image found in embed code');
+    $this->assertRaw(Html::escape(file_url_transform_relative($test_formatted_image_url)), 'Test styled image found in embed code');
     // Check for correct XML.
     $this->drupalGet('juicebox/xml/field/node/' . $node->id() . '/' . $this->instFieldName . '/full');
     $this->assertRaw('imageURL="' . Html::escape($test_formatted_image_url), 'Test styled image found in XML.');

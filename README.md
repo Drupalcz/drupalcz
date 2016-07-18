@@ -11,7 +11,9 @@ Branch | Build status
 
 ## Contents
 * acquia-utils/ - Acquia cloud specific tools.
+* config/ - Exported Drupal configutation.
 * docroot/ - Website directory.
+* hooks/ - Acquia cloud hooks. (See https://docs.acquia.com/cloud/manage/cloud-hooks )
 * library/ - Acquia cloud libraries.
 * tests/ - Collection of tests for Travis CI and local development.
 * .gitignore - Gitignore.
@@ -35,10 +37,22 @@ Branch | Build status
 * Install the site (it will use the Drupal.cz distribution).
   * `cd docroot`
   * `drush si`
-* Migrate data from D6 Drupal.cz
+  * Import configuration:
+  * `drush cim -y`
+  * Login to new site:
+  * `drush uli`
+* Optional: Migrate data from D6 Drupal.cz
   * Get the database snapshot: https://github.com/Drupalcz/drupalcz_db
   * Import it into new database separarate from D8 version.
-  * Run the migration: `console migrate:execute --db-host="127.0.0.1" --db-name="DBNAME" --db-user="USERNAME" --db-port=PORT --db-type="mysql" --db-pass="PASSWORD" all -n`
+  * See docroot/sites/default/default.settings.local.php for info how to connect second DB.
+  * Enable module with migration definitions:
+  * `drush en dcz_migrate -y`
+  * See which migrations are available:
+  * `drush migrate-status`
+  * Run the migration:
+  * `drush migrate-import --group=dcz6 -vvv`
+  * Check results:
+  * `drush migrate-status`
 
 ## Contributing
 * We are using GitFlow(https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow/) branching strategy
