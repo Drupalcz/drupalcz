@@ -14,6 +14,8 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * The "modal_animation" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "modal_animation",
  *   type = "checkbox",

@@ -14,6 +14,8 @@ use Drupal\Component\Utility\NestedArray;
 /**
  * Implements hook_library_info_alter().
  *
+ * @ingroup plugins_alter
+ *
  * @BootstrapAlter("library_info")
  */
 class LibraryInfo extends PluginBase implements AlterInterface {
@@ -46,9 +48,15 @@ class LibraryInfo extends PluginBase implements AlterInterface {
         $overrides = $ancestor->getPath() . "/css/$version/overrides$provider_theme.min.css";
         if (file_exists($overrides)) {
           // Since this uses a relative path to the ancestor from DRUPAL_ROOT,
-          // we must prefix the entire path with / so it doesn't append the
-          // active theme's path (which would duplicate the prefix).
-          $libraries['theme']['css']['theme']["/$overrides"] = [];
+          // we must prepend the entire path with forward slash (/) so it
+          // doesn't prepend the active theme's path.
+          $overrides = "/$overrides";
+
+          // The overrides file must also be stored in the "base" category so
+          // it isn't added after any potential sub-theme's "theme" category.
+          // There's no weight, so it will be added after the provider's assets.
+          // @see https://www.drupal.org/node/2770613
+          $libraries['theme']['css']['base'][$overrides] = [];
           break;
         }
       }

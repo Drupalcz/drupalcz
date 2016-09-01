@@ -8,13 +8,12 @@ namespace Drupal\bootstrap\Plugin\Preprocess;
 
 use Drupal\bootstrap\Annotation\BootstrapPreprocess;
 use Drupal\bootstrap\Utility\Variables;
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Url;
 
 /**
  * Pre-processes variables for the "filter_tips" theme hook.
  *
- * @ingroup theme_preprocess
+ * @ingroup plugins_preprocess
  *
  * @BootstrapPreprocess("filter_tips",
  *   replace = "template_preprocess_filter_tips"
@@ -25,7 +24,7 @@ class FilterTips extends PreprocessBase implements PreprocessInterface {
   /**
    * {@inheritdoc}
    */
-  public function preprocessVariables(Variables $variables, $hook, array $info) {
+  public function preprocessVariables(Variables $variables) {
     /** @var \Drupal\filter\FilterFormatInterface $current_format */
     $current_format = \Drupal::routeMatch()->getParameter('filter_format');
     $current_format_id = $current_format ? $current_format->id() : FALSE;

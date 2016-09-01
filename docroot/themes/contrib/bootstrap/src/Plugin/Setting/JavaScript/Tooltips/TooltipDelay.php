@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "tooltip_delay" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "tooltip_delay",
  *   type = "textfield",

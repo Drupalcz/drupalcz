@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "button_colorize" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "button_colorize",
  *   type = "checkbox",

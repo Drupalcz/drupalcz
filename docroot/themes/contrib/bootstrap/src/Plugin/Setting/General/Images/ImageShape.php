@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "image_shape" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "image_shape",
  *   type = "select",

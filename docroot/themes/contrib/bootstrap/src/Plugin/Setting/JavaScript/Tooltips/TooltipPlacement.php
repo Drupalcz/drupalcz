@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "tooltip_placement" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "tooltip_placement",
  *   type = "select",

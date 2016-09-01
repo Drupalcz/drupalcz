@@ -29,16 +29,17 @@
  * - title_suffix: Additional output populated by modules, intended to be
  *   displayed after the main title tag that appears in the template.
  *
- * @see template_preprocess_block()
- *
  * @ingroup templates
+ *
+ * @see template_preprocess_block()
  */
 #}
 {%
-set classes = [
-'block',
-'block-' ~ configuration.provider|clean_class,
-]
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+  ]
 %}
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}

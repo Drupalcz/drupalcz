@@ -14,7 +14,7 @@ use Drupal\Component\Utility\Html;
 /**
  * Pre-processes variables for the "bootstrap_panel" theme hook.
  *
- * @ingroup theme_preprocess
+ * @ingroup plugins_preprocess
  *
  * @BootstrapPreprocess("bootstrap_panel")
  */
@@ -23,12 +23,12 @@ class BootstrapPanel extends PreprocessBase implements PreprocessInterface {
   /**
    * {@inheritdoc}
    */
-  protected function preprocessElement(Variables $variables, $hook, array $info) {
+  protected function preprocessElement(Element $element, Variables $variables) {
     // Assign the ID, if not already set.
-    $variables->element->map(['id']);
+    $element->map(['id']);
 
     // Add necessary classes.
-    $variables->element->addClass(['form-item', 'js-form-item', 'form-wrapper', 'js-form-wrapper']);
+    $element->addClass(['form-item', 'js-form-item', 'form-wrapper', 'js-form-wrapper']);
 
     $body = [];
     $properties = ['field_prefix', 'body', 'children'];
@@ -37,7 +37,7 @@ class BootstrapPanel extends PreprocessBase implements PreprocessInterface {
     // type. Some form elements may use "CompositeFormElementTrait" which
     // will inadvertently and eventually become preprocessed here and #value
     // may actually be the element's value instead of a renderable element.
-    if ($variables->element->isType(['details', 'fieldset'])) {
+    if ($element->isType(['details', 'fieldset'])) {
       $properties[] = 'value';
     }
 
@@ -46,7 +46,7 @@ class BootstrapPanel extends PreprocessBase implements PreprocessInterface {
 
     // Merge all possible content from the element into a single render array.
     foreach ($properties as $property) {
-      $body[$property] = Element::create($variables->element->getProperty($property, []))->getArray();
+      $body[$property] = Element::create($element->getProperty($property, []))->getArray();
     }
     $variables['body'] = array_filter($body);
 
@@ -60,25 +60,25 @@ class BootstrapPanel extends PreprocessBase implements PreprocessInterface {
       'errors' => 'errors',
       'footer' => 'footer',
       'required' => 'required',
-      'panel_state' => 'panel_state',
+      'panel_type' => 'panel_type',
       'title' => 'heading',
       'title_attributes' => 'heading_attributes',
     ];
 
     // Handle specific "details" elements.
-    if ($variables->element->isType('details')) {
+    if ($element->isType('details')) {
       // Details are always collapsible per the HTML5 spec.
       // @see https://www.drupal.org/node/1852020
       $variables['collapsible'] = TRUE;
 
       // Determine the collapsed state.
-      $variables['collapsed'] = !$variables->element->getProperty('open', TRUE);
+      $variables['collapsed'] = !$element->getProperty('open', TRUE);
 
       // Remove the unnecessary details attribute.
-      $variables->element->removeAttribute('open');
+      $element->removeAttribute('open');
     }
     // Handle specific "fieldset" elements.
-    elseif ($variables->element->isType('fieldset')) {
+    elseif ($element->isType('fieldset')) {
       // Override variables to mimic the default "fieldset" element info.
       // They will be mapped below if they exist on the element.
       unset($variables['collapsible'], $variables['collapsed']);
@@ -93,7 +93,7 @@ class BootstrapPanel extends PreprocessBase implements PreprocessInterface {
   /**
    * {@inheritdoc}
    */
-  protected function preprocessVariables(Variables $variables, $hook, array $info) {
+  protected function preprocessVariables(Variables $variables) {
     // Retrieve the ID, generating one if needed.
     $id = $variables->getAttribute('id', Html::getUniqueId($variables->offsetGet('id', 'bootstrap-panel')));
     unset($variables['id']);
@@ -122,10 +122,10 @@ class BootstrapPanel extends PreprocessBase implements PreprocessInterface {
     }
 
     // Convert the description variable.
-    $this->preprocessDescription($variables, $hook, $info);
+    $this->preprocessDescription();
 
     // Ensure all attributes are proper objects.
-    $this->preprocessAttributes($variables, $hook, $info);
+    $this->preprocessAttributes();
   }
 
 }

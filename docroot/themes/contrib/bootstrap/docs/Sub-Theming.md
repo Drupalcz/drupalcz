@@ -1,5 +1,5 @@
 <!-- @file Instructions on how to sub-theme the Drupal Bootstrap base theme. -->
-<!-- @defgroup -->
+<!-- @defgroup sub_theming -->
 # Sub-Theming
 
 If you haven't already installed the Drupal Bootstrap theme, read 
@@ -17,21 +17,33 @@ templates, and theme processing.
 
 #### Choose a Starterkit {#starterkit}
 
-- @link subtheme_cdn CDN Starterkit @endlink - uses the "out-of-the-box"
+- @link sub_theming_cdn CDN Starterkit @endlink - uses the "out-of-the-box"
   CSS and JavaScript files served by the [jsDelivr CDN].
-- @link subtheme_less LESS Starterkit @endlink - uses the [Bootstrap Framework]
-  [LESS] source files and a local [LESS] preprocessor.
+- @link sub_theming_less Less Starterkit @endlink - uses the [Bootstrap Framework]
+  [Less] source files and a local [Less] preprocessor.
+- @link sub_theming_sass Sass Starterkit @endlink - uses the [Bootstrap Framework]
+  [Sass] source files and a local [Sass] preprocessor.
 
 Once you've selected one of the above starterkits, here's how to install it:
 
 1. Copy over one of the starterkits you have chosen from the
    `./bootstrap/starterkits` directory into the `themes` directory.
-2. Rename the folder to a unique machine readable name. This will be your
-   sub-theme's "name". For this example and future examples we'll use `subtheme`.
-3. Rename `./subtheme/THEMENAME.starterkit.yml` to match the folder name and append
-   `.info.yml` (e.g. `./subtheme/subtheme.info.yml`).
-4. Open `./subtheme/subtheme.info.yml` and change the name, description and any
-   other properties to suite your needs. Be sure to also change `- THEMENAME/globalstyling` to `- subtheme/globalstyling`.
+2. Rename the directory to a unique machine readable name. This is your sub-theme's
+   "machine name". When referring to files inside a sub-theme, they will always
+   start with `./THEMENAME/`, where `THEMENAME` is the machine name of your
+   sub-theme. They will continue to specify the full path to the file or
+   directory inside it. For example, the primary file Drupal uses to determine
+   if a theme exists is: `./THEMENAME/THEMENAME.info.yml`.
+3. Rename `./THEMENAME/THEMENAME.starterkit.yml` to match
+   `./THEMENAME/THEMENAME.info.yml`.
+4. Open `./THEMENAME/THEMENAME.info.yml` and change the name, description and any
+   other properties to suite your needs. Make sure to rename the library name as
+   well:  `- THEMENAME/globalstyling`.
+5. Rename the sub-theme configuration files, located at:
+   `./THEMENAME/config/install/THEMENAME.settings.yml` and
+   `./THEMENAME/config/schema/THEMENAME.schema.yml`.
+6. Open `./THEMENAME/config/schema/THEMENAME.schema.yml` and rename
+   `- THEMENAME.settings:` and `'THEMETITLE settings'`
 
 {.alert.alert-warning} **WARNING:** Ensure that the `.starterkit` suffix is
 not present on your sub-theme's `.info.yml` filename. This suffix is simply a stop
@@ -49,4 +61,5 @@ your starterkit, please refer to the starterkit's documentation page to customiz
 [Drupal Bootstrap]: https://www.drupal.org/project/bootstrap
 [Bootstrap Framework]: http://getbootstrap.com
 [jsDelivr CDN]: http://www.jsdelivr.com
-[LESS]: http://lesscss.org
+[Less]: http://lesscss.org
+[Sass]: http://sass-lang.com

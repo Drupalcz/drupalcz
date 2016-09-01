@@ -13,10 +13,13 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "navbar_position" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "navbar_position",
  *   type = "select",
  *   title = @Translation("Navbar Position"),
+ *   description = @Translation("Determines where the navbar is positioned on the page."),
  *   defaultValue = "",
  *   groups = {
  *     "components" = @Translation("Components"),

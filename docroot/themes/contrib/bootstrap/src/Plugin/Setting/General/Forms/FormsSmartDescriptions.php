@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "forms_smart_descriptions" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "forms_smart_descriptions",
  *   type = "checkbox",

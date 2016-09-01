@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "image_responsive" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "image_responsive",
  *   type = "checkbox",

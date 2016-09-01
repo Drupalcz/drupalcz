@@ -8,6 +8,8 @@ namespace Drupal\bootstrap\Plugin\Preprocess;
 
 /**
  * Defines the interface for an object oriented preprocess plugin.
+ *
+ * @ingroup plugins_preprocess
  */
 interface PreprocessInterface {
 

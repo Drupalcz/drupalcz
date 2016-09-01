@@ -18,5 +18,7 @@ use Drupal\Component\Annotation\PluginID;
  * @see plugin_api
  *
  * @Annotation
+ *
+ * @ingroup plugins_form
  */
 class BootstrapForm extends PluginID {}

@@ -16,12 +16,15 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * The "cdn_jsdelivr_version" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   cdn_provider = "jsdelivr",
  *   id = "cdn_jsdelivr_version",
  *   type = "select",
  *   weight = -1,
  *   title = @Translation("Version"),
+ *   description = @Translation("Choose the Bootstrap version from jsdelivr"),
  *   defaultValue = @BootstrapConstant("Drupal\bootstrap\Bootstrap::FRAMEWORK_VERSION"),
  *   groups = {
  *     "advanced" = @Translation("Advanced"),

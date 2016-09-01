@@ -11,6 +11,8 @@ use Drupal\Component\Utility\SortArray;
 
 /**
  * Manages discovery and instantiation of Bootstrap theme settings.
+ *
+ * @ingroup plugins_setting
  */
 class SettingManager extends PluginManager {
 

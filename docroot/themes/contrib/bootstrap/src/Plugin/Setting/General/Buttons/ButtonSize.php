@@ -13,11 +13,14 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "button_size" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "button_size",
  *   type = "select",
  *   title = @Translation("Default button size"),
  *   defaultValue = "",
+ *   description = @Translation("Defines the Bootstrap Buttons specific size"),
  *   empty_option = @Translation("Normal"),
  *   groups = {
  *     "general" = @Translation("General"),

@@ -13,7 +13,7 @@ use Drupal\bootstrap\Utility\Variables;
 /**
  * Pre-processes variables for the "image_widget" theme hook.
  *
- * @ingroup theme_preprocess
+ * @ingroup plugins_preprocess
  *
  * @see image-widget.html.twig
  *
@@ -26,11 +26,11 @@ class ImageWidget extends PreprocessBase implements PreprocessInterface {
   /**
    * {@inheritdoc}
    */
-  public function preprocessElement(Variables $variables, $hook, array $info) {
+  public function preprocessElement(Element $element, Variables $variables) {
     $variables->addClass(['image-widget', 'js-form-managed-file', 'form-managed-file', 'clearfix']);
 
     $data = &$variables->offsetGet('data', []);
-    foreach ($variables->element->children() as $key => $child) {
+    foreach ($element->children() as $key => $child) {
       // Modify the label to be a placeholder instead.
       if ($key === 'alt') {
         $child->setProperty('form_group', FALSE);

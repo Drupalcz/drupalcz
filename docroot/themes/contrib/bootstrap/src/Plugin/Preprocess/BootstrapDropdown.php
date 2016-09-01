@@ -14,7 +14,7 @@ use Drupal\bootstrap\Utility\Variables;
 /**
  * Pre-processes variables for the "bootstrap_dropdown" theme hook.
  *
- * @ingroup theme_preprocess
+ * @ingroup plugins_preprocess
  *
  * @BootstrapPreprocess("bootstrap_dropdown")
  */
@@ -23,8 +23,8 @@ class BootstrapDropdown extends PreprocessBase implements PreprocessInterface {
   /**
    * {@inheritdoc}
    */
-  protected function preprocessVariables(Variables $variables, $hook, array $info) {
-    $this->preprocessLinks($variables, $hook, $info);
+  protected function preprocessVariables(Variables $variables) {
+    $this->preprocessLinks($variables);
 
     $toggle = Element::create($variables->toggle);
     $toggle->setProperty('split', $variables->split);
@@ -37,7 +37,7 @@ class BootstrapDropdown extends PreprocessBase implements PreprocessInterface {
     ];
 
     // Ensure all attributes are proper objects.
-    $this->preprocessAttributes($variables, $hook, $info);
+    $this->preprocessAttributes();
   }
 
   /**
@@ -45,12 +45,8 @@ class BootstrapDropdown extends PreprocessBase implements PreprocessInterface {
    *
    * @param \Drupal\bootstrap\Utility\Variables $variables
    *   A variables object.
-   * @param string $hook
-   *   The name of the theme hook.
-   * @param array $info
-   *   The theme hook info array.
    */
-  protected function preprocessLinks(Variables $variables, $hook, array $info) {
+  protected function preprocessLinks(Variables $variables) {
     // Convert "dropbutton" theme suggestion variables.
     if (Unicode::strpos($variables->theme_hook_original, 'links__dropbutton') !== FALSE && !empty($variables->links)) {
       $operations = !!Unicode::strpos($variables->theme_hook_original, 'operations');

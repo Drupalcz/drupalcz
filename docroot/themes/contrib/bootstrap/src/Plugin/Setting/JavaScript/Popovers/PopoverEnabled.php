@@ -14,6 +14,8 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * The "popover_enabled" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "popover_enabled",
  *   type = "checkbox",

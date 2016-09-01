@@ -13,10 +13,13 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "breadcrumb" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "breadcrumb",
  *   type = "select",
  *   title = @Translation("Breadcrumb visibility"),
+ *   description = @Translation("Show or hide the Breadcrumbs"),
  *   defaultValue = "1",
  *   groups = {
  *     "components" = @Translation("Components"),

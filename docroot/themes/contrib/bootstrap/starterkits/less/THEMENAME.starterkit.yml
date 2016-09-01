@@ -2,7 +2,7 @@ core: 8.x
 type: theme
 base theme: bootstrap
 
-name: 'Bootstrap Sub-Theme (LESS)'
+name: 'THEMETITLE'
 description: 'Uses the Bootstrap framework LESS source files and must be compiled (not for beginners).'
 package: 'Bootstrap'
 

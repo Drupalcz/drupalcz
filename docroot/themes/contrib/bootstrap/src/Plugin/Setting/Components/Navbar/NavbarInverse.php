@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "navbar_inverse" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "navbar_inverse",
  *   type = "checkbox",

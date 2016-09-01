@@ -1,6 +1,5 @@
 <!-- @file Maintaining the Drupal Bootstrap project. -->
 <!-- @defgroup -->
-<!-- @ingroup -->
 # Maintainers
 
 Generally speaking, these topics will not be very helpful to you unless you are
@@ -23,11 +22,20 @@ Suffice it to say: you will not have to manually update this project again.
 
 After you have installed the prerequisite CLI tools, run `npm install` in this
 directory. This will install the necessary NodeJS modules inside the
-`node_modules` folder.
+`node_modules` directory.
 
 After NodeJS has finished installing its own modules, it will automatically
 invoke `grunt install` for you. This is a grunt task that is specifically
 designed to keep the project in sync amongst maintainers.
+
+## Drush
+There are several commands available to run, please execute `drush` to view the
+full list. This topic only covers the commands this project created.
+
+### `drush bootstrap-generate-docs` or `drush bs-docs`
+Generates markdown documentation for the Drupal based code. Possible arguments are:
+- **type:** The specific type of documentation to generate, defaults to `all`.
+  Possible values: `all|settings`
 
 ## Grunt
 There are several tasks available to run, please execute `grunt --help` to view
@@ -56,7 +64,7 @@ next time they pull down the repository.
 ### `grunt sync`
 This is a sub-task used by `grunt install`. It will automatically
 download and install the various 3.x.x versions of the Bootstrap and Bootswatch
-libraries for local development purposes in the `./lib` folder. This process
+libraries for local development purposes in the `./lib` directory. This process
 utilizes Bower and can initially take a while for it to fully complete.
 
 Once you have the various versions of libraries have been installed, this task

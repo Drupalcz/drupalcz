@@ -65,6 +65,11 @@ libraries-override:
       theme:
         css/filter.admin.css: false
 
+  node/drupal.node.preview:
+    css:
+      theme:
+        css/node.preview.css: false
+
 # The following are dynamic library overrides based on certain critera,
 # usually a theme setting.
 #
@@ -73,8 +78,8 @@ libraries-override:
 #  core/drupal.dialog: bootstrap/drupal.dialog
 #  core/drupal.dialog.ajax: bootstrap/drupal.dialog.ajax
 
-# Information added by Drupal.org packaging script on 2016-03-01
-version: '8.x-3.0-beta3'
+# Information added by Drupal.org packaging script on 2016-08-03
+version: '8.x-3.0-rc2'
 core: '8.x'
 project: 'bootstrap'
-datestamp: 1456870749
+datestamp: 1470203963

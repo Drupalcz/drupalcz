@@ -14,6 +14,8 @@ use Drupal\Component\Annotation\PluginID;
  * Defines a Plugin annotation object that just contains an ID.
  *
  * @Annotation
+ *
+ * @ingroup utility
  */
 class PluginCallback extends PluginID {
 

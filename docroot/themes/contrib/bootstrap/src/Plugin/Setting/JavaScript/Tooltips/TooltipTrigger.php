@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "tooltip_trigger" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "tooltip_trigger",
  *   type = "select",

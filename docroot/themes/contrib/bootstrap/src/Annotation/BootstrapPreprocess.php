@@ -16,5 +16,7 @@ namespace Drupal\bootstrap\Annotation;
  * @see plugin_api
  *
  * @Annotation
+ *
+ * @ingroup plugins_preprocess
  */
 class BootstrapPreprocess extends PluginCallback {}

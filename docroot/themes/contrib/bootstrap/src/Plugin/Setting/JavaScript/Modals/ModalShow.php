@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "modal_show" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "modal_show",
  *   type = "checkbox",

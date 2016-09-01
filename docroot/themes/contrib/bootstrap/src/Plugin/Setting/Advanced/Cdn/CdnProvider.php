@@ -19,10 +19,14 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * The "cdn_provider" theme setting.
  *
+ * @ingroup plugins_provider
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "cdn_provider",
  *   type = "select",
  *   title = @Translation("CDN Provider"),
+ *   description = @Translation("Choose between jsdelivr or a custom cdn source."),
  *   defaultValue = "jsdelivr",
  *   empty_value = "",
  *   weight = -1,

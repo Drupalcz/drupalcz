@@ -8,6 +8,8 @@ namespace Drupal\bootstrap\Plugin\Prerender;
 
 /**
  * Defines the interface for an object oriented preprocess plugin.
+ *
+ * @ingroup plugins_prerender
  */
 interface PrerenderInterface {
 

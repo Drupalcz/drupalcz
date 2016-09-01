@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "tooltip_container" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "tooltip_container",
  *   type = "textfield",
