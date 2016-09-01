@@ -17,6 +17,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * particular format in a changelog or readme file, for example.
  *
  * @VersionDetector("line_pattern")
+ *
+ * @ingroup libraries
  */
 class LinePatternDetector extends PluginBase implements VersionDetectorInterface, ContainerFactoryPluginInterface {
 

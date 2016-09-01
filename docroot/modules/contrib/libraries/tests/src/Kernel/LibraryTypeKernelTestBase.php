@@ -7,7 +7,7 @@ use Drupal\KernelTests\KernelTestBase;
 use Drupal\libraries\ExternalLibrary\Exception\LibraryDefinitionNotFoundException;
 use Drupal\libraries\ExternalLibrary\Exception\LibraryTypeNotFoundException;
 use Drupal\libraries\ExternalLibrary\LibraryInterface;
-use Drupal\libraries\ExternalLibrary\LibraryType\LibraryTypeInterface;
+use Drupal\libraries\ExternalLibrary\Type\LibraryTypeInterface;
 
 /**
  * Provides an improved version of the core kernel test base class.
@@ -35,6 +35,16 @@ abstract class LibraryTypeKernelTestBase extends KernelTestBase {
    */
   protected $modulePath;
 
+  /**
+   * {@inheritdoc}
+   */
+  public static $modules = ['libraries', 'libraries_test'];
+
+  /**
+   * Gets the ID of the library type that is being tested.
+   *
+   * @return string
+   */
   abstract protected function getLibraryTypeId();
 
   /**
@@ -96,7 +106,10 @@ abstract class LibraryTypeKernelTestBase extends KernelTestBase {
   }
 
   /**
-   * @return \Drupal\libraries\ExternalLibrary\LibraryType\LibraryTypeInterface
+   * Returns the library type that is being tested.
+   *
+   * @return \Drupal\libraries\ExternalLibrary\Type\LibraryTypeInterface
+   *   The test library type.
    */
   protected function getLibraryType() {
     try {
@@ -111,7 +124,23 @@ abstract class LibraryTypeKernelTestBase extends KernelTestBase {
   }
 
   /**
+   * Retuns the library ID of the library used in the test.
+   *
+   * Defaults to 'test_[library_type]_library', where [library_type] is the
+   * ID of the library type being tested.
+   *
+   * @return string
+   */
+  protected function getLibraryId() {
+    $type_id = $this->getLibraryTypeId();
+    return "test_{$type_id}_library";
+  }
+
+  /**
+   * Returns the test library for this library type.
+   *
    * @return \Drupal\libraries\ExternalLibrary\LibraryInterface
+   *   The test library.
    */
   protected function getLibrary() {
     try {
@@ -129,15 +158,6 @@ abstract class LibraryTypeKernelTestBase extends KernelTestBase {
     finally {
       return $library;
     }
-  }
-
-  /**
-   * @param $type_id
-   * @return string
-   */
-  protected function getLibraryId() {
-    $type_id = $this->getLibraryTypeId();
-    return "test_{$type_id}_library";
   }
 
 }

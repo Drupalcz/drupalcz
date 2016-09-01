@@ -7,7 +7,7 @@
 
 use Drupal\Core\DrupalKernel;
 use Drupal\Core\Extension\ModuleHandler;
-use Drupal\libraries\ExternalLibrary\Asset\AssetLibraryInterface;
+use Drupal\libraries\ExternalLibrary\Asset\AttachableAssetLibraryRegistrationInterface;
 use Symfony\Component\Yaml\Parser;
 
 /**
@@ -17,15 +17,15 @@ function libraries_library_info_build() {
   /** @var \Drupal\libraries\ExternalLibrary\LibraryManagerInterface $library_manager */
   $library_manager = \Drupal::service('libraries.manager');
 
-  $core_libraries = [];
+  $attachable_libraries = [];
   foreach ($library_manager->getRequiredLibraryIds() as $external_library_id) {
     $external_library = $library_manager->getLibrary($external_library_id);
-    // @todo Use a library type listener instead.
-    if ($external_library instanceof AssetLibraryInterface) {
-      $core_libraries += $external_library->getAttachableAssetLibraries($library_manager);
+    $library_type = $external_library->getType();
+    if ($library_type instanceof AttachableAssetLibraryRegistrationInterface) {
+      $attachable_libraries += $library_type->getAttachableAssetLibraries($external_library, $library_manager);
     }
   }
-  return $core_libraries;
+  return $attachable_libraries;
 }
 
 /**

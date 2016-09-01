@@ -4,6 +4,8 @@ namespace Drupal\libraries\ExternalLibrary\Version;
 
 /**
  * Provides an interface for version detectors.
+ *
+ * @ingroup libraries
  */
 interface VersionDetectorInterface {
 

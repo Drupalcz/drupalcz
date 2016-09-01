@@ -2,7 +2,7 @@
 
 namespace Drupal\libraries\Tests;
 
-use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Component\Utility\Html;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -507,11 +507,11 @@ class LibrariesWebTest extends WebTestBase {
         list($prefix, $suffix) = $html[$extension];
         $raw = $prefix . $filepath . $suffix;
         if ($expected) {
-          $html_expected[] = SafeMarkup::checkPlain($raw);
+          $html_expected[] = Html::escape($raw);
           $this->assertRaw($raw, "$label$name.$extension found.");
         }
         else {
-          $html_not_expected[] = SafeMarkup::checkPlain($raw);
+          $html_not_expected[] = Html::escape($raw);
           $this->assertNoRaw($raw, "$label$name.$extension not found.");
         }
       }

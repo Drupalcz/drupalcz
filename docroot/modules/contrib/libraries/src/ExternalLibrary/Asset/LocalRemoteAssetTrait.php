@@ -8,29 +8,13 @@ namespace Drupal\libraries\ExternalLibrary\Asset;
  * If the library files are available locally, they are served locally.
  * Otherwise, the remote files are served, assuming a remote URL is specified.
  *
- * This trait should only be used in classes implementing AssetLibraryInterface,
- * LocalLibraryInterface and RemoteLibraryInterface.
+ * This trait should only be used in classes implementing LocalLibraryInterface
+ * and RemoteLibraryInterface.
  *
- * @see \Drupal\libraries\ExternalLibrary\Asset\SingleAssetLibraryTrait
- * @see \Drupal\libraries\ExternalLibrary\Asset\AssetLibraryInterface
  * @see \Drupal\libraries\ExternalLibrary\Local\LocalLibraryInterface
  * @see \Drupal\libraries\ExternalLibrary\Remote\RemoteLibraryInterface
  */
 trait LocalRemoteAssetTrait {
-
-  /**
-   * An array containing the CSS assets of the library.
-   *
-   * @var array
-   */
-  protected $cssAssets;
-
-  /**
-   * An array containing the JavaScript assets of the library.
-   *
-   * @var array
-   */
-  protected $jsAssets;
 
   /**
    * Checks whether this library can be attached.
@@ -74,6 +58,8 @@ trait LocalRemoteAssetTrait {
   /**
    * Gets the CSS assets attached to this library.
    *
+   * @param array $assets
+   *
    * @return array
    *   An array of CSS assets of the library following the core library CSS
    *   structure. The keys of the array must be among the SMACSS categories
@@ -85,10 +71,10 @@ trait LocalRemoteAssetTrait {
    *
    * @see \Drupal\libraries\ExternalLibrary\Asset\SingleAssetLibraryTrait::getCssAssets()
    */
-  protected function getCssAssets() {
+  protected function processCssAssets(array $assets) {
     // @todo Consider somehow caching the processed information.
     $processed_assets = [];
-    foreach ($this->cssAssets as $category => $category_assets) {
+    foreach ($assets as $category => $category_assets) {
       // @todo Somehow consolidate this with getJsAssets().
       foreach ($category_assets as $filename => $options) {
         $processed_assets[$category][$this->getPathPrefix() . '/' . $filename] = $options;
@@ -100,6 +86,8 @@ trait LocalRemoteAssetTrait {
   /**
    * Gets the JavaScript assets attached to this library.
    *
+   * @param array $assets
+   *
    * @return array
    *   An array of JavaScript assets of the library. The keys of the array are
    *   the file paths of the JavaScript files and the values are JavaScript
@@ -107,11 +95,11 @@ trait LocalRemoteAssetTrait {
    *
    * @see \Drupal\libraries\ExternalLibrary\Asset\SingleAssetLibraryTrait::getJsAssets()
    */
-  protected function getJsAssets() {
+  protected function processJsAssets(array $assets) {
     // @todo Consider somehow caching the processed information.
     $processed_assets = [];
     // @todo Somehow consolidate this with getCssAssets().
-    foreach ($this->jsAssets as $filename => $options) {
+    foreach ($assets as $filename => $options) {
       $processed_assets[$this->getPathPrefix() . '/' . $filename] = $options;
     }
     return $processed_assets;

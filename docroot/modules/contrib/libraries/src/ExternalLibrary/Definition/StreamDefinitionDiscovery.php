@@ -21,6 +21,8 @@ use Drupal\libraries\ExternalLibrary\Exception\LibraryDefinitionNotFoundExceptio
  * itself needing to change.
  *
  * @see \Drupal\libraries\StreamWrapper\LibraryDefinitionsStream
+ *
+ * @ingroup libraries
  */
 class StreamDefinitionDiscovery implements DefinitionDiscoveryInterface {
 

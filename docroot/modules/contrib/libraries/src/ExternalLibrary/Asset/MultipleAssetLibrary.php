@@ -3,6 +3,7 @@
 namespace Drupal\libraries\ExternalLibrary\Asset;
 
 use Drupal\Component\Plugin\Factory\FactoryInterface;
+use Drupal\libraries\ExternalLibrary\Dependency\DependentLibraryInterface;
 use Drupal\libraries\ExternalLibrary\Exception\LibraryNotInstalledException;
 use Drupal\libraries\ExternalLibrary\LibraryBase;
 use Drupal\libraries\ExternalLibrary\LibraryManagerInterface;
@@ -11,12 +12,15 @@ use Drupal\libraries\ExternalLibrary\Local\LocalLibraryTrait;
 use Drupal\libraries\ExternalLibrary\Remote\RemoteLibraryInterface;
 use Drupal\libraries\ExternalLibrary\Remote\RemoteLibraryTrait;
 use Drupal\libraries\ExternalLibrary\Type\LibraryTypeInterface;
+use Drupal\libraries\ExternalLibrary\Version\VersionedLibraryInterface;
 
 /**
- * Provides a class for a single attachable asset library.
+ * Provides a class for a library with multiple attachable asset libraries.
  */
-class AssetLibrary extends LibraryBase implements
-  AssetLibraryInterface,
+class MultipleAssetLibrary extends LibraryBase implements
+  MultipleAssetLibraryInterface,
+  VersionedLibraryInterface,
+  DependentLibraryInterface,
   LocalLibraryInterface,
   RemoteLibraryInterface
 {
@@ -28,25 +32,9 @@ class AssetLibrary extends LibraryBase implements
   ;
 
   /**
-   * An array containing the CSS assets of the library.
-   *
-   * @var array
+   * An array of attachable asset libraries.
    */
-  protected $cssAssets = [];
-
-  /**
-   * An array containing the JavaScript assets of the library.
-   *
-   * @var array
-   */
-  protected $jsAssets = [];
-
-  /**
-   * An array of attachable asset library IDs that this library depends on.
-   *
-   * @todo Explain the difference to regular dependencies.
-   */
-  protected $attachableDependencies = [];
+  protected $libraries = [];
 
   /**
    * Construct an external library.
@@ -61,9 +49,7 @@ class AssetLibrary extends LibraryBase implements
   public function __construct($id, array $definition, LibraryTypeInterface $library_type) {
     parent::__construct($id, $definition, $library_type);
     $this->remoteUrl = $definition['remote_url'];
-    $this->cssAssets = $definition['css'];
-    $this->jsAssets = $definition['js'];
-    $this->attachableDependencies = $definition['attachable_dependencies'];
+    $this->libraries = $definition['libraries'];
   }
 
   /**
@@ -73,10 +59,15 @@ class AssetLibrary extends LibraryBase implements
     parent::processDefinition($definition);
     $definition += [
       'remote_url' => '',
-      'css' => [],
-      'js' => [],
-      'attachable_dependencies' => [],
+      'libraries' => [],
     ];
+    foreach ($definition['libraries'] as &$library) {
+      $library += [
+        'css' => [],
+        'js' => [],
+        'dependencies' => [],
+      ];
+    }
   }
 
   /**
@@ -96,16 +87,20 @@ class AssetLibrary extends LibraryBase implements
    *
    * @todo Document the return value.
    */
-  public function getAttachableAssetLibrary(LibraryManagerInterface $library_manager) {
+  public function getAttachableAssetLibraries(LibraryManagerInterface $library_manager) {
     if (!$this->canBeAttached()) {
       throw new LibraryNotInstalledException($this);
     }
-    return [
-      'version' => $this->getVersion(),
-      'css' => $this->processCssAssets($this->cssAssets),
-      'js' => $this->processJsAssets($this->jsAssets),
-      'dependencies' => $this->attachableDependencies,
-    ];
+    $attachable_libraries = [];
+    foreach ($this->libraries as $attachable_library_id => $attachable_library) {
+      $attachable_libraries[$attachable_library_id] = [
+        'version' => $this->getVersion(),
+        'css' => $this->processCssAssets($attachable_library['css']),
+        'js' => $this->processJsAssets($attachable_library['js']),
+        'dependencies' => $attachable_library['dependencies'],
+      ];
+    }
+    return $attachable_libraries;
   }
 
   /**
