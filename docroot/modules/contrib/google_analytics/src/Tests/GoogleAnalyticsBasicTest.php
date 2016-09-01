@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\google_analytics\Tests\GoogleAnalyticsBasicTest.
- */
-
 namespace Drupal\google_analytics\Tests;
 
 use Drupal\Core\Session\AccountInterface;
@@ -19,11 +14,22 @@ use Drupal\simpletest\WebTestBase;
 class GoogleAnalyticsBasicTest extends WebTestBase {
 
   /**
+   * User without permissions to use snippets.
+   *
+   * @var \Drupal\user\UserInterface
+   */
+  protected $noSnippetUser;
+
+  /**
    * Modules to enable.
    *
    * @var array
    */
-  public static $modules = ['google_analytics'];
+  public static $modules = [
+    'block',
+    'google_analytics',
+    'help',
+  ];
 
   /**
    * {@inheritdoc}
@@ -39,8 +45,13 @@ class GoogleAnalyticsBasicTest extends WebTestBase {
     ];
 
     // User to set up google_analytics.
+    $this->noSnippetUser = $this->drupalCreateUser($permissions);
+    $permissions[] = 'add JS snippets for google analytics';
     $this->admin_user = $this->drupalCreateUser($permissions);
     $this->drupalLogin($this->admin_user);
+
+    // Place the block or the help is not shown.
+    $this->drupalPlaceBlock('help_block', array('region' => 'help'));
   }
 
   /**
@@ -66,6 +77,39 @@ class GoogleAnalyticsBasicTest extends WebTestBase {
     $edit['google_analytics_account'] = $this->randomMachineName(2);
     $this->drupalPostForm('admin/config/system/google-analytics', $edit, t('Save configuration'));
     $this->assertRaw(t('A valid Google Analytics Web Property ID is case sensitive and formatted like UA-xxxxxxx-yy.'), '[testGoogleAnalyticsConfiguration]: Invalid Web Property ID number validated.');
+
+    // User should have access to code snippets.
+    $this->assertFieldByName('google_analytics_codesnippet_create');
+    $this->assertFieldByName('google_analytics_codesnippet_before');
+    $this->assertFieldByName('google_analytics_codesnippet_after');
+    $this->assertNoFieldByXPath("//textarea[@name='google_analytics_codesnippet_create' and @disabled='disabled']", NULL, '"Create only fields" is enabled.');
+    $this->assertNoFieldByXPath("//textarea[@name='google_analytics_codesnippet_before' and @disabled='disabled']", NULL, '"Code snippet (before)" is enabled.');
+    $this->assertNoFieldByXPath("//textarea[@name='google_analytics_codesnippet_after' and @disabled='disabled']", NULL, '"Code snippet (after)" is enabled.');
+
+    // Login as user without JS permissions.
+    $this->drupalLogin($this->noSnippetUser);
+    $this->drupalGet('admin/config/system/google-analytics');
+
+    // User should *not* have access to snippets, but create fields.
+    $this->assertFieldByName('google_analytics_codesnippet_create');
+    $this->assertFieldByName('google_analytics_codesnippet_before');
+    $this->assertFieldByName('google_analytics_codesnippet_after');
+    $this->assertNoFieldByXPath("//textarea[@name='google_analytics_codesnippet_create' and @disabled='disabled']", NULL, '"Create only fields" is enabled.');
+    $this->assertFieldByXPath("//textarea[@name='google_analytics_codesnippet_before' and @disabled='disabled']", NULL, '"Code snippet (before)" is disabled.');
+    $this->assertFieldByXPath("//textarea[@name='google_analytics_codesnippet_after' and @disabled='disabled']", NULL, '"Code snippet (after)" is disabled.');
+  }
+
+  /**
+   * Tests if help sections are shown.
+   */
+  public function testGoogleAnalyticsHelp() {
+    // Requires help and block module and help block placement.
+    $this->drupalGet('admin/config/system/google-analytics');
+    $this->assertText('Google Analytics is a free (registration required) website traffic and marketing effectiveness service.', '[testGoogleAnalyticsHelp]: Google Analytics help text shown on module settings page.');
+
+    // Requires help.module.
+    $this->drupalGet('admin/help/google_analytics');
+    $this->assertText('Google Analytics adds a web statistics tracking system to your website.', '[testGoogleAnalyticsHelp]: Google Analytics help text shown in help section.');
   }
 
   /**

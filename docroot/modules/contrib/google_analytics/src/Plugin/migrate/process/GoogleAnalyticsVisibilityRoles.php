@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\google_analytics\Plugin\migrate\process\GoogleAnalyticsVisibilityRoles.
- */
-
 namespace Drupal\google_analytics\Plugin\migrate\process;
 
 use Drupal\Core\Extension\ModuleHandlerInterface;

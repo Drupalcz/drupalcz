@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\google_analytics\Tests\GoogleAnalyticsBasicTest.
- */
-
 namespace Drupal\google_analytics\Tests;
 
 use Drupal\Core\Session\AccountInterface;
