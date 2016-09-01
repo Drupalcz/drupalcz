@@ -6,8 +6,8 @@ package: 'Testing'
 dependencies:
   - config_test
 
-# Information added by Drupal.org packaging script on 2016-07-18
-version: '8.1.7'
+# Information added by Drupal.org packaging script on 2016-08-03
+version: '8.1.8'
 core: '8.x'
 project: 'drupal'
-datestamp: 1468855487
+datestamp: 1470233791
