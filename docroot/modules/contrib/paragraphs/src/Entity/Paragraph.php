@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\paragraphs\Entity\Paragraph.
- */
-
 namespace Drupal\paragraphs\Entity;
 
 use Drupal\Core\Entity\EntityStorageInterface;
@@ -88,7 +83,7 @@ class Paragraph extends ContentEntityBase implements ParagraphInterface, EntityN
     if (!isset($this->get('parent_type')->value) || !isset($this->get('parent_id')->value)) {
       return NULL;
     }
-    return \Drupal::entityManager()->getStorage($this->get('parent_type')->value)->load($this->get('parent_id')->value);
+    return \Drupal::entityTypeManager()->getStorage($this->get('parent_type')->value)->load($this->get('parent_id')->value);
   }
 
   /**

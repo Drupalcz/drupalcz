@@ -7,6 +7,7 @@
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\paragraphs\ParagraphStorageSchema;
 
 /**
  * Add status field.
@@ -148,4 +149,19 @@ function paragraphs_update_8007() {
     ->fields(['status' => 1])
     ->isNull('status')
     ->execute();
+}
+
+/**
+ * Ensure that the parent indexes are added to the paragraphs entity.
+ */
+function paragraphs_update_8008() {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+
+  // Get the current paragraph entity type definition, ensure the storage schema
+  // class is set.
+  $entity_type = $manager->getEntityType('paragraph')
+    ->setHandlerClass('storage_schema', ParagraphStorageSchema::class);
+
+  // Regenerate entity type indexes.
+  $manager->updateEntityType($entity_type);
 }

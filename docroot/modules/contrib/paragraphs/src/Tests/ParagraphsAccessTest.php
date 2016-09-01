@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\paragraphs\Tests\ParagraphsAccessTest.
- */
 
 namespace Drupal\paragraphs\Tests;
 
@@ -70,7 +66,7 @@ class ParagraphsAccessTest extends WebTestBase {
     // Remove the "access content" for anonymous users. That results in
     // anonymous users not being able to "view" the host entity.
     /* @var Role $role */
-    $role = \Drupal::entityManager()
+    $role = \Drupal::entityTypeManager()
       ->getStorage('user_role')
       ->load(RoleInterface::ANONYMOUS_ID);
     $role->revokePermission('access content');
@@ -146,6 +142,7 @@ class ParagraphsAccessTest extends WebTestBase {
     // Create a new demo node.
     $this->drupalGet('node/add/paragraphed_content_demo');
     $this->drupalPostForm(NULL, NULL, t('Add Text'));
+    $this->assertText('Type: Text');
     $edit = [
       'title[0][value]' => 'delete_permissions',
       'field_paragraphs_demo[0][subform][field_text_demo][0][value]' => 'Test',

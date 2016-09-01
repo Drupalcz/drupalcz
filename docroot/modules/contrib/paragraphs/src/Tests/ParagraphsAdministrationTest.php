@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\paragraphs\Tests\ParagraphsAdministrationTest.
- */
 
 namespace Drupal\paragraphs\Tests;
 
@@ -450,7 +446,7 @@ class ParagraphsAdministrationTest extends WebTestBase {
       'field_paragraphs[0][subform][field_paragraphs][0][subform][field_image_only][0][alt]' => 'Alternative_text',
     ];
     $this->drupalPostForm(NULL, $edit, t('Save and publish'));
-    $this->assertRaw('<em class="placeholder">test required</em> has been created.');
+    $this->assertText('test required has been created.');
     $this->assertNoRaw('This value should not be null.');
 
     // Test that unsupported widgets are not displayed.
@@ -496,7 +492,7 @@ class ParagraphsAdministrationTest extends WebTestBase {
       'title[0][value]' => 'Nested twins',
     );
     $this->drupalPostForm(NULL, $edit, t('Save and publish'));
-    $this->assertRaw('Nested twins</em> has been created.');
+    $this->assertText('Nested twins has been created.');
     $this->assertNoText('This entity (paragraph: ) cannot be referenced.');
 
     // Set the fields as not required.
