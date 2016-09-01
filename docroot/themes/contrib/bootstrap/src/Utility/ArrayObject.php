@@ -7,13 +7,18 @@
 namespace Drupal\bootstrap\Utility;
 
 use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
+use Drupal\Core\Render\AttachmentsInterface;
+use Drupal\Core\Render\BubbleableMetadata;
 
 /**
  * Custom ArrayObject implementation.
  *
  * The native ArrayObject is unnecessarily complicated.
+ *
+ * @ingroup utility
  */
-class ArrayObject implements \IteratorAggregate, \ArrayAccess, \Serializable, \Countable {
+class ArrayObject implements \IteratorAggregate, \ArrayAccess, \Serializable, \Countable, AttachmentsInterface, RefinableCacheableDependencyInterface {
 
   /**
    * The array.
@@ -82,6 +87,38 @@ class ArrayObject implements \IteratorAggregate, \ArrayAccess, \Serializable, \C
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function addAttachments(array $attachments) {
+    BubbleableMetadata::createFromRenderArray($this->array)->addAttachments($attachments)->applyTo($this->array);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function addCacheContexts(array $cache_contexts) {
+    BubbleableMetadata::createFromRenderArray($this->array)->addCacheContexts($cache_contexts)->applyTo($this->array);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function addCacheTags(array $cache_tags) {
+    BubbleableMetadata::createFromRenderArray($this->array)->addCacheTags($cache_tags)->applyTo($this->array);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function addCacheableDependency($other_object) {
+    BubbleableMetadata::createFromRenderArray($this->array)->addCacheableDependency($other_object)->applyTo($this->array);
+    return $this;
+  }
+
+  /**
    * Appends the value.
    *
    * @param mixed $value
@@ -96,6 +133,35 @@ class ArrayObject implements \IteratorAggregate, \ArrayAccess, \Serializable, \C
    */
   public function asort() {
     asort($this->array);
+  }
+
+  /**
+   * Merges an object's cacheable metadata into the variables array.
+   *
+   * @param \Drupal\Core\Cache\CacheableDependencyInterface|mixed $object
+   *   The object whose cacheability metadata to retrieve. If it implements
+   *   CacheableDependencyInterface, its cacheability metadata will be used,
+   *   otherwise, the passed in object must be assumed to be uncacheable, so
+   *   max-age 0 is set.
+   *
+   * @return $this
+   */
+  public function bubbleObject($object) {
+    BubbleableMetadata::createFromRenderArray($this->array)->merge(BubbleableMetadata::createFromObject($object))->applyTo($this->array);
+    return $this;
+  }
+
+  /**
+   * Merges a render array's cacheable metadata into the variables array.
+   *
+   * @param array $build
+   *   A render array.
+   *
+   * @return $this
+   */
+  public function bubbleRenderArray(array $build) {
+    BubbleableMetadata::createFromRenderArray($this->array)->merge(BubbleableMetadata::createFromRenderArray($build))->applyTo($this->array);
+    return $this;
   }
 
   /**
@@ -143,6 +209,34 @@ class ArrayObject implements \IteratorAggregate, \ArrayAccess, \Serializable, \C
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function getAttachments() {
+    return BubbleableMetadata::createFromRenderArray($this->array)->getAttachments();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheContexts() {
+    return BubbleableMetadata::createFromRenderArray($this->array)->getCacheContexts();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheTags() {
+    return BubbleableMetadata::createFromRenderArray($this->array)->getCacheTags();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheMaxAge() {
+    return BubbleableMetadata::createFromRenderArray($this->array)->getCacheMaxAge();
+  }
+
+  /**
    * Creates a new iterator from an ArrayObject instance.
    *
    * @return \ArrayIterator
@@ -174,6 +268,14 @@ class ArrayObject implements \IteratorAggregate, \ArrayAccess, \Serializable, \C
     else {
       $this->array += $values;
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function mergeCacheMaxAge($max_age) {
+    BubbleableMetadata::createFromRenderArray($this->array)->mergeCacheMaxAge($max_age)->applyTo($this->array);
+    return $this;
   }
 
   /**
@@ -254,6 +356,14 @@ class ArrayObject implements \IteratorAggregate, \ArrayAccess, \Serializable, \C
    */
   public function serialize() {
     return serialize(get_object_vars($this));
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setAttachments(array $attachments) {
+    BubbleableMetadata::createFromRenderArray($this->array)->setAttachments($attachments)->applyTo($this->array);
+    return $this;
   }
 
   /**

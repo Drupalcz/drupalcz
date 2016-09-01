@@ -1,13 +1,11 @@
 <?php
 /**
  * @file
- * List of available hook and alter APIs for use in your sub-theme.
+ * List of available procedural hook and alter APIs for use in your sub-theme.
  */
 
 /**
- * @defgroup api APIs
- *
- * List of available hook and alter APIs for use in your sub-theme.
+ * @addtogroup plugins_alter
  *
  * @{
  */
@@ -61,5 +59,5 @@ function hook_bootstrap_iconize_text_alter(&$texts) {
 }
 
 /**
- * @} End of "defgroup subtheme_api".
+ * @} End of "addtogroup".
  */

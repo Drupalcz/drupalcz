@@ -10,6 +10,8 @@ use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Defines the interface for an object oriented process plugin.
+ *
+ * @ingroup plugins_process
  */
 interface ProcessInterface {
 

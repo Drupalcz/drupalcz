@@ -1,6 +1,7 @@
 /**
  * Navbar styling.
  */
+@mobile:  ~"screen and (max-width: @{screen-xs-max})";
 @tablet:  ~"screen and (min-width: @{screen-sm-min})";
 @normal:  ~"screen and (min-width: @{screen-md-min})";
 @wide:    ~"screen and (min-width: @{screen-lg-min})";
@@ -22,6 +23,24 @@ body {
 
   @media @tablet {
     margin-top: (@grid-gutter-width / 2);
+  }
+  @media @mobile {
+    &.toolbar-vertical {
+      &.navbar-is-fixed-top,
+      &.navbar-is-fixed-bottom {
+        .toolbar-bar {
+          position: fixed;
+        }
+        header {
+          z-index: 500;
+        }
+      }
+      // Default toolbar fixed height value.
+      // @see core/modules/toolbar/css/toolbar.icons.theme.css@261
+      &.navbar-is-fixed-top header {
+        top: 39px;
+      }
+    }
   }
 }
 .navbar.container {

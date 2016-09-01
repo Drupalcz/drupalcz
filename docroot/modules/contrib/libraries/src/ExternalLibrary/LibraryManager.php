@@ -11,6 +11,10 @@ use Drupal\libraries\ExternalLibrary\Definition\DefinitionDiscoveryInterface;
 
 /**
  * Provides a manager for external libraries.
+ *
+ * @todo Dispatch events at various points in the library lifecycle.
+ * @todo Automatically load PHP file libraries that are required by modules or
+ *   themes.
  */
 class LibraryManager implements LibraryManagerInterface {
 
@@ -100,7 +104,7 @@ class LibraryManager implements LibraryManagerInterface {
     $class = $library_type->getLibraryClass();
 
     // @todo Make sure that the library class implements the correct interface.
-    $library = $class::create($id, $definition);
+    $library = $class::create($id, $definition, $library_type);
 
     if ($library_type instanceof LibraryCreationListenerInterface) {
       $library_type->onLibraryCreate($library);
@@ -110,9 +114,10 @@ class LibraryManager implements LibraryManagerInterface {
   }
 
   /**
-   * @param $id
-   * @param $definition
-   * @return object
+   * @param string $id
+   * @param array $definition
+   *
+   * @return \Drupal\libraries\ExternalLibrary\Type\LibraryTypeInterface
    */
   protected function getLibraryType($id, $definition) {
     // @todo Validate that the type is a string.

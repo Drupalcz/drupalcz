@@ -13,33 +13,14 @@ use Drupal\bootstrap\Plugin\PreprocessManager;
 use Drupal\Core\Theme\Registry;
 
 /**
- * @addtogroup registry
- * @{
- */
-
-// Define additional sub-groups for creating lists for all the theme files.
-/**
- * @defgroup theme_preprocess Theme Preprocess Functions (.vars.php)
- *
- * List of theme preprocess functions used in the Drupal Bootstrap base theme.
- *
- * View the parent topic for additional documentation.
- */
-/**
- * @defgroup templates Theme Templates (.html.twig)
- *
- * List of theme templates used in the Drupal Bootstrap base theme.
- *
- * View the parent topic for additional documentation.
- */
-
-/**
  * Extends the theme registry to override and use protected functions.
  *
  * @todo Refactor into a proper theme.registry service replacement in a
  * bootstrap_core sub-module once this theme can add it as a dependency.
  *
  * @see https://www.drupal.org/node/474684
+ *
+ * @ingroup plugins_alter
  *
  * @BootstrapAlter("theme_registry")
  */
@@ -145,7 +126,3 @@ class ThemeRegistry extends Registry implements AlterInterface {
   }
 
 }
-
-/**
- * @} End of "addtogroup registry".
- */

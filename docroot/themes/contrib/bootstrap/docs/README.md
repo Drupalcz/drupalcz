@@ -16,23 +16,31 @@ Below are some topics to help get you started using the [Drupal Bootstrap] base
 theme. They are ordered based on the level one typically progresses while using
 a base theme like this.
 
-#### @link faq FAQ @endlink
+#### @link contributing Contributing @endlink
 
 #### @link getting_started Getting Started @endlink
 
-#### @link subtheme Sub-Theming @endlink
-- @link subtheme_settings Theme Settings @endlink
-- @link subtheme_cdn CDN Starterkit @endlink
-- @link subtheme_less LESS Starterkit @endlink
+#### @link theme_settings Theme Settings @endlink
 
-#### @link registry Theme Registry @endlink
-- @link theme_preprocess Preprocess@endlink
-- @link templates Templates@endlink
+#### @link sub_theming Sub-Theming @endlink
+- @link sub_theming_cdn CDN Starterkit @endlink
+- @link sub_theming_less LESS Starterkit @endlink
 
-#### @link api APIs @endlink
+#### @link templates Templates @endlink
 
-#### @link contribute Contribute @endlink
-- @link contribute_maintainers Project Maintainers @endlink
+#### @link utility Utilities @endlink
+
+#### @link plugins Plugin System @endlink
+- @link plugins_alter @BootstrapAlter @endlink
+- @link plugins_form @BootstrapForm @endlink
+- @link plugins_preprocess @BootstrapPreprocess @endlink
+- @link plugins_prerender @BootstrapPrerender @endlink
+- @link plugins_process @BootstrapProcess @endlink
+- @link plugins_provider @BootstrapProvider @endlink
+- @link plugins_setting @BootstrapSetting @endlink
+- @link plugins_update @BootstrapUpdate @endlink
+
+#### @link maintainers Project Maintainers @endlink
 
 ---
 
@@ -54,9 +62,9 @@ the file or directory inside it. For example, the file that is responsible for
 displaying the text on this page is located at `./bootstrap/docs/README.md`.
 
 When referring to files inside a sub-theme, they will always start with
-`./subtheme/` and continue to specify the full path to the file or directory
-inside it. For example, the primary file Drupal uses to determine if a theme
-exists is: `./subtheme/subtheme.info.yml`, where `subtheme` is the machine name
-of your sub-theme.
+`./THEMENAME/`, where `THEMENAME` is the machine name of your sub-theme. They
+will continue to specify the full path to the file or directory inside it. For
+example, the primary file Drupal uses to determine if a theme
+exists is: `./THEMENAME/THEMENAME.info.yml`.
 
 [Drupal Bootstrap]: https://www.drupal.org/project/bootstrap

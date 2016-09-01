@@ -9,7 +9,17 @@ use Drupal\libraries\ExternalLibrary\LibraryInterface;
  * Provides an interface for versioned libraries.
  *
  * Version detection and negotiation is a key aspect of Libraries API's
- * functionality so every type of library should implement this interface.
+ * functionality so most libraries should implement this interface. In theory,
+ * however, it might be possible for the same library to be available in
+ * multiple versions and, for example, different versions being loaded on
+ * different pages. In this case, a simple getVersion() method, does not make
+ * sense. To support such advanced version detection behavior in the future or
+ * in a separate module, version detection is split into a separate interface.
+ *
+ * @ingroup libraries
+ *
+ * @todo Support versioned metadata, i.e. different library file names or
+ *   locations for different library versions.
  */
 interface VersionedLibraryInterface extends LibraryInterface {
 

@@ -10,6 +10,8 @@ namespace Drupal\libraries\ExternalLibrary\Definition;
  * getDefinitions() method.
  *
  * @see \Drupal\Component\Plugin\Discovery\DiscoveryInterface
+ *
+ * @ingroup libraries
  */
 interface DefinitionDiscoveryInterface {
 

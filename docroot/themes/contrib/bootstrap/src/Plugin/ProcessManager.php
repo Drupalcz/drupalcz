@@ -14,6 +14,8 @@ use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Manages discovery and instantiation of Bootstrap form process callbacks.
+ *
+ * @ingroup plugins_process
  */
 class ProcessManager extends PluginManager {
 

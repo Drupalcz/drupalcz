@@ -10,6 +10,8 @@ use Drupal\bootstrap\Utility\Element;
 
 /**
  * Defines the interface for an object oriented preprocess plugin.
+ *
+ * @ingroup plugins_prerender
  */
 class PrerenderBase implements PrerenderInterface {
 

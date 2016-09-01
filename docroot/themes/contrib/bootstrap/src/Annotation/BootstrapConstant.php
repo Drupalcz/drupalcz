@@ -13,6 +13,8 @@ use Drupal\Component\Annotation\AnnotationBase;
  * Defines a BootstrapConstant annotation object.
  *
  * @Annotation
+ *
+ * @ingroup utility
  */
 class BootstrapConstant extends AnnotationBase {
 

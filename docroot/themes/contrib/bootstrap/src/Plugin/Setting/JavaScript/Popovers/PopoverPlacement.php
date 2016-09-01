@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "popover_placement" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "popover_placement",
  *   type = "select",

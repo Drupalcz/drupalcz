@@ -25,6 +25,8 @@ use Drupal\Core\KeyValueStore\MemoryStorage;
  *
  * This storage object can be used in `foreach` loops.
  *
+ * @ingroup utility
+ *
  * @see \Drupal\bootstrap\Utility\StorageItem
  */
 class Storage extends MemoryStorage implements \Iterator {

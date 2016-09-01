@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "cdn_custom_css_min" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   cdn_provider = "custom",
  *   id = "cdn_custom_css_min",

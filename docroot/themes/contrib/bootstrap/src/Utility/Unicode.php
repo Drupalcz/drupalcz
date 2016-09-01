@@ -11,6 +11,8 @@ use Drupal\Component\Utility\Xss;
 
 /**
  * Extends \Drupal\Component\Utility\Unicode.
+ *
+ * @ingroup utility
  */
 class Unicode extends \Drupal\Component\Utility\Unicode {
 

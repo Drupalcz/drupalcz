@@ -23,6 +23,6 @@ This base theme bridges the gap between Drupal and the [Bootstrap Framework].
 
 ### Documentation
 Visit the project's [official documentation site](http://drupal-bootstrap.org)
-or the markdown files inside the `./docs` folder.
+or the markdown files inside the `./docs` directory.
 
 [Bootstrap Framework]: http://getbootstrap.com

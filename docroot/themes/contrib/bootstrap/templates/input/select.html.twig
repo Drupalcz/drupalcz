@@ -10,6 +10,8 @@
  * - prefix: Markup to display before the input element.
  * - suffix: Markup to display after the input element.
  *
+ * @ingroup templates
+ *
  * @see template_preprocess_select()
  */
 #}
@@ -26,7 +28,9 @@
    # around the select element to style it properly.
    # @see http://stackoverflow.com/q/21103542
    #}
-  <div class="select-wrapper">
+  {% if not attributes.offsetExists('multiple') %}
+    <div class="select-wrapper">
+  {% endif %}
     {% set classes = ['form-control'] %}
     <select{{ attributes.addClass(classes) }}>
       {% for option in options %}
@@ -43,7 +47,9 @@
         {% endif %}
       {% endfor %}
     </select>
-  </div>
+  {% if not attributes.offsetExists('multiple') %}
+    </div>
+  {% endif %}
 
   {% if suffix %}
     {{ suffix }}

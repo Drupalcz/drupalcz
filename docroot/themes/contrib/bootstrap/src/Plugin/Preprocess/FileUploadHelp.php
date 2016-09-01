@@ -18,7 +18,7 @@ use Drupal\Core\Url;
 /**
  * Pre-processes variables for the "file_upload_help" theme hook.
  *
- * @ingroup theme_preprocess
+ * @ingroup plugins_preprocess
  *
  * @BootstrapPreprocess("file_upload_help",
  *   replace = "template_preprocess_file_upload_help"
@@ -29,7 +29,7 @@ class FileUploadHelp extends PreprocessBase implements PreprocessInterface {
   /**
    * {@inheritdoc}
    */
-  public function preprocessVariables(Variables $variables, $hook, array $info) {
+  public function preprocessVariables(Variables $variables) {
     if (!empty($variables['description'])) {
       $variables['description'] = FieldFilteredMarkup::create($variables['description']);
     }
@@ -76,7 +76,7 @@ class FileUploadHelp extends PreprocessBase implements PreprocessInterface {
 
     $variables['descriptions'] = $descriptions;
 
-    if ($descriptions) {
+    if ($descriptions && $this->theme->getSetting('popover_enabled')) {
       $build = array();
       $id = Html::getUniqueId('upload-instructions');
       $build['toggle'] = [

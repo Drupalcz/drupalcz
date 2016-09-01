@@ -14,6 +14,8 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * The "forms_smart_descriptions_limit" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "forms_smart_descriptions_limit",
  *   type = "textfield",

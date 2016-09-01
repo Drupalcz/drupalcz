@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\account/ParagraphAccessController.
- */
-
 namespace Drupal\paragraphs;
 
 use Drupal\Core\Entity\EntityAccessControlHandler;

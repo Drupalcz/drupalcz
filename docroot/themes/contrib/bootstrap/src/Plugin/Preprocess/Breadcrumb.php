@@ -7,12 +7,13 @@
 namespace Drupal\bootstrap\Plugin\Preprocess;
 
 use Drupal\bootstrap\Annotation\BootstrapPreprocess;
+use Drupal\bootstrap\Utility\Variables;
 use Drupal\Core\Template\Attribute;
 
 /**
  * Pre-processes variables for the "breadcrumb" theme hook.
  *
- * @ingroup theme_preprocess
+ * @ingroup plugins_preprocess
  *
  * @BootstrapPreprocess("breadcrumb")
  */
@@ -21,8 +22,15 @@ class Breadcrumb extends PreprocessBase implements PreprocessInterface {
   /**
    * {@inheritdoc}
    */
-  public function preprocess(array &$variables, $hook, array $info) {
+  public function preprocessVariables(Variables $variables) {
     $breadcrumb = &$variables['breadcrumb'];
+
+    // Determine if breadcrumbs should be displayed.
+    $breadcrumb_visibility = $this->theme->getSetting('breadcrumb');
+    if (($breadcrumb_visibility == 0 || ($breadcrumb_visibility == 2 && \Drupal::service('router.admin_context')->isAdminRoute())) || empty($breadcrumb)) {
+      $breadcrumb = [];
+      return;
+    }
 
     // Optionally get rid of the homepage link.
     $show_breadcrumb_home = $this->theme->getSetting('breadcrumb_home');
@@ -40,6 +48,8 @@ class Breadcrumb extends PreprocessBase implements PreprocessInterface {
           'text' => $page_title,
           'attributes' => new Attribute(['class' => ['active']]),
         ];
+        // Add cache context based on url.
+        $variables->addCacheContexts(['url']);
       }
     }
   }

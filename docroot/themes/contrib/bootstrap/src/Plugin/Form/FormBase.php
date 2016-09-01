@@ -11,6 +11,8 @@ use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Base form alter class.
+ *
+ * @ingroup plugins_form
  */
 class FormBase extends PluginBase implements FormInterface {
 

@@ -6,17 +6,17 @@
  * This file should only contain light helper functions and point to stubs in
  * other files containing more complex functions.
  *
- * The stubs should point to files within the `./includes` folder named after
+ * The stubs should point to files within the `./includes` directory named after
  * the function itself minus the theme prefix. If the stub contains a group of
  * functions, then please organize them so they are related in some way and name
  * the file appropriately to at least hint at what it contains.
  *
  * All [pre]process functions, theme functions and template files lives inside
- * the `./templates` folder. This is a highly automated and complex system
+ * the `./templates` directory. This is a highly automated and complex system
  * designed to only load the necessary files when a given theme hook is invoked.
  *
  * Visit this project's official documentation site, http://drupal-bootstrap.org
- * or the markdown files inside the `./docs` folder.
+ * or the markdown files inside the `./docs` directory.
  *
  * @see bootstrap_theme()
  * @see \Drupal\bootstrap\Registry
@@ -28,6 +28,24 @@ use Drupal\bootstrap\Bootstrap;
  * Initialize the active theme.
  */
 Bootstrap::initialize();
+
+/**
+ * {@inheritdoc}
+ *
+ * @see hook_bootstrap_colorize_text_alter().
+ */
+function bootstrap_bootstrap_colorize_text_alter(&$data, &$context1 = NULL, &$context2 = NULL) {
+  Bootstrap::alter(__FUNCTION__, $data, $context1, $context2);
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see hook_bootstrap_iconize_text_alter().
+ */
+function bootstrap_bootstrap_iconize_text_alter(&$data, &$context1 = NULL, &$context2 = NULL) {
+  Bootstrap::alter(__FUNCTION__, $data, $context1, $context2);
+}
 
 /**
  * {@inheritdoc}

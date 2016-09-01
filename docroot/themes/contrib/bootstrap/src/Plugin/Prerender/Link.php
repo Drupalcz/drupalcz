@@ -15,6 +15,8 @@ use Drupal\Component\Render\FormattableMarkup;
 /**
  * Pre-render callback for the "link" element type.
  *
+ * @ingroup plugins_prerender
+ *
  * @BootstrapPrerender("link",
  *   action = @BootstrapConstant(
  *     "\Drupal\bootstrap\Bootstrap::CALLBACK_PREPEND"

@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "popover_html" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "popover_html",
  *   type = "checkbox",

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\ds\Tests\BlockFieldPluginTest.
- */
-
 namespace Drupal\ds\Tests;
 
 use Drupal\views\Tests\ViewTestData;
@@ -22,15 +17,26 @@ class BlockFieldPluginTest extends FastTestBase {
    *
    * @var array
    */
-  public static $modules = array('node', 'block', 'ds', 'ds_test', 'layout_plugin', 'views');
+  public static $modules = array(
+    'node',
+    'block',
+    'ds',
+    'ds_test',
+    'layout_plugin',
+    'views',
+  );
 
   /**
    * Views used by this test.
    *
    * @var array
+   *   The list of views.
    */
   public static $testViews = array('ds-testing');
 
+  /**
+   * {@inheritdoc}
+   */
   protected function setUp() {
     parent::setUp();
 
@@ -42,13 +48,16 @@ class BlockFieldPluginTest extends FastTestBase {
     ViewTestData::createTestViews(get_class($this), array('ds_test'));
   }
 
-  function testBlockFieldTitleOverride() {
+  /**
+   * Test  block title override.
+   */
+  public function testBlockFieldTitleOverride() {
     // Block fields.
     $edit = array(
       'name' => 'Test block title field',
       'id' => 'test_block_title_field',
       'entities[node]' => '1',
-      'block' => 'views_block:ds_testing-block_1'
+      'block' => 'views_block:ds_testing-block_1',
     );
 
     $this->dsCreateBlockField($edit);
@@ -66,27 +75,26 @@ class BlockFieldPluginTest extends FastTestBase {
     );
 
     $this->dsSelectLayout();
-    $this->dsConfigureUI($fields);
+    $this->dsConfigureUi($fields);
 
     // Create a node.
     $settings = array('type' => 'article', 'promote' => 1);
     $node = $this->drupalCreateNode($settings);
 
-
-    // Look at node and verify the block title is overridden
+    // Look at node and verify the block title is overridden.
     $this->drupalGet('node/' . $node->id());
     $this->assertRaw('Test block title field', t('Default field label.'));
 
-    // Update testing label
+    // Update testing label.
     $edit = array(
-      'use_block_title' => '1'
+      'use_block_title' => '1',
     );
     $this->drupalPostForm('admin/structure/ds/fields/manage_block/test_block_title_field', $edit, t('Save'));
     $this->assertText(t('The field Test block title field has been saved'), t('Test field label override updated'));
 
-    // Look at node and verify the block title is overridden
+    // Look at node and verify the block title is overridden.
     $this->drupalGet('node/' . $node->id());
     $this->assertRaw('Block title from view', t('Field label from view block display.'));
-
   }
+
 }

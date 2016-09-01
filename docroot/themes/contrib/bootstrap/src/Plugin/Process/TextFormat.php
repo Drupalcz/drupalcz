@@ -12,7 +12,9 @@ use Drupal\bootstrap\Utility\Element;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Processes the "actions" element.
+ * Processes the "text_format" element.
+ *
+ * @ingroup plugins_process
  *
  * @BootstrapProcess("text_format")
  *

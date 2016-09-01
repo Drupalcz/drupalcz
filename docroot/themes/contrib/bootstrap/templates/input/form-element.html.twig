@@ -5,8 +5,6 @@
  *
  * Available variables:
  * - attributes: HTML attributes for the containing element.
- * - prefix: (optional) The form element prefix, may not be set.
- * - suffix: (optional) The form element suffix, may not be set.
  * - required: The required marker, or empty if the associated form element is
  *   not required.
  * - type: The type of the element.
@@ -40,9 +38,9 @@
  * - disabled: True if the element is disabled.
  * - title_display: Title display setting.
  *
- * @see template_preprocess_form_element()
- *
  * @ingroup templates
+ *
+ * @see template_preprocess_form_element()
  */
 #}
 {%
@@ -73,10 +71,6 @@
     {{ label }}
   {% endif %}
 
-  {% if prefix is not empty %}
-    {{ prefix }}
-  {% endif %}
-
   {% if description_display == 'before' and description.content %}
     <div{{ description.attributes }}>
       {{ description.content }}
@@ -84,10 +78,6 @@
   {% endif %}
 
   {{ children }}
-
-  {% if suffix is not empty %}
-    {{ suffix }}
-  {% endif %}
 
   {% if label_display == 'after' %}
     {{ label }}

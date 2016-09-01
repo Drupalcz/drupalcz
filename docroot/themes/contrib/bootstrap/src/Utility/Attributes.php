@@ -8,6 +8,8 @@ namespace Drupal\bootstrap\Utility;
 
 /**
  * Class to help modify attributes.
+ *
+ * @ingroup utility
  */
 class Attributes extends ArrayObject {
 

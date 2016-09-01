@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "forms_required_has_error" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "forms_required_has_error",
  *   type = "checkbox",

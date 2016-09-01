@@ -13,6 +13,8 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Replaces the process callback for dropbuttons on an "actions" element.
  *
+ * @ingroup plugins_process
+ *
  * @BootstrapProcess("actions__dropbutton",
  *   replace = "Drupal\Core\Render\Element\Actions::preRenderActionsDropbutton",
  * )
@@ -38,7 +40,7 @@ class ActionsDropbutton extends ProcessBase implements ProcessInterface {
         $dropbuttons[$dropbutton]['#links'][$key] = $child->getArray();
 
         // Remove original child from the element so it's not rendered twice.
-        unset($element->$key);
+        $child->setProperty('printed', TRUE);
       }
     }
     $element->exchangeArray($dropbuttons->getArray() + $element->getArray());

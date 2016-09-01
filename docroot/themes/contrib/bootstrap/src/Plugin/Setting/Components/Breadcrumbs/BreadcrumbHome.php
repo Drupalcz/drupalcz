@@ -14,6 +14,8 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * The "breadcrumb_home" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "breadcrumb_home",
  *   type = "checkbox",

@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "popover_title" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "popover_title",
  *   type = "textfield",

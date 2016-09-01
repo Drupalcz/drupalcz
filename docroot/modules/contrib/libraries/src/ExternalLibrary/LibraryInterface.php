@@ -2,20 +2,14 @@
 
 namespace Drupal\libraries\ExternalLibrary;
 
+use Drupal\libraries\ExternalLibrary\Type\LibraryTypeInterface;
+
 /**
  * Provides an interface for different types of external libraries.
+ *
+ * @ingroup libraries
  */
 interface LibraryInterface {
-
-  /**
-   * Returns the ID of the library.
-   *
-   * @return string
-   *   The library ID. This must be unique among all known libraries.
-   *
-   * @todo Define what constitutes a "known" library.
-   */
-  public function getId();
 
   /**
    * Creates an instance of the library from its definition.
@@ -24,11 +18,27 @@ interface LibraryInterface {
    *   The library ID.
    * @param array $definition
    *   The library definition array.
+   * @param \Drupal\libraries\ExternalLibrary\Type\LibraryTypeInterface $type
+   *   The library type of this library.
    *
    * @return static
-   *
-   * @todo Consider passing in some stuff that might be useful.
    */
-  public static function create($id, array $definition);
+  public static function create($id, array $definition, LibraryTypeInterface $type);
+
+  /**
+   * Returns the ID of the library.
+   *
+   * @return string
+   *   The library ID. This must be unique among all known libraries.
+   */
+  public function getId();
+
+  /**
+   * Returns the library type of the library.
+   *
+   * @return \Drupal\libraries\ExternalLibrary\Type\LibraryTypeInterface
+   *   The library of the library.
+   */
+  public function getType();
 
 }

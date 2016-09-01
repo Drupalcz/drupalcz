@@ -3,37 +3,13 @@
 namespace Drupal\Tests\libraries\Kernel\ExternalLibrary\Asset;
 
 use Drupal\Tests\libraries\Kernel\ExternalLibrary\TestLibraryFilesStream;
-use Drupal\Tests\libraries\Kernel\LibraryTypeKernelTestBase;
 
 /**
  * Tests that external asset libraries are registered as core asset libraries.
  *
  * @group libraries
  */
-class AssetLibraryTest extends LibraryTypeKernelTestBase {
-
-  /**
-   * {@inheritdoc}
-   *
-   * \Drupal\libraries\Extension requires system_get_info() which is in
-   * system.module.
-   */
-  public static $modules = ['libraries', 'libraries_test', 'system'];
-
-  /**
-   * The Drupal core library discovery.
-   *
-   * @var \Drupal\Core\Asset\LibraryDiscoveryInterface
-   */
-  protected $coreLibraryDiscovery;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-    $this->coreLibraryDiscovery = $this->container->get('library.discovery');
-  }
+class AssetLibraryTest extends AssetLibraryTestBase {
 
   /**
    * {@inheritdoc}
@@ -46,15 +22,18 @@ class AssetLibraryTest extends LibraryTypeKernelTestBase {
    * Tests that attachable asset library info is correctly gathered.
    */
   public function testAttachableAssetInfo() {
-    /** @var \Drupal\libraries\ExternalLibrary\Asset\AssetLibrary $library */
+    /** @var \Drupal\libraries\ExternalLibrary\Asset\AttachableAssetLibraryRegistrationInterface $library_type */
+    $library_type = $this->getLibraryType();
     $library = $this->getLibrary();
-    $expected = ['test_asset_library' => [
-      'version' => '1.0.0',
-      'css' => ['base' => ['http://example.com/example.css' => []]],
-      'js' => ['http://example.com/example.js' => []],
-      'dependencies' => [],
-    ]];
-    $this->assertEquals($expected, $library->getAttachableAssetLibraries($this->libraryManager));
+    $expected = [
+      'test_asset_library' => [
+        'version' => '1.0.0',
+        'css' => ['base' => ['http://example.com/example.css' => []]],
+        'js' => ['http://example.com/example.js' => []],
+        'dependencies' => [],
+      ],
+    ];
+    $this->assertEquals($expected, $library_type->getAttachableAssetLibraries($library, $this->libraryManager));
   }
 
   /**

@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "popover_trigger_autoclose" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "popover_trigger_autoclose",
  *   type = "checkbox",

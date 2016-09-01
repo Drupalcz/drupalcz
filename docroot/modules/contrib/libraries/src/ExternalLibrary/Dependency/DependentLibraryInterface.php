@@ -6,6 +6,8 @@ use Drupal\libraries\ExternalLibrary\LibraryInterface;
 
 /**
  * Provides an interface for libraries that depend on other libraries.
+ *
+ * @todo Implement versioned dependencies.
  */
 interface DependentLibraryInterface extends LibraryInterface {
 

@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\paragraphs_demo\Tests\ParagraphsDemoTest.php.
- */
 
 namespace Drupal\paragraphs_demo\Tests;
 

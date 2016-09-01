@@ -3,42 +3,17 @@
 namespace Drupal\libraries\Plugin\libraries\Type;
 
 use Drupal\Component\Plugin\Factory\FactoryInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\libraries\ExternalLibrary\LibraryInterface;
-use Drupal\libraries\ExternalLibrary\Type\LibraryCreationListenerInterface;
 use Drupal\libraries\ExternalLibrary\Type\LibraryLoadingListenerInterface;
-use Drupal\libraries\ExternalLibrary\Type\LibraryTypeInterface;
 use Drupal\libraries\ExternalLibrary\PhpFile\PhpFileLibrary;
 use Drupal\libraries\ExternalLibrary\PhpFile\PhpFileLoaderInterface;
-use Drupal\libraries\ExternalLibrary\Utility\IdAccessorTrait;
-use Drupal\libraries\ExternalLibrary\Version\VersionedLibraryInterface;
+use Drupal\libraries\ExternalLibrary\Type\LibraryTypeBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @LibraryType("php_file")
  */
-class PhpFileLibraryType implements
-  LibraryTypeInterface,
-  LibraryCreationListenerInterface,
-  LibraryLoadingListenerInterface,
-  ContainerFactoryPluginInterface
-{
-
-  use IdAccessorTrait;
-
-  /**
-   * The locator factory.
-   *
-   * @var \Drupal\Component\Plugin\Factory\FactoryInterface
-   */
-  protected $locatorFactory;
-
-  /**
-   * The version detector factory.
-   *
-   * @var \Drupal\Component\Plugin\Factory\FactoryInterface
-   */
-  protected $detectorFactory;
+class PhpFileLibraryType extends LibraryTypeBase implements LibraryLoadingListenerInterface {
 
   /**
    * The PHP file loader.
@@ -60,9 +35,7 @@ class PhpFileLibraryType implements
    *   The PHP file loader.
    */
   public function __construct($plugin_id, FactoryInterface $locator_factory, FactoryInterface $detector_factory, PhpFileLoaderInterface $php_file_loader) {
-    $this->id = $plugin_id;
-    $this->locatorFactory = $locator_factory;
-    $this->detectorFactory = $detector_factory;
+    parent::__construct($plugin_id, $locator_factory, $detector_factory);
     $this->phpFileLoader = $php_file_loader;
   }
 
@@ -83,17 +56,6 @@ class PhpFileLibraryType implements
    */
   public function getLibraryClass() {
     return PhpFileLibrary::class;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function onLibraryCreate(LibraryInterface $library) {
-    /** @var \Drupal\libraries\ExternalLibrary\PhpFile\PhpFileLibraryInterface|\Drupal\libraries\ExternalLibrary\Version\VersionedLibraryInterface $library */
-    $library->getLocator($this->locatorFactory)->locate($library);
-    if ($library instanceof VersionedLibraryInterface) {
-      $library->getVersionDetector($this->detectorFactory)->detectVersion($library);
-    }
   }
 
   /**

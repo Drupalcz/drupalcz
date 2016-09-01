@@ -8,6 +8,8 @@ namespace Drupal\bootstrap\Utility;
 
 /**
  * Extends \Drupal\Component\Utility\Crypt.
+ *
+ * @ingroup utility
  */
 class Crypt extends \Drupal\Component\Utility\Crypt {
 

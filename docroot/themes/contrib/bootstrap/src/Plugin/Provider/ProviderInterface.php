@@ -11,6 +11,8 @@ use Drupal\Component\Plugin\PluginInspectionInterface;
 
 /**
  * ProviderInterface.
+ *
+ * @ingroup plugins_provider
  */
 interface ProviderInterface extends PluginInspectionInterface, DerivativeInspectionInterface {
 

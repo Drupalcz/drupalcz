@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\paragraphs\ParagraphInterface.
- */
-
 namespace Drupal\paragraphs;
 
 use Drupal\user\EntityOwnerInterface;

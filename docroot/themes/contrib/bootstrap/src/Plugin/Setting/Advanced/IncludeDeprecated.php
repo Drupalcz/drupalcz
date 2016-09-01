@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "include_deprecated" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "include_deprecated",
  *   type = "checkbox",

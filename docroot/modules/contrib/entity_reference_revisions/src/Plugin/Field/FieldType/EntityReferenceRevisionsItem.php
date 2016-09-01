@@ -53,7 +53,7 @@ class EntityReferenceRevisionsItem extends EntityReferenceItem implements Option
 
     $element['target_type'] = array(
       '#type' => 'select',
-      '#title' => t('Type of item to reference'),
+      '#title' => $this->t('Type of item to reference'),
       '#options' => $options,
       '#default_value' => $this->getSetting('target_type'),
       '#required' => TRUE,

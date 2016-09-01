@@ -5,7 +5,7 @@ namespace Drupal\libraries\ExternalLibrary\PhpFile;
 use Drupal\libraries\ExternalLibrary\Local\LocalLibraryInterface;
 
 /**
- * Provides an interface for libraries which can be loaded.
+ * Provides an interface for libraries with PHP files.
  *
  * @see \Drupal\libraries\ExternalLibrary\PhpFile\PhpFileLoaderInterface
  */

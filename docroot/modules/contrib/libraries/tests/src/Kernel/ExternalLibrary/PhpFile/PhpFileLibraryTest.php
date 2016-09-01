@@ -15,11 +15,6 @@ class PhpFileLibraryTest extends LibraryTypeKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = ['libraries', 'libraries_test'];
-
-  /**
-   * {@inheritdoc}
-   */
   protected function setUp() {
     parent::setUp();
 
@@ -44,7 +39,7 @@ class PhpFileLibraryTest extends LibraryTypeKernelTestBase {
     /** @var \Drupal\libraries\ExternalLibrary\PhpFile\PhpFileLibrary $library */
     $library = $this->getLibrary();
     $this->assertTrue($library->isInstalled());
-    $library_path = $this->modulePath . DIRECTORY_SEPARATOR . 'tests/libraries/test_php_file_library';
+    $library_path = $this->modulePath . '/tests/libraries/test_php_file_library';
     $this->assertEquals($library_path, $library->getLocalPath());
     $this->assertEquals(["$library_path/test_php_file_library.php"], $library->getPhpFiles());
   }

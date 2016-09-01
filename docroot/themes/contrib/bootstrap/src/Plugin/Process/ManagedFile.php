@@ -13,6 +13,8 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Processes the "managed_file" element.
  *
+ * @ingroup plugins_process
+ *
  * @BootstrapProcess("managed_file")
  */
 class ManagedFile extends ProcessBase implements ProcessInterface {

@@ -15,6 +15,8 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Provides helper methods for Drupal render elements.
  *
+ * @ingroup utility
+ *
  * @see \Drupal\Core\Render\Element
  */
 class Element extends DrupalAttributes {
@@ -612,6 +614,12 @@ class Element extends DrupalAttributes {
       $target = $this;
     }
 
+    // For "password_confirm" element types, move the target to the first
+    // textfield.
+    if ($target->isType('password_confirm')) {
+      $target = $target->pass1;
+    }
+
     // Retrieve the length limit for smart descriptions.
     if (!isset($length)) {
       // Disable length checking by setting it to FALSE if empty.
@@ -630,12 +638,27 @@ class Element extends DrupalAttributes {
     // Return if element or target shouldn't have "simple" tooltip descriptions.
     $html = FALSE;
     if (($input_only && !$target->hasProperty('input'))
+      // Ignore if the actual element has no #description set.
+      || !$this->hasProperty('description')
+
+      // Ignore if the target element already has a "data-toggle" attribute set.
+      || $target->hasAttribute('data-toggle')
+
+      // Ignore if the target element is #disabled.
+      || $target->hasProperty('disabled')
+
+      // Ignore if either the actual element or target element has an explicit
+      // #smart_description property set to FALSE.
       || !$this->getProperty('smart_description', TRUE)
       || !$target->getProperty('smart_description', TRUE)
-      || !$this->hasProperty('description')
-      || $target->hasAttribute('data-toggle')
+
+      // Ignore if the description is not "simple".
       || !Unicode::isSimple($this->getProperty('description'), $length, $allowed_tags, $html)
     ) {
+      // Set the both the actual element and the target element
+      // #smart_description property to FALSE.
+      $this->setProperty('smart_description', FALSE);
+      $target->setProperty('smart_description', FALSE);
       return $this;
     }
 

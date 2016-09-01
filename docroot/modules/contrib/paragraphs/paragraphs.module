@@ -41,7 +41,7 @@ function paragraphs_type_get_types() {
 function paragraphs_type_get_names() {
   return array_map(function ($bundle_info) {
     return $bundle_info['label'];
-  }, \Drupal::entityManager()->getBundleInfo('paragraphs_type'));
+  }, \Drupal::service('entity_type.bundle.info')->getBundleInfo('paragraphs_type'));
 }
 
 function paragraphs_type_load($name) {
@@ -102,6 +102,87 @@ function paragraphs_form_field_storage_config_edit_form_alter(&$form, \Drupal\Co
     // Entity Reference fields are no longer supported to reference Paragraphs.
     unset($form['settings']['target_type']['#options'][(string) t('Content')]['paragraph']);
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Indicate unsupported multilingual paragraphs field configuration.
+ */
+function paragraphs_form_field_config_edit_form_alter(&$form,  \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  $field = $form_state->getFormObject()->getEntity();
+
+  if (!\Drupal::hasService('content_translation.manager')) {
+    return;
+  }
+
+  $bundle_is_translatable = \Drupal::service('content_translation.manager')
+    ->isEnabled($field->getTargetEntityTypeId(), $field->getTargetBundle());
+
+  if (!$bundle_is_translatable
+    || !$field->getType() == 'entity_reference_revisions'
+    || !$field->getSetting('target_type') == 'paragraph') {
+    return;
+  }
+
+  // This is a translatable ERR field pointing to a paragraph.
+  $message_display = 'warning';
+  $message_text = t('Paragraphs fields do not support translation. See the <a href=":documentation">online documentation</a>.', [
+    ':documentation' => Url::fromUri('https://www.drupal.org/node/2735121')
+      ->toString()
+  ]);
+
+  if ($form['translatable']['#default_value'] == TRUE) {
+    $message_display = 'error';
+  }
+
+  $form['paragraphs_message'] = array(
+    '#type' => 'container',
+    '#markup' => $message_text,
+    '#attributes' => array(
+      'class' => array('messages messages--' . $message_display),
+    ),
+    '#weight' => 0,
+  );
+}
+
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Indicate unsupported multilingual paragraphs field configuration.
+ *
+ * Add a warning that paragraph fields can not be translated.
+ * Switch to error if a paragraph field is marked as translatable.
+ */
+function paragraphs_form_language_content_settings_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  $message_display = 'warning';
+  $message_text = t('(* unsupported) Paragraphs fields do not support translation. See the <a href=":documentation">online documentation</a>.', [
+    ':documentation' => Url::fromUri('https://www.drupal.org/node/2735121')
+      ->toString()]);
+  $map = \Drupal::service('entity_field.manager')->getFieldMapByFieldType('entity_reference_revisions');
+  foreach ($map as $entity_type_id => $info) {
+    $field_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions($entity_type_id);
+    foreach ($field_storage_definitions as $name => $data) {
+      if ($data->getSetting('target_type') && $data->getSetting('target_type') == 'paragraph') {
+        foreach($data->getBundles() as $bundle) {
+          $form['settings'][$entity_type_id][$bundle]['fields'][$name]['#label'] .= ' (* unsupported)';
+          if ($form['settings'][$entity_type_id][$bundle]['fields'][$name]['#default_value']) {
+            $message_display = 'error';
+          }
+        }
+      }
+    }
+  }
+  $form['settings']['paragraphs_message'] = array(
+    '#type' => 'container',
+    '#markup' => $message_text,
+    '#attributes' => array(
+      'class' => array('messages messages--' . $message_display),
+    ),
+    '#weight' => 0,
+  );
+  return $form;
 }
 
 /**

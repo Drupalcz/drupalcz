@@ -7,12 +7,13 @@
 namespace Drupal\bootstrap\Plugin\Preprocess;
 
 use Drupal\bootstrap\Annotation\BootstrapPreprocess;
+use Drupal\bootstrap\Utility\Element;
 use Drupal\bootstrap\Utility\Variables;
 
 /**
  * Pre-processes variables for the "form_element_label" theme hook.
  *
- * @ingroup theme_preprocess
+ * @ingroup plugins_preprocess
  *
  * @BootstrapPreprocess("form_element_label")
  */
@@ -21,9 +22,9 @@ class FormElementLabel extends PreprocessBase implements PreprocessInterface {
   /**
    * {@inheritdoc}
    */
-  public function preprocessElement(Variables $variables, $hook, array $info) {
+  public function preprocessElement(Element $element, Variables $variables) {
     $variables->map(['attributes']);
-    $this->preprocessAttributes($variables, $hook, $info);
+    $this->preprocessAttributes();
   }
 
 }

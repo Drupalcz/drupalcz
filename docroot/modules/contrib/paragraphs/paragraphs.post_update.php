@@ -39,6 +39,12 @@ function paragraphs_post_update_set_paragraphs_parent_fields(&$sandbox) {
         }
       }
     }
+
+    if (!$paragraph_field_ids) {
+      // There are no paragraph fields. Return before initializing the sandbox.
+      return;
+    }
+
     // Initialize the sandbox.
     $sandbox['current_paragraph_field_id'] = 0;
     $sandbox['paragraph_field_ids'] = $paragraph_field_ids;

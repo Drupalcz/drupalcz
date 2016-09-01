@@ -23,9 +23,14 @@
     }
   }
   select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
     line-height: 1;
     padding-right: 2em;
+    &::-ms-expand {
+      opacity: 0;
+    }
   }
   &:after {
     color: @brand-primary;
@@ -48,8 +53,6 @@
       content: '\e114'; // .glyphicon-chevron-down
       display: inline-block;
       font-family: 'Glyphicons Halflings';
-      //margin-left: -10px;
-      //margin-top: 2px;
     }
     .has-error & {
       color: @state-danger-text;
@@ -61,4 +64,17 @@
       color: @state-warning-text;
     }
   }
+}
+
+// Use CSS/SVG image for required mark.
+// @see https://www.drupal.org/node/2152217
+// @see https://www.drupal.org/node/2274631
+.form-required:after {
+  background-image: url(../images/required.svg);
+  background-size: 10px 7px;
+  content:"";
+  display: inline-block;
+  line-height:1;
+  height: 7px;
+  width: 10px;
 }

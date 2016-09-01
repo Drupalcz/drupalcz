@@ -10,7 +10,7 @@ id: paragraph.nested_paragraph.field_paragraphs_demo
 field_name: field_paragraphs_demo
 entity_type: paragraph
 bundle: nested_paragraph
-label: 'Nested Paragraph'
+label: 'Nested Content'
 description: ''
 required: false
 translatable: false

@@ -42,15 +42,79 @@
  * files. This has yet to be done. See https://www.drupal.org/node/773508 for
  * more information.
  *
- * @section sec_definitions Library types
+ * @section sec_types Library types
  * Libraries are classed objects that implement LibraryInterface. This generic
  * interface only dictates that a library is aware of its ID. Any further
  * functionality depends on the type of library, each type of library comes with
- * a dedicated interface.
+ * a dedicated interface. See LibraryInterface for more information.
+ *
+ * @subsection sub_types_version Version detection
+ * A central aspect of Libraries API is version detection. Modules or themes may
+ * only work with a specific version of an external library, so Libraries API
+ * needs a way to detect the version of a library by inspecting the library
+ * files.
+ *
+ * As the mechanism for doing this is generally not specific to any one
+ * library, it is handled by version detector plugins. A 'line_pattern' plugin
+ * that scans a file line by line whether for whether a pattern containing the
+ * version is matched. It can be used if the version is always specified in a
+ * particular place in a particular file, for example a changelog. See
+ * VersionDetectorInterface and LinePatternDetector for more information.
+ *
+ * @subsection sub_types_dependency Dependency handling
+ * Many libraries depend on other libraries to function. Thus, most library
+ * classes should implement DependentLibraryInterface to allow libraries to
+ * declare their dependencies as part of their metadata. In case of API changes
+ * in the dependencies libraries need to be able to declare dependencies on
+ * specific versions or version ranges of other libraries. This has yet to be
+ * implemented.
+ *
+ * Furthermore, Libraries API must also maintain a list of libraries that are
+ * required by the installed installation profile, modules, and themes
+ * (extensions). With this information installation of extensions with library
+ * dependencies can be prevented until the libraries are properly installed.
+ * This is currently not implemented. In the future this will be used to
+ * automatically retrieve library definitions of required libraries, and
+ * possibly to automatically download the libraries themselves.
+ *
+ * To declare library dependencies extensions can place a 'library_dependencies'
+ * key in their info file with a list of library machine names as the value.
+ * For example:
+ * @code
+ *   name: My module
+ *   type: module
+ *   core: 8.x
+ *   library_dependencies:
+ *     - flexslider
+ *     - jquery_mobile
+ * @endcode
+ *
+ * @subsection sub_types_asset Asset libraries
+ * With Drupal 8 relying on Composer for autoloading and dependency resolution
+ * of PHP libraries, asset libraries are the primary use-case for Libraries API.
+ * Because asset libraries cannot be loaded ad-hoc, but must be attached to a
+ * renderable element, Libraries API registers external asset libraries that are
+ * required by the installed extensions with the core asset library system. See
+ * AssetLibraryInterface for more information.
+ *
+ * @subsection sub_types_php_file
+ * For feature parity with the Drupal 7 version of this module, a PHP file
+ * library type is provided, that can load a list of PHP files on demand.
+ * Generally, it is encouraged to use Composer instead of this library type and
+ * avoid Libraries API altogether for PHP libraries. See PhpFileLibraryInterface
+ * for more information.
+ *
+ * This library type might be removed in a future version of Libraries API.
  *
  * @see \Drupal\libraries\ExternalLibrary\Definition\DefinitionDiscoveryInterface
  * @see \Drupal\libraries\ExternalLibrary\Definition\StreamDefinitionDiscovery
  * @see \Drupal\libraries\ExternalLibrary\LibraryInterface
+ * @see \Drupal\libraries\ExternalLibrary\Version\VersionDetectorInterface
+ * @see \Drupal\libraries\Plugin\libraries\VersionDetector\LinePatternDetector
+ * @see \Drupal\libraries\ExternalLibrary\Version\VersionedLibraryInterface
+ * @see \Drupal\libraries\ExternalLibrary\Dependency\DependentLibraryInterface
+ * @see \Drupal\libraries\ExternalLibrary\Asset\AssetLibraryInterface
+ * @see \Drupal\libraries\ExternalLibrary\PhpFile\PhpFileLibraryInterface
  *
  * @}
  */

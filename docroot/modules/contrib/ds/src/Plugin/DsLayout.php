@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\ds\Plugin\DsLayout.
- */
-
 namespace Drupal\ds\Plugin;
 
 use Drupal\Component\Utility\Xss;
@@ -30,7 +25,7 @@ class DsLayout extends LayoutBase {
       'link_custom' => '',
       'classes' => [
         'layout_class' => [],
-      ]
+      ],
     ];
   }
 
@@ -42,7 +37,7 @@ class DsLayout extends LayoutBase {
     $configuration = $this->getConfiguration();
     $regions = $this->getRegionDefinitions();
 
-    // Add wrappers
+    // Add wrappers.
     $wrapper_options = array(
       'div' => 'Div',
       'span' => 'Span',
@@ -51,7 +46,7 @@ class DsLayout extends LayoutBase {
       'header' => 'Header',
       'footer' => 'Footer',
       'aside' => 'Aside',
-      'figure' => 'Figure'
+      'figure' => 'Figure',
     );
     $form['region_wrapper'] = array(
       '#group' => 'additional_settings',
@@ -66,7 +61,7 @@ class DsLayout extends LayoutBase {
         '#type' => 'select',
         '#options' => $wrapper_options,
         '#title' => t('Wrapper for @region', array('@region' => $region_definition['label'])),
-        '#default_value' => !empty($configuration['wrappers'][$region_name]) ?  $configuration['wrappers'][$region_name] : 'div',
+        '#default_value' => !empty($configuration['wrappers'][$region_name]) ? $configuration['wrappers'][$region_name] : 'div',
       );
     }
 
@@ -92,7 +87,7 @@ class DsLayout extends LayoutBase {
         '' => t('No link'),
         'content' => t('Link to content'),
         'custom' => t('Custom'),
-        'tokens' => t('Tokens')
+        'tokens' => t('Tokens'),
       ),
       '#title' => t('Add link'),
       '#description' => t('This will add an onclick attribute on the layout wrapper.'),
@@ -107,9 +102,11 @@ class DsLayout extends LayoutBase {
       '#default_value' => $configuration['link_custom'],
       '#weight' => 13,
       '#states' => array(
-        'visible' => array(array(
-          ':input[name="layout_configuration[region_wrapper][link_attribute]"]' => array(array("value" => "tokens"), array("value" => "custom")),
-        )),
+        'visible' => array(
+          array(
+            ':input[name="layout_configuration[region_wrapper][link_attribute]"]' => array(array("value" => "tokens"), array("value" => "custom")),
+          ),
+        ),
       ),
     );
 
@@ -175,7 +172,8 @@ class DsLayout extends LayoutBase {
         $url = Url::fromRoute('ds.classes');
         $destination  = \Drupal::destination()->getAsArray();
         $url->setOption('query', $destination);
-        $form['ds_classes']['info'] = array('#markup' => '<p>' . t('You have not defined any CSS classes which can be used on regions.') . '</p><p>' . \Drupal::l(t('Manage region and field CSS classes'), $url) . '</p>');      }
+        $form['ds_classes']['info'] = array('#markup' => '<p>' . t('You have not defined any CSS classes which can be used on regions.') . '</p><p>' . \Drupal::l(t('Manage region and field CSS classes'), $url) . '</p>');
+      }
       else {
         $form['ds_classes']['#access'] = FALSE;
       }

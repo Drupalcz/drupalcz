@@ -36,16 +36,24 @@
  * - $is_admin: Flags true when the current user is an administrator.
  * - $block_html_id: A valid HTML ID and guaranteed unique.
  *
+ * @ingroup templates
+ *
  * @see bootstrap_preprocess_block()
  * @see template_preprocess()
  * @see template_preprocess_block()
  * @see bootstrap_process_block()
  * @see template_process()
- *
- * @ingroup templates
  */
 #}
-<section{{ attributes.addClass('block', 'clearfix') }}>
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'clearfix',
+  ]
+%}
+<section{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if label %}
     <h2{{ title_attributes.addClass('block-title') }}>{{ label }}</h2>

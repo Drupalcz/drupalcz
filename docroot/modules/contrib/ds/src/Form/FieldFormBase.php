@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\ds\Form\FieldFormBase.
- */
-
 namespace Drupal\ds\Form;
 
 use Drupal\Component\Utility\Unicode;
@@ -24,21 +19,21 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class FieldFormBase extends ConfigFormBase implements ContainerInjectionInterface {
 
   /**
-   * Holds the entity type manager
+   * Holds the entity type manager.
    *
    * @var \Drupal\Core\Entity\EntityTypeManager
    */
   protected $entityTypeManager;
 
   /**
-   * Holds the cache invalidator
+   * Holds the cache invalidator.
    *
    * @var \Drupal\Core\Cache\CacheTagsInvalidatorInterface
    */
   protected $cacheInvalidator;
 
   /**
-   * Drupal module handler
+   * Drupal module handler.
    *
    * @var \Drupal\Core\Extension\ModuleHandler
    */
@@ -56,11 +51,11 @@ class FieldFormBase extends ConfigFormBase implements ContainerInjectionInterfac
    *
    * @param \Drupal\Core\Config\ConfigFactory $config_factory
    *   The factory for configuration objects.
-   * @param \Drupal\Core\Entity\EntityTypeManager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
-   * @param \Drupal\Core\Cache\CacheTagsInvalidatorInterface
+   * @param \Drupal\Core\Cache\CacheTagsInvalidatorInterface $cache_invalidator
    *   The cache invalidator.
-   * @param \Drupal\Core\Extension\ModuleHandler
+   * @param \Drupal\Core\Extension\ModuleHandler $module_handler
    *   The module handler.
    */
   public function __construct(ConfigFactory $config_factory, EntityTypeManagerInterface $entity_type_manager, CacheTagsInvalidatorInterface $cache_invalidator, ModuleHandler $module_handler) {
@@ -81,7 +76,6 @@ class FieldFormBase extends ConfigFormBase implements ContainerInjectionInterfac
       $container->get('module_handler')
     );
   }
-
 
   /**
    * {@inheritdoc}
@@ -145,7 +139,8 @@ class FieldFormBase extends ConfigFormBase implements ContainerInjectionInterfac
 
     $form['ui_limit'] = array(
       '#title' => t('Limit field'),
-      '#description' => t('Limit this field on field UI per bundles and/or view modes. The values are in the form of $bundle|$view_mode, where $view_mode may be either a view mode set to use custom settings, or \'default\'. You may use * to select all, e.g article|*, *|full or *|*. Enter one value per line.'),      '#type' => 'textarea',
+      '#description' => t('Limit this field on field UI per bundles and/or view modes. The values are in the form of $bundle|$view_mode, where $view_mode may be either a view mode set to use custom settings, or \'default\'. You may use * to select all, e.g article|*, *|full or *|*. Enter one value per line.'),
+      '#type' => 'textarea',
       '#default_value' => isset($field['ui_limit']) ? $field['ui_limit'] : '',
     );
 
@@ -178,13 +173,13 @@ class FieldFormBase extends ConfigFormBase implements ContainerInjectionInterfac
     }
     $field['entities'] = $entities;
 
-    // Save field to property
+    // Save field to property.
     $this->field = $field;
 
-    // Save field values
+    // Save field values.
     $this->config('ds.field.' . $field['id'])->setData($field)->save();
 
-    // Clear caches and redirect
+    // Clear caches and redirect.
     $this->finishSubmitForm($form, $form_state);
   }
 
@@ -203,7 +198,7 @@ class FieldFormBase extends ConfigFormBase implements ContainerInjectionInterfac
   }
 
   /**
-   * Returns the properties for the custom field
+   * Returns the properties for the custom field.
    */
   public function getProperties(FormStateInterface $form_state) {
     return array();
@@ -217,12 +212,11 @@ class FieldFormBase extends ConfigFormBase implements ContainerInjectionInterfac
   }
 
   /**
-   * Returns the admin label for the field on the field overview page
+   * Returns the admin label for the field on the field overview page.
    */
   public function getTypeLabel() {
     return '';
   }
-
 
   /**
    * Returns whether a field machine name is unique.
@@ -237,7 +231,7 @@ class FieldFormBase extends ConfigFormBase implements ContainerInjectionInterfac
   }
 
   /**
-   * Finishes the submit
+   * Finishes the submit.
    */
   public function finishSubmitForm(array &$form, FormStateInterface $form_state) {
     $field = $this->field;
@@ -245,7 +239,7 @@ class FieldFormBase extends ConfigFormBase implements ContainerInjectionInterfac
     // Save field and clear ds_fields_info cache.
     $this->cacheInvalidator->invalidateTags(array('ds_fields_info'));
 
-    // Also clear the ds plugin cache
+    // Also clear the ds plugin cache.
     \Drupal::service('plugin.manager.ds')->clearCachedDefinitions();
 
     // Redirect.

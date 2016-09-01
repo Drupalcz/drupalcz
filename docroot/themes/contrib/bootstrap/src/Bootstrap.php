@@ -18,6 +18,8 @@ use Drupal\Core\Extension\ThemeHandlerInterface;
  * The primary class for the Drupal Bootstrap base theme.
  *
  * Provides many helper methods.
+ *
+ * @ingroup utility
  */
 class Bootstrap {
 
@@ -231,6 +233,42 @@ class Bootstrap {
   }
 
   /**
+   * Returns the autoload fix include path.
+   * 
+   * This method assists class based callbacks that normally do not work.
+   * 
+   * If you notice that your class based callback is never invoked, you may try
+   * using this helper method as an "include" or "file" for your callback, if
+   * the callback metadata supports such an option.
+   * 
+   * Depending on when or where a callback is invoked during a request, such as
+   * an ajax or batch request, the theme handler may not yet be fully
+   * initialized.
+   * 
+   * Typically there is little that can be done about this "issue" from core.
+   * It must balance the appropriate level that should be bootstrapped along
+   * with common functionality. Cross-request class based callbacks are not
+   * common in themes.
+   * 
+   * When this file is included, it will attempt to jump start this process.
+   *
+   * Please keep in mind, that it is merely an attempt and does not guarantee
+   * that it will actually work. If it does not appear to work, do not use it.
+   *
+   * @see \Drupal\Core\Extension\ThemeHandler::listInfo
+   * @see \Drupal\Core\Extension\ThemeHandler::systemThemeList
+   * @see system_list
+   * @see system_register()
+   * @see drupal_classloader_register()
+   * 
+   * @return string
+   *   The autoload fix include path, relative to Drupal root.
+   */
+  public static function autoloadFixInclude() {
+    return static::getTheme('bootstrap')->getPath() . '/autoload-fix.php';
+  }
+
+  /**
    * Matches a Bootstrap class based on a string value.
    *
    * @param string $string
@@ -243,8 +281,13 @@ class Bootstrap {
    *   if no match could be made.
    */
   public static function cssClassFromString($string, $default = '') {
+    static $lang;
+    if (!isset($lang)) {
+      $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    }
+
     $theme = Bootstrap::getTheme();
-    $texts = $theme->getCache('cssClassFromString');
+    $texts = $theme->getCache('cssClassFromString', [$lang]);
 
     $string = (string) $string;
 
@@ -559,8 +602,13 @@ class Bootstrap {
    *   no match could be made.
    */
   public static function glyphiconFromString($string, $default = []) {
+    static $lang;
+    if (!isset($lang)) {
+      $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    }
+
     $theme = Bootstrap::getTheme();
-    $texts = $theme->getCache('glyphiconFromString');
+    $texts = $theme->getCache('glyphiconFromString', [$lang]);
 
     $string = (string) $string;
 
@@ -589,6 +637,7 @@ class Bootstrap {
           t('Remove')->render()     => 'trash',
           t('Search')->render()     => 'search',
           t('Upload')->render()     => 'upload',
+          t('Preview')->render()    => 'eye-open',
         ],
       ];
 
@@ -994,6 +1043,7 @@ class Bootstrap {
       $variables['theme']['title'] = $theme->getTitle();
       $variables['theme']['settings'] = $theme->settings()->get();
       $variables['theme']['has_glyphicons'] = $theme->hasGlyphicons();
+      $variables['theme']['query_string'] = \Drupal::getContainer()->get('state')->get('system.css_js_query_string') ?: '0';
     }
 
     // Invoke necessary preprocess plugin.
