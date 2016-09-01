@@ -30,7 +30,8 @@
             // Do nothing here. The custom event will handle all tracking.
             console.info("Click on .colorbox item has been detected.");
           }
-          // Is download tracking activated and the file extension configured for download tracking?
+          // Is download tracking activated and the file extension configured
+          // for download tracking?
           else if (drupalSettings.google_analytics.trackDownload && Drupal.google_analytics.isDownload(this.href)) {
             // Download link clicked.
             console.info("Download url '%s' has been found. Tracked download as extension '%s'.", Drupal.google_analytics.getPageUrl(this.href), Drupal.google_analytics.getDownloadExtension(this.href).toUpperCase());

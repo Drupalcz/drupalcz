@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\google_analytics\Form\GoogleAnalyticsAdminSettingsForm.
- */
 
 namespace Drupal\google_analytics\Form;
 
@@ -131,7 +127,7 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
 
     // Page specific visibility configurations.
     $account = \Drupal::currentUser();
-    $php_access = $account->hasPermission('use PHP for tracking visibility');
+    $php_access = $account->hasPermission('use PHP for google analytics tracking visibility');
     $visibility_request_path_pages = $config->get('visibility.request_path_pages');
 
     $form['tracking']['page_visibility_settings'] = [
@@ -303,7 +299,7 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
       '#type' => 'checkboxes',
       '#title' => $this->t('Track messages of type'),
       '#default_value' => !empty($track_messages) ? $track_messages : [],
-      '#description' => $this->t('This will track the selected message types shown to users. Tracking of form validation errors may help you identifying usability issues in your site. For each visit (user session), a maximum of approximately 500 combined GATC requests (both events and page views) can be tracked. Every message is tracked as one individual event. Note that - as the number of events in a session approaches the limit - additional events might not be tracked. Messages from excluded pages cannot tracked.'),
+      '#description' => $this->t('This will track the selected message types shown to users. Tracking of form validation errors may help you identifying usability issues in your site. For each visit (user session), a maximum of approximately 500 combined GATC requests (both events and page views) can be tracked. Every message is tracked as one individual event. Note that - as the number of events in a session approaches the limit - additional events might not be tracked. Messages from excluded pages cannot be tracked.'),
       '#options' => [
         'status' => $this->t('Status message'),
         'warning' => $this->t('Warning message'),
@@ -329,10 +325,10 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
       '#disabled' => (\Drupal::moduleHandler()->moduleExists('search') ? FALSE : TRUE),
     ];
     $form['tracking']['search_and_advertising']['google_analytics_trackadsense'] = [
-       '#type' => 'checkbox',
-       '#title' => $this->t('Track AdSense ads'),
-       '#description' => $this->t('If checked, your AdSense ads will be tracked in your Google Analytics account.'),
-       '#default_value' => $config->get('track.adsense'),
+      '#type' => 'checkbox',
+      '#title' => $this->t('Track AdSense ads'),
+      '#description' => $this->t('If checked, your AdSense ads will be tracked in your Google Analytics account.'),
+      '#default_value' => $config->get('track.adsense'),
     ];
     $form['tracking']['search_and_advertising']['google_analytics_trackdisplayfeatures'] = [
       '#type' => 'checkbox',
@@ -488,6 +484,8 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
       ];
     }
 
+    $user_access_add_js_snippets = !$this->currentUser()->hasPermission('add JS snippets for google analytics');
+    $user_access_add_js_snippets_permission_warning = $user_access_add_js_snippets ? ' <em>' . $this->t('This field has been disabled because you do not have sufficient permissions to edit it.') . '</em>' : '';
     $form['advanced']['codesnippet'] = [
       '#type' => 'details',
       '#title' => $this->t('Custom JavaScript code'),
@@ -506,15 +504,17 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
       '#type' => 'textarea',
       '#title' => $this->t('Code snippet (before)'),
       '#default_value' => $config->get('codesnippet.before'),
+      '#disabled' => $user_access_add_js_snippets,
       '#rows' => 5,
-      '#description' => $this->t('Code in this textarea will be added <strong>before</strong> <code>ga("send", "pageview");</code>.'),
+      '#description' => $this->t('Code in this textarea will be added <strong>before</strong> <code>ga("send", "pageview");</code>.') . $user_access_add_js_snippets_permission_warning,
     ];
     $form['advanced']['codesnippet']['google_analytics_codesnippet_after'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Code snippet (after)'),
       '#default_value' => $config->get('codesnippet.after'),
+      '#disabled' => $user_access_add_js_snippets,
       '#rows' => 5,
-      '#description' => $this->t('Code in this textarea will be added <strong>after</strong> <code>ga("send", "pageview");</code>. This is useful if you\'d like to track a site in two accounts.'),
+      '#description' => $this->t('Code in this textarea will be added <strong>after</strong> <code>ga("send", "pageview");</code>. This is useful if you\'d like to track a site in two accounts.') . $user_access_add_js_snippets_permission_warning,
     ];
 
     $form['advanced']['google_analytics_debug'] = [
@@ -636,7 +636,7 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
       ->set('track.userid', $form_state->getValue('google_analytics_trackuserid'))
       ->set('track.mailto', $form_state->getValue('google_analytics_trackmailto'))
       ->set('track.messages', $form_state->getValue('google_analytics_trackmessages'))
-      ->set('track.outbound', $form_state->getValue('google_analytics_trackmailto'))
+      ->set('track.outbound', $form_state->getValue('google_analytics_trackoutbound'))
       ->set('track.site_search', $form_state->getValue('google_analytics_site_search'))
       ->set('track.adsense', $form_state->getValue('google_analytics_trackadsense'))
       ->set('track.displayfeatures', $form_state->getValue('google_analytics_trackdisplayfeatures'))
@@ -834,7 +834,7 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
         $value = trim($matches[2]);
       }
       else {
-        return;
+        return NULL;
       }
 
       $values[$name] = $value;
