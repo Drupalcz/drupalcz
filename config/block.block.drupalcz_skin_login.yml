@@ -6,6 +6,8 @@ dependencies:
     - user
   theme:
     - drupalcz_skin
+_core:
+  default_config_hash: 3oJ3JIoSk1q0Tb80WTAKgLbnuJWu0mKYSriyO83wDSo
 id: drupalcz_skin_login
 theme: drupalcz_skin
 region: sidebar_second

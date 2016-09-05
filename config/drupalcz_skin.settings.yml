@@ -1,7 +1,7 @@
 favicon:
   mimetype: image/vnd.microsoft.icon
   path: ''
-  url: 'http://drupalczd8.local/themes/custom/drupalcz_skin/favicon.ico'
+  url: '/themes/custom/drupalcz_skin/favicon.ico'
   use_default: 1
 schema: '8000'
 features:
@@ -16,12 +16,7 @@ logo:
 breadcrumb_home: 1
 navbar_position: fixed-top
 region_wells:
-  navigation: ''
-  navigation_collapsible: ''
-  header: ''
-  highlighted: ''
-  help: ''
-  content: ''
-  sidebar_first: ''
   sidebar_second: ''
-  footer: ''
+schemas:
+  bootstrap: 8000
+  drupalcz_skin: 8000
