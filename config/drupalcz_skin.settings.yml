@@ -1,7 +1,7 @@
 favicon:
   mimetype: image/vnd.microsoft.icon
   path: ''
-  url: '/themes/custom/drupalcz_skin/favicon.ico'
+  url: /themes/custom/drupalcz_skin/favicon.ico
   use_default: 1
 schema: '8000'
 features:
