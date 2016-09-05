@@ -10,6 +10,8 @@ use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Defines the interface for an object oriented form alter.
+ *
+ * @ingroup plugins_form
  */
 interface FormInterface {
 

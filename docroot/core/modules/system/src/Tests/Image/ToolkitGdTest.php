@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\system\Tests\Image\ToolkitGdTest.
- */
-
 namespace Drupal\system\Tests\Image;
 
 use Drupal\Core\Image\ImageInterface;
@@ -111,6 +106,26 @@ class ToolkitGdTest extends KernelTestBase {
     // Test that the image factory is set to use the GD toolkit.
     $this->assertEqual($this->imageFactory->getToolkitId(), 'gd', 'The image factory is set to use the \'gd\' image toolkit.');
 
+    // Test the list of supported extensions.
+    $expected_extensions = ['png', 'gif', 'jpeg', 'jpg', 'jpe'];
+    $supported_extensions = $this->imageFactory->getSupportedExtensions();
+    $this->assertEqual($expected_extensions, array_intersect($expected_extensions, $supported_extensions));
+
+    // Test that the supported extensions map to correct internal GD image
+    // types.
+    $expected_image_types = [
+      'png' => IMAGETYPE_PNG,
+      'gif' => IMAGETYPE_GIF,
+      'jpeg' => IMAGETYPE_JPEG,
+      'jpg' => IMAGETYPE_JPEG,
+      'jpe' => IMAGETYPE_JPEG
+    ];
+    $image = $this->imageFactory->get();
+    foreach ($expected_image_types as $extension => $expected_image_type) {
+      $image_type = $image->getToolkit()->extensionToImageType($extension);
+      $this->assertEqual($expected_image_type, $image_type);
+    }
+
     // Typically the corner colors will be unchanged. These colors are in the
     // order of top-left, top-right, bottom-right, bottom-left.
     $default_corners = array($this->red, $this->green, $this->blue, $this->transparent);
@@ -203,8 +218,8 @@ class ToolkitGdTest extends KernelTestBase {
         'rotate_5' => array(
           'function' => 'rotate',
           'arguments' => array('degrees' => 5, 'background' => '#FF00FF'), // Fuchsia background.
-          'width' => 42,
-          'height' => 24,
+          'width' => 41,
+          'height' => 23,
           'corners' => array_fill(0, 4, $this->fuchsia),
         ),
         'rotate_90' => array(
@@ -217,8 +232,8 @@ class ToolkitGdTest extends KernelTestBase {
         'rotate_transparent_5' => array(
           'function' => 'rotate',
           'arguments' => array('degrees' => 5),
-          'width' => 42,
-          'height' => 24,
+          'width' => 41,
+          'height' => 23,
           'corners' => array_fill(0, 4, $this->rotateTransparent),
         ),
         'rotate_transparent_90' => array(
@@ -253,7 +268,7 @@ class ToolkitGdTest extends KernelTestBase {
     }
 
     // Prepare a directory for test file results.
-    $directory = $this->publicFilesDirectory .'/imagetest';
+    $directory = $this->publicFilesDirectory . '/imagetest';
     file_prepare_directory($directory, FILE_CREATE_DIRECTORY);
 
     foreach ($files as $file) {
@@ -289,20 +304,6 @@ class ToolkitGdTest extends KernelTestBase {
         $correct_dimensions_real = TRUE;
         $correct_dimensions_object = TRUE;
 
-        // PHP 5.5 GD bug: https://bugs.php.net/bug.php?id=65148. PHP 5.5 GD
-        // rotates differently then it did in PHP 5.4 resulting in different
-        // dimensions then what math teaches us. For the test images, the
-        // dimensions will be 1 pixel smaller in both dimensions (though other
-        // tests have shown a difference of 0 to 3 pixels in both dimensions.
-        // @todo: if and when the PHP bug gets solved, add an upper limit
-        //   version check.
-        // @todo: in [#1551686] the dimension calculations for rotation are
-        //   reworked. That issue should also check if these tests can be made
-        //   more robust.
-        if (version_compare(PHP_VERSION, '5.5', '>=') && $values['function'] === 'rotate' && $values['arguments']['degrees'] % 90 != 0) {
-          $values['height']--;
-          $values['width']--;
-        }
         if (imagesy($toolkit->getResource()) != $values['height'] || imagesx($toolkit->getResource()) != $values['width']) {
           $correct_dimensions_real = FALSE;
         }
@@ -397,7 +398,7 @@ class ToolkitGdTest extends KernelTestBase {
       if ($image_reloaded->getToolkit()->getType() == IMAGETYPE_GIF) {
         $this->assertEqual('#ffff00', $image_reloaded->getToolkit()->getTransparentColor(), SafeMarkup::format('Image file %file has the correct transparent color channel set.', array('%file' => $file)));
       }
-      else  {
+      else {
         $this->assertEqual(NULL, $image_reloaded->getToolkit()->getTransparentColor(), SafeMarkup::format('Image file %file has no color channel set.', array('%file' => $file)));
       }
     }
@@ -443,7 +444,7 @@ class ToolkitGdTest extends KernelTestBase {
    */
   function testGifTransparentImages() {
     // Prepare a directory for test file results.
-    $directory = $this->publicFilesDirectory .'/imagetest';
+    $directory = $this->publicFilesDirectory . '/imagetest';
     file_prepare_directory($directory, FILE_CREATE_DIRECTORY);
 
     // Test loading an indexed GIF image with transparent color set.

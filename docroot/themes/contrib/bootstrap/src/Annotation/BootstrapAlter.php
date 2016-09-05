@@ -18,5 +18,7 @@ use Drupal\Component\Annotation\PluginID;
  * @see plugin_api
  *
  * @Annotation
+ *
+ * @ingroup plugins_alter
  */
 class BootstrapAlter extends PluginID {}

@@ -6,8 +6,6 @@
 
 namespace Drupal\bootstrap\Annotation;
 
-use Drupal\Component\Annotation\PluginID;
-
 /**
  * Defines a BootstrapPreprocess annotation object.
  *
@@ -18,5 +16,7 @@ use Drupal\Component\Annotation\PluginID;
  * @see plugin_api
  *
  * @Annotation
+ *
+ * @ingroup plugins_preprocess
  */
-class BootstrapPreprocess extends PluginID {}
+class BootstrapPreprocess extends PluginCallback {}

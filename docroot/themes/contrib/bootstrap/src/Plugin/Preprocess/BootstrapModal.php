@@ -13,7 +13,7 @@ use Drupal\Component\Utility\Html;
 /**
  * Pre-processes variables for the "bootstrap_modal" theme hook.
  *
- * @ingroup theme_preprocess
+ * @ingroup plugins_preprocess
  *
  * @BootstrapPreprocess("bootstrap_modal")
  */
@@ -22,7 +22,7 @@ class BootstrapModal extends PreprocessBase implements PreprocessInterface {
   /**
    * {@inheritdoc}
    */
-  protected function preprocessVariables(Variables $variables, $hook, array $info) {
+  protected function preprocessVariables(Variables $variables) {
     // Immediately log an error and return if Bootstrap modals are not enabled.
     if (!$this->theme->getSetting('modal_enabled')) {
       \Drupal::logger('bootstrap')->error(t('Bootstrap modals are not enabled.'));
@@ -44,10 +44,10 @@ class BootstrapModal extends PreprocessBase implements PreprocessInterface {
     $variables->size = $variables->size ?: $this->theme->getSetting('modal_size');
 
     // Convert the description variable.
-    $this->preprocessDescription($variables, $hook, $info);
+    $this->preprocessDescription();
 
     // Ensure all attributes are proper objects.
-    $this->preprocessAttributes($variables, $hook, $info);
+    $this->preprocessAttributes();
   }
 
 }

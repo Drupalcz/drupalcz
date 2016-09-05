@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\google_analytics\Tests\GoogleAnalyticsSearchTest.
- */
-
 namespace Drupal\google_analytics\Tests;
 
 use Drupal\simpletest\WebTestBase;

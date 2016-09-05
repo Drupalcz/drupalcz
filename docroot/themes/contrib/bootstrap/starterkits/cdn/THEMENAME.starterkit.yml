@@ -2,7 +2,7 @@ core: 8.x
 type: theme
 base theme: bootstrap
 
-name: 'Bootstrap Sub-Theme (CDN)'
+name: 'THEMETITLE'
 description: 'Uses the jsDelivr CDN for all CSS and JavaScript. No source files or compiling is necessary and is recommended for simple sites or beginners.'
 package: 'Bootstrap'
 

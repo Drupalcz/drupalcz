@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\google_analytics\Tests\GoogleAnalyticsPhpFilterTest.
- */
-
 namespace Drupal\google_analytics\Tests;
 
 use Drupal\Component\Utility\Html;
@@ -36,7 +31,7 @@ class GoogleAnalyticsPhpFilterTest extends WebTestBase {
     $permissions_admin_user = [
       'access administration pages',
       'administer google analytics',
-      'use PHP for tracking visibility',
+      'use PHP for google analytics tracking visibility',
     ];
     $this->admin_user = $this->drupalCreateUser($permissions_admin_user);
 

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\token\Tests\Tree\TreeTest.
- */
-
 namespace Drupal\token\Tests\Tree;
 
 use Drupal\Component\Serialization\Json;
@@ -44,7 +39,6 @@ class TreeTest extends TokenTestBase {
   public function testAllTokens() {
     $this->drupalGet($this->getTokenTreeUrl(['token_types' => 'all']));
 
-    $this->assertTokenGroup('Array');
     $this->assertTokenGroup('Current date');
     $this->assertTokenGroup('Site information');
 

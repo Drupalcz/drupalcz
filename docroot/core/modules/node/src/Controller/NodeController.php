@@ -1,19 +1,14 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\node\Controller\NodeController.
- */
-
 namespace Drupal\node\Controller;
 
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Url;
+use Drupal\node\NodeStorageInterface;
 use Drupal\node\NodeTypeInterface;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -131,6 +126,7 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
    */
   public function revisionShow($node_revision) {
     $node = $this->entityManager()->getStorage('node')->loadRevision($node_revision);
+    $node = $this->entityManager()->getTranslationFromContext($node);
     $node_view_controller = new NodeViewController($this->entityManager, $this->renderer);
     $page = $node_view_controller->view($node);
     unset($page['nodes'][$node->id()]['#cache']);
@@ -162,8 +158,8 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
    */
   public function revisionOverview(NodeInterface $node) {
     $account = $this->currentUser();
-    $langcode = $this->languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
-    $langname = $this->languageManager()->getLanguageName($langcode);
+    $langcode = $node->language()->getId();
+    $langname = $node->language()->getName();
     $languages = $node->getTranslationLanguages();
     $has_translations = (count($languages) > 1);
     $node_storage = $this->entityManager()->getStorage('node');
@@ -173,17 +169,16 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
     $header = array($this->t('Revision'), $this->t('Operations'));
 
     $revert_permission = (($account->hasPermission("revert $type revisions") || $account->hasPermission('revert all revisions') || $account->hasPermission('administer nodes')) && $node->access('update'));
-    $delete_permission =  (($account->hasPermission("delete $type revisions") || $account->hasPermission('delete all revisions') || $account->hasPermission('administer nodes')) && $node->access('delete'));
+    $delete_permission = (($account->hasPermission("delete $type revisions") || $account->hasPermission('delete all revisions') || $account->hasPermission('administer nodes')) && $node->access('delete'));
 
     $rows = array();
-
-    $vids = $node_storage->revisionIds($node);
-
     $latest_revision = TRUE;
 
-    foreach (array_reverse($vids) as $vid) {
+    foreach ($this->_getRevisionIds($node, $node_storage) as $vid) {
       /** @var \Drupal\node\NodeInterface $revision */
       $revision = $node_storage->loadRevision($vid);
+      // Only show revisions that are affected by the language that is being
+      // displayed.
       if ($revision->hasTranslation($langcode) && $revision->getTranslation($langcode)->isRevisionTranslationAffected()) {
         $username = [
           '#theme' => 'username',
@@ -267,6 +262,8 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
       ),
     );
 
+    $build['pager'] = array('#type' => 'pager');
+
     return $build;
   }
 
@@ -281,6 +278,27 @@ class NodeController extends ControllerBase implements ContainerInjectionInterfa
    */
   public function addPageTitle(NodeTypeInterface $node_type) {
     return $this->t('Create @name', array('@name' => $node_type->label()));
+  }
+
+  /**
+   * Gets a list of node revision IDs for a specific node.
+   *
+   * @param \Drupal\node\NodeInterface
+   *   The node entity.
+   * @param \Drupal\node\NodeStorageInterface $node_storage
+   *   The node storage handler.
+   *
+   * @return int[]
+   *   Node revision IDs (in descending order).
+   */
+  protected function _getRevisionIds(NodeInterface $node, NodeStorageInterface $node_storage) {
+    $result = $node_storage->getQuery()
+      ->allRevisions()
+      ->condition($node->getEntityType()->getKey('id'), $node->id())
+      ->sort($node->getEntityType()->getKey('revision'), 'DESC')
+      ->pager(50)
+      ->execute();
+    return array_keys($result);
   }
 
 }

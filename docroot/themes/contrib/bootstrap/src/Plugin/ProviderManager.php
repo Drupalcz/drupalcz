@@ -11,6 +11,8 @@ use Drupal\bootstrap\Theme;
 
 /**
  * Manages discovery and instantiation of Bootstrap CDN providers.
+ *
+ * @ingroup plugins_provider
  */
 class ProviderManager extends PluginManager {
   /**

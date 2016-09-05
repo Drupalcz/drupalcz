@@ -27,6 +27,8 @@ use Drupal\Component\Annotation\Plugin;
  *
  * @Attribute("type", type = "string", required = true),
  * })
+ *
+ * @ingroup plugins_setting
  */
 class BootstrapSetting extends Plugin {
 

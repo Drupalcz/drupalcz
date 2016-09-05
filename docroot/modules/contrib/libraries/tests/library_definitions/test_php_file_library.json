@@ -1,7 +1,0 @@
-{
-  "id": "test_php_file_library",
-  "class": "Drupal\\libraries\\ExternalLibrary\\PhpFile\\PhpFileLibrary",
-  "files": [
-    "test_php_file_library.php"
-  ]
-}

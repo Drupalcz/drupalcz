@@ -10,6 +10,8 @@ use Drupal\bootstrap\Bootstrap;
 
 /**
  * Base class for an update.
+ *
+ * @ingroup utility
  */
 class PluginBase extends \Drupal\Core\Plugin\PluginBase {
 

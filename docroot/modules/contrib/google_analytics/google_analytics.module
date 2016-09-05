@@ -15,7 +15,6 @@ use Drupal\Component\Utility\Crypt;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Render\Element;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\Url;
@@ -41,6 +40,16 @@ function google_analytics_api() {
  */
 function google_analytics_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
+    case 'help.page.google_analytics':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Google Analytics adds a web statistics tracking system to your website. This system incorporates numerous statistical features. For an extensive listing of these features see the <a href=":project">Google Analytics</a> project site. Beyond that, additional information can be found at the <a href=":documentation">Drupal - Google Analytics documentation</a>.', [':documentation' => 'https://www.drupal.org/node/37694', ':project' => 'https://www.drupal.org/project/google_analytics']) . '</p>';
+      $output .= '<h3>' . t('Uses') . '</h3>';
+      $output .= '<dt>' . t('Configuring Google Analytics') . '</dt>';
+      $output .= '<dd>' . t('All settings for this module can be found on the <a href=":ga_settings">Google Analytics settings</a> page. When entering the Google Analytics account number here, it will automatically add the required JavaScript to every page generated. The <em>General Settings</em> section on this page provides additional instruction about setting up tracking thru the Google account.', [':ga_settings' => Url::fromRoute('google_analytics.admin_settings_form')->toString()]) . '</dd>';
+      $output .= '<dt>' . t('Additional features') . '</dt>';
+      $output .= '<dd>' . t('The Google Analytics module offers a bit more than basic tracking. <em>Page Tracking</em> for instance allows you to provide a list of pages to track, or a list of pages not to track. Role and Link tracking features are also available. For a comprehensive discussion on the setup and use of its many feature see the <a href=":documentation">Drupal - Google Analytics documentation</a>.', [':documentation' => 'https://www.drupal.org/node/37694']) . '</dd>';
+      return $output;
+
     case 'google_analytics.admin_settings_form':
       return t('<a href=":ga_url">Google Analytics</a> is a free (registration required) website traffic and marketing effectiveness service.', [':ga_url' => 'http://www.google.com/analytics/']);
   }
@@ -141,7 +150,7 @@ function google_analytics_page_attachments(array &$page) {
     }
 
     // Site search tracking support.
-    if (\Drupal::moduleHandler()->moduleExists('search') && $config->get('track.site_search') && (strpos(\Drupal::routeMatch()->getRouteName(), 'search.view') === 0) && $keys = google_analytics_search_get_keys()) {
+    if (\Drupal::moduleHandler()->moduleExists('search') && $config->get('track.site_search') && (strpos(\Drupal::routeMatch()->getRouteName(), 'search.view') === 0) && $keys = ($request->query->has('keys') ? trim($request->get('keys')) : '')) {
       // hook_item_list__search_results() is not executed if search result is
       // empty. Make sure the counter is set to 0 if there are no results.
       $entity_id = \Drupal::routeMatch()->getParameter('entity')->id();
@@ -155,7 +164,7 @@ function google_analytics_page_attachments(array &$page) {
       // language code does not match its source language code.
       if ($request->attributes->has('node')) {
         $node = $request->attributes->get('node');
-        if ($node instanceof NodeInterface && \Drupal::entityManager()->getTranslationFromContext($node) !== $node->getUntranslated()) {
+        if ($node instanceof NodeInterface && \Drupal::entityTypeManager()->getTranslationFromContext($node) !== $node->getUntranslated()) {
           $url_custom = Json::encode(Url::fromRoute('entity.node.canonical', ['node' => $node->id()], ['language' => $node->getUntranslated()->language()])->toString());
         }
       }
@@ -267,10 +276,7 @@ function google_analytics_page_attachments(array &$page) {
 
     // Track logged in users across all devices.
     if ($config->get('track.userid') && $account->isAuthenticated()) {
-      // The USER_ID value should be a unique, persistent, and non-personally
-      // identifiable string identifier that represents a user or signed-in
-      // account across devices.
-      $create_only_fields['userId'] = Crypt::hmacBase64($account->id(), \Drupal::service('private_key')->get() . Settings::getHashSalt());
+      $create_only_fields['userId'] = google_analytics_user_id_hash($account->id());
     }
 
     // Create a tracker.
@@ -333,17 +339,34 @@ function google_analytics_page_attachments(array &$page) {
         '#tag' => 'script',
         '#value' => $script,
       ],
-      'google_analytics_tracking_script'
+      'google_analytics_tracking_script',
     ];
   }
 }
 
 /**
- * Implements hook_field_extra_fields().
+ * Generate user id hash to implement USER_ID.
+ *
+ * The USER_ID value should be a unique, persistent, and non-personally
+ * identifiable string identifier that represents a user or signed-in
+ * account across devices.
+ *
+ * @param int $uid
+ *   User id.
+ *
+ * @return string
+ *   User id hash.
  */
-function google_analytics_field_extra_fields() {
+function google_analytics_user_id_hash($uid) {
+  return Crypt::hmacBase64($uid, \Drupal::service('private_key')->get() . Settings::getHashSalt());
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function google_analytics_entity_extra_field_info() {
   $extra['user']['user']['form']['google_analytics'] = [
-    'label' => t('Google Analytics configuration'),
+    'label' => t('Google Analytics settings'),
     'description' => t('Google Analytics module form element.'),
     'weight' => 3,
   ];
@@ -358,7 +381,7 @@ function google_analytics_form_user_form_alter(&$form, FormStateInterface $form_
   $config = \Drupal::config('google_analytics.settings');
   $account = $form_state->getFormObject()->getEntity();
 
-  if ($account->hasPermission('opt-in or out of tracking') && ($visibility_user_account_mode = $config->get('visibility.user_account_mode')) != 0 && _google_analytics_visibility_roles($account)) {
+  if ($account->hasPermission('opt-in or out of google analytics tracking') && ($visibility_user_account_mode = $config->get('visibility.user_account_mode')) != 0 && _google_analytics_visibility_roles($account)) {
     $account_data_google_analytics = \Drupal::service('user.data')->get('google_analytics', $account->id());
 
     $form['google_analytics'] = [
@@ -434,31 +457,9 @@ function google_analytics_preprocess_item_list__search_results(&$variables) {
         '#value' => 'window.google_analytics_search_results = ' . intval($pager_total_items[0]) . ';',
         '#weight' => JS_LIBRARY - 1,
       ],
-      'google_analytics_search_script'
+      'google_analytics_search_script',
     ];
   }
-}
-
-/**
- * Helper function for grabbing search keys. Function is missing in D8.
- *
- * http://api.drupal.org/api/function/search_get_keys/6
- */
-function google_analytics_search_get_keys() {
-  static $return;
-  if (!isset($return)) {
-    // Extract keys as remainder of path.
-    $path = explode('/', Url::fromRoute('<current>')->toString(), 3);
-
-    // Based on Drupal\search\Controller\SearchController::view
-    // Build the form first, because it may redirect during the submit,
-    // and we don't want to build the results based on last time's request.
-    $request = \Drupal::request();
-    $keys = ($request->query->has('keys') ? trim($request->get('keys')) : '');
-
-    $return = count($path) == 3 ? $path[2] : $keys;
-  }
-  return $return;
 }
 
 /**
@@ -507,7 +508,7 @@ function _google_analytics_cache($location, $synchronize = FALSE) {
           \Drupal::logger('google_analytics')->info('Locally cached tracking code file has been saved.');
 
           // Return the local JS file path.
-          return file_create_url($file_destination);
+          return file_url_transform_relative(file_create_url($file_destination));
         }
       }
     }
@@ -517,7 +518,7 @@ function _google_analytics_cache($location, $synchronize = FALSE) {
   }
   else {
     // Return the local JS file path.
-    return file_create_url($file_destination);
+    return file_url_transform_relative(file_create_url($file_destination));
   }
 }
 

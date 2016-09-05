@@ -9,7 +9,9 @@ namespace Drupal\bootstrap\Plugin\Prerender;
 use Drupal\bootstrap\Annotation\BootstrapPrerender;
 
 /**
- * Defines the interface for an object oriented preprocess plugin.
+ * Pre-render callback for the "operations" element type.
+ *
+ * @ingroup plugins_prerender
  *
  * @BootstrapPrerender("operations",
  *   replace = "Drupal\Core\Render\Element\Operations::preRenderDropbutton"

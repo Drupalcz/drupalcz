@@ -1,14 +1,10 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Core\Cron.
- */
-
 namespace Drupal\Core;
 
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Queue\QueueWorkerManagerInterface;
+use Drupal\Core\Queue\RequeueException;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\Lock\LockBackendInterface;
 use Drupal\Core\Queue\QueueFactory;
@@ -163,10 +159,15 @@ class Cron implements CronInterface {
         $queue_worker = $this->queueManager->createInstance($queue_name);
         $end = time() + (isset($info['cron']['time']) ? $info['cron']['time'] : 15);
         $queue = $this->queueFactory->get($queue_name);
-        while (time() < $end && ($item = $queue->claimItem())) {
+        $lease_time = isset($info['cron']['time']) ?: NULL;
+        while (time() < $end && ($item = $queue->claimItem($lease_time))) {
           try {
             $queue_worker->processItem($item->data);
             $queue->deleteItem($item);
+          }
+          catch (RequeueException $e) {
+            // The worker requested the task be immediately requeued.
+            $queue->releaseItem($item);
           }
           catch (SuspendQueueException $e) {
             // If the worker indicates there is a problem with the whole queue,

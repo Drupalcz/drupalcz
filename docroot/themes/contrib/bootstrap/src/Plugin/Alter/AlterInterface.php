@@ -8,6 +8,8 @@ namespace Drupal\bootstrap\Plugin\Alter;
 
 /**
  * Defines the interface for an object oriented alter.
+ *
+ * @ingroup plugins_alter
  */
 interface AlterInterface {
 

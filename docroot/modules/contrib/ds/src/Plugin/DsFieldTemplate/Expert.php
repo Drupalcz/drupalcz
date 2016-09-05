@@ -1,13 +1,6 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\ds\Plugin\DsFieldTemplate\Expert.
- */
-
 namespace Drupal\ds\Plugin\DsFieldTemplate;
-
-use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Plugin for the expert field template.
@@ -26,7 +19,7 @@ class Expert extends DsFieldTemplateBase {
   public function alterForm(&$form) {
     $config = $this->getConfiguration();
 
-    // Add prefix
+    // Add label.
     $form['lb'] = array(
       '#type' => 'textfield',
       '#title' => t('Label'),
@@ -34,7 +27,7 @@ class Expert extends DsFieldTemplateBase {
       '#default_value' => $config['lb'],
     );
 
-    // Add prefix
+    // Add prefix.
     $form['prefix'] = array(
       '#type' => 'textfield',
       '#title' => t('Prefix'),
@@ -68,7 +61,7 @@ class Expert extends DsFieldTemplateBase {
         '#states' => array(
           'visible' => array(
             ':input[name$="[' . $wrapper_key . ']"]' => array('checked' => TRUE),
-          )
+          ),
         ),
       );
       $form[$wrapper_key . '-cl'] = array(
@@ -76,11 +69,11 @@ class Expert extends DsFieldTemplateBase {
         '#title' => t('Classes'),
         '#size' => '10',
         '#default_value' => $config[$wrapper_key . '-cl'],
-        '#description' => t('E.g.') .' field-expert',
+        '#description' => t('E.g. field-expert'),
         '#states' => array(
           'visible' => array(
             ':input[name$="[' . $wrapper_key . ']"]' => array('checked' => TRUE),
-          )
+          ),
         ),
       );
       $form[$wrapper_key . '-at'] = array(
@@ -92,7 +85,7 @@ class Expert extends DsFieldTemplateBase {
         '#states' => array(
           'visible' => array(
             ':input[name$="[' . $wrapper_key . ']"]' => array('checked' => TRUE),
-          )
+          ),
         ),
       );
 
@@ -108,7 +101,7 @@ class Expert extends DsFieldTemplateBase {
           '#states' => array(
             'visible' => array(
               ':input[name$="[' . $wrapper_key . ']"]' => array('checked' => TRUE),
-            )
+            ),
           ),
         );
       }
@@ -121,7 +114,7 @@ class Expert extends DsFieldTemplateBase {
           '#states' => array(
             'visible' => array(
               ':input[name$="[' . $wrapper_key . ']"]' => array('checked' => TRUE),
-            )
+            ),
           ),
         );
       }
@@ -141,12 +134,12 @@ class Expert extends DsFieldTemplateBase {
           '#states' => array(
             'visible' => array(
               ':input[name$="[' . $wrapper_key . ']"]' => array('checked' => TRUE),
-            )
+            ),
           ),
         );
       }
     }
-    // Add suffix
+    // Add suffix.
     $form['suffix'] = array(
       '#type' => 'textfield',
       '#title' => t('Suffix'),
@@ -169,7 +162,7 @@ class Expert extends DsFieldTemplateBase {
         ),
       );
       $form['tokens']['help'] = array(
-        '#theme' => 'token_tree',
+        '#theme' => 'token_tree_link',
         '#token_types' => 'all',
         '#global_types' => FALSE,
         '#dialog' => TRUE,
@@ -220,7 +213,7 @@ class Expert extends DsFieldTemplateBase {
       'lbw' => t('Label wrapper'),
       'ow' => t('Wrapper'),
       'fis' => t('Field items'),
-      'fi' => t('Field item')
+      'fi' => t('Field item'),
     );
 
     foreach ($wrappers as $wrapper_key => $title) {
@@ -240,9 +233,9 @@ class Expert extends DsFieldTemplateBase {
         // Default attributes.
         $field_settings[$wrapper_key . '-def-at'] = !(empty($values[$wrapper_key . '-def-at'])) ? TRUE : FALSE;
         // Token replacement.
-        /** @var EntityInterface $entity */
+        /* @var \Drupal\Core\Entity\EntityInterface $entity */
         if ($entity = $this->getEntity()) {
-          // Tokens
+          // Tokens.
           $apply_to = array(
             'prefix',
             $wrapper_key . '-el',
@@ -264,4 +257,5 @@ class Expert extends DsFieldTemplateBase {
       }
     }
   }
+
 }

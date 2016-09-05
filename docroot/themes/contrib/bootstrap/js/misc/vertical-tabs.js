@@ -49,7 +49,7 @@
         $details.each(function () {
           var $that = $(this);
           var vertical_tab = new Drupal.verticalTab({
-            title: $that.find('> .panel-heading').text(),
+            title: $that.find('> .panel-heading > .panel-title, > .panel-heading').last().html(),
             details: $that
           });
           tab_list.append(vertical_tab.item);
@@ -257,7 +257,7 @@
     var tab = {};
     tab.item = $('<li class="vertical-tab-button" tabindex="-1"></li>')
       .append(tab.link = $('<a href="#' + settings.details[0].id + '" data-toggle="tab"></a>')
-        .append(tab.title = $('<span></span>').text(settings.title))
+        .append(tab.title = $('<span></span>').html(settings.title))
         .append(tab.summary = $('<div class="summary"></div>')
       )
     );

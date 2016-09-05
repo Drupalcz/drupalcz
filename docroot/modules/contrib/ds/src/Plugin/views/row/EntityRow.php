@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\ds\Plugin\views\row\EntityRow.
- */
-
 namespace Drupal\ds\Plugin\views\row;
 
 use Drupal\Component\Utility\Html;
@@ -77,12 +72,12 @@ class EntityRow extends ViewsEntityRow {
         '#type' => 'details',
         '#title' => t('Use view mode of display settings'),
         '#open' => $this->options['switch_fieldset']['switch'],
-        );
+      );
       $form['switch_fieldset']['switch'] = array(
         '#type' => 'checkbox',
         '#title' => t('Use view mode of display settings'),
         '#default_value' => $this->options['switch_fieldset']['switch'],
-        '#description' => t('Use the alternative view mode selected in the display settings tab.')
+        '#description' => t('Use the alternative view mode selected in the display settings tab.'),
       );
     }
 
@@ -103,7 +98,6 @@ class EntityRow extends ViewsEntityRow {
       '#default_value' => (isset($this->options['alternating_fieldset']['allpages'])) ? $this->options['alternating_fieldset']['allpages'] : FALSE,
     );
 
-
     $pager = $this->view->display_handler->getPlugin('pager');
     $limit = $pager->getItemsPerPage();
     if ($limit == 0 || $limit > 20) {
@@ -122,6 +116,11 @@ class EntityRow extends ViewsEntityRow {
           '#type' => 'select',
           '#default_value' => (isset($this->options['alternating_fieldset']['item_' . $a])) ? $this->options['alternating_fieldset']['item_' . $a] : 'teaser',
           '#options' => \Drupal::service('entity_display.repository')->getViewModeOptions($this->entityTypeId),
+          '#states' => array(
+            'visible' => array(
+              ':input[name="row_options[alternating_fieldset][alternating]"]' => array('checked' => TRUE),
+            ),
+          ),
         ];
         $limit--;
         $a++;
@@ -129,7 +128,7 @@ class EntityRow extends ViewsEntityRow {
       }
     }
 
-    // Grouping rows
+    // Grouping rows.
     $sorts = $this->view->display_handler->getOption('sorts');
     $groupable = !empty($sorts) && $this->options['grouping_fieldset']['group'];
 

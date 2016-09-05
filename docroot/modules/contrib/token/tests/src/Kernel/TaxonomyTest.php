@@ -1,15 +1,10 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\token\Kernel\TaxonomyTest.
- */
-
 namespace Drupal\Tests\token\Kernel;
 
-use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Component\Utility\Unicode;
 use Drupal\taxonomy\Entity\Vocabulary;
+use Drupal\Core\Url;
 
 /**
  * Tests taxonomy tokens.
@@ -49,12 +44,12 @@ class TaxonomyTest extends KernelTestBase {
   function testTaxonomyTokens() {
     $root_term = $this->addTerm($this->vocab, array('name' => 'Root term', 'path' => array('alias' => '/root-term')));
     $tokens = array(
-      'url' => \Drupal::url('entity.taxonomy_term.canonical', ['taxonomy_term' => $root_term->id()], array('absolute' => TRUE)),
-      'url:absolute' => \Drupal::url('entity.taxonomy_term.canonical', ['taxonomy_term' => $root_term->id()], array('absolute' => TRUE)),
-      'url:relative' => \Drupal::url('entity.taxonomy_term.canonical', ['taxonomy_term' => $root_term->id()], array('absolute' => FALSE)),
+      'url' => Url::fromRoute('entity.taxonomy_term.canonical', ['taxonomy_term' => $root_term->id()], array('absolute' => TRUE))->toString(),
+      'url:absolute' => Url::fromRoute('entity.taxonomy_term.canonical', ['taxonomy_term' => $root_term->id()], array('absolute' => TRUE))->toString(),
+      'url:relative' => Url::fromRoute('entity.taxonomy_term.canonical', ['taxonomy_term' => $root_term->id()], array('absolute' => FALSE))->toString(),
       'url:path' => '/root-term',
       'url:unaliased:path' => "/taxonomy/term/{$root_term->id()}",
-      'edit-url' => \Drupal::url('entity.taxonomy_term.edit_form', ['taxonomy_term' => $root_term->id()], array('absolute' => TRUE)),
+      'edit-url' => Url::fromRoute('entity.taxonomy_term.edit_form', ['taxonomy_term' => $root_term->id()], array('absolute' => TRUE))->toString(),
       'parents' => NULL,
       'parents:count' => NULL,
       'parents:keys' => NULL,
@@ -66,12 +61,12 @@ class TaxonomyTest extends KernelTestBase {
 
     $parent_term = $this->addTerm($this->vocab, array('name' => 'Parent term', 'parent' => $root_term->id()));
     $tokens = array(
-      'url' => \Drupal::url('entity.taxonomy_term.canonical', ['taxonomy_term' => $parent_term->id()], array('absolute' => TRUE)),
-      'url:absolute' => \Drupal::url('entity.taxonomy_term.canonical', ['taxonomy_term' => $parent_term->id()], array('absolute' => TRUE)),
-      'url:relative' => \Drupal::url('entity.taxonomy_term.canonical', ['taxonomy_term' => $parent_term->id()], array('absolute' => FALSE)),
+      'url' => Url::fromRoute('entity.taxonomy_term.canonical', ['taxonomy_term' => $parent_term->id()], array('absolute' => TRUE))->toString(),
+      'url:absolute' => Url::fromRoute('entity.taxonomy_term.canonical', ['taxonomy_term' => $parent_term->id()], array('absolute' => TRUE))->toString(),
+      'url:relative' => Url::fromRoute('entity.taxonomy_term.canonical', ['taxonomy_term' => $parent_term->id()], array('absolute' => FALSE))->toString(),
       'url:path' => "/taxonomy/term/{$parent_term->id()}",
       'url:unaliased:path' => "/taxonomy/term/{$parent_term->id()}",
-      'edit-url' => \Drupal::url('entity.taxonomy_term.edit_form', ['taxonomy_term' => $parent_term->id()], array('absolute' => TRUE)),
+      'edit-url' => Url::fromRoute('entity.taxonomy_term.edit_form', ['taxonomy_term' => $parent_term->id()], array('absolute' => TRUE))->toString(),
       'parents' => 'Root term',
       'parents:count' => 1,
       'parents:keys' => $root_term->id(),
@@ -98,7 +93,7 @@ class TaxonomyTest extends KernelTestBase {
     $vocabulary = $this->vocab;
     $tokens = array(
       'machine-name' => 'tags',
-      'edit-url' => \Drupal::url('entity.taxonomy_vocabulary.edit_form', ['taxonomy_vocabulary' => $vocabulary->id()], array('absolute' => TRUE)),
+      'edit-url' => Url::fromRoute('entity.taxonomy_vocabulary.edit_form', ['taxonomy_vocabulary' => $vocabulary->id()], array('absolute' => TRUE))->toString(),
     );
     $this->assertTokens('vocabulary', array('vocabulary' => $vocabulary), $tokens);
   }

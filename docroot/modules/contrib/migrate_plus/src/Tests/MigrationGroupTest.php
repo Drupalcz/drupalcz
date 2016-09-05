@@ -7,25 +7,19 @@
 
 namespace Drupal\migrate_plus\Tests;
 
-use Drupal\migrate\Entity\MigrationInterface;
+use Drupal\KernelTests\KernelTestBase;
+use Drupal\migrate_plus\Entity\Migration;
+use Drupal\migrate_plus\Entity\MigrationGroup;
 use Drupal\migrate_plus\Entity\MigrationGroupInterface;
-use Drupal\simpletest\WebTestBase;
 
 /**
  * Test migration groups.
  *
  * @group migrate_plus
  */
-class MigrationGroupTest extends WebTestBase {
+class MigrationGroupTest extends KernelTestBase {
 
-  public static $modules = array('migrate_plus');
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-  }
+  public static $modules = ['migrate', 'migrate_plus'];
 
   /**
    * Test that group configuration is properly merged into specific migrations.
@@ -34,58 +28,63 @@ class MigrationGroupTest extends WebTestBase {
     $group_id = 'test_group';
 
     /** @var MigrationGroupInterface $migration_group */
-    $migration_group = entity_create('migration_group', array());
-    $migration_group->set('id', $group_id);
-    $migration_group->set('shared_configuration', array(
-      'migration_tags' => array('Drupal 6'), // In migration, so will be overridden.
-      'source' => array(
-        'constants' => array(
-          'type' => 'image',    // Not in migration, so will be added.
-          'cardinality' => '1', // In migration, so will be overridden.
-        ),
-      ),
-      'destination' => array('plugin' => 'field_storage_config'), // Not in migration, so will be added.
-    ));
-    $migration_group->save();
+    $group_configuration = [
+      'id' => $group_id,
+      'shared_configuration' => [
+        'migration_tags' => ['Drupal 6'], // In migration, so will be overridden.
+        'source' => [
+          'constants' => [
+            'type' => 'image',    // Not in migration, so will be added.
+            'cardinality' => '1', // In migration, so will be overridden.
+          ],
+        ],
+        'destination' => ['plugin' => 'field_storage_config'], // Not in migration, so will be added.
+      ],
+    ];
+    $this->container->get('entity_type.manager')->getStorage('migration_group')
+      ->create($group_configuration)->save();
 
-    /** @var MigrationInterface $migration */
-    $migration = entity_create('migration', array(
+    /** @var \Drupal\migrate_plus\Entity\MigrationInterface $migration */
+    $migration = $this->container->get('entity_type.manager')
+      ->getStorage('migration')->create([
       'id' => 'specific_migration',
       'load' => [],
       'migration_group' => $group_id,
       'label' => 'Unaffected by the group',
-      'migration_tags' => array('Drupal 7'), // Overrides group.
-      'destination' => array(),
-      'source' => array(),
-    ));
-    $migration->set('source', array(
+      'migration_tags' => ['Drupal 7'], // Overrides group.
+      'destination' => [],
+      'source' => [],
+      'migration_dependencies' => [],
+    ]);
+    $migration->set('source', [
       'plugin' => 'empty',        // Not in group, persists.
-      'constants' => array(
+      'constants' => [
         'entity_type' => 'user',  // Not in group, persists.
         'cardinality' => '3',     // Overrides group.
-      ),
-    ));
+      ],
+    ]);
     $migration->save();
 
-    $expected_config = array(
+    $expected_config = [
       'migration_group' => $group_id,
       'label' => 'Unaffected by the group',
-      'migration_tags' => array('Drupal 7'),
-      'source' => array(
+      'migration_tags' => ['Drupal 7'],
+      'source' => [
         'plugin' => 'empty',
-        'constants' => array(
+        'constants' => [
           'entity_type' => 'user',
           'type' => 'image',
           'cardinality' => '3',
-        ),
-      ),
-      'destination' => array('plugin' => 'field_storage_config'),
-    );
-    /** @var MigrationInterface $loaded_migration */
-    $loaded_migration = entity_load('migration', 'specific_migration', TRUE);
+        ],
+      ],
+      'destination' => ['plugin' => 'field_storage_config'],
+    ];
+    /** @var \Drupal\migrate\Plugin\MigrationInterface $loaded_migration */
+    $loaded_migration = $this->container->get('plugin.manager.config_entity_migration')
+      ->createInstance('specific_migration');
     foreach ($expected_config as $key => $expected_value) {
       $actual_value = $loaded_migration->get($key);
-      $this->assertEqual($expected_value, $actual_value);
+      $this->assertEquals($expected_value, $actual_value);
     }
   }
 
@@ -94,27 +93,32 @@ class MigrationGroupTest extends WebTestBase {
    */
   public function testDelete() {
     /** @var MigrationGroupInterface $migration_group */
-    $migration_group = entity_create('migration_group', array());
-    $migration_group->set('id', 'test_group');
+    $group_configuration = [
+      'id' => 'test_group',
+    ];
+    $migration_group = $this->container->get('entity_type.manager')
+      ->getStorage('migration_group')->create($group_configuration);
     $migration_group->save();
 
-    /** @var MigrationInterface $migration */
-    $migration = entity_create('migration', [
+    /** @var \Drupal\migrate_plus\Entity\MigrationInterface $migration */
+    $migration = $this->container->get('entity_type.manager')
+      ->getStorage('migration')->create([
       'id' => 'specific_migration',
       'migration_group' => 'test_group',
-      'migration_tags' => array(),
+      'migration_tags' => [],
       'load' => [],
-      'destination' => array(),
-      'source' => array(),
+      'destination' => [],
+      'source' => [],
+      'migration_dependencies' => [],
     ]);
     $migration->save();
 
-    /** @var MigrationGroupInterface $loaded_migration_group */
-    $loaded_migration_group = entity_load('migration_group', 'test_group', TRUE);
+    /** @var \Drupal\migrate_plus\Entity\MigrationGroupInterface $loaded_migration_group */
+    $loaded_migration_group = MigrationGroup::load('test_group');
     $loaded_migration_group->delete();
 
-    /** @var MigrationGroupInterface $loaded_migration */
-    $loaded_migration = entity_load('migration', 'specific_migration', TRUE);
+    /** @var \Drupal\migrate_plus\Entity\MigrationInterface $loaded_migration */
+    $loaded_migration = Migration::load('specific_migration');
     $this->assertNull($loaded_migration);
   }
 

@@ -1,11 +1,9 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\system\Tests\File\ReadOnlyStreamWrapperTest.
- */
-
 namespace Drupal\system\Tests\File;
+
+use Drupal\Core\StreamWrapper\StreamWrapperInterface;
+use Drupal\file_test\StreamWrapper\DummyReadOnlyStreamWrapper;
 
 /**
  * Tests the read-only stream wrapper write functions.
@@ -32,6 +30,12 @@ class ReadOnlyStreamWrapperTest extends FileTestBase {
    * Test read-only specific behavior.
    */
   function testReadOnlyBehavior() {
+    $type = DummyReadOnlyStreamWrapper::getType();
+    // Checks that the stream wrapper type is not declared as writable.
+    $this->assertIdentical(0, $type & StreamWrapperInterface::WRITE);
+    // Checks that the stream wrapper type is declared as local.
+    $this->assertIdentical(1, $type & StreamWrapperInterface::LOCAL);
+
     // Generate a test file
     $filename = $this->randomMachineName();
     $site_path = $this->container->get('site.path');
@@ -90,4 +94,5 @@ class ReadOnlyStreamWrapperTest extends FileTestBase {
     // Remove the temporary directory.
     drupal_rmdir($dir);
   }
+
 }

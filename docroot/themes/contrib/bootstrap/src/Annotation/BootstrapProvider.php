@@ -20,6 +20,8 @@ use Drupal\Component\Annotation\Plugin;
  * @see plugin_api
  *
  * @Annotation
+ *
+ * @ingroup plugins_provider
  */
 class BootstrapProvider extends Plugin {
 

@@ -1,15 +1,21 @@
-// Bootstrap Framework variables.
+// This is almost an exact duplication of the bootstrap.less file provided
+// by the Bootstrap Framework itself. The only difference from that file and
+// this one are the first two @import statements for the original framework's
+// variables and this theme's overrides of those variables. This is necessary
+// due to the fact that the Less pre-compiler language does not have the
+// concept of "default" variables.
+//
+// @see https://www.drupal.org/node/2775481
 @import "../bootstrap/less/variables.less";
-
-// Bootstrap Framework variables (overrides).
 @import "variable-overrides.less";
 
-// Bootstrap Framework mixins.
+// Mixins.
 @import "../bootstrap/less/mixins.less";
 
-// Reset
+// Reset and dependencies
 @import "../bootstrap/less/normalize.less";
 @import "../bootstrap/less/print.less";
+@import "../bootstrap/less/glyphicons.less";
 
 // Core CSS
 @import "../bootstrap/less/scaffolding.less";
@@ -23,7 +29,6 @@
 
 // Components
 @import "../bootstrap/less/component-animations.less";
-@import "../bootstrap/less/glyphicons.less";
 @import "../bootstrap/less/dropdowns.less";
 @import "../bootstrap/less/button-groups.less";
 @import "../bootstrap/less/input-groups.less";
@@ -41,6 +46,7 @@
 @import "../bootstrap/less/media.less";
 @import "../bootstrap/less/list-group.less";
 @import "../bootstrap/less/panels.less";
+@import "../bootstrap/less/responsive-embed.less";
 @import "../bootstrap/less/wells.less";
 @import "../bootstrap/less/close.less";
 

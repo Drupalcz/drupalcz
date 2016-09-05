@@ -13,7 +13,7 @@ use Drupal\bootstrap\Utility\Variables;
 /**
  * Pre-processes variables for the "region" theme hook.
  *
- * @ingroup theme_preprocess
+ * @ingroup plugins_preprocess
  *
  * @BootstrapPreprocess("region")
  */
@@ -22,7 +22,7 @@ class Region extends PreprocessBase implements PreprocessInterface {
   /**
    * {@inheritdoc}
    */
-  public function preprocessVariables(Variables $variables, $hook, array $info) {
+  public function preprocessVariables(Variables $variables) {
     $region = $variables['elements']['#region'];
     $variables['region'] = $region;
     $variables['content'] = $variables['elements']['#children'];
@@ -38,7 +38,7 @@ class Region extends PreprocessBase implements PreprocessInterface {
 
     // Support for "well" classes in regions.
     static $region_wells;
-    if (!isset($wells)) {
+    if (!isset($region_wells)) {
       $region_wells = $this->theme->getSetting('region_wells');
     }
     if (!empty($region_wells[$region])) {

@@ -13,6 +13,7 @@ module:
   datetime: 0
   dblog: 0
   dcz_article: 0
+  dcz_custom_blocks: 0
   dcz_migrate: 0
   dcz_tags_taxonomy: 0
   dcz_user: 0
@@ -37,9 +38,7 @@ module:
   menu_ui: 0
   migrate: 0
   migrate_drupal: 0
-  migrate_plus: 0
-  migrate_tools: 0
-  mollom: 1
+  mollom: 0
   node: 0
   options: 0
   page_cache: 0
@@ -56,6 +55,8 @@ module:
   user: 0
   views_ui: 0
   youtube: 0
+  migrate_plus: 0
+  migrate_tools: 0
   ds: 1
   forum: 1
   menu_link_content: 1

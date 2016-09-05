@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "forms_has_error_value_toggle" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "forms_has_error_value_toggle",
  *   type = "checkbox",

@@ -13,33 +13,14 @@ use Drupal\bootstrap\Plugin\PreprocessManager;
 use Drupal\Core\Theme\Registry;
 
 /**
- * @addtogroup registry
- * @{
- */
-
-// Define additional sub-groups for creating lists for all the theme files.
-/**
- * @defgroup theme_preprocess Theme Preprocess Functions (.vars.php)
- *
- * List of theme preprocess functions used in the Drupal Bootstrap base theme.
- *
- * View the parent topic for additional documentation.
- */
-/**
- * @defgroup templates Theme Templates (.html.twig)
- *
- * List of theme templates used in the Drupal Bootstrap base theme.
- *
- * View the parent topic for additional documentation.
- */
-
-/**
  * Extends the theme registry to override and use protected functions.
  *
  * @todo Refactor into a proper theme.registry service replacement in a
  * bootstrap_core sub-module once this theme can add it as a dependency.
  *
  * @see https://www.drupal.org/node/474684
+ *
+ * @ingroup plugins_alter
  *
  * @BootstrapAlter("theme_registry")
  */
@@ -86,6 +67,28 @@ class ThemeRegistry extends Registry implements AlterInterface {
     // Sort the registry alphabetically (for easier debugging).
     ksort($cache);
 
+    // Ensure paths to templates are set properly. This allows templates to
+    // be moved around in a theme without having to constantly ensuring that
+    // the theme's hook_theme() definitions have the correct static "path" set.
+    foreach ($this->currentTheme->getAncestry() as $ancestor) {
+      $current_theme = $ancestor->getName() === $this->currentTheme->getName();
+      $theme_path = $ancestor->getPath();
+      foreach ($ancestor->fileScan('/\.html\.twig$/', 'templates') as $file) {
+        $hook = str_replace('-', '_', str_replace('.html.twig', '', $file->filename));
+        $path = dirname($file->uri);
+        $incomplete = !isset($cache[$hook]) || strrpos($hook, '__');
+        if (!isset($cache[$hook])) {
+          $cache[$hook] = [];
+        }
+        $cache[$hook]['path'] = $path;
+        $cache[$hook]['type'] = $current_theme ? 'theme' : 'base_theme';
+        $cache[$hook]['theme path'] = $theme_path;
+        if ($incomplete) {
+          $cache[$hook]['incomplete preprocess functions'] = TRUE;
+        }
+      }
+    }
+
     // Discover all the theme's preprocess plugins.
     $preprocess_manager = new PreprocessManager($this->currentTheme);
     $plugins = $preprocess_manager->getDefinitions();
@@ -97,8 +100,18 @@ class ThemeRegistry extends Registry implements AlterInterface {
       if (!isset($cache[$plugin_id])) {
         $cache[$plugin_id] = [];
       }
-      array_walk($cache, function (&$info, $hook) use ($plugin_id) {
+      array_walk($cache, function (&$info, $hook) use ($plugin_id, $definition) {
         if ($hook === $plugin_id || strpos($hook, $plugin_id . '__') === 0) {
+          if (!isset($info['preprocess functions'])) {
+            $info['preprocess functions'] = [];
+          }
+          // Due to a limitation in \Drupal\Core\Theme\ThemeManager::render,
+          // callbacks must be functions and not classes. We always specify
+          // "bootstrap_preprocess" here and then assign the plugin ID to a
+          // separate property that we can later intercept and properly invoke.
+          // @todo Revisit if/when preprocess callbacks can be any callable.
+          Bootstrap::addCallback($info['preprocess functions'], 'bootstrap_preprocess', $definition['replace'], $definition['action']);
+          $info['preprocess functions'] = array_unique($info['preprocess functions']);
           $info['bootstrap preprocess'] = $plugin_id;
         }
       });
@@ -113,7 +126,3 @@ class ThemeRegistry extends Registry implements AlterInterface {
   }
 
 }
-
-/**
- * @} End of "addtogroup registry".
- */

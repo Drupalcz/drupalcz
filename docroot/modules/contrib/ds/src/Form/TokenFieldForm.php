@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\ds\Form\TokenFieldForm.
- */
-
 namespace Drupal\ds\Form;
 
 use Drupal\Core\Form\FormStateInterface;
@@ -15,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 class TokenFieldForm extends FieldFormBase {
 
   /**
-   * The type of the dynamic ds field
+   * The type of the dynamic ds field.
    */
   const TYPE = 'token';
 
@@ -54,7 +49,7 @@ class TokenFieldForm extends FieldFormBase {
         ),
       );
       $form['tokens']['help'] = array(
-        '#theme' => 'token_tree',
+        '#theme' => 'token_tree_link',
         '#token_types' => 'all',
         '#global_types' => FALSE,
         '#dialog' => TRUE,

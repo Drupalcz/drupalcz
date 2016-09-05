@@ -1,0 +1,5 @@
+services:
+  access_check.info:
+    class: Drupal\dropguard\Access\InfoAccessCheck
+    tags:
+      - { name: access_check, applies_to: _info_access_check }

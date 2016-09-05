@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "modal_keyboard" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "modal_keyboard",
  *   type = "checkbox",

@@ -7,12 +7,10 @@
 
 namespace Drupal\pathauto\Entity;
 
+use Drupal\Component\Plugin\Exception\ContextException;
 use Drupal\Core\Condition\ConditionPluginCollection;
 use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\Core\Plugin\Context\Context;
-use Drupal\Core\Plugin\Context\ContextDefinition;
-use Drupal\Core\Plugin\Context\ContextInterface;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\Core\Plugin\DefaultSingleLazyPluginCollection;
 use Drupal\pathauto\PathautoPatternInterface;
@@ -27,7 +25,9 @@ use Drupal\pathauto\PathautoPatternInterface;
  *     "list_builder" = "Drupal\pathauto\PathautoPatternListBuilder",
  *     "form" = {
  *       "default" = "Drupal\pathauto\Form\PatternEditForm",
- *       "delete" = "Drupal\Core\Entity\EntityDeleteForm"
+ *       "delete" = "Drupal\Core\Entity\EntityDeleteForm",
+ *       "enable" = "Drupal\pathauto\Form\PatternEnableForm",
+ *       "disable" = "Drupal\pathauto\Form\PatternDisableForm"
  *     },
  *     "route_provider" = {
  *       "html" = "Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider",
@@ -39,15 +39,29 @@ use Drupal\pathauto\PathautoPatternInterface;
  *     "id" = "id",
  *     "label" = "label",
  *     "uuid" = "uuid",
- *     "weight" = "weight"
+ *     "weight" = "weight",
+ *     "status" = "status"
+ *   },
+ *   config_export = {
+ *     "id",
+ *     "label",
+ *     "type",
+ *     "pattern",
+ *     "selection_criteria",
+ *     "selection_logic",
+ *     "weight",
+ *     "relationships"
  *   },
  *   lookup_keys = {
  *     "type",
+ *     "status",
  *   },
  *   links = {
  *     "collection" = "/admin/config/search/path/patterns",
  *     "edit-form" = "/admin/config/search/path/patterns/{pathauto_pattern}",
- *     "delete-form" = "/admin/config/search/path/patterns/{pathauto_pattern}/delete"
+ *     "delete-form" = "/admin/config/search/path/patterns/{pathauto_pattern}/delete",
+ *     "enable" = "/admin/config/search/path/patterns/{pathauto_pattern}/enable",
+ *     "disable" = "/admin/config/search/path/patterns/{pathauto_pattern}/disable"
  *   }
  * )
  */
@@ -110,14 +124,12 @@ class PathautoPattern extends ConfigEntityBase implements PathautoPatternInterfa
   protected $weight = 0;
 
   /**
-   * @var \Drupal\Core\Plugin\Context\ContextInterface[]
+   * @var array[]
+   *   Keys are context tokens, and values are arrays with the following keys:
+   *   - label (string|null, optional): The human-readable label of this
+   *     relationship.
    */
-  protected $contexts = [];
-
-  /**
-   * @var array
-   */
-  protected $context_definitions = [];
+  protected $relationships = [];
 
   /**
    * The plugin collection that holds the selection criteria condition plugins.
@@ -140,46 +152,8 @@ class PathautoPattern extends ConfigEntityBase implements PathautoPatternInterfa
     }
     $this->selection_criteria = $criteria;
 
-    /** @var \Drupal\Core\Plugin\Context\ContextInterface[] $contexts */
-    $contexts = $this->getContexts();
-    foreach ($this->getAliasType()->getContexts() as $plugin_context_id => $plugin_context) {
-      unset($contexts[$plugin_context_id]);
-    }
-    $this->context_definitions = [];
-    foreach ($contexts as $context_id => $context) {
-      $this->context_definitions[] = [
-        'id' => $context_id,
-        'label' => $context->getContextDefinition()->getLabel()
-      ];
-    }
-
     // Invalidate the static caches.
     \Drupal::service('pathauto.generator')->resetCaches();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function postLoad(EntityStorageInterface $storage, array &$entities) {
-    /** @var \Drupal\ctools\TypedDataResolver $resolver */
-    $resolver = \Drupal::service('ctools.typed_data.resolver');
-    /** @var \Drupal\pathauto\Entity\PathautoPattern $entity */
-    foreach ($entities as $entity) {
-      foreach ($entity->getContextDefinitions() as $definition) {
-        $context = $resolver->convertTokenToContext($definition['id'], $entity->getContexts());
-        $new_definition = new ContextDefinition(
-          $context->getContextDefinition()->getDataType(),
-          $definition['label'],
-          $context->getContextDefinition()->isRequired(),
-          $context->getContextDefinition()->isMultiple(),
-          $context->getContextDefinition()->getDescription(),
-          $context->getContextDefinition()->getDefaultValue()
-        );
-        $new_context = new Context($new_definition, $context->hasContextValue() ? $context->getContextValue() : NULL);
-        $entity->addContext($definition['id'], $new_context);
-      }
-    }
-    parent::postLoad($storage, $entities);
   }
 
   /**
@@ -256,36 +230,36 @@ class PathautoPattern extends ConfigEntityBase implements PathautoPatternInterfa
   /**
    * {@inheritdoc}
    */
-  public function hasContext($token) {
-    $contexts = $this->getAliasType()->getContexts();
-    $contexts += $this->contexts;
-    return !empty($contexts[$token]);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getContext($token) {
-    $contexts = $this->getAliasType()->getContexts();
-    $contexts += $this->contexts;
-    return $contexts[$token];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getContexts() {
     $contexts = $this->getAliasType()->getContexts();
-    $contexts += $this->contexts;
+    foreach ($this->getRelationships() as $token => $definition) {
+      /** @var \Drupal\ctools\TypedDataResolver $resolver */
+      $resolver = \Drupal::service('ctools.typed_data.resolver');
+      $context = $resolver->convertTokenToContext($token, $contexts);
+      $context_definition = $context->getContextDefinition();
+      if (!empty($definition['label'])) {
+        $context_definition->setLabel($definition['label']);
+      }
+      $contexts[$token] = $context;
+    }
     return $contexts;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function addContext($token, ContextInterface $context) {
-    if (!$this->hasContext($token)) {
-      $this->contexts[$token] = $context;
+  public function hasRelationship($token) {
+    return isset($this->relationships[$token]);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function addRelationship($token, $label = NULL) {
+    if (!$this->hasRelationship($token)) {
+      $this->relationships[$token] = [
+        'label' => $label,
+      ];
     }
     return $this;
   }
@@ -293,9 +267,11 @@ class PathautoPattern extends ConfigEntityBase implements PathautoPatternInterfa
   /**
    * {@inheritdoc}
    */
-  public function replaceContext($token, ContextInterface $context) {
-    if ($this->hasContext($token)) {
-      $this->contexts[$token] = $context;
+  public function replaceRelationship($token, $label) {
+    if ($this->hasRelationship($token)) {
+      $this->relationships[$token] = [
+        'label' => $label,
+      ];
     }
     return $this;
   }
@@ -303,18 +279,16 @@ class PathautoPattern extends ConfigEntityBase implements PathautoPatternInterfa
   /**
    * {@inheritdoc}
    */
-  public function removeContext($token) {
-    if (isset($this->contexts[$token])) {
-      unset($this->contexts[$token]);
-    }
+  public function removeRelationship($token) {
+    unset($this->relationships[$token]);
     return $this;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getContextDefinitions() {
-    return $this->context_definitions;
+  public function getRelationships() {
+    return $this->relationships;
   }
 
   /**
@@ -371,22 +345,19 @@ class PathautoPattern extends ConfigEntityBase implements PathautoPatternInterfa
       // Set the context object on our Alias plugin before retrieving contexts.
       $this->getAliasType()->setContextValue($keys[0], $object);
       /** @var \Drupal\Core\Plugin\Context\ContextInterface[] $base_contexts */
-      $base_contexts = $this->getAliasType()->getContexts();
-      $contexts = [];
-      foreach ($base_contexts as $context_id => $base_context) {
-        $contexts[$context_id] = new Context($base_context->getContextDefinition(), $object);
-      }
-      /** @var \Drupal\ctools\TypedDataResolver $resolver */
-      $resolver = \Drupal::service('ctools.typed_data.resolver');
-      foreach ($this->getContexts() as $token => $context) {
-        $contexts[$token] = $resolver->convertTokenToContext($token, $contexts);
-      }
+      $contexts = $this->getContexts();
       /** @var \Drupal\Core\Plugin\Context\ContextHandler $context_handler */
       $context_handler = \Drupal::service('context.handler');
       $conditions = $this->getSelectionConditions();
       foreach ($conditions as $condition) {
         if ($condition instanceof ContextAwarePluginInterface) {
-          $context_handler->applyContextMapping($condition, $contexts);
+          try {
+            $context_handler->applyContextMapping($condition, $contexts);
+          }
+          catch (ContextException $e) {
+            watchdog_exception('pathauto', $e);
+            return FALSE;
+          }
         }
         $result = $condition->execute();
         if ($this->getSelectionLogic() == 'and' && !$result) {

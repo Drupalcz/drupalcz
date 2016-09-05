@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * Container theme settings.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "fluid_container",
  *   type = "checkbox",

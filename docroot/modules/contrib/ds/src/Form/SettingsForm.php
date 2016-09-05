@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\ds\Form\SettingsForm.
- */
-
 namespace Drupal\ds\Form;
 
 use Drupal\Core\Config\ConfigFactory;
@@ -111,6 +106,7 @@ class SettingsForm extends ConfigFormBase {
       '#type' => 'details',
       '#title' => t('Field Templates'),
       '#group' => 'additional_settings',
+      '#weight' => 1,
       '#tree' => TRUE,
       '#collapsed' => FALSE,
     );
@@ -160,6 +156,20 @@ class SettingsForm extends ConfigFormBase {
       ),
     );
 
+    $form['fs3'] = array(
+      '#type' => 'details',
+      '#title' => t('Other'),
+      '#group' => 'additional_settings',
+      '#weight' => 3,
+      '#tree' => TRUE,
+    );
+    $form['fs3']['use_field_names'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Use field names in templates'),
+      '#default_value' => $config->get('use_field_names'),
+      '#description' => t('Use field names in twig templates instead of the key'),
+    );
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -174,6 +184,7 @@ class SettingsForm extends ConfigFormBase {
       ->set('field_template', $values['fs1']['field_template'])
       ->set('ft-default', $values['fs1']['ft-default'])
       ->set('ft-show-colon', $values['fs1']['ft-show-colon'])
+      ->set('use_field_names', $values['fs3']['use_field_names'])
       ->save();
 
     $this->entityFieldManager->clearCachedFieldDefinitions();
@@ -182,6 +193,9 @@ class SettingsForm extends ConfigFormBase {
     $this->routeBuilder->setRebuildNeeded();
 
     \Drupal::cache('render')->deleteAll();
+    if ($this->moduleHandler->moduleExists('dynamic_page_cache')) {
+      \Drupal::cache('dynamic_page_cache')->deleteAll();
+    }
   }
 
   /**
@@ -189,7 +203,7 @@ class SettingsForm extends ConfigFormBase {
    */
   protected function getEditableConfigNames() {
     return array(
-      'ds.settings'
+      'ds.settings',
     );
   }
 

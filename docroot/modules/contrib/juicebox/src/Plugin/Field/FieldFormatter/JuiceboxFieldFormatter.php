@@ -14,7 +14,7 @@ use Drupal\Core\Field\FieldItemInterface;
 use Drupal\image\Plugin\Field\FieldFormatter\ImageFormatterBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\field\FieldConfigInterface;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Utility\LinkGeneratorInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\juicebox\JuiceboxFormatterInterface;
@@ -36,34 +36,56 @@ use Drupal\Core\Url;
  */
 class JuiceboxFieldFormatter extends ImageFormatterBase implements ContainerFactoryPluginInterface {
 
-  // Injected properties.
+  /**
+   * A Juicebox formatter service.
+   *
+   * @var \Drupal\juicebox\JuiceboxFormatterInterface
+   */
   protected $juicebox;
-  protected $entityManager;
+
+  /**
+   * A Drupal entity type manager service.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * A Drupal link generator service.
+   *
+   * @var \Drupal\Core\Utility\LinkGeneratorInterface
+   */
   protected $linkGenerator;
+
+  /**
+   * A Symfony request object for the current request.
+   *
+   * @var \Symfony\Component\HttpFoundation\Request
+   */
   protected $request;
 
   /**
    * Constructor.
    *
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
-   *   A Drupal entity manager service.
-   * @param \Drupal\Core\Utility\LinkGeneratorInterface $translation
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   A Drupal entity type manager service.
+   * @param \Drupal\Core\Utility\LinkGeneratorInterface $link_generator
    *   A link generator service.
    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The Symfony request stack from which to extract the current request.
    * @param \Drupal\juicebox\JuiceboxFormatterInterface
    *   A Juicebox formatter service.
    */
-  public function __construct(array $configuration, $plugin_id, array $plugin_definition, EntityManagerInterface $entity_manager, LinkGeneratorInterface $link_generator, RequestStack $request_stack, JuiceboxFormatterInterface $juicebox) {
+  public function __construct(array $configuration, $plugin_id, array $plugin_definition, EntityTypeManagerInterface $entity_type_manager, LinkGeneratorInterface $link_generator, RequestStack $request_stack, JuiceboxFormatterInterface $juicebox) {
     parent::__construct($plugin_id, $plugin_definition, $configuration['field_definition'], $configuration['settings'], $configuration['label'], $configuration['view_mode'], $configuration['third_party_settings']);
-    $this->entityManager = $entity_manager;
+    $this->entityTypeManager = $entity_type_manager;
     $this->linkGenerator = $link_generator;
     $this->request = $request_stack->getCurrentRequest();
     $this->juicebox = $juicebox;
   }
 
   /**
-   * {@inheritdoc}
+   * Factory to fetch required dependencies from container.
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     // Create a new instance of the plugin. This also allows us to extract
@@ -314,7 +336,7 @@ class JuiceboxFieldFormatter extends ImageFormatterBase implements ContainerFact
         ),
       );
       // Some entity types require that a bundle be added to the route params.
-      $entity_types = $this->entityManager->getDefinitions();
+      $entity_types = $this->entityTypeManager->getDefinitions();
       $bundle_entity_type = $entity_types[$entity_type_id]->getBundleEntityType();
       if (!empty($bundle_entity_type)) {
         $contextual['juicebox_conf_field_' . $entity_type_id]['route_parameters'][$bundle_entity_type] = $bundle;

@@ -10,6 +10,8 @@ use Drupal\bootstrap\Theme;
 
 /**
  * Manages discovery and instantiation of Bootstrap form alters.
+ *
+ * @ingroup plugins_form
  */
 class FormManager extends PluginManager {
 

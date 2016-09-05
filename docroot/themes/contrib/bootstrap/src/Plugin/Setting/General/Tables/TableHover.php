@@ -13,6 +13,8 @@ use Drupal\Core\Annotation\Translation;
 /**
  * The "table_hover" theme setting.
  *
+ * @ingroup plugins_setting
+ *
  * @BootstrapSetting(
  *   id = "table_hover",
  *   type = "checkbox",

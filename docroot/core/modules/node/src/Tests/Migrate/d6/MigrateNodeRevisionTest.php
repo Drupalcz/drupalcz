@@ -1,11 +1,7 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\node\Tests\Migrate\d6\MigrateNodeRevisionTest.
- */
-
 namespace Drupal\node\Tests\Migrate\d6;
+use Drupal\Tests\node\Kernel\Migrate\d6\MigrateNodeTestBase;
 
 /**
  * Node content revisions migration.
@@ -17,9 +13,14 @@ class MigrateNodeRevisionTest extends MigrateNodeTestBase {
   /**
    * {@inheritdoc}
    */
+  public static $modules = ['language', 'content_translation'];
+
+  /**
+   * {@inheritdoc}
+   */
   protected function setUp() {
     parent::setUp();
-    $this->executeMigrations(['d6_node:*', 'd6_node_revision:*']);
+    $this->executeMigrations(['d6_node', 'd6_node_revision']);
   }
 
   /**

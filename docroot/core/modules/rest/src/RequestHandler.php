@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\rest\RequestHandler.
- */
-
 namespace Drupal\rest;
 
 use Drupal\Core\Render\RenderContext;
@@ -39,6 +34,21 @@ class RequestHandler implements ContainerAwareInterface {
 
     $plugin = $route_match->getRouteObject()->getDefault('_plugin');
     $method = strtolower($request->getMethod());
+
+    // Symfony is built to transparently map HEAD requests to a GET request. In
+    // the case of the REST module's RequestHandler though, we essentially have
+    // our own light-weight routing system on top of the Drupal/symfony routing
+    // system. So, we have to do the same as what the UrlMatcher does: map HEAD
+    // requests to the logic for GET. This also guarantees response headers for
+    // HEAD requests are identical to those for GET requests, because we just
+    // return a GET response. Response::prepare() will transform it to a HEAD
+    // response at the very last moment.
+    // @see https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.4
+    // @see \Symfony\Component\Routing\Matcher\UrlMatcher::matchCollection()
+    // @see \Symfony\Component\HttpFoundation\Response::prepare()
+    if ($method === 'head') {
+      $method = 'get';
+    }
 
     $resource = $this->container
       ->get('plugin.manager.rest')
@@ -102,8 +112,8 @@ class RequestHandler implements ContainerAwareInterface {
       return new Response($content, $e->getStatusCode(), $headers);
     }
 
-    // Serialize the outgoing data for the response, if available.
-    if ($response instanceof ResourceResponse && $data = $response->getResponseData()) {
+    if ($response instanceof ResourceResponse) {
+      $data = $response->getResponseData();
       // Serialization can invoke rendering (e.g., generating URLs), but the
       // serialization API does not provide a mechanism to collect the
       // bubbleable metadata associated with that (e.g., language and other
@@ -136,4 +146,5 @@ class RequestHandler implements ContainerAwareInterface {
   public function csrfToken() {
     return new Response(\Drupal::csrfToken()->get('rest'), 200, array('Content-Type' => 'text/plain'));
   }
+
 }

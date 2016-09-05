@@ -13,6 +13,8 @@ use Drupal\Core\Url;
 
 /**
  * Base class for a setting.
+ *
+ * @ingroup plugins_setting
  */
 class SettingBase extends PluginBase implements SettingInterface {
 

@@ -1,27 +1,34 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\ds\Plugin\DsField\DsFieldBase.
- */
-
 namespace Drupal\ds\Plugin\DsField;
 
-use Drupal\Component\Plugin\PluginBase as ComponentPluginBase;
-use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Plugin\PluginBase;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Base class for all the ds plugins.
  */
-abstract class DsFieldBase extends ComponentPluginBase implements DsFieldInterface {
+abstract class DsFieldBase extends PluginBase implements DsFieldInterface {
 
   /**
    * Constructs a Display Suite field plugin.
    */
   public function __construct($configuration, $plugin_id, $plugin_definition) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
+
     $this->configuration += $this->defaultConfiguration();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition
+    );
   }
 
   /**
@@ -46,21 +53,20 @@ abstract class DsFieldBase extends ComponentPluginBase implements DsFieldInterfa
   }
 
   /**
-   *
    * {@inheritdoc}
    */
   public function defaultConfiguration() {
-   return array();
+    return array();
   }
 
-   /**
+  /**
    * {@inheritdoc}
-    */
+   */
   public function getConfiguration() {
     return $this->configuration;
   }
 
-   /**
+  /**
    * {@inheritdoc}
    */
   public function setConfiguration(array $configuration) {
@@ -114,7 +120,7 @@ abstract class DsFieldBase extends ComponentPluginBase implements DsFieldInterfa
       return $this->configuration['entity_type'];
     }
     elseif ($entity = $this->entity()) {
-      /** @var $entity EntityInterface */
+      /* @var $entity EntityInterface */
       return $entity->getEntityTypeId();
     }
     else {
@@ -158,11 +164,18 @@ abstract class DsFieldBase extends ComponentPluginBase implements DsFieldInterfa
   }
 
   /**
-   * @inheritdoc
+   * {@inheritdoc}
    */
   public function calculateDependencies() {
-    // By default there are no dependencies
+    // By default there are no dependencies.
     return array();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isMultiple() {
+    return FALSE;
   }
 
 }

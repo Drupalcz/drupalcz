@@ -10,7 +10,9 @@ use Drupal\bootstrap\Annotation\BootstrapPrerender;
 use Drupal\bootstrap\Utility\Element;
 
 /**
- * Defines the interface for an object oriented preprocess plugin.
+ * Pre-render callback for the "dropbutton" element type.
+ *
+ * @ingroup plugins_prerender
  *
  * @BootstrapPrerender("dropbutton",
  *   replace = "Drupal\Core\Render\Element\Dropbutton::preRenderDropbutton"
