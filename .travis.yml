@@ -64,6 +64,7 @@ install:
   - drush migrate-status
   - drush migrate-import --group=dcz6 -vvv
   - drush migrate-status
+  - drush cr
   - cd ..
 
   # Setup behat.
