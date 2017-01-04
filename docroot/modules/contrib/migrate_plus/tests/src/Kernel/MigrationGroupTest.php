@@ -1,11 +1,6 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\migrate_plus\Tests\MigrationGroupTest.
- */
-
-namespace Drupal\migrate_plus\Tests;
+namespace Drupal\Tests\migrate_plus\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\migrate_plus\Entity\Migration;
@@ -54,6 +49,7 @@ class MigrationGroupTest extends KernelTestBase {
       'migration_tags' => ['Drupal 7'], // Overrides group.
       'destination' => [],
       'source' => [],
+      'process' => [],
       'migration_dependencies' => [],
     ]);
     $migration->set('source', [

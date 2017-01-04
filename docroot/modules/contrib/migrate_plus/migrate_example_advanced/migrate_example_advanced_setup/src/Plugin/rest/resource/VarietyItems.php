@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\migrate_example_advanced_setup\Plugin\rest\resource\VarietyItems.
- */
-
 namespace Drupal\migrate_example_advanced_setup\Plugin\rest\resource;
 
 use Drupal\rest\Plugin\ResourceBase;

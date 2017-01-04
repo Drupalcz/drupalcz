@@ -2,9 +2,7 @@
 # containing individual item data.
 id: wine_variety_list
 label: XML feed of varieties
-third_party_settings:
-  migrate_plus:
-    migration_group: wine
+migration_group: wine
 source:
   # We use the XML source plugin.
   plugin: xml
