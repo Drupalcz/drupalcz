@@ -54,13 +54,13 @@ class BlockDescription extends DsFieldBase {
       '#type' => 'textfield',
       '#title' => 'Wrapper',
       '#default_value' => $config['wrapper'],
-      '#description' => t('Eg: h1, h2, p'),
+      '#description' => $this->t('Eg: h1, h2, p'),
     );
     $settings['class'] = array(
       '#type' => 'textfield',
       '#title' => 'Class',
       '#default_value' => $config['class'],
-      '#description' => t('Put a class on the wrapper. Eg: block-title'),
+      '#description' => $this->t('Put a class on the wrapper. Eg: block-title'),
     );
 
     return $settings;

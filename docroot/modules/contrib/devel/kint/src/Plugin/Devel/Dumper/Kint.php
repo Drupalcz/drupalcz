@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\kint\Plugin\Devel\Dumper\Kint.
- */
-
 namespace Drupal\kint\Plugin\Devel\Dumper;
 
 use Drupal\devel\DevelDumperBase;
@@ -15,17 +10,17 @@ use Drupal\devel\DevelDumperBase;
  * @DevelDumper(
  *   id = "kint",
  *   label = @Translation("Kint"),
- *   description = @Translation("Wrapper for Kint debugging tool."),
+ *   description = @Translation("Wrapper for <a href='https://github.com/raveren/kint'>Kint</a> debugging tool."),
  * )
  */
 class Kint extends DevelDumperBase {
 
   /**
-   * Constructs a KintDevelDumper object.
-   *
-   * @TODO find another solution for kint class inclusion!
+   * {@inheritdoc}
    */
-  public function __construct() {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    // @TODO find another solution for kint class inclusion!
     kint_require();
   }
 
@@ -33,22 +28,23 @@ class Kint extends DevelDumperBase {
    * {@inheritdoc}
    */
   public function dump($input, $name = NULL) {
-    if ($name) {
-      $input = [(string) $name => $input];
-    }
-
-    \Kint::dump($input);
+    echo (string) $this->export($input, $name);
   }
 
   /**
    * {@inheritdoc}
    */
   public function export($input, $name = NULL) {
+    ob_start();
+    \Kint::dump($input);
+    $dump = ob_get_clean();
+
+    // Kint does't allow to assign a title to the dump. Workaround to use the
+    // passed in name as dump title.
     if ($name) {
-      $input = [(string) $name => $input];
+      $dump = preg_replace('/\$input/', $name, $dump, 1);
     }
 
-    $dump = @\Kint::dump($input);
     return $this->setSafeMarkup($dump);
   }
 

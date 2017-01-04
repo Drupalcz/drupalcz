@@ -113,7 +113,7 @@ class SwitchField extends DsFieldBase {
     $view_modes = $this->entityDisplayRepository->getViewModes($entity_type);
 
     $form['info'] = array(
-      '#markup' => t('Enter a label for the link for the view modes you want to switch to.<br />Leave empty to hide link. They will be localized.'),
+      '#markup' => $this->t('Enter a label for the link for the view modes you want to switch to.<br />Leave empty to hide link. They will be localized.'),
     );
 
     $config = $this->getConfiguration();

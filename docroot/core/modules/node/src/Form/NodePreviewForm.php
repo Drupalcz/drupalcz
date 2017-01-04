@@ -3,7 +3,6 @@
 namespace Drupal\node\Form;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Form\FormBase;
@@ -14,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Contains a form for switching the view mode of a node during preview.
  */
-class NodePreviewForm extends FormBase implements ContainerInjectionInterface {
+class NodePreviewForm extends FormBase {
 
   /**
    * The entity manager service.
@@ -73,7 +72,7 @@ class NodePreviewForm extends FormBase implements ContainerInjectionInterface {
   public function buildForm(array $form, FormStateInterface $form_state, EntityInterface $node = NULL) {
     $view_mode = $node->preview_view_mode;
 
-    $query_options = $node->isNew() ? array('query' => array('uuid' => $node->uuid())) : array();
+    $query_options = array('query' => array('uuid' => $node->uuid()));
     $form['backlink'] = array(
       '#type' => 'link',
       '#title' => $this->t('Back to content editing'),

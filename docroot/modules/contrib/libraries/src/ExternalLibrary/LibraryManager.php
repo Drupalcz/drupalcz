@@ -3,7 +3,6 @@
 namespace Drupal\libraries\ExternalLibrary;
 
 use Drupal\Component\Plugin\Factory\FactoryInterface;
-use Drupal\libraries\Extension\ExtensionHandlerInterface;
 use Drupal\libraries\ExternalLibrary\Exception\LibraryTypeNotFoundException;
 use Drupal\libraries\ExternalLibrary\Type\LibraryCreationListenerInterface;
 use Drupal\libraries\ExternalLibrary\Type\LibraryLoadingListenerInterface;
@@ -33,30 +32,19 @@ class LibraryManager implements LibraryManagerInterface {
   protected $libraryTypeFactory;
 
   /**
-   * The extension handler.
-   *
-   * @var \Drupal\libraries\Extension\ExtensionHandlerInterface
-   */
-  protected $extensionHandler;
-
-  /**
    * Constructs an external library manager.
    *
    * @param \Drupal\libraries\ExternalLibrary\Definition\DefinitionDiscoveryInterface $definition_disovery
    *   The library registry.
    * @param \Drupal\Component\Plugin\Factory\FactoryInterface $library_type_factory
    *   The library type factory.
-   * @param \Drupal\libraries\Extension\ExtensionHandlerInterface $extension_handler
-   *   The extension handler.
    */
   public function __construct(
     DefinitionDiscoveryInterface $definition_disovery,
-    FactoryInterface $library_type_factory,
-    ExtensionHandlerInterface $extension_handler
+    FactoryInterface $library_type_factory
   ) {
     $this->definitionDiscovery = $definition_disovery;
     $this->libraryTypeFactory = $library_type_factory;
-    $this->extensionHandler = $extension_handler;
   }
 
   /**
@@ -72,9 +60,11 @@ class LibraryManager implements LibraryManagerInterface {
    */
   public function getRequiredLibraryIds() {
     $library_ids = [];
-    foreach ($this->extensionHandler->getExtensions() as $extension) {
-      foreach ($extension->getLibraryDependencies() as $library_id) {
-        $library_ids[] = $library_id;
+    foreach (['module', 'theme'] as $type) {
+      foreach (system_get_info($type) as $info) {
+        if (isset($info['library_dependencies'])) {
+          $library_ids = array_merge($library_ids, $info['library_dependencies']);
+        }
       }
     }
     return array_unique($library_ids);

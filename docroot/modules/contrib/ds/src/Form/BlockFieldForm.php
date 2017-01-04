@@ -44,7 +44,7 @@ class BlockFieldForm extends FieldFormBase implements ContainerInjectionInterfac
     $form['block_identity']['block'] = array(
       '#type' => 'select',
       '#options' => $blocks,
-      '#title' => t('Block'),
+      '#title' => $this->t('Block'),
       '#required' => TRUE,
       '#default_value' => isset($field['properties']['block']) ? $field['properties']['block'] : '',
     );

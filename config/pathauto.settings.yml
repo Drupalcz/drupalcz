@@ -12,3 +12,5 @@ update_action: 2
 _core:
   default_config_hash: 7FmqmyM01T9eXGFIPSKQcwYVc98izMkhlcoN9Ywvb64
 langcode: cs
+enabled_entity_types:
+  - user

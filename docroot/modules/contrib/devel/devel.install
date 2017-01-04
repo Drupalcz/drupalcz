@@ -5,18 +5,6 @@
  * Install, update and uninstall functions for the devel module.
  */
 
-use Drupal\system\Entity\Menu;
-
-/**
- * Implements hook_uninstall().
- */
-function devel_uninstall() {
-  // Delete the development menu.
-  if ($devel_menu = Menu::load('devel')) {
-    $devel_menu->delete();
-  }
-}
-
 /**
  * Set the default devel dumper plugin.
  */
@@ -29,4 +17,14 @@ function devel_update_8001() {
   \Drupal::configFactory()->getEditable('devel.settings')
     ->set('devel_dumper', $default_dumper)
     ->save(TRUE);
+}
+
+/**
+ * Add enforced dependencies to system.menu.devel
+ */
+function devel_update_8002() {
+  $config = \Drupal::configFactory()->getEditable('system.menu.devel');
+  $dependencies = $config->get('dependencies');
+  $dependencies['enforced']['module'][] = 'devel';
+  $config->set('dependencies', $dependencies)->save(TRUE);
 }

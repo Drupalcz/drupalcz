@@ -10,7 +10,7 @@
     {% spaceless %}
         {% for item in collector.links %}
             <div class="sf-toolbar-info-piece">
-                <span><a href="{{ item.url }}" title="{{ item.description|default(item.title) }}">{{ item.title }}</a></span>
+                <span>{{ item }}</span>
             </div>
         {% endfor %}
     {% endspaceless %}

@@ -53,19 +53,29 @@ abstract class LibraryTypeKernelTestBase extends KernelTestBase {
   protected function setUp() {
     parent::setUp();
 
-    $this->libraryManager = $this->container->get('libraries.manager');
-    $this->libraryTypeFactory = $this->container->get('plugin.manager.libraries.library_type');
-
     /** @var \Drupal\Core\Extension\ModuleHandlerInterface $module_handler */
     $module_handler = $this->container->get('module_handler');
     $this->modulePath = $module_handler->getModule('libraries')->getPath();
 
     $this->installConfig('libraries');
+    // Disable remote definition fetching and set the local definitions path to
+    // the module directory.
     /** @var \Drupal\Core\Config\ConfigFactoryInterface $config_factory */
     $config_factory = $this->container->get('config.factory');
     $config_factory->getEditable('libraries.settings')
-      ->set('library_definitions.local.path', "{$this->modulePath}/tests/library_definitions")
+      ->set('definition.local.path', "{$this->modulePath}/tests/library_definitions")
+      ->set('definition.remote.enable', FALSE)
       ->save();
+
+    // LibrariesConfigSubscriber::onConfigSave() invalidates the container so
+    // that it is rebuilt on the next request. We need the container rebuilt
+    // immediately, however.
+    /** @var \Drupal\Core\DrupalKernelInterface $kernel */
+    $kernel = $this->container->get('kernel');
+    $this->container = $kernel->rebuildContainer();
+
+    $this->libraryManager = $this->container->get('libraries.manager');
+    $this->libraryTypeFactory = $this->container->get('plugin.manager.libraries.library_type');
   }
 
   /**
@@ -96,11 +106,9 @@ abstract class LibraryTypeKernelTestBase extends KernelTestBase {
 
     }
     catch (LibraryDefinitionNotFoundException $exception) {
-      $this->fail();
       $this->fail("Missing library definition for test $type_id library.");
     }
     catch (LibraryTypeNotFoundException $exception) {
-      $this->fail();
       $this->fail("Missing library type declaration for test $type_id library.");
     }
   }

@@ -8,6 +8,8 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
 use Drupal\field_ui\FieldUI;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 
 /**
  * Returns responses for Display Suite UI routes.
@@ -36,7 +38,7 @@ class DsController extends ControllerBase {
     $field_ui_enabled = $this->moduleHandler()->moduleExists('field_ui');
     if (!$field_ui_enabled) {
       $build['no_field_ui'] = array(
-        '#markup' => '<p>' . t('You need to enable Field UI to manage the displays of entities.') . '</p>',
+        '#markup' => '<p>' . $this->t('You need to enable Field UI to manage the displays of entities.') . '</p>',
         '#weight' => -10,
       );
     }
@@ -66,7 +68,7 @@ class DsController extends ControllerBase {
             $route = FieldUI::getOverviewRouteInfo($entity_type, $bundle_type);
             if ($route) {
               $operations['manage_display'] = array(
-                'title' => t('Manage display'),
+                'title' => $this->t('Manage display'),
                 'url' => new Url("entity.entity_view_display.$entity_type.default", $route->getRouteParameters()),
               );
             }
@@ -93,7 +95,7 @@ class DsController extends ControllerBase {
           $header = array(
             array('data' => $info->getLabel()),
             array(
-              'data' => $field_ui_enabled ? t('operations') : '',
+              'data' => $field_ui_enabled ? $this->t('operations') : '',
               'class' => 'ds-display-list-options',
             ),
           );

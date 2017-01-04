@@ -25,7 +25,7 @@ class ClassesForm extends ConfigFormBase {
 
     $form['regions'] = array(
       '#type' => 'textarea',
-      '#title' => t('CSS classes for regions'),
+      '#title' => $this->t('CSS classes for regions'),
       '#default_value' => implode("\n", $config->get('classes.region')),
       '#description' => t('Configure CSS classes which you can add to regions on the "manage display" screens. Add multiple CSS classes line by line.<br />If you want to have a friendly name, separate class and friendly name by |, but this is not required. eg:<br /><em>class_name_1<br />class_name_2|Friendly name<br />class_name_3</em>'),
     );
@@ -34,9 +34,9 @@ class ClassesForm extends ConfigFormBase {
     if (\Drupal::moduleHandler()->moduleExists('ds_extras')) {
       $form['fields'] = array(
         '#type' => 'textarea',
-        '#title' => t('CSS classes for fields'),
+        '#title' => $this->t('CSS classes for fields'),
         '#default_value' => implode("\n", $config->get('classes.field')),
-        '#description' => t('Configure CSS classes which you can add to fields on the "manage display" screens. Add multiple CSS classes line by line.<br />If you want to have a friendly name, separate class and friendly name by |, but this is not required. eg:<br /><em>class_name_1<br />class_name_2|Friendly name<br />class_name_3</em>'),
+        '#description' => $this->t('Configure CSS classes which you can add to fields on the "manage display" screens. Add multiple CSS classes line by line.<br />If you want to have a friendly name, separate class and friendly name by |, but this is not required. eg:<br /><em>class_name_1<br />class_name_2|Friendly name<br />class_name_3</em>'),
       );
     }
 

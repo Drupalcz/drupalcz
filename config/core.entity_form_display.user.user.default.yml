@@ -60,8 +60,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-  google_analytics:
-    weight: 3
   language:
     weight: 1
     settings: {  }

@@ -27,10 +27,6 @@ Devel Generate
 =================
 Bulk creates nodes, users, comment, terms for development. Has Drush integration.
 
-Devel Node Access
-=================
-Prints the node_access records for a given node. Also offers hook_node_access_explain for all node access modules to implement.
-
 Devel Generate Extensions
 =========================
 Devel Images Provider [http://drupal.org/project/devel_image_provider] allows to configure external providers for images.

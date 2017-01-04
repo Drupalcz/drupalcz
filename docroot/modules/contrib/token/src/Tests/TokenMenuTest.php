@@ -7,6 +7,8 @@ use Drupal\Core\Url;
 use Drupal\node\Entity\NodeType;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Core\Language\LanguageInterface;
+use Drupal\system\Entity\Menu;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
 
 /**
  * Tests menu tokens.
@@ -326,9 +328,100 @@ class TokenMenuTest extends TokenTestBase {
 
     // Verify that tokens are correct.
     $node = Node::load(1);
-    $this->assertTokens('node', ['node' => $node->getTranslation(LanguageInterface::LANGCODE_DEFAULT)], ['menu-link' => 'English menu title']);
-    // @todo Core doesn't provide any way to enforce a langcode for menu links.
-    // $this->assertTokens('node', ['node' => $node->getTranslation('de')], ['menu-link' => 'German menu title']);
+    $this->assertTokens('node', ['node' => $node], ['menu-link' => 'English menu title']);
+    $this->assertTokens('node', ['node' => $node], [
+      'menu-link' => 'German menu title',
+      'menu-link:title' => 'German menu title',
+    ], ['langcode' => 'de']);
+
+    // Get the menu link and create a child menu link to assert parent and root
+    // tokens.
+    $url = $node->toUrl();
+    /** @var \Drupal\Core\Menu\MenuLinkManagerInterface $menu_link_manager */
+    $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
+    $links = $menu_link_manager->loadLinksByRoute($url->getRouteName(), $url->getRouteParameters());
+    $link = reset($links);
+
+    $base_options = [
+      'provider' => 'menu_test',
+      'menu_name' => 'menu_test',
+    ];
+    $child_1 = $base_options + [
+        'title' => 'child_1 title EN',
+        'link' => ['uri' => 'internal:/menu-test/hierarchy/parent/child_1'],
+        'parent' => $link->getPluginId(),
+        'langcode' => 'en',
+      ];
+    $child_1 = MenuLinkContent::create($child_1);
+    $child_1->save();
+
+    // Add the german translation.
+    $child_1->addTranslation('de', ['title' => 'child_1 title DE'] + $child_1->toArray());
+    $child_1->save();
+
+    $this->assertTokens('menu-link', ['menu-link' => $child_1], [
+      'title' => 'child_1 title EN',
+      'parents' => 'English menu title',
+      'root' => 'English menu title',
+    ]);
+    $this->assertTokens('menu-link', ['menu-link' => $child_1], [
+      'title' => 'child_1 title DE',
+      'parents' => 'German menu title',
+      'root' => 'German menu title',
+    ], ['langcode' => 'de']);
+  }
+
+  /**
+   * Tests menu link parents token.
+   */
+  public function testMenuLinkParentsToken() {
+    // Create a menu with a simple link hierarchy :
+    // - parent
+    //   - child-1
+    //      - child-1-1
+    Menu::create(array(
+      'id' => 'menu_test',
+      'label' => 'Test menu',
+    ))->save();
+    $base_options = [
+      'provider' => 'menu_test',
+      'menu_name' => 'menu_test',
+    ];
+    $parent = $base_options + [
+        'title' => 'parent title',
+        'link' => ['uri' => 'internal:/menu-test/hierarchy/parent'],
+    ];
+    $parent = MenuLinkContent::create($parent);
+    $parent->save();
+    $child_1 = $base_options + [
+        'title' => 'child_1 title',
+        'link' => ['uri' => 'internal:/menu-test/hierarchy/parent/child_1'],
+        'parent' => $parent->getPluginId(),
+    ];
+    $child_1 = MenuLinkContent::create($child_1);
+    $child_1->save();
+    $child_1_1 = $base_options + [
+        'title' => 'child_1_1 title',
+        'link' => ['uri' => 'internal:/menu-test/hierarchy/parent/child_1/child_1_1'],
+        'parent' => $child_1->getPluginId(),
+    ];
+    $child_1_1 = MenuLinkContent::create($child_1_1);
+    $child_1_1->save();
+
+    $this->assertTokens('menu-link', ['menu-link' => $child_1_1], ['parents' => 'parent title, child_1 title']);
+
+    // Change the parent of child_1_1 to 'parent' at the entity level.
+    $child_1_1->parent->value = $parent->getPluginId();
+    $child_1_1->save();
+
+    $this->assertTokens('menu-link', ['menu-link' => $child_1_1], ['parents' => 'parent title']);
+
+    // Change the parent of child_1_1 to 'main', at the entity level.
+    $child_1_1->parent->value = '';
+    $child_1_1->save();
+
+    // The token shouldn't have been generated; the menu link has no parent.
+    $this->assertNoTokens('menu-link', ['menu-link' => $child_1_1], ['parents']);
   }
 
 }

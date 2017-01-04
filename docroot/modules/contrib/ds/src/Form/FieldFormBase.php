@@ -100,10 +100,10 @@ class FieldFormBase extends ConfigFormBase implements ContainerInjectionInterfac
     $this->field = $field;
 
     $form['name'] = array(
-      '#title' => t('Label'),
+      '#title' => $this->t('Label'),
       '#type' => 'textfield',
       '#default_value' => isset($field['label']) ? $field['label'] : '',
-      '#description' => t('The human-readable label of the field.'),
+      '#description' => $this->t('The human-readable label of the field.'),
       '#maxlength' => 128,
       '#required' => TRUE,
       '#size' => 30,
@@ -113,7 +113,7 @@ class FieldFormBase extends ConfigFormBase implements ContainerInjectionInterfac
       '#type' => 'machine_name',
       '#default_value' => isset($field['id']) ? $field['id'] : '',
       '#maxlength' => 32,
-      '#description' => t('The machine-readable name of this field. This name must contain only lowercase letters and underscores. This name must be unique.'),
+      '#description' => $this->t('The machine-readable name of this field. This name must contain only lowercase letters and underscores. This name must be unique.'),
       '#disabled' => !empty($field['id']),
       '#machine_name' => array(
         'exists' => array($this, 'uniqueFieldName'),
@@ -129,8 +129,8 @@ class FieldFormBase extends ConfigFormBase implements ContainerInjectionInterfac
       }
     }
     $form['entities'] = array(
-      '#title' => t('Entities'),
-      '#description' => t('Select the entities for which this field will be made available.'),
+      '#title' => $this->t('Entities'),
+      '#description' => $this->t('Select the entities for which this field will be made available.'),
       '#type' => 'checkboxes',
       '#required' => TRUE,
       '#options' => $entity_options,
@@ -138,15 +138,15 @@ class FieldFormBase extends ConfigFormBase implements ContainerInjectionInterfac
     );
 
     $form['ui_limit'] = array(
-      '#title' => t('Limit field'),
-      '#description' => t('Limit this field on field UI per bundles and/or view modes. The values are in the form of $bundle|$view_mode, where $view_mode may be either a view mode set to use custom settings, or \'default\'. You may use * to select all, e.g article|*, *|full or *|*. Enter one value per line.'),
+      '#title' => $this->t('Limit field'),
+      '#description' => $this->t('Limit this field on field UI per bundles and/or view modes. The values are in the form of $bundle|$view_mode, where $view_mode may be either a view mode set to use custom settings, or \'default\'. You may use * to select all, e.g article|*, *|full or *|*. Enter one value per line.'),
       '#type' => 'textarea',
       '#default_value' => isset($field['ui_limit']) ? $field['ui_limit'] : '',
     );
 
     $form['submit'] = array(
       '#type' => 'submit',
-      '#value' => t('Save'),
+      '#value' => $this->t('Save'),
       '#weight' => 100,
     );
 

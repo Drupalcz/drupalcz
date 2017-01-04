@@ -19,8 +19,8 @@ devel.reinstall:
 devel.menu_rebuild:
   path: '/devel/menu/reset'
   defaults:
-    _form: '\Drupal\devel\Form\DevelRebuildMenus'
-    _title: 'Rebuild menus'
+    _form: '\Drupal\devel\Form\RouterRebuildConfirmForm'
+    _title: 'Rebuild router'
   options:
     _admin_route: TRUE
   requirements:

@@ -36,7 +36,9 @@ You can alter existing properties for every plugin implementing hook_devel_gener
 DevelGenerateBaseInterface details base wrapping methods that most DevelGenerate implementations
 will want to directly inherit from Drupal\devel_generate\DevelGenerateBase.
 
-DevelGenerateFieldBaseInterface details base wrapping methods that most class implementations
-for supporting new field types will want to directly inherit from Drupal\devel_generate\DevelGenerateFieldBase.
-So to give support for a new field type should be enough to create a class called
-"DevelGenerateFieldNewfieldtype" extending DevelGenerateFieldBase and to implement "generateValues" method.
+To give support for a new field type the field type base class should properly
+implements \Drupal\Core\Field\FieldItemInterface::generateSampleValue().
+Devel generate automatically use the values returned by this method during the
+generate process for generate placeholder field values. For more information
+see:
+https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Field%21FieldItemInterface.php/function/FieldItemInterface::generateSampleValue

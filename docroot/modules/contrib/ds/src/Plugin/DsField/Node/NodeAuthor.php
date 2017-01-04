@@ -63,8 +63,8 @@ class NodeAuthor extends DsFieldBase {
   public function formatters() {
 
     $formatters = array(
-      'author' => t('Author'),
-      'author_linked' => t('Author linked to profile'),
+      'author' => $this->t('Author'),
+      'author_linked' => $this->t('Author linked to profile'),
     );
 
     return $formatters;

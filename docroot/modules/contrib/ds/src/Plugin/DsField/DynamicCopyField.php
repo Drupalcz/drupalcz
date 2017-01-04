@@ -7,7 +7,7 @@ use Drupal\ds\Plugin\DsPluginManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Defines a generic dynamic field that holds a copy of an exisitng ds field.
+ * Defines a generic dynamic field that holds a copy of an existing ds field.
  *
  * @DsField(
  *   id = "dynamic_copy_field",
