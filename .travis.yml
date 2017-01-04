@@ -60,6 +60,7 @@ install:
   - mysql -uroot d6migratesource < ./drupalcz_db/dcz_scrubbed_slim.sql
   - cd ./docroot
   - drush cim -y
+  - drush cr
   - drush en -y dcz_migrate
   - drush migrate-status
   - drush migrate-import --group=dcz6 -vvv
