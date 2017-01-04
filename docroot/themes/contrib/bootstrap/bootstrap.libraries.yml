@@ -13,6 +13,13 @@ drupal.bootstrap:
     - core/drupal
     - core/drupalSettings
 
+# Create a library placeholder for livereload.
+# This is altered dynamically based on the set URL.
+# @see \Drupal\bootstrap\Plugin\Alter\LibraryInfo::alter
+livereload:
+  js:
+    livereload.js: {}
+
 theme:
   js:
     js/theme.js: {}

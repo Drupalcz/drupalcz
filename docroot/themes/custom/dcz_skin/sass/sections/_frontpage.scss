@@ -1,0 +1,117 @@
+// Special styling for landing page at front of the web.
+
+.region-highlighted {
+  padding: 2em 0;
+}
+
+#block-frontpagetopdrupal {
+  @extend .col-sm-12, .col-md-6;
+  margin-bottom: 2em;
+
+  @media (min-width: $screen-lg-min) {
+    margin-top: 5em;
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+}
+#block-frontpagetopusage {
+  @extend .col-xs-12, .col-sm-4, .col-md-6;
+
+  @media (min-width: $screen-sm-min) and (max-width: $screen-md-min) {
+    margin-top: 3em;
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+}
+
+// Top showcase block.
+#block-views-block-showcase-block-1 {
+  @extend .col-xs-12, .col-sm-8, .col-md-6, .pull-right;
+  margin-bottom: 2em;
+  position: relative;
+
+  .field--name-node-title {
+    font-size: $font-size-h3;
+  }
+}
+
+.region-content > article {
+  clear: both;
+}
+
+.custom_jssor {
+  width: 600px;
+  height: 450px;
+}
+
+#block-views-block-showcase-block-2 {
+  background: $gray-lighter;
+  padding: 1em 0;
+
+  h2,
+  .view {
+    @extend .container;
+  }
+
+}
+
+// Block with latest blog posts.
+#block-views-block-blog-block-1 {
+  @extend .col-md-8;
+
+  .form-group {
+    //@extend .row;
+  }
+
+  .view-content,
+  .attachment {
+    @extend .col-sm-6, .row;
+
+    .views-row {
+      margin-bottom: 1em;
+    }
+
+    .field--name-node-title h3 {
+      font-size: $font-size-base;
+      margin: 0;
+
+      a {
+        color: $gray-dark;
+      }
+    }
+    .field--name-node-author {
+      display: inline;
+      font-size: $font-size-small;
+      margin-right: 0.5em;
+    }
+    .field--name-node-post-date {
+      display: inline;
+      font-size: $font-size-small;
+    }
+  }
+  .attachment {
+    .view-content {
+      margin-left: 0;
+      margin-right: 0;
+      padding: 0;
+      width: 100%;
+    }
+  }
+}
+
+// Block with article tags
+#block-views-block-blog-tags-block-1 {
+  @extend .col-md-4;
+
+  .views-field-name {
+    border-radius: 3px;
+    background: $gray-lighter;
+    float: left;
+    margin: 0 0.3em 0.3em 0;
+    padding: 0.2em 0.35em;
+  }
+}

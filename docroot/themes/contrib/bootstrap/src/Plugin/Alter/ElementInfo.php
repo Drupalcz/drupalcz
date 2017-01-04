@@ -34,6 +34,16 @@ class ElementInfo extends PluginBase implements AlterInterface {
     foreach (array_keys($types) as $type) {
       $element = &$types[$type];
 
+      // By default, the "checkboxes" and "radios" element types invoke
+      // CompositeFormElementTrait::preRenderCompositeFormElement which wraps
+      // the element in a fieldset and thus ultimately a panel. This isn't
+      // (usually) the desired effect for these elements, so to avoid rendering
+      // them as Bootstrap panels, the #bootstrap_panel should be set to FALSE
+      // by default. This allows those who wish to opt back in to do so.
+      if ($type === 'checkboxes' || $type === 'radios') {
+        $element['#bootstrap_panel'] = FALSE;
+      }
+
       // Core does not actually use the "description_display" property on the
       // "details" or "fieldset" element types because the positioning of the
       // description is never used in core templates. However, the form builder

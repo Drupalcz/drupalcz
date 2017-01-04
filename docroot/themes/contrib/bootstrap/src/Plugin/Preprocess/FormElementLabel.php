@@ -23,7 +23,10 @@ class FormElementLabel extends PreprocessBase implements PreprocessInterface {
    * {@inheritdoc}
    */
   public function preprocessElement(Element $element, Variables $variables) {
-    $variables->map(['attributes']);
+    // Map the element properties.
+    $variables->map(['attributes', 'is_checkbox', 'is_radio']);
+
+    // Preprocess attributes.
     $this->preprocessAttributes();
   }
 
