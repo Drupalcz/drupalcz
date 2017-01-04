@@ -5,9 +5,9 @@ dependencies:
   module:
     - system
   theme:
-    - drupalcz_skin
-id: drupalcz_skin_content
-theme: drupalcz_skin
+    - dcz_skin
+id: dcz_skin_content
+theme: dcz_skin
 region: content
 weight: -6
 provider: null
