@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\devel\Form\DevelRebuildMenus.
- */
-
 namespace Drupal\devel\Form;
 
 use Drupal\Core\Form\ConfirmFormBase;
@@ -16,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Provides confirmation form for rebuilding the routes.
  */
-class DevelRebuildMenus extends ConfirmFormBase {
+class RouterRebuildConfirmForm extends ConfirmFormBase {
 
   /**
    * The route builder service.
@@ -26,7 +21,7 @@ class DevelRebuildMenus extends ConfirmFormBase {
   protected $routeBuilder;
 
   /**
-   * Constructs a new DevelRebuildMenus object.
+   * Constructs a new RouterRebuildConfirmForm object.
    *
    * @param \Drupal\Core\Routing\RouteBuilderInterface $route_builder
    *   The route builder service.
@@ -55,7 +50,7 @@ class DevelRebuildMenus extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Are you sure you want to rebuild menus?');
+    return $this->t('Are you sure you want to rebuild the router?');
   }
 
   /**
@@ -69,7 +64,7 @@ class DevelRebuildMenus extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getDescription() {
-    return $this->t('Rebuild menu based on hook_menu() and revert any custom changes. All menu items return to their default settings.');
+    return $this->t('Rebuilds the routes information gathering all routing data from .routing.yml files and from classes which subscribe to the route build events. This action cannot be undone.');
   }
 
   /**
@@ -84,7 +79,7 @@ class DevelRebuildMenus extends ConfirmFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->routeBuilder->rebuild();
-    drupal_set_message($this->t('The menu router has been rebuilt.'));
+    drupal_set_message($this->t('The router has been rebuilt.'));
     $form_state->setRedirect('<front>');
   }
 

@@ -3,4 +3,7 @@ label: 'Development'
 description: 'Links related to Devel module.'
 langcode: en
 locked: true
-
+dependencies:
+  enforced:
+    module:
+      - devel

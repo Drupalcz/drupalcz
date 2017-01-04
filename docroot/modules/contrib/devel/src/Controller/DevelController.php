@@ -1,16 +1,10 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\devel\Controller\DevelController.
- */
-
 namespace Drupal\devel\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
-use Drupal\Core\Field;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
 use Drupal\field\Entity\FieldConfig;
@@ -106,7 +100,7 @@ class DevelController extends ControllerBase {
     ksort($field_instances);
     $output['instances'] = array('#markup' => kprint_r($field_instances, TRUE, $this->t('Instances')));
 
-    $bundles = $this->entityManager()->getAllBundleInfo();
+    $bundles = \Drupal::service('entity_type.bundle.info')->getAllBundleInfo();
     ksort($bundles);
     $output['bundles'] = array('#markup' => kprint_r($bundles, TRUE, $this->t('Bundles')));
 
@@ -132,22 +126,9 @@ class DevelController extends ControllerBase {
    *   Array of page elements to render.
    */
   public function entityInfoPage() {
-    $types = $this->entityManager()->getEntityTypeLabels();
+    $types = $this->entityTypeManager()->getDefinitions();
     ksort($types);
-    $result = array();
-    foreach (array_keys($types) as $type) {
-      $definition = $this->entityManager()->getDefinition($type);
-      $reflected_definition = new \ReflectionClass($definition);
-      $props = array();
-      foreach ($reflected_definition->getProperties() as $property) {
-        $property->setAccessible(TRUE);
-        $value = $property->getValue($definition);
-        $props[$property->name] = $value;
-      }
-      $result[$type] = $props;
-    }
-
-    return array('#markup' => kprint_r($result, TRUE));
+    return array('#markup' => kprint_r($types, TRUE));
   }
 
   /**
@@ -247,72 +228,6 @@ class DevelController extends ControllerBase {
     $output['data'] = array(
       '#markup' => kprint_r($_SESSION, TRUE),
     );
-
-    return $output;
-  }
-
-  /**
-   * Prints the loaded structure of the current entity.
-   *
-   * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
-   *    A RouteMatch object.
-   *
-   * @return array
-   *    Array of page elements to render.
-   */
-  public function entityLoad(RouteMatchInterface $route_match) {
-    $output = array();
-
-    $parameter_name = $route_match->getRouteObject()->getOption('_devel_entity_type_id');
-    $entity = $route_match->getParameter($parameter_name);
-
-    if ($entity && $entity instanceof EntityInterface) {
-
-      // Field definitions are lazy loaded and are populated only when needed.
-      // By calling ::getFieldDefinitions() we are sure that field definitions
-      // are populated and available in the dump output.
-      // @see https://www.drupal.org/node/2311557
-      if($entity instanceof FieldableEntityInterface) {
-        $entity->getFieldDefinitions();
-      }
-
-      $output = array('#markup' => kdevel_print_object($entity));
-    }
-
-    return $output;
-  }
-
-  /**
-   * Prints the render structure of the current entity.
-   *
-   * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
-   *    A RouteMatch object.
-   *
-   * @return array
-   *    Array of page elements to render.
-   */
-  public function entityRender(RouteMatchInterface $route_match) {
-    $output = array();
-
-    $parameter_name = $route_match->getRouteObject()->getOption('_devel_entity_type_id');
-    $entity = $route_match->getParameter($parameter_name);
-
-    if ($entity && $entity instanceof EntityInterface) {
-      $entity_type_id = $entity->getEntityTypeId();
-      $view_hook = $entity_type_id . '_view';
-
-      $build = array();
-      // If module implements own {entity_type}_view
-      if (function_exists($view_hook)) {
-        $build = $view_hook($entity);
-      }
-      // If entity has view_builder handler
-      elseif ($this->entityManager()->hasHandler($entity_type_id, 'view_builder')) {
-        $build = $this->entityManager()->getViewBuilder($entity_type_id)->view($entity);
-      }
-
-      $output = array('#markup' => kdevel_print_object($build));
-    }
 
     return $output;
   }
