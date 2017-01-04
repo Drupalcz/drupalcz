@@ -7008,15 +7008,19 @@ footer.footer {
   .forum_posts a {
     font-size: 14px; }
 
-.forum_last_reply {
+.forum_last_reply,
+.forum__last-reply {
   text-align: right;
   width: 15em; }
-  @media (max-width: 480px) {
-    .forum_last_reply {
-      display: none; } }
-  @media (min-width: 768px) and (max-width: 992px) {
-    .forum_last_reply {
-      display: none; } }
+
+@media (max-width: 767px) {
+  td,
+  th {
+    display: block !important;
+    text-align: left !important;
+    width: 100% !important; }
+  tr {
+    border-bottom: 2px solid #337ab7; } }
 
 .region-sidebar-second .block {
   clear: both;

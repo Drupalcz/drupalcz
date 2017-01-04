@@ -18,13 +18,23 @@
     font-size: $font-size-small;
   }
 }
-.forum_last_reply {
-  @media (max-width: $screen-xs-min) {
-    display: none;
-  }
-  @media (min-width: $screen-sm-min) and (max-width: $screen-md-min) {
-    display: none;
-  }
+.forum_last_reply,
+.forum__last-reply {
   text-align: right;
   width: 15em;
+}
+
+// Responsive table
+
+@media (max-width: $screen-xs-max) {
+  td,
+  th {
+    display: block !important;
+    text-align: left !important;
+    width: 100% !important;
+  }
+
+  tr {
+    border-bottom: 2px solid $brand-primary;
+  }
 }
