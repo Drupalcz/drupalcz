@@ -1,15 +1,17 @@
-uuid: d185a523-f94b-4b3b-9b00-af3080d406da
-langcode: en
+uuid: b0d1ca6f-d541-4964-bec5-2a09d9883525
+langcode: cs
 status: true
 dependencies:
   module:
     - system
   theme:
-    - drupalcz_skin
-id: sitebranding
-theme: drupalcz_skin
+    - dcz_skin
+_core:
+  default_config_hash: Cy3vkpYrD1O5JG-BeEnokF0bByHYDEa8CBfWivB4_SQ
+id: dcz_skin_branding
+theme: dcz_skin
 region: navigation
-weight: -11
+weight: 0
 provider: null
 plugin: system_branding_block
 settings:
@@ -18,6 +20,6 @@ settings:
   provider: system
   label_display: '0'
   use_site_logo: true
-  use_site_name: false
+  use_site_name: true
   use_site_slogan: false
 visibility: {  }

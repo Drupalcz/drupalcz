@@ -1,20 +1,20 @@
-uuid: 6a53afab-d4d5-4bfa-9c04-4af0058a16f2
-langcode: en
+uuid: ba13745e-466f-4228-8429-e5b21d4e0c4d
+langcode: cs
 status: true
 dependencies:
   module:
     - search
   theme:
-    - drupalcz_skin
-id: searchform
-theme: drupalcz_skin
+    - dcz_skin
+id: vyhledavani
+theme: dcz_skin
 region: navigation
-weight: -13
+weight: -7
 provider: null
 plugin: search_form_block
 settings:
   id: search_form_block
-  label: 'Search form'
+  label: Vyhledávání
   provider: search
   label_display: '0'
 visibility: {  }

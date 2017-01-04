@@ -1,0 +1,22 @@
+uuid: 920c53d5-a462-4470-a522-65de63783972
+langcode: cs
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - dcz_skin
+_core:
+  default_config_hash: iggZSiUKz4mYP1YPJ8SsUfFu79HIgOTt6IDy3Up59aM
+id: dcz_skin_powered
+theme: dcz_skin
+region: footer
+weight: -7
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Běží na Drupalu'
+  provider: system
+  label_display: '0'
+visibility: {  }

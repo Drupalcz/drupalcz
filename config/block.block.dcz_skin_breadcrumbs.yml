@@ -1,15 +1,17 @@
-uuid: a8232e87-ffba-4e87-9661-9792a451fb1b
-langcode: en
+uuid: a105f3e8-dea9-4f52-9d65-a331f1e863f0
+langcode: cs
 status: true
 dependencies:
   module:
     - system
   theme:
-    - drupalcz_skin
-id: drupalcz_skin_breadcrumbs
-theme: drupalcz_skin
+    - dcz_skin
+_core:
+  default_config_hash: wDR9JKEATSWldBjw8du8s3G2zjEYeQf88nlld11hMLo
+id: dcz_skin_breadcrumbs
+theme: dcz_skin
 region: header
-weight: -8
+weight: -7
 provider: null
 plugin: system_breadcrumb_block
 settings:

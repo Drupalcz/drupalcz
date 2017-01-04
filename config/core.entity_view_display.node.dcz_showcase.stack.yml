@@ -36,7 +36,6 @@ third_party_settings:
         link_custom: ''
         classes:
           layout_class: {  }
-      entity_classes: old_view_mode
     regions:
       ds_content:
         - field_main_screenshot

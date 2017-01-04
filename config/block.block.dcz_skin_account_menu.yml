@@ -1,5 +1,5 @@
-uuid: 010fafd3-a50e-4e17-b400-bb3b0a3c031e
-langcode: en
+uuid: 586ccd72-36a9-475d-99dc-62d494577f20
+langcode: cs
 status: true
 dependencies:
   config:
@@ -7,11 +7,13 @@ dependencies:
   module:
     - system
   theme:
-    - drupalcz_skin
-id: useraccountmenu_2
-theme: drupalcz_skin
+    - dcz_skin
+_core:
+  default_config_hash: R2K_qX0ZUMbUL6ie_-S9tZVjvqmlWKlscikgeRv9vhw
+id: dcz_skin_account_menu
+theme: dcz_skin
 region: navigation_collapsible
-weight: -9
+weight: -5
 provider: null
 plugin: 'system_menu_block:account'
 settings:
@@ -20,5 +22,5 @@ settings:
   provider: system
   label_display: '0'
   level: 1
-  depth: 0
+  depth: 2
 visibility: {  }

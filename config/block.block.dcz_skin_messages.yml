@@ -1,20 +1,22 @@
-uuid: 258c9a92-7c86-47cc-9e00-a86df11ca40b
-langcode: en
+uuid: 8adab360-ff74-417d-b26b-26194d8cc058
+langcode: cs
 status: true
 dependencies:
   module:
     - system
   theme:
-    - drupalcz_skin
-id: drupalcz_skin_messages
-theme: drupalcz_skin
+    - dcz_skin
+_core:
+  default_config_hash: 9RnnTUBcn0WRWXfrGOnId2H0Q31uQUeu_F5TnDxl2yg
+id: dcz_skin_messages
+theme: dcz_skin
 region: header
 weight: -7
 provider: null
 plugin: system_messages_block
 settings:
   id: system_messages_block
-  label: 'Status messages'
+  label: 'Stavové zprávy'
   provider: system
   label_display: '0'
 visibility: {  }

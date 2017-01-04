@@ -1,0 +1,22 @@
+uuid: c862d4ad-375b-4286-9cfa-fec02a57e821
+langcode: cs
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - dcz_skin
+_core:
+  default_config_hash: fNNLN48MSGSLiqwIFywCuxH2Dk_IxDbaP0kYhg_IPrg
+id: dcz_skin_content
+theme: dcz_skin
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Obsah hlavní stránky'
+  provider: system
+  label_display: '0'
+visibility: {  }

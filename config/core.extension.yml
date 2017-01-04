@@ -55,6 +55,8 @@ module:
   user: 0
   views_ui: 0
   youtube: 0
+  migrate_plus: 0
+  migrate_tools: 0
   ds: 1
   forum: 1
   menu_link_content: 1
@@ -67,5 +69,5 @@ theme:
   bartik: 0
   seven: 0
   bootstrap: 0
-  drupalcz_skin: 0
+  dcz_skin: 0
 langcode: cs

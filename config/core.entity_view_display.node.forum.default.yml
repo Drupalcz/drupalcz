@@ -33,7 +33,6 @@ content:
     weight: 5
     settings:
       pager_id: 0
-      view_mode: default
     third_party_settings: {  }
   field_attachment:
     weight: 3

@@ -1,0 +1,22 @@
+uuid: 990a58fa-6346-4a73-b3b6-ba511895d283
+langcode: cs
+status: true
+dependencies:
+  theme:
+    - dcz_skin
+_core:
+  default_config_hash: qHdtze2DZ2mFfaJadxjZz6epm92_SN9SAFY4yJGl8Fo
+id: dcz_skin_local_tasks
+theme: dcz_skin
+region: header
+weight: -7
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Záložky
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }
