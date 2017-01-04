@@ -6,8 +6,6 @@ dependencies:
     - system
   theme:
     - drupalcz_skin
-_core:
-  default_config_hash: Untz2cecSgAnrf2oHEmQTpIck9eQnaLNlNVmhb3smeU
 id: drupalcz_skin_powered
 theme: drupalcz_skin
 region: '-1'

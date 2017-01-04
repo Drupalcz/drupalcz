@@ -4,8 +4,6 @@ status: true
 dependencies:
   theme:
     - drupalcz_skin
-_core:
-  default_config_hash: CABsvcC3OJltJ7-vo38adM7zDEePktYmriV6QIPwVgk
 id: drupalcz_skin_local_actions
 theme: drupalcz_skin
 region: content
