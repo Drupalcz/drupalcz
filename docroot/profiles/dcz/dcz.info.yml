@@ -35,5 +35,5 @@ dependencies:
   - dcz_user
   - dcz_tags_taxonomy
 themes:
-  - drupalcz_skin
+  - dcz_skin
   - seven
