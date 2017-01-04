@@ -36,6 +36,7 @@ content:
     label: above
     settings:
       pager_id: 0
+      view_mode: default
     third_party_settings: {  }
     type: comment_default
   field_tags:

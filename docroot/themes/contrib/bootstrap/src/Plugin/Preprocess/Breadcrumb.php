@@ -9,6 +9,7 @@ namespace Drupal\bootstrap\Plugin\Preprocess;
 use Drupal\bootstrap\Annotation\BootstrapPreprocess;
 use Drupal\bootstrap\Utility\Variables;
 use Drupal\Core\Template\Attribute;
+use Drupal\Core\Url;
 
 /**
  * Pre-processes variables for the "breadcrumb" theme hook.
@@ -32,26 +33,31 @@ class Breadcrumb extends PreprocessBase implements PreprocessInterface {
       return;
     }
 
-    // Optionally get rid of the homepage link.
-    $show_breadcrumb_home = $this->theme->getSetting('breadcrumb_home');
-    if (!$show_breadcrumb_home) {
-      array_shift($breadcrumb);
+    // Remove first occurrence of the "Home" <front> link, provided by core.
+    if (!$this->theme->getSetting('breadcrumb_home')) {
+      $front = Url::fromRoute('<front>')->toString();
+      foreach ($breadcrumb as $key => $link) {
+        if (isset($link['url']) && $link['url'] === $front) {
+          unset($breadcrumb[$key]);
+          break;
+        }
+      }
     }
 
     if ($this->theme->getSetting('breadcrumb_title') && !empty($breadcrumb)) {
       $request = \Drupal::request();
       $route_match = \Drupal::routeMatch();
       $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
-
       if (!empty($page_title)) {
         $breadcrumb[] = [
           'text' => $page_title,
           'attributes' => new Attribute(['class' => ['active']]),
         ];
-        // Add cache context based on url.
-        $variables->addCacheContexts(['url']);
       }
     }
+
+    // Add cache context based on url.
+    $variables->addCacheContexts(['url']);
   }
 
 }

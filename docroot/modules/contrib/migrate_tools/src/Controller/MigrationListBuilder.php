@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Routing\CurrentRouteMatch;
+use Drupal\migrate_plus\Entity\MigrationGroup;
 use Drupal\migrate_plus\Plugin\MigrationConfigEntityPluginManager;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -67,6 +68,33 @@ class MigrationListBuilder extends ConfigEntityListBuilder implements EntityHand
   }
 
   /**
+   * Retrieve the migrations belonging to the appropriate group.
+   *
+   * @return array
+   *   An array of entity IDs.
+   */
+  protected function getEntityIds() {
+    $migration_group = $this->currentRouteMatch->getParameter('migration_group');
+
+    $query = $this->getStorage()->getQuery()
+      ->sort($this->entityType->getKey('id'));
+
+    $migration_groups = MigrationGroup::loadMultiple();
+
+    if (array_key_exists($migration_group, $migration_groups)) {
+      $query->condition('migration_group', $migration_group);
+    }
+    else {
+      $query->notExists('migration_group');
+    }
+    // Only add the pager if a limit is specified.
+    if ($this->limit) {
+      $query->pager($this->limit);
+    }
+    return $query->execute();
+  }
+
+  /**
    * Builds the header row for the entity listing.
    *
    * @return array
@@ -89,7 +117,7 @@ class MigrationListBuilder extends ConfigEntityListBuilder implements EntityHand
   /**
    * Builds a row for a migration plugin.
    *
-   * @param \Drupal\Core\Entity\EntityInterface $migration
+   * @param \Drupal\Core\Entity\EntityInterface $migration_entity
    *   The migration plugin for which to build the row.
    *
    * @return array
@@ -99,7 +127,21 @@ class MigrationListBuilder extends ConfigEntityListBuilder implements EntityHand
    */
   public function buildRow(EntityInterface $migration_entity) {
     $migration = $this->migrationConfigEntityPluginManager->createInstance($migration_entity->id());
-    $row['label'] = $migration->label();
+    $migration_group = $migration->get('migration_group');
+    if (!$migration_group) {
+      $migration_group = 'default';
+    }
+    $route_parameters = array(
+      'migration_group' => $migration_group,
+      'migration' => $migration->id(),
+    );
+    $row['label'] = array(
+      'data' => array(
+        '#type' => 'link',
+        '#title' => $migration->label(),
+        '#url' => Url::fromRoute("entity.migration.overview", $route_parameters),
+      ),
+    );
     $row['machine_name'] = $migration->id();
     $row['status'] = $migration->getStatusLabel();
 
@@ -116,14 +158,6 @@ class MigrationListBuilder extends ConfigEntityListBuilder implements EntityHand
     else {
       $row['unprocessed'] = $row['total'] - $map->processedCount();
     }
-    $migration_group = $migration->get('migration_group');
-    if (!$migration_group) {
-      $migration_group = 'default';
-    }
-    $route_parameters = array(
-      'migration_group' => $migration_group,
-      'migration' => $migration->id()
-    );
     $row['messages'] = array(
       'data' => array(
         '#type' => 'link',
@@ -142,7 +176,7 @@ class MigrationListBuilder extends ConfigEntityListBuilder implements EntityHand
     else {
       $row['last_imported'] = '';
     }
-    return $row + parent::buildRow($migration_entity);
+    return $row; // + parent::buildRow($migration_entity);
   }
 
   /**

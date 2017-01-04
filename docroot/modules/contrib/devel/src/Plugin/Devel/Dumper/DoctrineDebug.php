@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\devel\Plugin\Devel\Dumper\DoctrineDebug.
- */
-
 namespace Drupal\devel\Plugin\Devel\Dumper;
 
 use Doctrine\Common\Util\Debug;
@@ -25,10 +20,7 @@ class DoctrineDebug extends DevelDumperBase {
    * {@inheritdoc}
    */
   public function dump($input, $name = NULL) {
-    if ($name) {
-      echo $name . ' => ';
-    }
-    Debug::dump($input);
+    echo (string) $this->export($input, $name);
   }
 
   /**

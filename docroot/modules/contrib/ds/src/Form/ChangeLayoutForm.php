@@ -47,7 +47,7 @@ class ChangeLayoutForm extends FormBase {
       $form['#new_layout_key'] = $new_layout_key;
 
       $form['info'] = array(
-        '#markup' => t('You are changing from @old to @new layout for @bundle in @view_mode view mode.',
+        '#markup' => $this->t('You are changing from @old to @new layout for @bundle in @view_mode view mode.',
           array(
             '@old' => $old_layout_info['label'],
             '@new' => $new_layout['label'],
@@ -92,7 +92,7 @@ class ChangeLayoutForm extends FormBase {
       $form['#new_layout']['regions'] = $new_layout['regions'];
 
       // Display the region options.
-      $selectable_regions = array('' => t('- None -')) + $new_layout['regions'];
+      $selectable_regions = array('' => $this->t('- None -')) + $new_layout['regions'];
       $form['regions_pre']['#markup'] = '<div class="ds-layout-regions">';
       foreach ($regions as $region => $region_title) {
         $form['region_' . $region] = array(
@@ -136,13 +136,13 @@ class ChangeLayoutForm extends FormBase {
       $form['actions'] = array('#type' => 'actions');
       $form['actions']['submit'] = array(
         '#type' => 'submit',
-        '#value' => t('Save'),
+        '#value' => $this->t('Save'),
         '#prefix' => '<div class="ds-layout-change-save">',
         '#suffix' => '</div>',
       );
     }
     else {
-      $form['nothing'] = array('#markup' => t('No valid configuration found.'));
+      $form['nothing'] = array('#markup' => $this->t('No valid configuration found.'));
     }
 
     return $form;

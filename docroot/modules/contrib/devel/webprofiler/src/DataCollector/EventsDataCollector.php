@@ -1,14 +1,10 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\webprofiler\DataCollector\EventsDataCollector.
- */
-
 namespace Drupal\webprofiler\DataCollector;
 
 use Drupal\webprofiler\DrupalDataCollectorInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\DataCollector\EventDataCollector as BaseEventDataCollector;
 
 /**
@@ -48,24 +44,28 @@ class EventsDataCollector extends BaseEventDataCollector implements DrupalDataCo
    */
   private function computePriority(array $listeners) {
     foreach ($listeners as &$listener) {
-      foreach ($listener['class']::getSubscribedEvents() as $event => $methods) {
+      if (is_subclass_of($listener['class'],  EventSubscriberInterface::class)) {
+        foreach ($listener['class']::getSubscribedEvents() as $event => $methods) {
 
-        if (is_string($methods)) {
-          $methods = [[$methods], 0];
-        }
-        else {
-          if (is_string($methods[0])) {
-            $methods = [$methods];
+          if (is_string($methods)) {
+            $methods = [[$methods], 0];
           }
-        }
+          else {
+            if (is_string($methods[0])) {
+              $methods = [$methods];
+            }
+          }
 
-        foreach ($methods as $method) {
-          if ($listener['event'] === $event) {
-            if ($listener['method'] === $method[0]) {
-              $listener['priority'] = isset($method[1]) ? $method[1] : 0;
+          foreach ($methods as $method) {
+            if ($listener['event'] === $event) {
+              if ($listener['method'] === $method[0]) {
+                $listener['priority'] = isset($method[1]) ? $method[1] : 0;
+              }
             }
           }
         }
+      } else {
+        $listener['priority'] = isset($listener['priority']) ? $listener['priority'] : 0;
       }
     }
 

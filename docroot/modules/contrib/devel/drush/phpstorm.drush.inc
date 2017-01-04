@@ -64,9 +64,10 @@ function drush_phpstorm_metadata() {
   }
 
   // Entity Manager - getStorage
-  foreach (\Drupal::entityManager()->getDefinitions() as $type => $definition) {
-    $class = Drupal::entityManager()->getStorage($type);
+  foreach (\Drupal::entityTypeManager()->getDefinitions() as $type => $definition) {
+    $class = Drupal::entityTypeManager()->getStorage($type);
     $map["\\Drupal::entityManager()->getStorage('')"][$type] = '\\' . get_class($class);
+    $map["\\Drupal::entityTypeManager()->getStorage('')"][$type] = '\\' . get_class($class);
   }
 
   $content = _drush_phpstorm_metadata_phpstorm_metadata_template($map);

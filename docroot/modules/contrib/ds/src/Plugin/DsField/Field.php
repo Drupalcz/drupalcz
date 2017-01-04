@@ -22,7 +22,7 @@ abstract class Field extends DsFieldBase {
     $entity_render_key = $this->entityRenderKey();
 
     if (isset($config['link text'])) {
-      $output = t($config['link text']);
+      $output = $this->t($config['link text']);
     }
     elseif (!empty($entity_render_key) && isset($this->entity()->{$entity_render_key})) {
       if ($this->getEntityTypeId() == 'user' && $entity_render_key == 'name') {

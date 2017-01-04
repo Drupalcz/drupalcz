@@ -68,16 +68,16 @@ class DevelTwigExtensionTest extends KernelTestBase {
   /**
    * Tests that Twig extension loads appropriately.
    */
-  function testTwigExtensionLoaded() {
+  public function testTwigExtensionLoaded() {
     $twig_service = \Drupal::service('twig');
     $extension = $twig_service->getExtension('devel_debug');
     $this->assertEquals(get_class($extension), Debug::class, 'Debug Extension loaded successfully.');
   }
 
   /**
-   * Tests that theTwig functions are registered properly.
+   * Tests that the Twig dump functions are registered properly.
    */
-  function testTwigExtensionFunctionsRegistered() {
+  public function testDumpFunctionsRegistered() {
     /** @var \Twig_SimpleFunction[] $functions */
     $functions = \Drupal::service('twig')->getFunctions();
 
@@ -101,13 +101,27 @@ class DevelTwigExtensionTest extends KernelTestBase {
         $this->assertEquals($callable, 'Drupal\devel\Twig\Extension\Debug::message');
       }
     }
-
   }
 
   /**
-   * Tests that the Twig extension's function produces expected output.
+   * Tests that the Twig function for XDebug integration is registered properly.
    */
-  function testTwigExtensionFunctions() {
+  public function testXDebugIntegrationFunctionsRegistered() {
+    /** @var \Twig_SimpleFunction $function */
+    $function = \Drupal::service('twig')->getFunction('devel_breakpoint');
+    $this->assertTrue($function instanceof \Twig_SimpleFunction);
+    $this->assertEquals($function->getName(), 'devel_breakpoint');
+    $this->assertTrue($function->needsContext());
+    $this->assertTrue($function->needsEnvironment());
+    $this->assertTrue($function->isVariadic());
+    is_callable($function->getCallable(), TRUE, $callable);
+    $this->assertEquals($callable, 'Drupal\devel\Twig\Extension\Debug::breakpoint');
+  }
+
+  /**
+   * Tests that the Twig extension's dump functions produce the expected output.
+   */
+  public function testDumpFunctions() {
     $template = 'test-with-context {{ twig_string }} {{ twig_array.first }} {{ twig_array.second }}{{ devel_dump() }}';
     $expected_template_output = 'test-with-context context! first value second value';
 

@@ -97,14 +97,13 @@ function webprofiler_requirements($phase) {
 
     if (!$has_d3) {
       $requirements['d3js']['severity'] = REQUIREMENT_WARNING;
-      $d3_url = Url::fromUri('https://github.com/mbostock/d3', ['attributes' => ['target' => '_blank']]);
       $requirements['d3js']['description'] = [
         '#prefix' => ' ',
-        '#markup' => t('Webprofiler module requires D3.js library to properly render data. <a href=":d3_link">Download D3.js</a> into /libraries/d3/d3.min.js.', [':d3_link' => $d3_url->toUriString()])
+        '#markup' => t('Webprofiler module requires D3.js library to properly render data. See README.md file to learn how to download it.'),
       ];
     }
 
-    $has_highlight = _webprofiler_verify_library('webprofiler', 'highlight');
+    $has_highlight = _webprofiler_verify_library('webprofiler', 'highlightjs');
     $requirements['highlightjs'] = [
       'title' => t('highlight.js library'),
       'value' => $has_highlight ? t('Enabled') : t('Not found'),
@@ -112,10 +111,9 @@ function webprofiler_requirements($phase) {
 
     if (!$has_highlight) {
       $requirements['highlightjs']['severity'] = REQUIREMENT_WARNING;
-      $highlight_url = Url::fromUri('http://highlightjs.org', ['attributes' => ['target' => '_blank']]);
       $requirements['highlightjs']['description'] = [
         '#prefix' => ' ',
-        '#markup' => t('Webprofiler module requires highlight.js library to syntax highlight collected queries. <a href=":highlight_link">Download highlight.js</a> assets into /libraries/highlight.', [':highlight_link' => $highlight_url->toUriString()])
+        '#markup' => t('Webprofiler module requires highlight.js library to syntax highlight collected queries. See README.md file to learn how to download it.'),
       ];
     }
   }

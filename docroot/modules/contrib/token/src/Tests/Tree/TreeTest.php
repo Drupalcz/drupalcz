@@ -125,6 +125,9 @@ class TreeTest extends TokenTestBase {
    * link and the token. This then replaces the options query parameter with the
    * specified options.
    *
+   * The page also uses a title callback to set title to a render array, which
+   * allows us to test if [current-page:title] works properly.
+   *
    * @param array $options
    *   The options for the token tree browser.
    *
@@ -133,6 +136,7 @@ class TreeTest extends TokenTestBase {
    */
   protected function getTokenTreeUrl($options = []) {
     $this->drupalGet('token_module_test/browse');
+    $this->assertTitle('Available Tokens | Drupal');
     $links = $this->xpath('//a[contains(@href, :href)]/@href', array(':href' => 'token/tree'));
     $link = $this->getAbsoluteUrl((string) current($links));
     if (!empty($options)) {

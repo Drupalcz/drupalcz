@@ -47,11 +47,14 @@ function devel_help($route_name) {
 function devel_entity_type_alter(array &$entity_types) {
   /** @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
   foreach ($entity_types as $entity_type_id => $entity_type) {
+    if (($entity_type->getFormClass('default') || $entity_type->getFormClass('edit')) && $entity_type->hasLinkTemplate('edit-form')) {
+      $entity_type->setLinkTemplate('devel-load', "/devel/$entity_type_id/{{$entity_type_id}}");
+    }
     if ($entity_type->hasViewBuilderClass() && $entity_type->hasLinkTemplate('canonical')) {
       $entity_type->setLinkTemplate('devel-render', "/devel/$entity_type_id/{{$entity_type_id}}/render");
     }
-    if (($entity_type->getFormClass('default') || $entity_type->getFormClass('edit')) && $entity_type->hasLinkTemplate('edit-form')) {
-      $entity_type->setLinkTemplate('devel-load', "/devel/$entity_type_id/{{$entity_type_id}}");
+    if ($entity_type->hasLinkTemplate('devel-render') || $entity_type->hasLinkTemplate('devel-load')) {
+      $entity_type->setLinkTemplate('devel-definition', "/devel/$entity_type_id/{{$entity_type_id}}/definition");
     }
   }
 }

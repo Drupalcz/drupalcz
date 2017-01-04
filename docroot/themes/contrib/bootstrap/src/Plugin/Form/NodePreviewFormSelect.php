@@ -23,31 +23,30 @@ class NodePreviewFormSelect extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function alterForm(array &$form, FormStateInterface $form_state, $form_id = NULL) {
-    $e = Element::create($form, $form_state);
-    $e->addClass(['form-inline', 'bg-info', 'text-center', 'clearfix']);
+  public function alterFormElement(Element $form, FormStateInterface $form_state, $form_id = NULL) {
+    $form->addClass(['form-inline', 'bg-info', 'text-center', 'clearfix']);
 
     // Backlink.
-    $options = $e->backlink->getProperty('options', []);
+    $options = $form->backlink->getProperty('options', []);
 
-    $e->backlink->addClass(isset($options['attributes']['class']) ? $options['attributes']['class'] : []);
-    $e->backlink->addClass(['btn', 'btn-info', 'pull-left']);
-    $e->backlink->setButtonSize();
-    $e->backlink->setIcon(Bootstrap::glyphicon('chevron-left'));
+    $form->backlink->addClass(isset($options['attributes']['class']) ? $options['attributes']['class'] : []);
+    $form->backlink->addClass(['btn', 'btn-info', 'pull-left']);
+    $form->backlink->setButtonSize();
+    $form->backlink->setIcon(Bootstrap::glyphicon('chevron-left'));
 
     // Ensure the UUID is set.
-    if ($uuid = $e->uuid->getProperty('value')) {
+    if ($uuid = $form->uuid->getProperty('value')) {
       $options['query'] = ['uuid' => $uuid];
     }
 
     // Override the options attributes.
-    $options['attributes'] = $e->backlink->getAttributes()->getArrayCopy();
+    $options['attributes'] = $form->backlink->getAttributes()->getArrayCopy();
 
-    $e->backlink->setProperty('options', $options);
+    $form->backlink->setProperty('options', $options);
 
 
     // View mode.
-    $e->view_mode->addClass('pull-right', $e::WRAPPER);
+    $form->view_mode->addClass('pull-right', $form::WRAPPER);
   }
 
 }

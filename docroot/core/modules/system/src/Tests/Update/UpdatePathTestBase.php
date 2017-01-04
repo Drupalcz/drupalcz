@@ -45,7 +45,7 @@ abstract class UpdatePathTestBase extends WebTestBase {
    */
   protected static $modules = [];
 
- /**
+  /**
    * The file path(s) to the dumped database(s) to load into the child site.
    *
    * The file system/tests/fixtures/update/drupal-8.bare.standard.php.gz is
@@ -192,6 +192,8 @@ abstract class UpdatePathTestBase extends WebTestBase {
     $this->container = \Drupal::getContainer();
 
     $this->replaceUser1();
+
+    require_once \Drupal::root() . '/core/includes/update.inc';
   }
 
   /**
@@ -250,22 +252,53 @@ abstract class UpdatePathTestBase extends WebTestBase {
     // Ensure there are no failed updates.
     if ($this->checkFailedUpdates) {
       $this->assertNoRaw('<strong>' . t('Failed:') . '</strong>');
-    }
 
-    // The config schema can be incorrect while the update functions are being
-    // executed. But once the update has been completed, it needs to be valid
-    // again. Assert the schema of all configuration objects now.
-    $names = $this->container->get('config.storage')->listAll();
-    /** @var \Drupal\Core\Config\TypedConfigManagerInterface $typed_config */
-    $typed_config = $this->container->get('config.typed');
-    $typed_config->clearCachedDefinitions();
-    foreach ($names as $name) {
-      $config = $this->config($name);
-      $this->assertConfigSchema($typed_config, $name, $config->get());
-    }
+      // Ensure that there are no pending updates.
+      foreach (['update', 'post_update'] as $update_type) {
+        switch ($update_type) {
+          case 'update':
+            $all_updates = update_get_update_list();
+            break;
+          case 'post_update':
+            $all_updates = \Drupal::service('update.post_update_registry')->getPendingUpdateInformation();
+            break;
+        }
+        foreach ($all_updates as $module => $updates) {
+          if (!empty($updates['pending'])) {
+            foreach (array_keys($updates['pending']) as $update_name) {
+              $this->fail("The $update_name() update function from the $module module did not run.");
+            }
+          }
+        }
+      }
+      // Reset the static cache of drupal_get_installed_schema_version() so that
+      // more complex update path testing works.
+      drupal_static_reset('drupal_get_installed_schema_version');
 
-    // Ensure that the update hooks updated all entity schema.
-    $this->assertFalse(\Drupal::service('entity.definition_update_manager')->needsUpdates(), 'After all updates ran, entity schema is up to date.');
+      // The config schema can be incorrect while the update functions are being
+      // executed. But once the update has been completed, it needs to be valid
+      // again. Assert the schema of all configuration objects now.
+      $names = $this->container->get('config.storage')->listAll();
+      /** @var \Drupal\Core\Config\TypedConfigManagerInterface $typed_config */
+      $typed_config = $this->container->get('config.typed');
+      $typed_config->clearCachedDefinitions();
+      foreach ($names as $name) {
+        $config = $this->config($name);
+        $this->assertConfigSchema($typed_config, $name, $config->get());
+      }
+
+      // Ensure that the update hooks updated all entity schema.
+      $needs_updates = \Drupal::entityDefinitionUpdateManager()->needsUpdates();
+      $this->assertFalse($needs_updates, 'After all updates ran, entity schema is up to date.');
+      if ($needs_updates) {
+        foreach (\Drupal::entityDefinitionUpdateManager()
+                   ->getChangeSummary() as $entity_type_id => $summary) {
+          foreach ($summary as $message) {
+            $this->fail($message);
+          }
+        }
+      }
+    }
   }
 
   /**

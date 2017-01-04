@@ -44,7 +44,7 @@ class MigrationDeleteForm extends EntityConfirmFormBase {
    *   The URL to go to if the user cancels the deletion.
    */
   public function getCancelUrl() {
-    return new Url('entity.migration.list', array('migration_group' => $this->entity->get('migration_group')));
+    return new Url('entity.migration_group.list');
   }
 
   /**
@@ -65,8 +65,7 @@ class MigrationDeleteForm extends EntityConfirmFormBase {
     )));
 
     // Redirect the user to the list controller when complete.
-    $form_state->setRedirectUrl($this->getCancelUrl(),
-          array('migration_group' => $this->entity->get('migration_group')));
+    $form_state->setRedirectUrl($this->getCancelUrl());
   }
 
 }

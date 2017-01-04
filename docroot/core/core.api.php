@@ -1073,8 +1073,9 @@
  *   yourmodule/tests/src/Unit directory, according to the PSR-4 standard.
  * - Your test class needs a phpDoc comment block with a description and
  *   a @group annotation, which gives information about the test.
- * - Methods in your test class whose names start with 'test' are the actual
- *   test cases. Each one should test a logical subset of the functionality.
+ * - Add test cases by adding method names that start with 'test' and have no
+ *   arguments, for example testYourTestCase(). Each one should test a logical
+ *   subset of the functionality.
  * For more details, see:
  * - https://www.drupal.org/phpunit for full documentation on how to write
  *   PHPUnit tests for Drupal.
@@ -1110,9 +1111,9 @@
  *   set up content types and similar procedures.
  * - In some cases, you may need to write a test module to support your test;
  *   put such modules under the yourmodule/tests/modules directory.
- * - Methods in your test class whose names start with 'test', and which have
- *   no arguments, are the actual test cases. Each one should test a logical
- *   subset of the functionality, and each one runs in a new, isolated test
+ * - Add test cases by adding method names that start with 'test' and have no
+ *   arguments, for example testYourTestCase(). Each one should test a logical
+ *   subset of the functionality. Each method runs in a new, isolated test
  *   environment, so it can only rely on the setUp() method, not what has
  *   been set up by other test methods.
  * For more details, see:
@@ -1120,6 +1121,52 @@
  *   functional tests for Drupal.
  * - @link oo_conventions Object-oriented programming topic @endlink for more
  *   on PSR-4, namespaces, and where to place classes.
+ *
+ * @section write_functional_phpunit Write functional PHP tests (phpunit)
+ * Functional tests extend the BrowserTestBase base class, and use PHPUnit as
+ * their underlying framework. They use a simulated browser, in which the test
+ * can click links, visit URLs, post to forms, etc. To write a functional test:
+ * - Extend \Drupal\Tests\BrowserTestBase.
+ * - Place the test in the yourmodule/tests/src/Functional/ directory and use
+ *   the \Drupal\Tests\yourmodule\Functional namespace.
+ * - Add a @group annotation. For example, if the test is for a Drupal 6
+ *   migration process, the group core uses is migrate_drupal_6. Use yourmodule
+ *   as the group name if the test does not belong to another larger group.
+ * - You may also override the default setUp() method, which can be used to set
+ *   up content types and similar procedures. Don't forget to call the parent
+ *   method.
+ * - In some cases, you may need to write a test module to support your test;
+ *   put such modules under the yourmodule/tests/modules directory.
+ * - Add test cases by adding method names that start with 'test' and have no
+ *   arguments, for example testYourTestCase(). Each one should test a logical
+ *   subset of the functionality. Each method runs in a new, isolated test
+ *   environment, so it can only rely on the setUp() method, not what has
+ *   been set up by other test methods.
+ * For more details, see:
+ * - https://www.drupal.org/docs/8/phpunit/phpunit-browser-test-tutorial for
+ *   a full tutorial on how to write functional PHPUnit tests for Drupal.
+ * - https://www.drupal.org/phpunit for the full documentation on how to write
+ *   PHPUnit tests for Drupal.
+ *
+ * @section write_jsfunctional_phpunit Write functional JavaScript tests (phpunit)
+ * To write a functional test that relies on JavaScript:
+ * - Extend \Drupal\FunctionalJavaScriptTests\JavascriptTestBase.
+ * - Place the test into the yourmodule/tests/src/FunctionalJavascript/
+ *   directory and use the \Drupal\Tests\yourmodule\FunctionalJavascript
+ *   namespace.
+ * - Add a @group annotation. Use yourmodule as the group name if the test does
+ *   not belong to another larger group.
+ * - Set up PhantomJS; see http://phantomjs.org/download.html.
+ * - To run tests, see core/tests/README.md.
+ * - When clicking a link/button with Ajax behavior attached, keep in mind that
+ *   the underlying browser might take time to deliver changes to the HTML. Use
+ *   $this->assertSession()->assertWaitOnAjaxRequest() to wait for the Ajax
+ *   request to finish.
+ * For more details, see:
+ * - https://www.drupal.org/docs/8/phpunit/phpunit-javascript-testing-tutorial
+ *   for a full tutorial on how to write PHPUnit JavaScript tests for Drupal.
+ * - https://www.drupal.org/phpunit for the full documentation on how to write
+ *   PHPUnit tests for Drupal.
  *
  * @section running Running tests
  * You can run both Simpletest and PHPUnit tests by enabling the core Testing
@@ -1692,7 +1739,11 @@
  *     // Create a $form API array.
  *     $form['phone_number'] = array(
  *       '#type' => 'tel',
- *       '#title' => $this->t('Your phone number')
+ *       '#title' => $this->t('Your phone number'),
+ *     );
+ *     $form['save'] = array(
+ *       '#type' => 'submit',
+ *       '#value' => $this->t('Save'),
  *     );
  *     return $form;
  *   }
@@ -1894,21 +1945,32 @@
 function hook_cron() {
   // Short-running operation example, not using a queue:
   // Delete all expired records since the last cron run.
-  $expires = \Drupal::state()->get('mymodule.cron_last_run', REQUEST_TIME);
-  db_delete('mymodule_table')
+  $expires = \Drupal::state()->get('mymodule.last_check', 0);
+  \Drupal::database()->delete('mymodule_table')
     ->condition('expires', $expires, '>=')
     ->execute();
-  \Drupal::state()->set('mymodule.cron_last_run', REQUEST_TIME);
+  \Drupal::state()->set('mymodule.last_check', REQUEST_TIME);
 
   // Long-running operation example, leveraging a queue:
-  // Fetch feeds from other sites.
-  $result = db_query('SELECT * FROM {aggregator_feed} WHERE checked + refresh < :time AND refresh <> :never', array(
-    ':time' => REQUEST_TIME,
-    ':never' => AGGREGATOR_CLEAR_NEVER,
-  ));
+  // Queue news feeds for updates once their refresh interval has elapsed.
   $queue = \Drupal::queue('aggregator_feeds');
-  foreach ($result as $feed) {
-    $queue->createItem($feed);
+  $ids = \Drupal::entityManager()->getStorage('aggregator_feed')->getFeedIdsToRefresh();
+  foreach (Feed::loadMultiple($ids) as $feed) {
+    if ($queue->createItem($feed)) {
+      // Add timestamp to avoid queueing item more than once.
+      $feed->setQueuedTime(REQUEST_TIME);
+      $feed->save();
+    }
+  }
+  $ids = \Drupal::entityQuery('aggregator_feed')
+    ->condition('queued', REQUEST_TIME - (3600 * 6), '<')
+    ->execute();
+  if ($ids) {
+    $feeds = Feed::loadMultiple($ids);
+    foreach ($feeds as $feed) {
+      $feed->setQueuedTime(0);
+      $feed->save();
+    }
   }
 }
 
@@ -2036,7 +2098,7 @@ function hook_mail_alter(&$message) {
  *   An array of parameters supplied by the caller of
  *   MailManagerInterface->mail().
  *
- * @see \Drupal\Core\Mail\MailManagerInterface->mail()
+ * @see \Drupal\Core\Mail\MailManagerInterface::mail()
  */
 function hook_mail($key, &$message, $params) {
   $account = $params['account'];
@@ -2478,7 +2540,7 @@ function hook_validation_constraint_alter(array &$definitions) {
  *   this class is subscribed to, and which methods on the class should be
  *   called for each one. Example:
  *   @code
- *   public function getSubscribedEvents() {
+ *   public static function getSubscribedEvents() {
  *     // Subscribe to kernel terminate with priority 100.
  *     $events[KernelEvents::TERMINATE][] = array('onTerminate', 100);
  *     // Subscribe to kernel request with default priority of 0.

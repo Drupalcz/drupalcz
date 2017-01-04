@@ -47,7 +47,7 @@ class MigrateNodeTest extends MigrateDrupal7TestBase {
       'd7_taxonomy_vocabulary',
       'd7_field',
       'd7_field_instance',
-      'd7_node:test_content_type',
+      'd7_node',
       'd7_node:article',
     ]);
   }
@@ -111,7 +111,7 @@ class MigrateNodeTest extends MigrateDrupal7TestBase {
     $revision = \Drupal::entityManager()->getStorage('node')->loadRevision($id);
     $this->assertTrue($revision instanceof NodeInterface);
     $this->assertIdentical($title, $revision->getTitle());
-    $this->assertIdentical($uid, $revision->getRevisionAuthor()->id());
+    $this->assertIdentical($uid, $revision->getRevisionUser()->id());
     $this->assertIdentical($log, $revision->revision_log->value);
     $this->assertIdentical($timestamp, $revision->getRevisionCreationTime());
   }

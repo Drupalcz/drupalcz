@@ -86,7 +86,7 @@ class BlockFieldConfigForm extends FieldFormBase implements ContainerInjectionIn
 
     $form['submit'] = array(
       '#type' => 'submit',
-      '#value' => t('Save'),
+      '#value' => $this->t('Save'),
       '#weight' => 100,
     );
 

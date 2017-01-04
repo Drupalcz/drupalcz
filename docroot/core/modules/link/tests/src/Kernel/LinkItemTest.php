@@ -5,6 +5,7 @@ namespace Drupal\Tests\link\Kernel;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FieldItemInterface;
+use Drupal\Core\Url;
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
@@ -90,7 +91,7 @@ class LinkItemTest extends FieldKernelTestBase {
 
     // Verify that the field value is changed.
     $id = $entity->id();
-    $entity = entity_load('entity_test', $id);
+    $entity = EntityTest::load($id);
     $this->assertTrue($entity->field_test instanceof FieldItemListInterface, 'Field implements interface.');
     $this->assertTrue($entity->field_test[0] instanceof FieldItemInterface, 'Field item implements interface.');
     $this->assertEqual($entity->field_test->uri, $parsed_url['path']);
@@ -105,7 +106,7 @@ class LinkItemTest extends FieldKernelTestBase {
     $entity->name->value = $this->randomMachineName();
     $entity->save();
     $id = $entity->id();
-    $entity = entity_load('entity_test', $id);
+    $entity = EntityTest::load($id);
     $this->assertEqual($entity->field_test->uri, $parsed_url['path']);
     $this->assertEqual($entity->field_test->options['attributes']['class'], $class);
     $this->assertEqual($entity->field_test->options['query'], $parsed_url['query']);
@@ -125,7 +126,7 @@ class LinkItemTest extends FieldKernelTestBase {
 
     // Read changed entity and assert changed values.
     $entity->save();
-    $entity = entity_load('entity_test', $id);
+    $entity = EntityTest::load($id);
     $this->assertEqual($entity->field_test->uri, $new_url);
     $this->assertEqual($entity->field_test->title, $new_title);
     $this->assertEqual($entity->field_test->options['attributes']['class'], $new_class);
@@ -153,6 +154,11 @@ class LinkItemTest extends FieldKernelTestBase {
     $this->assertEqual($entity->field_test->uri, 'internal:/node/add');
     $this->assertNull($entity->field_test->title);
     $this->assertIdentical($entity->field_test->options, []);
+
+    // Check that setting options to NULL does not trigger an error when
+    // calling getUrl();
+    $entity->field_test->options = NULL;
+    $this->assertInstanceOf(Url::class, $entity->field_test[0]->getUrl());
 
     // Check that setting LinkItem value NULL doesn't generate any error or
     // warning.

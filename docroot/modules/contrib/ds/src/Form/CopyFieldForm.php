@@ -43,7 +43,7 @@ class CopyFieldForm extends FieldFormBase {
     $form['ds_field_identity']['ds_plugin'] = array(
       '#type' => 'select',
       '#options' => $fields,
-      '#title' => t('Fields'),
+      '#title' => $this->t('Fields'),
       '#required' => TRUE,
       '#default_value' => isset($field['properties']['ds_plugin']) ? $field['properties']['ds_plugin'] : '',
     );
