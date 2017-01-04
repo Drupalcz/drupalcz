@@ -4,6 +4,8 @@ namespace Drupal\ds\Tests;
 
 use Drupal\views\Tests\ViewTestData;
 use Drupal\views\ViewExecutable;
+use Drupal\Component\Utility\Unicode;
+use Drupal\ds_test\Plugin\Block\DsTestBlock;
 
 /**
  * Tests for managing custom code, and block fields.
@@ -95,6 +97,42 @@ class BlockFieldPluginTest extends FastTestBase {
     // Look at node and verify the block title is overridden.
     $this->drupalGet('node/' . $node->id());
     $this->assertRaw('Block title from view', t('Field label from view block display.'));
+  }
+
+  /**
+   * Ensure block is not rendered if block disallows access.
+   */
+  function testBlockAccess() {
+    $block_field_id = Unicode::strtolower($this->randomMachineName());
+    $entity_type = 'node';
+
+    $edit = [
+      'name' => $this->randomString(),
+      'id' => $block_field_id,
+      'entities[' . $entity_type . ']' => TRUE,
+      'block' => 'ds_test_block',
+    ];
+    $this->dsCreateBlockField($edit);
+
+    $fields['fields[dynamic_block_field:' . $entity_type . '-' . $block_field_id . '][region]'] = 'left';
+    $this->dsSelectLayout();
+    $this->dsConfigureUI($fields);
+
+    $settings['type'] = 'article';
+    $node = $this->drupalCreateNode($settings);
+
+    // Check block is not visible.
+    \Drupal::state()->set('ds_test_block__access', FALSE);
+    $this->drupalGet($node->toUrl());
+    $this->assertNoRaw(DsTestBlock::BODY_TEXT);
+
+    // Reset page cache.
+    $this->resetAll();
+
+    // Check block is visible.
+    \Drupal::state()->set('ds_test_block__access', TRUE);
+    $this->drupalGet($node->toUrl());
+    $this->assertRaw(DsTestBlock::BODY_TEXT);
   }
 
 }

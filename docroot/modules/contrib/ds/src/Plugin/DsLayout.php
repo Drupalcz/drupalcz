@@ -51,8 +51,8 @@ class DsLayout extends LayoutBase {
     $form['region_wrapper'] = array(
       '#group' => 'additional_settings',
       '#type' => 'details',
-      '#title' => t('Custom wrappers'),
-      '#description' => t('Choose a wrapper. All Display Suite layouts support this option.'),
+      '#title' => $this->t('Custom wrappers'),
+      '#description' => $this->t('Choose a wrapper. All Display Suite layouts support this option.'),
       '#tree' => TRUE,
     );
 
@@ -60,7 +60,7 @@ class DsLayout extends LayoutBase {
       $form['region_wrapper'][$region_name] = array(
         '#type' => 'select',
         '#options' => $wrapper_options,
-        '#title' => t('Wrapper for @region', array('@region' => $region_definition['label'])),
+        '#title' => $this->t('Wrapper for @region', array('@region' => $region_definition['label'])),
         '#default_value' => !empty($configuration['wrappers'][$region_name]) ? $configuration['wrappers'][$region_name] : 'div',
       );
     }
@@ -68,14 +68,14 @@ class DsLayout extends LayoutBase {
     $form['region_wrapper']['outer_wrapper'] = array(
       '#type' => 'select',
       '#options' => $wrapper_options,
-      '#title' => t('Outer wrapper'),
+      '#title' => $this->t('Outer wrapper'),
       '#default_value' => $configuration['outer_wrapper'],
       '#weight' => 10,
     );
 
     $form['region_wrapper']['attributes'] = array(
       '#type' => 'textfield',
-      '#title' => t('Layout attributes'),
+      '#title' => $this->t('Layout attributes'),
       '#description' => 'E.g. role|navigation,data-something|some value',
       '#default_value' => $configuration['attributes'],
       '#weight' => 11,
@@ -84,21 +84,21 @@ class DsLayout extends LayoutBase {
     $form['region_wrapper']['link_attribute'] = array(
       '#type' => 'select',
       '#options' => array(
-        '' => t('No link'),
-        'content' => t('Link to content'),
-        'custom' => t('Custom'),
-        'tokens' => t('Tokens'),
+        '' => $this->t('No link'),
+        'content' => $this->t('Link to content'),
+        'custom' => $this->t('Custom'),
+        'tokens' => $this->t('Tokens'),
       ),
-      '#title' => t('Add link'),
-      '#description' => t('This will add an onclick attribute on the layout wrapper.'),
+      '#title' => $this->t('Add link'),
+      '#description' => $this->t('This will add an onclick attribute on the layout wrapper.'),
       '#default_value' => $configuration['link_attribute'],
       '#weight' => 12,
     );
 
     $form['region_wrapper']['link_custom'] = array(
       '#type' => 'textfield',
-      '#title' => t('Custom link'),
-      '#description' => t('You may use tokens for this link if you selected tokens.'),
+      '#title' => $this->t('Custom link'),
+      '#description' => $this->t('You may use tokens for this link if you selected tokens.'),
       '#default_value' => $configuration['link_custom'],
       '#weight' => 13,
       '#states' => array(
@@ -112,7 +112,7 @@ class DsLayout extends LayoutBase {
 
     if (\Drupal::moduleHandler()->moduleExists('token')) {
       $form['region_wrapper']['tokens'] = array(
-        '#title' => t('Tokens'),
+        '#title' => $this->t('Tokens'),
         '#type' => 'container',
         '#weight' => 14,
         '#states' => array(
@@ -133,7 +133,7 @@ class DsLayout extends LayoutBase {
     $form['ds_classes'] = array(
       '#group' => 'additional_settings',
       '#type' => 'details',
-      '#title' => t('Custom classes'),
+      '#title' => $this->t('Custom classes'),
       '#tree' => TRUE,
       '#collapsible' => TRUE,
       '#collapsed' => TRUE,
@@ -147,7 +147,7 @@ class DsLayout extends LayoutBase {
         '#type' => 'select',
         '#multiple' => TRUE,
         '#options' => $classes,
-        '#title' => t('Class for layout'),
+        '#title' => $this->t('Class for layout'),
         '#default_value' => !empty($configuration['classes']['layout_class']) ? $configuration['classes']['layout_class'] : [],
       );
 
@@ -156,7 +156,7 @@ class DsLayout extends LayoutBase {
           '#type' => 'select',
           '#multiple' => TRUE,
           '#options' => $classes,
-          '#title' => t('Class for @region', array('@region' => $region_definition['label'])),
+          '#title' => $this->t('Class for @region', array('@region' => $region_definition['label'])),
           '#default_value' => isset($configuration['classes'][$region_name]) ? $configuration['classes'][$region_name] : [],
         );
       }
@@ -172,7 +172,7 @@ class DsLayout extends LayoutBase {
         $url = Url::fromRoute('ds.classes');
         $destination  = \Drupal::destination()->getAsArray();
         $url->setOption('query', $destination);
-        $form['ds_classes']['info'] = array('#markup' => '<p>' . t('You have not defined any CSS classes which can be used on regions.') . '</p><p>' . \Drupal::l(t('Manage region and field CSS classes'), $url) . '</p>');
+        $form['ds_classes']['info'] = array('#markup' => '<p>' . $this->t('You have not defined any CSS classes which can be used on regions.') . '</p><p>' . \Drupal::l(t('Manage region and field CSS classes'), $url) . '</p>');
       }
       else {
         $form['ds_classes']['#access'] = FALSE;

@@ -2,6 +2,7 @@
 
 namespace Drupal\ds\Plugin\DsField;
 
+use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -18,10 +19,18 @@ abstract class Date extends DsFieldBase {
   protected $entityTypeManager;
 
   /**
+   * The date formatter service.
+   *
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   */
+  protected $dateFormatter;
+
+  /**
    * Constructs a Display Suite field plugin.
    */
-  public function __construct($configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct($configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, DateFormatterInterface $date_formatter) {
     $this->entityTypeManager = $entity_type_manager;
+    $this->dateFormatter = $date_formatter;
 
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
@@ -30,12 +39,12 @@ abstract class Date extends DsFieldBase {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-
     return new static(
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('date.formatter')
     );
   }
 
@@ -48,7 +57,7 @@ abstract class Date extends DsFieldBase {
     $render_key = $this->getRenderKey();
 
     return array(
-      '#markup' => format_date($this->entity()->{$render_key}->value, $date_format),
+      '#markup' => $this->dateFormatter->format($this->entity()->{$render_key}->value, $date_format),
     );
   }
 
@@ -61,11 +70,11 @@ abstract class Date extends DsFieldBase {
 
     $date_formatters = array();
     foreach ($date_types as $machine_name => $value) {
-      /* @var $value DateFormatInterface */
+      /* @var $value \Drupal\Core\Datetime\DateFormatterInterface */
       if ($value->isLocked()) {
         continue;
       }
-      $date_formatters['ds_post_date_' . $machine_name] = t($value->id());
+      $date_formatters['ds_post_date_' . $machine_name] = $this->t($value->id());
     }
 
     return $date_formatters;

@@ -251,6 +251,7 @@ function ds_entity_view_alter(&$build, EntityInterface $entity, EntityDisplayInt
           '#items' => array((object) array('_attributes' => array())),
           '#is_multiple' => $field_instance->isMultiple(),
           '#access' => ($field_permissions && function_exists('ds_extras_ds_field_access')) ? ds_extras_ds_field_access($key, $entity_type) : TRUE,
+          '#formatter' => 'ds_field'
         );
 
         if ($field_instance->isMultiple()) {
@@ -279,6 +280,7 @@ function template_preprocess_ds_entity_view(&$variables) {
   if (!empty($build['#cache']['keys'])) {
     $build['#cache']['keys'][0] = 'ds_entity_view';
   }
+  unset($build['#theme']);
   unset($build['#pre_render']);
   unset($build['#sorted']);
   unset($build['#children']);
@@ -288,8 +290,9 @@ function template_preprocess_ds_entity_view(&$variables) {
 
   // Create region variables based on the layout settings.
   $use_field_names = \Drupal::config('ds.settings')->get('use_field_names');
+  $regions = [];
   foreach (array_keys($configuration['regions']) as $region_name) {
-    $build[$region_name] = array();
+    $regions[$region_name] = array();
 
     // Create the region content.
     if (!empty($configuration['regions'][$region_name])) {
@@ -303,17 +306,17 @@ function template_preprocess_ds_entity_view(&$variables) {
         }
 
         if ($use_field_names) {
-          $build[$region_name][$field] = $build[$field];
+          $regions[$region_name][$field] = $build[$field];
         }
         else {
-          $build[$region_name][$key] = $build[$field];
+          $regions[$region_name][$key] = $build[$field];
         }
       }
     }
   }
 
   $layout = Layout::layoutPluginManager()->createInstance($configuration['layout']['id'], $configuration['layout']['settings']);
-  $build = $layout->build($build);
+  $build = array_merge($build, $layout->build($regions));
 
   // Disable CSS files when needed.
   if ($build['#ds_configuration']['layout']['disable_css']) {
@@ -340,6 +343,8 @@ function ds_preprocess_ds_layout(&$variables) {
   $entity_type = FALSE;
   if (isset($variables['content']['#entity_type'])) {
     $entity_type = $variables['content']['#entity_type'];
+  }
+  if (isset($variables['content']['#bundle'])) {
     $bundle = $variables['content']['#bundle'];
   }
 
