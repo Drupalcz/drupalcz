@@ -1,0 +1,20 @@
+<?php
+/**
+ * @file
+ * Module file for sar_site.module.
+ */
+
+/**
+ * Define theme constant
+ */
+define('SAR_SITE_THEME', 'agov_sar');
+
+/**
+ * Implements hook_form_alter().
+ */
+function sar_site_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'search_api_page_search_form_default_search') {
+    // Change the text on the placeholder.
+    $form['keys_1']['#attributes']['placeholder'] = t("I'm looking for");
+  }
+}

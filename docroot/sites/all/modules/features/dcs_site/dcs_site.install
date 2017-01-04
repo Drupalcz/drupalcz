@@ -1,0 +1,30 @@
+<?php
+/**
+ * @file
+ * Install file for sar_site.install.
+ */
+
+
+/**
+ * Implements hook_enable().
+ */
+function dcs_site_enable() {
+  dcs_site_update_7100();
+
+}
+
+/**
+ * Enable addressfield module.
+ */
+function dcs_site_update_7100() {
+  $modules = array(
+    'features',
+    'ctools',
+    'strongarm',
+    'dcs_base',
+    'dcs_blog',
+    'dcs_forum',
+  );
+
+  module_enable($modules);
+}
