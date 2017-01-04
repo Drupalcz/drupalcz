@@ -2,12 +2,34 @@ services:
   libraries.manager:
     class: Drupal\libraries\ExternalLibrary\LibraryManager
     arguments:
-      - '@libraries.definitions.discovery'
+      - '@libraries.definition.discovery'
       - '@plugin.manager.libraries.library_type'
-      - '@libraries.extension_handler'
-  libraries.definitions.discovery:
-    class: Drupal\libraries\ExternalLibrary\Definition\StreamDefinitionDiscovery
-    arguments: ['@serialization.yaml']
+
+  # By default Libraries API downloads library definitions from a number of
+  # remote library registries, the canonical one being
+  # https://www.drupal.org/project/libraries_registry, and stores them locally
+  # in the public://library-definitions directory. The URLs of the remote
+  # library registries and the local base path can be configured. The remote
+  # fetching can also be disabled altogether.
+  libraries.definition.discovery:
+    class: Drupal\libraries\ExternalLibrary\Definition\DefinitionDiscoveryInterface
+    factory: 'libraries.definition.discovery.factory:get'
+  libraries.definition.discovery.factory:
+    class: Drupal\libraries\ExternalLibrary\Definition\DefinitionDiscoveryFactory
+    arguments:
+      - '@config.factory'
+      - '@serialization.json'
+      - '@http_client'
+      - '@serialization.json'
+  # If you instead want to check your library definitions into version control
+  # and use YAML for them instead of JSON, you can place the following service
+  # definition in your site's services.yml file:
+  # libraries.definition.discovery:
+  #   class: Drupal\libraries\ExternalLibrary\Definition\FileDefinitionDiscovery
+  #   arguments:
+  #     - '@serialization.yaml'
+  #     # Replace this with the location of the library definitions in your setup.
+  #     - '../library-definitions'
 
   plugin.manager.libraries.library_type:
     class: Drupal\libraries\ExternalLibrary\Type\LibraryTypeFactory
@@ -19,9 +41,12 @@ services:
     class: Drupal\libraries\ExternalLibrary\Version\VersionDetectorManager
     parent: default_plugin_manager
 
-  libraries.extension_handler:
-    class: Drupal\libraries\Extension\ExtensionHandler
-    arguments: ['%app.root', '@module_handler', '@theme_handler']
+  libraries.config_subscriber:
+    class: Drupal\libraries\Config\LibrariesConfigSubscriber
+    arguments: ['@service_container']
+    tags:
+      - { name: event_subscriber }
+
   libraries.php_file_loader:
     class: Drupal\libraries\ExternalLibrary\PhpFile\PhpRequireLoader
 

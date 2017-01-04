@@ -29,7 +29,7 @@
       $(context).find('[data-vertical-tabs-panes]').once('vertical-tabs').each(function () {
         var $this = $(this).addClass('tab-content vertical-tabs-panes');
 
-        var focusID = $(':hidden.vertical-tabs-active-tab', this).val();
+        var focusID = $(':hidden.vertical-tabs__active-tab', this).val();
         if (typeof focusID === 'undefined' || !focusID.length) {
           focusID = false;
         }

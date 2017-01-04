@@ -47,6 +47,11 @@ class PreprocessBase extends PluginBase implements PreprocessInterface {
     $this->info = $info;
     $this->variables = Variables::create($variables);
     if ($this->variables->element) {
+      // Check for errors and set the "has_error" property flag.
+      if (!$this->variables->element->hasProperty('has_error')) {
+        $errors = $this->variables->element->getProperty('errors');
+        $this->variables->element->setProperty('has_error', isset($errors) || ($this->variables->element->getProperty('required') && $this->theme->getSetting('forms_required_has_error')));
+      }
       $this->preprocessElement($this->variables->element, $this->variables);
     }
     $this->preprocessVariables($this->variables);

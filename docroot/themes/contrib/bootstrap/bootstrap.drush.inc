@@ -68,7 +68,7 @@ function _drush_bootstrap_generate_docs_settings(Theme $bootstrap) {
 
   // Determine the groups.
   $groups = [];
-  foreach ($bootstrap->getSettingPlugins() as $setting) {
+  foreach ($bootstrap->getSettingPlugin() as $setting) {
     // Only get the first two groups (we don't need 3rd, or more, levels).
     $_groups = array_slice($setting->getGroups(), 0, 2, FALSE);
     if (!$_groups) {

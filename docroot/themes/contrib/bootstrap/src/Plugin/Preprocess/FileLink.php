@@ -104,6 +104,8 @@ class FileLink extends PreprocessBase {
       ->getArray();
 
     $options['attributes']['title'] = t('Open @mime in new window', ['@mime' => $mime['label']]);
+    $options['attributes']['target'] = '_blank';
+
     if ($this->theme->getSetting('tooltip_enabled')) {
       $options['attributes']['data-toggle'] = 'tooltip';
       $options['attributes']['data-placement'] = 'bottom';

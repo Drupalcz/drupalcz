@@ -54,7 +54,7 @@ class FieldDeleteForm extends ConfirmFormBase implements ContainerInjectionInter
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return t('Are you sure you want to delete @field ?', array('@field' => $this->field['label']));
+    return $this->t('Are you sure you want to delete @field ?', array('@field' => $this->field['label']));
   }
 
   /**

@@ -104,7 +104,7 @@ class SettingsForm extends ConfigFormBase {
 
     $form['fs1'] = array(
       '#type' => 'details',
-      '#title' => t('Field Templates'),
+      '#title' => $this->t('Field Templates'),
       '#group' => 'additional_settings',
       '#weight' => 1,
       '#tree' => TRUE,
@@ -113,14 +113,14 @@ class SettingsForm extends ConfigFormBase {
 
     $form['fs1']['field_template'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Enable Field Templates'),
-      '#description' => t('Customize the labels and the HTML output of your fields.'),
+      '#title' => $this->t('Enable Field Templates'),
+      '#description' => $this->t('Customize the labels and the HTML output of your fields.'),
       '#default_value' => $config->get('field_template'),
     );
 
     $theme_functions = Ds::getFieldLayoutOptions();
     $url = new Url('ds.classes');
-    $description = t('<br/>Default will output the field as defined in Drupal Core.<br/>' .
+    $description = $this->t('<br/>Default will output the field as defined in Drupal Core.<br/>' .
       'Reset will strip all HTML.<br/>' .
       'Minimal adds a simple wrapper around the field.<br/>' .
       'There is also an Expert Field Template that gives full control over the HTML, but can only be set per field.<br/><br/>' .
@@ -132,7 +132,7 @@ class SettingsForm extends ConfigFormBase {
 
     $form['fs1']['ft-default'] = array(
       '#type' => 'select',
-      '#title' => t('Default Field Template'),
+      '#title' =>$this->t('Default Field Template'),
       '#options' => $theme_functions,
       '#default_value' => $config->get('ft-default'),
       '#description' => $description,
@@ -145,9 +145,9 @@ class SettingsForm extends ConfigFormBase {
 
     $form['fs1']['ft-show-colon'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Show colon'),
+      '#title' => $this->t('Show colon'),
       '#default_value' => $config->get('ft-show-colon'),
-      '#description' => t('Show the colon on the reset field template.'),
+      '#description' => $this->t('Show the colon on the reset field template.'),
       '#states' => array(
         'visible' => array(
           'select[name="fs1[ft-default]"]' => array('value' => 'reset'),
@@ -158,16 +158,16 @@ class SettingsForm extends ConfigFormBase {
 
     $form['fs3'] = array(
       '#type' => 'details',
-      '#title' => t('Other'),
+      '#title' => $this->t('Other'),
       '#group' => 'additional_settings',
       '#weight' => 3,
       '#tree' => TRUE,
     );
     $form['fs3']['use_field_names'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Use field names in templates'),
+      '#title' => $this->t('Use field names in templates'),
       '#default_value' => $config->get('use_field_names'),
-      '#description' => t('Use field names in twig templates instead of the key'),
+      '#description' => $this->t('Use field names in twig templates instead of the key'),
     );
 
     return parent::buildForm($form, $form_state);

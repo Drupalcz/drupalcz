@@ -10,6 +10,7 @@ use Drupal\bootstrap\Annotation\BootstrapPreprocess;
 use Drupal\bootstrap\Utility\Element;
 use Drupal\bootstrap\Utility\Unicode;
 use Drupal\bootstrap\Utility\Variables;
+use Drupal\Component\Utility\NestedArray;
 
 /**
  * Pre-processes variables for the "bootstrap_dropdown" theme hook.
@@ -54,6 +55,13 @@ class BootstrapDropdown extends PreprocessBase implements PreprocessInterface {
       // Normal dropbutton links are not actually render arrays, convert them.
       foreach ($variables->links as &$link) {
         if (isset($link['title']) && $link['url']) {
+          // Preserve query parameters (if any)
+          if (!empty($link['query'])) {
+            $url_query = $link['url']->getOption('query') ?: [];
+            $link['url']->setOption('query', NestedArray::mergeDeep($url_query , $link['query']));
+          }
+
+          // Build render array.
           $link = [
             '#type' => 'link',
             '#title' => $link['title'],
@@ -85,7 +93,10 @@ class BootstrapDropdown extends PreprocessBase implements PreprocessInterface {
       }
 
       $variables->items = array_values($variables->links);
-      $variables->split = TRUE;
+
+      // Determine if toggle should be a split button.
+      $variables->split = !!$variables->links;
+
       unset($variables->links);
     }
   }

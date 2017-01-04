@@ -61,6 +61,7 @@
   position: absolute;
   width: 200px;
   box-shadow: 2px 2px 3px hsla(0, 0%, 0%, 0.4);
+  z-index: 1;
 }
 
 .toolbar-tray-horizontal ul li.menu-item--expanded .menu-item > ul {

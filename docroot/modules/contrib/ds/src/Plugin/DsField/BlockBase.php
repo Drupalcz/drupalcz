@@ -79,17 +79,20 @@ abstract class BlockBase extends DsFieldBase implements ContainerFactoryPluginIn
     $block_config = $this->blockConfig();
     $block->setConfiguration($block_config);
 
-    // Inject context values.
-    if ($block instanceof ContextAwarePluginInterface) {
-      $contexts = $this->contextRepository->getRuntimeContexts(array_values($block->getContextMapping()));
-      $this->contextHandler->applyContextMapping($block, $contexts);
+    if ($block->access(\Drupal::currentUser())) {
+      // Inject context values.
+      if ($block instanceof ContextAwarePluginInterface) {
+        $contexts = $this->contextRepository->getRuntimeContexts(array_values($block->getContextMapping()));
+        $this->contextHandler->applyContextMapping($block, $contexts);
+      }
+
+      $block_elements = $block->build();
+
+      // Return an empty array if there is nothing to render.
+      return Element::isEmpty($block_elements) ? [] : $block_elements;
     }
 
-    // Get render array.
-    $block_elements = $block->build();
-
-    // Return an empty array if there is nothing to render.
-    return Element::isEmpty($block_elements) ? [] : $block_elements;
+    return [];
   }
 
   /**

@@ -1,9 +1,8 @@
 favicon:
   mimetype: image/vnd.microsoft.icon
   path: ''
-  url: 'http://drupalcz.com.loc/themes/contrib/bootstrap/favicon.ico'
+  url: ''
   use_default: true
-schema: 8000
 features:
   comment_user_picture: true
   comment_user_verification: true
@@ -13,5 +12,5 @@ logo:
   path: ''
   url: ''
   use_default: true
-schemas:
-  bootstrap: 8000
+schema: 8000
+langcode: cs

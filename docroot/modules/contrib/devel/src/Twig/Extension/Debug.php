@@ -62,6 +62,14 @@ class Debug extends \Twig_Extension {
       ]);
     }
 
+    foreach (['devel_breakpoint'] as $function) {
+      $functions[] = new \Twig_SimpleFunction($function, [$this, 'breakpoint'], [
+        'needs_environment' => TRUE,
+        'needs_context' => TRUE,
+        'is_variadic' => TRUE,
+      ]);
+    }
+
     return $functions;
   }
 
@@ -135,6 +143,40 @@ class Debug extends \Twig_Extension {
       }
     }
 
+  }
+
+  /**
+   * Provides XDebug integration for Twig templates.
+   *
+   * To use this features simply put the following statement in the template
+   * of interest:
+   *
+   * @code
+   * {{ devel_breakpoint() }}
+   * @endcode
+   *
+   * When the template is evaluated is made a call to a dedicated method in
+   * devel twig debug extension in which is used xdebug_break(), that emits a
+   * breakpoint to the debug client (the debugger break on the specific line as
+   * if a normal file/line breakpoint was set on this line).
+   * In this way you'll be able to inspect any variables available in the
+   * template (environment, context, specific variables etc..) in your IDE.
+   *
+   * @param \Twig_Environment $env
+   *   The twig environment instance.
+   * @param array $context
+   *   An array of parameters passed to the template.
+   * @param array $args
+   *   An array of parameters passed the function.
+   */
+  public function breakpoint(\Twig_Environment $env, array $context, array $args = []) {
+    if (!$env->isDebug()) {
+      return;
+    }
+
+    if (function_exists('xdebug_break')) {
+      xdebug_break();
+    }
   }
 
   /**

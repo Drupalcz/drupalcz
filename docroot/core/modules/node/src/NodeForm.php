@@ -67,30 +67,27 @@ class NodeForm extends ContentEntityForm {
   public function form(array $form, FormStateInterface $form_state) {
     // Try to restore from temp store, this must be done before calling
     // parent::form().
-    $uuid = $this->entity->uuid();
     $store = $this->tempStoreFactory->get('node_preview');
 
-    // If the user is creating a new node, the UUID is passed in the request.
-    if ($request_uuid = \Drupal::request()->query->get('uuid')) {
-      $uuid = $request_uuid;
-    }
-
-    if ($preview = $store->get($uuid)) {
+    // Attempt to load from preview when the uuid is present unless we are
+    // rebuilding the form.
+    $request_uuid = \Drupal::request()->query->get('uuid');
+    if (!$form_state->isRebuilding() && $request_uuid && $preview = $store->get($request_uuid)) {
       /** @var $preview \Drupal\Core\Form\FormStateInterface */
 
-      foreach ($preview->getValues() as $name => $value) {
-        $form_state->setValue($name, $value);
-      }
+      $form_state->setStorage($preview->getStorage());
+      $form_state->setUserInput($preview->getUserInput());
 
       // Rebuild the form.
       $form_state->setRebuild();
+
+      // The combination of having user input and rebuilding the form means
+      // that it will attempt to cache the form state which will fail if it is
+      // a GET request.
+      $form_state->setRequestMethod('POST');
+
       $this->entity = $preview->getFormObject()->getEntity();
       $this->entity->in_preview = NULL;
-
-      // Remove the stale temp store entry for existing nodes.
-      if (!$this->entity->isNew()) {
-        $store->delete($uuid);
-      }
 
       $this->hasBeenPreviewed = TRUE;
     }
@@ -322,7 +319,7 @@ class NodeForm extends ContentEntityForm {
       $node->setNewRevision();
       // If a new revision is created, save the current user as revision author.
       $node->setRevisionCreationTime(REQUEST_TIME);
-      $node->setRevisionAuthorId(\Drupal::currentUser()->id());
+      $node->setRevisionUserId(\Drupal::currentUser()->id());
     }
     else {
       $node->setNewRevision(FALSE);
@@ -356,7 +353,7 @@ class NodeForm extends ContentEntityForm {
     $node->save();
     $node_link = $node->link($this->t('View'));
     $context = array('@type' => $node->getType(), '%title' => $node->label(), 'link' => $node_link);
-    $t_args = array('@type' => node_get_type_label($node), '%title' => $node->label());
+    $t_args = array('@type' => node_get_type_label($node), '%title' => $node->link($node->label()));
 
     if ($insert) {
       $this->logger('content')->notice('@type: added %title.', $context);

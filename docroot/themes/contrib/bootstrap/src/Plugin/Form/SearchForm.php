@@ -22,13 +22,12 @@ class SearchForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function alterForm(array &$form, FormStateInterface $form_state, $form_id = NULL) {
-    $e = Element::create($form, $form_state);
-    $e->advanced->setProperty('collapsible', TRUE);
-    $e->advanced->setProperty('collapsed', TRUE);
-    $e->basic->removeClass('container-inline');
-    $e->basic->submit->setProperty('icon_only', TRUE);
-    $e->basic->keys->setProperty('input_group_button', TRUE);
+  public function alterFormElement(Element $form, FormStateInterface $form_state, $form_id = NULL) {
+    $form->advanced->setProperty('collapsible', TRUE);
+    $form->advanced->setProperty('collapsed', TRUE);
+    $form->basic->removeClass('container-inline');
+    $form->basic->submit->setProperty('icon_only', TRUE);
+    $form->basic->keys->setProperty('input_group_button', TRUE);
   }
 
 }

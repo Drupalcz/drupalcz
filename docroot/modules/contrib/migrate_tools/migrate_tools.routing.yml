@@ -44,17 +44,47 @@ entity.migration.list:
     _permission: 'administer migrations'
 
 # This is the router item for adding our migration entity.
-entity.migration.add_form:
-  path: '/admin/structure/migrate/manage/{migration_group}/migrations/add'
+#entity.migration.add_form:
+#  path: '/admin/structure/migrate/manage/{migration_group}/migrations/add'
+#  defaults:
+#    _title: 'Add migration'
+#    _entity_form: migration.add
+#  requirements:
+#    _entity_create_access: migration
+
+# This is the router item for viewing our migration entity.
+entity.migration.overview:
+  path: '/admin/structure/migrate/manage/{migration_group}/migrations/{migration}'
   defaults:
-    _title: 'Add migration'
-    _entity_form: migration.add
+    _controller: '\Drupal\migrate_tools\Controller\MigrationController::overview'
+    _title: 'Migration overview'
   requirements:
-    _entity_create_access: migration
+    _permission: 'administer migrations'
+entity.migration.source:
+  path: '/admin/structure/migrate/manage/{migration_group}/migrations/{migration}/source'
+  defaults:
+    _controller: '\Drupal\migrate_tools\Controller\MigrationController::source'
+    _title: 'Source'
+  requirements:
+    _permission: 'administer migrations'
+entity.migration.process:
+  path: '/admin/structure/migrate/manage/{migration_group}/migrations/{migration}/process'
+  defaults:
+    _controller: '\Drupal\migrate_tools\Controller\MigrationController::process'
+    _title: 'Process'
+  requirements:
+    _permission: 'administer migrations'
+entity.migration.destination:
+  path: '/admin/structure/migrate/manage/{migration_group}/migrations/{migration}/destination'
+  defaults:
+    _controller: '\Drupal\migrate_tools\Controller\MigrationController::destination'
+    _title: 'Destination'
+  requirements:
+    _permission: 'administer migrations'
 
 # This is the router item for editing our migration entity.
 entity.migration.edit_form:
-  path: '/admin/structure/migrate/manage/{migration_group}/migrations/{migration}'
+  path: '/admin/structure/migrate/manage/{migration_group}/migrations/{migration}/edit'
   defaults:
     _title: 'Edit migration'
     _entity_form: migration.edit

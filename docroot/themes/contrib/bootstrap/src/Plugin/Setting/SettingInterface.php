@@ -7,6 +7,7 @@
 namespace Drupal\bootstrap\Plugin\Setting;
 
 use Drupal\bootstrap\Plugin\Form\FormInterface;
+use Drupal\bootstrap\Utility\Element;
 use Drupal\Component\Plugin\PluginInspectionInterface;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -58,8 +59,23 @@ interface SettingInterface extends PluginInspectionInterface, FormInterface {
    *
    * @return \Drupal\bootstrap\Utility\Element
    *   The group element object.
+   *
+   * @deprecated Will be removed in a future release. Use \Drupal\bootstrap\Plugin\Setting\SettingInterface::getGroupElement
    */
   public function getGroup(array &$form, FormStateInterface $form_state);
+
+  /**
+   * Retrieves the group form element the setting belongs to.
+   *
+   * @param \Drupal\bootstrap\Utility\Element $form
+   *   The Element object that comprises the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   *
+   * @return \Drupal\bootstrap\Utility\Element
+   *   The group element object.
+   */
+  public function getGroupElement(Element $form, FormStateInterface $form_state);
 
   /**
    * Retrieves the setting's groups.
@@ -79,8 +95,31 @@ interface SettingInterface extends PluginInspectionInterface, FormInterface {
    *
    * @return \Drupal\bootstrap\Utility\Element
    *   The setting element object.
+   *
+   * @deprecated Will be removed in a future release. Use \Drupal\bootstrap\Plugin\Setting\SettingInterface::getSettingElement
    */
   public function getElement(array &$form, FormStateInterface $form_state);
+
+  /**
+   * Retrieves the settings options, if set.
+   *
+   * @return array
+   *   An array of options.
+   */
+  public function getOptions();
+
+  /**
+   * Retrieves the form element for the setting.
+   *
+   * @param \Drupal\bootstrap\Utility\Element $form
+   *   The Element object that comprises the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   *
+   * @return \Drupal\bootstrap\Utility\Element
+   *   The setting element object.
+   */
+  public function getSettingElement(Element $form, FormStateInterface $form_state);
 
   /**
    * Retrieves the setting's human-readable title.

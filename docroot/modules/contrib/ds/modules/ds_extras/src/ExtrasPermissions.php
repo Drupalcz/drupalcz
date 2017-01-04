@@ -53,7 +53,7 @@ class ExtrasPermissions implements ContainerInjectionInterface {
         $fields = Ds::getFields($entity_type);
         foreach ($fields as $key => $finfo) {
           $permissions['view ' . $key . ' on ' . $entity_type] = array(
-            'title' => t('View @field on @entity_type', array('@field' => $finfo['title'], '@entity_type' => $info->getLabel())),
+            'title' => $this->t('View @field on @entity_type', array('@field' => $finfo['title'], '@entity_type' => $info->getLabel())),
           );
         }
       }

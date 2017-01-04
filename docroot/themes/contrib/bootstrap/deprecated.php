@@ -415,15 +415,15 @@ function _bootstrap_glyphicons_supported() {
  *
  *   // After.
  *   use Drupal\bootstrap\Bootstrap;
- *   $glyphicon = Bootstrap::glyphicon($name, ['#markup' => $default]);
- *   $icon = \Drupal::service('renderer')->render($glyphicon);
+ *   use Drupal\bootstrap\Utility\Element;
+ *   $icon = (string) Element::createStandalone(Bootstrap::glyphicon($name, ['#markup' => $default]))->renderPlain();
  * @endcode
  *
  * @see \Drupal\bootstrap\Bootstrap::glyphicon()
  */
 function _bootstrap_icon($name, $default = NULL) {
   Bootstrap::deprecated();
-  return \Drupal::service('renderer')->render(Bootstrap::glyphicon($name, ['#markup' => $default]));
+  return Element::createStandalone(Bootstrap::glyphicon($name, ['#markup' => $default]))->renderPlain();
 }
 
 /**

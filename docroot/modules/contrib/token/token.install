@@ -18,7 +18,6 @@ function token_requirements($phase = 'runtime') {
     foreach ($token_problems as $problem_key => $problem) {
       if (!empty($problem['problems'])) {
         $problems = array_unique($problem['problems']);
-        $problems = array_map('\Drupal\Component\Utility\Html::escape', $problems);
 
         $build = [
           '#theme' => 'item_list',
@@ -284,7 +283,7 @@ function token_get_token_problems() {
       $token_problems['duplicate']['problems'][] = "\$info['types']['$type']";
     }
     elseif (empty($token_info['tokens'][$real_type])) {
-      $token_problems['type-no-tokens']['problems'][] = "\$info['tokens']['$real_type']";
+      $token_problems['type-no-tokens']['problems'][] = "\$info['types']['$real_type']";
     }
   }
 

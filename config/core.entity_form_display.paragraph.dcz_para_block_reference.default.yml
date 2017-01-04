@@ -34,5 +34,4 @@ content:
     type: string_textfield
 hidden:
   created: true
-  status: true
   uid: true

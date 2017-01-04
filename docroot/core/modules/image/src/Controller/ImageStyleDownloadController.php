@@ -113,14 +113,9 @@ class ImageStyleDownloadController extends FileDownloadController {
     // If using the private scheme, let other modules provide headers and
     // control access to the file.
     if ($scheme == 'private') {
-      if (file_exists($derivative_uri)) {
-        return parent::download($request, $scheme);
-      }
-      else {
-        $headers = $this->moduleHandler()->invokeAll('file_download', array($image_uri));
-        if (in_array(-1, $headers) || empty($headers)) {
-          throw new AccessDeniedHttpException();
-        }
+      $headers = $this->moduleHandler()->invokeAll('file_download', array($image_uri));
+      if (in_array(-1, $headers) || empty($headers)) {
+        throw new AccessDeniedHttpException();
       }
     }
 
@@ -144,8 +139,8 @@ class ImageStyleDownloadController extends FileDownloadController {
 
     // Don't start generating the image if the derivative already exists or if
     // generation is in progress in another thread.
-    $lock_name = 'image_style_deliver:' . $image_style->id() . ':' . Crypt::hashBase64($image_uri);
     if (!file_exists($derivative_uri)) {
+      $lock_name = 'image_style_deliver:' . $image_style->id() . ':' . Crypt::hashBase64($image_uri);
       $lock_acquired = $this->lock->acquire($lock_name);
       if (!$lock_acquired) {
         // Tell client to retry again in 3 seconds. Currently no browsers are

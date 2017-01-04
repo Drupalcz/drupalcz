@@ -11,7 +11,7 @@ preprocessor.
 - [Overrides](#overrides)
 
 ## Prerequisites
-- Read the @link getting_started Getting Started @endlink documentation topic.
+- Read the @link getting_started Getting Started @endlink and @link sub_theming Sub-theming @endlink documentation topics.
 - You must understand the basic concept of using the [Sass] CSS pre-processor.
 - You must use a **[local Sass compiler](https://www.google.com/search?q=sass+compiler)**.
 - You must use the [Bootstrap Framework Source Files] ending in the `.scss`
@@ -45,7 +45,7 @@ The `./THEMENAME/scss/style.scss` file is the glue that combines:
 `_default-variables.scss`, [Bootstrap Framework Source Files] and the 
 `overrides.scss` file together. Generally, you will not need to modify this
 file unless you need to add or remove files to be imported. This is the file
-that you should compile to `./THEMENAME/css/styles.css` (note the same file
+that you should compile to `./THEMENAME/css/style.css` (note the same file
 name, using a different extension of course).
 
 #### See also:

@@ -4,6 +4,7 @@ namespace Drupal\Tests\token\Kernel;
 
 use Drupal\Component\Utility\Unicode;
 use Drupal\taxonomy\Entity\Vocabulary;
+use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Core\Url;
 
 /**
@@ -19,7 +20,7 @@ class TaxonomyTest extends KernelTestBase {
    *
    * @var array
    */
-  public static $modules = array('taxonomy', 'text');
+  public static $modules = array('taxonomy', 'text', 'language');
 
   /**
    * {@inheritdoc}
@@ -115,5 +116,36 @@ class TaxonomyTest extends KernelTestBase {
     $term = entity_create('taxonomy_term', $term);
     $term->save();
     return $term;
+  }
+
+  /**
+   * Test the multilingual terms.
+   */
+  function testMultilingualTerms() {
+    // Add a second language.
+    $language = ConfigurableLanguage::createFromLangcode('de');
+    $language->save();
+
+    // Create an english parent term and add a german translation for it.
+    $parent_term = $this->addTerm($this->vocab, [
+      'name' => 'english-parent-term',
+      'langcode' => 'en',
+    ]);
+    $parent_term->addTranslation('de', [
+      'name' => 'german-parent-term',
+    ])->save();
+
+    // Create a term related to the parent term.
+    $child_term = $this->addTerm($this->vocab, [
+      'name' => 'english-child-term',
+      'langcode' => 'en',
+      'parent' => $parent_term->id(),
+    ]);
+    $child_term->addTranslation('de', [
+      'name' => 'german-child-term',
+    ])->save();
+
+    // Expect the parent term to be in the specified language.
+    $this->assertTokens('term', array('term' => $child_term), ['parents' => 'german-parent-term'], ['langcode' => 'de']);
   }
 }

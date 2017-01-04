@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Tests for devel module.
- */
-
 namespace Drupal\devel\Tests;
 
 use Drupal\Component\Render\FormattableMarkup;
@@ -48,7 +43,7 @@ class DevelDumperTest extends WebTestBase {
 
     // Ensures that all dumpers declared by devel are present on the config page
     // and that only the available dumpers are selectable.
-    $dumpers = ['default', 'drupal_variable', 'firephp', 'chromephp'];
+    $dumpers = ['default', 'drupal_variable', 'firephp', 'chromephp', 'var_dumper'];
     $available_dumpers = ['default', 'drupal_variable'];
 
     foreach ($dumpers as $dumper) {

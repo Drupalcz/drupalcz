@@ -70,14 +70,35 @@ function admin_toolbar_tools_menu_links_discovered_alter(&$links) {
     $content_entity_bundle = $entities['content_entity_bundle'];
     $content_entity = $entities['content_entity'];
     foreach ($entityTypeManager->getStorage($content_entity_bundle)->loadMultiple() as $machine_name => $bundle) {
+      // Normally, the edit form for the bundle would be its root link.
+      $content_entity_bundle_root = NULL;
+      if (in_array('entity.' . $content_entity_bundle . '.overview_form', $routes)) {
+        // Some bundles have an overview/list form that make a better root link.
+        $content_entity_bundle_root = 'entity.' . $content_entity_bundle . '.overview_form.' . $machine_name;
+        $links[$content_entity_bundle_root] = array(
+          'title' => $bundle->label(),
+          'route_name' => 'entity.' . $content_entity_bundle . '.overview_form',
+          'menu_name' => 'admin',
+          'parent' => 'entity.' . $content_entity_bundle . '.collection',
+          'route_parameters' => array($content_entity_bundle => $machine_name),
+        );
+      }
       if (in_array('entity.' . $content_entity_bundle . '.edit_form', $routes)) {
-        $links['entity.' . $content_entity_bundle . '.edit_form.' . $machine_name] = array(
+        $key = 'entity.' . $content_entity_bundle . '.edit_form.' . $machine_name;
+        $links[$key] = array(
           'title' => $bundle->label(),
           'route_name' => 'entity.' . $content_entity_bundle . '.edit_form',
           'menu_name' => 'admin',
           'parent' => 'entity.' . $content_entity_bundle . '.collection',
           'route_parameters' => array($content_entity_bundle => $machine_name),
         );
+        if (empty($content_entity_bundle_root)) {
+          $content_entity_bundle_root = $key;
+        }
+        else {
+          $links[$key]['parent'] = $content_entity_bundle_root;
+          $links[$key]['title'] = t('Edit');
+        }
       }
       if ($moduleHandler->moduleExists('field_ui')) {
         if (in_array('entity.' . $content_entity . '.field_ui_fields', $routes)) {
@@ -85,7 +106,7 @@ function admin_toolbar_tools_menu_links_discovered_alter(&$links) {
             'title' => t('Manage fields'),
             'route_name' => 'entity.' . $content_entity . '.field_ui_fields',
             'menu_name' => 'admin',
-            'parent' => 'entity.' . $content_entity_bundle . '.edit_form.' . $machine_name,
+            'parent' => $content_entity_bundle_root,
             'route_parameters' => array($content_entity_bundle => $machine_name),
             'weight' => 1,
           );
@@ -95,7 +116,7 @@ function admin_toolbar_tools_menu_links_discovered_alter(&$links) {
             'title' => t('Manage form display'),
             'route_name' => 'entity.entity_form_display.' . $content_entity . '.default',
             'menu_name' => 'admin',
-            'parent' => 'entity.' . $content_entity_bundle . '.edit_form.' . $machine_name,
+            'parent' => $content_entity_bundle_root,
             'route_parameters' => array($content_entity_bundle => $machine_name),
             'weight' => 2,
           );
@@ -105,7 +126,7 @@ function admin_toolbar_tools_menu_links_discovered_alter(&$links) {
             'title' => t('Manage display'),
             'route_name' => 'entity.entity_view_display.' . $content_entity . '.default',
             'menu_name' => 'admin',
-            'parent' => 'entity.' . $content_entity_bundle . '.edit_form.' . $machine_name,
+            'parent' => $content_entity_bundle_root,
             'route_parameters' => array($content_entity_bundle => $machine_name),
             'weight' => 3,
           );
@@ -116,7 +137,7 @@ function admin_toolbar_tools_menu_links_discovered_alter(&$links) {
           'title' => t('Devel'),
           'route_name' => 'entity.' . $content_entity_bundle . '.devel_load',
           'menu_name' => 'admin',
-          'parent' => 'entity.' . $content_entity_bundle . '.edit_form.' . $machine_name,
+          'parent' => $content_entity_bundle_root,
           'route_parameters' => array($content_entity_bundle => $machine_name),
           'weight' => 4,
         );
@@ -126,7 +147,7 @@ function admin_toolbar_tools_menu_links_discovered_alter(&$links) {
           'title' => t('Delete'),
           'route_name' => 'entity.' . $content_entity_bundle . '.delete_form',
           'menu_name' => 'admin',
-          'parent' => 'entity.' . $content_entity_bundle . '.edit_form.' . $machine_name,
+          'parent' => $content_entity_bundle_root,
           'route_parameters' => array($content_entity_bundle => $machine_name),
           'weight' => 5,
         );

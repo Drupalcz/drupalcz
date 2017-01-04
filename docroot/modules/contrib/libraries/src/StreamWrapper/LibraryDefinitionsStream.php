@@ -8,7 +8,7 @@ use Drupal\Core\StreamWrapper\LocalStream;
  * Provides a stream wrapper for library definitions.
  *
  * Can be used with the 'library-definitions' scheme, for example
- * 'library-definitions://example.yml' for a library ID of 'example'.
+ * 'library-definitions://example.json' for a library ID of 'example'.
  *
  * By default this stream wrapper reads from a single directory that is
  * configurable and points to the 'library-definitions' directory within the
@@ -80,7 +80,7 @@ class LibraryDefinitionsStream extends LocalStream {
   protected function getConfig($key) {
     return $this->configFactory
       ->get('libraries.settings')
-      ->get("library_definitions.$key");
+      ->get("definitions.$key");
   }
 
 }

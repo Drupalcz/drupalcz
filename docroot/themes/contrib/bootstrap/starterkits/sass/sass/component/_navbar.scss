@@ -54,9 +54,3 @@ body {
     max-width: (($container-lg - $grid-gutter-width));
   }
 }
-.navbar.container > .container,
-.navbar.container-fluid > .container-fluid {
-  margin: 0;
-  padding: 0;
-  width: auto;
-}

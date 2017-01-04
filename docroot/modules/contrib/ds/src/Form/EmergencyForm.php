@@ -80,7 +80,7 @@ class EmergencyForm extends ConfigFormBase {
 
     $form['ds_fields_error']['submit'] = array(
       '#type' => 'submit',
-      '#value' => ($this->state->get('ds.disabled', FALSE) ? t('Enable attaching fields') : t('Disable attaching fields')),
+      '#value' => ($this->state->get('ds.disabled', FALSE) ? $this->t('Enable attaching fields') : $this->t('Disable attaching fields')),
       '#submit' => array('::submitFieldAttach'),
       '#weight' => 1,
     );
