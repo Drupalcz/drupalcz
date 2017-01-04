@@ -1,0 +1,58 @@
+.forum-container {
+  background: lighten($gray-light, 51%);
+  border-bottom: 5px solid $gray-lighter;
+  padding-top: 2em !important;
+
+  a {
+    font-weight: 600;
+    //color: $light-color;
+  }
+}
+
+.forum_topics,
+.forum_posts {
+  text-align: right;
+  width: 7em;
+
+  a {
+    font-size: $font-size-small;
+  }
+}
+
+.forum__replies {
+  br {
+    display: none;
+  }
+  a {
+    background: $brand-danger;
+    border-radius: 50%;
+    display: inline-block;
+    height: 8px;
+    margin-left: 3px;
+    overflow: hidden;
+    text-indent: -9999px;
+    vertical-align: super;
+    width: 8px;
+  }
+}
+
+.forum_last_reply,
+.forum__last-reply {
+  text-align: right;
+  width: 15em;
+}
+
+// Responsive table
+
+@media (max-width: $screen-xs-max) {
+  td,
+  th {
+    display: block !important;
+    text-align: left !important;
+    width: 100% !important;
+  }
+
+  tr {
+    border-bottom: 2px solid $brand-primary;
+  }
+}

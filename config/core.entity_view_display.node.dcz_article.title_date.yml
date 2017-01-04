@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_display.comment.comment_article.default
     - core.entity_view_mode.node.title_date
     - field.field.node.dcz_article.body
     - field.field.node.dcz_article.field_attachment
@@ -32,7 +31,6 @@ third_party_settings:
         link_custom: ''
         classes:
           layout_class: {  }
-      entity_classes: old_view_mode
     regions:
       ds_content:
         - node_title
@@ -81,7 +79,6 @@ content:
     label: above
     settings:
       pager_id: 0
-      view_mode: default
     third_party_settings: {  }
   field_tags:
     type: entity_reference_entity_view
