@@ -7008,6 +7008,20 @@ footer.footer {
   .forum_posts a {
     font-size: 14px; }
 
+.forum__replies br {
+  display: none; }
+
+.forum__replies a {
+  background: #d9534f;
+  border-radius: 50%;
+  display: inline-block;
+  height: 8px;
+  margin-left: 3px;
+  overflow: hidden;
+  text-indent: -9999px;
+  vertical-align: super;
+  width: 8px; }
+
 .forum_last_reply,
 .forum__last-reply {
   text-align: right;

@@ -18,6 +18,24 @@
     font-size: $font-size-small;
   }
 }
+
+.forum__replies {
+  br {
+    display: none;
+  }
+  a {
+    background: $brand-danger;
+    border-radius: 50%;
+    display: inline-block;
+    height: 8px;
+    margin-left: 3px;
+    overflow: hidden;
+    text-indent: -9999px;
+    vertical-align: super;
+    width: 8px;
+  }
+}
+
 .forum_last_reply,
 .forum__last-reply {
   text-align: right;
