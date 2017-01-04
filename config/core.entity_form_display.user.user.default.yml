@@ -60,6 +60,8 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+  google_analytics:
+    weight: 3
   language:
     weight: 1
     settings: {  }
@@ -73,4 +75,5 @@ content:
     weight: 3
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  langcode: true

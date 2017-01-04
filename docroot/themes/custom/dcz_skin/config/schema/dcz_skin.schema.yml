@@ -1,0 +1,5 @@
+# Schema for the theme setting configuration file of the Drupal.CZ theme.
+
+dcz_skin.settings:
+  type: theme_settings
+  label: 'Drupal.CZ settings'
