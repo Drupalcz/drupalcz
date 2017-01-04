@@ -12,8 +12,9 @@ abstract class AssetLibraryTestBase extends LibraryTypeKernelTestBase {
   /**
    * {@inheritdoc}
    *
-   * \Drupal\libraries\Extension requires system_get_info() which is in
-   * system.module.
+   * LibraryManager requires system_get_info() which is in system.module.
+   *
+   * @see \Drupal\libraries\ExternalLibrary\LibraryManager::getRequiredLibraryIds()
    */
   public static $modules = ['system'];
 
