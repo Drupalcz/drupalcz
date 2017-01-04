@@ -9,10 +9,12 @@ namespace Drupal\bootstrap;
 use Drupal\bootstrap\Plugin\AlterManager;
 use Drupal\bootstrap\Plugin\FormManager;
 use Drupal\bootstrap\Plugin\PreprocessManager;
+use Drupal\bootstrap\Utility\Element;
 use Drupal\bootstrap\Utility\Unicode;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Extension\ThemeHandlerInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * The primary class for the Drupal Bootstrap base theme.
@@ -175,36 +177,57 @@ class Bootstrap {
     }
 
     // Immediately return if the active theme is not Bootstrap based.
-    if (!$theme->subthemeOf('bootstrap')) {
+    if (!$theme->isBootstrap()) {
       return;
     }
 
     // Extract the alter hook name.
     $hook = Unicode::extractHook($function, 'alter');
 
-    // Handle form alters separately.
-    if (strpos($hook, 'form') === 0) {
+    // Handle form alters as a separate plugin.
+    if (strpos($hook, 'form') === 0 && $context1 instanceof FormStateInterface) {
+      $form_state = $context1;
       $form_id = $context2;
-      if (!$form_id) {
-        $form_id = Unicode::extractHook($function, 'alter', 'form');
-      }
 
       // Due to a core bug that affects admin themes, we should not double
       // process the "system_theme_settings" form twice in the global
       // hook_form_alter() invocation.
       // @see https://drupal.org/node/943212
-      if ($context2 === 'system_theme_settings') {
+      if ($form_id === 'system_theme_settings') {
         return;
+      }
+
+      // Keep track of the form identifiers.
+      $ids = [];
+
+      // Get the build data.
+      $build_info = $form_state->getBuildInfo();
+
+      // Extract the base_form_id.
+      $base_form_id = !empty($build_info['base_form_id']) ? $build_info['base_form_id'] : FALSE;
+      if ($base_form_id) {
+        $ids[] = $base_form_id;
+      }
+
+      // If there was no provided form identifier, extract it.
+      if (!$form_id) {
+        $form_id = !empty($build_info['form_id']) ? $build_info['form_id'] : Unicode::extractHook($function, 'alter', 'form');
+      }
+      if ($form_id) {
+        $ids[] = $form_id;
       }
 
       // Retrieve a list of form definitions.
       $form_manager = new FormManager($theme);
 
-      /** @var \Drupal\bootstrap\Plugin\Form\FormInterface $form */
-      if ($form_manager->hasDefinition($form_id) && ($form = $form_manager->createInstance($form_id, ['theme' => $theme]))) {
-        $data['#submit'][] = [get_class($form), 'submitForm'];
-        $data['#validate'][] = [get_class($form), 'validateForm'];
-        $form->alterForm($data, $context1, $context2);
+      // Iterate over each form identifier and look for a possible plugin.
+      foreach ($ids as $id) {
+        /** @var \Drupal\bootstrap\Plugin\Form\FormInterface $form */
+        if ($form_manager->hasDefinition($id) && ($form = $form_manager->createInstance($id, ['theme' => $theme]))) {
+          $data['#submit'][] = [get_class($form), 'submitForm'];
+          $data['#validate'][] = [get_class($form), 'validateForm'];
+          $form->alterForm($data, $form_state, $form_id);
+        }
       }
     }
     // Process hook alter normally.
@@ -234,22 +257,22 @@ class Bootstrap {
 
   /**
    * Returns the autoload fix include path.
-   * 
+   *
    * This method assists class based callbacks that normally do not work.
-   * 
+   *
    * If you notice that your class based callback is never invoked, you may try
    * using this helper method as an "include" or "file" for your callback, if
    * the callback metadata supports such an option.
-   * 
+   *
    * Depending on when or where a callback is invoked during a request, such as
    * an ajax or batch request, the theme handler may not yet be fully
    * initialized.
-   * 
+   *
    * Typically there is little that can be done about this "issue" from core.
    * It must balance the appropriate level that should be bootstrapped along
    * with common functionality. Cross-request class based callbacks are not
    * common in themes.
-   * 
+   *
    * When this file is included, it will attempt to jump start this process.
    *
    * Please keep in mind, that it is merely an attempt and does not guarantee
@@ -260,7 +283,7 @@ class Bootstrap {
    * @see system_list
    * @see system_register()
    * @see drupal_classloader_register()
-   * 
+   *
    * @return string
    *   The autoload fix include path, relative to Drupal root.
    */
@@ -271,8 +294,9 @@ class Bootstrap {
   /**
    * Matches a Bootstrap class based on a string value.
    *
-   * @param string $string
-   *   The string to match classes against.
+   * @param string|array $value
+   *   The string to match against to determine the class. Passed by reference
+   *   in case it is a render array that needs to be rendered and typecast.
    * @param string $default
    *   The default class to return if no match is found.
    *
@@ -280,16 +304,17 @@ class Bootstrap {
    *   The Bootstrap class matched against the value of $haystack or $default
    *   if no match could be made.
    */
-  public static function cssClassFromString($string, $default = '') {
+  public static function cssClassFromString(&$value, $default = '') {
     static $lang;
     if (!isset($lang)) {
       $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
     }
 
-    $theme = Bootstrap::getTheme();
+    $theme = static::getTheme();
     $texts = $theme->getCache('cssClassFromString', [$lang]);
 
-    $string = (string) $string;
+    // Ensure it's a string value that was passed.
+    $string = static::toString($value);
 
     if ($texts->isEmpty()) {
       $data = [
@@ -318,6 +343,7 @@ class Bootstrap {
           t('Submit')->render()             => 'primary',
           t('Search')->render()             => 'primary',
           t('Settings')->render()           => 'primary',
+          t('Log in')->render()             => 'primary',
 
           // Danger class.
           t('Delete')->render()             => 'danger',
@@ -353,16 +379,16 @@ class Bootstrap {
 
     // Iterate over the array.
     foreach ($texts as $pattern => $strings) {
-      foreach ($strings as $value => $class) {
+      foreach ($strings as $text => $class) {
         switch ($pattern) {
           case 'matches':
-            if ($string === $value) {
+            if ($string === $text) {
               return $class;
             }
             break;
 
           case 'contains':
-            if (strpos(Unicode::strtolower($string), Unicode::strtolower($value)) !== FALSE) {
+            if (strpos(Unicode::strtolower($string), Unicode::strtolower($text)) !== FALSE) {
               return $class;
             }
             break;
@@ -592,8 +618,9 @@ class Bootstrap {
   /**
    * Matches a Bootstrap Glyphicon based on a string value.
    *
-   * @param string $string
-   *   The string to match classes against.
+   * @param string $value
+   *   The string to match against to determine the icon. Passed by reference
+   *   in case it is a render array that needs to be rendered and typecast.
    * @param array $default
    *   The default render array to return if no match is found.
    *
@@ -601,16 +628,17 @@ class Bootstrap {
    *   The Bootstrap icon matched against the value of $haystack or $default if
    *   no match could be made.
    */
-  public static function glyphiconFromString($string, $default = []) {
+  public static function glyphiconFromString(&$value, $default = []) {
     static $lang;
     if (!isset($lang)) {
       $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
     }
 
-    $theme = Bootstrap::getTheme();
+    $theme = static::getTheme();
     $texts = $theme->getCache('glyphiconFromString', [$lang]);
 
-    $string = (string) $string;
+    // Ensure it's a string value that was passed.
+    $string = static::toString($value);
 
     if ($texts->isEmpty()) {
       $data = [
@@ -638,6 +666,7 @@ class Bootstrap {
           t('Search')->render()     => 'search',
           t('Upload')->render()     => 'upload',
           t('Preview')->render()    => 'eye-open',
+          t('Log in')->render()     => 'log-in',
         ],
       ];
 
@@ -651,16 +680,16 @@ class Bootstrap {
 
     // Iterate over the array.
     foreach ($texts as $pattern => $strings) {
-      foreach ($strings as $value => $icon) {
+      foreach ($strings as $text => $icon) {
         switch ($pattern) {
           case 'matches':
-            if ($string === $value) {
+            if ($string === $text) {
               return self::glyphicon($icon, $default);
             }
             break;
 
           case 'contains':
-            if (strpos(Unicode::strtolower($string), Unicode::strtolower($value)) !== FALSE) {
+            if (strpos(Unicode::strtolower($string), Unicode::strtolower($text)) !== FALSE) {
               return self::glyphicon($icon, $default);
             }
             break;
@@ -978,6 +1007,24 @@ class Bootstrap {
   }
 
   /**
+   * Determines if the "cache_context.url.path.is_front" service exists.
+   *
+   * @return bool
+   *   TRUE or FALSE
+   *
+   * @see \Drupal\bootstrap\Bootstrap::isFront
+   * @see \Drupal\bootstrap\Bootstrap::preprocess
+   * @see https://www.drupal.org/node/2829588
+   */
+  public static function hasIsFrontCacheContext() {
+    static $has_is_front_cache_context;
+    if (!isset($has_is_front_cache_context)) {
+      $has_is_front_cache_context = \Drupal::getContainer()->has('cache_context.url.path.is_front');
+    }
+    return $has_is_front_cache_context;
+  }
+
+  /**
    * Initializes the active theme.
    */
   final public static function initialize() {
@@ -1001,6 +1048,39 @@ class Bootstrap {
   }
 
   /**
+   * Determines if the current path is the "front" page.
+   *
+   * *Note:* This method will not return `TRUE` if there is not a proper
+   * "cache_context.url.path.is_front" service defined.
+   *
+   * *Note:* If using this method in preprocess/render array logic, the proper
+   * #cache context must also be defined:
+   *
+   * ```php
+   * $variables['#cache']['contexts'][] = 'url.path.is_front';
+   * ```
+   *
+   * @return bool
+   *   TRUE or FALSE
+   *
+   * @see \Drupal\bootstrap\Bootstrap::hasIsFrontCacheContext
+   * @see \Drupal\bootstrap\Bootstrap::preprocess
+   * @see https://www.drupal.org/node/2829588
+   */
+  public static function isFront() {
+    static $is_front;
+    if (!isset($is_front)) {
+      try {
+        $is_front = static::hasIsFrontCacheContext() ? \Drupal::service('path.matcher')->isFrontPage() : FALSE;
+      }
+      catch (\Exception $e) {
+        $is_front = FALSE;
+      }
+    }
+    return $is_front;
+  }
+
+  /**
    * Preprocess theme hook variables.
    *
    * @param array $variables
@@ -1018,6 +1098,15 @@ class Bootstrap {
     static $preprocess_manager;
     if (!isset($preprocess_manager)) {
       $preprocess_manager = new PreprocessManager($theme);
+    }
+
+    // Adds a global "is_front" variable back to all templates.
+    // @see https://www.drupal.org/node/2829585
+    if (!isset($variables['is_front'])) {
+      $variables['is_front'] = static::isFront();
+      if (static::hasIsFrontCacheContext()) {
+        $variables['#cache']['contexts'][] = 'url.path.is_front';
+      }
     }
 
     // Ensure that any default theme hook variables exist. Due to how theme
@@ -1038,6 +1127,8 @@ class Bootstrap {
     // @see https://www.drupal.org/node/2630870
     if (!isset($variables['theme'])) {
       $variables['theme'] = $theme->getInfo();
+      $variables['theme']['dev'] = $theme->isDev();
+      $variables['theme']['livereload'] = $theme->livereloadUrl();
       $variables['theme']['name'] = $theme->getName();
       $variables['theme']['path'] = $theme->getPath();
       $variables['theme']['title'] = $theme->getTitle();
@@ -1054,6 +1145,19 @@ class Bootstrap {
         $class->preprocess($variables, $hook, $info);
       }
     }
+  }
+
+  /**
+   * Ensures a value is typecast to a string, rendering an array if necessary.
+   *
+   * @param string|array $value
+   *   The value to typecast, passed by reference.
+   *
+   * @return string
+   *   The typecast string value.
+   */
+  public static function toString(&$value) {
+    return (string) (Element::isRenderArray($value) ? Element::create($value)->renderPlain() : $value);
   }
 
 }

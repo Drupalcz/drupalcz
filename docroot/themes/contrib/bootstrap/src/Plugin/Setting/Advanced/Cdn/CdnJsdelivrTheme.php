@@ -7,6 +7,7 @@
 namespace Drupal\bootstrap\Plugin\Setting\Advanced\Cdn;
 
 use Drupal\bootstrap\Annotation\BootstrapSetting;
+use Drupal\bootstrap\Utility\Element;
 use Drupal\Core\Annotation\Translation;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -36,8 +37,8 @@ class CdnJsdelivrTheme extends CdnProvider {
   /**
    * {@inheritdoc}
    */
-  public function alterForm(array &$form, FormStateInterface $form_state, $form_id = NULL) {
-    $setting = $this->getElement($form, $form_state);
+  public function alterFormElement(Element $form, FormStateInterface $form_state, $form_id = NULL) {
+    $setting = $this->getSettingElement($form, $form_state);
     $themes = $this->provider->getThemes();
     $version = $form_state->getValue('cdn_jsdelivr_version', $this->theme->getSetting('cdn_jsdelivr_version'));
 

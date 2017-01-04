@@ -2,6 +2,16 @@
  * Form styles.
  */
 
+// Checkboxes / radio buttons.
+.checkbox, .radio {
+  // Remove top/bottom margins when in table context, because this is most
+  // likely a tableselect checkbox element.
+  table &.form-no-label {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+}
+
 // Browsers do not recognize pseudo :after selectors, we must create a wrapper
 // around the select element to style it properly.
 // @see http://stackoverflow.com/q/21103542
@@ -77,4 +87,16 @@
   line-height:1;
   height: 7px;
   width: 10px;
+}
+
+// Form action buttons.
+.form-actions {
+  .btn, .btn-group {
+    margin-right: 10px;
+  }
+  .btn-group {
+    .btn {
+      margin-right: 0;
+    }
+  }
 }

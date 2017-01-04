@@ -28,6 +28,7 @@ following contents:
 namespace Drupal\THEMENAME\Plugin\Form;
 
 use Drupal\bootstrap\Annotation\BootstrapForm;
+use Drupal\bootstrap\Utility\Element;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -49,11 +50,18 @@ class SearchBlockForm extends \Drupal\bootstrap\Plugin\Form\SearchBlockForm {
 
     // Disable #input_group_button the normal way:
     $form['keys']['#input_group_button'] = FALSE;
+  }
 
-    // Disable #input_group_button using the Element helper class. This helper
-    // is useful if you have a lot of work to do, especially if its a deep nest.
-    // $f = \Drupal\bootstrap\Utility\Element::create($form, $form_state);
-    // $f->keys->setProperty('input_group_button', FALSE);
+  /**
+   * {@inheritdoc}
+   */
+  public function alterFormElement(Element $form, FormStateInterface $form_state, $form_id = NULL) {
+    // This method is the same as above, except the the $form argument passed is
+    // an instance of \Drupal\bootstrap\Utility\Element for easier manipulation.
+    // Using this method is preferable and considered "Best Practice".
+
+    // Disable #input_group_button using the $form Element object:
+    // $form->keys->setProperty('input_group_button', FALSE);
   }
 
   /**
@@ -66,8 +74,26 @@ class SearchBlockForm extends \Drupal\bootstrap\Plugin\Form\SearchBlockForm {
   /**
    * {@inheritdoc}
    */
+  public static function submitFormElement(Element $form, FormStateInterface $form_state) {
+    // This method is the same as above, except the the $form argument passed is
+    // an instance of \Drupal\bootstrap\Utility\Element for easier manipulation.
+    // Using this method is preferable and considered "Best Practice".
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function validateForm(array &$form, FormStateInterface $form_state) {
     // This method is automatically called when the form is validated.
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function validateFormElement(Element $form, FormStateInterface $form_state) {
+    // This method is the same as above, except the the $form argument passed is
+    // an instance of \Drupal\bootstrap\Utility\Element for easier manipulation.
+    // Using this method is preferable and considered "Best Practice".
   }
 
 }

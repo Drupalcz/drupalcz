@@ -9,6 +9,7 @@ namespace Drupal\bootstrap\Plugin\Setting;
 use Drupal\bootstrap\Annotation\BootstrapSetting;
 use Drupal\bootstrap\Bootstrap;
 use Drupal\bootstrap\Plugin\Form\SystemThemeSettings;
+use Drupal\bootstrap\Utility\Element;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -30,8 +31,8 @@ class Schemas extends SettingBase {
   /**
    * {@inheritdoc}
    */
-  public function alterForm(array &$form, FormStateInterface $form_state, $form_id = NULL) {
-    parent::alterForm($form, $form_state, $form_id);
+  public function alterFormElement(Element $form, FormStateInterface $form_state, $form_id = NULL) {
+    parent::alterFormElement($form, $form_state, $form_id);
 
     $updates = [];
     foreach ($this->theme->getPendingUpdates() as $version => $update) {
@@ -196,24 +197,24 @@ class Schemas extends SettingBase {
 
     // Show successful updates.
     if (!empty($results['success'])) {
-      $build = [
+      $list = Element::createStandalone([
         '#theme' => 'item_list__theme_update',
         '#items' => $results['success'],
         '#context' => ['type' => 'success'],
-      ];
-      drupal_set_message(new FormattableMarkup('@message' . \Drupal::service('renderer')->render($build), [
+      ]);
+      drupal_set_message(new FormattableMarkup('@message' . $list->renderPlain(), [
         '@message' => t('Successfully completed the following theme updates:'),
       ]));
     }
 
     // Show failed errors.
     if (!empty($results['errors'])) {
-      $build = [
+      $list = Element::createStandalone([
         '#theme' => 'item_list__theme_update',
         '#items' => $results['errors'],
         '#context' => ['type' => 'errors'],
-      ];
-      drupal_set_message(new FormattableMarkup('@message' . \Drupal::service('renderer')->render($build), [
+      ]);
+      drupal_set_message(new FormattableMarkup('@message' . $list->renderPlain(), [
         '@message' => t('The following theme updates could not be completed:'),
       ]), 'error');
     }

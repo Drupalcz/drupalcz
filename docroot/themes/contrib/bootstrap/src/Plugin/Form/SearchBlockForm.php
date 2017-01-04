@@ -22,10 +22,9 @@ class SearchBlockForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function alterForm(array &$form, FormStateInterface $form_state, $form_id = NULL) {
-    $container = Element::create($form, $form_state);
-    $container->actions->submit->setProperty('icon_only', TRUE);
-    $container->keys->setProperty('input_group_button', TRUE);
+  public function alterFormElement(Element $form, FormStateInterface $form_state, $form_id = NULL) {
+    $form->actions->submit->setProperty('icon_only', TRUE);
+    $form->keys->setProperty('input_group_button', TRUE);
   }
 
 }

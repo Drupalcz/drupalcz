@@ -11,7 +11,7 @@ preprocessor.
 - [Overrides](#overrides)
 
 ## Prerequisites
-- Read the @link getting_started Getting Started @endlink documentation topic.
+- Read the @link getting_started Getting Started @endlink and @link sub_theming Sub-theming @endlink documentation topics.
 - You must understand the basic concept of using the [Less] CSS pre-processor.
 - You must use a **[local Less compiler](https://www.google.com/search?q=less+compiler)**.
 - You must use the [Bootstrap Framework Source Files] ending in the `.less`

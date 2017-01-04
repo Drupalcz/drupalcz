@@ -67,11 +67,11 @@ class CdnProvider extends SettingBase {
   /**
    * {@inheritdoc}
    */
-  public function alterForm(array &$form, FormStateInterface $form_state, $form_id = NULL) {
+  public function alterFormElement(Element $form, FormStateInterface $form_state, $form_id = NULL) {
     // Retrieve the provider from form values or the setting.
     $default_provider = $form_state->getValue('cdn_provider', $this->theme->getSetting('cdn_provider'));
 
-    $group = $this->getGroup($form, $form_state);
+    $group = $this->getGroupElement($form, $form_state);
     $group->setProperty('description', '<div class="alert alert-info messages warning"><strong>' . t('NOTE') . ':</strong> ' . t('Using one of the "CDN Provider" options below is the preferred method for loading Bootstrap CSS and JS on simpler sites that do not use a site-wide CDN. Using a "CDN Provider" for loading Bootstrap, however, does mean that it depends on a third-party service. There is no obligation or commitment by these third-parties that guarantees any up-time or service quality. If you need to customize Bootstrap and have chosen to compile the source code locally (served from this site), you must disable the "CDN Provider" option below by choosing "- None -" and alternatively enable a site-wide CDN implementation. All local (served from this site) versions of Bootstrap will be superseded by any enabled "CDN Provider" below. <strong>Do not do both</strong>.') . '</div>');
     $group->setProperty('open', !!$default_provider);
 
@@ -87,7 +87,7 @@ class CdnProvider extends SettingBase {
     }
 
     // Override the options with the provider manager discovery.
-    $setting = $this->getElement($form, $form_state);
+    $setting = $this->getSettingElement($form, $form_state);
     $setting->setProperty('options', $options);
   }
 

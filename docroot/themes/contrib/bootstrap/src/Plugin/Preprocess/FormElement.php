@@ -23,8 +23,8 @@ class FormElement extends PreprocessBase implements PreprocessInterface {
    * {@inheritdoc}
    */
   public function preprocessElement(Element $element, Variables $variables) {
-    // Set errors flag.
-    $variables['errors'] = $element->hasProperty('has_error');
+    // Set has_error flag.
+    $variables['has_error'] = $element->getProperty('has_error');
 
     if ($element->getProperty('autocomplete_route_name')) {
       $variables['is_autocomplete'] = TRUE;
@@ -43,11 +43,15 @@ class FormElement extends PreprocessBase implements PreprocessInterface {
     $display = $variables['label_display'] = $variables['title_display'] = $element->getProperty('title_display');
 
     // Place single checkboxes and radios in the label field.
-    if (($checkbox || $radio) && $display !== 'none' && $display !== 'invisible') {
+    if (($checkbox || $radio)) {
       $label = Element::create($variables['label']);
       $children = &$label->getProperty('children', '');
       $children .= $variables['children'];
       unset($variables['children']);
+
+      // Inform label if it is in checkbox/radio context.
+      $label->setProperty('is_checkbox', $checkbox);
+      $label->setProperty('is_radio', $radio);
 
       // Pass the label attributes to the label, if available.
       if ($element->hasProperty('label_attributes')) {

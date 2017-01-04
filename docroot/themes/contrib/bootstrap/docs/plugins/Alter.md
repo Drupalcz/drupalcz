@@ -48,6 +48,7 @@ alter hook directly. All you have to do is simply create the plugin file in
 - `hook_bootstrap_colorize_text_alter`
 - `hook_bootstrap_iconize_text_alter`
 - `hook_element_info_alter`
+- `hook_js_settings_alter`
 - `hook_library_info_alter`
 - `hook_page_attachments_alter`
 - `hook_theme_registry_alter`

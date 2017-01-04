@@ -214,32 +214,38 @@ class Element extends DrupalAttributes {
     // @todo refactor this more so it's not just "button" specific.
     $prefix = $button ? 'btn' : 'has';
 
-    // Don't add a class if one is already present in the array.
+    // List of classes, based on the prefix.
     $classes = [
-      "$prefix-default", "$prefix-primary", "$prefix-success", "$prefix-info",
+      "$prefix-primary", "$prefix-success", "$prefix-info",
       "$prefix-warning", "$prefix-danger", "$prefix-link",
+      // Default should be last.
+      "$prefix-default"
     ];
 
-    foreach ($classes as $class) {
-      if ($this->hasClass($class)) {
-        if ($button && $this->getProperty('split')) {
-          $this->addClass($class, $this::SPLIT_BUTTON);
+    // Set the class to "btn-default" if it shouldn't be colorized.
+    $class = $button && !Bootstrap::getTheme()->getSetting('button_colorize') ? 'btn-default' : FALSE;
+
+    // Search for an existing class.
+    if (!$class) {
+      foreach ($classes as $value) {
+        if ($this->hasClass($value)) {
+          $class = $value;
+          break;
         }
-        return $this;
       }
     }
 
-    // Do nothing if setting is disabled.
-    if ($button && !Bootstrap::getTheme()->getSetting('button_colorize')) {
-      $this->addClass('btn-default');
-      return $this;
+    // Find a class based on the value of "value", "title" or "button_type".
+    if (!$class) {
+      $value = $this->getProperty('value', $this->getProperty('title', ''));
+      $class = "$prefix-" . Bootstrap::cssClassFromString($value, $button ? $this->getProperty('button_type', 'default') : 'default');
     }
 
-    if ($value = $this->getProperty('value', $this->getProperty('title'))) {
-      $class = "$prefix-" . Bootstrap::cssClassFromString($value, $this->getProperty('button_type', 'default'));
-      $this->addClass($class);
+    // Remove any existing classes and add the specified class.
+    if ($class) {
+      $this->removeClass($classes)->addClass($class);
       if ($button && $this->getProperty('split')) {
-        $this->addClass($class, $this::SPLIT_BUTTON);
+        $this->removeClass($classes, $this::SPLIT_BUTTON)->addClass($class, $this::SPLIT_BUTTON);
       }
     }
 
@@ -252,13 +258,36 @@ class Element extends DrupalAttributes {
    * @param array|string $element
    *   A render array element or a string.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *   The current state of the form.
+   *   A current FormState instance, if any.
    *
    * @return \Drupal\bootstrap\Utility\Element
    *   The newly created element instance.
    */
   public static function create(&$element = [], FormStateInterface $form_state = NULL) {
-    return new self($element, $form_state);
+    return $element instanceof self ? $element : new self($element, $form_state);
+  }
+
+  /**
+   * Creates a new standalone \Drupal\bootstrap\Utility\Element instance.
+   *
+   * It does not reference the original element passed. If an Element instance
+   * is passed, it will clone it so it doesn't affect the original element.
+   *
+   * @param array|string|\Drupal\bootstrap\Utility\Element $element
+   *   A render array element, string or Element instance.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   A current FormState instance, if any.
+   *
+   * @return \Drupal\bootstrap\Utility\Element
+   *   The newly created element instance.
+   */
+  public static function createStandalone($element = [], FormStateInterface $form_state = NULL) {
+    // Immediately return a cloned version if element is already an Element.
+    if ($element instanceof self) {
+      return clone $element;
+    }
+    $standalone = is_object($element) ? clone $element : $element;
+    return static::create($standalone, $form_state);
   }
 
   /**
@@ -277,6 +306,25 @@ class Element extends DrupalAttributes {
    */
   public function &getArray() {
     return $this->array;
+  }
+
+  /**
+   * Retrieves a context value from the #context element property, if any.
+   *
+   * @param string $name
+   *   The name of the context key to retrieve.
+   * @param mixed $default
+   *   Optional. The default value to use if the context $name isn't set.
+   *
+   * @return mixed|NULL
+   *   The context value or the $default value if not set.
+   */
+  public function &getContext($name, $default = NULL) {
+    $context = &$this->getProperty('context', []);
+    if (!isset($context[$name])) {
+      $context[$name] = $default;
+    }
+    return $context[$name];
   }
 
   /**
@@ -379,7 +427,25 @@ class Element extends DrupalAttributes {
    *   Whether the given property on the element is empty.
    */
   public function isPropertyEmpty($name) {
-    return $this->hasProperty($name) && !empty($this->getProperty($name));
+    return $this->hasProperty($name) && empty($this->getProperty($name));
+  }
+
+  /**
+   * Checks if a value is a render array.
+   *
+   * @param mixed $value
+   *   The value to check.
+   *
+   * @return bool
+   *   TRUE if the given value is a render array, otherwise FALSE.
+   */
+  public static function isRenderArray($value) {
+    return is_array($value) && (isset($value['#type']) ||
+      isset($value['#theme']) || isset($value['#theme_wrappers']) ||
+      isset($value['#markup']) || isset($value['#attached']) ||
+      isset($value['#cache']) || isset($value['#lazy_builder']) ||
+      isset($value['#create_placeholder']) || isset($value['#pre_render']) ||
+      isset($value['#post_render']) || isset($value['#process']));
   }
 
   /**
@@ -464,51 +530,87 @@ class Element extends DrupalAttributes {
   }
 
   /**
-   * Renders the element.
+   * Renders the final element HTML.
    *
-   * @return \Drupal\Component\Render\MarkupInterface|string
+   * @return \Drupal\Component\Render\MarkupInterface
    *   The rendered HTML.
    */
   public function render() {
     /** @var \Drupal\Core\Render\Renderer $renderer */
-    static $renderer;
-    if (!isset($renderer)) {
-      $renderer = \Drupal::service('renderer');
-    }
+    $renderer = \Drupal::service('renderer');
     return $renderer->render($this->array);
+  }
+
+  /**
+   * Renders the final element HTML.
+   *
+   * @return \Drupal\Component\Render\MarkupInterface
+   *   The rendered HTML.
+   */
+  public function renderPlain() {
+    /** @var \Drupal\Core\Render\Renderer $renderer */
+    $renderer = \Drupal::service('renderer');
+    return $renderer->renderPlain($this->array);
+  }
+
+  /**
+   * Renders the final element HTML.
+   *
+   * (Cannot be executed within another render context.)
+   *
+   * @return \Drupal\Component\Render\MarkupInterface
+   *   The rendered HTML.
+   */
+  public function renderRoot() {
+    /** @var \Drupal\Core\Render\Renderer $renderer */
+    $renderer = \Drupal::service('renderer');
+    return $renderer->renderRoot($this->array);
   }
 
   /**
    * Adds Bootstrap button size class to the element.
    *
-   * @param string $size
+   * @param string $class
    *   The full button size class to add. If none is provided, it will default
    *   to any set theme setting.
    *
    * @return $this
    */
-  public function setButtonSize($size = NULL) {
+  public function setButtonSize($class = NULL) {
     // Immediately return if element is not a button.
     if (!$this->isButton()) {
       return $this;
     }
 
-    // Don't add a class if one is already present in the array.
-    foreach (['btn-xs', 'btn-sm', 'btn-lg', 'btn-block'] as $class) {
-      if ($this->hasClass($class)) {
-        // Add the found class to any split buttons.
-        if ($this->getProperty('split')) {
-          $this->addClass($class, $this::SPLIT_BUTTON);
-        }
-        return $this;
+    // Retrieve the button size classes from the specific setting's options.
+    static $classes;
+    if (!isset($classes)) {
+      $classes = [];
+      if ($button_size = Bootstrap::getTheme()->getSettingPlugin('button_size')) {
+        $classes = array_keys($button_size->getOptions());
       }
     }
 
-    // Add any a button size.
-    if ($size = $size ?: Bootstrap::getTheme()->getSetting('button_size')) {
-      $this->addClass($size);
+    // Search for an existing class.
+    if (!$class) {
+      foreach ($classes as $value) {
+        if ($this->hasClass($value)) {
+          $class = $value;
+          break;
+        }
+      }
+    }
+
+    // Attempt to get the default button size, if set.
+    if (!$class) {
+      $class = Bootstrap::getTheme()->getSetting('button_size');
+    }
+
+    // Remove any existing classes and add the specified class.
+    if ($class) {
+      $this->removeClass($classes)->addClass($class);
       if ($this->getProperty('split')) {
-        $this->addClass($size, $this::SPLIT_BUTTON);
+        $this->removeClass($classes, $this::SPLIT_BUTTON)->addClass($class, $this::SPLIT_BUTTON);
       }
     }
 

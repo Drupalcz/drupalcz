@@ -56,7 +56,7 @@ class ThemeSettings extends Config {
     $this->defaults = \Drupal::config('system.theme.global')->get();
 
     // Retrieve the theme setting plugin discovery defaults (code).
-    foreach ($theme->getSettingPlugins() as $name => $setting) {
+    foreach ($theme->getSettingPlugin() as $name => $setting) {
       $this->defaults[$name] = $setting->getDefaultValue();
     }
 

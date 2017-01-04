@@ -24,7 +24,7 @@ class SystemThemeSettings extends FormBase implements FormInterface {
   /**
    * {@inheritdoc}
    */
-  public function alterForm(array &$form, FormStateInterface $form_state, $form_id = NULL) {
+  public function alterFormElement(Element $form, FormStateInterface $form_state, $form_id = NULL) {
     $theme = $this->getTheme($form, $form_state);
     if (!$theme) {
       return;
@@ -34,22 +34,20 @@ class SystemThemeSettings extends FormBase implements FormInterface {
     $this->createGroups($form, $form_state);
 
     // Iterate over all setting plugins and add them to the form.
-    foreach ($theme->getSettingPlugins() as $setting) {
-      $setting->alterForm($form, $form_state);
+    foreach ($theme->getSettingPlugin() as $setting) {
+      $setting->alterForm($form->getArray(), $form_state);
     }
   }
 
   /**
    * Sets up the vertical tab groupings.
    *
-   * @param array $form
-   *   Nested array of form elements that comprise the form.
+   * @param \Drupal\bootstrap\Utility\Element $form
+   *   The Element object that comprises the form.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
    */
-  protected function createGroups(array &$form, FormStateInterface $form_state) {
-    $f = Element::create($form, $form_state);
-
+  protected function createGroups(Element $form, FormStateInterface $form_state) {
     // Vertical tabs for global settings provided by core or contrib modules.
     if (!isset($form['global'])) {
       $form['global'] = [
@@ -60,7 +58,7 @@ class SystemThemeSettings extends FormBase implements FormInterface {
     }
 
     // Iterate over existing children and move appropriate ones to global group.
-    foreach ($f->children() as $child) {
+    foreach ($form->children() as $child) {
       if ($child->isType(['details', 'fieldset']) && !$child->hasProperty('group')) {
         $child->setProperty('type', 'details');
         $child->setProperty('group', 'global');
@@ -92,20 +90,20 @@ class SystemThemeSettings extends FormBase implements FormInterface {
   /**
    * Retrieves the currently selected theme on the settings form.
    *
-   * @param array $form
-   *   Nested array of form elements that comprise the form.
+   * @param \Drupal\bootstrap\Utility\Element $form
+   *   The Element object that comprises the form.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
    *
    * @return \Drupal\bootstrap\Theme|FALSE
    *   The currently selected theme object or FALSE if not a Bootstrap theme.
    */
-  public static function getTheme(array &$form, FormStateInterface $form_state) {
+  public static function getTheme(Element $form, FormStateInterface $form_state) {
     $build_info = $form_state->getBuildInfo();
     $theme = isset($build_info['args'][0]) ? Bootstrap::getTheme($build_info['args'][0]) : FALSE;
 
     // Do not continue if the theme is not Bootstrap specific.
-    if (!$theme || !$theme->subthemeOf('bootstrap')) {
+    if (!$theme || !$theme->isBootstrap()) {
       unset($form['#submit'][0]);
       unset($form['#validate'][0]);
     }
@@ -116,7 +114,7 @@ class SystemThemeSettings extends FormBase implements FormInterface {
   /**
    * {@inheritdoc}
    */
-  public static function submitForm(array &$form, FormStateInterface $form_state) {
+  public static function submitFormElement(Element $form, FormStateInterface $form_state) {
     $theme = self::getTheme($form, $form_state);
     if (!$theme) {
       return;
@@ -128,9 +126,12 @@ class SystemThemeSettings extends FormBase implements FormInterface {
 
     // Iterate over all setting plugins and manually save them since core's
     // process is severely limiting and somewhat broken.
-    foreach ($theme->getSettingPlugins() as $name => $setting) {
-      // Allow the setting itself to participate in the submission process.
-      $setting->submitForm($form, $form_state);
+    foreach ($theme->getSettingPlugin() as $name => $setting) {
+      // Allow the setting to participate in the form submission process.
+      // Must call the "submitForm" method in case any setting actually uses it.
+      // It should, in turn, invoke "submitFormElement", if the setting that
+      // overrides it is implemented properly.
+      $setting->submitForm($form->getArray(), $form_state);
 
       // Retrieve the submitted value.
       $value = $form_state->getValue($name);
@@ -169,15 +170,19 @@ class SystemThemeSettings extends FormBase implements FormInterface {
   /**
    * {@inheritdoc}
    */
-  public static function validateForm(array &$form, FormStateInterface $form_state) {
+  public static function validateFormElement(Element $form, FormStateInterface $form_state) {
     $theme = self::getTheme($form, $form_state);
     if (!$theme) {
       return;
     }
 
     // Iterate over all setting plugins and allow them to participate.
-    foreach ($theme->getSettingPlugins() as $setting) {
-      $setting->validateForm($form, $form_state);
+    foreach ($theme->getSettingPlugin() as $setting) {
+      // Allow the setting to participate in the form validation process.
+      // Must call the "validateForm" method in case any setting actually uses it.
+      // It should, in turn, invoke "validateFormElement", if the setting that
+      // overrides it is implemented properly.
+      $setting->validateForm($form->getArray(), $form_state);
     }
   }
 
