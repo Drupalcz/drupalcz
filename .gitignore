@@ -1,5 +1,5 @@
 # Ignore local configuration.
-docroot/settings/settings.local.php
+docroot/sites/default/settings.local.php
 
 # Ignore changes done by installer.
 docroot/sites/default/settings.php
