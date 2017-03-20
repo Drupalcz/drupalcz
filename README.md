@@ -32,8 +32,8 @@ Branch | Build status
   * `git clone git@github.com:[YOUR-NAME]/drupalcz.git drupalcz`
   * `cd drupalcz`
 * Prepare your database and fill the credentials into your new local config.
-  * `cp docroot/settings/default.settings.local.php docroot/settings/settings.local.php`
-  * edit this config: `docroot/settings/settings.local.php`
+  * `cp docroot/sites/default/default.settings.local.php docroot/sites/default/settings.local.php`
+  * edit this config: `docroot/sites/default/settings.local.php`
 * Install the site (it will use the Drupal.cz distribution).
   * `cd docroot`
   * `drush si`
