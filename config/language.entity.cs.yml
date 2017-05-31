@@ -1,9 +1,9 @@
-uuid: 487af930-01c0-4374-871f-c533a1013bf8
+uuid: ca344fd2-cd2c-4419-81f1-3bf0c3de7591
 langcode: cs
 status: true
 dependencies: {  }
 id: cs
 label: Czech
 direction: ltr
-weight: 0
+weight: 1
 locked: false
