@@ -20,6 +20,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     label: above
+    region: content
 hidden:
   forum_container: true
   langcode: true

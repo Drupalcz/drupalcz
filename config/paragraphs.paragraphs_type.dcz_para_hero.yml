@@ -4,3 +4,4 @@ status: true
 dependencies: {  }
 id: dcz_para_hero
 label: 'Hero paragraph'
+behavior_plugins: {  }
