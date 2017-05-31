@@ -1,0 +1,82 @@
+# Schema for the configuration files of the Mollom module.
+action.configuration.mollom_comment_unpublish_action:
+  type: action_configuration_default
+  label: 'Report comment to Mollom and unpublish configuration'
+
+action.configuration.mollom_node_unpublish_action:
+  type: action_configuration_default
+  label: 'Report node to Mollom and unpublish configuration'
+
+mollom.settings:
+  type: config_object
+  label: 'Mollom settings'
+  mapping:
+    keys:
+      type: mapping
+      label: 'Mollom keys'
+      mapping:
+        public:
+          type: string
+          label: 'Public key'
+        private:
+          type: string
+          label: 'Private key'
+    fallback:
+      type: integer
+      label: 'Fallback when Mollom is unavailable'
+    languages_expected:
+      type: sequence
+      label: 'Expected languages'
+      sequence:
+        type: string
+        label: 'Language code'
+    test_mode:
+      type: mapping
+      label: 'Test mode settings'
+      mapping:
+        enabled:
+          type: boolean
+          label: 'Testing mode enabled'
+        api_endpoint:
+          type: string
+          label: 'REST endpoint for test Mollom API'
+        keys:
+          type: mapping
+          label: 'Test Mollom keys'
+          mapping:
+            public:
+              type: string
+              label: 'Test API public key'
+            private:
+              type: string
+              label: 'Test API private key'
+        invalid:
+          type: mapping
+          label: 'Invalid test settings'
+          mapping:
+            api_endpoint:
+              type: string
+              label: 'REST endpoint for invalid testing API'
+    privacy_link:
+      type: boolean
+      label: 'Whether to show a link to the Mollom privacy policy'
+    log_level:
+      type: integer
+      label: 'The minimum log level for Mollom watchdog messages.'
+    connection_timeout_seconds:
+      type: integer
+      label: 'The number of seconds to wait for a response from the Mollom API.'
+    api_endpoint:
+      type: string
+      label: 'REST endpoint for the Mollom API'
+    captcha:
+      type: mapping
+      label: 'CAPTCHA configuration settings'
+      mapping:
+        audio:
+          type: mapping
+          label: 'CAPTCHA audio configuration settings'
+          mapping:
+            enabled:
+              type: boolean
+              label: 'Whether to include an audio CAPTCHA'

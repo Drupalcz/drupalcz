@@ -1,0 +1,17 @@
+type: module
+name: 'Mollom'
+description: 'Automatically moderates user-submitted content and protects your site from spam and profanity.'
+package: Acquia
+# core: 8.x
+configure: mollom.settings
+scripts:
+  - mollom.js
+stylesheets:
+  all:
+    - mollom.css
+
+# Information added by Drupal.org packaging script on 2017-01-04
+version: '8.x-1.2'
+core: '8.x'
+project: 'mollom'
+datestamp: 1483560548

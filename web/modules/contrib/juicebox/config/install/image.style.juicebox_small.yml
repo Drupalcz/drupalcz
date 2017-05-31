@@ -1,0 +1,17 @@
+name: juicebox_small
+uuid: 34978210-0fb1-11e4-9191-0800200c9a66
+label: 'Juicebox small (800x800)'
+effects:
+  39fda630-0fb1-11e4-9191-0800200c9a66:
+    id: image_scale
+    data:
+      width: 800
+      height: 800
+      upscale: false
+    weight: 0
+    uuid: 39fda630-0fb1-11e4-9191-0800200c9a66
+langcode: en
+dependencies:
+  enforced:
+    module:
+      - juicebox

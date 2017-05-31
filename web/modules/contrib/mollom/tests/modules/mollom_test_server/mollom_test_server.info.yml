@@ -1,0 +1,15 @@
+type: module
+name: Mollom Test Server
+description: 'Provides a mock REST server for Mollom automated tests.'
+package: Acquia
+# core: 8.x
+hidden: true
+dependencies:
+  - mollom
+  - serialization
+
+# Information added by Drupal.org packaging script on 2017-01-04
+version: '8.x-1.2'
+core: '8.x'
+project: 'mollom'
+datestamp: 1483560548

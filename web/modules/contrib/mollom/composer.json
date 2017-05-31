@@ -1,0 +1,25 @@
+{
+    "name": "mollom",
+    "type": "drupal-module",
+    "description": "Mollom drupal module",
+    "keywords": ["acquia", "mollom", "spam"],
+    "homepage": "https://drupal.org/project/mollom",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "See contributors",
+            "homepage": "https://drupal.org/project/mollom"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/mollom/MollomPHP"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.0",
+        "mollom/client": "dev-psr4"
+    }
+}

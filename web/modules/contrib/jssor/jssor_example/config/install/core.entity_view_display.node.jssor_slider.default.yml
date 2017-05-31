@@ -1,0 +1,28 @@
+uuid: 5c6b3859-52b6-4b19-840e-1435c568da87
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.jssor_slider.field_jssor_image
+    - node.type.jssor_slider
+  module:
+    - image
+    - user
+id: node.jssor_slider.default
+targetEntityType: node
+bundle: jssor_slider
+mode: default
+content:
+  field_jssor_image:
+    type: image
+    weight: 1
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+  links:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

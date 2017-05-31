@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display an item in a Jssor views.
+ *
+ * Available variables:
+ * - image: Slider image.
+ * - caption: Slider caption.
+ * - play_in_transition
+ * - play_out_transition
+ *
+ * @see template_preprocess_views_view_jssor_row()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ image }}
+<div u="caption" t='{{ play_in_transition }}' t2='{{ play_out_transition }}' class="slider__caption">
+  <div class="slider__caption--background">
+  </div>
+  <div class="slider__caption--title">
+    {{ caption }}
+  </div>
+</div>

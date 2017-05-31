@@ -1,0 +1,13 @@
+name: Drop Guard
+type: module
+description: Provides integration with the Drop Guard service to automate Drupal updates.
+# core: 8.x
+package: Security
+configure: admin/config/services/dropguard
+
+
+# Information added by Drupal.org packaging script on 2016-07-22
+version: '8.x-1.1'
+core: '8.x'
+project: 'dropguard'
+datestamp: 1469204940

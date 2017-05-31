@@ -1,0 +1,7 @@
+mollom.analysis:
+  version: VERSION
+  js:
+    js/mollom.js: {}
+  css:
+    theme:
+      css/mollom.css: {}

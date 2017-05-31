@@ -1,0 +1,87 @@
+# The routing.yml file defines the paths for our module.
+# Here we define the paths for our entity type's admin UI.
+
+# This is the router item for listing all entities.
+entity.mollom_form.list:
+  path: 'admin/config/content/mollom'
+  defaults:
+    _title: 'Mollom content moderation'
+    _entity_list: 'mollom_form'
+  requirements:
+    _permission: 'administer mollom'
+
+# This is the router item for adding our entity.
+entity.mollom_form.add:
+  path: 'admin/config/content/mollom/add-form'
+  defaults:
+    # Like _entity_list above, _entity_form gives the entity type ID, only this
+    # time also lists the form separated by a period. Drupal looks in the
+    # annotation for the entity and locates the "add" entry under "form" for
+    # the form class to load.
+    # @see \Drupal\Core\Entity\Enhancer\EntityRouteEnhancer
+    _entity_form: 'mollom_form.add'
+  requirements:
+    _entity_create_access: 'mollom_form'
+
+# This is the router item for editing our entity.
+entity.mollom_form.edit_form:
+  # Parameters may be passed to the form via the URL path. We name the
+  # parameter in the path by enclosing it in curly braces. For entity forms,
+  # we include the entity ID in the path by including a parameter with the
+  # same name as the entity type ID.
+  path: 'admin/config/content/mollom/form/{mollom_form}/edit'
+  defaults:
+    # List our add entry above, this _entity_form entry instructs Drupal to
+    # read our entity type's annonation, and look for the "edit" entry under
+    # "form".
+    _entity_form: 'mollom_form.edit'
+    _title: 'Edit Mollom Protected Form'
+  requirements:
+    _entity_access: 'mollom_form.edit'
+
+# This is the router item for deleting an instance of our entity.
+entity.mollom_form.delete_form:
+  path: 'admin/config/content/mollom/form/{mollom_form}/delete'
+  defaults:
+    _entity_form: 'mollom_form.delete'
+  requirements:
+    _entity_access: 'mollom_form.delete'
+
+mollom.settings:
+  path: 'admin/config/content/mollom/settings'
+  defaults:
+    _form: '\Drupal\mollom\Form\Settings'
+    _title: 'Mollom settings'
+  requirements:
+    _permission: 'administer mollom'
+
+mollom.statistics:
+  path: 'admin/config/content/mollom/statistics'
+  defaults:
+    _controller: '\Drupal\mollom\Controller\StatisticsController::content'
+    _title: 'Mollom statistics'
+  requirements:
+    _permission: 'administer mollom'
+
+# Blacklist administration
+mollom.blacklist.list:
+  path: 'admin/config/content/mollom/blacklist'
+  defaults:
+    _controller: '\Drupal\mollom\Controller\BlacklistListController::content'
+    _title: 'Mollom blacklist'
+  requirements:
+    _permission: 'administer mollom'
+
+mollom.blacklist.add:
+  path: 'admin/config/content/mollom/blacklist/add'
+  defaults:
+    _form: '\Drupal\mollom\Form\BlacklistEntryAdd'
+  requirements:
+    _permission: 'administer mollom'
+
+mollom.blacklist.delete:
+  path: 'admin/config/content/mollom/blacklist/{entry_id}/delete'
+  defaults:
+    _form: '\Drupal\mollom\Form\BlacklistEntryDelete'
+  requirements:
+    _permission: 'administer mollom'

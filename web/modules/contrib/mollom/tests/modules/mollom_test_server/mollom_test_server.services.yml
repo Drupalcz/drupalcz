@@ -1,0 +1,3 @@
+services:
+  mollom_test_server.request_parser:
+    class: Drupal\mollom_test_server\OAuthRequestParser

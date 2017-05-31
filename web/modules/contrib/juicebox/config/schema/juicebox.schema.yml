@@ -1,0 +1,164 @@
+# Schema for configuration files of the Juicebox module.
+
+image.style.*:
+  type: config_entity
+  label: 'Image style'
+  mapping:
+    name:
+      type: string
+    label:
+      type: label
+      label: 'Label'
+    effects:
+      type: sequence
+      sequence:
+        - type: mapping
+          mapping:
+            id:
+              type: string
+            data:
+              type: image.effect.[%parent.id]
+            weight:
+              type: integer
+            uuid:
+              type: string
+
+image.effect.*:
+  type: mapping
+  label: 'Effect settings'
+
+image.effect.image_scale:
+  type: image_size
+  label: 'Image scale'
+  mapping:
+    upscale:
+      type: boolean
+      label: 'Upscale'
+
+image.effect.image_scale_and_crop:
+  type: image_size
+  label: 'Image scale and crop'
+  mapping:
+    upscale:
+      type: boolean
+      label: 'Upscale'
+
+juicebox.settings:
+  type: config_object
+  mapping:
+    apply_markup_filter:
+      type: boolean
+      label: 'Filter all title and caption output for compatibility with Juicebox javascript'
+    enable_cors:
+      type: boolean
+      label: 'Allow galleries to be embedded remotely'
+    translate_interface:
+      type: boolean
+      label: 'Translate the Juicebox javascript interface'
+    base_languagelist:
+      type: string
+      label: 'Base string for interface translation'
+    juicebox_multisize_small:
+      type: string
+      label: 'Small mode image style'
+    juicebox_multisize_medium:
+      type: string
+      label: 'Medium mode image style'
+    juicebox_multisize_large:
+      type: string
+      label: 'Large mode image style'
+
+juicebox_formatter_common: &juicebox_formatter_common
+  jlib_galleryWidth:
+    type: string
+    label: 'Gallery width'
+  jlib_galleryHeight:
+    type: string
+    label: 'Gallery height'
+  jlib_backgroundColor:
+    type: string
+    label: 'Gallery background color'
+  jlib_textColor:
+    type: string
+    label: 'Gallery text color'
+  jlib_thumbFrameColor:
+    type: string
+    label: 'Gallery thumb frame color'
+  jlib_showOpenButton:
+    type: boolean
+    label: 'Show open image button'
+  jlib_showExpandButton:
+    type: boolean
+    label: 'Show expand gallery button'
+  jlib_showThumbsButton:
+    type: boolean
+    label: 'Show thumbs display button'
+  jlib_useThumbDots:
+    type: boolean
+    label: 'Show thumbs as dots'
+  jlib_useFullscreenExpand:
+    type: string
+    label: 'Use fullscreen expand'
+  manual_config:
+    type: string
+    label: 'Manual config options'
+  custom_parent_classes:
+    type: string
+    label: 'Custom parent classes'
+  apply_markup_filter:
+    type: boolean
+    label: 'Apply markup filter'
+  linkurl_source:
+    type: string
+    label: 'LinkURL source'
+  linkurl_target:
+    type: string
+    label: 'LinkURL target'
+  incompatible_file_action:
+    type: string
+    label: 'Incompatible file action'
+
+field.formatter.settings.juicebox_formatter:
+  type: mapping
+  label: 'Juicebox field display format settings'
+  mapping:
+    image_style:
+      type: string
+      label: 'Image style'
+    thumb_style:
+      type: string
+      label: 'Thumb style'
+    caption_source:
+      type: string
+      label: 'Caption source'
+    title_source:
+      type: string
+      label: 'Title source'
+    <<: *juicebox_formatter_common
+
+views.style.juicebox:
+  type: views_style
+  label: 'Juicebox'
+  mapping:
+    image_field:
+      type: string
+      label: 'Image field'
+    image_field_style:
+      type: string
+      label: 'Image field style'
+    thumb_field:
+      type: string
+      label: 'Thumb field'
+    thumb_field_style:
+      type: string
+      label: 'Thumb field style'
+    title_field:
+      type: string
+      label: 'Title field'
+    caption_field:
+      type: string
+      label: 'Caption field'
+    show_title:
+      type: boolean
+      label: 'Show title'
+    <<: *juicebox_formatter_common

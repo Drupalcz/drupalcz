@@ -1,0 +1,10 @@
+administer mollom:
+  title: Administer Mollom
+  description: Administer Mollom-protected forms and Mollom settings
+  restrict access: true
+bypass mollom protection:
+  title: Bypass Mollom protection
+  description: Bypass Mollom protection on forms
+access mollom statistics:
+  title: View Mollom statistics
+  description: View Mollom reporting and statistics

@@ -1,0 +1,14 @@
+name: Jssor Slider
+type: module
+description: 'Jssor Slider'
+package: Slider
+# core: 8.x
+dependencies:
+  - file
+  - image
+
+# Information added by Drupal.org packaging script on 2016-01-14
+version: '8.x-1.0-rc6'
+core: '8.x'
+project: 'jssor'
+datestamp: 1452810245

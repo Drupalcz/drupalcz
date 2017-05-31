@@ -1,0 +1,715 @@
+<?php
+
+use Drupal\comment\CommentInterface;
+use Drupal\Component\Utility\Unicode;
+use Drupal\Core\Url;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\node\Entity\Node;
+use Drupal\mollom\API\FeedbackManager;
+use Drupal\mollom\Controller\FormController;
+use Drupal\mollom\Entity\FormInterface;
+use Drupal\mollom\Storage\ResponseDataStorage;
+use Drupal\mollom\Utility\MollomUtilities;
+use Drupal\node\Entity\NodeType;
+
+/**
+ * Implements hook_mollom_form_list().
+ */
+function comment_mollom_form_list() {
+  $forms = [];
+  /* @var $type \Drupal\comment\Entity\CommentType */
+  foreach (\Drupal\comment\Entity\CommentType::loadMultiple() as $type) {
+    $form_id = 'comment_' . $type->id() . '_form';
+    $forms[$form_id] = [
+      'title' => t('@name form', array('@name' => $type->label())),
+      'entity' => 'comment',
+      'bundle' => 'comment',
+      'delete form' => 'comment_comment_delete_form',
+      'delete submit' => 'actions][submit',
+      'report access' => array('administer comments'),
+      'entity delete multiple callback' => 'comment_delete_multiple',
+      'entity report access callback' => 'comment_mollom_entity_report_access',
+    ];
+  }
+  return $forms;
+}
+
+/**
+ * Implements hook_mollom_form_info().
+ */
+function comment_mollom_form_info($form_id) {
+  $form_info = array(
+    'mode' => FormInterface::MOLLOM_MODE_ANALYSIS,
+    'bypass access' => array('administer comments'),
+    'moderation callback' => 'comment_mollom_form_moderation',
+    'context created callback' => 'node_mollom_context_created',
+    'elements' => array(
+      'subject][0][value' => t('Subject'),
+      'comment_body][0][value' => t('Body'),
+    ),
+    'mapping' => array(
+      'post_title' => 'subject][0][value',
+      'author_name' => 'name',
+      'author_mail' => 'mail',
+    ),
+  );
+  // Retrieve internal type from $form_id.
+  $comment_bundle = Unicode::substr($form_id, 0, -5);
+  FormController::addProtectableFields($form_info, 'comment', $comment_bundle);
+  return $form_info;
+}
+
+/**
+ * Implements hook_form_FORMID_alter().
+ */
+function mollom_form_comment_multiple_delete_confirm_alter(array &$form, FormStateInterface $form_state) {
+  FeedbackManager::addFeedbackOptions($form, $form_state);
+  // Report before deletion.
+  array_unshift($form['#submit'], 'mollom_form_comment_multiple_delete_confirm_submit');
+}
+
+/**
+ * Form submit handler for node_multiple_delete_confirm().
+ */
+function mollom_form_comment_multiple_delete_confirm_submit($form, FormStateInterface $form_state) {
+  $cids = array_keys($form_state->getValue('comments'));
+  $feedback = $form_state->getValue(['mollom', 'feedback']);
+  if (!empty($feedback)) {
+    if (FeedbackManager::sendFeedbackMultiple('comment', $cids, $feedback)) {
+      drupal_set_message(t('The posts were successfully reported as inappropriate.'));
+    }
+  }
+  ResponseDataStorage::deleteMultiple('comment', $cids);
+}
+
+
+/**
+ * Implements hook_mollom_form_info().
+ */
+function node_mollom_form_info($form_id) {
+  // Retrieve internal type from $form_id.
+  $form_parts = explode('_', $form_id);
+  // Remove the 'node_' from the beginning of the id.
+  array_shift($form_parts);
+  // Remove the '_form' from the end of the id.
+  array_pop($form_parts);
+  // Whatever is left is the entity type.
+  $entity_type = implode('_', $form_parts);
+
+  /**
+   * @var $type \Drupal\node\Entity\NodeType;
+   */
+  if (!$type = NodeType::load($entity_type)) {
+    return '';
+  }
+  $form_info = array(
+    // @todo This is incompatible with node access.
+    'bypass access' => array('bypass node access'),
+    'bundle' => $type->id(),
+    'moderation callback' => 'node_mollom_form_moderation',
+    'context created callback' => 'node_mollom_context_created',
+    'elements' => [],
+    'mapping' => [
+      'author_name' => 'name',
+      'context_id' => 'nid',
+    ],
+  );
+  // @see \Drupal\node\NodePermissions
+  $form_info['bypass access'][] = 'edit any ' . $type->id() . ' content';
+  $form_info['bypass access'][] = 'delete any ' . $type->id() . ' content';
+  $form_info['elements']['title][0][value'] = t('Title');
+  $form_info['mapping']['post_title'] = 'title][0][value';
+  FormController::addProtectableFields($form_info, 'node', $type->id());
+  return $form_info;
+}
+
+
+/**
+ * Implements hook_mollom_form_list().
+ */
+function node_mollom_form_list() {
+  $forms = array();
+  /** @var NodeType[] $types */
+  $types = NodeType::loadMultiple();
+  foreach ($types as $type) {
+    $form_id = 'node_' . $type->id() . '_form';
+    $forms[$form_id] = array(
+      'title' => t('@name form', array('@name' => $type->label())),
+      'entity' => 'node',
+      'bundle' => $type->id(),
+      'delete form' => 'node_confirm_form',
+      'report access' => array('bypass node access', 'administer nodes'),
+      'entity report access callback' => 'node_mollom_entity_report_access',
+    );
+  }
+  return $forms;
+}
+
+/**
+ * Entity context created callback for nodes.
+ *
+ * @param $id
+ *   The id of the node.
+ */
+function node_mollom_context_created($id = NULL) {
+  if (empty($id)) {
+    return FALSE;
+  }
+  /* @var $node Drupal\node\Entity\Node */
+  $node = Node::load($id);
+  if (empty($node)) {
+    return FALSE;
+  }
+  return $node->getCreatedTime();
+}
+
+/**
+ * Mollom form moderation callback for nodes.
+ */
+function node_mollom_form_moderation(array &$form, FormStateInterface $form_state) {
+  $form_state->setValue('status', NODE_NOT_PUBLISHED);
+}
+
+/**
+ * Entity report access callback for nodes.
+ * This enables the flag as inappropriate feature for nodes.
+ *
+ * @param $entity \Drupal\Core\Entity\EntityInterface
+ *   Optional entity object to check access to a specific entity.
+ */
+function node_mollom_entity_report_access($entity = NULL) {
+  // All nodes can be reported as long as the user has access to view.
+  if (!empty($entity)) {
+    return $entity->access('view');
+  }
+  else {
+    // Generally turned on when this function is enabled as a callback.
+    return TRUE;
+  }
+}
+
+/**
+ * Implements hook_form_FORMID_alter().
+ */
+function mollom_form_node_multiple_delete_confirm_alter(array &$form, FormStateInterface $form_state) {
+  FeedbackManager::addFeedbackOptions($form, $form_state);
+  // Report before deletion.
+  array_unshift($form['#submit'], 'mollom_form_node_multiple_delete_confirm_submit');
+}
+
+/**
+ * Form submit handler for node_multiple_delete_confirm().
+ */
+function mollom_form_node_multiple_delete_confirm_submit(array $form, FormStateInterface $form_state) {
+  // @todo do we need to handle translations differently?
+  $nodeInfo = \Drupal::service('user.private_tempstore')->get('node_multiple_delete_confirm')->get(\Drupal::currentUser()->id());
+  $nids = array_keys($nodeInfo);
+  $feedback = $form_state->getValue(['mollom', 'feedback']);
+  if (!empty($feedback)) {
+    if (FeedbackManager::sendFeedbackMultiple('node', $nids, $feedback)) {
+      drupal_set_message(t('The posts were successfully reported as inappropriate.'));
+    }
+  }
+  ResponseDataStorage::deleteMultiple('node', $nids);
+}
+
+/**
+ * Entity report access callback for comments.
+ *
+ * @param $entity
+ *   Optional entity object to check access to a specific entity.
+ */
+function comment_mollom_entity_report_access(CommentInterface $entity = NULL) {
+  // All comments can be reported as long as the user has access to view the
+  // node and it's comments.
+  if (!\Drupal::currentUser()->hasPermission('access comments')) {
+    return FALSE;
+  }
+  if (!empty($entity)) {
+    return $entity->getCommentedEntity()->access('view');
+  }
+  return TRUE;
+}
+
+/**
+ * Implements hook_mollom_form_list().
+ */
+function contact_mollom_form_list() {
+  $forms['contact_message_feedback_form'] = array(
+    'title' => t('Site-wide contact form'),
+  );
+  $forms['contact_message_personal_form'] = array(
+    'title' => t('User contact form'),
+  );
+  return $forms;
+}
+
+/**
+ * Implements hook_mollom_form_info().
+ */
+function contact_mollom_form_info($form_id) {
+  switch ($form_id) {
+    case 'contact_message_feedback_form':
+      $form_info = array(
+        'mode' => FormInterface::MOLLOM_MODE_ANALYSIS,
+        'bypass access' => array('administer contact forms'),
+        'elements' => array(
+          'subject' => t('Subject'),
+          'message' => t('Message'),
+        ),
+        'mapping' => array(
+          'post_title' => 'subject',
+          'author_name' => 'name',
+          'author_mail' => 'mail',
+        ),
+      );
+      return $form_info;
+
+    case 'contact_message_personal_form':
+      $form_info = array(
+        'mode' => FormInterface::MOLLOM_MODE_ANALYSIS,
+        'bypass access' => array('administer users'),
+        'elements' => array(
+          'subject' => t('Subject'),
+          'message' => t('Message'),
+        ),
+        'mapping' => array(
+          'post_title' => 'subject',
+          'author_name' => 'name',
+          'author_mail' => 'mail',
+        ),
+      );
+      return $form_info;
+  }
+}
+
+/**
+ * Implements hook_mollom_form_info().
+ */
+function user_mollom_form_info($form_id) {
+  switch ($form_id) {
+    case 'user_register_form':
+    case 'user_profile_form':
+      $form_info = array(
+        'bypass access' => array('administer users'),
+        'moderation callback' => 'user_mollom_form_moderation',
+        'mapping' => array(
+          'author_name' => 'name',
+          'author_mail' => 'mail',
+        ),
+      );
+      FormController::addProtectableFields($form_info, 'user', 'user');
+      return $form_info;
+
+    case 'user_pass':
+      $form_info = array(
+        'bypass access' => array('administer users'),
+        'mapping' => array(
+          'post_id' => 'uid',
+          'author_name' => 'name',
+          // The 'name' form element accepts either a username or mail address.
+          'author_mail' => 'name',
+        ),
+      );
+      return $form_info;
+  }
+}
+
+/**
+ * Implements hook_mollom_form_list().
+ */
+function user_mollom_form_list() {
+  $forms['user_register_form'] = array(
+    'mode' => FormInterface::MOLLOM_MODE_CAPTCHA,
+    'title' => t('User registration form'),
+    'type' => 'user',
+    'entity' => 'user',
+    'bundle' => 'user',
+    'delete form' => 'user_cancel_form',
+    'report path' => 'user/%id/cancel',
+    'report access' => array('administer users'),
+  );
+  $forms['user_profile_form'] = $forms['user_register_form'];
+  $forms['user_profile_form']['title'] = t('User profile form');
+
+  $forms['user_pass'] = array(
+    'mode' => FormInterface::MOLLOM_MODE_CAPTCHA,
+    'title' => t('User password request form'),
+  );
+  return $forms;
+}
+
+/**
+ * Mollom form moderation callback for user accounts.
+ */
+function user_mollom_form_moderation(array $form, FormStateInterface $form_state) {
+  $form_state->setValue('status', 0);
+}
+
+/**
+ * Implements hook_mollom_form_info_alter().
+ *
+ * Adds profile fields exposed on the user registration form.
+ */
+function profile_mollom_form_info_alter(&$form_info, $form_id) {
+  if ($form_id !== 'user_register_form') {
+    return;
+  }
+  // @see profile_form_profile()
+  $result = db_query("SELECT name, title FROM {profile_field} WHERE register = 1 AND type IN (:types)", array(
+    ':types' => array('textfield', 'textarea', 'url', 'list'),
+  ));
+  foreach ($result as $field) {
+    $form_info['elements'][$field->name] = check_plain($field->title);
+  }
+}
+
+/**
+ * Mollom form moderation callback for comments.
+ */
+function comment_mollom_form_moderation(array &$form, FormStateInterface $form_state) {
+  $form_state->setValue('status', CommentInterface::NOT_PUBLISHED);
+}
+
+/**
+ * Implements hook_form_alter().
+ *
+ * Protects all configured forms with Mollom.
+ *
+ * @see mollom_element_info()
+ * @see mollom_process_mollom()
+ * @see mollom_pre_render_mollom()
+ */
+function mollom_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Skip installation and update forms.
+  if (defined('MAINTENANCE_MODE')) {
+    return;
+  }
+  // Retrieve a list of all protected forms once.
+  $forms = \Drupal\mollom\Controller\FormController::getProtectedForms();
+
+  $url = Url::fromRoute('<current>');
+  $current_path = $url->toString();
+  $build_info = $form_state->getBuildInfo();
+  $base_form_id = isset($build_info['base_form_id']) ? $build_info['base_form_id'] : $form_id;
+  $protected_form_id = '';
+  if (isset($forms['protected'][$form_id])) {
+    $protected_form_id = $form_id;
+  }
+  else if (isset($forms['protected'][$base_form_id])) {
+    $protected_form_id = $base_form_id;
+  }
+  if (!empty($protected_form_id) || strpos($current_path, 'admin/config/content/mollom') === 0) {
+    MollomUtilities::displayMollomTestModeWarning();
+  }
+
+  $current_user = \Drupal::currentUser();
+
+  // Site administrators don't have their content checked with Mollom.
+  if (!$current_user->hasPermission('bypass mollom protection')) {
+    // Retrieve configuration for this form.
+    if (!empty($protected_form_id)) {
+      /** @var \Drupal\mollom\Entity\Form $mollom_form */
+      $mollom_form = \Drupal\mollom\Entity\Form::load($protected_form_id)->initialize();
+      // Determine whether to bypass validation for the current user.
+      foreach ($mollom_form['bypass access'] as $permission) {
+        if ($current_user->hasPermission($permission)) {
+          return;
+        }
+      }
+      // Verify global Mollom configuration status.
+      // Only do this if the form is actually protected and if the current user
+      // is not privileged to bypass the Mollom protection. Otherwise, if e.g.
+      // the Testing API is down, then every hook_form_alter() for every single
+      // form on the page would potentially cause a (two) API keys verification
+      // requests (in case caches are disabled).
+      // If API keys have been configured, then the form has to be processed,
+      // regardless of whether API keys could be verified; otherwise, the
+      // fallback mode would not be triggered.
+      $status = MollomUtilities::getAPIKeyStatus();
+      if (!$status['isConfigured']) {
+        return;
+      }
+
+      // Add Mollom Form object to our Form.
+      $form['mollom'] = array(
+        '#type' => 'mollom',
+        '#mollom_form' => $mollom_form,
+        // #type 'actions' defaults to 100.
+        '#weight' => (isset($form['actions']['#weight']) ? $form['actions']['#weight'] - 1 : 99),
+        '#tree' => TRUE,
+      );
+
+      // Add Mollom form validation handlers.
+      // Form-level validation handlers are required, since we need access to
+      // all validated and submitted form values.
+
+      $form['#validate'][] = array('\Drupal\mollom\Controller\FormController', 'validateCaptcha');
+      $form['#validate'][] = array('\Drupal\mollom\Controller\FormController', 'validateAnalysis');
+      $form['#validate'][] = array('\Drupal\mollom\Controller\FormController', 'validatePost');
+      if (!empty($form['actions']['submit']['#submit'])) {
+        $form['actions']['submit']['#submit'][] = array('\Drupal\mollom\Controller\FormController', 'submitForm');
+      }
+      else {
+        $form['#submit'][] = array('\Drupal\mollom\Controller\FormController', 'submitForm');
+      }
+    }
+  }
+  // Integrate with delete confirmation forms to send feedback to Mollom.
+  $delete_form_id = isset($forms['delete'][$base_form_id]) ? $base_form_id : $form_id;
+  if (isset($forms['delete'][$delete_form_id])) {
+    // Check whether the user is allowed to report to Mollom. Limiting report
+    // access is optional for forms integrating via 'delete form' and allowed by
+    // default, since we assume that users being able to delete entities are
+    // sufficiently trusted to also report to Mollom.
+    $access = TRUE;
+    // Retrieve information about the protected form; the form cache maps delete
+    // confirmation forms to protected form_ids, and protected form_ids to their
+    // originating modules.
+    $mollom_form_id = $forms['delete'][$delete_form_id];
+    $module = $forms['protected'][$mollom_form_id];
+    $form_info = FormController::getProtectedFormDetails($mollom_form_id, $module);
+
+    // For entities, there is only one delete confirmation form per entity type.
+    // But not all of its bundles may be protected. We therefore need to figure
+    // out whether the bundle of the entity being deleted is protected.
+    $form_object = $form_state->getFormObject();
+    if ($form_object instanceof \Drupal\Core\Entity\ContentEntityFormInterface) {
+      /* @var $form_object \Drupal\Core\Entity\ContentEntityFormInterface */
+      $entity = $form_object->getEntity();
+      $ids = \Drupal::entityQuery('mollom_form')
+        ->condition('entity', $entity->getEntityTypeId())
+        ->condition('bundle', $entity->bundle())
+        ->execute();
+      if (empty($ids)) {
+        return;
+      }
+    }
+    // Check access, if there is a 'report access' permission list.
+    if (isset($form_info['report access'])) {
+      $access = FALSE;
+      foreach ($form_info['report access'] as $permission) {
+        if ($current_user->hasPermission($permission)) {
+          $access = TRUE;
+          break;
+        }
+      }
+    }
+    if ($access) {
+      FeedbackManager::addFeedbackOptions($form, $form_state);
+      // Report before deleting. This needs to be handled here, since
+      // addFeedbackOptions() is re-used for mass-operation forms.
+      // If there is a button-level submit handler for deletion, then add
+      // the callback to that element which will be the triggering element.
+      // In that case only the element-level submit handlers will run.
+      $submit_button = empty($form_info['delete submit']) ? 'actions][submit' : $form_info['delete submit'];
+      $delete_submit_structure = explode('][', $submit_button);
+      $delete_submit_element = &$form;
+      foreach($delete_submit_structure as $element_name) {
+        if (!isset($delete_submit_element[$element_name])) {
+          break;
+        }
+        $delete_submit_element = &$delete_submit_element[$element_name];
+      }
+      // Just in case the functionality is all in the form, set it back to a
+      // form-level submit handler if the button level submit handlers are
+      // empty.
+      if (empty($delete_submit_element['#submit'])) {
+        $delete_submit_element = &$form;
+      }
+      if (!is_array($delete_submit_element['#submit'])) {
+        $delete_submit_element['#submit'] = [];
+      }
+      array_unshift($delete_submit_element['#submit'], array('Drupal\mollom\API\FeedbackManager', 'addFeedbackOptionsSubmit'));
+    }
+  }
+}
+
+/**
+ * Implements hook_library_info_build().
+ *
+ * Defines a SWFObject library to include if available.  Utilizes the libraries
+ * module when loaded, otherwise looks for the swfobject.js file in known
+ * locations and defines the library structure from it.
+ */
+function mollom_library_info_build() {
+  $libraries = array();
+
+  $lib = array('found' => FALSE);
+  // Try to load via libraries module if enabled.
+  if (\Drupal::moduleHandler()->moduleExists('libraries') && function_exists('libraries_detect ')) {
+    if (($library = libraries_detect('swfobject')) && !empty($library['installed'])) {
+      $lib = array(
+        'found' => TRUE,
+        'libraries' => TRUE,
+      );
+    }
+  }
+  if (!$lib['found']) {
+    // Check for SWFObject in standard library locations.
+    $profile = drupal_get_path('profile', drupal_get_profile());
+    $config = \Drupal::service('site.path');
+    $search = array(
+      'libraries',
+      "$profile/libraries",
+      "sites/all/libraries",
+      "$config/libraries",
+    );
+    foreach ($search as $dir) {
+      if (is_dir($dir) && (
+          file_exists("$dir/swfobject.js") || file_exists("$dir/swfobject/swfobject.js")
+        )) {
+        $lib = array(
+          'found' => TRUE,
+          'libraries' => FALSE,
+          'path' => file_exists("$dir/swfobject.js") ? "$dir/swfobject.js" : "$dir/swfobject/swfobject.js",
+        );
+        break;
+      }
+    }
+  }
+  if ($lib['found']) {
+    if ($lib['libraries']) {
+      $libraries['mollom.swfobject'] = libraries_load('swfobject');
+    }
+    else {
+      $libraries['mollom.swfobject'] = array(
+        'js' => array(
+          '/' . $lib['path'] => array(),
+        )
+      );
+    }
+  }
+  return $libraries;
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function mollom_entity_update(EntityInterface $entity) {
+  // A user account's status transitions from 0 to 1 upon first login; do not
+  // mark the account as moderated in that case.
+  if ($entity instanceof \Drupal\user\Entity\User && $entity->id() === \Drupal::currentUser()->id()) {
+    return;
+  }
+  // If an existing entity is published and we have session data stored for it,
+  // mark the data as moderated.
+  $update = FALSE;
+  // If the entity update function provides the original entity, only mark the
+  // data as moderated when the entity's status transitioned to published.
+  if (!isset($entity->original)) {
+    $entity->original = \Drupal::entityManager()->getStorage($entity->getEntityTypeId())->loadUnchanged($entity->id());
+  }
+  if (isset($entity->original->status)) {
+    if (empty($entity->original->status->value) && !empty($entity->status->value)) {
+      $update = TRUE;
+    }
+  }
+  // If there is no original entity to compare against, check for the current
+  // status only.
+  elseif (isset($entity->status) && !empty($entity->status->value)) {
+    $update = TRUE;
+  }
+  if ($update) {
+    FeedbackManager::sendFeedback($entity->getEntityTypeId(), $entity->id(), 'approve', 'moderate', 'mollom_entity_update');
+  }
+}
+
+/**
+ * Implements hook_entity_delete().
+ */
+function mollom_entity_delete(Drupal\Core\Entity\EntityInterface $entity) {
+  ResponseDataStorage::delete($entity->getEntityTypeId(), $entity->id());
+}
+
+/**
+ * Implements hook_theme().
+ */
+function mollom_theme() {
+  $base_path = base_path() . drupal_get_path('module', 'mollom');
+  return array(
+    'mollom_captcha' => array(
+      'render element' => 'element',
+    ),
+    'mollom_captcha_audio' => array(
+      'variables' => array(
+        'captcha_url' => NULL,
+        'flash_fallback_player' => $base_path . '/mollom-captcha-player.swf'
+      ),
+    ),
+    'mollom_captcha_image' => array(
+      'variables' => array(
+        'captcha_url' => NULL,
+        'audio_enabled' => TRUE
+      ),
+    ),
+  );
+}
+
+/**
+ * Format the render array for the Mollom CAPTCHA form element (either image
+ * or audio).
+ */
+function template_preprocess_mollom_captcha(&$variables) {
+  $type = $variables['element']['captcha_display']['#theme'] === 'mollom_captcha_audio' ? 'audio' : 'image';
+  $captcha_url = $variables['element']['captcha_display']['#captcha_url'];
+
+  if ($type == 'audio') {
+    $variables['instructions'] = t('Enter only the first letter of each word you hear.  If you are having trouble listening in your browser, you can <a href="@captcha-url" id="mollom_captcha_download" class="swfNext-mollom_captcha_verify">download the audio</a> to listen on your device.', array(
+      '@captcha-url' => $captcha_url,
+    ));
+    $variables['element']['switch']['#value'] = t('Switch to image verification');
+  }
+  else {
+    $variables['instructions'] = t("Type the characters you see in the picture; if you can't read them, refresh the CAPTCHA or submit the form and a new image will be generated. Not case sensitive.");
+    $variables['element']['switch']['#value'] = t('Switch to audio verification');
+  }
+  $variables['element']['captcha_input']['#title_display'] = 'invisible';
+  $variables['switch'] = isset($variables['element']['switch']) ? $variables['element']['switch'] : '';
+  $variables['captcha_required'] = $variables['element']['captcha_input']['#required'];
+}
+
+/**
+ * Format the render array for a captcha image.
+ */
+function template_preprocess_mollom_captcha_image(&$variables) {
+  $variables['image_alt_text'] = t('Type the characters you see in this picture.');
+  $variables['refresh_alt'] = t('Refresh');
+
+  $element = array(
+    '#theme' => 'image',
+    '#uri' => $variables['captcha_url'],
+    '#alt' => $variables['image_alt_text'],
+    '#getsize' => FALSE,
+  );
+
+  $variables['captcha_output'] = $element;
+}
+
+
+/**
+ * Provide the HTML output for the audio CAPTCHA playback.
+ *
+ * Available variables:
+ * - $captcha_url:  The CAPTCHA audio to present.
+ * - $flash_fallback_player: The URL to the Flash plugin to use as a fallback
+ *   player when HTML5 audio is unsupported for MP3.
+ *
+ * Assumptions:
+ * - SWFObject is already included if it is available.
+ *
+ * @see http://www.html5rocks.com/en/tutorials/audio/quick/
+ */
+function template_preprocess_mollom_captcha_audio(&$variables) {
+  $url_assembler = \Drupal::service('unrouted_url_assembler');
+
+  $module_path = base_path() . drupal_get_path('module', 'mollom');
+  $flash_player_url = $url_assembler->assemble('base:' . $module_path . '/assets/mollom-captcha-player.swf', array(
+    'query' => array('url' => $variables['captcha_url']),
+  ));
+  $variables['flash_url'] = $flash_player_url;
+  $variables['unsupported'] = t('Your system does not support our audio playback verification.  Please <a href="@captcha-url" id="mollom_captcha_download" class="swfNext-mollom_captcha_verify">download this verification</a> to listen on your device.', array(
+    '@captcha-url' => $variables['captcha_url'],
+  ));
+}

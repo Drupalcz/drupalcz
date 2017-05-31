@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Provide the HTML output for the CAPTCHA image display.
+ *
+ * Available variables:
+ * - $captcha_url:  The CAPTCHA image to present based
+ * - $audio_enabled: boolean indicates if audio CAPTCHAs are enabled
+ *   for this site.
+ * @see template_preprocess()
+ *
+ * @ingroup themeable
+ */
+#}
+
+
+<span class="mollom-captcha-content mollom-image-captcha">{{ captcha_output }}</span>

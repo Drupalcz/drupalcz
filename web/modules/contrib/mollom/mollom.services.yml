@@ -1,0 +1,15 @@
+services:
+  mollom.client:
+    class: Drupal\mollom\API\DrupalClientInterface
+    factory: [Drupal\mollom\API\DrupalClientFactory, createDrupalClient]
+    arguments: ['@config.factory', '@http_client']
+  mollom.client.test:
+    class: Drupal\mollom\API\DrupalTestClient
+    arguments: ['@config.factory', '@http_client']
+  mollom.client.testlocal:
+    class: Drupal\mollom\API\DrupalTestLocalClient
+    arguments: ['@config.factory', '@http_client']
+  mollom_subscriber:
+    class: Drupal\mollom\EventSubscriber\Subscriber
+    tags:
+      - { name: event_subscriber }

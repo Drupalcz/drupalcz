@@ -1,0 +1,10 @@
+id: mollom_node_unpublish_action
+label: 'Report to Mollom and unpublish'
+status: true
+langcode: en
+type: node
+plugin: mollom_node_unpublish_action
+dependencies:
+  module:
+    - mollom
+    - node

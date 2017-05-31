@@ -1,0 +1,283 @@
+<?php
+
+/**
+ * @file
+ * Install and uninstall functions as well as schema definition for the Mollom module.
+ */
+
+/**
+ * @file
+ * Install and uninstall functions as well as schema definition for the Mollom module.
+ */
+
+use Drupal\Core\Url;
+use Drupal\mollom\Utility\MollomUtilities;
+use Mollom\Client\Client;
+
+/**
+ * Implements hook_requirements().
+ *
+ * @param $check
+ *   (optional) Boolean whether to re-check the module's installation and
+ *   configuration status. Defaults to TRUE, as this argument is not passed for
+ *   hook_requirements() by default. Passing FALSE allows other run-time code
+ *   to re-generate requirements error messages to be displayed on other pages
+ *   than the site's system status report page.
+ *
+ * @see mollom_init()
+ * @see mollom_admin_settings()
+ * @see _mollom_status()
+ */
+function mollom_requirements($phase = 'runtime', $check = TRUE) {
+  $requirements = array();
+  if ($phase == 'runtime') {
+    $status = MollomUtilities::getAPIKeyStatus($check);
+
+    $requirements['mollom'] = array(
+      'title' => t('Mollom API keys'),
+      'value' => t('Valid (public key: @publicKey)', array(
+        '@publicKey' => \Drupal::config('mollom.settings')->get('keys.public_key'),
+      )),
+    );
+    // Immediately return if everything is in order.
+    if ($status['isVerified']) {
+      return $requirements;
+    }
+    // If not, something is wrong; prepare the requirements entry and set
+    // defaults for any yet unknown edge-cases.
+    $requirements['mollom']['severity'] = REQUIREMENT_ERROR;
+    // Append a link to the settings page to the error message on all pages,
+    // except on the settings page itself. These error messages also need to be
+    // shown on the settings page, since Mollom API keys can be entered later.
+    $admin_message = '';
+    /** @var $current_route \Drupal\Core\Routing\CurrentRouteMatch */
+    $current_route = \Drupal::service('current_route_match');
+    if ($current_route->getRouteName() !== 'mollom.settings') {
+      $admin_message = t('Visit the <a href="@settings-url">Mollom settings page</a> to configure your keys.', array(
+        '@settings-url' => Url::fromRoute('mollom.settings')->toString(),
+      ));
+    }
+    // Generate an appropriate error message:
+    // If testing mode is enabled, then the Testing API is most likely down,
+    // since the testing client implementation automatically tries to recover
+    // from stale/outdated API keys.
+    $mollom = \Drupal::service('mollom.client');
+    if (\Drupal::config('mollom.settings')->get('test_mode.enabled')) {
+      $requirements['mollom']['value'] = t('Testing API not available');
+      $requirements['mollom']['description'] = t('The Mollom Testing API is not available currently.');
+    }
+    // Missing API keys.
+    elseif (!$status['isConfigured']) {
+      $requirements['mollom']['value'] = t('Not configured');
+      $requirements['mollom']['description'] = t('The Mollom API keys are not configured yet. @admin-message', array(
+        '@admin-message' => $admin_message,
+      ));
+    }
+    // Bad request: Invalid client system time: Too large offset from UTC.
+    elseif ($status['response'] === $mollom::REQUEST_ERROR) {
+      $requirements['mollom']['value'] = t('Client error');
+      $requirements['mollom']['description'] = t('The server time of this site is incorrect. The time of the operating system is not synchronized with the Coordinated Universal Time (UTC), which prevents a successful authentication with Mollom. The maximum allowed offset is @minutes minutes. Please consult your hosting provider or server operator to correct the server time.', array(
+        '@minutes' => Client::TIME_OFFSET_MAX / 60,
+      ));
+    }
+    // Invalid API keys.
+    elseif ($status['response'] === $mollom::AUTH_ERROR) {
+      $requirements['mollom']['value'] = t('Invalid');
+      $requirements['mollom']['description'] = t('The configured Mollom API keys are invalid. @admin-message', array(
+        '@admin-message' => $admin_message,
+      ));
+    }
+    // Communication error.
+    elseif ($status['response'] === $mollom::NETWORK_ERROR) {
+      $requirements['mollom']['value'] = t('Network error');
+      $requirements['mollom']['description'] = t('The Mollom servers could not be contacted. Please make sure that your web server can make outgoing HTTP requests.');
+    }
+    // Server error.
+    elseif ($status['response'] === $mollom::RESPONSE_ERROR) {
+      $requirements['mollom']['value'] = t('Service error');
+      $requirements['mollom']['description'] = t('The Mollom API keys could not be verified. Please try again later.');
+    }
+    // 404, etc.
+    else {
+      $requirements['mollom']['value'] = t('Unknown error');
+      $requirements['mollom']['description'] = t('The Mollom servers could be contacted, but Mollom API keys could not be verified.');
+    }
+  }
+  return $requirements;
+}
+
+
+/**
+ * Implements hook_schema().
+ */
+function mollom_schema() {
+  $schema['mollom'] = array(
+    'description' => 'Stores Mollom responses for content.',
+    'fields' => array(
+      'entity' => array(
+        'description' => 'Entity type of the content.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'id' => array(
+        'description' => 'Unique entity ID of the content.',
+        'type' => 'varchar',
+        'length' => 36,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'content_id' => array(
+        'description' => 'Content ID returned by Mollom.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'captcha_id' => array(
+        'description' => 'CAPTCHA ID returned by Mollom.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'form_id' => array(
+        'description' => 'The form_id of the form being protected.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'changed' => array(
+        'description' => 'Unix timestamp when the data was changed.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'moderate' => array(
+        'description' => 'Whether the content needs to be moderated.',
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      // Server response columns are NULL by default, because any default value
+      // would have an unintended meaning. Also, values are stored in individual
+      // columns, so as to be able to join and filter/sort on these values for
+      // improved content moderation.
+      'spam_score' => array(
+        'description' => 'Text analysis spam check result.',
+        'type' => 'float',
+        'size' => 'tiny',
+        'not null' => FALSE,
+      ),
+      'spam_classification' => array(
+        'description' => 'Text analysis final spam classification result.',
+        'type' => 'varchar',
+        'length' => 16,
+        'not null' => FALSE,
+      ),
+      'solved' => array(
+        'description' => 'Whether a CAPTCHA has been solved (1) or not (0).',
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => FALSE,
+      ),
+      'quality_score' => array(
+        'description' => 'Text analysis quality check result.',
+        'type' => 'float',
+        'size' => 'tiny',
+        'not null' => FALSE,
+      ),
+      'profanity_score' => array(
+        'description' => 'Text analysis profanity check result.',
+        'type' => 'float',
+        'size' => 'tiny',
+        'not null' => FALSE,
+      ),
+      'reason' => array(
+        'description' => 'A special reason for why a post was blocked.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'languages' => array(
+        'description' => 'Text analysis language check result.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'default' => '',
+      ),
+      'flags_spam' => array(
+        'description' => 'Count of spam feedback reports.',
+        'type' => 'int',
+        'size' => 'medium',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'flags_ham' => array(
+        'description' => 'Count of ham feedback reports.',
+        'type' => 'int',
+        'size' => 'medium',
+        'not null' => TRUE,
+        'default' => 0,
+       ),
+      'flags_profanity' => array(
+        'description' => 'Count of profanity feedback reports.',
+        'type' => 'int',
+        'size' => 'medium',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'flags_quality' => array(
+        'description' => 'Count of low quality feedback reports.',
+        'type' => 'int',
+        'size' => 'medium',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'flags_unwanted' => array(
+        'description' => 'Count of unwanted feedback reports.',
+        'type' => 'int',
+        'size' => 'medium',
+        'not null' => TRUE,
+        'default' => 0,
+       ),
+    ),
+    'indexes' => array(
+      'content_id' => array('content_id'),
+      'captcha_id' => array('captcha_id'),
+    ),
+    'primary key' => array('entity', 'id'),
+    'foreign keys' => array(
+      'mollom_form_id' => array(
+        'table' => 'mollom_form',
+        'columns' => array(
+          'form_id' => 'form_id',
+        ),
+      ),
+    ),
+  );
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function mollom_install() {
+  $config_url = Url::fromUri('base://admin/config/content/mollom/settings');
+  drupal_set_message(t('Mollom installed successfully. Visit the @link to configure your keys.', [
+    '@link' => \Drupal::l(t('Mollom settings page'), $config_url),
+  ]));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function mollom_uninstall() {
+  //Drupal::cache()->deleteTags(array('mollom'));
+  $state_keys = ['mollom.testing_use_local', 'mollom.testing_create_keys', 'mollom.omit_warnings'];
+  \Drupal::state()->deleteMultiple($state_keys);
+}

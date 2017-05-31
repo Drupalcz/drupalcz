@@ -1,0 +1,17 @@
+juicebox.edit_conf_field:
+  deriver: 'Drupal\juicebox\Plugin\Derivative\JuiceboxConfFieldContextualLinks'
+
+juicebox.edit_conf_global:
+  title: 'Configure global Juicebox options'
+  route_name: 'juicebox.admin_settings'
+  group: 'juicebox_conf_global'
+
+juicebox.view_xml_field:
+  title: 'View gallery XML'
+  route_name: 'juicebox.xml_field'
+  group: 'juicebox_xml_field'
+  
+juicebox.view_xml_viewsstyle:
+  title: 'View gallery XML'
+  route_name: 'juicebox.xml_viewsstyle'
+  group: 'juicebox_xml_viewsstyle'

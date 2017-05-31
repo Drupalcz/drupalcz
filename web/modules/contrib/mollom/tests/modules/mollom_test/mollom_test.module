@@ -1,0 +1,92 @@
+<?php
+
+/**
+ * @file mollom_test.module: Main module file for hooks related to testing
+ * Mollom.
+ */
+
+use \Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_mollom_form_list().
+ */
+function mollom_test_mollom_form_list() {
+  $forms['mollom_test_post_form'] = array(
+    'title' => 'Mollom test form',
+    'entity' => 'mollom_test_post',
+    'moderation callback' => 'mollom_test_mollom_form_moderation',
+    'delete form' => 'mollom_test_delete_form',
+  );
+  // The basic test form is identical to the mollom_test_form, but only
+  // registers minimal information (e.g., no entity or moderation callback) to
+  // integrate with Mollom.
+  $forms['mollom_basic_test_form'] = array(
+    'title' => 'Mollom basic test form',
+  );
+  // Same as above, but supports elements for text analysis.
+  $forms['mollom_basic_elements_test_form'] = array(
+    'title' => 'Mollom basic elements test form',
+  );
+  // Same as mollom_test_form, but supports an entity delete callback.
+  $forms['mollom_entity_test_form'] = array(
+    'title' => 'Mollom entity test form',
+    'entity' => 'mollom_test_post',
+    'entity delete callback' => 'mollom_test_delete',
+  );
+  return $forms;
+}
+
+/**
+ * Implements hook_mollom_form_info().
+ */
+function mollom_test_mollom_form_info($form_id) {
+  if ($form_id == 'mollom_basic_test_form') {
+    return array();
+  }
+  $form_info = array(
+    'bypass access' => array('administer mollom'),
+    'elements' => array(
+      'title' => 'Title',
+      'body' => 'Body',
+      'exclude' => 'Some other field',
+      'parent][child' => 'Nested element',
+      'field' => 'Multiple value field',
+    ),
+    'mapping' => array(
+      'post_id' => 'mid',
+      'post_title' => 'title',
+      'author_name' => 'name',
+    ),
+  );
+  return $form_info;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function mollom_test_form_alter(array &$form, FormStateInterface $form_state) {
+  if (\Drupal::state()->get('mollom_test.disable_mollom', FALSE)) {
+    $form['#mollom'] = ['require_analysis' => FALSE, 'require_captcha' => FALSE];
+  }
+}
+
+/**
+ * Mollom form moderation callback for a mollom_test record.
+ */
+function mollom_test_mollom_form_moderation(array &$form, FormStateInterface $form_state) {
+  $form_state->setValue('status', 0);
+}
+
+/**
+ * Deletes a {mollom_test} data record.
+ *
+ * @param int $mid
+ *   The mid to delete.
+ */
+function mollom_test_delete($mid) {
+  $record = \Drupal::entityManager()->getStorage('mollom_test_post')->load($mid);
+  if (!empty($record)) {
+    \Drupal::moduleHandler()->invokeAll('entity_delete', array($record, 'mollom_test'));
+    $record->delete();
+  }
+}
