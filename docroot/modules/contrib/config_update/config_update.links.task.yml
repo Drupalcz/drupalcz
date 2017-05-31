@@ -1,5 +1,0 @@
-config_update.report:
-  route_name: config_update.report
-  title: 'Updates report'
-  base_route: config.sync
-  weight: 1000

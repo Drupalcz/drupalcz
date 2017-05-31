@@ -1,4 +1,5 @@
 module:
+  layout_discovery: 0
   admin_toolbar: 0
   block: 0
   block_content: 0
@@ -73,3 +74,4 @@ theme:
   bootstrap: 0
   dcz_skin: 0
 langcode: cs
+profile: dcz
