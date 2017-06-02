@@ -1,4 +1,0 @@
-/* Ensure contextual links appear above Juicebox elements */
-.juicebox-parent .contextual {
-  z-index: 5000;
-}
