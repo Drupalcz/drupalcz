@@ -35,6 +35,7 @@ Branch | Build status
   * `cp docroot/sites/default/default.settings.local.php docroot/sites/default/settings.local.php`
   * edit this config: `docroot/sites/default/settings.local.php`
 * Install the site (it will use the Drupal.cz distribution).
+  * `composer install`
   * `cd docroot`
   * `drush si`
   * Import configuration:
