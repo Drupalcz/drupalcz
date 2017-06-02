@@ -91,6 +91,14 @@
             "docroot/profiles/contrib/{$name}": ["type:drupal-profile"],
             "docroot/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/contrib/{$name}": ["type:drupal-drush"]
+        },
+        "patches": {
+            "drupal/jssor": {
+                "Undefined index slide_spacing": "https://www.drupal.org/files/issues/warning_slide_spacing-2673660-1.patch"
+            },
+            "drupal/layout_plugin": {
+                "Cannot use object of type": "https://www.drupal.org/files/issues/fatal-error-when-installing-module.patch"
+            }
         }
     }
 }
