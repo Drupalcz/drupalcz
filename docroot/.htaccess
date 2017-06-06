@@ -68,9 +68,9 @@ DirectoryIndex index.php
   RewriteRule .* https://www.drupal.cz/ [L,R=301]
 
   # Force SSL
-#  RewriteCond %{HTTPS} off
- # RewriteCond %{HTTP:X-Forwarded-Proto} !https
-  #RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 
   ### Begin custom rules
