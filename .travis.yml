@@ -55,7 +55,7 @@ install:
   # Set up site.
   - composer --verbose install
   - cd ./docroot
-  - drush si dcz install_configure_form.update_status_module='array(FALSE,FALSE)' --sites-subdir=default --verbose --account-name=admin --account-pass=admin --site-mail=drupalcz_travis_dev@klaska.net --site-name="Drupal.cz" --yes
+  - ./../vendor/bin/drush si dcz install_configure_form.update_status_module='array(FALSE,FALSE)' --sites-subdir=default --verbose --account-name=admin --account-pass=admin --site-mail=drupalcz_travis_dev@klaska.net --site-name="Drupal.cz" --yes
   - cd ..
 
   # Set up and run migrations.
@@ -63,13 +63,13 @@ install:
   - git clone https://github.com/Drupalcz/drupalcz_db.git
   - mysql -uroot d6migratesource < ./drupalcz_db/dcz_scrubbed_slim.sql
   - cd ./docroot
-  - drush cim -y
-  - drush cr
-  - drush en -y dcz_migrate
-  - drush migrate-status
-  - drush migrate-import --group=dcz6 -vvv
-  - drush migrate-status
-  - drush cr
+  - ./../vendor/bin/drush cim -y
+  - ./../vendor/bin/drush cr
+  - ./../vendor/bin/drush en -y dcz_migrate
+  - ./../vendor/bin/drush migrate-status
+  #- ./../vendor/bin/drush migrate-import --group=dcz6 -vvv
+  - ./../vendor/bin/drush migrate-status
+  - ./../vendor/bin/drush cr
   - cd ..
 
   # Setup behat.
