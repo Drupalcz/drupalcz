@@ -18,5 +18,6 @@ content:
     weight: 0
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   langcode: true

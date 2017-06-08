@@ -1,0 +1,37 @@
+diff --git a/src/Plugin/Layout/LayoutPluginManager.php b/src/Plugin/Layout/LayoutPluginManager.php
+index 67ac3cb..672c7b9 100644
+--- a/src/Plugin/Layout/LayoutPluginManager.php
++++ b/src/Plugin/Layout/LayoutPluginManager.php
+@@ -159,11 +159,15 @@ public function getThemeImplementations() {
+ 
+     $theme_registry = [];
+     foreach ($plugins as $id => $definition) {
+-      if (!empty($definition['template']) && !empty($definition['theme'])) {
+-        $theme_registry[$definition['theme']] = [
++      $template = $definition->get('template');
++      $theme = $definition->get('theme_hook');
++      $template_path = $definition->get('templatePath');
++      if (!empty($template) && !empty($theme)) {
++
++        $theme_registry[$theme] = [
+           'render element' => 'content',
+-          'template' => $definition['template'],
+-          'path' => $definition['template_path'],
++          'template' => $template,
++          'path' => $template_path,
+         ];
+       }
+     }
+@@ -182,8 +186,10 @@ public function alterThemeImplementations(array &$theme_registry) {
+     // registered).
+     $layout_theme_hooks = [];
+     foreach ($plugins as $id => $definition) {
+-      if (!empty($definition['template']) && !empty($definition['theme']) && isset($theme_registry[$definition['theme']])) {
+-        $layout_theme_hooks[] = $definition['theme'];
++      $template = $definition->get('template');
++      $theme = $definition->get('theme_hook');
++      if (!empty($template) && !empty($theme) && isset($theme_registry[$theme])) {
++        $layout_theme_hooks[] = $theme;
+       }
+     }
+ 

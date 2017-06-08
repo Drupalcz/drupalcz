@@ -25,12 +25,14 @@ content:
     weight: 0
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_attachment:
     weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
     type: file_default
+    region: content
   field_comments_article:
     weight: 4
     label: above
@@ -38,6 +40,7 @@ content:
       pager_id: 0
     third_party_settings: {  }
     type: comment_default
+    region: content
   field_tags:
     weight: 1
     label: inline
@@ -45,9 +48,11 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
   links:
     weight: 3
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   langcode: true

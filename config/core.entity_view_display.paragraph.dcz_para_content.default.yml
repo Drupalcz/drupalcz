@@ -20,6 +20,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
 hidden:
   created: true
   field_dcz_para_class: true
