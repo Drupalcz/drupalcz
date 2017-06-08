@@ -40,6 +40,7 @@ content:
       apply_markup_filter: true
     third_party_settings: {  }
     type: juicebox_formatter
+    region: content
 hidden:
   created: true
   field_dcz_para_class: true

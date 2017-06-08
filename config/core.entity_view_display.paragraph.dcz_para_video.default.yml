@@ -29,6 +29,7 @@ content:
       youtube_iv_load_policy: false
     third_party_settings: {  }
     type: youtube_video
+    region: content
 hidden:
   created: true
   field_dcz_para_class: true

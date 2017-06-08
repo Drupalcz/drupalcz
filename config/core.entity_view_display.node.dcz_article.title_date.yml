@@ -67,12 +67,14 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_attachment:
     type: file_default
     weight: 9
     label: above
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_comments_article:
     type: comment_default
     weight: 8
@@ -80,6 +82,7 @@ content:
     settings:
       pager_id: 0
     third_party_settings: {  }
+    region: content
   field_tags:
     type: entity_reference_entity_view
     weight: 10
@@ -88,9 +91,11 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
   links:
     weight: 11
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   langcode: true

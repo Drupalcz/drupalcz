@@ -19,7 +19,7 @@ Branch | Build status
 * .gitignore - Gitignore.
 * .travis.yml - Travis CI test suite configuration.
 * scrub.sql - script to strip sensitive data from D6 production database.
-* slim.sql - script to make scrubbed database smaller so we can run tests quicker. 
+* slim.sql - script to make scrubbed database smaller so we can run tests quicker.
 
 ## Requirements
 * Install composer: https://getcomposer.org/doc/00-intro.md
@@ -35,6 +35,7 @@ Branch | Build status
   * `cp docroot/sites/default/default.settings.local.php docroot/sites/default/settings.local.php`
   * edit this config: `docroot/sites/default/settings.local.php`
 * Install the site (it will use the Drupal.cz distribution).
+  * `composer install`
   * `cd docroot`
   * `drush si`
   * Import configuration:
@@ -57,6 +58,6 @@ Branch | Build status
 ## Contributing
 * We are using GitFlow(https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow/) branching strategy
   * you need to create ```feature/NAME``` branch for each issue
-  * after you finish work on issue, create pull request against ```develop``` branch 
+  * after you finish work on issue, create pull request against ```develop``` branch
 * Commit your changes. ( http://chris.beams.io/posts/git-commit/ )
 * Create pull request. https://help.github.com/articles/creating-a-pull-request/

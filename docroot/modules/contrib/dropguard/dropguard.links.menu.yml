@@ -1,6 +1,0 @@
-dropguard.admin:
-  title: 'Drop Guard settings'
-  description: 'Manage Drop Guard settings.'
-  parent: system.admin_config_services
-  route_name: dropguard.settings_form
-  weight: 100
