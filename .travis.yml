@@ -47,7 +47,7 @@ install:
 
   # Install stable Drush 8.
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - composer global require --prefer-dist --no-interaction drush/drush:8.0.3
+  - composer global require --prefer-dist --no-interaction drush/drush:^8.1
 
   # Disable sendmail.
   - echo sendmail_path=`which true` >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
