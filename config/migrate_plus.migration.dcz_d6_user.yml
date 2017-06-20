@@ -28,7 +28,6 @@ source:
 process:
   uid: uid
   name: name
-  pass: pass
   mail: mail
   created: created
   access: access
@@ -70,7 +69,6 @@ process:
 # destination plugin is implemented in Drupal itself.
 destination:
   plugin: entity:user
-  md5_passwords: true
 dependencies:
   enforced:
     module:
