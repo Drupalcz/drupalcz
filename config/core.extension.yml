@@ -2,6 +2,7 @@ module:
   admin_toolbar: 0
   block: 0
   block_content: 0
+  bootstrap_layouts: 0
   breakpoint: 0
   ckeditor: 0
   color: 0

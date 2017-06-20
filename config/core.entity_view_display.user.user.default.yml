@@ -8,57 +8,51 @@ dependencies:
     - field.field.user.user.field_dcz_pos_lat
     - field.field.user.user.field_dcz_pos_long
     - field.field.user.user.field_dcz_surname
+    - field.field.user.user.field_dcz_user_image
+    - image.style.thumbnail
   module:
-    - text
+    - image
+    - panelizer
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 id: user.user.default
 targetEntityType: user
 bundle: user
 mode: default
 content:
-  field_dcz_bio:
-    weight: 3
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: content
   field_dcz_name:
     weight: 1
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
-  field_dcz_pos_lat:
-    type: string
-    weight: 5
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    region: content
-  field_dcz_pos_long:
-    type: string
-    weight: 4
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
     region: content
   field_dcz_surname:
     weight: 2
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
-  member_for:
+  field_dcz_user_image:
     weight: 0
-    settings: {  }
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
     third_party_settings: {  }
+    type: image
     region: content
 hidden:
+  field_dcz_bio: true
+  field_dcz_pos_lat: true
+  field_dcz_pos_long: true
   langcode: true
+  member_for: true

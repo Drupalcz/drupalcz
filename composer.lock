@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "322a823779561d6dc44c121dd026b24f",
+    "content-hash": "04e52dad43b586bd54002470962c4a62",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1200,6 +1200,52 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/bootstrap"
             }
+        },
+        {
+            "name": "drupal/bootstrap_layouts",
+            "version": "dev-5.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/bootstrap_layouts",
+                "reference": "dfc2f7ab34564b245cc5253c9366283f3fac6a67"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-5.x": "5.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-5.x-dev",
+                    "datestamp": "1490216882"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "darol100",
+                    "homepage": "https://www.drupal.org/user/2667123"
+                },
+                {
+                    "name": "hctom",
+                    "homepage": "https://www.drupal.org/user/112790"
+                },
+                {
+                    "name": "markcarver",
+                    "homepage": "https://www.drupal.org/user/501638"
+                }
+            ],
+            "description": "This module is going to generate layouts with Bootstrap grid system.",
+            "homepage": "https://www.drupal.org/project/bootstrap_layouts",
+            "support": {
+                "source": "http://cgit.drupalcode.org/bootstrap_layouts"
+            },
+            "time": "2017-04-18 15:45:22"
         },
         {
             "name": "drupal/config_update",
@@ -2607,7 +2653,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/panelizer-8.x-4.0.zip",
-                "reference": null,
+                "reference": "8.x-4.0",
                 "shasum": "8913d1b782d3f0e48ac957ce1f6d3bc611d524c1"
             },
             "require": {
@@ -7494,6 +7540,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/bootstrap_layouts": 20,
         "drupal/devel": 5,
         "drupal/jssor": 5,
         "drupal/juicebox": 10,
