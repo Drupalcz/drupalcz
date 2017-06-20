@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a403bdb8afee2b7e36a727f87153c6b4",
+    "content-hash": "1aafdbfcdb0fc3f1abb92b04b093ea41",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1199,6 +1199,142 @@
             "homepage": "https://www.drupal.org/project/bootstrap",
             "support": {
                 "source": "http://cgit.drupalcode.org/bootstrap"
+            }
+        },
+        {
+            "name": "drupal/config_filter",
+            "version": "1.0.0-rc1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/config_filter",
+                "reference": "8.x-1.0-rc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/config_filter-8.x-1.0-rc1.zip",
+                "reference": "8.x-1.0-rc1",
+                "shasum": "1a0033022f15cf956dddaebf12e70ebbb3639b50"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "require-dev": {
+                "drupal/coder": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-rc1",
+                    "datestamp": "1494172685"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "scripts": {
+                "post-install-cmd": [
+                    "./vendor/bin/phpcs --config-set installed_paths ../../drupal/coder/coder_sniffer",
+                    "./vendor/bin/phpcs --config-set show_progress 1",
+                    "cp ./tests/scripts/pre-push.sh .git/hooks/pre-push && chmod +x .git/hooks/pre-push"
+                ],
+                "post-update-cmd": [
+                    "./vendor/bin/phpcs --config-set installed_paths ../../drupal/coder/coder_sniffer",
+                    "./vendor/bin/phpcs --config-set show_progress 1",
+                    "cp ./tests/scripts/pre-push.sh .git/hooks/pre-push && chmod +x .git/hooks/pre-push"
+                ],
+                "phpcs": [
+                    "./vendor/bin/phpcs --standard=Drupal,DrupalPractice . --ignore=./vendor,./tests"
+                ],
+                "phpcs-n": [
+                    "./vendor/bin/phpcs --standard=Drupal,DrupalPractice . --ignore=./vendor,./tests -n"
+                ],
+                "phpcbf": [
+                    "./vendor/bin/phpcbf --standard=Drupal,DrupalPractice . --ignore=./vendor,./tests"
+                ]
+            },
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Nuvole Web",
+                    "homepage": "https://www.drupal.org/user/186696",
+                    "email": "info@nuvole.org"
+                },
+                {
+                    "name": "bircher",
+                    "homepage": "https://www.drupal.org/user/1344166"
+                },
+                {
+                    "name": "pescetti",
+                    "homepage": "https://www.drupal.org/user/436244"
+                }
+            ],
+            "description": "Config Filter.",
+            "homepage": "https://www.drupal.org/project/config_filter",
+            "keywords": [
+                "configuration",
+                "drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/config_filter"
+            }
+        },
+        {
+            "name": "drupal/config_split",
+            "version": "1.0.0-beta6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/config_split",
+                "reference": "8.x-1.0-beta6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/config_split-8.x-1.0-beta6.zip",
+                "reference": "8.x-1.0-beta6",
+                "shasum": "c816e0e24375b697daeacd36d2112b48ed857ae2"
+            },
+            "require": {
+                "drupal/config_filter": "*",
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta6",
+                    "datestamp": "1496912342"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "ademarco",
+                    "homepage": "https://www.drupal.org/user/186696"
+                },
+                {
+                    "name": "bircher",
+                    "homepage": "https://www.drupal.org/user/1344166"
+                },
+                {
+                    "name": "pescetti",
+                    "homepage": "https://www.drupal.org/user/436244"
+                }
+            ],
+            "description": "Configuration filter for importing and exporting extra config",
+            "homepage": "https://www.drupal.org/project/config_split",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/config_split",
+                "issues": "https://www.drupal.org/project/issues/config_split"
             }
         },
         {
@@ -2446,88 +2582,6 @@
             }
         },
         {
-            "name": "drupal/mollom",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/mollom",
-                "reference": "8.x-1.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/mollom-8.x-1.2.zip",
-                "reference": "8.x-1.2",
-                "shasum": "57e138baeaa7d2f1931be684be85d560ff37a790"
-            },
-            "require": {
-                "drupal/core": "~8.0",
-                "mollom/client": "dev-psr4",
-                "php": ">=5.3.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.2",
-                    "datestamp": "1483560543"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPLv2"
-            ],
-            "authors": [
-                {
-                    "name": "See contributors",
-                    "homepage": "https://drupal.org/project/mollom"
-                },
-                {
-                    "name": "Dave Reid",
-                    "homepage": "https://www.drupal.org/user/53892"
-                },
-                {
-                    "name": "Dries",
-                    "homepage": "https://www.drupal.org/user/1"
-                },
-                {
-                    "name": "Nick_vh",
-                    "homepage": "https://www.drupal.org/user/122682"
-                },
-                {
-                    "name": "Wim Leers",
-                    "homepage": "https://www.drupal.org/user/99777"
-                },
-                {
-                    "name": "blackskad",
-                    "homepage": "https://www.drupal.org/user/878346"
-                },
-                {
-                    "name": "cbarton281",
-                    "homepage": "https://www.drupal.org/user/3061395"
-                },
-                {
-                    "name": "eshta",
-                    "homepage": "https://www.drupal.org/user/1951462"
-                },
-                {
-                    "name": "sun",
-                    "homepage": "https://www.drupal.org/user/54136"
-                }
-            ],
-            "description": "Mollom drupal module",
-            "homepage": "https://drupal.org/project/mollom",
-            "keywords": [
-                "acquia",
-                "mollom",
-                "spam"
-            ],
-            "support": {
-                "source": "http://cgit.drupalcode.org/mollom"
-            }
-        },
-        {
             "name": "drupal/paragraphs",
             "version": "1.1.0",
             "source": {
@@ -2713,6 +2767,56 @@
             "homepage": "https://www.drupal.org/project/token",
             "support": {
                 "source": "http://cgit.drupalcode.org/token"
+            }
+        },
+        {
+            "name": "drupal/vardumper",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/vardumper",
+                "reference": "8.x-1.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/vardumper-8.x-1.3.zip",
+                "reference": "8.x-1.3",
+                "shasum": "450c691a4783b6fb1628d12942f0f1be2bda129a"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "php": ">=5.3.10",
+                "symfony/var-dumper": "~2.8.2"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.3",
+                    "datestamp": "1476017639"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Pol Dellaiera",
+                    "homepage": "https://www.drupal.org/user/47194",
+                    "email": "pol.dellaiera@protonmail.com"
+                },
+                {
+                    "name": "lussoluca",
+                    "homepage": "https://www.drupal.org/user/138068"
+                }
+            ],
+            "description": "Variable dumper service and Drupal API",
+            "homepage": "https://www.drupal.org/project/vardumper",
+            "support": {
+                "source": "http://cgit.drupalcode.org/vardumper"
             }
         },
         {
@@ -3397,50 +3501,6 @@
                 "xml"
             ],
             "time": "2016-09-22T11:01:11+00:00"
-        },
-        {
-            "name": "mollom/client",
-            "version": "dev-psr4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Mollom/MollomPHP.git",
-                "reference": "bfb97d639d8b0a757c47742af5cfc59dd8363e44"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Mollom/MollomPHP/zipball/bfb97d639d8b0a757c47742af5cfc59dd8363e44",
-                "reference": "bfb97d639d8b0a757c47742af5cfc59dd8363e44",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "5.0.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Mollom\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "See contributors",
-                    "homepage": "https://github.com/mollom/MollomPHP/graphs/contributors"
-                }
-            ],
-            "description": "Generic PHP library for Mollom's REST API.",
-            "keywords": [
-                "acquia",
-                "mollom",
-                "spam"
-            ],
-            "time": "2015-12-03 21:18:35"
         },
         {
             "name": "nikic/php-parser",
@@ -7206,6 +7266,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/config_split": 10,
         "drupal/devel": 5,
         "drupal/jssor": 5,
         "drupal/juicebox": 10,

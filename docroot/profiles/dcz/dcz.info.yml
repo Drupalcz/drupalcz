@@ -14,6 +14,8 @@ dependencies:
   - config
   - comment
   - contact
+  - config_filter
+  - config_split
   - menu_link_content
   - datetime
   - editor
