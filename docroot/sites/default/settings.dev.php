@@ -9,4 +9,3 @@ $conf['mail_system'] = array(
 );
 
 $config['config_split.config_split.dev']['status'] = TRUE;
-
