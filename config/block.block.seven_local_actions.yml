@@ -7,7 +7,7 @@ dependencies:
 id: seven_local_actions
 theme: seven
 region: content
-weight: -10
+weight: -4
 provider: null
 plugin: local_actions_block
 settings:
