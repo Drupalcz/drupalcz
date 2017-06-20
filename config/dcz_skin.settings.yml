@@ -1,0 +1,21 @@
+favicon:
+  mimetype: image/vnd.microsoft.icon
+  path: ''
+  url: 'http://drupalczd8.local/themes/custom/dcz_skin/favicon.ico'
+  use_default: true
+schemas:
+  bootstrap: 8000
+  dcz_skin: 8000
+features:
+  comment_user_picture: true
+  comment_user_verification: true
+  favicon: true
+  node_user_picture: true
+logo:
+  path: themes/custom/dcz_skin/dcz-logo.svg
+  url: ''
+  use_default: false
+navbar_position: fixed-top
+table_responsive: '-1'
+table: ''
+breadcrumb_home: 1

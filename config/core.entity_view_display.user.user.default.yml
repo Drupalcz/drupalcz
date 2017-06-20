@@ -22,6 +22,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_dcz_name:
     weight: 1
     label: above
@@ -29,6 +30,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_dcz_pos_lat:
     type: string
     weight: 5
@@ -36,6 +38,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    region: content
   field_dcz_pos_long:
     type: string
     weight: 4
@@ -43,6 +46,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    region: content
   field_dcz_surname:
     weight: 2
     label: above
@@ -50,8 +54,11 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   member_for:
     weight: 0
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+    region: content
+hidden:
+  langcode: true

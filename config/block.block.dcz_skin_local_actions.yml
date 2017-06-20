@@ -1,0 +1,20 @@
+uuid: b0a131a7-0d52-45a8-b10f-8d167daa7440
+langcode: cs
+status: true
+dependencies:
+  theme:
+    - dcz_skin
+_core:
+  default_config_hash: ffxthelqQF8xcr4GTG4HlaNNsluiHftN0pujmQpW0bQ
+id: dcz_skin_local_actions
+theme: dcz_skin
+region: header
+weight: -7
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

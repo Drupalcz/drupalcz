@@ -4,3 +4,4 @@ status: true
 dependencies: {  }
 id: dcz_para_video
 label: Video
+behavior_plugins: {  }

@@ -28,7 +28,7 @@ function dcz_install() {
     ->save(TRUE);
   \Drupal::configFactory()
     ->getEditable('system.theme')
-    ->set('default', 'drupalcz_skin')
+    ->set('default', 'dcz_skin')
     ->set('admin', 'seven')
     ->save(TRUE);
 

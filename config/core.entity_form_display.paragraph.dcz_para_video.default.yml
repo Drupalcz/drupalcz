@@ -19,6 +19,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
   field_p_title:
     weight: 0
     settings:
@@ -26,11 +27,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_p_video:
     weight: 1
     settings: {  }
     third_party_settings: {  }
     type: youtube
+    region: content
 hidden:
   created: true
+  status: true
   uid: true
