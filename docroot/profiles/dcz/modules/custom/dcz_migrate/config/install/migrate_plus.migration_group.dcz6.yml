@@ -28,3 +28,7 @@ shared_configuration:
     # connection to your external database in settings.php and reference its
     # key here.
     key: migrate
+dependencies:
+  enforced:
+    module:
+      - dcz_migrate

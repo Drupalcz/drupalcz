@@ -61,3 +61,7 @@ migration_dependencies:
 #    - d6_comment_entity_form_display
     - dcz_d6_user
 #    - d6_filter_format
+dependencies:
+  enforced:
+    module:
+      - dcz_migrate

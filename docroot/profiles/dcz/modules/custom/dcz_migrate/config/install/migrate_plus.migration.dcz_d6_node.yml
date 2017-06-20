@@ -65,3 +65,7 @@ migration_dependencies:
 #    - d6_field_instance_widget_settings
 #    - d6_field_formatter_settings
 #    - d6_upload_field_instance
+dependencies:
+  enforced:
+    module:
+      - dcz_migrate

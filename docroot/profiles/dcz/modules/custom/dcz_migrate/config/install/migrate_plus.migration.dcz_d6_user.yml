@@ -71,3 +71,7 @@ process:
 destination:
   plugin: entity:user
   md5_passwords: true
+dependencies:
+  enforced:
+    module:
+      - dcz_migrate

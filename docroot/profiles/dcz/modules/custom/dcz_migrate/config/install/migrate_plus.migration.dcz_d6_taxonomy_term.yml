@@ -24,3 +24,7 @@ destination:
 migration_dependencies:
   required:
     - dcz_d6_taxonomy_vocabulary
+dependencies:
+  enforced:
+    module:
+      - dcz_migrate

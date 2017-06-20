@@ -8,7 +8,9 @@ dependencies:
     - field.field.user.user.field_dcz_pos_lat
     - field.field.user.user.field_dcz_pos_long
     - field.field.user.user.field_dcz_surname
+    - field.field.user.user.field_location
   module:
+    - geolocation
     - text
     - user
 id: user.user.default
@@ -54,6 +56,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_location:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: geolocation_latlng
     region: content
   member_for:
     weight: 0

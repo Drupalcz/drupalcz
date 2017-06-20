@@ -28,3 +28,7 @@ process:
   weight: weight
 destination:
   plugin: entity:taxonomy_vocabulary
+dependencies:
+  enforced:
+    module:
+      - dcz_migrate

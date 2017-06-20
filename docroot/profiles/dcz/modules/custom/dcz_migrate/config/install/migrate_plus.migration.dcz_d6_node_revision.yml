@@ -49,3 +49,7 @@ process:
 
 destination:
   plugin: entity_revision:node
+dependencies:
+  enforced:
+    module:
+      - dcz_migrate
