@@ -1,5 +1,4 @@
 module:
-  layout_discovery: 0
   admin_toolbar: 0
   block: 0
   block_content: 0
@@ -8,6 +7,10 @@ module:
   color: 0
   comment: 0
   config: 0
+  config_filter: 0
+  config_split: 0
+  config_update: 0
+  config_update_ui: 0
   contact: 0
   contextual: 0
   ctools: 0
@@ -18,7 +21,6 @@ module:
   dcz_migrate: 0
   dcz_tags_taxonomy: 0
   dcz_user: 0
-  devel_generate: 0
   editor: 0
   entity_reference: 0
   entity_reference_revisions: 0
@@ -32,16 +34,12 @@ module:
   jssor: 0
   juicebox: 0
   language: 0
+  layout_discovery: 0
   layout_plugin: 0
   libraries: 0
   link: 0
   locale: 0
   menu_ui: 0
-  migrate: 0
-  migrate_drupal: 0
-  migrate_plus: 0
-  migrate_tools: 0
-  mollom: 0
   node: 0
   options: 0
   page_cache: 0
@@ -54,9 +52,7 @@ module:
   text: 0
   token: 0
   toolbar: 0
-  update: 0
   user: 0
-  views_ui: 0
   youtube: 0
   ds: 1
   forum: 1
