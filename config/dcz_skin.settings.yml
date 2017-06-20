@@ -19,3 +19,4 @@ navbar_position: fixed-top
 table_responsive: '-1'
 table: ''
 breadcrumb_home: 1
+langcode: cs
