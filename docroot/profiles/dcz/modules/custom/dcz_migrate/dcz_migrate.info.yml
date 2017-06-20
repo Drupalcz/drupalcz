@@ -9,4 +9,3 @@ dependencies:
   - migrate_plus
   - migrate_tools
   - dcz_user
-  - dcz_tags_taxonomy

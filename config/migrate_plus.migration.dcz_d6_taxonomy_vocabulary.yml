@@ -1,8 +1,20 @@
+uuid: 778dcb79-7aa3-449a-ab98-0501bab76db4
+langcode: cs
+status: true
+dependencies:
+  enforced:
+    module:
+      - dcz_migrate
+_core:
+  default_config_hash: h7yFBXfvV_mi6bP0ga8viZ3oATFXRydvI7RZzzdlLWo
 id: dcz_d6_taxonomy_vocabulary
-label: Taxonomy vocabularies
-migration_group: dcz6
+class: null
+field_plugin_method: null
+cck_plugin_method: null
 migration_tags:
-  - Drupal 6
+  - 'Drupal 6'
+migration_group: dcz6
+label: 'Taxonomy vocabularies'
 source:
   plugin: dcz_d6_taxonomy_vocabulary
 process:
@@ -27,8 +39,5 @@ process:
   hierarchy: hierarchy
   weight: weight
 destination:
-  plugin: entity:taxonomy_vocabulary
-dependencies:
-  enforced:
-    module:
-      - dcz_migrate
+  plugin: 'entity:taxonomy_vocabulary'
+migration_dependencies: null

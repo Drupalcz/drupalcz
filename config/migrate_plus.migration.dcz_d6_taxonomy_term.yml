@@ -1,8 +1,20 @@
+uuid: 5a461d8a-c1f7-40c8-ad57-8dd93f8834ee
+langcode: cs
+status: true
+dependencies:
+  enforced:
+    module:
+      - dcz_migrate
+_core:
+  default_config_hash: 5i2Mytyh8CQUI0hz9IsO4-nx808G9NuqpcRhCotn6Ok
 id: dcz_d6_taxonomy_term
-label: Taxonomy terms
-migration_group: dcz6
+class: null
+field_plugin_method: null
+cck_plugin_method: null
 migration_tags:
-  - Drupal 6
+  - 'Drupal 6'
+migration_group: dcz6
+label: 'Taxonomy terms'
 source:
   plugin: dcz_d6_taxonomy_term
 process:
@@ -20,11 +32,7 @@ process:
     source: parent
   changed: timestamp
 destination:
-  plugin: entity:taxonomy_term
+  plugin: 'entity:taxonomy_term'
 migration_dependencies:
   required:
     - dcz_d6_taxonomy_vocabulary
-dependencies:
-  enforced:
-    module:
-      - dcz_migrate
