@@ -39,7 +39,6 @@
         "drupal/libraries": "3.x-dev",
         "drupal/migrate_plus": "^2.0",
         "drupal/migrate_tools": "^2.0",
-        "drupal/mollom": "^1.2",
         "drupal/panelizer": "^4.0",
         "drupal/panels": "^4.1",
         "drupal/paragraphs": "^1.1",
