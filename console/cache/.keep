@@ -1,0 +1,1 @@
+Keep this empty folder to prevent fail on `composer install`. - Drupal Console requires this folder.
