@@ -1,0 +1,19 @@
+uuid: 129637b1-d085-4d1a-9d9d-5653fa6836a3
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_teaser_text
+    - node.type.dcz_article
+id: node.dcz_article.field_teaser_text
+field_name: field_teaser_text
+entity_type: node
+bundle: dcz_article
+label: 'Teaser Text'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

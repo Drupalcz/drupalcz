@@ -1,0 +1,14 @@
+uuid: f589908b-7689-44e6-b711-008356a708b8
+langcode: cs
+status: false
+dependencies: {  }
+id: prod
+label: PROD
+folder: ../config/split-prod
+module: {  }
+theme: {  }
+blacklist: {  }
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0

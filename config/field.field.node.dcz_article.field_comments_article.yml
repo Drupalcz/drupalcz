@@ -11,7 +11,7 @@ id: node.dcz_article.field_comments_article
 field_name: field_comments_article
 entity_type: node
 bundle: dcz_article
-label: Comments
+label: Komentáře
 description: ''
 required: false
 translatable: false

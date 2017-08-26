@@ -1,0 +1,55 @@
+uuid: 5f0f49e1-47b0-4554-a06e-029fd2f2b7d3
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_paragraphs
+    - node.type.dcz_article
+    - paragraphs.paragraphs_type.dcz_para_block_reference
+    - paragraphs.paragraphs_type.dcz_para_content
+    - paragraphs.paragraphs_type.dcz_para_gallery
+    - paragraphs.paragraphs_type.dcz_para_hero
+    - paragraphs.paragraphs_type.dcz_para_image
+    - paragraphs.paragraphs_type.dcz_para_video
+  module:
+    - entity_reference_revisions
+id: node.dcz_article.field_paragraphs
+field_name: field_paragraphs
+entity_type: node
+bundle: dcz_article
+label: Paragraphs
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      dcz_para_block_reference: dcz_para_block_reference
+      dcz_para_content: dcz_para_content
+      dcz_para_gallery: dcz_para_gallery
+      dcz_para_hero: dcz_para_hero
+      dcz_para_image: dcz_para_image
+      dcz_para_video: dcz_para_video
+    target_bundles_drag_drop:
+      dcz_para_block_reference:
+        enabled: true
+        weight: 7
+      dcz_para_content:
+        enabled: true
+        weight: 8
+      dcz_para_gallery:
+        enabled: true
+        weight: 9
+      dcz_para_hero:
+        enabled: true
+        weight: 10
+      dcz_para_image:
+        enabled: true
+        weight: 11
+      dcz_para_video:
+        enabled: true
+        weight: 12
+field_type: entity_reference_revisions

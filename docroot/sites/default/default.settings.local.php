@@ -64,3 +64,5 @@ $settings['extension_discovery_scan_tests'] = TRUE;
  * using these parameters in a request to rebuild.php.
  */
 $settings['rebuild_access'] = TRUE;
+
+$config['config_split.config_split.dev']['status'] = TRUE;

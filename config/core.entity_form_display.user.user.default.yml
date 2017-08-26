@@ -8,8 +8,10 @@ dependencies:
     - field.field.user.user.field_dcz_pos_lat
     - field.field.user.user.field_dcz_pos_long
     - field.field.user.user.field_dcz_surname
+    - field.field.user.user.field_dcz_user_image
+    - image.style.thumbnail
   module:
-    - path
+    - image
     - text
     - user
 id: user.user.default
@@ -66,6 +68,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_dcz_user_image:
+    weight: 31
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
     region: content
   google_analytics:
     weight: 3
