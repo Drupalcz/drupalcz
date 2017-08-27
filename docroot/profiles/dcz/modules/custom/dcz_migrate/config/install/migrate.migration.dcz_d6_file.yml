@@ -1,0 +1,37 @@
+# Every migration that saves into {file_managed} must have the d6_file
+# migration as an optional dependency to ensure d6_file runs first.
+id: dcz_d6_file
+label: Files
+migration_group: file
+migration_tags:
+  - Drupal 6
+source:
+  plugin: dcz_d6_file
+process:
+  fid: fid
+  filename: filename
+  uri:
+    plugin: file_uri
+    source:
+      - filepath
+      - file_directory_path
+      - temp_directory_path
+      - is_public
+  filemime: filemime
+  filesize: filesize
+  status: status
+  changed: timestamp
+  # uid: uid
+  uid:
+    plugin: migration
+    migration: dcz_d6_user
+    source: uid
+destination:
+  plugin: entity:file
+  urlencode: true
+  # Files are downloaded from old web.
+  source_base_path: https://www.drupal.cz/
+  no_stub: true
+migration_dependencies:
+  required:
+    - dcz_d6_user

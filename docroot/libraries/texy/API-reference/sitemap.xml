@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://api.texy.info/2/index.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/namespace-PHP.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/namespace-Texy.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/namespace-Texy.Modules.html</loc>
+</url>
+
+
+<url>
+	<loc>https://api.texy.info/2/ArrayIterator.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.BlockParser.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Configurator.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.HandlerInvocation.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Helpers.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.HtmlElement.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Image.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.LineParser.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Link.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modifier.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Module.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.BlockModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.BlockQuoteModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.EmoticonModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.FigureModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.HeadingModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.HorizLineModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.HtmlModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.HtmlOutputModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.ImageModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.LinkModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.ListModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.LongWordsModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.ParagraphModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.PhraseModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.ScriptModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.TableCellElement.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.TableModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Modules.TypographyModule.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Parser.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Patterns.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Regexp.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Texy.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Utf.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/ArrayAccess.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Countable.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Iterator.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/IteratorAggregate.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/SeekableIterator.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Serializable.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Traversable.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Texy.Strict.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/Exception.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/InvalidArgumentException.html</loc>
+</url>
+<url>
+	<loc>https://api.texy.info/2/LogicException.html</loc>
+</url>
+</urlset>

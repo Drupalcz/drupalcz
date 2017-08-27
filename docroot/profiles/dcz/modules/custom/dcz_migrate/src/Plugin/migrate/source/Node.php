@@ -128,6 +128,35 @@ class Node extends DrupalSqlBase {
       }
     }
 
+    // Go body through Texy.
+    $texy_formats = array(
+      '1',
+      '6',
+    );
+    if (in_array($row->getSourceProperty('format'), $texy_formats)) {
+      require_once DRUPAL_ROOT . '/libraries/texy/src/texy.php';
+
+      $body = $row->getSourceProperty('body');
+
+      $texy = new \Texy\Texy;
+      $body = $texy->process($body);
+
+      $row->setSourceProperty('body', $body);
+    }
+
+    // Terms.
+    $tids = array();
+    db_set_active('migrate');
+    $result = db_select('term_node', 'tn')
+      ->fields('tn', array('tid'))
+      ->condition('tn.nid', $row->getSourceProperty('nid'), '=')
+      ->execute();
+    foreach ($result as $row_term_node) {
+      $tids[] = $row_term_node->tid;
+    }
+    db_set_active('default');
+    $row->setSourceProperty('tids', $tids);
+
     return parent::prepareRow($row);
   }
 

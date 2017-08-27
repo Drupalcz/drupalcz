@@ -1,0 +1,145 @@
+Odkazy
+------
+
+- odkaz <a href="http://creativecommons.org/license/">pokus</a>
+- odkaz <a href=[*obrazek3*] title="ahoj" >pokus</a>
+- odkaz <a href='aa'></a> prázdný
+- odkaz <a>test</a> prázdný
+
+- Klasický odkaz "php Fashion":http://phpfashion.com/?
+- Klasický odkaz "php Fashion":[/trine/]x
+- Klasický odkaz "php Fashion .{color:blue}":[./trine/]x
+- Klasický odkaz "php Fashion":[dave@example.com]x
+- Klasický odkaz "php Fashion":dave@example.com
+
+- Referenční odkaz "php Fashion":[php Fashion1]
+- Referenční odkaz "php Fashion":[php Fashion2]
+- Referenční odkaz "php Fashion":[php Fashion3]
+- Referenční odkaz "php Fashion":[email]
+- Referenční odkaz "php Fashion .(title2)[bb]":[php Fashion1]?
+- Referenční odkaz "php Fashion .(title2)":[php Fashion2]?
+- Referenční odkaz "php Fashion":[php Fashion1#12]?
+- Referenční odkaz "php Fashion":[php Fashion2?a=45]?
+
+- Čistě referenční odkaz [php Fashion1]
+- Čistě referenční odkaz [php Fashion2]
+- Čistě referenční odkaz [php Fashion3]
+- Čistě referenční odkaz [email]
+
+- wiki link [Texy|http://texy.info]
+- wiki link [Texy | http://texy.info .{color:blue}]
+- markdown link [Texy](http://texy.info)
+- markdown link [Texy .{color:blue}](http://texy.info)
+
+Obrázkové odkazy:
+-----------------
+
+- Klasický odkaz "obrazek":[* texy-big.jpg *]
+- Klasický odkaz "obrazek":[* texy-big.jpg >]
+- Klasický odkaz "obrazek":[*texy-big.jpg | 2 |3*]
+
+- Referenční odkaz "obrazek":[neobrazek1]
+- Referenční odkaz "obrazek":[*obrazek1*]
+- Referenční odkaz "obrazek":[*obrazek3*]
+
+- Čistě referenční odkaz [neobrazek1]
+- Čistě referenční odkaz [neobrazek2]
+- Čistě referenční odkaz [neobrazek3]
+- Čistě referenční odkaz [neobrazek4]
+
+
+Odkazující obrázky:
+-------------------
+
+- Klasický odkaz [*texy.jpg*]:http://phpfashion.com/?
+- Klasický odkaz [*texy.jpg | texy-over.jpg .(title)[class] <]:[dave@example.com]x
+
+- Referenční odkaz [neobrazek1]:[php Fashion1]
+- Referenční odkaz "php Fashion":[*obrazek2*]
+- Referenční odkaz "php Fashion":[*obrazek3*]
+- Referenční odkaz [*obrazek2*]:[email]
+- Referenční odkaz "php Fashion .(title2)[bb]":[*obrazek2*]?
+- Referenční odkaz "php Fashion .(title2)":[*obrazek3*]?
+
+- Referenční odkaz [*obrazek1*]:[php Fashion2]
+- Referenční odkaz [*obrazek2*]:[/trine/]x
+- Referenční odkaz [*obrazek3<]::
+- Referenční odkaz [*obrazek2>]::
+- Referenční odkaz [*obrazek4*]:[*obrazek1*]
+
+- Čistě referenční obrázek [*obrazek1*]
+- Čistě referenční obrázek [*obrazek2*]
+- Čistě referenční obrázek [*obrazek3*]
+- Čistě referenční obrázek [*obrazek4*]
+
+
+Obrázek s popiskou
+------------------
+
+[* texy.gif *]:[home] * popiska s plným formátováním
+
+
+Rel nofollow
+------------
+
+- relnofollow odkaz "php Fashion .[nofollow]":http://phpfashion.com/?
+- relnofollow odkaz "php Fashion .[noFollow]":[/trine/]x
+- relnofollow odkaz "php Fashion .{color:blue}":[./trine/]x
+- relnofollow odkaz "php Fashion .[nofollow test]":[dave@example.com]x
+- relnofollow odkaz "php Fashion .[#nofollow]":dave@example.com
+- relnofollow odkaz <a href="/test">test1</a>
+- relnofollow odkaz <a href="mailto:test@text.cz">test2</a>
+- relnofollow odkaz <a href="//server/path">test3</a>
+- relnofollow odkaz <a href="http://server/path">test4</a>
+- relnofollow odkaz <a href="http://server/path" rel="my">test5</a>
+
+
+Specialni
+---------
+
+- "text1":www.text.cz
+- "text1":www.text.cz)
+- "text1":www.text.cz()
+- "text1":www.text.cz(x)
+- "text2":hxxp://test/
+- "text3":javascript:alert('')
+- "text4":mailto:dave@example.com
+- "text4":mailTO:dave@example.com
+- "text":#id
+- "text":./xx
+- "text":/xx
+- <a href="www.text.cz">test5</a>
+- <a href="hxxp://test/">test6</a>
+- <a href="javascript:alert('')">test7</a>
+- <a href="mailto:dave@example.com">test8</a>
+
+Pure
+------
+- www.texy.info
+- www.texy.info/path, www.texy.info/path? www.texy.info/path! www.texy.info/path)
+- www.texy.info/path#flag
+- www.texy.info/path/#!/flag
+- http://texy.info
+- https://texy.info
+- ftp://example.com
+- ftps://example.com
+- ftps://user:pass@example.com
+- dave@example.com
+- www.text.cz?(x)
+- www.text.cz?(x)#$%10
+
+
+[php Fashion1]: http://phpfashion.com/ text *o*dkazu .(title)[aa]
+[php Fashion2]: /trine/ .(title)
+[php Fashion3]: ./trine/
+[email]: dave@example.com .(title)
+
+[neobrazek1]: [*texy-big.jpg | texy-big2.jpg*] text .(title)
+[neobrazek2]: [* texy-big.jpg *] text
+[neobrazek3]: [*texy-big.jpg*]
+[neobrazek4]: [*obrazek3*] [*obrazek1*] .(test)
+
+[*obrazek1*]: texy.jpg | texy-over.jpg .(altX)
+[*obrazek2*]: texy.jpg 10x13 | texy-over.jpg
+[*obrazek3*]: texy.jpg
+[*obrazek4*]: texy-big.jpg
