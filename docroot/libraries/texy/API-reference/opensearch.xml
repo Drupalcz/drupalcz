@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+<ShortName>Texy 2.8.2 API documentation</ShortName>
+<Description>Texy 2.8.2 API documentation Documentation</Description>
+<Url type="text/html" method="GET" template="https://www.google.com/cse?cx=011549293477758430224%3Avxofa9ufnhc&amp;ie=UTF-8&amp;q={searchTerms}"/>
+<Image width="16" height="16">https://api.texy.info/2/favicon.ico</Image>
+<SyndicationRight>open</SyndicationRight>
+<InputEncoding>UTF-8</InputEncoding>
+<OutputEncoding>UTF-8</OutputEncoding>
+</OpenSearchDescription>
