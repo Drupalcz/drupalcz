@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="generator" content="ApiGen 2.8.0">
+	<meta name="robots" content="noindex">
+
+	<title>File Texy/Modules/TypographyModule.php | Texy 2.8.2 API documentation</title>
+
+	<link rel="stylesheet" href="resources/style.css?2213164932">
+	<link rel="search" type="application/opensearchdescription+xml" title="Texy 2.8.2 API documentation" href="https://api.texy.info/2/opensearch.xml">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Texy.html">Texy<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Texy.Modules.html">Modules</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="Texy.Modules.BlockModule.html">BlockModule</a></li>
+				<li><a href="Texy.Modules.BlockQuoteModule.html">BlockQuoteModule</a></li>
+				<li><a href="Texy.Modules.EmoticonModule.html">EmoticonModule</a></li>
+				<li><a href="Texy.Modules.FigureModule.html">FigureModule</a></li>
+				<li><a href="Texy.Modules.HeadingModule.html">HeadingModule</a></li>
+				<li><a href="Texy.Modules.HorizLineModule.html">HorizLineModule</a></li>
+				<li><a href="Texy.Modules.HtmlModule.html">HtmlModule</a></li>
+				<li><a href="Texy.Modules.HtmlOutputModule.html">HtmlOutputModule</a></li>
+				<li><a href="Texy.Modules.ImageModule.html">ImageModule</a></li>
+				<li><a href="Texy.Modules.LinkModule.html">LinkModule</a></li>
+				<li><a href="Texy.Modules.ListModule.html">ListModule</a></li>
+				<li><a href="Texy.Modules.LongWordsModule.html">LongWordsModule</a></li>
+				<li><a href="Texy.Modules.ParagraphModule.html">ParagraphModule</a></li>
+				<li><a href="Texy.Modules.PhraseModule.html">PhraseModule</a></li>
+				<li><a href="Texy.Modules.ScriptModule.html">ScriptModule</a></li>
+				<li><a href="Texy.Modules.TableCellElement.html">TableCellElement</a></li>
+				<li><a href="Texy.Modules.TableModule.html">TableModule</a></li>
+				<li class="active"><a href="Texy.Modules.TypographyModule.html">TypographyModule</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form action="https://www.google.com/cse" id="search">
+		<input type="hidden" name="cx" value="011549293477758430224:vxofa9ufnhc">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text">
+		<input type="submit" value="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Texy.Modules.html" title="Summary of Texy\Modules"><span>Namespace</span></a>
+			</li>
+			<li>
+				<a href="Texy.Modules.TypographyModule.html" title="Summary of Texy\Modules\TypographyModule"><span>Class</span></a>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="deprecated.html" title="List of deprecated elements"><span>Deprecated</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<pre><code><span id="1" class="l"><a class="l" href="#1">  1: </a><span class="xlang">&lt;?php</span>
+</span><span id="2" class="l"><a class="l" href="#2">  2: </a>
+</span><span id="3" class="l"><a class="l" href="#3">  3: </a><span class="php-comment">/**
+</span></span><span id="4" class="l"><a class="l" href="#4">  4: </a><span class="php-comment"> * This file is part of the Texy! (http://texy.info)
+</span></span><span id="5" class="l"><a class="l" href="#5">  5: </a><span class="php-comment"> * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
+</span></span><span id="6" class="l"><a class="l" href="#6">  6: </a><span class="php-comment"> */</span>
+</span><span id="7" class="l"><a class="l" href="#7">  7: </a>
+</span><span id="8" class="l"><a class="l" href="#8">  8: </a><span class="php-keyword1">namespace</span> Texy\Modules;
+</span><span id="9" class="l"><a class="l" href="#9">  9: </a>
+</span><span id="10" class="l"><a class="l" href="#10"> 10: </a><span class="php-keyword1">use</span> Texy;
+</span><span id="11" class="l"><a class="l" href="#11"> 11: </a><span class="php-keyword1">use</span> Texy\Patterns;
+</span><span id="12" class="l"><a class="l" href="#12"> 12: </a>
+</span><span id="13" class="l"><a class="l" href="#13"> 13: </a>
+</span><span id="14" class="l"><a class="l" href="#14"> 14: </a><span class="php-comment">/**
+</span></span><span id="15" class="l"><a class="l" href="#15"> 15: </a><span class="php-comment"> * Typography replacements module.
+</span></span><span id="16" class="l"><a class="l" href="#16"> 16: </a><span class="php-comment"> */</span>
+</span><span id="17" class="l"><a class="l" href="#17"> 17: </a><span class="php-keyword1">final</span> <span class="php-keyword1">class</span> <a id="TypographyModule" href="#TypographyModule">TypographyModule</a> <span class="php-keyword1">extends</span> Texy\Module
+</span><span id="18" class="l"><a class="l" href="#18"> 18: </a>{
+</span><span id="19" class="l"><a class="l" href="#19"> 19: </a>    <span class="php-comment">// @see http://www.unicode.org/cldr/data/charts/by_type/misc.delimiters.html</span>
+</span><span id="20" class="l"><a class="l" href="#20"> 20: </a>
+</span><span id="21" class="l"><a class="l" href="#21"> 21: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-var"><a id="$locales" href="#$locales">$locales</a></span> = [
+</span><span id="22" class="l"><a class="l" href="#22"> 22: </a>        <span class="php-quote">'cs'</span> =&gt; [
+</span><span id="23" class="l"><a class="l" href="#23"> 23: </a>            <span class="php-quote">'singleQuotes'</span> =&gt; [<span class="php-quote">&quot;\xe2\x80\x9a&quot;</span>, <span class="php-quote">&quot;\xe2\x80\x98&quot;</span>], <span class="php-comment">// U+201A, U+2018</span>
+</span><span id="24" class="l"><a class="l" href="#24"> 24: </a>            <span class="php-quote">'doubleQuotes'</span> =&gt; [<span class="php-quote">&quot;\xe2\x80\x9e&quot;</span>, <span class="php-quote">&quot;\xe2\x80\x9c&quot;</span>], <span class="php-comment">// U+201E, U+201C</span>
+</span><span id="25" class="l"><a class="l" href="#25"> 25: </a>        ],
+</span><span id="26" class="l"><a class="l" href="#26"> 26: </a>
+</span><span id="27" class="l"><a class="l" href="#27"> 27: </a>        <span class="php-quote">'en'</span> =&gt; [
+</span><span id="28" class="l"><a class="l" href="#28"> 28: </a>            <span class="php-quote">'singleQuotes'</span> =&gt; [<span class="php-quote">&quot;\xe2\x80\x98&quot;</span>, <span class="php-quote">&quot;\xe2\x80\x99&quot;</span>], <span class="php-comment">// U+2018, U+2019</span>
+</span><span id="29" class="l"><a class="l" href="#29"> 29: </a>            <span class="php-quote">'doubleQuotes'</span> =&gt; [<span class="php-quote">&quot;\xe2\x80\x9c&quot;</span>, <span class="php-quote">&quot;\xe2\x80\x9d&quot;</span>], <span class="php-comment">// U+201C, U+201D</span>
+</span><span id="30" class="l"><a class="l" href="#30"> 30: </a>        ],
+</span><span id="31" class="l"><a class="l" href="#31"> 31: </a>
+</span><span id="32" class="l"><a class="l" href="#32"> 32: </a>        <span class="php-quote">'fr'</span> =&gt; [
+</span><span id="33" class="l"><a class="l" href="#33"> 33: </a>            <span class="php-quote">'singleQuotes'</span> =&gt; [<span class="php-quote">&quot;\xe2\x80\xb9&quot;</span>, <span class="php-quote">&quot;\xe2\x80\xba&quot;</span>], <span class="php-comment">// U+2039, U+203A</span>
+</span><span id="34" class="l"><a class="l" href="#34"> 34: </a>            <span class="php-quote">'doubleQuotes'</span> =&gt; [<span class="php-quote">&quot;\xc2\xab&quot;</span>, <span class="php-quote">&quot;\xc2\xbb&quot;</span>],         <span class="php-comment">// U+00AB, U+00BB</span>
+</span><span id="35" class="l"><a class="l" href="#35"> 35: </a>        ],
+</span><span id="36" class="l"><a class="l" href="#36"> 36: </a>
+</span><span id="37" class="l"><a class="l" href="#37"> 37: </a>        <span class="php-quote">'de'</span> =&gt; [
+</span><span id="38" class="l"><a class="l" href="#38"> 38: </a>            <span class="php-quote">'singleQuotes'</span> =&gt; [<span class="php-quote">&quot;\xe2\x80\x9a&quot;</span>, <span class="php-quote">&quot;\xe2\x80\x98&quot;</span>], <span class="php-comment">// U+201A, U+2018</span>
+</span><span id="39" class="l"><a class="l" href="#39"> 39: </a>            <span class="php-quote">'doubleQuotes'</span> =&gt; [<span class="php-quote">&quot;\xe2\x80\x9e&quot;</span>, <span class="php-quote">&quot;\xe2\x80\x9c&quot;</span>], <span class="php-comment">// U+201E, U+201C</span>
+</span><span id="40" class="l"><a class="l" href="#40"> 40: </a>        ],
+</span><span id="41" class="l"><a class="l" href="#41"> 41: </a>
+</span><span id="42" class="l"><a class="l" href="#42"> 42: </a>        <span class="php-quote">'pl'</span> =&gt; [
+</span><span id="43" class="l"><a class="l" href="#43"> 43: </a>            <span class="php-quote">'singleQuotes'</span> =&gt; [<span class="php-quote">&quot;\xe2\x80\x9a&quot;</span>, <span class="php-quote">&quot;\xe2\x80\x99&quot;</span>], <span class="php-comment">// U+201A, U+2019</span>
+</span><span id="44" class="l"><a class="l" href="#44"> 44: </a>            <span class="php-quote">'doubleQuotes'</span> =&gt; [<span class="php-quote">&quot;\xe2\x80\x9e&quot;</span>, <span class="php-quote">&quot;\xe2\x80\x9d&quot;</span>], <span class="php-comment">// U+201E, U+201D</span>
+</span><span id="45" class="l"><a class="l" href="#45"> 45: </a>        ],
+</span><span id="46" class="l"><a class="l" href="#46"> 46: </a>    ];
+</span><span id="47" class="l"><a class="l" href="#47"> 47: </a>
+</span><span id="48" class="l"><a class="l" href="#48"> 48: </a>    <span class="php-comment">/** @var string */</span>
+</span><span id="49" class="l"><a class="l" href="#49"> 49: </a>    <span class="php-keyword1">public</span> <span class="php-var"><a id="$locale" href="#$locale">$locale</a></span> = <span class="php-quote">'cs'</span>;
+</span><span id="50" class="l"><a class="l" href="#50"> 50: </a>
+</span><span id="51" class="l"><a class="l" href="#51"> 51: </a>    <span class="php-comment">/** @var array */</span>
+</span><span id="52" class="l"><a class="l" href="#52"> 52: </a>    <span class="php-keyword1">private</span> <span class="php-var"><a id="$pattern" href="#$pattern">$pattern</a></span>;
+</span><span id="53" class="l"><a class="l" href="#53"> 53: </a>
+</span><span id="54" class="l"><a class="l" href="#54"> 54: </a>
+</span><span id="55" class="l"><a class="l" href="#55"> 55: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>(<span class="php-var">$texy</span>)
+</span><span id="56" class="l"><a class="l" href="#56"> 56: </a>    {
+</span><span id="57" class="l"><a class="l" href="#57"> 57: </a>        <span class="php-var">$this</span>-&gt;texy = <span class="php-var">$texy</span>;
+</span><span id="58" class="l"><a class="l" href="#58"> 58: </a>        <span class="php-var">$texy</span>-&gt;registerPostLine([<span class="php-var">$this</span>, <span class="php-quote">'postLine'</span>], <span class="php-quote">'typography'</span>);
+</span><span id="59" class="l"><a class="l" href="#59"> 59: </a>        <span class="php-var">$texy</span>-&gt;addHandler(<span class="php-quote">'beforeParse'</span>, [<span class="php-var">$this</span>, <span class="php-quote">'beforeParse'</span>]);
+</span><span id="60" class="l"><a class="l" href="#60"> 60: </a>    }
+</span><span id="61" class="l"><a class="l" href="#61"> 61: </a>
+</span><span id="62" class="l"><a class="l" href="#62"> 62: </a>
+</span><span id="63" class="l"><a class="l" href="#63"> 63: </a>    <span class="php-comment">/**
+</span></span><span id="64" class="l"><a class="l" href="#64"> 64: </a><span class="php-comment">     * Text pre-processing.
+</span></span><span id="65" class="l"><a class="l" href="#65"> 65: </a><span class="php-comment">     * @return void
+</span></span><span id="66" class="l"><a class="l" href="#66"> 66: </a><span class="php-comment">     */</span>
+</span><span id="67" class="l"><a class="l" href="#67"> 67: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_beforeParse" href="#_beforeParse">beforeParse</a>(Texy\Texy <span class="php-var">$texy</span>, &amp; <span class="php-var">$text</span>)
+</span><span id="68" class="l"><a class="l" href="#68"> 68: </a>    {
+</span><span id="69" class="l"><a class="l" href="#69"> 69: </a>        <span class="php-comment">// CONTENT_MARKUP mark: \x17-\x1F</span>
+</span><span id="70" class="l"><a class="l" href="#70"> 70: </a>        <span class="php-comment">// CONTENT_REPLACED mark: \x16</span>
+</span><span id="71" class="l"><a class="l" href="#71"> 71: </a>        <span class="php-comment">// CONTENT_TEXTUAL mark: \x17</span>
+</span><span id="72" class="l"><a class="l" href="#72"> 72: </a>        <span class="php-comment">// CONTENT_BLOCK: not used in postLine</span>
+</span><span id="73" class="l"><a class="l" href="#73"> 73: </a>
+</span><span id="74" class="l"><a class="l" href="#74"> 74: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">isset</span>(self::<span class="php-var">$locales</span>[<span class="php-var">$this</span>-&gt;locale])) {
+</span><span id="75" class="l"><a class="l" href="#75"> 75: </a>            <span class="php-var">$locale</span> = self::<span class="php-var">$locales</span>[<span class="php-var">$this</span>-&gt;locale];
+</span><span id="76" class="l"><a class="l" href="#76"> 76: </a>        } <span class="php-keyword1">else</span> { <span class="php-comment">// fall back</span>
+</span><span id="77" class="l"><a class="l" href="#77"> 77: </a>            <span class="php-var">$locale</span> = self::<span class="php-var">$locales</span>[<span class="php-quote">'en'</span>];
+</span><span id="78" class="l"><a class="l" href="#78"> 78: </a>        }
+</span><span id="79" class="l"><a class="l" href="#79"> 79: </a>
+</span><span id="80" class="l"><a class="l" href="#80"> 80: </a>        <span class="php-var">$this</span>-&gt;<span class="php-keyword2">pattern</span> = [
+</span><span id="81" class="l"><a class="l" href="#81"> 81: </a>            <span class="php-quote">'#(?&lt;![.\x{2026}])\.{3,4}(?![.\x{2026}])#mu'</span> =&gt; <span class="php-quote">&quot;\xe2\x80\xa6&quot;</span>,                <span class="php-comment">// ellipsis  ...</span>
+</span><span id="82" class="l"><a class="l" href="#82"> 82: </a>            <span class="php-quote">'#(?&lt;=[\d ]|^)-(?=[\d ]|$)#'</span>              =&gt; <span class="php-quote">&quot;\xe2\x80\x93&quot;</span>,                   <span class="php-comment">// en dash 123-123</span>
+</span><span id="83" class="l"><a class="l" href="#83"> 83: </a>            <span class="php-quote">'#(?&lt;=[^!*+,/:;&lt;=&gt;@\\\\_|-])--(?=[^!*+,/:;&lt;=&gt;@\\\\_|-])#'</span> =&gt; <span class="php-quote">&quot;\xe2\x80\x93&quot;</span>,   <span class="php-comment">// en dash alphanum--alphanum</span>
+</span><span id="84" class="l"><a class="l" href="#84"> 84: </a>            <span class="php-quote">'#,-#'</span>                                    =&gt; <span class="php-quote">&quot;,\xe2\x80\x93&quot;</span>,                  <span class="php-comment">// en dash ,-</span>
+</span><span id="85" class="l"><a class="l" href="#85"> 85: </a>            <span class="php-quote">'#(?&lt;!\d)(\d{1,2}\.) (\d{1,2}\.) (\d\d)#'</span> =&gt; <span class="php-quote">&quot;\</span><span class="php-var">$1</span><span class="php-quote">\xc2\xa0\</span><span class="php-var">$2</span><span class="php-quote">\xc2\xa0\</span><span class="php-var">$3</span><span class="php-quote">&quot;</span>,      <span class="php-comment">// date 23. 1. 1978</span>
+</span><span id="86" class="l"><a class="l" href="#86"> 86: </a>            <span class="php-quote">'#(?&lt;!\d)(\d{1,2}\.) (\d{1,2}\.)#'</span>        =&gt; <span class="php-quote">&quot;\</span><span class="php-var">$1</span><span class="php-quote">\xc2\xa0\</span><span class="php-var">$2</span><span class="php-quote">&quot;</span>,                 <span class="php-comment">// date 23. 1.</span>
+</span><span id="87" class="l"><a class="l" href="#87"> 87: </a>            <span class="php-quote">'# --- #'</span>                                 =&gt; <span class="php-quote">&quot;\xc2\xa0\xe2\x80\x94 &quot;</span>,          <span class="php-comment">// em dash ---</span>
+</span><span id="88" class="l"><a class="l" href="#88"> 88: </a>            <span class="php-quote">'# ([\x{2013}\x{2014}])#u'</span>                =&gt; <span class="php-quote">&quot;\xc2\xa0\</span><span class="php-var">$1</span><span class="php-quote">&quot;</span>,                    <span class="php-comment">// &amp;nbsp; behind dash (dash stays at line end)</span>
+</span><span id="89" class="l"><a class="l" href="#89"> 89: </a>            <span class="php-quote">'# &lt;-{1,2}&gt; #'</span>                            =&gt; <span class="php-quote">&quot; \xe2\x86\x94 &quot;</span>,                 <span class="php-comment">// left right arrow &lt;--&gt;</span>
+</span><span id="90" class="l"><a class="l" href="#90"> 90: </a>            <span class="php-quote">'#-{1,}&gt; #'</span>                               =&gt; <span class="php-quote">&quot;\xe2\x86\x92 &quot;</span>,                  <span class="php-comment">// right arrow --&gt;</span>
+</span><span id="91" class="l"><a class="l" href="#91"> 91: </a>            <span class="php-quote">'# &lt;-{1,}#'</span>                               =&gt; <span class="php-quote">&quot; \xe2\x86\x90 &quot;</span>,                 <span class="php-comment">// left arrow &lt;--</span>
+</span><span id="92" class="l"><a class="l" href="#92"> 92: </a>            <span class="php-quote">'#={1,}&gt; #'</span>                               =&gt; <span class="php-quote">&quot;\xe2\x87\x92 &quot;</span>,                  <span class="php-comment">// right arrow ==&gt;</span>
+</span><span id="93" class="l"><a class="l" href="#93"> 93: </a>            <span class="php-quote">'#\\+-#'</span>                                  =&gt; <span class="php-quote">&quot;\xc2\xb1&quot;</span>,                       <span class="php-comment">// +-</span>
+</span><span id="94" class="l"><a class="l" href="#94"> 94: </a>            <span class="php-quote">'#(\d++) x (?=\d)#'</span>                       =&gt; <span class="php-quote">&quot;\</span><span class="php-var">$1</span><span class="php-quote">\xc2\xa0\xc3\x97\xc2\xa0&quot;</span>,    <span class="php-comment">// dimension sign 123 x 123...</span>
+</span><span id="95" class="l"><a class="l" href="#95"> 95: </a>            <span class="php-quote">'#(\d++)x(?=\d)#'</span>                         =&gt; <span class="php-quote">&quot;\</span><span class="php-var">$1</span><span class="php-quote">\xc3\x97&quot;</span>,                    <span class="php-comment">// dimension sign 123x123...</span>
+</span><span id="96" class="l"><a class="l" href="#96"> 96: </a>            <span class="php-quote">'#(?&lt;=\d)x(?= |,|.|$)#m'</span>                  =&gt; <span class="php-quote">&quot;\xc3\x97&quot;</span>,                       <span class="php-comment">// dimension sign 123x</span>
+</span><span id="97" class="l"><a class="l" href="#97"> 97: </a>            <span class="php-quote">'#(\S ?)\(TM\)#i'</span>                         =&gt; <span class="php-quote">&quot;\</span><span class="php-var">$1</span><span class="php-quote">\xe2\x84\xa2&quot;</span>,                <span class="php-comment">// trademark (TM)</span>
+</span><span id="98" class="l"><a class="l" href="#98"> 98: </a>            <span class="php-quote">'#(\S ?)\(R\)#i'</span>                          =&gt; <span class="php-quote">&quot;\</span><span class="php-var">$1</span><span class="php-quote">\xc2\xae&quot;</span>,                    <span class="php-comment">// registered (R)</span>
+</span><span id="99" class="l"><a class="l" href="#99"> 99: </a>            <span class="php-quote">'#\(C\)( ?\S)#i'</span>                          =&gt; <span class="php-quote">&quot;\xc2\xa9\</span><span class="php-var">$1</span><span class="php-quote">&quot;</span>,                    <span class="php-comment">// copyright (C)</span>
+</span><span id="100" class="l"><a class="l" href="#100">100: </a>            <span class="php-quote">'#\(EUR\)#'</span>                               =&gt; <span class="php-quote">&quot;\xe2\x82\xac&quot;</span>,                   <span class="php-comment">// Euro (EUR)</span>
+</span><span id="101" class="l"><a class="l" href="#101">101: </a>            <span class="php-quote">'#(\d) (?=\d{3})#'</span>                        =&gt; <span class="php-quote">&quot;\</span><span class="php-var">$1</span><span class="php-quote">\xc2\xa0&quot;</span>,                    <span class="php-comment">// (phone) number 1 123 123 123...</span>
+</span><span id="102" class="l"><a class="l" href="#102">102: </a>
+</span><span id="103" class="l"><a class="l" href="#103">103: </a>            <span class="php-quote">'#(?&lt;=[^\s\x17])\s++([\x17-\x1F]++)(?=\s)#u'</span>=&gt; <span class="php-quote">&quot;\</span><span class="php-var">$1</span><span class="php-quote">&quot;</span>,                            <span class="php-comment">// remove intermarkup space phase 1</span>
+</span><span id="104" class="l"><a class="l" href="#104">104: </a>            <span class="php-quote">'#(?&lt;=\s)([\x17-\x1F]++)\s++#u'</span>             =&gt; <span class="php-quote">&quot;\</span><span class="php-var">$1</span><span class="php-quote">&quot;</span>,                            <span class="php-comment">// remove intermarkup space phase 2</span>
+</span><span id="105" class="l"><a class="l" href="#105">105: </a>
+</span><span id="106" class="l"><a class="l" href="#106">106: </a>            <span class="php-quote">'#(?&lt;=.{50})\s++(?=[\x17-\x1F]*\S{1,6}[\x17-\x1F]*$)#us'</span> =&gt; <span class="php-quote">&quot;\xc2\xa0&quot;</span>,         <span class="php-comment">// space before last short word</span>
+</span><span id="107" class="l"><a class="l" href="#107">107: </a>
+</span><span id="108" class="l"><a class="l" href="#108">108: </a>            <span class="php-comment">// nbsp space between number (optionally followed by dot) and word, symbol, punctation, currency symbol</span>
+</span><span id="109" class="l"><a class="l" href="#109">109: </a>            <span class="php-quote">'#(?&lt;=^| |\.|,|-|\+|\x16|\(|\d\x{A0})([\x17-\x1F]*\d++\.?[\x17-\x1F]*)\s++(?=[\x17-\x1F]*[%'</span>.Patterns::CHAR.<span class="php-quote">'\x{b0}-\x{be}\x{2020}-\x{214f}])#mu'</span>
+</span><span id="110" class="l"><a class="l" href="#110">110: </a>                                                    =&gt; <span class="php-quote">&quot;\</span><span class="php-var">$1</span><span class="php-quote">\xc2\xa0&quot;</span>,
+</span><span id="111" class="l"><a class="l" href="#111">111: </a>
+</span><span id="112" class="l"><a class="l" href="#112">112: </a>            <span class="php-comment">// space between preposition and word</span>
+</span><span id="113" class="l"><a class="l" href="#113">113: </a>            <span class="php-quote">'#(?&lt;=^|[^0-9'</span>.Patterns::CHAR.<span class="php-quote">'])([\x17-\x1F]*[ksvzouiKSVZOUIA][\x17-\x1F]*)\s++(?=[\x17-\x1F]*[0-9'</span>.Patterns::CHAR.<span class="php-quote">'])#mus'</span>
+</span><span id="114" class="l"><a class="l" href="#114">114: </a>                                                    =&gt; <span class="php-quote">&quot;\</span><span class="php-var">$1</span><span class="php-quote">\xc2\xa0&quot;</span>,
+</span><span id="115" class="l"><a class="l" href="#115">115: </a>
+</span><span id="116" class="l"><a class="l" href="#116">116: </a>            <span class="php-quote">'#(?&lt;!&quot;|\w)&quot;(?!\ |&quot;)((?:[^&quot;]++|&quot;)+)(?&lt;!\ |&quot;)&quot;(?![&quot;'</span>.Patterns::CHAR.<span class="php-quote">'])()#Uu'</span> =&gt; <span class="php-var">$locale</span>[<span class="php-quote">'doubleQuotes'</span>][<span class="php-num">0</span>].<span class="php-quote">'$1'</span>.<span class="php-var">$locale</span>[<span class="php-quote">'doubleQuotes'</span>][<span class="php-num">1</span>], <span class="php-comment">// double &quot;&quot;</span>
+</span><span id="117" class="l"><a class="l" href="#117">117: </a>            <span class="php-quote">'#(?&lt;!\'|\w)\'(?!\ |\')((?:[^\']++|\')+)(?&lt;!\ |\')\'(?![\''</span>.Patterns::CHAR.<span class="php-quote">'])()#Uu'</span> =&gt; <span class="php-var">$locale</span>[<span class="php-quote">'singleQuotes'</span>][<span class="php-num">0</span>].<span class="php-quote">'$1'</span>.<span class="php-var">$locale</span>[<span class="php-quote">'singleQuotes'</span>][<span class="php-num">1</span>], <span class="php-comment">// single ''</span>
+</span><span id="118" class="l"><a class="l" href="#118">118: </a>        ];
+</span><span id="119" class="l"><a class="l" href="#119">119: </a>    }
+</span><span id="120" class="l"><a class="l" href="#120">120: </a>
+</span><span id="121" class="l"><a class="l" href="#121">121: </a>
+</span><span id="122" class="l"><a class="l" href="#122">122: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_postLine" href="#_postLine">postLine</a>(<span class="php-var">$text</span>, <span class="php-var">$preserveSpaces</span> = <span class="php-keyword1">FALSE</span>)
+</span><span id="123" class="l"><a class="l" href="#123">123: </a>    {
+</span><span id="124" class="l"><a class="l" href="#124">124: </a>        <span class="php-keyword1">if</span> (!<span class="php-var">$preserveSpaces</span>) {
+</span><span id="125" class="l"><a class="l" href="#125">125: </a>            <span class="php-var">$text</span> = Texy\Regexp::replace(<span class="php-var">$text</span>, <span class="php-quote">'# {2,}#'</span>, <span class="php-quote">' '</span>);
+</span><span id="126" class="l"><a class="l" href="#126">126: </a>        }
+</span><span id="127" class="l"><a class="l" href="#127">127: </a>        <span class="php-keyword1">return</span> Texy\Regexp::replace(<span class="php-var">$text</span>, <span class="php-var">$this</span>-&gt;<span class="php-keyword2">pattern</span>);
+</span><span id="128" class="l"><a class="l" href="#128">128: </a>    }
+</span><span id="129" class="l"><a class="l" href="#129">129: </a>
+</span><span id="130" class="l"><a class="l" href="#130">130: </a>}
+</span><span id="131" class="l"><a class="l" href="#131">131: </a></span></code></pre>
+
+	<div id="footer">
+		Texy 2.8.2 API documentation API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?1521508598"></script>
+<script src="elementlist.js?1081563171"></script>
+</body>
+</html>

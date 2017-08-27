@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="generator" content="ApiGen 2.8.0">
+	<meta name="robots" content="noindex">
+
+	<title>File Texy/Modules/TableCellElement.php | Texy 2.8.2 API documentation</title>
+
+	<link rel="stylesheet" href="resources/style.css?2213164932">
+	<link rel="search" type="application/opensearchdescription+xml" title="Texy 2.8.2 API documentation" href="https://api.texy.info/2/opensearch.xml">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Texy.html">Texy<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Texy.Modules.html">Modules</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="Texy.Modules.BlockModule.html">BlockModule</a></li>
+				<li><a href="Texy.Modules.BlockQuoteModule.html">BlockQuoteModule</a></li>
+				<li><a href="Texy.Modules.EmoticonModule.html">EmoticonModule</a></li>
+				<li><a href="Texy.Modules.FigureModule.html">FigureModule</a></li>
+				<li><a href="Texy.Modules.HeadingModule.html">HeadingModule</a></li>
+				<li><a href="Texy.Modules.HorizLineModule.html">HorizLineModule</a></li>
+				<li><a href="Texy.Modules.HtmlModule.html">HtmlModule</a></li>
+				<li><a href="Texy.Modules.HtmlOutputModule.html">HtmlOutputModule</a></li>
+				<li><a href="Texy.Modules.ImageModule.html">ImageModule</a></li>
+				<li><a href="Texy.Modules.LinkModule.html">LinkModule</a></li>
+				<li><a href="Texy.Modules.ListModule.html">ListModule</a></li>
+				<li><a href="Texy.Modules.LongWordsModule.html">LongWordsModule</a></li>
+				<li><a href="Texy.Modules.ParagraphModule.html">ParagraphModule</a></li>
+				<li><a href="Texy.Modules.PhraseModule.html">PhraseModule</a></li>
+				<li><a href="Texy.Modules.ScriptModule.html">ScriptModule</a></li>
+				<li class="active"><a href="Texy.Modules.TableCellElement.html">TableCellElement</a></li>
+				<li><a href="Texy.Modules.TableModule.html">TableModule</a></li>
+				<li><a href="Texy.Modules.TypographyModule.html">TypographyModule</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form action="https://www.google.com/cse" id="search">
+		<input type="hidden" name="cx" value="011549293477758430224:vxofa9ufnhc">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text">
+		<input type="submit" value="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Texy.Modules.html" title="Summary of Texy\Modules"><span>Namespace</span></a>
+			</li>
+			<li>
+				<a href="Texy.Modules.TableCellElement.html" title="Summary of Texy\Modules\TableCellElement"><span>Class</span></a>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="deprecated.html" title="List of deprecated elements"><span>Deprecated</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<pre><code><span id="1" class="l"><a class="l" href="#1"> 1: </a><span class="xlang">&lt;?php</span>
+</span><span id="2" class="l"><a class="l" href="#2"> 2: </a>
+</span><span id="3" class="l"><a class="l" href="#3"> 3: </a><span class="php-comment">/**
+</span></span><span id="4" class="l"><a class="l" href="#4"> 4: </a><span class="php-comment"> * This file is part of the Texy! (http://texy.info)
+</span></span><span id="5" class="l"><a class="l" href="#5"> 5: </a><span class="php-comment"> * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
+</span></span><span id="6" class="l"><a class="l" href="#6"> 6: </a><span class="php-comment"> */</span>
+</span><span id="7" class="l"><a class="l" href="#7"> 7: </a>
+</span><span id="8" class="l"><a class="l" href="#8"> 8: </a><span class="php-keyword1">namespace</span> Texy\Modules;
+</span><span id="9" class="l"><a class="l" href="#9"> 9: </a>
+</span><span id="10" class="l"><a class="l" href="#10">10: </a><span class="php-keyword1">use</span> Texy;
+</span><span id="11" class="l"><a class="l" href="#11">11: </a>
+</span><span id="12" class="l"><a class="l" href="#12">12: </a>
+</span><span id="13" class="l"><a class="l" href="#13">13: </a><span class="php-comment">/**
+</span></span><span id="14" class="l"><a class="l" href="#14">14: </a><span class="php-comment"> * Table cell TD / TH.
+</span></span><span id="15" class="l"><a class="l" href="#15">15: </a><span class="php-comment"> */</span>
+</span><span id="16" class="l"><a class="l" href="#16">16: </a><span class="php-keyword1">class</span> <a id="TableCellElement" href="#TableCellElement">TableCellElement</a> <span class="php-keyword1">extends</span> Texy\HtmlElement
+</span><span id="17" class="l"><a class="l" href="#17">17: </a>{
+</span><span id="18" class="l"><a class="l" href="#18">18: </a>    <span class="php-comment">/** @var int */</span>
+</span><span id="19" class="l"><a class="l" href="#19">19: </a>    <span class="php-keyword1">public</span> <span class="php-var"><a id="$colSpan" href="#$colSpan">$colSpan</a></span> = <span class="php-num">1</span>;
+</span><span id="20" class="l"><a class="l" href="#20">20: </a>
+</span><span id="21" class="l"><a class="l" href="#21">21: </a>    <span class="php-comment">/** @var int */</span>
+</span><span id="22" class="l"><a class="l" href="#22">22: </a>    <span class="php-keyword1">public</span> <span class="php-var"><a id="$rowSpan" href="#$rowSpan">$rowSpan</a></span> = <span class="php-num">1</span>;
+</span><span id="23" class="l"><a class="l" href="#23">23: </a>
+</span><span id="24" class="l"><a class="l" href="#24">24: </a>    <span class="php-comment">/** @var string */</span>
+</span><span id="25" class="l"><a class="l" href="#25">25: </a>    <span class="php-keyword1">public</span> <span class="php-var"><a id="$text" href="#$text">$text</a></span>;
+</span><span id="26" class="l"><a class="l" href="#26">26: </a>
+</span><span id="27" class="l"><a class="l" href="#27">27: </a>}
+</span><span id="28" class="l"><a class="l" href="#28">28: </a></span></code></pre>
+
+	<div id="footer">
+		Texy 2.8.2 API documentation API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?1521508598"></script>
+<script src="elementlist.js?1081563171"></script>
+</body>
+</html>

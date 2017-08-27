@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="generator" content="ApiGen 2.8.0">
+	<meta name="robots" content="noindex">
+
+	<title>File Texy/Patterns.php | Texy 2.8.2 API documentation</title>
+
+	<link rel="stylesheet" href="resources/style.css?2213164932">
+	<link rel="search" type="application/opensearchdescription+xml" title="Texy 2.8.2 API documentation" href="https://api.texy.info/2/opensearch.xml">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Texy.html">Texy<span></span></a>
+						<ul>
+				<li><a href="namespace-Texy.Modules.html">Modules</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="Texy.BlockParser.html">BlockParser</a></li>
+				<li><a href="Texy.Configurator.html">Configurator</a></li>
+				<li><a href="Texy.HandlerInvocation.html">HandlerInvocation</a></li>
+				<li><a href="Texy.Helpers.html">Helpers</a></li>
+				<li><a href="Texy.HtmlElement.html">HtmlElement</a></li>
+				<li><a href="Texy.Image.html">Image</a></li>
+				<li><a href="Texy.LineParser.html">LineParser</a></li>
+				<li><a href="Texy.Link.html">Link</a></li>
+				<li><a href="Texy.Modifier.html">Modifier</a></li>
+				<li><a href="Texy.Module.html">Module</a></li>
+				<li><a href="Texy.Parser.html">Parser</a></li>
+				<li class="active"><a href="Texy.Patterns.html">Patterns</a></li>
+				<li><a href="Texy.Regexp.html">Regexp</a></li>
+				<li><a href="Texy.Texy.html">Texy</a></li>
+				<li><a href="Texy.Utf.html">Utf</a></li>
+			</ul>
+
+
+			<h3>Traits</h3>
+			<ul>
+				<li><a href="Texy.Strict.html">Strict</a></li>
+			</ul>
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form action="https://www.google.com/cse" id="search">
+		<input type="hidden" name="cx" value="011549293477758430224:vxofa9ufnhc">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text">
+		<input type="submit" value="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Texy.html" title="Summary of Texy"><span>Namespace</span></a>
+			</li>
+			<li>
+				<a href="Texy.Patterns.html" title="Summary of Texy\Patterns"><span>Class</span></a>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="deprecated.html" title="List of deprecated elements"><span>Deprecated</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<pre><code><span id="1" class="l"><a class="l" href="#1"> 1: </a><span class="xlang">&lt;?php</span>
+</span><span id="2" class="l"><a class="l" href="#2"> 2: </a>
+</span><span id="3" class="l"><a class="l" href="#3"> 3: </a><span class="php-comment">/**
+</span></span><span id="4" class="l"><a class="l" href="#4"> 4: </a><span class="php-comment"> * This file is part of the Texy! (http://texy.info)
+</span></span><span id="5" class="l"><a class="l" href="#5"> 5: </a><span class="php-comment"> * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
+</span></span><span id="6" class="l"><a class="l" href="#6"> 6: </a><span class="php-comment"> */</span>
+</span><span id="7" class="l"><a class="l" href="#7"> 7: </a>
+</span><span id="8" class="l"><a class="l" href="#8"> 8: </a><span class="php-keyword1">namespace</span> Texy;
+</span><span id="9" class="l"><a class="l" href="#9"> 9: </a>
+</span><span id="10" class="l"><a class="l" href="#10">10: </a>
+</span><span id="11" class="l"><a class="l" href="#11">11: </a><span class="php-comment">/**
+</span></span><span id="12" class="l"><a class="l" href="#12">12: </a><span class="php-comment"> * Regular expression patterns
+</span></span><span id="13" class="l"><a class="l" href="#13">13: </a><span class="php-comment"> */</span>
+</span><span id="14" class="l"><a class="l" href="#14">14: </a><span class="php-keyword1">class</span> <a id="Patterns" href="#Patterns">Patterns</a>
+</span><span id="15" class="l"><a class="l" href="#15">15: </a>{
+</span><span id="16" class="l"><a class="l" href="#16">16: </a>    <span class="php-keyword1">use</span> Strict;
+</span><span id="17" class="l"><a class="l" href="#17">17: </a>
+</span><span id="18" class="l"><a class="l" href="#18">18: </a>    <span class="php-comment">// Unicode character classes</span>
+</span><span id="19" class="l"><a class="l" href="#19">19: </a>    <span class="php-keyword1">const</span> <a id="CHAR" href="#CHAR">CHAR</a> = <span class="php-quote">'A-Za-z\x{C0}-\x{2FF}\x{370}-\x{1EFF}'</span>;
+</span><span id="20" class="l"><a class="l" href="#20">20: </a>
+</span><span id="21" class="l"><a class="l" href="#21">21: </a>    <span class="php-comment">// marking meta-characters</span>
+</span><span id="22" class="l"><a class="l" href="#22">22: </a>    <span class="php-comment">// any mark:              \x14-\x1F</span>
+</span><span id="23" class="l"><a class="l" href="#23">23: </a>    <span class="php-comment">// CONTENT_MARKUP mark:   \x17-\x1F</span>
+</span><span id="24" class="l"><a class="l" href="#24">24: </a>    <span class="php-comment">// CONTENT_REPLACED mark: \x16-\x1F</span>
+</span><span id="25" class="l"><a class="l" href="#25">25: </a>    <span class="php-comment">// CONTENT_TEXTUAL mark:  \x15-\x1F</span>
+</span><span id="26" class="l"><a class="l" href="#26">26: </a>    <span class="php-comment">// CONTENT_BLOCK mark:    \x14-\x1F</span>
+</span><span id="27" class="l"><a class="l" href="#27">27: </a>    <span class="php-keyword1">const</span> <a id="MARK" href="#MARK">MARK</a> = <span class="php-quote">'\x14-\x1F'</span>;
+</span><span id="28" class="l"><a class="l" href="#28">28: </a>
+</span><span id="29" class="l"><a class="l" href="#29">29: </a>
+</span><span id="30" class="l"><a class="l" href="#30">30: </a>    <span class="php-comment">// modifier .(title)[class]{style}</span>
+</span><span id="31" class="l"><a class="l" href="#31">31: </a>    <span class="php-keyword1">const</span> <a id="MODIFIER" href="#MODIFIER">MODIFIER</a> = <span class="php-quote">'(?: *+(?&lt;= |^)\\.((?:\\([^)\\n]++\\)|\\[[^\\]\\n]++\\]|\\{[^}\\n]++\\}){1,3}?))'</span>;
+</span><span id="32" class="l"><a class="l" href="#32">32: </a>
+</span><span id="33" class="l"><a class="l" href="#33">33: </a>    <span class="php-comment">// modifier .(title)[class]{style}&lt;&gt;</span>
+</span><span id="34" class="l"><a class="l" href="#34">34: </a>    <span class="php-keyword1">const</span> <a id="MODIFIER_H" href="#MODIFIER_H">MODIFIER_H</a> = <span class="php-quote">'(?: *+(?&lt;= |^)\\.((?:\\([^)\\n]++\\)|\\[[^\\]\\n]++\\]|\\{[^}\\n]++\\}|&lt;&gt;|&gt;|=|&lt;){1,4}?))'</span>;
+</span><span id="35" class="l"><a class="l" href="#35">35: </a>
+</span><span id="36" class="l"><a class="l" href="#36">36: </a>    <span class="php-comment">// modifier .(title)[class]{style}&lt;&gt;^</span>
+</span><span id="37" class="l"><a class="l" href="#37">37: </a>    <span class="php-keyword1">const</span> <a id="MODIFIER_HV" href="#MODIFIER_HV">MODIFIER_HV</a> = <span class="php-quote">'(?: *+(?&lt;= |^)\\.((?:\\([^)\\n]++\\)|\\[[^\\]\\n]++\\]|\\{[^}\\n]++\\}|&lt;&gt;|&gt;|=|&lt;|\\^|\\-|\\_){1,5}?))'</span>;
+</span><span id="38" class="l"><a class="l" href="#38">38: </a>
+</span><span id="39" class="l"><a class="l" href="#39">39: </a>
+</span><span id="40" class="l"><a class="l" href="#40">40: </a>    <span class="php-comment">// images   [* urls .(title)[class]{style} &gt;]   '\[\* *+([^\n'.MARK.']{1,1000})'.MODIFIER.'? *+(\*|(?&lt;!&lt;)&gt;|&lt;)\]'</span>
+</span><span id="41" class="l"><a class="l" href="#41">41: </a>    <span class="php-keyword1">const</span> <a id="IMAGE" href="#IMAGE">IMAGE</a> = <span class="php-quote">'\[\* *+([^\n\x14-\x1F]{1,1000})(?: *+(?&lt;= |^)\\.((?:\\([^)\\n]++\\)|\\[[^\\]\\n]++\\]|\\{[^}\\n]++\\}){1,3}?))? *+(\*|(?&lt;!&lt;)&gt;|&lt;)\]'</span>;
+</span><span id="42" class="l"><a class="l" href="#42">42: </a>
+</span><span id="43" class="l"><a class="l" href="#43">43: </a>    <span class="php-comment">// links, url - doesn't end by :).,!?</span>
+</span><span id="44" class="l"><a class="l" href="#44">44: </a>    <span class="php-keyword1">const</span> <a id="LINK_URL" href="#LINK_URL">LINK_URL</a> = <span class="php-quote">'(?:\[[^\]\n]++\]|(?=[\w/+.~%&amp;?@=_\#$])[^\s\x14-\x1F]{0,1000}?[^:);,.!?\s\x14-\x1F])'</span>; <span class="php-comment">// any url - doesn't end by :).,!?</span>
+</span><span id="45" class="l"><a class="l" href="#45">45: </a>
+</span><span id="46" class="l"><a class="l" href="#46">46: </a>}
+</span><span id="47" class="l"><a class="l" href="#47">47: </a></span></code></pre>
+
+	<div id="footer">
+		Texy 2.8.2 API documentation API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?1521508598"></script>
+<script src="elementlist.js?1081563171"></script>
+</body>
+</html>

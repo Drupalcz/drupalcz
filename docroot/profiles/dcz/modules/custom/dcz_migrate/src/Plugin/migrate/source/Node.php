@@ -128,6 +128,22 @@ class Node extends DrupalSqlBase {
       }
     }
 
+    // Go body through Texy.
+    $texy_formats = array(
+      '1',
+      '6',
+    );
+    if (in_array($row->getSourceProperty('format'), $texy_formats)) {
+      require_once DRUPAL_ROOT . '/libraries/texy/src/texy.php';
+
+      $body = $row->getSourceProperty('body');
+
+      $texy = new \Texy\Texy;
+      $body = $texy->process($body);
+
+      $row->setSourceProperty('body', $body);
+    }
+
     return parent::prepareRow($row);
   }
 

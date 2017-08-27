@@ -31,10 +31,15 @@ process:
   changed: changed
   promote: promote
   sticky: sticky
-#  'body/format':
-#    plugin: migration
-#    migration: d6_filter_format
-#    source: format
+  'body/format':
+    plugin: static_map
+    source: format
+    map:
+      1: basic_html # Filtered HTML
+      2: plain_text # PHP
+      3: full_html # Full HTML
+      4: plain_text # Messaging plain text
+      6: basic_html # Comments
   'body/value': body
   'body/summary': teaser
   revision_uid: revision_uid

@@ -16,26 +16,22 @@ process:
     source: pid
   entity_id: nid
   entity_type: 'constants/entity_type'
-  # field_name & comment_type is calculated in
-  # \Drupal\migrate_drupal\Plugin\migrate\source\d6\Comment::prepareRow()
-#  field_name: field_name
-
+  # We have separated comment types for articles and forum in D8:
+  field_name:
+    plugin: static_map
+    source: type
+    map:
+      forum: comment_forum
+      blog: field_comments_article
+      story: field_comments_article
   # We have separated comment types for articles and forum in D8:
   comment_type:
     plugin: static_map
-    source:
-      - type
-      - comment_type
+    source: type
     map:
-      forum:
-        comment: comment_forum
-        comment_no_subject: comment_forum
-      blog:
-        comment: comment_article
-        comment_no_subject: comment_article
-      story:
-        comment: comment_article
-        comment_no_subject: comment_article
+      forum: comment_forum
+      blog: comment_article
+      story: comment_article
   subject: subject
   uid: uid
   name: name
@@ -47,10 +43,15 @@ process:
   status: status #In D6, published=0. We reverse the value in prepareRow.
   thread: thread
   'comment_body/value': comment
-#  'comment_body/format':
-#    plugin: migration
-#    migration: d6_filter_format
-#    source: format
+  'comment_body/format':
+    plugin: static_map
+    source: format
+    map:
+      1: basic_html # Filtered HTML
+      2: plain_text # PHP
+      3: full_html # Full HTML
+      4: plain_text # Messaging plain text
+      6: basic_html # Comments
 destination:
   plugin: entity:comment
 migration_dependencies:

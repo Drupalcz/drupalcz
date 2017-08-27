@@ -1,0 +1,48 @@
+Syntax highlighting in Texy!
+****************************
+
+
+
+How use clone in PHP4
+---------------------
+
+This example show how to implement PHP5 `clone` construction in older PHP4
+
+/---code php
+if (((int) phpversion() < 5) && (!function_exists('clone')))
+ eval('function &clone($obj) { return $obj; }');
+
+$obj = new Object();
+$dolly = clone ($obj);
+\---
+
+
+
+
+And Now for Something Completely Different:
+-------------------------------------------
+
+/---code javascript
+   // function trim() in JavaScript
+
+   function trim(s) {
+     while (s.substr(0, 1) == ' ') s = s.substr(1);
+     while (s.substr(s.length-1, 1) == ' ') s = s.substr(0, s.length-2);
+     return s;
+   }
+\---
+
+
+/--code html
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1250" />
+  <title>Try Texy!</title>
+\---
+
+
+/--code sql
+
+SELECT * FROM `girls` WHERE `girls`.`iq` > `dgx`.`iq` AND `girls`.`age` < `dgx`.`age` GROUP BY `girls`.`sexual-orientation`
+
+\---

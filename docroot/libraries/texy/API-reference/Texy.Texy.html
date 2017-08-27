@@ -1,0 +1,2494 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="generator" content="ApiGen 2.8.0">
+
+	<title>Class Texy\Texy | Texy 2.8.2 API documentation</title>
+
+	<link rel="stylesheet" href="resources/style.css?2213164932">
+	<link rel="search" type="application/opensearchdescription+xml" title="Texy 2.8.2 API documentation" href="https://api.texy.info/2/opensearch.xml">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Texy.html">Texy<span></span></a>
+						<ul>
+				<li><a href="namespace-Texy.Modules.html">Modules</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="Texy.BlockParser.html">BlockParser</a></li>
+				<li><a href="Texy.Configurator.html">Configurator</a></li>
+				<li><a href="Texy.HandlerInvocation.html">HandlerInvocation</a></li>
+				<li><a href="Texy.Helpers.html">Helpers</a></li>
+				<li><a href="Texy.HtmlElement.html">HtmlElement</a></li>
+				<li><a href="Texy.Image.html">Image</a></li>
+				<li><a href="Texy.LineParser.html">LineParser</a></li>
+				<li><a href="Texy.Link.html">Link</a></li>
+				<li><a href="Texy.Modifier.html">Modifier</a></li>
+				<li><a href="Texy.Module.html">Module</a></li>
+				<li><a href="Texy.Parser.html">Parser</a></li>
+				<li><a href="Texy.Patterns.html">Patterns</a></li>
+				<li><a href="Texy.Regexp.html">Regexp</a></li>
+				<li class="active"><a href="Texy.Texy.html">Texy</a></li>
+				<li><a href="Texy.Utf.html">Utf</a></li>
+			</ul>
+
+
+			<h3>Traits</h3>
+			<ul>
+				<li><a href="Texy.Strict.html">Strict</a></li>
+			</ul>
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form action="https://www.google.com/cse" id="search">
+		<input type="hidden" name="cx" value="011549293477758430224:vxofa9ufnhc">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text">
+		<input type="submit" value="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Texy.html" title="Summary of Texy"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="deprecated.html" title="List of deprecated elements"><span>Deprecated</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Texy</h1>
+
+
+	<div class="description">
+	
+<p>Texy! - Convert plain text to XHTML format using <code><a href="Texy.Texy.html#_process">Texy\Texy::process()</a></code>.</p>
+
+<pre>
+<span class="php-var">$texy</span> = <span
+class="php-keyword1">new</span> Texy();
+<span
+class="php-var">$html</span> = <span
+class="php-var">$texy</span>-&gt;process(<span
+class="php-var">$text</span>);
+</pre>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>Texy\Texy</span></b>			
+			
+			 uses 
+				<a href="Texy.Strict.html"><span>Texy\Strict</span></a>
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Texy.html">Texy</a><br>
+		<b>Package:</b> Texy<br>
+
+		<b>Located at</b> <a href="source-Texy.Texy.php.html#11-769" title="Go to source code">Texy/Texy.php</a><br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-Texy.Texy.php.html#217-252" title="Go to source code">__construct</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setOutputMode" id="_setOutputMode">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setOutputMode">#</a>
+		<code><a href="source-Texy.Texy.php.html#255-282" title="Go to source code">setOutputMode</a>( <span>integer <var>$mode</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set HTML/XHTML output mode (overwrites self::$allowedTags)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set HTML/XHTML output mode (overwrites self::$allowedTags)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$mode</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getOutputMode" id="_getOutputMode">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getOutputMode">#</a>
+		<code><a href="source-Texy.Texy.php.html#285-292" title="Go to source code">getOutputMode</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get HTML/XHTML output mode</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get HTML/XHTML output mode</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br>int<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="loadModules" id="_loadModules">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loadModules">#</a>
+		<code><a href="source-Texy.Texy.php.html#295-323" title="Go to source code">loadModules</a>( )</code>
+
+		<div class="description short">
+			
+<p>Create array of all used modules ($this-&gt;modules). This array can be
+changed by overriding this method (by subclasses)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create array of all used modules ($this-&gt;modules). This array can be
+changed by overriding this method (by subclasses)</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="registerLinePattern" id="_registerLinePattern">
+
+		<td class="attributes"><code>
+			final public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_registerLinePattern">#</a>
+		<code><a href="source-Texy.Texy.php.html#326-342" title="Go to source code">registerLinePattern</a>( <span> <var>$handler</var></span>, <span> <var>$pattern</var></span>, <span> <var>$name</var></span>, <span> <var>$againTest</var> = <span class="php-keyword1">NULL</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="registerBlockPattern" id="_registerBlockPattern">
+
+		<td class="attributes"><code>
+			final public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_registerBlockPattern">#</a>
+		<code><a href="source-Texy.Texy.php.html#345-361" title="Go to source code">registerBlockPattern</a>( <span> <var>$handler</var></span>, <span> <var>$pattern</var></span>, <span> <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="registerPostLine" id="_registerPostLine">
+
+		<td class="attributes"><code>
+			final public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_registerPostLine">#</a>
+		<code><a href="source-Texy.Texy.php.html#364-376" title="Go to source code">registerPostLine</a>( <span> <var>$handler</var></span>, <span> <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="process" id="_process">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_process">#</a>
+		<code><a href="source-Texy.Texy.php.html#379-463" title="Go to source code">process</a>( <span>string <var>$text</var></span>, <span>boolean <var>$singleLine</var> = <span class="php-keyword1">FALSE</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Converts document in Texy! to (X)HTML code.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Converts document in Texy! to (X)HTML code.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$text</var></dt>
+					<dd>text</dd>
+					<dt><var>$singleLine</var></dt>
+					<dd>single line?</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>output HTML code<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="processLine" id="_processLine">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_processLine">#</a>
+		<code><a href="source-Texy.Texy.php.html#466-475" title="Go to source code">processLine</a>( <span>string <var>$text</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Converts single line in Texy! to (X)HTML code.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Converts single line in Texy! to (X)HTML code.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$text</var></dt>
+					<dd>text</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>output HTML code<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="processTypo" id="_processTypo">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_processTypo">#</a>
+		<code><a href="source-Texy.Texy.php.html#478-499" title="Go to source code">processTypo</a>( <span>string <var>$text</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Makes only typographic corrections.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Makes only typographic corrections.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$text</var></dt>
+					<dd>text (in encoding defined by Texy::$encoding)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>output text (in UTF-8)<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="toText" id="_toText">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_toText">#</a>
+		<code><a href="source-Texy.Texy.php.html#502-513" title="Go to source code">toText</a>( )</code>
+
+		<div class="description short">
+			
+<p>Converts DOM structure to pure text.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Converts DOM structure to pure text.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>string<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="stringToHtml" id="_stringToHtml">
+
+		<td class="attributes"><code>
+			final public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_stringToHtml">#</a>
+		<code><a href="source-Texy.Texy.php.html#516-553" title="Go to source code">stringToHtml</a>( <span> <var>$s</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Converts internal string representation to final HTML code in UTF-8.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Converts internal string representation to final HTML code in UTF-8.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>string<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="stringToText" id="_stringToText">
+
+		<td class="attributes"><code>
+			final public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_stringToText">#</a>
+		<code><a href="source-Texy.Texy.php.html#556-582" title="Go to source code">stringToText</a>( <span> <var>$s</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Converts internal string representation to final HTML code in UTF-8.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Converts internal string representation to final HTML code in UTF-8.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>string<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addHandler" id="_addHandler">
+
+		<td class="attributes"><code>
+			final public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addHandler">#</a>
+		<code><a href="source-Texy.Texy.php.html#585-600" title="Go to source code">addHandler</a>( <span>string <var>$event</var></span>, <span>callable <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Add new event handler.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add new event handler.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$event</var></dt>
+					<dd>name</dd>
+					<dt><var>$callback</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="invokeAroundHandlers" id="_invokeAroundHandlers">
+
+		<td class="attributes"><code>
+			final public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_invokeAroundHandlers">#</a>
+		<code><a href="source-Texy.Texy.php.html#603-615" title="Go to source code">invokeAroundHandlers</a>( <span> <var>$event</var></span>, <span><code><a href="Texy.Parser.html">Texy\Parser</a></code> <var>$parser</var></span>, <span>array <var>$args</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Invoke registered around-handlers.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Invoke registered around-handlers.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>mixed<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="invokeHandlers" id="_invokeHandlers">
+
+		<td class="attributes"><code>
+			final public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_invokeHandlers">#</a>
+		<code><a href="source-Texy.Texy.php.html#618-631" title="Go to source code">invokeHandlers</a>( <span> <var>$event</var></span>, <span>array <var>$args</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Invoke registered after-handlers.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Invoke registered after-handlers.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="protect" id="_protect">
+
+		<td class="attributes"><code>
+			final public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_protect">#</a>
+		<code><a href="source-Texy.Texy.php.html#634-653" title="Go to source code">protect</a>( <span>string <var>$child</var></span>, <span>integer <var>$contentType</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Generate unique mark - useful for freezing (folding) some substrings.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Generate unique mark - useful for freezing (folding) some substrings.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$child</var></dt>
+					<dd>string to froze</dd>
+					<dt><var>$contentType</var></dt>
+					<dd>constant</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>internal mark<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="checkURL" id="_checkURL">
+
+		<td class="attributes"><code>
+			final public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_checkURL">#</a>
+		<code><a href="source-Texy.Texy.php.html#656-668" title="Go to source code">checkURL</a>( <span>string <var>$URL</var></span>, <span>string <var>$type</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Filters bad URLs.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Filters bad URLs.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$URL</var></dt>
+					<dd>URL</dd>
+					<dt><var>$type</var></dt>
+					<dd>| FILTER_IMAGE</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>bool<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="unProtect" id="_unProtect">
+
+		<td class="attributes"><code>
+			final public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_unProtect">#</a>
+		<code><a href="source-Texy.Texy.php.html#671-674" title="Go to source code">unProtect</a>( <span> <var>$html</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getLinePatterns" id="_getLinePatterns">
+
+		<td class="attributes"><code>
+			final public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getLinePatterns">#</a>
+		<code><a href="source-Texy.Texy.php.html#677-680" title="Go to source code">getLinePatterns</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getBlockPatterns" id="_getBlockPatterns">
+
+		<td class="attributes"><code>
+			final public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getBlockPatterns">#</a>
+		<code><a href="source-Texy.Texy.php.html#683-686" title="Go to source code">getBlockPatterns</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDOM" id="_getDOM">
+
+		<td class="attributes"><code>
+			final public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDOM">#</a>
+		<code><a href="source-Texy.Texy.php.html#689-692" title="Go to source code">getDOM</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__clone" id="___clone">
+
+		<td class="attributes"><code>
+			final public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___clone">#</a>
+		<code><a href="source-Texy.Texy.php.html#695-698" title="Go to source code">__clone</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="freezeSpaces" id="_freezeSpaces" class="deprecated">
+
+		<td class="attributes"><code>
+			final public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_freezeSpaces">#</a>
+		<code><a href="source-Texy.Texy.php.html#701-705" title="Go to source code">freezeSpaces</a>( <span> <var>$s</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+				<h4>Deprecated</h4>
+				<div class="list">
+				</div>
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="unfreezeSpaces" id="_unfreezeSpaces" class="deprecated">
+
+		<td class="attributes"><code>
+			final public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_unfreezeSpaces">#</a>
+		<code><a href="source-Texy.Texy.php.html#708-712" title="Go to source code">unfreezeSpaces</a>( <span> <var>$s</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+				<h4>Deprecated</h4>
+				<div class="list">
+				</div>
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="normalize" id="_normalize" class="deprecated">
+
+		<td class="attributes"><code>
+			final public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_normalize">#</a>
+		<code><a href="source-Texy.Texy.php.html#715-719" title="Go to source code">normalize</a>( <span> <var>$s</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+				<h4>Deprecated</h4>
+				<div class="list">
+				</div>
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="webalize" id="_webalize" class="deprecated">
+
+		<td class="attributes"><code>
+			final public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_webalize">#</a>
+		<code><a href="source-Texy.Texy.php.html#722-726" title="Go to source code">webalize</a>( <span> <var>$s</var></span>, <span> <var>$charlist</var> = <span class="php-keyword1">NULL</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+				<h4>Deprecated</h4>
+				<div class="list">
+				</div>
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="escapeHtml" id="_escapeHtml" class="deprecated">
+
+		<td class="attributes"><code>
+			final public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_escapeHtml">#</a>
+		<code><a href="source-Texy.Texy.php.html#729-733" title="Go to source code">escapeHtml</a>( <span> <var>$s</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+				<h4>Deprecated</h4>
+				<div class="list">
+				</div>
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="unescapeHtml" id="_unescapeHtml" class="deprecated">
+
+		<td class="attributes"><code>
+			final public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_unescapeHtml">#</a>
+		<code><a href="source-Texy.Texy.php.html#736-740" title="Go to source code">unescapeHtml</a>( <span> <var>$s</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+				<h4>Deprecated</h4>
+				<div class="list">
+				</div>
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="outdent" id="_outdent" class="deprecated">
+
+		<td class="attributes"><code>
+			final public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_outdent">#</a>
+		<code><a href="source-Texy.Texy.php.html#743-747" title="Go to source code">outdent</a>( <span> <var>$s</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+				<h4>Deprecated</h4>
+				<div class="list">
+				</div>
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isRelative" id="_isRelative" class="deprecated">
+
+		<td class="attributes"><code>
+			final public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isRelative">#</a>
+		<code><a href="source-Texy.Texy.php.html#750-754" title="Go to source code">isRelative</a>( <span> <var>$URL</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+				<h4>Deprecated</h4>
+				<div class="list">
+				</div>
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="prependRoot" id="_prependRoot" class="deprecated">
+
+		<td class="attributes"><code>
+			final public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_prependRoot">#</a>
+		<code><a href="source-Texy.Texy.php.html#757-761" title="Go to source code">prependRoot</a>( <span> <var>$URL</var></span>, <span> <var>$root</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+				<h4>Deprecated</h4>
+				<div class="list">
+				</div>
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="free" id="_free" class="deprecated">
+
+		<td class="attributes"><code>
+			final public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_free">#</a>
+		<code><a href="source-Texy.Texy.php.html#764-767" title="Go to source code">free</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+				<h4>Deprecated</h4>
+				<div class="list">
+				</div>
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+	<table class="summary used">
+	<caption>Methods used from <a href="Texy.Strict.html#methods">Texy\Strict</a></caption>
+	<tr>
+		<td><code>
+			<a href="Texy.Strict.html#___call">__call()</a>, 
+			<a href="Texy.Strict.html#___callStatic">__callStatic()</a>, 
+			<a href="Texy.Strict.html#___get">__get()</a>, 
+			<a href="Texy.Strict.html#___isset">__isset()</a>, 
+			<a href="Texy.Strict.html#___set">__set()</a>, 
+			<a href="Texy.Strict.html#___unset">__unset()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+	<table class="summary constants" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="ALL" id="ALL">
+
+		<td class="attributes"><code>boolean</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#24" title="Go to source code"><b>ALL</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#ALL" class="anchor">#</a><code><span class="php-keyword1">TRUE</span></code></div></td>
+	</tr>
+	<tr data-order="NONE" id="NONE">
+
+		<td class="attributes"><code>boolean</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#25" title="Go to source code"><b>NONE</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#NONE" class="anchor">#</a><code><span class="php-keyword1">FALSE</span></code></div></td>
+	</tr>
+	<tr data-order="VERSION" id="VERSION">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#28" title="Go to source code"><b>VERSION</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#VERSION" class="anchor">#</a><code><span class="php-quote">'2.8.2'</span></code></div></td>
+	</tr>
+	<tr data-order="REVISION" id="REVISION">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#29" title="Go to source code"><b>REVISION</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#REVISION" class="anchor">#</a><code><span class="php-quote">'released on 2015-11-07'</span></code></div></td>
+	</tr>
+	<tr data-order="CONTENT_MARKUP" id="CONTENT_MARKUP">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#32" title="Go to source code"><b>CONTENT_MARKUP</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#CONTENT_MARKUP" class="anchor">#</a><code><span class="php-quote">&quot;\x17&quot;</span></code></div></td>
+	</tr>
+	<tr data-order="CONTENT_REPLACED" id="CONTENT_REPLACED">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#33" title="Go to source code"><b>CONTENT_REPLACED</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#CONTENT_REPLACED" class="anchor">#</a><code><span class="php-quote">&quot;\x16&quot;</span></code></div></td>
+	</tr>
+	<tr data-order="CONTENT_TEXTUAL" id="CONTENT_TEXTUAL">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#34" title="Go to source code"><b>CONTENT_TEXTUAL</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#CONTENT_TEXTUAL" class="anchor">#</a><code><span class="php-quote">&quot;\x15&quot;</span></code></div></td>
+	</tr>
+	<tr data-order="CONTENT_BLOCK" id="CONTENT_BLOCK">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#35" title="Go to source code"><b>CONTENT_BLOCK</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#CONTENT_BLOCK" class="anchor">#</a><code><span class="php-quote">&quot;\x14&quot;</span></code></div></td>
+	</tr>
+	<tr data-order="FILTER_ANCHOR" id="FILTER_ANCHOR">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#38" title="Go to source code"><b>FILTER_ANCHOR</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#FILTER_ANCHOR" class="anchor">#</a><code><span class="php-quote">'anchor'</span></code></div></td>
+	</tr>
+	<tr data-order="FILTER_IMAGE" id="FILTER_IMAGE">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#39" title="Go to source code"><b>FILTER_IMAGE</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#FILTER_IMAGE" class="anchor">#</a><code><span class="php-quote">'image'</span></code></div></td>
+	</tr>
+	<tr data-order="XML" id="XML">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#42" title="Go to source code"><b>XML</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#XML" class="anchor">#</a><code><span class="php-num">2</span></code></div></td>
+	</tr>
+	<tr data-order="HTML4_TRANSITIONAL" id="HTML4_TRANSITIONAL">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#45" title="Go to source code"><b>HTML4_TRANSITIONAL</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#HTML4_TRANSITIONAL" class="anchor">#</a><code><span class="php-num">0</span></code></div></td>
+	</tr>
+	<tr data-order="HTML4_STRICT" id="HTML4_STRICT">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#46" title="Go to source code"><b>HTML4_STRICT</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#HTML4_STRICT" class="anchor">#</a><code><span class="php-num">1</span></code></div></td>
+	</tr>
+	<tr data-order="HTML5" id="HTML5">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#47" title="Go to source code"><b>HTML5</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#HTML5" class="anchor">#</a><code><span class="php-num">4</span></code></div></td>
+	</tr>
+	<tr data-order="XHTML1_TRANSITIONAL" id="XHTML1_TRANSITIONAL">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#48" title="Go to source code"><b>XHTML1_TRANSITIONAL</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#XHTML1_TRANSITIONAL" class="anchor">#</a><code><span class="php-num">2</span></code></div></td>
+	</tr>
+	<tr data-order="XHTML1_STRICT" id="XHTML1_STRICT">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#49" title="Go to source code"><b>XHTML1_STRICT</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#XHTML1_STRICT" class="anchor">#</a><code><span class="php-num">3</span></code></div></td>
+	</tr>
+	<tr data-order="XHTML5" id="XHTML5">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-Texy.Texy.php.html#50" title="Go to source code"><b>XHTML5</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#XHTML5" class="anchor">#</a><code><span class="php-num">6</span></code></div></td>
+	</tr>
+	</table>
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="encoding" id="$encoding">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#52-53" title="Go to source code"><var>$encoding</var></a>
+
+			<div class="description short">
+				
+<p>input &amp; output text encoding</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>input &amp; output text encoding</p>
+
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$encoding" class="anchor">#</a><code><span class="php-quote">'utf-8'</span></code></div></td>
+	</tr>
+	<tr data-order="allowed" id="$allowed">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#55-56" title="Go to source code"><var>$allowed</var></a>
+
+			<div class="description short">
+				
+<p>Texy! syntax configuration</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Texy! syntax configuration</p>
+
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$allowed" class="anchor">#</a><code>[]</code></div></td>
+	</tr>
+	<tr data-order="allowedTags" id="$allowedTags">
+		<td class="attributes"><code>
+			public  
+			true|false|array
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#58-59" title="Go to source code"><var>$allowedTags</var></a>
+
+			<div class="description short">
+				
+<p>Allowed HTML tags</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Allowed HTML tags</p>
+
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$allowedTags" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="allowedClasses" id="$allowedClasses">
+		<td class="attributes"><code>
+			public  
+			true|false|array
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#61-62" title="Go to source code"><var>$allowedClasses</var></a>
+
+			<div class="description short">
+				
+<p>Allowed classes</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Allowed classes</p>
+
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$allowedClasses" class="anchor">#</a><code><code><a href="Texy.Texy.html#ALL">Texy\Texy::<b>ALL</b></a></code></code></div></td>
+	</tr>
+	<tr data-order="allowedStyles" id="$allowedStyles">
+		<td class="attributes"><code>
+			public  
+			true|false|array
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#64-65" title="Go to source code"><var>$allowedStyles</var></a>
+
+			<div class="description short">
+				
+<p>Allowed inline CSS style</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Allowed inline CSS style</p>
+
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$allowedStyles" class="anchor">#</a><code><code><a href="Texy.Texy.html#ALL">Texy\Texy::<b>ALL</b></a></code></code></div></td>
+	</tr>
+	<tr data-order="tabWidth" id="$tabWidth">
+		<td class="attributes"><code>
+			public  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#67-68" title="Go to source code"><var>$tabWidth</var></a>
+
+			<div class="description short">
+				
+<p>TAB width (for converting tabs to spaces)</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>TAB width (for converting tabs to spaces)</p>
+
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$tabWidth" class="anchor">#</a><code><span class="php-num">8</span></code></div></td>
+	</tr>
+	<tr data-order="obfuscateEmail" id="$obfuscateEmail">
+		<td class="attributes"><code>
+			public  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#70-71" title="Go to source code"><var>$obfuscateEmail</var></a>
+
+			<div class="description short">
+				
+<p>Do obfuscate e-mail addresses?</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Do obfuscate e-mail addresses?</p>
+
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$obfuscateEmail" class="anchor">#</a><code><span class="php-keyword1">TRUE</span></code></div></td>
+	</tr>
+	<tr data-order="urlSchemeFilters" id="$urlSchemeFilters">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#73-74" title="Go to source code"><var>$urlSchemeFilters</var></a>
+
+			<div class="description short">
+				
+<p>regexps to check URL schemes</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>regexps to check URL schemes</p>
+
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$urlSchemeFilters" class="anchor">#</a><code><span class="php-keyword1">NULL</span></code></div></td>
+	</tr>
+	<tr data-order="mergeLines" id="$mergeLines">
+		<td class="attributes"><code>
+			public  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#76-77" title="Go to source code"><var>$mergeLines</var></a>
+
+			<div class="description short">
+				
+<p>Paragraph merging mode</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Paragraph merging mode</p>
+
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$mergeLines" class="anchor">#</a><code><span class="php-keyword1">TRUE</span></code></div></td>
+	</tr>
+	<tr data-order="summary" id="$summary">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#79-84" title="Go to source code"><var>$summary</var></a>
+
+			<div class="description short">
+				
+<p>Parsing summary</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Parsing summary</p>
+
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$summary" class="anchor">#</a><code>[
+	<span class="php-quote">'images'</span> =&gt; [],
+	<span class="php-quote">'links'</span> =&gt; [],
+	<span class="php-quote">'preload'</span> =&gt; [],
+]</code></div></td>
+	</tr>
+	<tr data-order="styleSheet" id="$styleSheet">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#86-87" title="Go to source code"><var>$styleSheet</var></a>
+
+			<div class="description short">
+				
+<p>Generated stylesheet</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Generated stylesheet</p>
+
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$styleSheet" class="anchor">#</a><code><span class="php-quote">''</span></code></div></td>
+	</tr>
+	<tr data-order="alignClasses" id="$alignClasses">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#89-98" title="Go to source code"><var>$alignClasses</var></a>
+
+			<div class="description short">
+				
+<p>CSS classes for align modifiers</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>CSS classes for align modifiers</p>
+
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$alignClasses" class="anchor">#</a><code>[
+	<span class="php-quote">'left'</span> =&gt; <span class="php-keyword1">NULL</span>,
+	<span class="php-quote">'right'</span> =&gt; <span class="php-keyword1">NULL</span>,
+	<span class="php-quote">'center'</span> =&gt; <span class="php-keyword1">NULL</span>,
+	<span class="php-quote">'justify'</span> =&gt; <span class="php-keyword1">NULL</span>,
+	<span class="php-quote">'top'</span> =&gt; <span class="php-keyword1">NULL</span>,
+	<span class="php-quote">'middle'</span> =&gt; <span class="php-keyword1">NULL</span>,
+	<span class="php-quote">'bottom'</span> =&gt; <span class="php-keyword1">NULL</span>,
+]</code></div></td>
+	</tr>
+	<tr data-order="removeSoftHyphens" id="$removeSoftHyphens">
+		<td class="attributes"><code>
+			public  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#100-101" title="Go to source code"><var>$removeSoftHyphens</var></a>
+
+			<div class="description short">
+				
+<p>remove soft hyphens (SHY)?</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>remove soft hyphens (SHY)?</p>
+
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$removeSoftHyphens" class="anchor">#</a><code><span class="php-keyword1">TRUE</span></code></div></td>
+	</tr>
+	<tr data-order="advertisingNotice" id="$advertisingNotice" class="deprecated">
+		<td class="attributes"><code>
+			public static 
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#103-104" title="Go to source code"><var>$advertisingNotice</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+					<h4>Deprecated</h4>
+					<div class="list">
+					</div>
+			</div>
+		</td>
+		<td class="value"><div><a href="#$advertisingNotice" class="anchor">#</a><code><span class="php-keyword1">FALSE</span></code></div></td>
+	</tr>
+	<tr data-order="nontextParagraph" id="$nontextParagraph">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#106-107" title="Go to source code"><var>$nontextParagraph</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$nontextParagraph" class="anchor">#</a><code><span class="php-quote">'div'</span></code></div></td>
+	</tr>
+	<tr data-order="scriptModule" id="$scriptModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.ScriptModule.html">Texy\Modules\ScriptModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#109-110" title="Go to source code"><var>$scriptModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$scriptModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="paragraphModule" id="$paragraphModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.ParagraphModule.html">Texy\Modules\ParagraphModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#112-113" title="Go to source code"><var>$paragraphModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$paragraphModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="htmlModule" id="$htmlModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.HtmlModule.html">Texy\Modules\HtmlModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#115-116" title="Go to source code"><var>$htmlModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$htmlModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="imageModule" id="$imageModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.ImageModule.html">Texy\Modules\ImageModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#118-119" title="Go to source code"><var>$imageModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$imageModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="linkModule" id="$linkModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.LinkModule.html">Texy\Modules\LinkModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#121-122" title="Go to source code"><var>$linkModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$linkModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="phraseModule" id="$phraseModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.PhraseModule.html">Texy\Modules\PhraseModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#124-125" title="Go to source code"><var>$phraseModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$phraseModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="emoticonModule" id="$emoticonModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.EmoticonModule.html">Texy\Modules\EmoticonModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#127-128" title="Go to source code"><var>$emoticonModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$emoticonModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="blockModule" id="$blockModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.BlockModule.html">Texy\Modules\BlockModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#130-131" title="Go to source code"><var>$blockModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$blockModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="headingModule" id="$headingModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.HeadingModule.html">Texy\Modules\HeadingModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#133-134" title="Go to source code"><var>$headingModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$headingModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="horizLineModule" id="$horizLineModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.HorizLineModule.html">Texy\Modules\HorizLineModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#136-137" title="Go to source code"><var>$horizLineModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$horizLineModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="blockQuoteModule" id="$blockQuoteModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.BlockQuoteModule.html">Texy\Modules\BlockQuoteModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#139-140" title="Go to source code"><var>$blockQuoteModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$blockQuoteModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="listModule" id="$listModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.ListModule.html">Texy\Modules\ListModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#142-143" title="Go to source code"><var>$listModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$listModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="tableModule" id="$tableModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.TableModule.html">Texy\Modules\TableModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#145-146" title="Go to source code"><var>$tableModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$tableModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="figureModule" id="$figureModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.FigureModule.html">Texy\Modules\FigureModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#148-149" title="Go to source code"><var>$figureModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$figureModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="typographyModule" id="$typographyModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.TypographyModule.html">Texy\Modules\TypographyModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#151-152" title="Go to source code"><var>$typographyModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$typographyModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="longWordsModule" id="$longWordsModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.LongWordsModule.html">Texy\Modules\LongWordsModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#154-155" title="Go to source code"><var>$longWordsModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$longWordsModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="htmlOutputModule" id="$htmlOutputModule">
+		<td class="attributes"><code>
+			public  
+			<code><a href="Texy.Modules.HtmlOutputModule.html">Texy\Modules\HtmlOutputModule</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#157-158" title="Go to source code"><var>$htmlOutputModule</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$htmlOutputModule" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="_classes" id="$_classes">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#184-185" title="Go to source code"><var>$_classes</var></a>
+
+			<div class="description short">
+				
+<p>for internal usage</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>for internal usage</p>
+
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$_classes" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="_styles" id="$_styles">
+		<td class="attributes"><code>
+			public  
+			
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#185" title="Go to source code"><var>$_styles</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$_styles" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="dtd" id="$dtd">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#193-202" title="Go to source code"><var>$dtd</var></a>
+
+			<div class="description short">
+				
+<p>DTD descriptor.<br />
+$dtd[element][0] - allowed attributes (as array keys)<br />
+$dtd[element][1] - allowed content for an element (content model) (as array
+keys)<br />
+- array of allowed elements (as keys)<br />
+- FALSE - empty element<br />
+- 0 - special case for ins &amp; del</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>DTD descriptor. $dtd[element][0] - allowed attributes (as array keys)
+$dtd[element][1] - allowed content for an element (content model) (as array
+keys) - array of allowed elements (as keys) - FALSE - empty element - 0 -
+special case for ins &amp; del</p>
+
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$dtd" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="strictDTD" id="$strictDTD">
+		<td class="attributes"><code>
+			public static 
+			
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#211-212" title="Go to source code"><var>$strictDTD</var></a>
+
+			<div class="description short">
+				
+<p>DEPRECATED</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>DEPRECATED</p>
+
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$strictDTD" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="cleaner" id="$cleaner">
+		<td class="attributes"><code>
+			public  
+			
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#213" title="Go to source code"><var>$cleaner</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$cleaner" class="anchor">#</a><code></code></div></td>
+	</tr>
+	<tr data-order="xhtml" id="$xhtml">
+		<td class="attributes"><code>
+			public  
+			
+		</code></td>
+
+		<td class="name">
+				<a href="source-Texy.Texy.php.html#214" title="Go to source code"><var>$xhtml</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value"><div><a href="#$xhtml" class="anchor">#</a><code></code></div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Texy 2.8.2 API documentation API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?1521508598"></script>
+<script src="elementlist.js?1081563171"></script>
+</body>
+</html>
