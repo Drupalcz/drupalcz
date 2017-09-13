@@ -55,5 +55,5 @@ Thumbs.db
 tests/behat/vendor
 
 # Node modules and bower components from Theme.
-/docroot/themes/custom/dcz_skin/node_modules/
+/docroot/themes/custom/*/node_modules/
 /docroot/themes/custom/dcz_skin/bower_components/

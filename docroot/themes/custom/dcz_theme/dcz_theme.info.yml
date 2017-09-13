@@ -1,0 +1,23 @@
+core: 8.x
+type: theme
+base theme: classy
+
+name: 'DCZ Theme'
+description: 'Default theme for Drupal.cz site.'
+
+regions:
+  logo: 'Logo'
+  search: 'Search'
+  top_menu: 'Top Menu'
+  navigation: 'Navigation'
+  links: 'Links'
+  content: 'Content'
+  sidebar_first: 'Primary'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  postscript: 'Postscript'
+  footer_one: 'Footer one'
+  footer_two: 'Footer two'
+
+libraries:
+  - 'dcz_theme/global-styling'
