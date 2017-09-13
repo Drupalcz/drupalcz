@@ -5,8 +5,11 @@
 /docroot/themes/contrib
 /docroot/profiles/contrib
 
-# ignore vendor
+# Ignore vendor
 /vendor
+
+# Ignore Composer Cache
+/console/cache
 
 # Ignore sensitive information
 # /docroot/sites/*/settings.php
