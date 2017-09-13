@@ -59,4 +59,5 @@ tests/behat/vendor
 
 # Node modules and bower components from Theme.
 /docroot/themes/custom/*/node_modules/
+/docroot/themes/custom/*/config_local.json
 /docroot/themes/custom/dcz_skin/bower_components/

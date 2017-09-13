@@ -2,6 +2,7 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var config = require('./config.json');
+var configLocal = require('./config_local.json');
 
 // Include plugins.
 var sass = require('gulp-sass');
@@ -78,17 +79,17 @@ gulp.task('scripts', function() {
 
 // Watch task.
 gulp.task('watch', function() {
-  gulp.watch(config.css.src, ['css']);
+  gulp.watch(config.css.src, ['css', 'sass-lint']);
   gulp.watch(config.images.src, ['images']);
-  gulp.watch(config.js.src, ['scripts']);
+  gulp.watch(config.js.src, ['scripts', 'js-lint']);
 });
 
 // Static Server + Watch
-gulp.task('serve', ['css', 'scripts', 'watch', 'js-lint'], function() {
+gulp.task('serve', ['css', 'scripts', 'js-lint', 'sass-lint', 'watch'], function() {
   browserSync.init({
     open: false,
-    host: config.browserSyncHost,
-    proxy: config.browserSyncProxy,
+    host: configLocal.browserSyncHost,
+    proxy: configLocal.browserSyncProxy,
     port: 8080
   });
 });

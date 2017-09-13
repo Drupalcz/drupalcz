@@ -1,8 +1,6 @@
 {
   "name": "dcz_theme",
   "description": "DrupalCZ theme.",
-  "browserSyncHost" : "drupalcz.localhost",
-  "browserSyncProxy" : "http://drupalcz.localhost",
   "css": {
     "file" : "assets/sass/style.scss",
     "src": [

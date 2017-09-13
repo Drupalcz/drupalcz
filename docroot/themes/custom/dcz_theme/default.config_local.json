@@ -1,0 +1,6 @@
+{
+  "name": "dcz_theme",
+  "description": "DrupalCZ theme.",
+  "browserSyncHost" : "drupalcz.localhost",
+  "browserSyncProxy" : "http://drupalcz.localhost"
+}
