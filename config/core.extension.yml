@@ -20,7 +20,6 @@ module:
   dblog: 0
   dcz_article: 0
   dcz_custom_blocks: 0
-  dcz_migrate: 0
   dcz_tags_taxonomy: 0
   dcz_user: 0
   editor: 0
