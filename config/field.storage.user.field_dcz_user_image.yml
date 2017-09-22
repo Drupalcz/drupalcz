@@ -1,0 +1,30 @@
+uuid: c8454fd8-a742-4f90-b0a8-6e6bd35de693
+langcode: cs
+status: true
+dependencies:
+  module:
+    - file
+    - image
+    - user
+id: user.field_dcz_user_image
+field_name: field_dcz_user_image
+entity_type: user
+type: image
+settings:
+  uri_scheme: public
+  default_image:
+    uuid: bc1042f1-2b47-4d63-bb6a-a81776c3570c
+    alt: ''
+    title: ''
+    width: 350
+    height: 350
+  target_type: file
+  display_field: false
+  display_default: false
+module: image
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

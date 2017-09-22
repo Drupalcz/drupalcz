@@ -3,17 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_display.comment.comment_article.default
     - core.entity_view_mode.node.title_date
-    - field.field.node.dcz_article.body
-    - field.field.node.dcz_article.field_attachment
     - field.field.node.dcz_article.field_comments_article
     - field.field.node.dcz_article.field_tags
     - node.type.dcz_article
   module:
     - comment
     - ds
-    - file
-    - text
     - user
 third_party_settings:
   ds:
@@ -61,20 +58,6 @@ targetEntityType: node
 bundle: dcz_article
 mode: title_date
 content:
-  body:
-    type: text_default
-    weight: 12
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    region: content
-  field_attachment:
-    type: file_default
-    weight: 9
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   field_comments_article:
     type: comment_default
     weight: 8
@@ -98,4 +81,8 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  body: true
+  field_paragraphs: true
+  field_teaser_image: true
+  field_teaser_text: true
   langcode: true

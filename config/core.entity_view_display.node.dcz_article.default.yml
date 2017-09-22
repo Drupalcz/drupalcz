@@ -3,35 +3,23 @@ langcode: cs
 status: true
 dependencies:
   config:
-    - field.field.node.dcz_article.body
-    - field.field.node.dcz_article.field_attachment
+    - core.entity_view_display.comment.comment_article.default
     - field.field.node.dcz_article.field_comments_article
+    - field.field.node.dcz_article.field_paragraphs
     - field.field.node.dcz_article.field_tags
+    - field.field.node.dcz_article.field_teaser_image
+    - field.field.node.dcz_article.field_teaser_text
     - node.type.dcz_article
   module:
     - comment
-    - file
-    - text
+    - entity_reference_revisions
+    - image
     - user
 id: node.dcz_article.default
 targetEntityType: node
 bundle: dcz_article
 mode: default
 content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 101
-    settings: {  }
-    third_party_settings: {  }
-    region: content
-  field_attachment:
-    weight: 103
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: file_default
-    region: content
   field_comments_article:
     weight: 104
     label: above
@@ -39,6 +27,15 @@ content:
       pager_id: 0
     third_party_settings: {  }
     type: comment_default
+    region: content
+  field_paragraphs:
+    type: entity_reference_revisions_entity_view
+    weight: 105
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
     region: content
   field_tags:
     weight: 102
@@ -48,10 +45,27 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  field_teaser_image:
+    weight: 107
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_teaser_text:
+    weight: 106
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
   links:
     weight: 100
     settings: {  }
     third_party_settings: {  }
     region: content
 hidden:
+  body: true
   langcode: true
