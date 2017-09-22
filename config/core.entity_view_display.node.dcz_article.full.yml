@@ -190,6 +190,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  body: true
   field_paragraphs: true
   field_teaser_image: true
   field_teaser_text: true
