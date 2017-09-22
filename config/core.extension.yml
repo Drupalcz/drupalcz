@@ -43,9 +43,6 @@ module:
   link: 0
   locale: 0
   menu_ui: 0
-  migrate: 0
-  migrate_plus: 0
-  migrate_tools: 0
   node: 0
   options: 0
   page_cache: 0
@@ -74,7 +71,5 @@ theme:
   classy: 0
   bartik: 0
   seven: 0
-  bootstrap: 0
-  dcz_skin: 0
 langcode: cs
 profile: dcz
