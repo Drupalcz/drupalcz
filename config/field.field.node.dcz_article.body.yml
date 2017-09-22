@@ -1,18 +1,16 @@
-uuid: f28f8d2a-c104-4ade-a100-b72002fb58e4
+uuid: 9388ab7b-dd33-4295-9510-16e05b280f71
 langcode: cs
 status: true
 dependencies:
   config:
     - field.storage.node.body
-    - node.type.forum
+    - node.type.dcz_article
   module:
     - text
-_core:
-  default_config_hash: xSp91evhyztzrWlSVAiXsWNZReMhYXvcAEg59GLfZjg
-id: node.forum.body
+id: node.dcz_article.body
 field_name: body
 entity_type: node
-bundle: forum
+bundle: dcz_article
 label: Body
 description: ''
 required: false

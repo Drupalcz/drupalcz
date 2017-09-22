@@ -62,4 +62,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_dcz_user_image: true
+  field_location: true
   langcode: true

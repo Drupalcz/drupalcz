@@ -9,8 +9,11 @@ dependencies:
     - field.field.user.user.field_dcz_pos_long
     - field.field.user.user.field_dcz_surname
     - field.field.user.user.field_dcz_user_image
+    - field.field.user.user.field_location
     - image.style.thumbnail
   module:
+    - geolocation
+    - text
     - image
     - panelizer
     - user
@@ -49,6 +52,13 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: image
+    region: content
+  field_location:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: geolocation_latlng
     region: content
 hidden:
   field_dcz_bio: true

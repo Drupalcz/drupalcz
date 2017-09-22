@@ -20,6 +20,10 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  body: true
   field_comments_article: true
+  field_paragraphs: true
   field_tags: true
+  field_teaser_image: true
+  field_teaser_text: true
   langcode: true

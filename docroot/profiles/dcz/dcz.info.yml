@@ -37,5 +37,5 @@ dependencies:
   - dcz_user
   - dcz_tags_taxonomy
 themes:
-  - dcz_skin
+  - bartik
   - seven
