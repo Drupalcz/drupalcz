@@ -97,4 +97,5 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_location: true
   langcode: true
