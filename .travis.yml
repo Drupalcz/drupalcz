@@ -38,8 +38,9 @@ addons:
 
 # @see https://docs.travis-ci.com/user/notifications
 notifications:
-# - hipchat: [api token]@[room id or name]
-# - slack: '<account>:<token>#[channel]'
+ - slack:
+    rooms:
+      - drupalcz:7SUVOYlvaxuqA7PGJ5xu8Afs#dcz-web
 
 before_install:
   # Disable xdebug.
