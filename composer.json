@@ -14,13 +14,10 @@
     "require": {
         "acquia/blt": "^8.3",
         "drupal/admin_toolbar": "^1.20",
-        "drupal/bootstrap_layouts": "^4.1",
         "drupal/ds": "^3.1",
         "drupal/geolocation": "^1.11",
         "drupal/google_analytics": "^2.2",
-        "drupal/jssor": "^1.0@RC",
         "drupal/juicebox": "^2.0@beta",
-        "drupal/layout_plugin": "^1.0@alpha",
         "drupal/libraries": "3.x-dev",
         "drupal/migrate_plus": "^2.0",
         "drupal/migrate_tools": "^2.0",
@@ -81,9 +78,6 @@
             "ignore-duplicates": true
         },
         "patches": {
-            "drupal/jssor": {
-                "Undefined index slide_spacing": "https://www.drupal.org/files/issues/warning_slide_spacing-2673660-1.patch"
-            },
             "drupal/layout_plugin": {
                 "Cannot use object of type": "https://www.drupal.org/files/issues/fatal-error-when-installing-module.patch"
             }

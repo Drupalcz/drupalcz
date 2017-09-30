@@ -5,7 +5,7 @@ dependencies: {  }
 _core:
   default_config_hash: 35CefWbnzaiytcg3acexxz_GTvuwIjYd_ZTcmmR-tXA
 id: zxx
-label: 'Not applicable'
+label: 'Nelze použít'
 direction: ltr
 weight: 3
 locked: true

@@ -2,7 +2,6 @@ module:
   admin_toolbar: 0
   block: 0
   block_content: 0
-  bootstrap_layouts: 0
   breakpoint: 0
   ckeditor: 0
   color: 0
@@ -33,11 +32,9 @@ module:
   google_analytics: 0
   history: 0
   image: 0
-  jssor: 0
   juicebox: 0
   language: 0
   layout_discovery: 0
-  layout_plugin: 0
   libraries: 0
   link: 0
   locale: 0

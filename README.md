@@ -37,7 +37,7 @@ Branch | Build status
 * Install the site (it will use the Drupal.cz distribution).
   * `composer install`
   * `cd docroot`
-  * `drush si`
+  * `drush si dcz`
   * Import configuration:
   * `drush cim -y`
   * Login to new site:

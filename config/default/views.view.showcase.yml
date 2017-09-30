@@ -9,7 +9,6 @@ dependencies:
     - node.type.dcz_showcase
   module:
     - image
-    - jssor
     - node
     - options
     - user
@@ -192,38 +191,11 @@ display:
         filter_groups: false
         sorts: false
       style:
-        type: jssor
+        type: default
         options:
-          global:
-            autoplay: 1
-            arrownavigator: 0
-            bulletnavigator: 1
-          general:
-            slide_duration: '500'
-            drag_orientation: '1'
-            key_navigation: 1
-          autoplay:
-            autoplayinterval: '3000'
-            autoplaysteps: '1'
-            pauseonhover: '1'
-            transition: transition0101
-          arrownavigator:
-            arrowskin: '01'
-            autocenter: '2'
-            chancetoshow: '1'
-            steps: '1'
-            scale: 1
-          bulletnavigator:
-            bulletskin: '14'
-            chancetoshow: '1'
-            action_mode: '1'
-            autocenter: '1'
-            rows: '1'
-            steps: '1'
-            spacingx: '5'
-            spacingy: '5'
-            orientation: '1'
-            scale: 0
+          row_class: ''
+          default_row_class: true
+          uses_fields: false
       row:
         type: 'entity:node'
         options:

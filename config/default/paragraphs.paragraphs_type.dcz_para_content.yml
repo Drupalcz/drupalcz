@@ -4,4 +4,6 @@ status: true
 dependencies: {  }
 id: dcz_para_content
 label: Content
+icon_uuid: null
+description: null
 behavior_plugins: {  }

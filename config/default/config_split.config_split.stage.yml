@@ -4,7 +4,7 @@ status: false
 dependencies: {  }
 id: stage
 label: STAGE
-folder: ../config/split-stage
+folder: ../config/default/split-stage
 module:
   admin_toolbar_tools: 0
   devel: 0
