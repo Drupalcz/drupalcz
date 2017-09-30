@@ -43,6 +43,8 @@ notifications:
       - drupalcz:7SUVOYlvaxuqA7PGJ5xu8Afs#dcz-web
 
 before_install:
+  # Refs SSH keys on free Travis.
+  - $(npm bin)/set-up-ssh --key "$encrypted_76cf46cb768e_key" --iv "$encrypted_76cf46cb768e_iv" --path-encrypted-key ".travis/dcz_travis_ssh_key.enc"
   # Disable xdebug.
   - phpenv config-rm xdebug.ini
   - composer self-update
