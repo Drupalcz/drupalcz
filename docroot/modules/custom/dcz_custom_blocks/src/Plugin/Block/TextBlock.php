@@ -1,16 +1,12 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\dcz_custom_blocks\Plugin\Block\TextBlock.
- */
-
 namespace Drupal\dcz_custom_blocks\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
+ * Base for custom block text.
  *
  * @Block(
  *   id = "dcz_custom_blocks_text",
@@ -23,20 +19,20 @@ class TextBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function defaultConfiguration() {
-    return array(
+    return [
       'value' => "",
-    );
+    ];
   }
 
   /**
    * {@inheritdoc}
    */
   public function blockForm($form, FormStateInterface $form_state) {
-    $form['value_text'] = array(
+    $form['value_text'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Custom text'),
       '#default_value' => $this->configuration['value'],
-    );
+    ];
     return $form;
   }
 
@@ -52,10 +48,10 @@ class TextBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    return array(
+    return [
       '#type' => 'markup',
       '#markup' => $this->configuration['value'],
-    );
+    ];
   }
 
 }
