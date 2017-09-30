@@ -1,5 +1,5 @@
 {
-    "name": "Drupal.cz",
+    "name": "drupalcz/site",
     "description": "Drupal.cz Community website. (Drupal8 site built with BLT.)",
     "type": "project",
     "license": "GPL-2.0+",
