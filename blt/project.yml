@@ -1,7 +1,7 @@
 project:
-  machine_name: dcz
+  machine_name: drupalcz
   prefix: dcz
-  human_name: 'Drupal.cz'
+  human_name: Drupal.cz
   profile:
     name: dcz
   local:
