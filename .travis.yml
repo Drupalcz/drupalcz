@@ -1,82 +1,78 @@
-# Temporarily use legacy infrastructure until Travis resolves MySQL issues with their containerized infrastructure.
-# @see https://github.com/travis-ci/travis-ci/issues/6842
-sudo: required
+# Note that the example .travis.yml file for child projects lives in /install.
+sudo: false
 language: php
 dist: trusty
 
 php:
-  - 5.6
   - 7.1
 
+matrix:
+  fast_finish: true
+
+env:
+  global:
+    - COMPOSER_BIN=$TRAVIS_BUILD_DIR/vendor/bin
+    - BLT_DIR=$TRAVIS_BUILD_DIR/vendor/acquia/blt
+    - BUILD_DIR=$TRAVIS_BUILD_DIR
+
+jdk:
+  - oraclejdk8
+
+cache:
+  bundler: true
+  apt: true
+  directories:
+  - "$HOME/.composer/cache"
+  - "$HOME/.drush/cache"
+  - "$HOME/.npm"
+  - "$HOME/.nvm"
+  - "vendor"
+  # Cache front end dependecies to dramatically improve build time.
+  # - "docroot/themes/custom/mytheme/node_modules"
+  # - "docroot/themes/custom/mytheme/bower_components"
+
+addons:
+  ssh_known_hosts:
+  - svn-1745.prod.hosting.acquia.com
+  chrome: stable
+
+# @see https://docs.travis-ci.com/user/notifications
+notifications:
+# - hipchat: [api token]@[room id or name]
+# - slack: '<account>:<token>#[channel]'
+
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install apache2 libapache2-mod-fastcgi
-  - echo 'sendmail_path = /bin/true' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  # Disable xdebug.
   - phpenv config-rm xdebug.ini
-  - composer --verbose self-update --$COMPOSER_CHANNEL
-  - composer --version
+  - composer self-update
+  - composer validate --no-check-all --ansi
+  - composer install
+  # Exit build early if only documentation was changed in a Pull Request.
+  - source ${BLT_DIR}/scripts/travis/exit_early
 
 install:
-  # Create MySQL Database.
-  - mysql -e 'create database drupalcz;'
-
-  # Set up Apache.
-  - sudo a2enmod rewrite actions fastcgi alias
-  - sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
-  - if [[ -f ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.d/www.conf.default ]] ; then sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.d/www.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.d/www.conf ; fi
-  - echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - echo "variables_order = "EGPCS"" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
-
-  # Configure apache virtual hosts.
-  - sudo cp -f tests/build/travis-ci-apache /etc/apache2/sites-available/default
-  - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
-
-  # Restart the server.
-  - sudo service apache2 restart
-  - cat /etc/apache2/sites-available/default
-
-  # Install stable Drush 8.
-  - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - composer global require --prefer-dist --no-interaction drush/drush:^8.1
-
-  # Disable sendmail.
-  - echo sendmail_path=`which true` >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-
-  # Set up site.
-  - composer --verbose install
-  - cd ./docroot
-  - ./../vendor/bin/drush si dcz install_configure_form.update_status_module='array(FALSE,FALSE)' --sites-subdir=default --verbose --account-name=admin --account-pass=admin --site-mail=drupalcz_travis_dev@klaska.net --site-name="Drupal.cz" --yes
-  - cd ..
-
-  # Set up and run migrations.
-  - mysql -e 'create database d6migratesource;'
-  - git clone https://github.com/Drupalcz/drupalcz_db.git
-  - mysql -uroot d6migratesource < ./drupalcz_db/dcz_scrubbed_slim.sql
-  - cd ./docroot
-  - ./../vendor/bin/drush cim -y
-  - ./../vendor/bin/drush cr
-  - ./../vendor/bin/drush en -y dcz_migrate
-  - ./../vendor/bin/drush migrate-status
-  #- ./../vendor/bin/drush migrate-import --group=dcz6 -vvv
-  - ./../vendor/bin/drush migrate-status
-  - ./../vendor/bin/drush cr
-  - cd ..
-
-  # Setup behat.
-  - cd ./tests/behat
-  - composer install --prefer-dist --no-interaction
-  - cd ../..
-
-  # Setup display for selenium.
-  - sh -e /etc/init.d/xvfb start
-
-  # Get Selenium.
-  - if [[ ! -e "$HOME/custom/selenium-server-standalone-2.44.0.jar" ]]; then wget --directory-prefix="$HOME/custom" http://selenium-release.storage.googleapis.com/2.44/selenium-server-standalone-2.44.0.jar; fi;
-  - java -jar $HOME/custom/selenium-server-standalone-2.44.0.jar -p 4444 > /dev/null 2>&1 &
+  - source ${BLT_DIR}/scripts/travis/setup_environment
+  - source ${BLT_DIR}/scripts/travis/setup_project
 
 script:
-  # Run behat tests.
-  - cd ./tests/behat
-  - ./vendor/behat/behat/bin/behat
-  - cd ../..
+  - source ${BLT_DIR}/scripts/travis/run_tests
+
+deploy:
+   - provider: script
+     script: "${BLT_DIR}/scripts/travis/deploy_branch"
+     skip_cleanup: true
+     on:
+       branch: develop
+       php: 7.1
+   - provider: script
+     script: "${BLT_DIR}/scripts/travis/deploy_branch"
+     skip_cleanup: true
+     on:
+       branch: master
+       php: 7.1
+   - provider: script
+     script: "${BLT_DIR}/scripts/travis/deploy_tag"
+     skip_cleanup: true
+     on:
+       tags: true
+       php: 7.1

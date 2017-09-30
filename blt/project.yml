@@ -9,7 +9,8 @@ project:
     hostname: 'local.${project.machine_name}.com'
 git:
   default_branch: master
-  remotes: {  }
+  remotes:
+    - 'drupalcz@svn-1745.prod.hosting.acquia.com:drupalcz.git'
 drush:
   aliases:
     remote: '${project.machine_name}.test'
