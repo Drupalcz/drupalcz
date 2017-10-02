@@ -17,23 +17,14 @@ deployed_tag="$4"
 repo_url="$5"
 repo_type="$6"
 
-# Alias for current site and current environment.
+# Update
 alias=$site.$target_env
 
-# Shut down current site
+# Run updates and import config.
 drush @$alias state-set system.maintenance_mode 1 --format=integer
-# Get DB from stage to dev.
-drush @$site.test ac-database-copy drupalczstg dev
-# New DB is not in maintenence mode, shut it down again.
-drush @$alias state-set system.maintenance_mode 1 --format=integer
-# Get files from stage to dev.
-drush @$site.test ac-files-copy dev
-
-# Run the usual things to refresh site with new code.
+# drush @$alias rr
 drush @$alias cr --yes
 drush @$alias updb --yes
 drush @$alias cim sync --yes
 drush @$alias cr --yes
-
-# Open to the public again.
 drush @$alias state-set system.maintenance_mode 0 --format=integer
