@@ -1,16 +1,12 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\dcz_custom_blocks\Plugin\Block\CopyrightBlock.
- */
-
 namespace Drupal\dcz_custom_blocks\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
+ * Base for custom copyright block.
  *
  * @Block(
  *   id = "dcz_custom_blocks_copyright",
@@ -23,22 +19,23 @@ class CopyrightBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function defaultConfiguration() {
-    return array(
+    return [
       'copyright_custom' => "",
-      'copyright_default' => $this->t("Copyright text"),//TODO: Fill correct default value here!
-    );
+      // @ToDo: Fill correct default value here!
+      'copyright_default' => $this->t("Copyright text"),
+    ];
   }
 
   /**
    * {@inheritdoc}
    */
   public function blockForm($form, FormStateInterface $form_state) {
-    $form['copyright_custom_value'] = array(
+    $form['copyright_custom_value'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Custom copyright text'),
       '#description' => $this->t('Let this field empty to use default value'),
       '#default_value' => $this->configuration['copyright_custom'],
-    );
+    ];
     return $form;
   }
 
@@ -58,10 +55,10 @@ class CopyrightBlock extends BlockBase {
     if (!empty($this->configuration['copyright_custom'])) {
       $text = $this->configuration['copyright_custom'];
     }
-    return array(
+    return [
       '#type' => 'markup',
       '#markup' => $text,
-    );
+    ];
   }
 
 }

@@ -4,4 +4,4 @@ description: Custom blocks with pieces of information.
 package: Custom
 type: module
 dependencies:
-  - block
+  - drupal:block

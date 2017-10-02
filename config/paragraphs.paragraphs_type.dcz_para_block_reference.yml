@@ -1,7 +1,0 @@
-uuid: 0970d094-1572-4fb4-bb09-9acb13ff8bb6
-langcode: en
-status: true
-dependencies: {  }
-id: dcz_para_block_reference
-label: 'Block Reference'
-behavior_plugins: {  }
