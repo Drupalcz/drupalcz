@@ -4,6 +4,10 @@ if (!isset($drush_major_version)) {
   $drush_version_components = explode('.', DRUSH_VERSION);
   $drush_major_version = $drush_version_components[0];
 }
+
+// Workaround: Acquia supports only drush 8 atm.
+$drush_major_version = 8;
+
 // Site drupalcz, environment dev
 $aliases['dev'] = array(
   'root' => '/var/www/html/drupalcz.dev/docroot',
