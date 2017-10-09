@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f82ed842ed89e505648d4bee20616959",
+    "content-hash": "1748b45d84d21466bd1f781f55d779fa",
     "packages": [
         {
             "name": "acquia/blt",
-            "version": "8.9.7",
+            "version": "8.9.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acquia/blt.git",
-                "reference": "ea8a73d01c230809265debc5b1ffbc05e40b7f2f"
+                "reference": "9ea5fbaf2b9e2cef38c25e95a3eb7681e819db3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acquia/blt/zipball/ea8a73d01c230809265debc5b1ffbc05e40b7f2f",
-                "reference": "ea8a73d01c230809265debc5b1ffbc05e40b7f2f",
+                "url": "https://api.github.com/repos/acquia/blt/zipball/9ea5fbaf2b9e2cef38c25e95a3eb7681e819db3a",
+                "reference": "9ea5fbaf2b9e2cef38c25e95a3eb7681e819db3a",
                 "shasum": ""
             },
             "require": {
@@ -32,7 +32,7 @@
                 "doctrine/common": "^2.5",
                 "doctrine/inflector": "~1.1.0",
                 "drupal/coder": "^8.2.11",
-                "drush/drush": "^8.1.14|9.0.0-beta4",
+                "drush/drush": "^8.1.8|^9.0.0-beta4",
                 "grasmash/drupal-security-warning": "^1.0.0",
                 "grasmash/yaml-cli": "^1.0.0",
                 "grasmash/yaml-expander": "^1.0.5",
@@ -87,7 +87,7 @@
                 "template",
                 "testing"
             ],
-            "time": "2017-10-05T03:12:05+00:00"
+            "time": "2017-09-29T20:28:44+00:00"
         },
         {
             "name": "acquia/lightning",
