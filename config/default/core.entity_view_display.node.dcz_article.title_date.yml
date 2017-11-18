@@ -1,0 +1,88 @@
+uuid: 30139df6-4791-4d6d-8a00-dfcc583c4406
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_display.comment.comment_article.default
+    - core.entity_view_mode.node.title_date
+    - field.field.node.dcz_article.field_comments_article
+    - field.field.node.dcz_article.field_tags
+    - node.type.dcz_article
+  module:
+    - comment
+    - ds
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      path: modules/contrib/ds
+      library: ''
+      disable_css: false
+      settings:
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+    regions:
+      ds_content:
+        - node_title
+        - node_author
+        - node_post_date
+    fields:
+      node_author:
+        plugin_id: node_author
+        weight: 1
+        label: hidden
+        formatter: author_linked
+      node_post_date:
+        plugin_id: node_post_date
+        weight: 2
+        label: hidden
+        formatter: ds_post_date_czech_date
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h3
+          class: ''
+id: node.dcz_article.title_date
+targetEntityType: node
+bundle: dcz_article
+mode: title_date
+content:
+  field_comments_article:
+    type: comment_default
+    weight: 8
+    label: above
+    settings:
+      pager_id: 0
+    third_party_settings: {  }
+    region: content
+  field_tags:
+    type: entity_reference_entity_view
+    weight: 10
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 11
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  body: true
+  field_paragraphs: true
+  field_teaser_image: true
+  field_teaser_text: true
+  langcode: true

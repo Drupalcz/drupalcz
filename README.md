@@ -10,20 +10,29 @@ Branch | Build status
 [Develop](https://github.com/Drupalcz/drupalcz/tree/develop) | [![Build Status](https://travis-ci.org/Drupalcz/drupalcz.svg?branch=develop)](https://travis-ci.org/Drupalcz/drupalcz)
 
 ## Contents
-* acquia-utils/ - Acquia cloud specific tools.
+* blt/ - Settings for Acquia BLT.
 * config/ - Exported Drupal configutation.
-* docroot/ - Website directory.
+* console/ - Cache folder for Drupal Console. ()
+* docroot/ - Website root directory.
+* drush/ - Drush aliases and other rutiens.
 * hooks/ - Acquia cloud hooks. (See https://docs.acquia.com/cloud/manage/cloud-hooks )
-* library/ - Acquia cloud libraries.
+* patches/ - Our custom patches. (But we prefer linking drupal.org.)
+* reports/ - PHP Unit results.
+* scripts/ - Our custom scripts.
+  * scrub.sql - script to strip sensitive data from D6 production database.
+  * slim.sql - script to make scrubbed database smaller so we can run tests quicker.
 * tests/ - Collection of tests for Travis CI and local development.
-* .gitignore - Gitignore.
+* .gitignore - Gitignore - be sure to check your own local gitignore so you don't commit your IDE's tmp files.
 * .travis.yml - Travis CI test suite configuration.
-* scrub.sql - script to strip sensitive data from D6 production database.
-* slim.sql - script to make scrubbed database smaller so we can run tests quicker.
 
 ## Requirements
 * Install composer: https://getcomposer.org/doc/00-intro.md
 * Install Drush version 8: http://docs.drush.org/en/master/install/
+* We are using Acquia BLT which has it's own set of requirements.
+  * Check out https://github.com/acquia/blt
+  * Not all are needed for basic tasks.
+  * Try `blt vm` if you don't want to alter your system.
+  * See more at https://github.com/acquia/blt
 
 ## Getting the site up and running.
 * Get your copy of the code:
@@ -36,8 +45,10 @@ Branch | Build status
   * edit this config: `docroot/sites/default/settings.local.php`
 * Install the site (it will use the Drupal.cz distribution).
   * `composer install`
+  * If this is first time you are setting up BLT, run `composer run-script blt-alias`
+  * `blt setup:git-hooks` (Learn more about BLT: https://blt.readthedocs.io/)
   * `cd docroot`
-  * `drush si`
+  * `drush si dcz`
   * Import configuration:
   * `drush cim -y`
   * Login to new site:
@@ -57,7 +68,10 @@ Branch | Build status
 
 ## Contributing
 * We are using GitFlow(https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow/) branching strategy
-  * you need to create ```feature/NAME``` branch for each issue
-  * after you finish work on issue, create pull request against ```develop``` branch
+* You need to create ```feature/NAME``` branch for each issue
 * Commit your changes. ( http://chris.beams.io/posts/git-commit/ )
+* Test your work by running:
+  * `blt validate`
+  * `blt tests`
+* After you finish work on issue, create pull request against ```develop``` branch.
 * Create pull request. https://help.github.com/articles/creating-a-pull-request/

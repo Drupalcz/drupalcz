@@ -1,7 +1,0 @@
-uuid: d6851eb2-b17a-49cc-8c05-5bdb19d4890e
-langcode: en
-status: true
-dependencies: {  }
-id: dcz_para_hero
-label: 'Hero paragraph'
-behavior_plugins: {  }
