@@ -1,0 +1,39 @@
+.main-navigation {
+  background: $white-4;
+  box-shadow: 0 0 25px 0 $gray-3;
+}
+
+.region-navigation {
+  color: $white;
+  display: block;
+  height: 100%;
+  margin: 0 auto;
+  max-width: $max-width;
+
+  .menu {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    margin: 0;
+
+    li {
+      padding-top: 0;
+    }
+
+    a {
+      color: $white;
+      display: block;
+      padding: 1em .8em;
+      text-transform: uppercase;
+      vertical-align: middle;
+
+      &:hover,
+      &.is-active {
+        background: $white-3;
+        box-shadow: none;
+        color: $white;
+      }
+    }
+  }
+}

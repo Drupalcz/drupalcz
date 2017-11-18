@@ -1,0 +1,51 @@
+body {
+  display: grid;
+  grid-auto-rows: minmax(0, auto);
+  grid-template-areas:
+  'topbar       topbar      topbar'
+  'header       header      header'
+  'navigation   navigation  navigation'
+  'admin        admin       admin'
+  'breadcrumbs  breadcrumbs breadcrumbs'
+  'main         main        main'
+  'postscript   postscript  postscript'
+  'footer       footer      footer';
+  grid-template-columns:
+  [viewport-start] minmax($site-padding, 1fr)
+  [container-start] minmax(0, $max-width) [container-end]
+  minmax($site-padding, 1fr) [viewport-end];
+}
+
+// The magic begins here.
+.top-bar {
+  grid-area: topbar;
+}
+
+header {
+  grid-area: header;
+}
+
+.navigation {
+  grid-area: navigation;
+}
+
+.region-admin-area {
+  grid-area: admin;
+}
+
+main {
+  grid-area: main;
+}
+
+.region-breadcrumbs {
+  grid-area: breadcrumbs;
+}
+
+.postscript {
+  grid-area: postscript;
+}
+
+footer {
+  grid-area: footer;
+}
+

@@ -1,0 +1,23 @@
+// Media Queries
+// 1. Name and define our breakpoints. Name the map something sensical
+// 2. Write a comma separated list of key: value, pairs that we will use later
+$breakpoints: (
+  small: 48rem,
+  large: var(--max-width),
+);
+
+// if selector is wider than the screensize we are calling
+@mixin bp($screen-size) {
+  // and if our map that we named $breakpoints includes values (we called them $screen-size)
+  @if map-has-key($breakpoints, $screen-size) {
+    // then write out a nested Media Query that will target that value as our min-width
+    @media (min-width: map-get($breakpoints, $screen-size)) {
+      // write CSS within this mixin that would apply to only this breakpoint or above
+      @content;
+    }
+    // if the screen-size we are requesting doesn't exist, then tell me when it is compiled
+  } @else {
+    // Debugging
+    @warn ''#{$screen-size}' has not been declared as a breakpoint.';
+  }
+}

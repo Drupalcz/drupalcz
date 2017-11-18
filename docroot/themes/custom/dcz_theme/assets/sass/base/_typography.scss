@@ -1,0 +1,36 @@
+// Set HTML to get easy calculation. 62.5% = 10px.
+html {
+  font-size: 62.5%;
+}
+
+// Set font size back to 16px.
+body {
+  font-size: 1.6rem;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.3rem;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+  transition: all 750ms ease-in-out;
+
+  &:hover {
+    box-shadow: 0 1px 0 0 $gray-3;
+    transition: all 300ms ease-in-out;
+  }
+}

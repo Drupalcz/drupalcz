@@ -42,46 +42,58 @@
  * @see html.html.twig
  */
 #}
-<div class="layout-container">
+<div class="top-bar">{{ page.top_bar }}</div>
 
-  <header role="banner">
-    {{ page.header }}
-  </header>
-
-  {{ page.primary_menu }}
-  {{ page.secondary_menu }}
-
-  {{ page.breadcrumb }}
-
-  {{ page.highlighted }}
-
-  {{ page.help }}
-
-  <main role="main">
-    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-
-    <div class="layout-content">
-      {{ page.content }}
-    </div>{# /.layout-content #}
-
-    {% if page.sidebar_first %}
-      <aside class="layout-sidebar-first" role="complementary">
-        {{ page.sidebar_first }}
-      </aside>
+<header role="banner">
+  <div class="region-header">
+    <div class="logo">{{ page.logo }}</div>
+    {% if page.search %}
+      <div class="search">{{ page.search }}</div>
     {% endif %}
+  </div>
+  <div class="main-navigation">{{ page.navigation }}</div>
+</header>
 
-    {% if page.sidebar_second %}
-      <aside class="layout-sidebar-second" role="complementary">
-        {{ page.sidebar_second }}
-      </aside>
-    {% endif %}
+{% if page.admin_area %}
+  {{ page.admin_area }}
+{% endif %}
 
-  </main>
-
-  {% if page.footer %}
-    <footer role="contentinfo">
-      {{ page.footer }}
-    </footer>
+  {% if page.breadcrumbs %}
+    {{ page.breadcrumbs }}
   {% endif %}
 
-</div>{# /.layout-container #}
+<main role="main">
+
+  {% if page.content_top %}
+    <aside class="content-top" role="complementary">
+      {{ page.content_top }}
+    </aside>
+  {% endif %}
+
+  <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+  <div class="layout-content">
+    {{ page.content }}
+  </div>{# /.layout-content #}
+
+  {% if page.content_bottom %}
+    <aside class="content-bottom" role="complementary">
+      {{ page.content_bottom }}
+    </aside>
+  {% endif %}
+</main>
+
+{% if page.postscript %}
+  <div role="complementary" class="postscript">
+    {{ page.postscript }}
+  </div>
+{% endif %}
+
+{% if page.footer_one and page.footer_two %}
+  <footer class="footer-wrapper" role="contentinfo">
+    <div class="footer-content">
+      {{ page.footer_one }}
+      {{ page.footer_two }}
+    </div>
+  </footer>
+{% endif %}

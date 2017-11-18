@@ -1,0 +1,27 @@
+.top-bar {
+  background: $topbar-bg;
+}
+
+.region-top-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 auto;
+  max-width: $max-width;
+  padding: 0 $site-padding;
+
+  .menu {
+    margin: .3em 0 .3em 2em;
+
+    li {
+      display: inline-block;
+      margin-left: .5em;
+      padding-top: 0;
+      text-transform: uppercase;
+    }
+
+    a {
+      color: $white;
+      font-size: 1.2rem;
+    }
+  }
+}

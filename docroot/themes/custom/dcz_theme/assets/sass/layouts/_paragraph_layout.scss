@@ -1,0 +1,59 @@
+.paragraph--type--layout {
+
+  > .layout {
+    margin: 0 auto;
+    max-width: $max-width;
+    padding: 0 $site-padding;
+
+    .field--name-field-content-paragraph {
+      display: grid;
+      grid-column-gap: $content-layout-padding;
+      grid-row-gap: $content-layout-padding;
+    }
+  }
+
+  @include bp(small) {
+    // One column layout FULL width.
+    &.layout-full {
+      .field--name-field-content-paragraph {
+        width: 100%;
+      }
+    }
+
+    // Two column layout HALF width.
+    &.layout-half {
+      .field--name-field-content-paragraph {
+        grid-template-columns: [first] 1fr [second] 1fr;
+      }
+    }
+
+    // Two columns layout THIRDS.
+    &.layout-third {
+      .field--name-field-content-paragraph {
+        grid-template-columns: [first] 1fr [second] 1fr [third] 1fr;
+      }
+    }
+
+    // Two columns layout QUARTERS.
+    &.layout-quarter {
+      .field--name-field-content-paragraph {
+        grid-template-columns: [first] 1fr [second] 1fr [third] 1fr [fourth] 1fr;
+      }
+    }
+
+    // Two columns layout 1:2 ratio.
+    &.layout-one2two {
+      .field--name-field-content-paragraph {
+        grid-template-columns: [first] 1fr [second] 2fr;
+      }
+    }
+
+    // Three columns layout 1:2:1 ratio.
+    &.layout-onetwoone {
+      .field--name-field-content-paragraph {
+        grid-template-columns: [first] 1fr [second] 2fr [third] 1fr;
+      }
+    }
+  }
+}
+
