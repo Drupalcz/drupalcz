@@ -49,6 +49,8 @@ settings:
           items:
             - Source
   plugins:
+    language:
+      language_list: un
     stylescombo:
       styles: "h1|H1\r\nh2|H2\r\nh3|H3\r\nh4|H4\r\na.btn.btn-primary|Button\r\np.lead|Leading text"
 image_upload:

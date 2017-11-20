@@ -3,9 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.dcz_para_hero.field_dcz_para_class
-    - field.field.paragraph.dcz_para_hero.field_p_image
-    - field.field.paragraph.dcz_para_hero.field_p_title
+    - field.field.paragraph.dcz_para_hero.field_class
+    - field.field.paragraph.dcz_para_hero.field_description
+    - field.field.paragraph.dcz_para_hero.field_image
+    - field.field.paragraph.dcz_para_hero.field_title
     - image.style.thumbnail
     - paragraphs.paragraphs_type.dcz_para_hero
   module:
@@ -15,13 +16,21 @@ targetEntityType: paragraph
 bundle: dcz_para_hero
 mode: default
 content:
-  field_dcz_para_class:
+  field_class:
     weight: 2
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
+    type: options_select
     region: content
-  field_p_image:
+  field_description:
+    weight: 3
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_image:
     weight: 1
     settings:
       progress_indicator: throbber
@@ -29,7 +38,7 @@ content:
     third_party_settings: {  }
     type: image_image
     region: content
-  field_p_title:
+  field_title:
     weight: 0
     settings:
       size: 60

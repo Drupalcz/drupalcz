@@ -1,0 +1,21 @@
+uuid: 4c4a0da5-bffc-4bc7-ba5d-88c6fc711051
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.page.field_paragraphs
+    - node.type.page
+  module:
+    - user
+id: node.page.teaser
+targetEntityType: node
+bundle: page
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+hidden:
+  field_paragraphs: true
+  langcode: true

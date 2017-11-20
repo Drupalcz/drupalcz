@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - editor
+    - geshifilter
 name: 'Full HTML'
 format: full_html
 weight: 0
@@ -66,3 +67,11 @@ filters:
     weight: -45
     settings:
       filter_url_length: 72
+  filter_geshifilter:
+    id: filter_geshifilter
+    provider: geshifilter
+    status: true
+    weight: 0
+    settings:
+      general_tags: {  }
+      per_language_settings: {  }

@@ -1,10 +1,11 @@
 uuid: 5229a181-8f8d-4c4e-ae00-aa91aa2cd94d
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_view_display.comment.comment_article.default
     - core.entity_view_mode.node.full
+    - field.field.node.dcz_article.body
     - field.field.node.dcz_article.field_comments_article
     - field.field.node.dcz_article.field_paragraphs
     - field.field.node.dcz_article.field_tags

@@ -1,0 +1,19 @@
+uuid: 6f1536c6-4d37-468b-b8e0-98534447b9d5
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.dcz_para_tab
+id: paragraph.dcz_para_tab.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: dcz_para_tab
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

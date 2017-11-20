@@ -3,9 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.dcz_para_content.field_dcz_para_class
-    - field.field.paragraph.dcz_para_content.field_p_content
-    - field.field.paragraph.dcz_para_content.field_p_title
+    - field.field.paragraph.dcz_para_content.field_class
+    - field.field.paragraph.dcz_para_content.field_content
+    - field.field.paragraph.dcz_para_content.field_description
+    - field.field.paragraph.dcz_para_content.field_title
     - paragraphs.paragraphs_type.dcz_para_content
   module:
     - text
@@ -14,15 +15,23 @@ targetEntityType: paragraph
 bundle: dcz_para_content
 mode: default
 content:
-  field_p_content:
-    weight: 0
+  field_content:
+    weight: 1
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
 hidden:
   created: true
-  field_dcz_para_class: true
-  field_p_title: true
+  field_class: true
+  field_description: true
   uid: true

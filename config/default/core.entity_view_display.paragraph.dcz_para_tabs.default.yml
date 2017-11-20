@@ -1,0 +1,44 @@
+uuid: 44be869b-066d-4c74-8233-0261e59e0787
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dcz_para_tabs.field_content
+    - field.field.paragraph.dcz_para_tabs.field_description
+    - field.field.paragraph.dcz_para_tabs.field_paragraphs
+    - field.field.paragraph.dcz_para_tabs.field_title
+    - paragraphs.paragraphs_type.dcz_para_tabs
+  module:
+    - entity_reference_revisions
+    - text
+id: paragraph.dcz_para_tabs.default
+targetEntityType: paragraph
+bundle: dcz_para_tabs
+mode: default
+content:
+  field_content:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_paragraphs:
+    type: entity_reference_revisions_entity_view
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_description: true

@@ -3,10 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.dcz_para_image.field_dcz_para_class
-    - field.field.paragraph.dcz_para_image.field_p_image
-    - field.field.paragraph.dcz_para_image.field_p_title
-    - image.style.large
+    - field.field.paragraph.dcz_para_image.field_class
+    - field.field.paragraph.dcz_para_image.field_description
+    - field.field.paragraph.dcz_para_image.field_image
+    - field.field.paragraph.dcz_para_image.field_title
     - paragraphs.paragraphs_type.dcz_para_image
   module:
     - image
@@ -15,17 +15,18 @@ targetEntityType: paragraph
 bundle: dcz_para_image
 mode: default
 content:
-  field_p_image:
+  field_image:
     weight: 0
     label: hidden
     settings:
-      image_style: large
+      image_style: ''
       image_link: ''
     third_party_settings: {  }
     type: image
     region: content
 hidden:
   created: true
-  field_dcz_para_class: true
-  field_p_title: true
+  field_class: true
+  field_description: true
+  field_title: true
   uid: true

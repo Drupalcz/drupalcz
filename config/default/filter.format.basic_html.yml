@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - editor
+    - geshifilter
 name: 'Basic HTML'
 format: basic_html
 weight: 0
@@ -38,7 +39,7 @@ filters:
     status: true
     weight: -50
     settings:
-      allowed_html: '<a href hreflang> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <p> <br> <span> <img src alt height width data-entity-type data-entity-uuid data-align data-caption>'
+      allowed_html: '<a href hreflang> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <p> <br> <span> <img src alt data-entity-type data-entity-uuid data-align data-caption width height>'
       filter_html_help: true
       filter_html_nofollow: false
   filter_htmlcorrector:
@@ -66,3 +67,11 @@ filters:
     weight: -44
     settings:
       filter_url_length: 72
+  filter_geshifilter:
+    id: filter_geshifilter
+    provider: geshifilter
+    status: true
+    weight: 0
+    settings:
+      general_tags: {  }
+      per_language_settings: {  }

@@ -1,0 +1,38 @@
+uuid: 236039d0-b38c-4fa9-936b-21431e11b816
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.page.field_paragraphs
+    - node.type.page
+  module:
+    - entity_reference_revisions
+    - panelizer
+    - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+id: node.page.default
+targetEntityType: node
+bundle: page
+mode: default
+content:
+  field_paragraphs:
+    weight: 102
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true

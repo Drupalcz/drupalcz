@@ -1,0 +1,19 @@
+uuid: 7033579d-c7dd-4652-a150-f3b9683df651
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_description
+    - paragraphs.paragraphs_type.dcz_para_gallery
+id: paragraph.dcz_para_gallery.field_description
+field_name: field_description
+entity_type: paragraph
+bundle: dcz_para_gallery
+label: 'Paragraph description'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
