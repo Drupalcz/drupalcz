@@ -9,7 +9,7 @@ id: paragraph.dcz_para_content.field_description
 field_name: field_description
 entity_type: paragraph
 bundle: dcz_para_content
-label: 'Paragraph class'
+label: 'Paragraph description'
 description: ''
 required: false
 translatable: true

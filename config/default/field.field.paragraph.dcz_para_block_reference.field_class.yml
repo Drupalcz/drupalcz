@@ -11,7 +11,7 @@ id: paragraph.dcz_para_block_reference.field_class
 field_name: field_class
 entity_type: paragraph
 bundle: dcz_para_block_reference
-label: Class
+label: 'Paragraph class'
 description: ''
 required: false
 translatable: false

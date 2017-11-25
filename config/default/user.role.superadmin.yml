@@ -4,7 +4,7 @@ status: true
 dependencies: {  }
 id: superadmin
 label: Superadmin
-weight: 3
+weight: -5
 is_admin: null
 permissions:
   - 'access content overview'

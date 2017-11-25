@@ -1,0 +1,89 @@
+uuid: ab5ff2d9-529d-4352-b859-fa2d6b4c3f26
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.field.node.individual.body
+    - field.field.node.individual.field_emails
+    - field.field.node.individual.field_er_organization
+    - field.field.node.individual.field_firstname
+    - field.field.node.individual.field_gender
+    - field.field.node.individual.field_image
+    - field.field.node.individual.field_surname
+    - field.field.node.individual.field_websites
+    - image.style.medium
+    - node.type.individual
+  module:
+    - image
+    - link
+    - panelizer
+    - text
+    - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+id: node.individual.default
+targetEntityType: node
+bundle: individual
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_er_organization:
+    weight: 5
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_firstname:
+    type: string
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_image:
+    weight: 2
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_surname:
+    type: string
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_websites:
+    weight: 4
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden:
+  field_emails: true
+  field_gender: true
+  langcode: true
+  links: true

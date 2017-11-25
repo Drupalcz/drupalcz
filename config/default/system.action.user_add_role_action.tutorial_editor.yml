@@ -1,0 +1,14 @@
+uuid: 811b5a8f-e181-441b-b675-26c72a3f89aa
+langcode: cs
+status: true
+dependencies:
+  config:
+    - user.role.tutorial_editor
+  module:
+    - user
+id: user_add_role_action.tutorial_editor
+label: 'Add the Tutorial Editor role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: tutorial_editor

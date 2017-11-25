@@ -3,6 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.tutorial.field_authors
+    - field.field.node.tutorial.field_clients
+    - field.field.node.tutorial.field_coauthors
+    - field.field.node.tutorial.field_creditors
     - field.field.node.tutorial.field_paragraphs
     - field.field.node.tutorial.field_teaser_image
     - field.field.node.tutorial.field_teaser_text
@@ -37,6 +41,10 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_authors: true
+  field_clients: true
+  field_coauthors: true
+  field_creditors: true
   field_teaser_image: true
   field_teaser_text: true
   langcode: true

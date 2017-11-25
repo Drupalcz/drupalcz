@@ -1,0 +1,14 @@
+uuid: 34dfd22c-30e5-4dbd-b838-445f4067b406
+langcode: cs
+status: true
+dependencies:
+  config:
+    - user.role.tutorial_editor
+  module:
+    - user
+id: user_remove_role_action.tutorial_editor
+label: 'Remove the Tutorial Editor role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: tutorial_editor

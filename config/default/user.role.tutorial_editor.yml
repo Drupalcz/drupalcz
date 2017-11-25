@@ -1,0 +1,9 @@
+uuid: e5899bd3-82a7-4d94-be5d-39993e6ebbf4
+langcode: cs
+status: true
+dependencies: {  }
+id: tutorial_editor
+label: 'Tutorial Editor'
+weight: -7
+is_admin: null
+permissions: {  }

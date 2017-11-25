@@ -1,0 +1,28 @@
+uuid: ac74606c-b334-42fa-b1b3-f136e6ea2114
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_coauthors
+    - node.type.individual
+    - node.type.tutorial
+id: node.tutorial.field_coauthors
+field_name: field_coauthors
+entity_type: node
+bundle: tutorial
+label: Spoluautoři
+description: 'Osoba či osoby, které se podíleli na jednotlivých tabech v rámci daného tutoriálu.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      individual: individual
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

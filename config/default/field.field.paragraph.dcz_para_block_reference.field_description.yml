@@ -9,7 +9,7 @@ id: paragraph.dcz_para_block_reference.field_description
 field_name: field_description
 entity_type: paragraph
 bundle: dcz_para_block_reference
-label: Description
+label: 'Paragraph description'
 description: ''
 required: false
 translatable: false

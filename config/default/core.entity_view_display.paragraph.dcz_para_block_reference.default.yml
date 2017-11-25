@@ -14,16 +14,23 @@ bundle: dcz_para_block_reference
 mode: default
 content:
   field_block_reference:
-    weight: 0
-    label: above
+    weight: 1
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  field_title:
+    type: string
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
 hidden:
   created: true
   field_class: true
   field_description: true
-  field_title: true
   uid: true

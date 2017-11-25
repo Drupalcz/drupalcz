@@ -15,8 +15,16 @@ targetEntityType: paragraph
 bundle: dcz_para_video
 mode: default
 content:
-  field_video:
+  field_title:
+    type: string
     weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_video:
+    weight: 1
     label: hidden
     settings:
       youtube_size: 450x315
@@ -35,5 +43,4 @@ hidden:
   created: true
   field_class: true
   field_description: true
-  field_title: true
   uid: true
