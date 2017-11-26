@@ -6,4 +6,20 @@ id: tutorial_editor
 label: 'Tutorial Editor'
 weight: -7
 is_admin: null
-permissions: {  }
+permissions:
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access files overview'
+  - 'access toolbar'
+  - 'create page content'
+  - 'create tutorial content'
+  - 'create url aliases'
+  - 'edit any page content'
+  - 'edit any tutorial content'
+  - 'revert tutorial revisions'
+  - 'use text format full_html'
+  - 'view all revisions'
+  - 'view own unpublished content'
+  - 'view page revisions'
+  - 'view the administration theme'
+  - 'view tutorial revisions'

@@ -18,3 +18,4 @@ logo:
 schemas:
   bootstrap: 8000
   dcz_skin: 8000
+langcode: cs

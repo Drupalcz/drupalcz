@@ -22,6 +22,8 @@ module:
   dcz_tags_taxonomy: 0
   dcz_user: 0
   editor: 0
+  embed: 0
+  entity_embed: 0
   entity_reference: 0
   entity_reference_revisions: 0
   field: 0
@@ -29,7 +31,6 @@ module:
   file: 0
   filter: 0
   geolocation: 0
-  geshifilter: 0
   google_analytics: 0
   history: 0
   image: 0
