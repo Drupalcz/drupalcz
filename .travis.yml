@@ -44,7 +44,10 @@ notifications:
 
 before_install:
   # Refs SSH keys on free Travis.
-  - $(npm bin)/set-up-ssh --key "$encrypted_76cf46cb768e_key" --iv "$encrypted_76cf46cb768e_iv" --path-encrypted-key ".travis/dcz_travis_ssh_key.enc"
+  - openssl aes-256-cbc -K $encrypted_76cf46cb768e_key -iv $encrypted_76cf46cb768e_iv -in .travis/dcz_travis_ssh_key.enc -out $HOME/deploy_rsa -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 $HOME/deploy_rsa
+  - ssh-add $HOME/deploy_rsa
   # Disable xdebug.
   - phpenv config-rm xdebug.ini
   - composer self-update
@@ -73,9 +76,9 @@ deploy:
      on:
        branch: master
        php: 7.1
-   - provider: script
-     script: "${BLT_DIR}/scripts/travis/deploy_tag"
-     skip_cleanup: true
-     on:
-       tags: true
-       php: 7.1
+#   - provider: script
+#     script: "${BLT_DIR}/scripts/travis/deploy_tag"
+#     skip_cleanup: true
+#     on:
+#       tags: true
+#       php: 7.1
