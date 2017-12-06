@@ -56,7 +56,6 @@ module:
   toolbar: 0
   user: 0
   youtube: 0
-  ds: 1
   menu_link_content: 1
   pathauto: 1
   views: 10

@@ -41,8 +41,8 @@ Branch | Build status
   * `git clone git@github.com:[YOUR-NAME]/drupalcz.git drupalcz`
   * `cd drupalcz`
 * Prepare your database and fill the credentials into your new local config.
-  * `cp docroot/sites/default/default.settings.local.php docroot/sites/default/settings.local.php`
-  * edit this config: `docroot/sites/default/settings.local.php`
+  * `cp docroot/sites/default/settings/default.local.settings.php docroot/sites/default/settings/local.settings.php`
+  * edit this config: `docroot/sites/default/settings/local.settings.php`
 * Install the site (it will use the Drupal.cz distribution).
   * `composer install`
   * If this is first time you are setting up BLT, run `composer run-script blt-alias`
