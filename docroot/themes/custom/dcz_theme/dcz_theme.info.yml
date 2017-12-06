@@ -21,3 +21,4 @@ regions:
 
 libraries:
   - 'dcz_theme/global-styling'
+  - 'dcz_theme/font_dcz'

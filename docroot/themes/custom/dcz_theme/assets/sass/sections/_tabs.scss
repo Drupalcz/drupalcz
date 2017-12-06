@@ -1,6 +1,8 @@
 ul {
   &.tabs {
-    margin: .5em 0;
+    margin: .5em auto;
+    padding: 0 $content-layout-padding;
+    max-width: $max-width;
 
     li {
       margin-right: .5em;

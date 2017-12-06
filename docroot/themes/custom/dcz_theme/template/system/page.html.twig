@@ -54,13 +54,13 @@
   <div class="main-navigation">{{ page.navigation }}</div>
 </header>
 
+{% if page.breadcrumbs %}
+  {{ page.breadcrumbs }}
+{% endif %}
+
 {% if page.admin_area %}
   {{ page.admin_area }}
 {% endif %}
-
-  {% if page.breadcrumbs %}
-    {{ page.breadcrumbs }}
-  {% endif %}
 
 <main role="main">
 

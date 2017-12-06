@@ -1,6 +1,7 @@
 // Layout
 .region-breadcrumbs {
   background: $gray-05;
+  padding: 0 $content-layout-padding;
 
   > * {
     margin: 0 auto;

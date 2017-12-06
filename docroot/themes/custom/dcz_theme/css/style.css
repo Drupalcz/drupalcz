@@ -2,10 +2,14 @@ html {
   font-size: 62.5%; }
 
 body {
-  font-size: 1.6rem; }
+  font-family: "Fira Sans";
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 3.06rem; }
 
 h1 {
-  font-size: 5rem; }
+  font-size: 5rem;
+  font-weight: 600; }
 
 h2 {
   font-size: 3rem; }
@@ -29,7 +33,7 @@ a {
   color: rgba(0, 0, 0, 0.6);
   font-size: 1.28rem;
   margin: 0 0 .5em;
-  padding: .5em 1em; }
+  padding: 0.5em 2rem; }
   .node__submitted > a {
     border-right: 1px solid rgba(0, 0, 0, 0.3);
     margin-right: .5em;
@@ -64,12 +68,17 @@ main {
 .postscript {
   grid-area: postscript; }
 
-footer {
+.footer-wrapper {
   grid-area: footer; }
 
 .page-title {
   margin: 0 auto;
   max-width: 120rem; }
+
+.paragraph-content {
+  margin: 0 auto;
+  max-width: 120rem;
+  padding: 0 2rem; }
 
 .paragraph--type--layout > .layout {
   margin: 0 auto;
@@ -112,7 +121,7 @@ img {
   width: 100%; }
 
 .block-page-title-block {
-  padding: 2em 0; }
+  padding: 2em 2rem; }
 
 .region-admin-area {
   background: rgba(41, 83, 125, 0.21); }
@@ -121,7 +130,8 @@ img {
     max-width: 120rem; }
 
 .region-breadcrumbs {
-  background: rgba(0, 0, 0, 0.05); }
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0 2rem; }
   .region-breadcrumbs > * {
     margin: 0 auto;
     max-width: 120rem; }
@@ -179,6 +189,7 @@ header {
   display: block;
   height: 100%;
   margin: 0 auto;
+  padding: 0 2rem;
   max-width: 120rem; }
   .region-navigation .menu {
     -ms-flex-align: center;
@@ -203,7 +214,9 @@ header {
         color: white; }
 
 ul.tabs {
-  margin: .5em 0; }
+  margin: .5em auto;
+  padding: 0 2rem;
+  max-width: 120rem; }
   ul.tabs li {
     margin-right: .5em; }
 
@@ -228,7 +241,7 @@ ul.tabs {
   max-width: 120rem;
   padding: 0 2rem; }
   .region-top-bar .menu {
-    margin: .3em 0 .3em 2em; }
+    margin: 0 0 0 2em; }
     .region-top-bar .menu li {
       display: inline-block;
       margin-left: .5em;
@@ -237,5 +250,7 @@ ul.tabs {
     .region-top-bar .menu a {
       color: white;
       font-size: 1.2rem; }
+      .region-top-bar .menu a.is-active {
+        color: white; }
 
 /*# sourceMappingURL=style.css.map */

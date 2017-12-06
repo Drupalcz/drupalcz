@@ -5,11 +5,15 @@ html {
 
 // Set font size back to 16px.
 body {
-  font-size: 1.6rem;
+  font-family: $font-family-base;
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 1.8 * 1.7rem;
 }
 
 h1 {
   font-size: 5rem;
+  font-weight: 600;
 }
 
 h2 {

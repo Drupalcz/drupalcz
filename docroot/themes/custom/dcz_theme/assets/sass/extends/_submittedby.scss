@@ -3,7 +3,7 @@
   color: $gray-6;
   font-size: $font-size-small;
   margin: 0 0 .5em;
-  padding: .5em 1em;
+  padding: .5em $site-padding;
 
   > a {
     border-right: 1px solid $gray-3;

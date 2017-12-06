@@ -8,6 +8,7 @@
   display: block;
   height: 100%;
   margin: 0 auto;
+  padding: 0 $content-layout-padding;
   max-width: $max-width;
 
   .menu {
