@@ -1,0 +1,20 @@
+// Layout
+.region-breadcrumbs {
+  background: $gray-05;
+  padding: 0 $content-layout-padding;
+
+  > * {
+    margin: 0 auto;
+    max-width: $max-width;
+  }
+
+  .breadcrumb {
+    font-size: 1.4rem;
+    padding: .5em 0;
+
+    a {
+      color: $gray-6;
+      text-decoration: none;
+    }
+  }
+}

@@ -14,43 +14,11 @@ dependencies:
     - image.style.screenshot_small
     - node.type.dcz_showcase
   module:
-    - ds
     - image
     - juicebox
     - link
     - text
     - user
-third_party_settings:
-  ds:
-    layout:
-      id: ds_1col
-      path: modules/contrib/ds
-      library: ''
-      disable_css: false
-      settings:
-        wrappers:
-          ds_content: div
-        outer_wrapper: div
-        attributes: ''
-        link_attribute: ''
-        link_custom: ''
-        classes:
-          layout_class: {  }
-    regions:
-      ds_content:
-        - field_main_screenshot
-        - node_title
-        - field_drupal_version
-    fields:
-      node_title:
-        plugin_id: node_title
-        weight: 1
-        label: hidden
-        formatter: default
-        settings:
-          link: true
-          wrapper: strong
-          class: ''
 id: node.dcz_showcase.stack
 targetEntityType: node
 bundle: dcz_showcase

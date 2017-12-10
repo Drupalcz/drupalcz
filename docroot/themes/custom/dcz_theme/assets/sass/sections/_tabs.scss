@@ -1,0 +1,26 @@
+ul {
+  &.tabs {
+    margin: .5em auto;
+    padding: 0 $content-layout-padding;
+    max-width: $max-width;
+
+    li {
+      margin-right: .5em;
+    }
+  }
+}
+
+.tabs {
+  a {
+    color: $gray-7;
+    font-size: 1.4rem;
+    padding: .5em 0;
+    text-transform: uppercase;
+
+    &.is-active,
+    &:hover {
+      background: transparent;
+      box-shadow: 0 .5em 0 0 $admin;
+    }
+  }
+}

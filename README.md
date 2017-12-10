@@ -4,10 +4,10 @@ Chat: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Dr
 
 ## Build status
 
-Branch | Build status
------------- | -------------
-[Master](https://github.com/Drupalcz/drupalcz/tree/master) | [![Build Status](https://travis-ci.org/Drupalcz/drupalcz.svg?branch=master)](https://travis-ci.org/Drupalcz/drupalcz)
-[Develop](https://github.com/Drupalcz/drupalcz/tree/develop) | [![Build Status](https://travis-ci.org/Drupalcz/drupalcz.svg?branch=develop)](https://travis-ci.org/Drupalcz/drupalcz)
+Branch | Build status | Dev site
+------------ | ------------- | -------------
+[Master](https://github.com/Drupalcz/drupalcz/tree/master) | [![Build Status](https://travis-ci.org/Drupalcz/drupalcz.svg?branch=master)](https://travis-ci.org/Drupalcz/drupalcz) | http://stage.drupal.cz
+[Develop](https://github.com/Drupalcz/drupalcz/tree/develop) | [![Build Status](https://travis-ci.org/Drupalcz/drupalcz.svg?branch=develop)](https://travis-ci.org/Drupalcz/drupalcz) | http://dev.drupal.cz
 
 ## Contents
 * blt/ - Settings for Acquia BLT.
@@ -41,8 +41,8 @@ Branch | Build status
   * `git clone git@github.com:[YOUR-NAME]/drupalcz.git drupalcz`
   * `cd drupalcz`
 * Prepare your database and fill the credentials into your new local config.
-  * `cp docroot/sites/default/default.settings.local.php docroot/sites/default/settings.local.php`
-  * edit this config: `docroot/sites/default/settings.local.php`
+  * `cp docroot/sites/default/settings/default.local.settings.php docroot/sites/default/settings/local.settings.php`
+  * edit this config: `docroot/sites/default/settings/local.settings.php`
 * Install the site (it will use the Drupal.cz distribution).
   * `composer install`
   * If this is first time you are setting up BLT, run `composer run-script blt-alias`

@@ -1,0 +1,33 @@
+// Layout
+.footer-wrapper {
+  background: $footer-bg;
+  color: $footer-text;
+  font-size: 1.4rem;
+  padding: 3em;
+
+  .footer-content {
+    display: grid;
+    grid-template-areas:
+    'footer-start footer-end';
+    grid-template-columns:
+    [footer-start] 3fr 2fr [footer-end] ;
+    margin: 0 auto;
+    max-width: $max-width;
+  }
+
+  .menu {
+    margin: 0;
+  }
+
+  a {
+    color: $footer-link;
+  }
+}
+
+.region-footer-one {
+  grid-area: footer-start;
+}
+
+.region-footer-two {
+  grid-area: footer-end;
+}

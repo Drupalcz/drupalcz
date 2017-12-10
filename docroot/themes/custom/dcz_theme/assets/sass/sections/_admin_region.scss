@@ -1,0 +1,9 @@
+// Layout
+.region-admin-area {
+  background: $admin;
+
+  > * {
+    margin: 0 auto;
+    max-width: $max-width;
+  }
+}

@@ -3,6 +3,7 @@ langcode: cs
 status: true
 dependencies:
   config:
+    - field.field.node.dcz_article.body
     - field.field.node.dcz_article.field_comments_article
     - field.field.node.dcz_article.field_paragraphs
     - field.field.node.dcz_article.field_tags
@@ -72,7 +73,8 @@ content:
   langcode:
     type: language_select
     weight: 6
-    settings: {  }
+    settings:
+      include_locked: true
     third_party_settings: {  }
     region: content
   path:
@@ -86,6 +88,13 @@ content:
     settings:
       display_label: true
     weight: 9
+    third_party_settings: {  }
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
     third_party_settings: {  }
     region: content
   sticky:
@@ -112,4 +121,5 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  body: true

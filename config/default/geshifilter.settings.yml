@@ -1,0 +1,49 @@
+use_format_specific_options: false
+default_highlighting: php
+default_line_numbering: 0
+use_highlight_string_for_php: false
+enable_keyword_urls: true
+decode_entities: true
+css_mode: 1
+code_container: '2'
+tags: 'code blockcode'
+tag_styles:
+  1: 1
+  2: 2
+  8: 8
+  4: 0
+  16: 0
+tab_width: 4
+language:
+  php:
+    enabled: true
+    tags: php
+  cpp:
+    enabled: true
+    tags: cpp
+  java:
+    enabled: true
+    tags: java
+  css:
+    enabled: true
+  ecmascript:
+    enabled: true
+  html5:
+    enabled: true
+  javascript:
+    enabled: true
+  jquery:
+    enabled: true
+  robots:
+    enabled: true
+  sass:
+    enabled: true
+  sql:
+    enabled: true
+  twig:
+    enabled: true
+  yaml:
+    enabled: true
+_core:
+  default_config_hash: 1jZtSc2CSiEBA45nbX0wMKFY3bmcilIwOBQCKFscK0U
+langcode: cs

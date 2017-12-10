@@ -1,0 +1,24 @@
+{
+  "name": "dcz_theme",
+  "description": "DrupalCZ theme.",
+  "css": {
+    "file" : "assets/sass/style.scss",
+    "src": [
+      "assets/sass/**/*.scss"
+    ],
+    "dest": "css"
+  },
+  "js": {
+    "file" : "drupalcz_theme.js",
+    "src": [
+      "assets/javascript/**/*.js"
+    ],
+    "dest": "js"
+  },
+  "images": {
+    "src": [
+      "images/**/*"
+    ],
+    "dest": "images/"
+  }
+}
