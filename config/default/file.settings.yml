@@ -4,3 +4,4 @@ description:
 icon:
   directory: core/modules/file/icons
 langcode: cs
+make_unused_managed_files_temporary: false
