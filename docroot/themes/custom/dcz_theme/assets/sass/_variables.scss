@@ -1,0 +1,71 @@
+// sass-lint:disable no-color-literals, no-duplicate-properties
+// Colors
+$black: rgb(0, 0, 0);
+$white: rgb(255, 255, 255);
+
+// Grays
+$gray-05: rgba(0, 0, 0, .05);
+$gray-1: rgba(0, 0, 0, .1);
+$gray-2: rgba(0, 0, 0, .2);
+$gray-3: rgba(0, 0, 0, .3);
+$gray-4: rgba(0, 0, 0, .4);
+$gray-5: rgba(0, 0, 0, .5);
+$gray-6: rgba(0, 0, 0, .6);
+$gray-7: rgba(0, 0, 0, .7);
+$gray-8: rgba(0, 0, 0, .8);
+$gray-9: rgba(0, 0, 0, .9);
+$gray-10: $black;
+
+
+// Whites
+$white-05: rgba(255, 255, 255, .05);
+$white-1: rgba(255, 255, 255, .1);
+$white-2: rgba(255, 255, 255, .2);
+$white-3: rgba(255, 255, 255, .3);
+$white-4: rgba(255, 255, 255, .4);
+$white-5: rgba(255, 255, 255, .5);
+$white-6: rgba(255, 255, 255, .6);
+$white-7: rgba(255, 255, 255, .7);
+$white-8: rgba(255, 255, 255, .8);
+$white-9: rgba(255, 255, 255, .9);
+$white-10: $white;
+
+// Project colors
+$drupal-primary:         #337ab7;
+$drupal-secondary:       #29537d;
+$drupal-success:         #5cb85c;
+$drupal-info:            #5bc0de;
+$drupal-warning:         #f0ad4e;
+$drupal-danger:          #d9534f;
+$text-color: #161c21;
+
+// Link color
+$link-color: rgb(47, 139, 255);
+
+// Element colors
+$topbar-bg: $drupal-secondary;
+$topbar-text: $white-6;
+$header-bg: $drupal-primary;
+$header-text: $white;
+$footer-bg: $drupal-secondary;
+$footer-text: $white-6;
+$footer-link: $white-8;
+$admin: rgba(41, 83, 125, .21);
+
+// Layout dimensions.
+//
+// Small screen side padding
+$site-padding: 2rem;
+// Max width for large monitor.
+$max-width: 120rem;
+$content-layout-padding: 2rem;
+
+// Fonts
+//
+// Font sizes
+$base-font-size: 1.6rem;
+$font-size-large: $base-font-size * 1.2;
+$font-size-small: $base-font-size * .8;
+
+// Font family
+$font-family-base: 'Fira Sans';

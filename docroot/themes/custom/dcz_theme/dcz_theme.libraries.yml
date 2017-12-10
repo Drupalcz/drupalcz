@@ -1,0 +1,10 @@
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+
+font_dcz:
+  version: VERSION
+  css:
+    theme:
+     //fonts.googleapis.com/css?family=Fira+Sans:300,400,600&amp;subset=latin-ext: {type: external}
