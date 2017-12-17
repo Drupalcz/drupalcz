@@ -11,7 +11,7 @@ id: paragraph.dcz_para_tabs.field_content
 field_name: field_content
 entity_type: paragraph
 bundle: dcz_para_tabs
-label: Content
+label: 'Content start'
 description: ''
 required: false
 translatable: false

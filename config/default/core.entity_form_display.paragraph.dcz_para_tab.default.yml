@@ -6,7 +6,6 @@ dependencies:
     - field.field.paragraph.dcz_para_tab.field_content
     - field.field.paragraph.dcz_para_tab.field_description
     - field.field.paragraph.dcz_para_tab.field_tab
-    - field.field.paragraph.dcz_para_tab.field_title
     - paragraphs.paragraphs_type.dcz_para_tab
   module:
     - text
@@ -26,21 +25,13 @@ content:
   field_description:
     weight: 3
     settings:
-      rows: 3
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textarea
-    region: content
-  field_tab:
-    weight: 0
-    settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_title:
-    weight: 1
+  field_tab:
+    weight: 0
     settings:
       size: 60
       placeholder: ''

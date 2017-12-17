@@ -15,11 +15,12 @@ bundle: dcz_para_video
 mode: preview
 content:
   field_description:
-    type: basic_string
+    type: string
     weight: 0
     region: content
-    label: hidden
-    settings: {  }
+    label: above
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
 hidden:
   created: true

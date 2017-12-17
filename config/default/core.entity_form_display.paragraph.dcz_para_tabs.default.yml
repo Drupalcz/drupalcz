@@ -4,9 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.dcz_para_tabs.field_content
+    - field.field.paragraph.dcz_para_tabs.field_content_end
     - field.field.paragraph.dcz_para_tabs.field_description
     - field.field.paragraph.dcz_para_tabs.field_paragraphs
-    - field.field.paragraph.dcz_para_tabs.field_title
     - paragraphs.paragraphs_type.dcz_para_tabs
   module:
     - paragraphs
@@ -17,7 +17,15 @@ bundle: dcz_para_tabs
 mode: default
 content:
   field_content:
-    weight: 2
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_content_end:
+    weight: 3
     settings:
       rows: 5
       placeholder: ''
@@ -27,14 +35,14 @@ content:
   field_description:
     weight: 4
     settings:
-      rows: 3
+      size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textarea
+    type: string_textfield
     region: content
   field_paragraphs:
     type: entity_reference_paragraphs
-    weight: 3
+    weight: 2
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -43,14 +51,6 @@ content:
       form_display_mode: default
       default_paragraph_type: _none
     third_party_settings: {  }
-    region: content
-  field_title:
-    weight: 1
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
     region: content
 hidden:
   created: true

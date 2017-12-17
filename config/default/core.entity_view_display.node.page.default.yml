@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.page.body
     - field.field.node.page.field_authors
     - field.field.node.page.field_clients
     - field.field.node.page.field_coauthors
@@ -12,6 +13,7 @@ dependencies:
   module:
     - entity_reference_revisions
     - panelizer
+    - text
     - user
 third_party_settings:
   panelizer:
@@ -24,8 +26,15 @@ targetEntityType: node
 bundle: page
 mode: default
 content:
-  field_paragraphs:
+  body:
     weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_paragraphs:
+    weight: 2
     label: hidden
     settings:
       view_mode: default

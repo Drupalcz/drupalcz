@@ -15,12 +15,13 @@ bundle: dcz_para_block_reference
 mode: preview
 content:
   field_description:
+    type: string
     weight: 0
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: basic_string
     region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
 hidden:
   created: true
   field_block_reference: true

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.tutorial.body
     - field.field.node.tutorial.field_authors
     - field.field.node.tutorial.field_clients
     - field.field.node.tutorial.field_coauthors
@@ -14,6 +15,7 @@ dependencies:
   module:
     - entity_reference_revisions
     - panelizer
+    - text
     - user
 third_party_settings:
   panelizer:
@@ -26,6 +28,13 @@ targetEntityType: node
 bundle: tutorial
 mode: default
 content:
+  body:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
   field_paragraphs:
     weight: 1
     label: hidden

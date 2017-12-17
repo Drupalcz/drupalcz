@@ -24,10 +24,10 @@ content:
   field_description:
     weight: 3
     settings:
-      rows: 3
+      size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textarea
+    type: string_textfield
     region: content
   field_title:
     weight: 0
