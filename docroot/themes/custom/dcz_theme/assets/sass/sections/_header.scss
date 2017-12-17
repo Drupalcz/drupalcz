@@ -1,0 +1,13 @@
+header {
+  background: $header-bg;
+
+}
+
+.region-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: $max-width;
+  padding: 1em $site-padding;
+}

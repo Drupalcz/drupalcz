@@ -38,7 +38,7 @@ third_party_settings:
               third_party_settings: {  }
               weight: 0
               region: content
-            region: top_right
+            region: second_above
             weight: -1
             context_mapping:
               entity: '@panelizer.entity_context:entity'
@@ -58,7 +58,7 @@ third_party_settings:
               third_party_settings: {  }
               weight: 0
               region: content
-            region: top_right
+            region: second_above
             weight: 0
             context_mapping:
               entity: '@panelizer.entity_context:entity'
@@ -95,7 +95,7 @@ third_party_settings:
               third_party_settings: {  }
               weight: 0
               region: content
-            region: top_right
+            region: second_above
             weight: 1
             context_mapping:
               entity: '@panelizer.entity_context:entity'
@@ -129,7 +129,7 @@ third_party_settings:
               settings: {  }
               third_party_settings: {  }
               weight: 0
-            region: top_left
+            region: first_above
             weight: -3
             uuid: 01639549-fa88-4500-9a46-af452b95a2ab
             context_mapping:
@@ -146,7 +146,7 @@ third_party_settings:
                 view_mode: default
               third_party_settings: {  }
               weight: 0
-            region: top_left
+            region: first_above
             weight: -2
             uuid: 52b31df3-90a0-4801-865e-17cc3b5999dd
             context_mapping:
@@ -155,7 +155,7 @@ third_party_settings:
         label: Default
         uuid: 90413f4e-bac3-4ab8-8c96-42fcedeb9d67
         weight: 0
-        layout: bs_2col_bricked
+        layout: layout_twocol_bricks
         layout_settings: {  }
         page_title: '[node:title]'
         storage_type: panelizer_default

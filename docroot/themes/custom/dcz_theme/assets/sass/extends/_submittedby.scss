@@ -1,0 +1,13 @@
+%submitted-by {
+  background: $gray-1;
+  color: $gray-6;
+  font-size: $font-size-small;
+  margin: 0 0 .5em;
+  padding: .5em $site-padding;
+
+  > a {
+    border-right: 1px solid $gray-3;
+    margin-right: .5em;
+    padding-right: .5em;
+  }
+}
