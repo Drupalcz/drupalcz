@@ -17,7 +17,7 @@
     }
 
     li {
-      &:before {
+      &::before {
         margin-left: 5px;
       }
     }

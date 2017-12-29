@@ -3,7 +3,7 @@ article.comment {
   margin-top: 2em;
 
   .content > h3 {
-    margin-top: 0.3em;
+    margin-top: .3em;
   }
 
   &.by-viewer {
@@ -11,17 +11,17 @@ article.comment {
       background: $light-blue;
     }
   }
+
   &.by-anonymous {
     .comment__meta {
-      @extend .comment__meta;
+      @extend %submitted-by;
     }
   }
 }
 
-
 mark {
   background: $drupal-danger;
-  color: #FFFFFF;
+  color: $white;
   display: block;
   font-size: $font-size-small;
   text-align: center;
@@ -34,6 +34,7 @@ mark {
 .comment__meta {
   @extend %submitted-by;
 }
+
 .comment__submitted {
   display: inline-block;
   margin-bottom: 0;
