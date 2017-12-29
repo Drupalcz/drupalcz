@@ -1,0 +1,48 @@
+.forum,
+.node--type-forum.node--view-mode-full {
+  padding: 0 $site-padding;
+  margin: 0 auto;
+  max-width: $max-width;
+}
+
+.forum-container {
+  background: $gray-5;
+  border-bottom: 5px solid $gray-8;
+  padding-top: 2em !important;
+
+  a {
+    font-weight: 600;
+  }
+}
+
+.forum_topics,
+.forum_posts {
+  text-align: right;
+  width: 7em;
+
+  a {
+    font-size: $font-size-small;
+  }
+}
+
+.forum__replies {
+  br {
+    display: none;
+  }
+  a {
+    background: $drupal-danger;
+    border-radius: 50%;
+    display: inline-block;
+    height: 8px;
+    margin-left: 3px;
+    overflow: hidden;
+    text-indent: -9999px;
+    vertical-align: super;
+    width: 8px;
+  }
+}
+
+.forum__last-reply {
+  text-align: right;
+  width: 15em;
+}
