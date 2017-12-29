@@ -1,0 +1,11 @@
+.button {
+  background: $drupal-secondary;
+  border-radius: 3px;
+  color: $white;
+  padding: 0.5em 0.8em;
+
+  &:hover {
+    background: $drupal-primary;
+    box-shadow: none;
+  }
+}

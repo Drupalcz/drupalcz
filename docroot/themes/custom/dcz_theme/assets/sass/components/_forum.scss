@@ -1,3 +1,9 @@
+.forum {
+  .time {
+    font-size: $font-size-small;
+  }
+}
+
 .forum-container {
   background: $gray-5;
   border-bottom: 5px solid $gray-8;
@@ -8,8 +14,18 @@
   }
 }
 
-.forum_topics,
-.forum_posts {
+.forum__title {
+  div:first-child {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  br {
+    display: none;
+  }
+}
+
+.forum__topics,
+.forum__posts {
   text-align: right;
   width: 7em;
 
@@ -19,6 +35,7 @@
 }
 
 .forum__replies {
+  text-align: right;
   br {
     display: none;
   }
