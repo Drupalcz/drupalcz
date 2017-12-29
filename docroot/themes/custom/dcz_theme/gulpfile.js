@@ -89,8 +89,7 @@ gulp.task('serve', ['css', 'scripts', 'js-lint', 'sass-lint', 'watch'], function
   browserSync.init({
     open: false,
     host: configLocal.browserSyncHost,
-    proxy: configLocal.browserSyncProxy,
-    port: 8080
+    proxy: configLocal.browserSyncProxy
   });
 });
 
