@@ -1,6 +1,11 @@
 .main-navigation {
   background: $white-4;
   box-shadow: 0 0 25px 0 $gray-3;
+  display: none;
+
+  @include bp(middle) {
+    display: block;
+  }
 }
 
 .region-navigation {
@@ -36,5 +41,19 @@
         color: $white;
       }
     }
+  }
+}
+
+
+// Small screen menu
+.main-navigation.open {
+  display: block;
+
+  .region-navigation {
+    padding: 0;
+  }
+
+  .menu {
+    display: block;
   }
 }
