@@ -10,7 +10,17 @@
 
   .breadcrumb {
     font-size: 1.4rem;
-    padding: .5em 0;
+    padding: 0;
+
+    ol {
+      display: flex;
+    }
+
+    li {
+      &::before {
+        margin-left: 5px;
+      }
+    }
 
     a {
       color: $gray-6;

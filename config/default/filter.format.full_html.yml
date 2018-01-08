@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - editor
+    - geshifilter
 name: 'Full HTML'
 format: full_html
 weight: 0
@@ -12,31 +13,31 @@ filters:
     id: editor_file_reference
     provider: editor
     status: true
-    weight: -42
+    weight: -46
     settings: {  }
   filter_align:
     id: filter_align
     provider: filter
     status: true
-    weight: -48
+    weight: -49
     settings: {  }
   filter_autop:
     id: filter_autop
     provider: filter
     status: false
-    weight: -47
+    weight: -43
     settings: {  }
   filter_caption:
     id: filter_caption
     provider: filter
     status: false
-    weight: -46
+    weight: -42
     settings: {  }
   filter_html:
     id: filter_html
     provider: filter
     status: false
-    weight: -50
+    weight: -45
     settings:
       allowed_html: '<em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <h1> <a href hreflang class="btn btn-primary"> <p class="lead"> <img src alt data-entity-type data-entity-uuid data-align data-caption> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr>'
       filter_html_help: true
@@ -45,24 +46,32 @@ filters:
     id: filter_htmlcorrector
     provider: filter
     status: true
-    weight: -43
+    weight: -47
     settings: {  }
   filter_html_escape:
     id: filter_html_escape
     provider: filter
     status: false
-    weight: -49
+    weight: -44
     settings: {  }
   filter_html_image_secure:
     id: filter_html_image_secure
     provider: filter
     status: false
-    weight: -44
+    weight: -41
     settings: {  }
   filter_url:
     id: filter_url
     provider: filter
     status: true
-    weight: -45
+    weight: -48
     settings:
       filter_url_length: 72
+  filter_geshifilter:
+    id: filter_geshifilter
+    provider: geshifilter
+    status: true
+    weight: -50
+    settings:
+      general_tags: {  }
+      per_language_settings: {  }

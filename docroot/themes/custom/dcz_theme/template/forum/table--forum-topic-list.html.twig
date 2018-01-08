@@ -1,0 +1,33 @@
+<table>
+  <thead>
+  <tr>
+    <th>{{ 'Forum'|t }}</th>
+    <th class="forum__posts">{{ 'Posts'|t }}</th>
+    <th class="forum__last-reply">{{ 'Last post'|t }}</th>
+  </tr>
+  </thead>
+  {% if rows %}
+    <tbody>
+    {% for row in rows %}
+      {%
+        set row_classes = [
+        not no_striping ? cycle(['odd', 'even'], loop.index0),
+      ]
+      %}
+    <tr{{ row.attributes.addClass(row_classes) }}>
+      {% for cell in row.cells %}
+        <{{ cell.tag }}{{ cell.attributes }}>
+        {{- cell.content -}}
+        </{{ cell.tag }}>
+      {% endfor %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  {% elseif empty %}
+    <tbody>
+    <tr class="odd">
+      <td colspan="{{ header_columns }}" class="empty message">{{ empty }}</td>
+    </tr>
+    </tbody>
+  {% endif %}
+</table>

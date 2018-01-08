@@ -37,16 +37,18 @@ $drupal-success:         #5cb85c;
 $drupal-info:            #5bc0de;
 $drupal-warning:         #f0ad4e;
 $drupal-danger:          #d9534f;
-$text-color: #161c21;
+$text-color:             #161c21;
+$light-blue:             #e0f7ff;
 
 // Link color
-$link-color: rgb(47, 139, 255);
+$link-color:    $drupal-primary;
 
 // Element colors
 $topbar-bg: $drupal-secondary;
 $topbar-text: $white-6;
 $header-bg: $drupal-primary;
 $header-text: $white;
+$postscript-bg: $light-blue;
 $footer-bg: $drupal-secondary;
 $footer-text: $white-6;
 $footer-link: $white-8;

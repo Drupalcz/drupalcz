@@ -1,6 +1,11 @@
 .main-navigation {
   background: $white-4;
   box-shadow: 0 0 25px 0 $gray-3;
+  display: none;
+
+  @include bp(middle) {
+    display: block;
+  }
 }
 
 .region-navigation {
@@ -8,8 +13,8 @@
   display: block;
   height: 100%;
   margin: 0 auto;
-  padding: 0 $content-layout-padding;
   max-width: $max-width;
+  padding: 0 $content-layout-padding;
 
   .menu {
     align-items: center;
@@ -25,7 +30,7 @@
     a {
       color: $white;
       display: block;
-      padding: 1em .8em;
+      padding: .5em .8em;
       text-transform: uppercase;
       vertical-align: middle;
 
@@ -36,5 +41,19 @@
         color: $white;
       }
     }
+  }
+}
+
+
+// Small screen menu
+.main-navigation.open {
+  display: block;
+
+  .region-navigation {
+    padding: 0;
+  }
+
+  .menu {
+    display: block;
   }
 }
