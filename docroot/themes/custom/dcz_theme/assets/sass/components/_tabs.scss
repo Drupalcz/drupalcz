@@ -2,11 +2,27 @@
 .tab {
   border-bottom: 1px solid $drupal-primary;
   color: $drupal-secondary;
-  display: flex;
   list-style: none;
   margin: 0 0 1em 0;
   padding: 0;
   width: 100%;
+
+  @include bp(small) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  li {
+    @include bp(small) {
+      width: calc(100 / 2 * 1%);
+    }
+    @include bp(middle) {
+      width: calc(100 / 3 * 1%);
+    }
+    @include bp(large) {
+      width: calc(100 / 5 * 1%);
+    }
+  }
 }
 
 /* Style the link that are used to open the tab content */
@@ -17,7 +33,9 @@
   display: inline-block;
   font-weight: 500;
   padding: .7em 1.4em;
+  text-align: center;
   transition: .3s;
+  width: 100%;
 
   /* Change background color of buttons on hover */
   &:hover {

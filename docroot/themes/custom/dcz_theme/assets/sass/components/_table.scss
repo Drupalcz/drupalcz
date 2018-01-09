@@ -9,9 +9,15 @@ thead {
   color: $white;
 
   th {
+    display: block;
     padding: 3px 8px;
-    text-align: left;
+    text-align: center;
     vertical-align: top;
+
+    @include bp(middle) {
+      display: table-cell;
+      text-align: left;
+    }
   }
 
   a {
@@ -23,12 +29,19 @@ tbody {
   tr {
     border-bottom: 1px solid $drupal-primary;
 
-    &.even {
+    &:nth-child(even) {
       background: $light-blue;
     }
   }
   td {
+    display: block;
     padding: 3px 5px;
+    text-align: center;
     vertical-align: top;
+
+    @include bp(middle) {
+      display: table-cell;
+      text-align: left;
+    }
   }
 }

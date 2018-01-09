@@ -4,7 +4,7 @@
 $breakpoints: (
   small: 48rem,
   middle: 77rem,
-  large: var(--max-width),
+  large: $max-width,
 );
 
 // if selector is wider than the screensize we are calling
