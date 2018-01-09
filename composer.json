@@ -27,7 +27,7 @@
         "drupal/mollom": "^1.2",
         "drupal/paragraphs": "^1.2",
         "drupal/youtube": "^1.0@beta",
-        "geshi/geshi": "dev-master"
+        "geshi/geshi": "^1.0"
     },
     "require-dev": {},
     "config": {
