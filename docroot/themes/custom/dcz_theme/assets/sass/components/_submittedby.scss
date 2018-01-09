@@ -1,3 +1,7 @@
-.node__submitted {
+.node__meta {
   @extend %submitted-by;
+
+  .profile {
+    @extend %smallprofileimage;
+  }
 }
