@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Drupal CZ theme file.
+ */
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Adding template suggestion for page based on content type.
+ */
+function dcz_theme_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  // Add content type suggestions.
+  $node = \Drupal::request()->attributes->get('node');
+  if (!empty($node) && is_object($node)) {
+    array_splice($suggestions, 1, 0, 'page__node__' . $node->getType());
+  }
+}

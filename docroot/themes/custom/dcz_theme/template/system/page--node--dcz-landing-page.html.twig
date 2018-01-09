@@ -50,12 +50,6 @@
     {% if page.search %}
       <div class="search">{{ page.search }}</div>
     {% endif %}
-    <div class="menu-switch">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
   </div>
   <div class="main-navigation">{{ page.navigation }}</div>
 </header>
@@ -68,13 +62,13 @@
   {{ page.admin_area }}
 {% endif %}
 
-<main role="main" class="main-container">
-
   {% if page.content_top %}
     <aside class="content-top" role="complementary">
       {{ page.content_top }}
     </aside>
   {% endif %}
+
+<main role="main">
 
   <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
@@ -82,12 +76,13 @@
     {{ page.content }}
   </div>{# /.layout-content #}
 
-  {% if page.content_bottom %}
-    <aside class="content-bottom" role="complementary">
-      {{ page.content_bottom }}
-    </aside>
-  {% endif %}
 </main>
+
+{% if page.content_bottom %}
+  <aside class="content-bottom" role="complementary">
+    {{ page.content_bottom }}
+  </aside>
+{% endif %}
 
 {% if page.postscript %}
   <div role="complementary" class="postscript">

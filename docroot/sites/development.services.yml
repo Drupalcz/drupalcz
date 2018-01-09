@@ -4,6 +4,17 @@
 # 'example.settings.local.php' file, which sits next to this file.
 parameters:
   http.response.debug_cacheability_headers: true
+  twig.config:
+      # Twig debugging:
+      # @default false
+      debug: true
+      # Twig auto-reload:
+      # @default null
+      auto_reload: true
+      # Twig cache:
+      # @default true
+      cache: false
+
 services:
   cache.backend.null:
     class: Drupal\Core\Cache\NullBackendFactory

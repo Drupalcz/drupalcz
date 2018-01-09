@@ -1,0 +1,34 @@
+table {
+  border-bottom: 5px solid $drupal-primary;
+  width: 100%;
+}
+
+thead {
+  background: $drupal-primary;
+  border-bottom: 6px double $drupal-primary;
+  color: $white;
+
+  th {
+    padding: 3px 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  a {
+    color: $white;
+  }
+}
+
+tbody {
+  tr {
+    border-bottom: 1px solid $drupal-primary;
+
+    &.even {
+      background: $light-blue;
+    }
+  }
+  td {
+    padding: 3px 5px;
+    vertical-align: top;
+  }
+}
