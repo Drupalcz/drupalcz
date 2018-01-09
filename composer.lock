@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e727dfe4eeb009d537c4801cd6a1409f",
+    "content-hash": "6123b3bc3783359d7287193ca9b8439b",
     "packages": [
         {
             "name": "acquia/blt",
-            "version": "8.9.12",
+            "version": "9.0.0-alpha2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acquia/blt.git",
-                "reference": "34ed984fdd0304e9209de0bcfc7b90bfddee6d4e"
+                "reference": "f415c28912bd53f12e0271ad8803ec0c2f25a1fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acquia/blt/zipball/34ed984fdd0304e9209de0bcfc7b90bfddee6d4e",
-                "reference": "34ed984fdd0304e9209de0bcfc7b90bfddee6d4e",
+                "url": "https://api.github.com/repos/acquia/blt/zipball/f415c28912bd53f12e0271ad8803ec0c2f25a1fe",
+                "reference": "f415c28912bd53f12e0271ad8803ec0c2f25a1fe",
                 "shasum": ""
             },
             "require": {
@@ -33,7 +33,7 @@
                 "doctrine/common": "^2.5",
                 "doctrine/inflector": "~1.1.0",
                 "drupal/coder": "^8.2.11",
-                "drush/drush": "^8.1.15",
+                "drush/drush": "^9.0.0-beta9",
                 "grasmash/drupal-security-warning": "^1.0.0",
                 "grasmash/yaml-cli": "^1.0.0",
                 "grasmash/yaml-expander": "^1.0.5",
@@ -41,8 +41,8 @@
                 "php": ">=5.6",
                 "phpunit/phpunit": "^4.8",
                 "squizlabs/php_codesniffer": "^2.7",
-                "symfony/console": "^2.7|~3.2.8",
-                "symfony/yaml": "^2.7|~3.2.8",
+                "symfony/console": "~3.2.8",
+                "symfony/yaml": "~3.2.8",
                 "tivie/php-os-detector": "^1.0",
                 "wikimedia/composer-merge-plugin": "^1.4.1"
             },
@@ -87,7 +87,7 @@
                 "template",
                 "testing"
             ],
-            "time": "2017-12-27T16:53:45+00:00"
+            "time": "2017-12-12T02:23:31+00:00"
         },
         {
             "name": "acquia/lightning",
@@ -510,6 +510,45 @@
                 "html"
             ],
             "time": "2017-06-12T17:35:44+00:00"
+        },
+        {
+            "name": "chi-teck/drupal-code-generator",
+            "version": "1.22.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Chi-teck/drupal-code-generator.git",
+                "reference": "c7e3018ebcbdb5befcfe928c792146078c8c2d05"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Chi-teck/drupal-code-generator/zipball/c7e3018ebcbdb5befcfe928c792146078c8c2d05",
+                "reference": "c7e3018ebcbdb5befcfe928c792146078c8c2d05",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/console": "~2.7|^3",
+                "symfony/filesystem": "~2.7|^3",
+                "twig/twig": "^1.23.1"
+            },
+            "bin": [
+                "bin/dcg"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "DrupalCodeGenerator\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL2"
+            ],
+            "description": "Drupal code generator",
+            "time": "2018-01-06T15:54:30+00:00"
         },
         {
             "name": "composer/installers",
@@ -6425,62 +6464,60 @@
         },
         {
             "name": "drush/drush",
-            "version": "8.1.15",
+            "version": "9.0.0-rc1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drush-ops/drush.git",
-                "reference": "f78b619806a9bc7c3d167fa425e8757eb046bb87"
+                "reference": "20360f1c590f53a196e971b180c91b625eb9ed98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drush-ops/drush/zipball/f78b619806a9bc7c3d167fa425e8757eb046bb87",
-                "reference": "f78b619806a9bc7c3d167fa425e8757eb046bb87",
+                "url": "https://api.github.com/repos/drush-ops/drush/zipball/20360f1c590f53a196e971b180c91b625eb9ed98",
+                "reference": "20360f1c590f53a196e971b180c91b625eb9ed98",
                 "shasum": ""
             },
             "require": {
-                "consolidation/annotated-command": "~2",
-                "consolidation/output-formatters": "~3",
-                "pear/console_table": "~1.3.0",
-                "php": ">=5.4.5",
-                "phpdocumentor/reflection-docblock": "^2.0",
+                "chi-teck/drupal-code-generator": "^1.17.3",
+                "composer/semver": "^1.4",
+                "consolidation/annotated-command": "^2.8.1",
+                "consolidation/config": "^1.0.7",
+                "consolidation/output-formatters": "^3.1.12",
+                "consolidation/robo": "^1.1.5",
+                "ext-dom": "*",
+                "grasmash/yaml-expander": "^1.1.1",
+                "league/container": "~2",
+                "php": ">=5.6.0",
                 "psr/log": "~1.0",
                 "psy/psysh": "~0.6",
+                "sebastian/version": "^1|^2",
+                "symfony/config": "~2.2|^3",
                 "symfony/console": "~2.7|^3",
                 "symfony/event-dispatcher": "~2.7|^3",
                 "symfony/finder": "~2.7|^3",
+                "symfony/process": "~2.7|^3",
                 "symfony/var-dumper": "~2.7|^3",
                 "symfony/yaml": "~2.3|^3",
-                "webmozart/path-util": "~2"
+                "webflo/drupal-finder": "^1.1",
+                "webmozart/path-util": "^2.1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.*",
-                "symfony/console": "~2.7",
-                "symfony/event-dispatcher": "~2.7",
-                "symfony/finder": "~2.7",
-                "symfony/process": "2.7.*",
-                "symfony/var-dumper": "~2.7",
-                "symfony/yaml": "~2.3"
-            },
-            "suggest": {
-                "drush/config-extra": "Provides configuration workflow commands, such as config-merge.",
-                "ext-pcntl": "*"
+                "lox/xhprof": "dev-master",
+                "phpunit/phpunit": "^4.8|^5.5.4",
+                "squizlabs/php_codesniffer": "^2.7"
             },
             "bin": [
-                "drush",
-                "drush.launcher",
-                "drush.php",
-                "drush.complete.sh"
+                "drush"
             ],
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "8.0.x-dev"
+                    "dev-master": "9.0.x-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Drush": "lib/",
-                    "Consolidation": "lib/"
+                "psr-4": {
+                    "Drush\\": "src/",
+                    "Unish\\": "tests/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6495,14 +6532,6 @@
                 {
                     "name": "Owen Barton",
                     "email": "drupal@owenbarton.com"
-                },
-                {
-                    "name": "Mark Sonnabaum",
-                    "email": "marksonnabaum@gmail.com"
-                },
-                {
-                    "name": "Antoine Beaupré",
-                    "email": "anarcat@koumbit.org"
                 },
                 {
                     "name": "Greg Anderson",
@@ -6531,7 +6560,7 @@
             ],
             "description": "Drush is a command line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those of us who spend some of our working hours hacking away at the command prompt.",
             "homepage": "http://www.drush.org",
-            "time": "2017-10-10T02:05:46+00:00"
+            "time": "2017-11-30T16:06:54+00:00"
         },
         {
             "name": "easyrdf/easyrdf",
@@ -7814,61 +7843,6 @@
                 "random"
             ],
             "time": "2017-09-27T21:40:39+00:00"
-        },
-        {
-            "name": "pear/console_table",
-            "version": "v1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pear/Console_Table.git",
-                "reference": "64100b9ee81852f4fa17823e55d0b385a544f976"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pear/Console_Table/zipball/64100b9ee81852f4fa17823e55d0b385a544f976",
-                "reference": "64100b9ee81852f4fa17823e55d0b385a544f976",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.0"
-            },
-            "suggest": {
-                "pear/Console_Color2": ">=0.1.2"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "Table.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-2-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Jan Schneider",
-                    "homepage": "http://pear.php.net/user/yunosh"
-                },
-                {
-                    "name": "Tal Peer",
-                    "homepage": "http://pear.php.net/user/tal"
-                },
-                {
-                    "name": "Xavier Noguer",
-                    "homepage": "http://pear.php.net/user/xnoguer"
-                },
-                {
-                    "name": "Richard Heyes",
-                    "homepage": "http://pear.php.net/user/richard"
-                }
-            ],
-            "description": "Library that makes it easy to build console style tables.",
-            "homepage": "http://pear.php.net/package/Console_Table/",
-            "keywords": [
-                "console"
-            ],
-            "time": "2016-01-21T16:14:31+00:00"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -12379,6 +12353,61 @@
             "description": "Virtual file system to mock the real file system in unit tests.",
             "homepage": "http://vfs.bovigo.org/",
             "time": "2017-08-01T08:02:14+00:00"
+        },
+        {
+            "name": "pear/console_table",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pear/Console_Table.git",
+                "reference": "64100b9ee81852f4fa17823e55d0b385a544f976"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pear/Console_Table/zipball/64100b9ee81852f4fa17823e55d0b385a544f976",
+                "reference": "64100b9ee81852f4fa17823e55d0b385a544f976",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "suggest": {
+                "pear/Console_Color2": ">=0.1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "Table.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Schneider",
+                    "homepage": "http://pear.php.net/user/yunosh"
+                },
+                {
+                    "name": "Tal Peer",
+                    "homepage": "http://pear.php.net/user/tal"
+                },
+                {
+                    "name": "Xavier Noguer",
+                    "homepage": "http://pear.php.net/user/xnoguer"
+                },
+                {
+                    "name": "Richard Heyes",
+                    "homepage": "http://pear.php.net/user/richard"
+                }
+            ],
+            "description": "Library that makes it easy to build console style tables.",
+            "homepage": "http://pear.php.net/package/Console_Table/",
+            "keywords": [
+                "console"
+            ],
+            "time": "2016-01-21T16:14:31+00:00"
         },
         {
             "name": "se/selenium-server-standalone",
