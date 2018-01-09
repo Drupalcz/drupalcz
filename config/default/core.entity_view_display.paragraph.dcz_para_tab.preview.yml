@@ -1,0 +1,26 @@
+uuid: 46e8984d-4eca-4ec6-921b-2d655445ba9b
+langcode: cs
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.dcz_para_tab.field_content
+    - field.field.paragraph.dcz_para_tab.field_description
+    - field.field.paragraph.dcz_para_tab.field_tab
+    - paragraphs.paragraphs_type.dcz_para_tab
+id: paragraph.dcz_para_tab.preview
+targetEntityType: paragraph
+bundle: dcz_para_tab
+mode: preview
+content:
+  field_description:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  field_content: true
+  field_tab: true

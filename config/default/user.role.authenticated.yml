@@ -4,21 +4,29 @@ status: true
 dependencies: {  }
 id: authenticated
 label: 'Authenticated user'
-weight: 1
+weight: -9
 is_admin: false
 permissions:
   - 'access comments'
   - 'access content'
+  - 'access toolbar'
   - 'access user contact forms'
   - 'access user profiles'
   - 'change own username'
-  - 'create dcz_article content'
+  - 'create dcz_showcase content'
   - 'create forum content'
-  - 'delete own dcz_article content'
+  - 'create individual content'
+  - 'create organization content'
+  - 'delete own dcz_showcase content'
+  - 'delete own individual content'
+  - 'delete own organization content'
   - 'edit own comments'
-  - 'edit own dcz_article content'
+  - 'edit own dcz_showcase content'
   - 'edit own forum content'
+  - 'edit own individual content'
+  - 'edit own organization content'
   - 'post comments'
   - 'search content'
   - 'skip comment approval'
   - 'use text format basic_html'
+  - 'view the administration theme'

@@ -1,0 +1,21 @@
+uuid: 7bd3a843-ef3f-4900-9469-cd45353f9dd3
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content_end
+    - paragraphs.paragraphs_type.dcz_para_tabs
+  module:
+    - text
+id: paragraph.dcz_para_tabs.field_content_end
+field_name: field_content_end
+entity_type: paragraph
+bundle: dcz_para_tabs
+label: 'Content end'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

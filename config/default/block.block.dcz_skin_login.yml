@@ -1,0 +1,20 @@
+uuid: f25d211b-c70a-41cb-b8fe-6eb8ec1d7aed
+langcode: cs
+status: true
+dependencies:
+  module:
+    - user
+  theme:
+    - dcz_skin
+id: dcz_skin_login
+theme: dcz_skin
+region: sidebar_first
+weight: 0
+provider: null
+plugin: user_login_block
+settings:
+  id: user_login_block
+  label: 'User login'
+  provider: user
+  label_display: visible
+visibility: {  }

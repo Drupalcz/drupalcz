@@ -1,0 +1,28 @@
+uuid: 7c0b324b-9c35-48dd-bb4d-cc8cec7fb984
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_er_organization
+    - node.type.individual
+    - node.type.organization
+id: node.individual.field_er_organization
+field_name: field_er_organization
+entity_type: node
+bundle: individual
+label: Firma
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      organization: organization
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,50 @@
+uuid: 107e2d7f-da97-4751-afd9-1a1280ef1173
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.tutorial.field_paragraphs
+    - field.field.node.tutorial.field_teaser_image
+    - field.field.node.tutorial.field_teaser_text
+    - image.style.medium
+    - node.type.tutorial
+  module:
+    - image
+    - panelizer
+    - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+id: node.tutorial.teaser
+targetEntityType: node
+bundle: tutorial
+mode: teaser
+content:
+  field_teaser_image:
+    type: image
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: content
+    third_party_settings: {  }
+  field_teaser_text:
+    type: basic_string
+    weight: 2
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_paragraphs: true
+  langcode: true

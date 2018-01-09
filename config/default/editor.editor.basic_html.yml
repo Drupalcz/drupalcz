@@ -21,6 +21,13 @@ settings:
             - '-'
             - RemoveFormat
         -
+          name: Input
+          items:
+            - Paste
+            - PasteText
+            - PasteFromWord
+            - SpecialChar
+        -
           name: Links
           items:
             - DrupalLink
@@ -37,7 +44,14 @@ settings:
           items:
             - Blockquote
             - DrupalImage
+            - node
+        -
+          name: Tools
+          items:
+            - Source
   plugins:
+    language:
+      language_list: un
     stylescombo:
       styles: "h2|H2\r\nh3|H3\r\nh4|H4"
 image_upload:

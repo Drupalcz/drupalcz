@@ -4,26 +4,53 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.dcz_article.body
     - field.field.node.dcz_article.field_comments_article
+    - field.field.node.dcz_article.field_paragraphs
     - field.field.node.dcz_article.field_tags
+    - field.field.node.dcz_article.field_teaser_image
+    - field.field.node.dcz_article.field_teaser_text
+    - image.style.medium
     - node.type.dcz_article
   module:
+    - image
+    - panelizer
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 id: node.dcz_article.teaser
 targetEntityType: node
 bundle: dcz_article
 mode: teaser
 content:
-  links:
+  field_teaser_image:
+    type: image
     weight: 1
+    region: content
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: content
+    third_party_settings: {  }
+  field_teaser_text:
+    type: basic_string
+    weight: 2
+    region: content
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+  links:
+    weight: 0
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   body: true
   field_comments_article: true
   field_paragraphs: true
   field_tags: true
-  field_teaser_image: true
-  field_teaser_text: true
   langcode: true

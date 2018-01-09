@@ -23,6 +23,8 @@ module:
   dcz_tags_taxonomy: 0
   dcz_user: 0
   editor: 0
+  embed: 0
+  entity_embed: 0
   entity_reference: 0
   entity_reference_revisions: 0
   field: 0
@@ -67,5 +69,7 @@ theme:
   classy: 0
   bartik: 0
   seven: 0
+  bootstrap: 0
+  dcz_skin: 0
 langcode: cs
 profile: dcz

@@ -1,0 +1,41 @@
+uuid: 67b00d57-72f4-4b0e-a3e8-f0f675fe76b3
+langcode: cs
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.organization.body
+    - field.field.node.organization.field_emails
+    - field.field.node.organization.field_logo
+    - field.field.node.organization.field_websites
+    - node.type.organization
+  module:
+    - image
+    - panelizer
+    - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+id: node.organization.teaser
+targetEntityType: node
+bundle: organization
+mode: teaser
+content:
+  field_logo:
+    type: image
+    weight: 0
+    region: content
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_emails: true
+  field_websites: true
+  langcode: true
+  links: true

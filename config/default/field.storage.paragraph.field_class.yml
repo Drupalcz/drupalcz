@@ -1,0 +1,39 @@
+uuid: 18a1a408-51a6-4eb5-aebd-166a92eb7a90
+langcode: cs
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_class
+field_name: field_class
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: dcz_para_black
+      label: Black_bg
+    -
+      value: dcz_para_dark
+      label: 'Dark bg'
+    -
+      value: dcz_para_light
+      label: 'Light bg'
+    -
+      value: dcz_para_text_center
+      label: 'Text center align'
+    -
+      value: dcz_para_box_shadow
+      label: 'Box shadow'
+    -
+      value: dcz_para_text_shadow
+      label: 'Text shadow'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
