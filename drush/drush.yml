@@ -1,0 +1,7 @@
+drush:
+  paths:
+    # Load a drush.yml configuration file from the current working directory.
+    config: ../vendor/acquia/blt/drush/drushrc.php
+    include:
+      - '${env.home}/.drush'
+      - /usr/share/drush/commands
