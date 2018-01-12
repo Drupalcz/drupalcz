@@ -5,8 +5,8 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.dcz_landing_page.body
-    - field.field.node.dcz_landing_page.field_content_widget
     - field.field.node.dcz_landing_page.field_hero_widget
+    - field.field.node.dcz_landing_page.field_paragraphs
     - node.type.dcz_landing_page
   module:
     - text
@@ -28,6 +28,6 @@ content:
     weight: 100
     region: content
 hidden:
-  field_content_widget: true
   field_hero_widget: true
+  field_paragraphs: true
   langcode: true

@@ -1,21 +1,21 @@
-uuid: 5f0f49e1-47b0-4554-a06e-029fd2f2b7d3
-langcode: cs
+uuid: 2f52adc2-dd7e-4cc2-8433-d8ab2ae5741a
+langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_paragraphs
-    - node.type.dcz_article
+    - node.type.dcz_landing_page
     - paragraphs.paragraphs_type.dcz_para_tab
   module:
     - entity_reference_revisions
-id: node.dcz_article.field_paragraphs
+id: node.dcz_landing_page.field_paragraphs
 field_name: field_paragraphs
 entity_type: node
-bundle: dcz_article
+bundle: dcz_landing_page
 label: Paragraphs
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -26,27 +26,27 @@ settings:
       dcz_para_tab: dcz_para_tab
     target_bundles_drag_drop:
       dcz_para_block_reference:
-        weight: 7
-        enabled: false
-      dcz_para_content:
-        weight: 8
-        enabled: false
-      dcz_para_gallery:
         weight: 9
         enabled: false
-      dcz_para_hero:
+      dcz_para_content:
         weight: 10
         enabled: false
-      dcz_para_image:
+      dcz_para_gallery:
         weight: 11
         enabled: false
-      dcz_para_video:
+      dcz_para_hero:
         weight: 12
+        enabled: false
+      dcz_para_image:
+        weight: 13
         enabled: false
       dcz_para_tab:
         enabled: true
         weight: 14
       dcz_para_tabs:
         weight: 15
+        enabled: false
+      dcz_para_video:
+        weight: 16
         enabled: false
 field_type: entity_reference_revisions

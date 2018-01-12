@@ -8,8 +8,8 @@ dependencies:
     - dcz_theme
 id: dcz_theme_breadcrumbs
 theme: dcz_theme
-region: navigation
-weight: 0
+region: breadcrumbs
+weight: -3
 provider: null
 plugin: system_breadcrumb_block
 settings:

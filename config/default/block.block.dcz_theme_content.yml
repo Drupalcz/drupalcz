@@ -9,7 +9,7 @@ dependencies:
 id: dcz_theme_content
 theme: dcz_theme
 region: content
-weight: 0
+weight: -3
 provider: null
 plugin: system_main_block
 settings:

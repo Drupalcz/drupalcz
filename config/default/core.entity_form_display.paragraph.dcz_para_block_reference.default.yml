@@ -14,7 +14,7 @@ bundle: dcz_para_block_reference
 mode: default
 content:
   field_block_reference:
-    weight: 1
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
@@ -23,14 +23,14 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_class:
-    type: options_select
-    weight: 2
+    type: options_buttons
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   field_description:
     type: string_textfield
-    weight: 3
+    weight: 1
     region: content
     settings:
       size: 60

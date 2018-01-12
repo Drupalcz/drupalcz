@@ -6,8 +6,8 @@ dependencies:
     - dcz_theme
 id: dcz_theme_local_tasks
 theme: dcz_theme
-region: content
-weight: -4
+region: content_top
+weight: -2
 provider: null
 plugin: local_tasks_block
 settings:

@@ -75,18 +75,21 @@ content:
     settings:
       title: Paragraph
       title_plural: Paragraphs
-      edit_mode: preview
+      edit_mode: closed
+      closed_mode: preview
+      autocollapse: none
       add_mode: dropdown
       form_display_mode: default
       default_paragraph_type: _none
     third_party_settings: {  }
-    type: entity_reference_paragraphs
+    type: paragraphs
     region: content
   langcode:
     type: language_select
     weight: 7
     region: content
-    settings: {  }
+    settings:
+      include_locked: true
     third_party_settings: {  }
   path:
     type: path

@@ -13,13 +13,13 @@ settings:
   allowed_values:
     -
       value: dcz_para_black
-      label: Black_bg
+      label: 'Black background'
     -
       value: dcz_para_dark
-      label: 'Dark bg'
+      label: 'Dark background'
     -
       value: dcz_para_light
-      label: 'Light bg'
+      label: 'Light background'
     -
       value: dcz_para_text_center
       label: 'Text center align'
@@ -32,7 +32,7 @@ settings:
   allowed_values_function: ''
 module: options
 locked: false
-cardinality: 1
+cardinality: -1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

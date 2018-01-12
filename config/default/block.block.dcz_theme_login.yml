@@ -9,7 +9,7 @@ dependencies:
 id: dcz_theme_login
 theme: dcz_theme
 region: top_bar
-weight: 0
+weight: -4
 provider: null
 plugin: user_login_block
 settings:

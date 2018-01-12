@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.dcz_para_tabs.field_content_end
     - field.field.paragraph.dcz_para_tabs.field_description
     - field.field.paragraph.dcz_para_tabs.field_paragraphs
+    - field.field.paragraph.dcz_para_tabs.field_title
     - paragraphs.paragraphs_type.dcz_para_tabs
   module:
     - entity_reference_revisions
@@ -38,6 +39,14 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    region: content
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
 hidden:
   field_description: true

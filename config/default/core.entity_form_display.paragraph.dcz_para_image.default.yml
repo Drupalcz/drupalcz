@@ -17,13 +17,13 @@ bundle: dcz_para_image
 mode: default
 content:
   field_class:
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_description:
-    weight: 3
+    weight: 1
     settings:
       size: 60
       placeholder: ''
@@ -31,7 +31,7 @@ content:
     type: string_textfield
     region: content
   field_image:
-    weight: 1
+    weight: 2
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail

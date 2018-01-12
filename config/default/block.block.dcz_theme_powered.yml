@@ -8,8 +8,8 @@ dependencies:
     - dcz_theme
 id: dcz_theme_powered
 theme: dcz_theme
-region: navigation
-weight: -4
+region: footer_one
+weight: -3
 provider: null
 plugin: system_powered_by_block
 settings:

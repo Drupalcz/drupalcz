@@ -8,8 +8,8 @@ dependencies:
     - dcz_theme
 id: dcz_theme_messages
 theme: dcz_theme
-region: top_bar
-weight: 0
+region: admin_area
+weight: -3
 provider: null
 plugin: system_messages_block
 settings:

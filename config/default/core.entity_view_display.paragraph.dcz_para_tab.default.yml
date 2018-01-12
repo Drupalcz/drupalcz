@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.dcz_para_tab.field_content
     - field.field.paragraph.dcz_para_tab.field_description
     - field.field.paragraph.dcz_para_tab.field_tab
+    - field.field.paragraph.dcz_para_tab.field_title
     - paragraphs.paragraphs_type.dcz_para_tab
   module:
     - text
@@ -15,13 +16,13 @@ bundle: dcz_para_tab
 mode: default
 content:
   field_content:
-    weight: 2
+    weight: 1
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
-  field_tab:
+  field_title:
     weight: 0
     label: hidden
     settings:
@@ -31,3 +32,4 @@ content:
     region: content
 hidden:
   field_description: true
+  field_tab: true
