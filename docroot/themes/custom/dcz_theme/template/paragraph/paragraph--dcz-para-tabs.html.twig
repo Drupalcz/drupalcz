@@ -54,24 +54,24 @@
   {{ title_suffix }}
   <div class="paragraph-content">
     {% block content %}
-      {{ content|without('field_taby') }}
+      {{ content|without('field_paragraphs', 'field_content_end') }}
     {% endblock %}
 
     <ul class="tab" role="tablist">
       {# Loops through the tab sections to print the tab section titles. #}
-      {% for key, item in content.field_taby if key|first != '#' %}
-        <li role="presentation"><a class="tablink {% if loop.first %}active{% endif %}" href="#" data-tab-id="tab-{{ paragraph_id }}-{{ key }}" aria-controls="{{ item['#paragraph'].field_p_title.value }}" role="tab">{{ item['#paragraph'].field_p_title.value }}</a></li>
+      {% for key, item in content.field_paragraphs if key|first != '#' %}
+        <li role="presentation"><a class="tablink {% if loop.first %}active{% endif %}" href="#" data-tab-id="tab-{{ paragraph_id }}-{{ key }}" aria-controls="{{ item['#paragraph'].field_tab.value }}" role="tab">{{ item['#paragraph'].field_tab.value }}</a></li>
       {% endfor %}
     </ul>
     <div class="tab-content">
       {# Loops through the tab sections again to print the tab section bodies. #}
-      {% for key, item in content.field_taby if key|first != '#' %}
+      {% for key, item in content.field_paragraphs if key|first != '#' %}
         <div role="tabpanel" class="tab-pane{% if loop.first %} active{% endif %}" id="tab-{{ paragraph_id }}-{{ key }}">
-          {% for body_key, body_item in item['#paragraph'].field_p_content %}
+          {% for body_key, body_item in item['#paragraph'].field_content %}
             {# Use the same render array as item and set the '#paragraph'. #}
             {% set tab_body = item %}
             {# Load the entity for the current translation #}
-            {% set tab_body = tab_body|merge({'#paragraph': tab_body['#paragraph'].field_p_content[body_key].entity.getTranslation(tab_body['#paragraph'].langcode[0].value)}) %}
+            {% set tab_body = tab_body|merge({'#paragraph': tab_body['#paragraph'].field_content[body_key].entity.getTranslation(tab_body['#paragraph'].langcode[0].value)}) %}
             {# Remove the cache keys so it doesn't repeat the first value. #}
             {% set tab_body = tab_body|merge({'#cache': {}}) %}
             {# Print the compiled section body. #}
@@ -80,5 +80,8 @@
         </div>
       {% endfor %}
     </div>
+    {% block content_end %}
+      {{ content.field_content_end }}
+    {% endblock %}
   </div>
 </div>
