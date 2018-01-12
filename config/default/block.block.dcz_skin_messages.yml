@@ -1,0 +1,20 @@
+uuid: d05421de-aeca-4b5c-9873-6858ae336935
+langcode: cs
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - dcz_skin
+id: dcz_skin_messages
+theme: dcz_skin
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }
