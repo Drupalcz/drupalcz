@@ -1,17 +1,15 @@
-uuid: 78ce0776-6a4e-4255-9e8c-62591e83a6da
+uuid: 416b150b-034e-40b1-bffc-a06b9e0ed0df
 langcode: cs
 status: true
 dependencies:
   module:
     - system
   theme:
-    - bootstrap
-_core:
-  default_config_hash: 9RnnTUBcn0WRWXfrGOnId2H0Q31uQUeu_F5TnDxl2yg
-id: bootstrap_messages
-theme: bootstrap
-region: header
-weight: -50
+    - dcz_theme
+id: dcz_theme_messages
+theme: dcz_theme
+region: top_bar
+weight: 0
 provider: null
 plugin: system_messages_block
 settings:

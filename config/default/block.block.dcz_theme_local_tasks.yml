@@ -1,15 +1,13 @@
-uuid: f6af4774-dd6e-494b-b172-b00369bb738f
+uuid: c672f9d5-493a-4739-902c-50d67b408823
 langcode: cs
 status: true
 dependencies:
   theme:
-    - bootstrap
-_core:
-  default_config_hash: qHdtze2DZ2mFfaJadxjZz6epm92_SN9SAFY4yJGl8Fo
-id: bootstrap_local_tasks
-theme: bootstrap
-region: header
-weight: 10
+    - dcz_theme
+id: dcz_theme_local_tasks
+theme: dcz_theme
+region: content
+weight: -4
 provider: null
 plugin: local_tasks_block
 settings:

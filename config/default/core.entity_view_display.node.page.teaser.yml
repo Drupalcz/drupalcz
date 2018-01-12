@@ -17,5 +17,10 @@ content:
     weight: 100
     region: content
 hidden:
+  body: true
+  field_authors: true
+  field_clients: true
+  field_coauthors: true
+  field_creditors: true
   field_paragraphs: true
   langcode: true

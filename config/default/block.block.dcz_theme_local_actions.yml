@@ -1,11 +1,11 @@
-uuid: f3b4eaea-bb92-48e8-b82f-47aed7fc2b4d
+uuid: 2e055504-0519-4e4d-bf6e-56151add9631
 langcode: cs
 status: true
 dependencies:
   theme:
-    - bartik
-id: bartik_local_actions
-theme: bartik
+    - dcz_theme
+id: dcz_theme_local_actions
+theme: dcz_theme
 region: content
 weight: -4
 provider: null

@@ -1,17 +1,14 @@
-uuid: 7818542c-ba60-46fa-803c-5f5578817111
+uuid: 8fb1494c-9c9b-4d51-a6ce-3b2003df765a
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:content_block:03c28545-3c7b-4d1f-b7d3-ab2dcacbac9e'
   module:
-    - block_content
     - system
   theme:
-    - dcz_skin
-id: dcz_skin_historiedrupalu
-theme: dcz_skin
-region: sidebar_second
+    - dcz_theme
+id: dcz_theme_historiedrupalu
+theme: dcz_theme
+region: top_bar
 weight: 0
 provider: null
 plugin: 'block_content:03c28545-3c7b-4d1f-b7d3-ab2dcacbac9e'

@@ -1,15 +1,15 @@
-uuid: 0ef25096-da64-4696-b34a-7270c1b2bf4d
+uuid: d5bf460c-4c83-41de-a0b1-93b59a78411e
 langcode: cs
 status: true
 dependencies:
   module:
     - system
   theme:
-    - dcz_skin
-id: dcz_skin_breadcrumbs
-theme: dcz_skin
-region: help
-weight: -4
+    - dcz_theme
+id: dcz_theme_breadcrumbs
+theme: dcz_theme
+region: navigation
+weight: 0
 provider: null
 plugin: system_breadcrumb_block
 settings:

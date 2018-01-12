@@ -1,15 +1,13 @@
-uuid: 71b97af0-3f4f-4e71-ac32-2f0c84fbc10e
+uuid: 63490653-67d6-4f60-93aa-c37ecaa97f64
 langcode: cs
 status: true
 dependencies:
   module:
     - system
   theme:
-    - bootstrap
-_core:
-  default_config_hash: fNNLN48MSGSLiqwIFywCuxH2Dk_IxDbaP0kYhg_IPrg
-id: bootstrap_content
-theme: bootstrap
+    - dcz_theme
+id: dcz_theme_content
+theme: dcz_theme
 region: content
 weight: 0
 provider: null

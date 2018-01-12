@@ -1,14 +1,14 @@
-uuid: f25d211b-c70a-41cb-b8fe-6eb8ec1d7aed
+uuid: ba7a9969-2d96-484e-ace3-c743bcc0693f
 langcode: cs
 status: true
 dependencies:
   module:
     - user
   theme:
-    - dcz_skin
-id: dcz_skin_login
-theme: dcz_skin
-region: sidebar_first
+    - dcz_theme
+id: dcz_theme_login
+theme: dcz_theme
+region: top_bar
 weight: 0
 provider: null
 plugin: user_login_block
