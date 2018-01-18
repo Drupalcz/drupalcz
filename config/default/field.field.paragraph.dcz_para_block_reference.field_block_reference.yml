@@ -1,0 +1,28 @@
+uuid: 665aa3dc-53f3-4084-845f-c2c4cac72bc8
+langcode: cs
+status: true
+dependencies:
+  config:
+    - block_content.type.content_block
+    - field.storage.paragraph.field_block_reference
+    - paragraphs.paragraphs_type.dcz_para_block_reference
+id: paragraph.dcz_para_block_reference.field_block_reference
+field_name: field_block_reference
+entity_type: paragraph
+bundle: dcz_para_block_reference
+label: 'Block reference'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:block_content'
+  handler_settings:
+    target_bundles:
+      content_block: content_block
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

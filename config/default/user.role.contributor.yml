@@ -1,0 +1,13 @@
+uuid: 9ed4648f-a6e6-4378-bc98-140f5f28e0bf
+langcode: cs
+status: true
+dependencies: {  }
+id: contributor
+label: Contributor
+weight: -8
+is_admin: null
+permissions:
+  - 'create dcz_article content'
+  - 'delete own dcz_article content'
+  - 'edit own dcz_article content'
+  - 'view own unpublished content'

@@ -1,0 +1,28 @@
+uuid: c0be5424-1636-4603-bc57-339757360847
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_authors
+    - node.type.individual
+    - node.type.page
+id: node.page.field_authors
+field_name: field_authors
+entity_type: node
+bundle: page
+label: 'Autor/ Autoři'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      individual: individual
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
