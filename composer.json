@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "acquia/blt": "9.0.x",
+        "acquia/blt": "^8.3",
         "drupal/admin_toolbar": "^1.21",
         "drupal/codesnippet": "^1.6",
         "drupal/console": "^1.3",
