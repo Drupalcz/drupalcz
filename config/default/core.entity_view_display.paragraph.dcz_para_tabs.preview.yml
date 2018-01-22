@@ -26,3 +26,4 @@ hidden:
   field_content: true
   field_content_end: true
   field_paragraphs: true
+  field_title: true

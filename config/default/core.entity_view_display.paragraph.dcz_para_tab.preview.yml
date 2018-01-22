@@ -24,3 +24,4 @@ content:
 hidden:
   field_content: true
   field_tab: true
+  field_title: true

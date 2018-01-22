@@ -25,4 +25,5 @@ hidden:
   created: true
   field_class: true
   field_content: true
+  field_title: true
   uid: true
