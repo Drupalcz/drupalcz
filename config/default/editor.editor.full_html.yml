@@ -18,7 +18,10 @@ settings:
             - Bold
             - Italic
             - RemoveFormat
+            - Superscript
+            - Subscript
             - Styles
+            - Format
         -
           name: Input
           items:
@@ -42,14 +45,14 @@ settings:
           name: Media
           items:
             - Blockquote
-            - DrupalImage
             - Table
             - node
         -
           name: Tools
           items:
-            - CodeSnippet
             - Source
+            - Maximize
+            - ShowBlocks
   plugins:
     language:
       language_list: un

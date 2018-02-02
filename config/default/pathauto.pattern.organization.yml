@@ -1,0 +1,33 @@
+uuid: 151b699c-57d0-47d4-804f-d0602e85ef10
+langcode: cs
+status: true
+dependencies:
+  module:
+    - language
+    - node
+id: organization
+label: Organization
+type: 'canonical_entities:node'
+pattern: 'profily/[node:title]'
+selection_criteria:
+  346b5b5f-8862-49e5-8f85-e7bd347af6bf:
+    id: node_type
+    bundles:
+      organization: organization
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 346b5b5f-8862-49e5-8f85-e7bd347af6bf
+  b3527419-2442-43b3-a70d-08c9f52c88b9:
+    id: language
+    langcodes:
+      cs: cs
+    negate: false
+    context_mapping:
+      language: 'node:langcode:language'
+    uuid: b3527419-2442-43b3-a70d-08c9f52c88b9
+selection_logic: and
+weight: -6
+relationships:
+  'node:langcode:language':
+    label: Language
