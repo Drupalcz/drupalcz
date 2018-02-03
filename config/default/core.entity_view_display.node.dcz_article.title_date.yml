@@ -15,6 +15,47 @@ dependencies:
   module:
     - comment
     - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      path: modules/contrib/ds
+      library: ''
+      disable_css: false
+      settings:
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+    regions:
+      ds_content:
+        - node_title
+        - node_author
+        - node_post_date
+    fields:
+      node_author:
+        plugin_id: node_author
+        weight: 1
+        label: hidden
+        formatter: author_linked
+      node_post_date:
+        plugin_id: node_post_date
+        weight: 2
+        label: hidden
+        formatter: ds_post_date_czech_date
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h3
+          class: ''
 id: node.dcz_article.title_date
 targetEntityType: node
 bundle: dcz_article

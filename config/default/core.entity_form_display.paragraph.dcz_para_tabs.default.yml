@@ -7,7 +7,6 @@ dependencies:
     - field.field.paragraph.dcz_para_tabs.field_content_end
     - field.field.paragraph.dcz_para_tabs.field_description
     - field.field.paragraph.dcz_para_tabs.field_paragraphs
-    - field.field.paragraph.dcz_para_tabs.field_title
     - paragraphs.paragraphs_type.dcz_para_tabs
   module:
     - paragraphs
@@ -52,14 +51,6 @@ content:
       form_display_mode: default
       default_paragraph_type: _none
     third_party_settings: {  }
-    region: content
-  field_title:
-    weight: 0
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
     region: content
 hidden:
   created: true
