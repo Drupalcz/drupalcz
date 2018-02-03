@@ -10,3 +10,10 @@ header {
   max-width: $max-width;
   padding: 1em $site-padding;
 }
+
+.logo {
+  a:hover {
+    box-shadow: none;
+    opacity: .85;
+  }
+}

@@ -1,0 +1,37 @@
+.dcz-para-black {
+  background: $black;
+  color: $white;
+  padding: 1em 2em;
+
+  a {
+    color: $white;
+  }
+}
+
+.dcz-para-dark {
+  background: $drupal-secondary;
+  color: $white-9;
+  padding: 1em 2em;
+
+  a {
+    color: $white;
+  }
+}
+
+.dcz-para-light {
+  background: $light-blue;
+  color: $drupal-secondary;
+  padding: 1em 2em;
+}
+
+.dcz-para-text-center {
+  text-align: center;
+}
+
+.dcz-para-box-shadow {
+  box-shadow: 0 0 1.5rem $gray-7;
+}
+
+.dcz-para-text-shadow{
+  text-shadow: 0 0 3px $gray-7;
+}
