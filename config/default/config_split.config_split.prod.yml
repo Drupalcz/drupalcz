@@ -4,7 +4,7 @@ status: false
 dependencies: {  }
 id: prod
 label: PROD
-folder: ../config/default/split-prod
+folder: ../config/split-prod
 module: {  }
 theme: {  }
 blacklist: {  }

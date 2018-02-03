@@ -4,7 +4,7 @@ status: false
 dependencies: {  }
 id: dev
 label: DEV
-folder: ../config/default/split-dev
+folder: ../config/split-dev
 module:
   admin_toolbar_tools: 0
   devel: 0
