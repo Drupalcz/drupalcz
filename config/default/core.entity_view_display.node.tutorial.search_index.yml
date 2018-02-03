@@ -1,9 +1,9 @@
-uuid: 107e2d7f-da97-4751-afd9-1a1280ef1173
+uuid: f5f34490-5e6e-40cb-a2d0-829a3832c7a2
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.search_index
     - field.field.node.tutorial.body
     - field.field.node.tutorial.field_authors
     - field.field.node.tutorial.field_clients
@@ -12,11 +12,11 @@ dependencies:
     - field.field.node.tutorial.field_paragraphs
     - field.field.node.tutorial.field_teaser_image
     - field.field.node.tutorial.field_teaser_text
-    - image.style.medium
     - node.type.tutorial
   module:
-    - image
+    - entity_reference_revisions
     - panelizer
+    - text
     - user
 third_party_settings:
   panelizer:
@@ -27,43 +27,7 @@ third_party_settings:
     displays:
       default:
         blocks:
-          92587ec6-19e6-4eb2-8914-e29259484980:
-            id: 'entity_field:node:field_teaser_image'
-            label: 'Teaser Image'
-            provider: ctools_block
-            label_display: '0'
-            formatter:
-              label: hidden
-              type: image
-              settings:
-                image_style: landscape_small
-                image_link: content
-              third_party_settings: {  }
-              weight: 0
-              region: content
-            region: image
-            weight: -2
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            uuid: 92587ec6-19e6-4eb2-8914-e29259484980
-          98e69efb-bb6b-41e8-a5bf-49b71562c5bb:
-            id: 'entity_field:node:field_teaser_text'
-            label: 'Teaser Text'
-            provider: ctools_block
-            label_display: '0'
-            formatter:
-              label: hidden
-              type: basic_string
-              settings: {  }
-              third_party_settings: {  }
-              weight: 0
-              region: content
-            region: content
-            weight: -2
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            uuid: 98e69efb-bb6b-41e8-a5bf-49b71562c5bb
-          6cb4e226-c5bd-4b4e-bb98-af9a4a844f86:
+          956b4cbf-a746-4661-b044-b3651796fada:
             id: 'entity_field:node:title'
             label: Title
             provider: ctools_block
@@ -77,52 +41,68 @@ third_party_settings:
               weight: 0
             region: title
             weight: 0
-            uuid: 6cb4e226-c5bd-4b4e-bb98-af9a4a844f86
+            uuid: 956b4cbf-a746-4661-b044-b3651796fada
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+          21f6a932-2eb6-4cef-ad70-ba68463757eb:
+            id: 'entity_field:node:field_teaser_text'
+            label: 'Teaser Text'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: basic_string
+              settings: {  }
+              third_party_settings: {  }
+              weight: 0
+            region: content
+            weight: 0
+            uuid: 21f6a932-2eb6-4cef-ad70-ba68463757eb
             context_mapping:
               entity: '@panelizer.entity_context:entity'
         id: panels_variant
         label: Default
-        uuid: 5cd4a11d-b93d-414b-b41b-9ae4785bbd4d
+        uuid: 3221c14c-1b28-464f-8013-ea50e373fc87
         weight: 0
-        layout: teaser
+        layout: search
         layout_settings: {  }
-        page_title: ''
+        page_title: null
         storage_type: panelizer_default
-        storage_id: 'node:tutorial:teaser:default'
+        storage_id: 'node:tutorial:search_index:default'
         builder: ipe
         pattern: panelizer
         static_context: {  }
-id: node.tutorial.teaser
+id: node.tutorial.search_index
 targetEntityType: node
 bundle: tutorial
-mode: teaser
+mode: search_index
 content:
-  field_teaser_image:
-    type: image
-    weight: 1
-    region: content
-    label: hidden
-    settings:
-      image_style: medium
-      image_link: content
-    third_party_settings: {  }
-  field_teaser_text:
-    type: basic_string
+  body:
     weight: 2
-    region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    type: text_default
+    region: content
+  field_paragraphs:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
   links:
     weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
-  body: true
   field_authors: true
   field_clients: true
   field_coauthors: true
   field_creditors: true
-  field_paragraphs: true
+  field_teaser_image: true
+  field_teaser_text: true
   langcode: true

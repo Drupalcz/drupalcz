@@ -1,0 +1,25 @@
+uuid: e0f4ae8f-a8ef-48b0-a4bc-2863db895757
+langcode: cs
+status: true
+dependencies:
+  content:
+    - 'block_content:content_block:ef438d26-e98d-4ade-83c7-1014345f0d10'
+  module:
+    - block_content
+  theme:
+    - dcz_theme
+id: copyrightinfo
+theme: dcz_theme
+region: footer_two
+weight: 0
+provider: null
+plugin: 'block_content:ef438d26-e98d-4ade-83c7-1014345f0d10'
+settings:
+  id: 'block_content:ef438d26-e98d-4ade-83c7-1014345f0d10'
+  label: 'Copyright info'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

@@ -1,113 +1,101 @@
-uuid: 209ad863-6847-4c7d-bb00-acaa21a19547
-langcode: en
+uuid: ec160ac1-f413-4e27-b7be-69c1a3537a6e
+langcode: cs
 status: true
 dependencies:
   config:
-    - field.field.node.dcz_landing_page.body
-    - field.field.node.dcz_landing_page.field_hero_widget
-    - field.field.node.dcz_landing_page.field_paragraphs
-    - node.type.dcz_landing_page
+    - field.field.node.forum.body
+    - field.field.node.forum.comment_forum
+    - field.field.node.forum.taxonomy_forums
+    - node.type.forum
   module:
-    - paragraphs
+    - comment
     - path
     - text
-id: node.dcz_landing_page.default
+_core:
+  default_config_hash: QNS5prJxZ5ntiAjsrovv2SFwwYF8otWx9Cvz3yocq9U
+id: node.forum.default
 targetEntityType: node
-bundle: dcz_landing_page
+bundle: forum
 mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 3
+    weight: 27
+    region: content
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
+  comment_forum:
+    type: comment_default
+    weight: 20
     region: content
-  created:
-    type: datetime_timestamp
-    weight: 6
     settings: {  }
     third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 10
     region: content
-  field_hero_widget:
-    type: entity_reference_paragraphs
-    weight: 1
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: preview
-      add_mode: button
-      form_display_mode: default
-      default_paragraph_type: dcz_para_hero
+    settings: {  }
     third_party_settings: {  }
-    region: content
-  field_paragraphs:
-    weight: 4
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: closed
-      closed_mode: preview
-      autocollapse: none
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: _none
-    third_party_settings: {  }
-    type: paragraphs
-    region: content
   langcode:
     type: language_select
     weight: 2
+    region: content
     settings:
       include_locked: true
     third_party_settings: {  }
-    region: content
   path:
     type: path
-    weight: 9
+    weight: 30
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   promote:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 7
-    third_party_settings: {  }
+    weight: 15
     region: content
+    third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 10
+    weight: 120
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
-    third_party_settings: {  }
+    weight: 16
     region: content
+    third_party_settings: {  }
+  taxonomy_forums:
+    type: options_select
+    weight: 26
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 0
+    weight: -5
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    region: content
   uid:
     type: entity_reference_autocomplete
     weight: 5
+    region: content
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    region: content
   url_redirects:
     weight: 50
     region: content

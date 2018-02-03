@@ -13,7 +13,6 @@ dependencies:
     - image.style.thumbnail
   module:
     - geolocation
-    - text
     - image
     - panelizer
     - user
