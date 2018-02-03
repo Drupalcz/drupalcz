@@ -1,0 +1,31 @@
+.vm-teaser {
+  @include bp(small) {
+    display: flex;
+  }
+
+  &.has-image {
+    .vm-image {
+      @include bp(small) {
+        margin-right: 3%;
+        width: 30%;
+      }
+      @include bp(middle) {
+        width: 20%;
+      }
+    }
+    .vm-content-wrapper {
+      @include bp(small) {
+        width: 70%;
+      }
+      @include bp(middle) {
+        width: 80%;
+      }
+    }
+  }
+
+  .vm-title {
+    font-size: 2.5rem;
+    margin-top: 0;
+  }
+}
+

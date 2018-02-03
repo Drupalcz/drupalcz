@@ -1,0 +1,9 @@
+{% block view_mode %}
+  <div class="vm vm-title">
+    {% if content.title|render|trim %}
+      <h2 class="vm-title">
+        {{ content.title }}
+      </h2>
+    {% endif %}
+  </div>
+{% endblock %}

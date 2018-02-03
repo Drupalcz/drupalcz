@@ -615,6 +615,32 @@ tbody td {
       .field--name-field-tags .field__item a:hover {
         box-shadow: inset 0 -2px 0 rgba(51, 122, 183, 0.1); }
 
+@media (min-width: 48rem) {
+  .vm-teaser {
+    display: -ms-flexbox;
+    display: flex; } }
+
+@media (min-width: 48rem) {
+  .vm-teaser.has-image .vm-image {
+    margin-right: 3%;
+    width: 30%; } }
+
+@media (min-width: 77rem) {
+  .vm-teaser.has-image .vm-image {
+    width: 20%; } }
+
+@media (min-width: 48rem) {
+  .vm-teaser.has-image .vm-content-wrapper {
+    width: 70%; } }
+
+@media (min-width: 77rem) {
+  .vm-teaser.has-image .vm-content-wrapper {
+    width: 80%; } }
+
+.vm-teaser .vm-title {
+  font-size: 2.5rem;
+  margin-top: 0; }
+
 .page-node-type-dcz-landing-page .block-page-title-block {
   margin: 0 auto;
   max-width: 120rem;
