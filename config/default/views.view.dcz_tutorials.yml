@@ -379,6 +379,7 @@ display:
         title: false
         fields: false
         arguments: false
+        empty: false
       fields:
         title:
           id: title
@@ -465,6 +466,18 @@ display:
           entity_type: node
           entity_field: uid
           plugin_id: numeric
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content: '<a href="/node/add/tutorial" class="button">Přidat návod</a>'
+          plugin_id: text_custom
     cache_metadata:
       max-age: -1
       contexts:
