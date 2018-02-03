@@ -129,11 +129,11 @@ article.comment .comment__meta .profile, .node__meta .profile {
     max-width: 120rem; }
 
 .region-breadcrumbs {
-  background: rgba(0, 0, 0, 0.05);
-  padding: 0 2rem; }
+  background: rgba(0, 0, 0, 0.05); }
   .region-breadcrumbs > * {
     margin: 0 auto;
-    max-width: 120rem; }
+    max-width: 120rem;
+    padding: 0 2rem; }
   .region-breadcrumbs .breadcrumb {
     font-size: 1.4rem;
     padding: 0; }
@@ -282,6 +282,7 @@ ul.tabs {
 .button {
   background: #29537d;
   border-radius: 3px;
+  border: none;
   color: white;
   padding: 0.5em 0.8em; }
   .button:hover {
@@ -330,6 +331,29 @@ mark {
 
 .indented {
   margin-left: 3em; }
+
+form {
+  background: rgba(51, 122, 183, 0.1);
+  padding: 1em 2em; }
+  form label {
+    display: block; }
+  form input {
+    color: #29537d; }
+  form .form-text,
+  form .form-email,
+  form .form-tel,
+  form .form-textarea {
+    border: none;
+    box-shadow: 0 0 0 2px #29537d;
+    border-radius: 3px;
+    padding: 0.5em 1em;
+    color: #29537d; }
+  form .form-textarea {
+    border-radius: 3px; }
+  form .form-item .description {
+    font-size: 0.85em;
+    line-height: 1.3em;
+    margin-top: 0.5em; }
 
 .forum .time {
   font-size: 1.44rem; }
