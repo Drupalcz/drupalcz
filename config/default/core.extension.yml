@@ -64,6 +64,7 @@ module:
   token: 0
   toolbar: 0
   user: 0
+  viewsreference: 0
   youtube: 0
   menu_link_content: 1
   pathauto: 1

@@ -1,0 +1,52 @@
+uuid: 3722fb18-a3c2-4b8c-b3d6-f8ca33ddf617
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dcz_para_view_reference.field_class
+    - field.field.paragraph.dcz_para_view_reference.field_description
+    - field.field.paragraph.dcz_para_view_reference.field_title
+    - field.field.paragraph.dcz_para_view_reference.field_view_reference
+    - paragraphs.paragraphs_type.dcz_para_view_reference
+  module:
+    - viewsreference
+id: paragraph.dcz_para_view_reference.default
+targetEntityType: paragraph
+bundle: dcz_para_view_reference
+mode: default
+content:
+  field_class:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_description:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_view_reference:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: viewsreference_autocomplete
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true
