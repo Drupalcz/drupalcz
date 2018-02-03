@@ -18,10 +18,132 @@ dependencies:
     - user
 third_party_settings:
   panelizer:
-    enable: false
+    enable: true
     custom: false
     allow: false
     default: default
+    displays:
+      default:
+        blocks:
+          5a1396ce-a682-4ad8-ae17-bdef9cc76f32:
+            id: 'entity_field:user:field_dcz_name'
+            label: Name
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: string
+              settings:
+                link_to_entity: false
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: content
+            weight: -1
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: 5a1396ce-a682-4ad8-ae17-bdef9cc76f32
+          e0534c3d-dc92-4049-a54d-8057a1ee8c3b:
+            id: 'entity_field:user:field_dcz_surname'
+            label: Surname
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: string
+              settings:
+                link_to_entity: false
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: content
+            weight: 0
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: e0534c3d-dc92-4049-a54d-8057a1ee8c3b
+          402d0dcb-eb24-41cd-a590-2f2b61e2f304:
+            id: 'entity_field:user:field_dcz_user_image'
+            label: Avatar
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: image
+              settings:
+                image_style: large
+                image_link: ''
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: content
+            weight: -2
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: 402d0dcb-eb24-41cd-a590-2f2b61e2f304
+          6291af4c-08ca-4133-9a84-4c9b6fef1a08:
+            id: 'entity_field:user:field_location'
+            label: Location
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: above
+              type: geolocation_latlng
+              settings: {  }
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: content
+            weight: 3
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: 6291af4c-08ca-4133-9a84-4c9b6fef1a08
+          24c8a4f4-2f34-49e6-8ebf-aff64c6e662c:
+            id: 'entity_field:user:field_dcz_bio'
+            label: Bio
+            provider: ctools_block
+            label_display: visible
+            formatter:
+              label: hidden
+              type: text_default
+              settings: {  }
+              third_party_settings: {  }
+              weight: 0
+            region: content
+            weight: 2
+            uuid: 24c8a4f4-2f34-49e6-8ebf-aff64c6e662c
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+          19091d04-9e4d-4342-8be4-fe46fe8536f8:
+            id: 'entity_field:user:created'
+            label: Created
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: inline
+              type: timestamp
+              settings:
+                date_format: czech_date
+                custom_date_format: ''
+                timezone: ''
+              third_party_settings: {  }
+              weight: 0
+            region: content
+            weight: 1
+            uuid: 19091d04-9e4d-4342-8be4-fe46fe8536f8
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+        id: panels_variant
+        label: Default
+        uuid: e78ba45e-a380-4cef-b5e0-8686aa27c505
+        weight: 0
+        layout: layout_onecol
+        layout_settings: {  }
+        page_title: '[user:name]'
+        storage_type: panelizer_default
+        storage_id: 'user:user:default:default'
+        builder: standard
+        pattern: panelizer
+        static_context: {  }
 id: user.user.default
 targetEntityType: user
 bundle: user

@@ -661,4 +661,12 @@ tbody td {
   max-width: 120rem;
   padding: 0 2rem; }
 
+@media (min-width: 48rem) {
+  .user--view-mode-full .block-entity-fielduserfield-dcz-user-image {
+    float: right;
+    width: 50%; } }
+
+.user--view-mode-full .block-entity-fielduserfield-dcz-bio {
+  clear: both; }
+
 /*# sourceMappingURL=style.css.map */
