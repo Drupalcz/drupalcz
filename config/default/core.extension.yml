@@ -24,6 +24,7 @@ module:
   dcz_user: 0
   editor: 0
   embed: 0
+  entity_class_formatter: 0
   entity_embed: 0
   entity_reference: 0
   entity_reference_revisions: 0
