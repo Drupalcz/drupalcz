@@ -1,0 +1,31 @@
+uuid: 62dcd66b-c4b1-4a48-81b6-d76fc7aa489e
+langcode: cs
+status: true
+dependencies:
+  config:
+    - views.view.dcz_tutorials
+  module:
+    - system
+    - views
+  theme:
+    - dcz_theme
+id: views_block__dcz_tutorials_block_user_tutorials
+theme: dcz_theme
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:dcz_tutorials-block_user_tutorials'
+settings:
+  id: 'views_block:dcz_tutorials-block_user_tutorials'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+  context_mapping: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: '/user/*'
+    negate: false
+    context_mapping: {  }
