@@ -1,0 +1,14 @@
+uuid: 20ff72fe-cede-43e3-8b27-c3b055148b80
+langcode: cs
+status: true
+dependencies: {  }
+name: hero_medium
+label: 'Hero medium'
+effects:
+  3623774f-2d70-4cc2-bded-14d0ddca5520:
+    uuid: 3623774f-2d70-4cc2-bded-14d0ddca5520
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 800
+      height: 200

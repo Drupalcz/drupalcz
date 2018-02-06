@@ -47,7 +47,7 @@ settings:
     who_s_new: 0
     who_s_online: 0
   enabled_settings:
-    pager: 0
+    pager: pager
     argument: 0
     limit: 0
     offset: 0

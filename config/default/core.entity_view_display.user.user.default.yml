@@ -38,8 +38,8 @@ third_party_settings:
               third_party_settings: {  }
               weight: 0
               region: content
-            region: content
-            weight: -1
+            region: first_above
+            weight: -3
             context_mapping:
               entity: '@panelizer.entity_context:entity'
             uuid: 5a1396ce-a682-4ad8-ae17-bdef9cc76f32
@@ -56,8 +56,8 @@ third_party_settings:
               third_party_settings: {  }
               weight: 0
               region: content
-            region: content
-            weight: 0
+            region: first_above
+            weight: -2
             context_mapping:
               entity: '@panelizer.entity_context:entity'
             uuid: e0534c3d-dc92-4049-a54d-8057a1ee8c3b
@@ -75,8 +75,8 @@ third_party_settings:
               third_party_settings: {  }
               weight: 0
               region: content
-            region: content
-            weight: -2
+            region: second_above
+            weight: -3
             context_mapping:
               entity: '@panelizer.entity_context:entity'
             uuid: 402d0dcb-eb24-41cd-a590-2f2b61e2f304
@@ -92,8 +92,8 @@ third_party_settings:
               third_party_settings: {  }
               weight: 0
               region: content
-            region: content
-            weight: 3
+            region: first_above
+            weight: 0
             context_mapping:
               entity: '@panelizer.entity_context:entity'
             uuid: 6291af4c-08ca-4133-9a84-4c9b6fef1a08
@@ -108,8 +108,8 @@ third_party_settings:
               settings: {  }
               third_party_settings: {  }
               weight: 0
-            region: content
-            weight: 2
+            region: middle
+            weight: -9
             uuid: 24c8a4f4-2f34-49e6-8ebf-aff64c6e662c
             context_mapping:
               entity: '@panelizer.entity_context:entity'
@@ -127,18 +127,57 @@ third_party_settings:
                 timezone: ''
               third_party_settings: {  }
               weight: 0
-            region: content
-            weight: 1
+            region: first_above
+            weight: -1
             uuid: 19091d04-9e4d-4342-8be4-fe46fe8536f8
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+          1c4c9f11-ac9f-4407-a163-3a9a689842ba:
+            id: 'views_block:dcz_articles-block_user_articles'
+            label: ''
+            provider: views
+            label_display: visible
+            views_label: ''
+            items_per_page: none
+            region: first_below
+            weight: 0
+            uuid: 1c4c9f11-ac9f-4407-a163-3a9a689842ba
+            context_mapping: {  }
+          6fd0396f-c296-4dd1-85e4-1a2d479b92c8:
+            id: 'views_block:dcz_tutorials-block_user_tutorials'
+            label: ''
+            provider: views
+            label_display: visible
+            views_label: ''
+            items_per_page: none
+            region: second_below
+            weight: 0
+            uuid: 6fd0396f-c296-4dd1-85e4-1a2d479b92c8
+            context_mapping: {  }
+          3871d9ce-19f4-4ee1-aebe-f8fe18da58a4:
+            id: 'entity_field:user:name'
+            label: Name
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: user_name
+              settings:
+                link_to_entity: false
+              third_party_settings: {  }
+              weight: 0
+            region: top
+            weight: 0
+            uuid: 3871d9ce-19f4-4ee1-aebe-f8fe18da58a4
             context_mapping:
               entity: '@panelizer.entity_context:entity'
         id: panels_variant
         label: Default
         uuid: e78ba45e-a380-4cef-b5e0-8686aa27c505
         weight: 0
-        layout: layout_onecol
+        layout: layout_twocol_bricks
         layout_settings: {  }
-        page_title: '[user:name]'
+        page_title: ''
         storage_type: panelizer_default
         storage_id: 'user:user:default:default'
         builder: standard
