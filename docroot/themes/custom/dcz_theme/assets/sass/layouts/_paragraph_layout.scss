@@ -1,57 +1,61 @@
 .paragraph--type--layout {
 
-  > .layout {
+  > .paragraph--layout {
     margin: 0 auto;
     max-width: $max-width;
-    padding: 0 $site-padding;
+    padding: 0 2rem;
 
-    .field--name-field-content-paragraph {
+    .field--name-field-paragraphs {
       display: grid;
       grid-column-gap: $content-layout-padding;
       grid-row-gap: $content-layout-padding;
+
+      .paragraph-content {
+        padding: 0;
+      }
     }
   }
 
-  @include bp(small) {
+  @include bp(medium) {
     // One column layout FULL width.
     &.layout-full {
-      .field--name-field-content-paragraph {
+      .field--name-field-paragraphs {
         width: 100%;
       }
     }
 
     // Two column layout HALF width.
     &.layout-half {
-      .field--name-field-content-paragraph {
+      .field--name-field-paragraphs {
         grid-template-columns: [first] 1fr [second] 1fr;
       }
     }
 
     // Two columns layout THIRDS.
     &.layout-third {
-      .field--name-field-content-paragraph {
+      .field--name-field-paragraphs {
         grid-template-columns: [first] 1fr [second] 1fr [third] 1fr;
       }
     }
 
     // Two columns layout QUARTERS.
     &.layout-quarter {
-      .field--name-field-content-paragraph {
+      .field--name-field-paragraphs {
         grid-template-columns: [first] 1fr [second] 1fr [third] 1fr [fourth] 1fr;
       }
     }
 
     // Two columns layout 1:2 ratio.
-    &.layout-one2two {
-      .field--name-field-content-paragraph {
+    &.layout-one-two {
+      .field--name-field-paragraphs {
         grid-template-columns: [first] 1fr [second] 2fr;
       }
     }
 
     // Three columns layout 1:2:1 ratio.
-    &.layout-onetwoone {
-      .field--name-field-content-paragraph {
-        grid-template-columns: [first] 1fr [second] 2fr [third] 1fr;
+    &.layout-two-one {
+      .field--name-field-paragraphs {
+        grid-template-columns: [first] 2fr [second] 1fr;
       }
     }
   }

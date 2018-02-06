@@ -9,7 +9,7 @@
         margin-right: 3%;
         width: 30%;
       }
-      @include bp(middle) {
+      @include bp(medium) {
         width: 20%;
       }
     }
@@ -17,7 +17,7 @@
       @include bp(small) {
         width: 70%;
       }
-      @include bp(middle) {
+      @include bp(medium) {
         width: 80%;
       }
     }

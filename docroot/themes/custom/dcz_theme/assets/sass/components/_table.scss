@@ -14,7 +14,7 @@ thead {
     text-align: center;
     vertical-align: top;
 
-    @include bp(middle) {
+    @include bp(medium) {
       display: table-cell;
       text-align: left;
     }
@@ -39,7 +39,7 @@ tbody {
     text-align: center;
     vertical-align: top;
 
-    @include bp(middle) {
+    @include bp(medium) {
       display: table-cell;
       text-align: left;
     }

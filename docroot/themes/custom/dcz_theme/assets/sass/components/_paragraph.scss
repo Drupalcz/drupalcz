@@ -1,3 +1,4 @@
+// Paragraph classes
 .dcz-para-black {
   background: $black;
   color: $white;
@@ -24,6 +25,22 @@
   padding: 1em 2em;
 }
 
+.dcz-para-drupal {
+  background: url('../images/drupal-tapestry.png') repeat top center;
+  color: $drupal-secondary;
+  padding: 1em 2em;
+}
+
+.dcz-para-checkerboard {
+  background: url('../images/checkerboard.jpg') repeat top center;
+  color: $white-9;
+  padding: 1em 2em;
+
+  a {
+    color: $white;
+  }
+}
+
 .dcz-para-text-center {
   text-align: center;
 }
@@ -34,4 +51,55 @@
 
 .dcz-para-text-shadow{
   text-shadow: 0 0 3px $gray-7;
+}
+
+.dcz-para-padding-big {
+  padding: 3em 2em;
+}
+
+.paragraph--type--layout {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+// Hero paragraph
+.paragraph--type--dcz-para-hero {
+  position: relative;
+
+  img {
+    display: block;
+  }
+
+  .hero-title {
+    @include bp(small) {
+      display: flex;
+      bottom: 0;
+      text-shadow: 0 0 5px $gray-5;
+      color: $white;
+      flex-direction: column;
+      font-size: 3rem;
+      justify-content: center;
+      left: 0;
+      letter-spacing: 0.25rem;
+      padding: 3rem;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+      text-transform: uppercase;
+
+      @include bp(small) {
+        font-size: 4rem;
+        margin: 0;
+      }
+      @include bp(medium) {
+        font-size: 6rem;
+      }
+    }
+  }
 }

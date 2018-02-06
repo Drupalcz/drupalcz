@@ -5,7 +5,7 @@
   font-size: 1.4rem;
 
   .footer-content {
-    @include bp(middle) {
+    @include bp(medium) {
       display: grid;
       grid-template-areas: 'footer-start footer-end';
       grid-template-columns: [footer-start] 3fr 2fr [footer-end];

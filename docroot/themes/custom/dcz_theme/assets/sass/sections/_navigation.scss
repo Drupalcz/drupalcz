@@ -3,7 +3,7 @@
   box-shadow: 0 0 25px 0 $gray-3;
   display: none;
 
-  @include bp(middle) {
+  @include bp(medium) {
     display: block;
   }
 }
@@ -41,6 +41,28 @@
         color: $white;
       }
     }
+  }
+}
+
+// Fixed menu
+#block-mainnavigation.fixed {
+  background: rgba(51, 122, 183, 0.85);
+  box-shadow: 0 3px 5px $gray-3;
+  left: 0;
+  position: fixed;
+  top: 0;
+  transition: all 600ms ease-in-out;
+  width: 100%;
+
+  &:hover {
+    background: rgba(51, 122, 183, 1);
+    transition: all 300ms ease-in-out;
+  }
+
+  .menu {
+    margin: 0 auto;
+    max-width: $max-width;
+    padding: 0 $site-padding;
   }
 }
 
