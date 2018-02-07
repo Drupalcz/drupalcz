@@ -1,0 +1,14 @@
+uuid: 5970a467-65e1-47c2-bd90-193b793003f3
+langcode: cs
+status: true
+dependencies: {  }
+name: hero_small
+label: 'Hero small'
+effects:
+  cb3187c5-f6db-416a-9522-30d2a602c1eb:
+    uuid: cb3187c5-f6db-416a-9522-30d2a602c1eb
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 400
+      height: 100

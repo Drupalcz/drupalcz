@@ -1,0 +1,32 @@
+teaser:
+  label: Teaser
+  category: View modes
+  type: partial
+  template: template/view_modes/teaser
+  regions:
+    image:
+      label: Image
+    title:
+      label: Title
+    content:
+      label: Content
+search:
+  label: Search
+  category: View modes
+  type: partial
+  template: template/view_modes/search
+  regions:
+    title:
+      label: Title
+    image:
+      label: Image
+    content:
+      label: Content
+title:
+  label: Title
+  category: View modes
+  type: partial
+  template: template/view_modes/title
+  regions:
+    title:
+      label: Title

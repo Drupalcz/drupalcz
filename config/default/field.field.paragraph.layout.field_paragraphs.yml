@@ -1,0 +1,68 @@
+uuid: 30ed0542-f7c3-44a3-b658-c67bbdcccbaf
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs
+    - paragraphs.paragraphs_type.dcz_para_block_reference
+    - paragraphs.paragraphs_type.dcz_para_content
+    - paragraphs.paragraphs_type.dcz_para_image
+    - paragraphs.paragraphs_type.dcz_para_tabs
+    - paragraphs.paragraphs_type.dcz_para_video
+    - paragraphs.paragraphs_type.dcz_para_view_reference
+    - paragraphs.paragraphs_type.layout
+  module:
+    - entity_reference_revisions
+id: paragraph.layout.field_paragraphs
+field_name: field_paragraphs
+entity_type: paragraph
+bundle: layout
+label: Paragraphs
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      dcz_para_block_reference: dcz_para_block_reference
+      dcz_para_content: dcz_para_content
+      dcz_para_image: dcz_para_image
+      dcz_para_tabs: dcz_para_tabs
+      dcz_para_video: dcz_para_video
+      dcz_para_view_reference: dcz_para_view_reference
+    target_bundles_drag_drop:
+      layout:
+        weight: 11
+        enabled: false
+      dcz_para_block_reference:
+        enabled: true
+        weight: 12
+      dcz_para_content:
+        enabled: true
+        weight: 13
+      dcz_para_gallery:
+        weight: 14
+        enabled: false
+      dcz_para_hero:
+        weight: 15
+        enabled: false
+      dcz_para_image:
+        enabled: true
+        weight: 16
+      dcz_para_tab:
+        weight: 17
+        enabled: false
+      dcz_para_tabs:
+        enabled: true
+        weight: 18
+      dcz_para_video:
+        enabled: true
+        weight: 19
+      dcz_para_view_reference:
+        enabled: true
+        weight: 20
+field_type: entity_reference_revisions

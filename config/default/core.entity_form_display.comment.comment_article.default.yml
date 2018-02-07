@@ -6,6 +6,7 @@ dependencies:
     - comment.type.comment_article
     - field.field.comment.comment_article.comment_body
   module:
+    - path
     - text
 id: comment.comment_article.default
 targetEntityType: comment
@@ -30,6 +31,12 @@ content:
       include_locked: true
     third_party_settings: {  }
     region: content
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   subject:
     type: string_textfield
     weight: 10

@@ -13,8 +13,81 @@ dependencies:
     - field.field.node.dcz_showcase.field_url
     - node.type.dcz_showcase
   module:
+    - panelizer
     - text
     - user
+third_party_settings:
+  panelizer:
+    enable: true
+    custom: false
+    allow: false
+    default: default
+    displays:
+      default:
+        blocks:
+          a017c66c-3d7f-430d-ae58-8e50286395c9:
+            id: 'entity_field:node:title'
+            label: Title
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: string
+              settings:
+                link_to_entity: true
+              third_party_settings: {  }
+              weight: 0
+            region: title
+            weight: 0
+            uuid: a017c66c-3d7f-430d-ae58-8e50286395c9
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+          a5c2a5ab-e515-46dc-8742-fd32c27bc5ac:
+            id: 'entity_field:node:field_teaser_image'
+            label: 'Teaser Image'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: image
+              settings:
+                image_style: landscape_small
+                image_link: content
+              third_party_settings: {  }
+              weight: 0
+            region: image
+            weight: -10
+            uuid: a5c2a5ab-e515-46dc-8742-fd32c27bc5ac
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+          05e6e220-4bd8-4a7d-81d5-cdc7ba15d5e1:
+            id: 'entity_field:node:field_teaser_text'
+            label: 'Teaser Text'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: basic_string
+              settings: {  }
+              third_party_settings: {  }
+              weight: 0
+            region: content
+            weight: -1
+            uuid: 05e6e220-4bd8-4a7d-81d5-cdc7ba15d5e1
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+        id: panels_variant
+        label: Default
+        uuid: aa32b0a4-edc0-418d-af7b-9b3d167e0ac9
+        weight: 0
+        layout: teaser
+        layout_settings: {  }
+        page_title: null
+        storage_type: panelizer_default
+        storage_id: 'node:dcz_showcase:teaser:default'
+        builder: ipe
+        pattern: panelizer
+        static_context: {  }
 id: node.dcz_showcase.teaser
 targetEntityType: node
 bundle: dcz_showcase
@@ -31,6 +104,8 @@ content:
   links:
     weight: 100
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   field_display_options: true
   field_drupal_version: true
