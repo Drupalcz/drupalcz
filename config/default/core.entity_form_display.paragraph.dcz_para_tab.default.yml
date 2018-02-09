@@ -1,0 +1,44 @@
+uuid: 1554a1bd-008e-4c6a-aec3-42cc2d089307
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dcz_para_tab.field_content
+    - field.field.paragraph.dcz_para_tab.field_description
+    - field.field.paragraph.dcz_para_tab.field_tab
+    - paragraphs.paragraphs_type.dcz_para_tab
+  module:
+    - text
+id: paragraph.dcz_para_tab.default
+targetEntityType: paragraph
+bundle: dcz_para_tab
+mode: default
+content:
+  field_content:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_description:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_tab:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

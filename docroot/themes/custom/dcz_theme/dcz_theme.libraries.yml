@@ -2,6 +2,8 @@ global-styling:
   css:
     theme:
       css/style.css: {}
+  js:
+    js/drupalcz_theme.js: {}
 
 font_dcz:
   version: VERSION

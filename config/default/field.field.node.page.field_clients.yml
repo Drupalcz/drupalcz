@@ -1,0 +1,30 @@
+uuid: 8a88c975-a454-4aec-93af-39dab2d8133b
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_clients
+    - node.type.individual
+    - node.type.organization
+    - node.type.page
+id: node.page.field_clients
+field_name: field_clients
+entity_type: node
+bundle: page
+label: Zadavatelé
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      individual: individual
+      organization: organization
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: individual
+field_type: entity_reference

@@ -1,0 +1,24 @@
+uuid: d643054b-fcd1-4bac-b411-4bd0d0657620
+langcode: cs
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - dcz_theme
+id: useraccountmenu
+theme: dcz_theme
+region: top_bar
+weight: 0
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 1
+visibility: {  }

@@ -1,0 +1,18 @@
+uuid: 2e055504-0519-4e4d-bf6e-56151add9631
+langcode: cs
+status: true
+dependencies:
+  theme:
+    - dcz_theme
+id: dcz_theme_local_actions
+theme: dcz_theme
+region: content_top
+weight: -3
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

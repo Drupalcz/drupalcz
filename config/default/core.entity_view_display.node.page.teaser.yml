@@ -1,0 +1,106 @@
+uuid: 4c4a0da5-bffc-4bc7-ba5d-88c6fc711051
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.page.body
+    - field.field.node.page.field_authors
+    - field.field.node.page.field_clients
+    - field.field.node.page.field_coauthors
+    - field.field.node.page.field_creditors
+    - field.field.node.page.field_paragraphs
+    - node.type.page
+  module:
+    - panelizer
+    - user
+third_party_settings:
+  panelizer:
+    enable: true
+    custom: false
+    allow: false
+    default: default
+    displays:
+      default:
+        blocks:
+          1eb99b72-71aa-43b8-bd6d-763ff7be7ceb:
+            id: 'entity_field:node:title'
+            label: Title
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: string
+              settings:
+                link_to_entity: true
+              third_party_settings: {  }
+              weight: 0
+            region: title
+            weight: 0
+            uuid: 1eb99b72-71aa-43b8-bd6d-763ff7be7ceb
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+          f8143822-811a-46c2-9f50-8308cdfef865:
+            id: 'entity_field:node:field_teaser_image'
+            label: 'Teaser Image'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: image
+              settings:
+                image_style: landscape_small
+                image_link: content
+              third_party_settings: {  }
+              weight: 0
+            region: image
+            weight: 0
+            uuid: f8143822-811a-46c2-9f50-8308cdfef865
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+          86b3ab79-8038-43d6-86c0-bcd112807758:
+            id: 'entity_field:node:field_teaser_text'
+            label: 'Teaser Text'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: basic_string
+              settings: {  }
+              third_party_settings: {  }
+              weight: 0
+            region: content
+            weight: 0
+            uuid: 86b3ab79-8038-43d6-86c0-bcd112807758
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+        id: panels_variant
+        label: Default
+        uuid: 72be8139-f884-4a0f-83bf-e6f424ebc68c
+        weight: 0
+        layout: teaser
+        layout_settings: {  }
+        page_title: ''
+        storage_type: panelizer_default
+        storage_id: 'node:page:teaser:default'
+        builder: ipe
+        pattern: panelizer
+        static_context: {  }
+id: node.page.teaser
+targetEntityType: node
+bundle: page
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_authors: true
+  field_clients: true
+  field_coauthors: true
+  field_creditors: true
+  field_paragraphs: true
+  langcode: true

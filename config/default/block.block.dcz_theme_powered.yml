@@ -1,0 +1,20 @@
+uuid: c8ea9916-72d3-4756-ba52-6a094492d0e9
+langcode: cs
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - dcz_theme
+id: dcz_theme_powered
+theme: dcz_theme
+region: footer_one
+weight: -5
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,20 @@
+uuid: d5bf460c-4c83-41de-a0b1-93b59a78411e
+langcode: cs
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - dcz_theme
+id: dcz_theme_breadcrumbs
+theme: dcz_theme
+region: breadcrumbs
+weight: -3
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }

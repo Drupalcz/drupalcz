@@ -1,0 +1,22 @@
+uuid: 877cb01e-8814-47fa-aaf3-c2f241f6f0fd
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.organization
+  module:
+    - text
+id: node.organization.body
+field_name: body
+entity_type: node
+bundle: organization
+label: 'O organizaci'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

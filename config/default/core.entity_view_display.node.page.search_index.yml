@@ -1,0 +1,104 @@
+uuid: aff94002-b948-4f85-b2d1-dd1af54b7d2c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_index
+    - field.field.node.page.body
+    - field.field.node.page.field_authors
+    - field.field.node.page.field_clients
+    - field.field.node.page.field_coauthors
+    - field.field.node.page.field_creditors
+    - field.field.node.page.field_paragraphs
+    - node.type.page
+  module:
+    - entity_reference_revisions
+    - panelizer
+    - text
+    - user
+third_party_settings:
+  panelizer:
+    enable: true
+    custom: false
+    allow: false
+    default: default
+    displays:
+      default:
+        blocks:
+          7c3c6c20-9966-464b-84c2-6e7ede8fffb1:
+            id: 'entity_field:node:title'
+            label: Title
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: string
+              settings:
+                link_to_entity: true
+              third_party_settings: {  }
+              weight: 0
+            region: title
+            weight: 0
+            uuid: 7c3c6c20-9966-464b-84c2-6e7ede8fffb1
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+          689eba0e-a538-4373-98ab-0ca9c43149f1:
+            id: 'entity_field:node:field_teaser_text'
+            label: 'Teaser Text'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: basic_string
+              settings: {  }
+              third_party_settings: {  }
+              weight: 0
+            region: content
+            weight: 0
+            uuid: 689eba0e-a538-4373-98ab-0ca9c43149f1
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+        id: panels_variant
+        label: Default
+        uuid: 544c7296-cfd5-4ddf-8a81-1c0633461b6c
+        weight: 0
+        layout: search
+        layout_settings: {  }
+        page_title: ''
+        storage_type: panelizer_default
+        storage_id: 'node:page:search_index:default'
+        builder: ipe
+        pattern: panelizer
+        static_context: {  }
+id: node.page.search_index
+targetEntityType: node
+bundle: page
+mode: search_index
+content:
+  body:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_paragraphs:
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_authors: true
+  field_clients: true
+  field_coauthors: true
+  field_creditors: true
+  langcode: true

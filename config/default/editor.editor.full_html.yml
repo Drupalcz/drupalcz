@@ -18,7 +18,10 @@ settings:
             - Bold
             - Italic
             - RemoveFormat
+            - Superscript
+            - Subscript
             - Styles
+            - Format
         -
           name: Input
           items:
@@ -42,18 +45,19 @@ settings:
           name: Media
           items:
             - Blockquote
-            - DrupalImage
             - Table
+            - node
         -
           name: Tools
           items:
-            - CodeSnippet
             - Source
+            - Maximize
+            - ShowBlocks
   plugins:
-    stylescombo:
-      styles: "h1|H1\r\nh2|H2\r\nh3|H3\r\nh4|H4\r\na.btn.btn-primary|Button\r\np.lead|Leading text"
     language:
       language_list: un
+    stylescombo:
+      styles: "h1|H1\r\nh2|H2\r\nh3|H3\r\nh4|H4\r\na.btn.btn-primary|Button\r\np.lead|Leading text"
     codesnippet:
       highlight_style: arta
       highlight_languages:

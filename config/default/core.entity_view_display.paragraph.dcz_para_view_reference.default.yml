@@ -1,0 +1,41 @@
+uuid: 8e05ea2b-b0f1-4cec-92df-b04ee593c177
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dcz_para_view_reference.field_class
+    - field.field.paragraph.dcz_para_view_reference.field_description
+    - field.field.paragraph.dcz_para_view_reference.field_title
+    - field.field.paragraph.dcz_para_view_reference.field_view_reference
+    - paragraphs.paragraphs_type.dcz_para_view_reference
+  module:
+    - viewsreference
+id: paragraph.dcz_para_view_reference.default
+targetEntityType: paragraph
+bundle: dcz_para_view_reference
+mode: default
+content:
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_view_reference:
+    weight: 1
+    label: hidden
+    settings:
+      plugin_types:
+        default: default
+        embed: embed
+        page: 0
+        block: 0
+        feed: 0
+    third_party_settings: {  }
+    type: viewsreference_formatter
+    region: content
+hidden:
+  field_class: true
+  field_description: true

@@ -1,0 +1,13 @@
+.postscript {
+  background: $postscript-bg;
+  //border-top: 2px solid $drupal-secondary;
+  box-shadow: 0 -4px 0 0 rgba(51, 122, 183, .2), 0 -10px 0 0 rgba(51, 122, 183, .2), 0 -16px 0 0 rgba(51, 122, 183, .2);
+  margin-top: 2em;
+  padding: 2em 0;
+}
+
+.region-postscript {
+  margin: 0 auto;
+  max-width: $max-width;
+  padding: 0 $content-layout-padding;
+}

@@ -1,0 +1,23 @@
+uuid: 2bb65ce1-a858-48a9-85a1-4af5c76d11ff
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_websites
+    - node.type.organization
+  module:
+    - link
+id: node.organization.field_websites
+field_name: field_websites
+entity_type: node
+bundle: organization
+label: 'Webové stránky'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

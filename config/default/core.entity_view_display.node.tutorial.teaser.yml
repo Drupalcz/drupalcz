@@ -1,0 +1,128 @@
+uuid: 107e2d7f-da97-4751-afd9-1a1280ef1173
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.tutorial.body
+    - field.field.node.tutorial.field_authors
+    - field.field.node.tutorial.field_clients
+    - field.field.node.tutorial.field_coauthors
+    - field.field.node.tutorial.field_creditors
+    - field.field.node.tutorial.field_paragraphs
+    - field.field.node.tutorial.field_teaser_image
+    - field.field.node.tutorial.field_teaser_text
+    - image.style.medium
+    - node.type.tutorial
+  module:
+    - image
+    - panelizer
+    - user
+third_party_settings:
+  panelizer:
+    enable: true
+    custom: false
+    allow: false
+    default: default
+    displays:
+      default:
+        blocks:
+          92587ec6-19e6-4eb2-8914-e29259484980:
+            id: 'entity_field:node:field_teaser_image'
+            label: 'Teaser Image'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: image
+              settings:
+                image_style: landscape_small
+                image_link: content
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: image
+            weight: -2
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: 92587ec6-19e6-4eb2-8914-e29259484980
+          98e69efb-bb6b-41e8-a5bf-49b71562c5bb:
+            id: 'entity_field:node:field_teaser_text'
+            label: 'Teaser Text'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: basic_string
+              settings: {  }
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: content
+            weight: -2
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: 98e69efb-bb6b-41e8-a5bf-49b71562c5bb
+          6cb4e226-c5bd-4b4e-bb98-af9a4a844f86:
+            id: 'entity_field:node:title'
+            label: Title
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: string
+              settings:
+                link_to_entity: true
+              third_party_settings: {  }
+              weight: 0
+            region: title
+            weight: 0
+            uuid: 6cb4e226-c5bd-4b4e-bb98-af9a4a844f86
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+        id: panels_variant
+        label: Default
+        uuid: 5cd4a11d-b93d-414b-b41b-9ae4785bbd4d
+        weight: 0
+        layout: teaser
+        layout_settings: {  }
+        page_title: ''
+        storage_type: panelizer_default
+        storage_id: 'node:tutorial:teaser:default'
+        builder: ipe
+        pattern: panelizer
+        static_context: {  }
+id: node.tutorial.teaser
+targetEntityType: node
+bundle: tutorial
+mode: teaser
+content:
+  field_teaser_image:
+    type: image
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: content
+    third_party_settings: {  }
+  field_teaser_text:
+    type: basic_string
+    weight: 2
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_authors: true
+  field_clients: true
+  field_coauthors: true
+  field_creditors: true
+  field_paragraphs: true
+  langcode: true

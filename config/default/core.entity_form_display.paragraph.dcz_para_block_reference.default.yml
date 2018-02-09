@@ -3,31 +3,40 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.dcz_para_block_reference.field_dcz_para_class
-    - field.field.paragraph.dcz_para_block_reference.field_p_block_reference
-    - field.field.paragraph.dcz_para_block_reference.field_p_title
+    - field.field.paragraph.dcz_para_block_reference.field_block_reference
+    - field.field.paragraph.dcz_para_block_reference.field_class
+    - field.field.paragraph.dcz_para_block_reference.field_description
+    - field.field.paragraph.dcz_para_block_reference.field_title
     - paragraphs.paragraphs_type.dcz_para_block_reference
 id: paragraph.dcz_para_block_reference.default
 targetEntityType: paragraph
 bundle: dcz_para_block_reference
 mode: default
 content:
-  field_dcz_para_class:
+  field_block_reference:
     weight: 2
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
-    region: content
-  field_p_block_reference:
-    weight: 1
     settings:
       match_operator: CONTAINS
       size: 60
-      placeholder: 'Start typing block name…'
+      placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  field_p_title:
+  field_class:
+    type: options_buttons
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_description:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
     weight: 0
     settings:
       size: 60
