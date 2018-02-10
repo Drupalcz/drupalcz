@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4cbfd426d4d2dab66939fe3414ebb42f",
+    "content-hash": "85449aed7fbc62739aa49beabf06a2e9",
     "packages": [
         {
             "name": "acquia/blt",
@@ -510,6 +510,17 @@
                 "html"
             ],
             "time": "2017-06-12T17:35:44+00:00"
+        },
+        {
+            "name": "ckeditor/codesnippet",
+            "version": "4.8.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://download.ckeditor.com/codesnippet/releases/codesnippet_4.8.0.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-library"
         },
         {
             "name": "composer/installers",
