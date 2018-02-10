@@ -9,6 +9,8 @@ dependencies:
     - field.field.user.user.field_dcz_pos_lat
     - field.field.user.user.field_dcz_pos_long
     - field.field.user.user.field_dcz_surname
+    - field.field.user.user.field_dcz_user_image
+    - field.field.user.user.field_location
   module:
     - text
     - user

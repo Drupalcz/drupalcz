@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.dcz_landing_page.body
     - field.field.node.dcz_landing_page.field_hero_widget
     - field.field.node.dcz_landing_page.field_paragraphs
+    - field.field.node.dcz_landing_page.panelizer
     - node.type.dcz_landing_page
   module:
     - paragraphs
@@ -18,7 +19,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 3
+    weight: 4
     settings:
       rows: 9
       summary_rows: 3
@@ -44,22 +45,22 @@ content:
     third_party_settings: {  }
     region: content
   field_paragraphs:
-    weight: 4
+    weight: 2
     settings:
       title: Paragraph
       title_plural: Paragraphs
       edit_mode: closed
       closed_mode: preview
       autocollapse: none
-      add_mode: dropdown
+      add_mode: button
       form_display_mode: default
-      default_paragraph_type: _none
+      default_paragraph_type: layout
     third_party_settings: {  }
     type: paragraphs
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 3
     settings:
       include_locked: true
     third_party_settings: {  }
@@ -108,4 +109,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
-hidden: {  }
+  url_redirects:
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  panelizer: true

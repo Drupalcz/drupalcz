@@ -1,0 +1,21 @@
+uuid: 769b7f18-a9c6-4205-be03-aaf21d04b9c2
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_class
+    - paragraphs.paragraphs_type.layout
+  module:
+    - options
+id: paragraph.layout.field_class
+field_name: field_class
+entity_type: paragraph
+bundle: layout
+label: 'Paragraph class'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

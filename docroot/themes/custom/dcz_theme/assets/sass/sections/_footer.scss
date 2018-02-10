@@ -3,16 +3,16 @@
   background: $footer-bg;
   color: $footer-text;
   font-size: 1.4rem;
-  padding: 3em;
 
   .footer-content {
-    display: grid;
-    grid-template-areas:
-    'footer-start footer-end';
-    grid-template-columns:
-    [footer-start] 3fr 2fr [footer-end] ;
+    @include bp(medium) {
+      display: grid;
+      grid-template-areas: 'footer-start footer-end';
+      grid-template-columns: [footer-start] 3fr 2fr [footer-end];
+    }
     margin: 0 auto;
     max-width: $max-width;
+    padding: .5em $content-layout-padding;
   }
 
   .menu {
@@ -21,6 +21,10 @@
 
   a {
     color: $footer-link;
+  }
+
+  p {
+    margin: 0;
   }
 }
 

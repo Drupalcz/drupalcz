@@ -1,0 +1,24 @@
+{% block view_mode %}
+  <div class="vm vm-search">
+    {% if content.image|render|trim %}
+      <div class="vm-image">
+        {{ content.image }}
+      </div>
+    {% endif %}
+
+    {% if content.title|render|trim or content.content|render|trim %}
+      <div class="vm-content-wrapper">
+        {% if content.title|render|trim %}
+          <h2 class="vm-title">
+            {{ content.title }}
+          </h2>
+        {% endif %}
+        {% if content.content|render|trim %}
+          <div class="vm-content">
+            {{ content.content }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

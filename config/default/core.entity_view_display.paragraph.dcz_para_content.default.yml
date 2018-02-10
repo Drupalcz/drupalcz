@@ -8,14 +8,22 @@ dependencies:
     - field.field.paragraph.dcz_para_content.field_description
     - paragraphs.paragraphs_type.dcz_para_content
   module:
+    - entity_class_formatter
     - text
 id: paragraph.dcz_para_content.default
 targetEntityType: paragraph
 bundle: dcz_para_content
 mode: default
 content:
-  field_content:
+  field_class:
+    type: entity_class_formatter
     weight: 1
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_content:
+    weight: 0
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -23,6 +31,5 @@ content:
     region: content
 hidden:
   created: true
-  field_class: true
   field_description: true
   uid: true

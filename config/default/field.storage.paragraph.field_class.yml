@@ -21,6 +21,15 @@ settings:
       value: dcz_para_light
       label: 'Light background'
     -
+      value: dcz_para_drupal
+      label: 'Drupal tapestry'
+    -
+      value: dcz_para_checkerboard
+      label: Checkerboard
+    -
+      value: dcz_para_padding-big
+      label: 'Bigger padding'
+    -
       value: dcz_para_text_center
       label: 'Text center align'
     -
