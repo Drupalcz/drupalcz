@@ -1,5 +1,6 @@
 header {
   background: $header-bg;
+
 }
 
 .region-header {
@@ -9,11 +10,4 @@ header {
   margin: 0 auto;
   max-width: $max-width;
   padding: 1em $site-padding;
-}
-
-.logo {
-  a:hover {
-    box-shadow: none;
-    opacity: .85;
-  }
 }

@@ -4,27 +4,25 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
-    - field.field.paragraph.dcz_para_gallery.field_class
-    - field.field.paragraph.dcz_para_gallery.field_description
-    - field.field.paragraph.dcz_para_gallery.field_gallery
-    - field.field.paragraph.dcz_para_gallery.field_title
+    - field.field.paragraph.dcz_para_gallery.field_dcz_para_class
+    - field.field.paragraph.dcz_para_gallery.field_p_gallery
+    - field.field.paragraph.dcz_para_gallery.field_p_title
     - paragraphs.paragraphs_type.dcz_para_gallery
 id: paragraph.dcz_para_gallery.preview
 targetEntityType: paragraph
 bundle: dcz_para_gallery
 mode: preview
 content:
-  field_description:
+  field_p_title:
     type: string
     weight: 0
-    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    region: content
 hidden:
   created: true
-  field_class: true
-  field_gallery: true
-  field_title: true
+  field_dcz_para_class: true
+  field_p_gallery: true
   uid: true

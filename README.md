@@ -26,7 +26,6 @@ Branch | Build status | Dev site
 * .travis.yml - Travis CI test suite configuration.
 
 ## Requirements
-* You need PHP ^7.1
 * Install composer: https://getcomposer.org/doc/00-intro.md
 * Install Drush version 8: http://docs.drush.org/en/master/install/
 * We are using Acquia BLT which has it's own set of requirements.

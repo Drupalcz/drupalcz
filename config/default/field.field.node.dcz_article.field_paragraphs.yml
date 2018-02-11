@@ -5,7 +5,12 @@ dependencies:
   config:
     - field.storage.node.field_paragraphs
     - node.type.dcz_article
-    - paragraphs.paragraphs_type.dcz_para_tab
+    - paragraphs.paragraphs_type.dcz_para_block_reference
+    - paragraphs.paragraphs_type.dcz_para_content
+    - paragraphs.paragraphs_type.dcz_para_gallery
+    - paragraphs.paragraphs_type.dcz_para_hero
+    - paragraphs.paragraphs_type.dcz_para_image
+    - paragraphs.paragraphs_type.dcz_para_video
   module:
     - entity_reference_revisions
 id: node.dcz_article.field_paragraphs
@@ -21,32 +26,30 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 1
     target_bundles:
-      dcz_para_tab: dcz_para_tab
+      dcz_para_block_reference: dcz_para_block_reference
+      dcz_para_content: dcz_para_content
+      dcz_para_gallery: dcz_para_gallery
+      dcz_para_hero: dcz_para_hero
+      dcz_para_image: dcz_para_image
+      dcz_para_video: dcz_para_video
     target_bundles_drag_drop:
       dcz_para_block_reference:
-        weight: 7
-        enabled: false
-      dcz_para_content:
-        weight: 8
-        enabled: false
-      dcz_para_gallery:
-        weight: 9
-        enabled: false
-      dcz_para_hero:
-        weight: 10
-        enabled: false
-      dcz_para_image:
-        weight: 11
-        enabled: false
-      dcz_para_video:
-        weight: 12
-        enabled: false
-      dcz_para_tab:
         enabled: true
-        weight: 14
-      dcz_para_tabs:
-        weight: 15
-        enabled: false
+        weight: 7
+      dcz_para_content:
+        enabled: true
+        weight: 8
+      dcz_para_gallery:
+        enabled: true
+        weight: 9
+      dcz_para_hero:
+        enabled: true
+        weight: 10
+      dcz_para_image:
+        enabled: true
+        weight: 11
+      dcz_para_video:
+        enabled: true
+        weight: 12
 field_type: entity_reference_revisions

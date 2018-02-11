@@ -3,8 +3,7 @@
 // 2. Write a comma separated list of key: value, pairs that we will use later
 $breakpoints: (
   small: 48rem,
-  medium: 77rem,
-  large: $max-width,
+  large: var(--max-width),
 );
 
 // if selector is wider than the screensize we are calling

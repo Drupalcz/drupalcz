@@ -4,117 +4,26 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.dcz_article.body
     - field.field.node.dcz_article.field_comments_article
-    - field.field.node.dcz_article.field_paragraphs
     - field.field.node.dcz_article.field_tags
-    - field.field.node.dcz_article.field_teaser_image
-    - field.field.node.dcz_article.field_teaser_text
-    - image.style.medium
     - node.type.dcz_article
   module:
-    - image
-    - panelizer
     - user
-third_party_settings:
-  panelizer:
-    enable: true
-    custom: false
-    allow: false
-    default: default
-    displays:
-      default:
-        blocks:
-          fd610fba-c01d-40e5-9549-c774e4a8445e:
-            id: 'entity_field:node:field_teaser_image'
-            label: 'Teaser Image'
-            provider: ctools_block
-            label_display: '0'
-            formatter:
-              label: hidden
-              type: image
-              settings:
-                image_style: landscape_small
-                image_link: content
-              third_party_settings: {  }
-              weight: 0
-              region: image
-            region: image
-            weight: -1
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            uuid: fd610fba-c01d-40e5-9549-c774e4a8445e
-          af949e53-f343-47e6-81c9-580a1fd53b45:
-            id: 'entity_field:node:field_teaser_text'
-            label: 'Teaser Text'
-            provider: ctools_block
-            label_display: '0'
-            formatter:
-              label: hidden
-              type: basic_string
-              settings: {  }
-              third_party_settings: {  }
-              weight: 0
-              region: content
-            region: content
-            weight: -9
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            uuid: af949e53-f343-47e6-81c9-580a1fd53b45
-          5c3fc6e2-a92f-42ae-a904-351f2fc216a3:
-            id: 'entity_field:node:title'
-            label: Title
-            provider: ctools_block
-            label_display: '0'
-            formatter:
-              label: hidden
-              type: string
-              settings:
-                link_to_entity: true
-              third_party_settings: {  }
-              weight: 0
-            region: title
-            weight: 0
-            uuid: 5c3fc6e2-a92f-42ae-a904-351f2fc216a3
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-        id: panels_variant
-        label: Default
-        uuid: 52812769-f376-49e4-900d-a15cb559218c
-        weight: 0
-        layout: teaser
-        layout_settings: {  }
-        page_title: ''
-        storage_type: panelizer_default
-        storage_id: 'node:dcz_article:teaser:default'
-        builder: ipe
-        pattern: panelizer
-        static_context: {  }
 id: node.dcz_article.teaser
 targetEntityType: node
 bundle: dcz_article
 mode: teaser
 content:
-  field_teaser_image:
-    type: image
-    weight: 0
-    region: content
-    label: hidden
-    settings:
-      image_style: medium
-      image_link: content
-    third_party_settings: {  }
-  field_teaser_text:
-    type: basic_string
+  links:
     weight: 1
-    region: content
-    label: hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   body: true
   field_comments_article: true
   field_paragraphs: true
   field_tags: true
+  field_teaser_image: true
+  field_teaser_text: true
   langcode: true
-  links: true

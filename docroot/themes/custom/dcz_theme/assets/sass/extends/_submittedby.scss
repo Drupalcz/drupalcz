@@ -1,21 +1,13 @@
 %submitted-by {
-  background: $gray-05;
+  background: $gray-1;
   color: $gray-6;
   font-size: $font-size-small;
-  margin: 0 0 1.5em;
-  padding: .5em;
+  margin: 0 0 .5em;
+  padding: .5em $site-padding;
 
   > a {
     border-right: 1px solid $gray-3;
     margin-right: .5em;
     padding-right: .5em;
   }
-}
-
-%smallprofileimage {
-  float: left;
-  height: 32px;
-  margin-right: 1em;
-  overflow: hidden;
-  width: 32px;
 }

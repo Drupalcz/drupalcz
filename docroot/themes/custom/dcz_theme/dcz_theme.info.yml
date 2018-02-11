@@ -22,6 +22,3 @@ regions:
 libraries:
   - 'dcz_theme/global-styling'
   - 'dcz_theme/font_dcz'
-
-ckeditor_stylesheets:
-  - css/style.css

@@ -6,7 +6,6 @@ dependencies:
     - comment.type.comment_forum
     - field.field.comment.comment_forum.comment_body
   module:
-    - path
     - text
 _core:
   default_config_hash: EMa4-jXqGoooiV0X2bgOJxBI7RVBhpXWc_780E4YwGQ
@@ -33,12 +32,6 @@ content:
       include_locked: true
     third_party_settings: {  }
     region: content
-  path:
-    type: path
-    weight: 30
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   subject:
     type: string_textfield
     weight: 10

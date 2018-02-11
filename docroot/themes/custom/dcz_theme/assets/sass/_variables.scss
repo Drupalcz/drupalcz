@@ -33,23 +33,20 @@ $white-10: $white;
 // Project colors
 $drupal-primary:         #337ab7;
 $drupal-secondary:       #29537d;
-
 $drupal-success:         #5cb85c;
 $drupal-info:            #5bc0de;
 $drupal-warning:         #f0ad4e;
 $drupal-danger:          #d9534f;
-$text-color:             #161c21;
-$light-blue:             rgba(51, 122, 183, 0.1);
+$text-color: #161c21;
 
 // Link color
-$link-color:     $drupal-primary;
+$link-color: rgb(47, 139, 255);
 
 // Element colors
 $topbar-bg: $drupal-secondary;
 $topbar-text: $white-6;
 $header-bg: $drupal-primary;
 $header-text: $white;
-$postscript-bg: $light-blue;
 $footer-bg: $drupal-secondary;
 $footer-text: $white-6;
 $footer-link: $white-8;
@@ -66,8 +63,8 @@ $content-layout-padding: 2rem;
 // Fonts
 //
 // Font sizes
-$base-font-size: 1.8rem;
-$font-size-large: $base-font-size * 1.35;
+$base-font-size: 1.6rem;
+$font-size-large: $base-font-size * 1.2;
 $font-size-small: $base-font-size * .8;
 
 // Font family

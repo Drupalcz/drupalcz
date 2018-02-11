@@ -1,9 +1,0 @@
-uuid: 71b02b8c-6bdc-425f-bca2-87650f201958
-langcode: en
-status: true
-dependencies: {  }
-id: dcz_para_view_reference
-label: 'View reference'
-icon_uuid: null
-description: null
-behavior_plugins: {  }
