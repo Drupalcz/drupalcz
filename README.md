@@ -69,6 +69,7 @@ Branch | Build status | Dev site
 
 ## Contributing
 * We are using GitFlow(https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow/) branching strategy
+* Learn how to manage config: https://www.youtube.com/watch?v=WsMuQFO8yGU
 * You need to create ```feature/NAME``` branch for each issue
 * Commit your changes. ( http://chris.beams.io/posts/git-commit/ )
 * Test your work by running:
