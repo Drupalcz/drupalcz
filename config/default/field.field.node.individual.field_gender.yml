@@ -1,0 +1,23 @@
+uuid: e0cca16e-defa-4aad-95e5-da86c71dce71
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gender
+    - node.type.individual
+id: node.individual.field_gender
+field_name: field_gender
+entity_type: node
+bundle: individual
+label: Pohlaví
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: muž
+  off_label: žena
+field_type: boolean

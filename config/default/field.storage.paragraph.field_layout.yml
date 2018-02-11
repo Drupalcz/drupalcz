@@ -1,0 +1,39 @@
+uuid: b07e6601-f8df-4740-bfb8-052b1b92068e
+langcode: cs
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_layout
+field_name: field_layout
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: layout_full
+      label: 'Full width'
+    -
+      value: layout_half
+      label: '1:1'
+    -
+      value: layout_third
+      label: '1:1:1'
+    -
+      value: layout_quarter
+      label: '1:1:1:1'
+    -
+      value: layout_one_two
+      label: '1:2'
+    -
+      value: layout_two_one
+      label: '2:1'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -3,9 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.dcz_para_video.field_dcz_para_class
-    - field.field.paragraph.dcz_para_video.field_p_title
-    - field.field.paragraph.dcz_para_video.field_p_video
+    - field.field.paragraph.dcz_para_video.field_class
+    - field.field.paragraph.dcz_para_video.field_description
+    - field.field.paragraph.dcz_para_video.field_title
+    - field.field.paragraph.dcz_para_video.field_video
     - paragraphs.paragraphs_type.dcz_para_video
   module:
     - youtube
@@ -14,13 +15,21 @@ targetEntityType: paragraph
 bundle: dcz_para_video
 mode: default
 content:
-  field_dcz_para_class:
-    weight: 2
+  field_class:
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
-  field_p_title:
+  field_description:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_title:
     weight: 0
     settings:
       size: 60
@@ -28,8 +37,8 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_p_video:
-    weight: 1
+  field_video:
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     type: youtube

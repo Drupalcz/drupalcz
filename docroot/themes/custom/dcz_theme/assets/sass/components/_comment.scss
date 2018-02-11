@@ -1,0 +1,81 @@
+%commentdescription {
+  font-size: 1.8rem;
+  position: absolute;
+  right: 0;
+  top: -21px;
+}
+
+article.comment {
+  border-bottom: 1px solid $gray-2;
+  margin-top: 2em;
+
+  .content > h3 {
+    margin-top: .3em;
+  }
+
+  .comment__meta {
+    @extend %submitted-by;
+    position: relative;
+
+    .profile {
+      @extend %smallprofileimage;
+    }
+
+    .comment__submitted {
+      display: inline-block;
+      margin: 0;
+    }
+
+    .permalink {
+      float: right;
+    }
+  }
+
+  // Special styling for better comments distinguishability.
+  &.by-viewer {
+    .comment__meta {
+      background: $light-blue;
+
+      &::before {
+        @extend %commentdescription;
+        content: "Submitted by me!";
+        color: $light-blue;
+      }
+    }
+  }
+
+  &.by-node-author {
+    .comment__meta {
+      box-shadow: inset 0 2px 0 0 $drupal-primary;
+
+      &::before {
+        @extend %commentdescription;
+        content: "Submitted by author!";
+        color: $drupal-primary;
+      }
+    }
+  }
+
+  &.by-viewer.by-node-author {
+    .comment__meta {
+      &::before {
+        @extend %commentdescription;
+        content: "Yes, I'm the author!";
+        color: $drupal-primary;
+      }
+    }
+  }
+}
+
+mark {
+  background: $drupal-danger;
+  color: $white;
+  display: block;
+  font-size: $font-size-small;
+  text-align: center;
+  width: 60px;
+}
+
+.indented {
+  margin-left: 3em;
+}

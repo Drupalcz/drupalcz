@@ -1,0 +1,21 @@
+uuid: 96722df0-a0b9-41d2-8377-d8631c31bfd5
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_class
+    - paragraphs.paragraphs_type.dcz_para_image
+  module:
+    - options
+id: paragraph.dcz_para_image.field_class
+field_name: field_class
+entity_type: paragraph
+bundle: dcz_para_image
+label: 'Paragraph class'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

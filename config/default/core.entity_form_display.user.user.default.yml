@@ -9,9 +9,11 @@ dependencies:
     - field.field.user.user.field_dcz_pos_long
     - field.field.user.user.field_dcz_surname
     - field.field.user.user.field_dcz_user_image
+    - field.field.user.user.field_location
     - image.style.thumbnail
   module:
     - image
+    - path
     - text
     - user
 id: user.user.default

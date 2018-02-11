@@ -4,10 +4,11 @@ status: false
 dependencies: {  }
 id: dev
 label: DEV
-folder: ../config/default/split-dev
+folder: ../config/split-dev
 module:
-  admin_toolbar_tools: 0
+  dblog: 0
   devel: 0
+  devel_generate: 0
   kint: 0
   migrate: 0
   migrate_drupal: 0

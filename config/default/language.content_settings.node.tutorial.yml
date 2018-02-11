@@ -1,0 +1,11 @@
+uuid: bf4ba97b-cf01-4843-9084-3601f84d3265
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.tutorial
+id: node.tutorial
+target_entity_type_id: node
+target_bundle: tutorial
+default_langcode: site_default
+language_alterable: false

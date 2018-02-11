@@ -3,17 +3,18 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.dcz_para_block_reference.field_dcz_para_class
-    - field.field.paragraph.dcz_para_block_reference.field_p_block_reference
-    - field.field.paragraph.dcz_para_block_reference.field_p_title
+    - field.field.paragraph.dcz_para_block_reference.field_block_reference
+    - field.field.paragraph.dcz_para_block_reference.field_class
+    - field.field.paragraph.dcz_para_block_reference.field_description
+    - field.field.paragraph.dcz_para_block_reference.field_title
     - paragraphs.paragraphs_type.dcz_para_block_reference
 id: paragraph.dcz_para_block_reference.default
 targetEntityType: paragraph
 bundle: dcz_para_block_reference
 mode: default
 content:
-  field_p_block_reference:
-    weight: 0
+  field_block_reference:
+    weight: 1
     label: hidden
     settings:
       view_mode: default
@@ -21,8 +22,16 @@ content:
     third_party_settings: {  }
     type: entity_reference_entity_view
     region: content
+  field_title:
+    type: string
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
 hidden:
   created: true
-  field_dcz_para_class: true
-  field_p_title: true
+  field_class: true
+  field_description: true
   uid: true

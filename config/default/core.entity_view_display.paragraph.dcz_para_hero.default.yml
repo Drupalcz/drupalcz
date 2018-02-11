@@ -3,9 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.dcz_para_hero.field_dcz_para_class
-    - field.field.paragraph.dcz_para_hero.field_p_image
-    - field.field.paragraph.dcz_para_hero.field_p_title
+    - field.field.paragraph.dcz_para_hero.field_class
+    - field.field.paragraph.dcz_para_hero.field_description
+    - field.field.paragraph.dcz_para_hero.field_image
+    - field.field.paragraph.dcz_para_hero.field_title
+    - image.style.hero
     - paragraphs.paragraphs_type.dcz_para_hero
   module:
     - image
@@ -14,17 +16,25 @@ targetEntityType: paragraph
 bundle: dcz_para_hero
 mode: default
 content:
-  field_p_image:
+  field_image:
     weight: 0
     label: hidden
     settings:
-      image_style: ''
+      image_style: hero
       image_link: ''
     third_party_settings: {  }
     type: image
     region: content
+  field_title:
+    type: string
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
 hidden:
   created: true
-  field_dcz_para_class: true
-  field_p_title: true
+  field_class: true
+  field_description: true
   uid: true

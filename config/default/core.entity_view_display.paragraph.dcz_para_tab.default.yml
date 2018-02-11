@@ -1,0 +1,26 @@
+uuid: a6cb1f91-bd2d-4637-b842-8dfbdbab32cd
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dcz_para_tab.field_content
+    - field.field.paragraph.dcz_para_tab.field_description
+    - field.field.paragraph.dcz_para_tab.field_tab
+    - paragraphs.paragraphs_type.dcz_para_tab
+  module:
+    - text
+id: paragraph.dcz_para_tab.default
+targetEntityType: paragraph
+bundle: dcz_para_tab
+mode: default
+content:
+  field_content:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  field_description: true
+  field_tab: true

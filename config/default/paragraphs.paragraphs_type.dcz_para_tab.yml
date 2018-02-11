@@ -1,0 +1,9 @@
+uuid: 2c7f0200-6e95-4991-818f-e0f4c1e5251f
+langcode: cs
+status: true
+dependencies: {  }
+id: dcz_para_tab
+label: Tab
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

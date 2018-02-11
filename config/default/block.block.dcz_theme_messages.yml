@@ -1,0 +1,20 @@
+uuid: 416b150b-034e-40b1-bffc-a06b9e0ed0df
+langcode: cs
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - dcz_theme
+id: dcz_theme_messages
+theme: dcz_theme
+region: admin_area
+weight: -3
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

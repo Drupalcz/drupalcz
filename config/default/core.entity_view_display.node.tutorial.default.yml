@@ -1,0 +1,59 @@
+uuid: 1e5a3bce-7f1c-4dc3-946a-be6901c08857
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.tutorial.body
+    - field.field.node.tutorial.field_authors
+    - field.field.node.tutorial.field_clients
+    - field.field.node.tutorial.field_coauthors
+    - field.field.node.tutorial.field_creditors
+    - field.field.node.tutorial.field_paragraphs
+    - field.field.node.tutorial.field_teaser_image
+    - field.field.node.tutorial.field_teaser_text
+    - node.type.tutorial
+  module:
+    - entity_reference_revisions
+    - panelizer
+    - text
+    - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+id: node.tutorial.default
+targetEntityType: node
+bundle: tutorial
+mode: default
+content:
+  body:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_paragraphs:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_authors: true
+  field_clients: true
+  field_coauthors: true
+  field_creditors: true
+  field_teaser_image: true
+  field_teaser_text: true
+  langcode: true

@@ -4,8 +4,10 @@ status: false
 dependencies: {  }
 id: prod
 label: PROD
-folder: ../config/default/split-prod
-module: {  }
+folder: ../config/split-prod
+module:
+  acquia_connector: 0
+  syslog: 0
 theme: {  }
 blacklist: {  }
 graylist: {  }

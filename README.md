@@ -26,6 +26,7 @@ Branch | Build status | Dev site
 * .travis.yml - Travis CI test suite configuration.
 
 ## Requirements
+* You need PHP ^7.1
 * Install composer: https://getcomposer.org/doc/00-intro.md
 * Install Drush version 8: http://docs.drush.org/en/master/install/
 * We are using Acquia BLT which has it's own set of requirements.
@@ -68,6 +69,7 @@ Branch | Build status | Dev site
 
 ## Contributing
 * We are using GitFlow(https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow/) branching strategy
+* Learn how to manage config: https://www.youtube.com/watch?v=WsMuQFO8yGU
 * You need to create ```feature/NAME``` branch for each issue
 * Commit your changes. ( http://chris.beams.io/posts/git-commit/ )
 * Test your work by running:

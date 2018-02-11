@@ -1,0 +1,107 @@
+uuid: 2164de12-c99d-4b71-97c1-323fd1ffb0c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_index
+    - field.field.node.dcz_landing_page.body
+    - field.field.node.dcz_landing_page.field_hero_widget
+    - field.field.node.dcz_landing_page.field_paragraphs
+    - node.type.dcz_landing_page
+  module:
+    - entity_reference_revisions
+    - panelizer
+    - text
+    - user
+third_party_settings:
+  panelizer:
+    enable: true
+    custom: false
+    allow: false
+    default: default
+    displays:
+      default:
+        blocks:
+          99e9192a-d889-4c51-9729-5958ad01b7e3:
+            id: 'entity_field:node:title'
+            label: Title
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: string
+              settings:
+                link_to_entity: true
+              third_party_settings: {  }
+              weight: 0
+            region: title
+            weight: 0
+            uuid: 99e9192a-d889-4c51-9729-5958ad01b7e3
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+          6caf73d0-6f5e-4e05-8958-879af963cb98:
+            id: 'entity_field:node:field_teaser_text'
+            label: 'Teaser Text'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: basic_string
+              settings: {  }
+              third_party_settings: {  }
+              weight: 0
+            region: content
+            weight: 0
+            uuid: 6caf73d0-6f5e-4e05-8958-879af963cb98
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+        id: panels_variant
+        label: Default
+        uuid: f9605ddf-c2ab-4ceb-b4ae-dccb68f6d666
+        weight: 0
+        layout: search
+        layout_settings: {  }
+        page_title: ''
+        storage_type: panelizer_default
+        storage_id: 'node:dcz_landing_page:search_index:default'
+        builder: ipe
+        pattern: panelizer
+        static_context: {  }
+id: node.dcz_landing_page.search_index
+targetEntityType: node
+bundle: dcz_landing_page
+mode: search_index
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_hero_widget:
+    type: entity_reference_revisions_entity_view
+    weight: 102
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_paragraphs:
+    weight: 104
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  panelizer: true

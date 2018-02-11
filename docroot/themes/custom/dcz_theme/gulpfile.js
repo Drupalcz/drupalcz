@@ -18,6 +18,7 @@ var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var sassLint = require('gulp-sass-lint');
 var jshint = require('gulp-jshint');
+var del = require('del');
 
 // CSS.
 gulp.task('css', function() {
@@ -56,7 +57,13 @@ gulp.task('images', function () {
 });
 
 // Concat all js files into one file.
-gulp.task('scripts', function() {
+gulp.task('delete_temp_file', function() {
+  return del([
+    './assets/javascript/tmp/index.js'
+  ]);
+});
+// Concat all js files into one file.
+gulp.task('scripts', ['delete_temp_file'], function() {
   return gulp.src(config.js.src)
     .pipe(plumber({
       errorHandler: function (error) {
@@ -70,7 +77,7 @@ gulp.task('scripts', function() {
       }}))
     .pipe(sourcemaps.init())
     .pipe(concat('./index.js'))
-    .pipe(gulp.dest('./assets/javascript/'))
+    .pipe(gulp.dest('./assets/javascript/tmp'))
     .pipe(rename(config.js.file))
     .pipe(gulp.dest(config.js.dest))
     .pipe(sourcemaps.write('./maps'))
@@ -89,8 +96,7 @@ gulp.task('serve', ['css', 'scripts', 'js-lint', 'sass-lint', 'watch'], function
   browserSync.init({
     open: false,
     host: configLocal.browserSyncHost,
-    proxy: configLocal.browserSyncProxy,
-    port: 8080
+    proxy: configLocal.browserSyncProxy
   });
 });
 
