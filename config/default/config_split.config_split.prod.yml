@@ -5,7 +5,8 @@ dependencies: {  }
 id: prod
 label: PROD
 folder: ../config/split-prod
-module: {  }
+module:
+  syslog: 0
 theme: {  }
 blacklist: {  }
 graylist: {  }
