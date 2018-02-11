@@ -5,4 +5,5 @@ $conf['mail_system'] = array(
   'default-system' => 'DevelMailLog',
 );
 
-$config['config_split.config_split.stage']['status'] = TRUE;
+// Keep stage as close to prod as possible.
+$config['config_split.config_split.prod']['status'] = TRUE;

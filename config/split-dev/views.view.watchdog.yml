@@ -1,10 +1,12 @@
-uuid: 5cd36abe-8ea5-4b21-992e-605bfd59c616
+uuid: 66347ae6-cc6f-4b46-bf16-7bbcf6793ca9
 langcode: cs
 status: true
 dependencies:
   module:
     - dblog
     - user
+_core:
+  default_config_hash: 3QZ9apklK6mQ7BzodmxzOxqO---2BCPtOLE3k9eQ0Is
 id: watchdog
 label: Watchdog
 module: views
@@ -399,7 +401,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Message
+          label: Zpráva
           exclude: false
           alter:
             alter_text: false
