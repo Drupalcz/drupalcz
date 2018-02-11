@@ -6,6 +6,7 @@ dependencies:
     - comment.type.comment_article
     - field.field.comment.comment_article.comment_body
   module:
+    - path
     - text
 id: comment.comment_article.default
 targetEntityType: comment

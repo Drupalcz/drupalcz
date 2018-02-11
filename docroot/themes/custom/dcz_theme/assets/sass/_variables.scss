@@ -33,12 +33,13 @@ $white-10: $white;
 // Project colors
 $drupal-primary:         #337ab7;
 $drupal-secondary:       #29537d;
+
 $drupal-success:         #5cb85c;
 $drupal-info:            #5bc0de;
 $drupal-warning:         #f0ad4e;
 $drupal-danger:          #d9534f;
 $text-color:             #161c21;
-$light-blue:             #e0f7ff;
+$light-blue:             rgba(51, 122, 183, 0.1);
 
 // Link color
 $link-color:     $drupal-primary;

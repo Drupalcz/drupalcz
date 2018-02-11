@@ -6,6 +6,7 @@ dependencies:
     - comment.type.comment_forum
     - field.field.comment.comment_forum.comment_body
   module:
+    - path
     - text
 _core:
   default_config_hash: EMa4-jXqGoooiV0X2bgOJxBI7RVBhpXWc_780E4YwGQ

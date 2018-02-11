@@ -10,22 +10,23 @@ label: Page
 type: 'canonical_entities:node'
 pattern: '[node:title]'
 selection_criteria:
-  3d80b65f-3048-4ca3-bb21-71fbf410be39:
+  e440d2d7-8b37-496c-9aa8-3466c5d35d53:
     id: node_type
     bundles:
+      dcz_landing_page: dcz_landing_page
       page: page
     negate: false
     context_mapping:
       node: node
-    uuid: 3d80b65f-3048-4ca3-bb21-71fbf410be39
-  994ab0f6-d902-4543-b530-acc679522684:
+    uuid: e440d2d7-8b37-496c-9aa8-3466c5d35d53
+  cfa42956-3dca-49ba-847c-760303259f20:
     id: language
     langcodes:
       cs: cs
     negate: false
     context_mapping:
       language: 'node:langcode:language'
-    uuid: 994ab0f6-d902-4543-b530-acc679522684
+    uuid: cfa42956-3dca-49ba-847c-760303259f20
 selection_logic: and
 weight: -10
 relationships:

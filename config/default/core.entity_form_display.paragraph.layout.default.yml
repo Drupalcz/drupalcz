@@ -1,0 +1,46 @@
+uuid: 4751aee6-6337-41a1-834c-f97527ca2d5c
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.layout.field_class
+    - field.field.paragraph.layout.field_layout
+    - field.field.paragraph.layout.field_paragraphs
+    - paragraphs.paragraphs_type.layout
+  module:
+    - paragraphs
+id: paragraph.layout.default
+targetEntityType: paragraph
+bundle: layout
+mode: default
+content:
+  field_class:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_layout:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_paragraphs:
+    weight: 0
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: preview
+      autocollapse: all
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+    type: paragraphs
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

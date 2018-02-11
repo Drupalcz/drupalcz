@@ -1,0 +1,30 @@
+uuid: 97a1acab-394c-4462-a1b1-9f233fe9a190
+langcode: cs
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.dcz_para_view_reference.field_class
+    - field.field.paragraph.dcz_para_view_reference.field_description
+    - field.field.paragraph.dcz_para_view_reference.field_title
+    - field.field.paragraph.dcz_para_view_reference.field_view_reference
+    - paragraphs.paragraphs_type.dcz_para_view_reference
+  module:
+    - viewsreference
+id: paragraph.dcz_para_view_reference.preview
+targetEntityType: paragraph
+bundle: dcz_para_view_reference
+mode: preview
+content:
+  field_description:
+    type: string
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  field_class: true
+  field_title: true
+  field_view_reference: true
