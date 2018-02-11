@@ -58,6 +58,12 @@ if (!empty($aliases[$full])) {
   exit();
 }
 
+// Custom Travis CI settings.
+$travis_settings = DRUPAL_ROOT . "/sites/default/settings/travis.settings.php";
+if (getenv('TRAVIS') && file_exists($travis_settings)) {
+  require $travis_settings;
+}
+
 /**
  * Acquia - custom environment settings.
  */
