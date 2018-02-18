@@ -1,8 +1,9 @@
-uuid: 34497b37-5ca3-4f03-b400-cc76dbbd3cbb
+uuid: c044863c-4c74-4ab7-9b3b-334d46275d54
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.full
     - field.field.node.dcz_showcase.body
     - field.field.node.dcz_showcase.field_display_options
     - field.field.node.dcz_showcase.field_drupal_version
@@ -16,19 +17,12 @@ dependencies:
     - image
     - juicebox
     - link
-    - panelizer
     - text
     - user
-third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
-id: node.dcz_showcase.default
+id: node.dcz_showcase.full
 targetEntityType: node
 bundle: dcz_showcase
-mode: default
+mode: full
 content:
   body:
     label: hidden
@@ -104,9 +98,9 @@ content:
     region: content
   links:
     weight: 6
-    region: content
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   field_display_options: true
   langcode: true

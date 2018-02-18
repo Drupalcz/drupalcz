@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.title_date
     - field.storage.node.field_teaser_image
     - field.storage.node.field_teaser_text
     - image.style.screenshot_large
@@ -499,6 +500,57 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_teaser_image'
+        - 'config:field.storage.node.field_teaser_text'
+  embed_2:
+    display_plugin: embed
+    id: embed_2
+    display_title: 'Frontpage articles'
+    position: 3
+    display_options:
+      display_extenders:
+        metatag_display_extender: {  }
+      display_description: ''
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: false
+      defaults:
+        style: false
+        row: false
+        pager: false
+        use_more: false
+        use_more_always: false
+        use_more_text: false
+        link_display: false
+        link_url: false
+        title: false
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: title_date
+      pager:
+        type: some
+        options:
+          items_per_page: 5
+          offset: 0
+      use_more: true
+      use_more_always: true
+      use_more_text: more
+      link_display: custom_url
+      link_url: /clanky
+      title: 'Latest articles'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
         - 'user.node_grants:view'
         - user.permissions
       tags:

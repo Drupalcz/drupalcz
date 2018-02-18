@@ -1,0 +1,29 @@
+uuid: 45c2f2c1-bb2e-49e6-87c5-e29ecab85061
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_drupal_version
+    - node.type.forum
+    - taxonomy.vocabulary.drupal_version
+id: node.forum.field_drupal_version
+field_name: field_drupal_version
+entity_type: node
+bundle: forum
+label: 'Drupal version'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      drupal_version: drupal_version
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

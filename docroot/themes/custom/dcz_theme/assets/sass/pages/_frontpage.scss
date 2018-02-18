@@ -1,0 +1,54 @@
+// Block with article tags.
+.view-blog-tags {
+
+  .view-content {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+  }
+
+  .views-field-name a {
+    border-radius: 3px;
+    background: $gray-3;
+    color: $white-10;
+    margin: 0 0.3em 0.3em 0;
+    padding: 0.1em 0.35em;
+  }
+}
+
+// Showcase block on homepage.
+.view-showcase.view-display-id-embed_1 {
+  .node--view-mode-stack {
+    box-shadow: 0 0 15px $gray-2;
+
+    .vm-stack {
+      position: relative;
+    }
+
+    .vm-content-wrapper {
+      bottom: 2em;
+      box-shadow: 0 0 15px $gray-2;
+      padding: 0;
+      position: absolute;
+      width: 100%;
+      z-index: 50;
+
+      h2 {
+        margin: 0;
+
+        a {
+          background: $white-7;
+          border-bottom: 1px solid $white;
+          border-top: 1px solid $white;
+          color: $white;
+          display: block;
+          margin: 0;
+          padding: 1em;
+          text-align: center;
+          text-shadow: 0 0 5px $gray-4;
+        }
+      }
+    }
+  }
+}
+

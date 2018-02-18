@@ -22,6 +22,18 @@ search:
       label: Image
     content:
       label: Content
+stack:
+  label: Stack
+  category: View modes
+  type: partial
+  template: template/view_modes/stack
+  regions:
+    title:
+      label: Title
+    image:
+      label: Image
+    content:
+      label: Content
 title:
   label: Title
   category: View modes
@@ -30,3 +42,13 @@ title:
   regions:
     title:
       label: Title
+title_date:
+  label: Title + Date
+  category: View modes
+  type: partial
+  template: template/view_modes/title_date
+  regions:
+    title:
+      label: Title
+    date:
+      label: Date

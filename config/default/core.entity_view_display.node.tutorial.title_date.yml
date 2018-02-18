@@ -1,13 +1,18 @@
-uuid: 2164de12-c99d-4b71-97c1-323fd1ffb0c0
+uuid: 9d996e87-dc64-46ec-9a73-183d9b2ca747
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.search_index
-    - field.field.node.dcz_landing_page.body
-    - field.field.node.dcz_landing_page.field_hero_widget
-    - field.field.node.dcz_landing_page.field_paragraphs
-    - node.type.dcz_landing_page
+    - core.entity_view_mode.node.title_date
+    - field.field.node.tutorial.body
+    - field.field.node.tutorial.field_authors
+    - field.field.node.tutorial.field_clients
+    - field.field.node.tutorial.field_coauthors
+    - field.field.node.tutorial.field_creditors
+    - field.field.node.tutorial.field_paragraphs
+    - field.field.node.tutorial.field_teaser_image
+    - field.field.node.tutorial.field_teaser_text
+    - node.type.tutorial
   module:
     - entity_reference_revisions
     - panelizer
@@ -22,7 +27,27 @@ third_party_settings:
     displays:
       default:
         blocks:
-          99e9192a-d889-4c51-9729-5958ad01b7e3:
+          3146d6ec-6342-4cd9-a186-9febe2641c40:
+            id: 'entity_field:node:created'
+            label: 'Authored on'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: timestamp
+              settings:
+                date_format: czech_date
+                custom_date_format: ''
+                timezone: ''
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: date
+            weight: 0
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: 3146d6ec-6342-4cd9-a186-9febe2641c40
+          7f49939f-98bf-4d5b-9b7b-6ff89cdfc6c0:
             id: 'entity_field:node:title'
             label: Title
             provider: ctools_block
@@ -36,60 +61,35 @@ third_party_settings:
               weight: 0
             region: title
             weight: 0
-            uuid: 99e9192a-d889-4c51-9729-5958ad01b7e3
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-          6caf73d0-6f5e-4e05-8958-879af963cb98:
-            id: 'entity_field:node:field_teaser_text'
-            label: 'Teaser Text'
-            provider: ctools_block
-            label_display: '0'
-            formatter:
-              label: hidden
-              type: basic_string
-              settings: {  }
-              third_party_settings: {  }
-              weight: 0
-            region: content
-            weight: 0
-            uuid: 6caf73d0-6f5e-4e05-8958-879af963cb98
+            uuid: 7f49939f-98bf-4d5b-9b7b-6ff89cdfc6c0
             context_mapping:
               entity: '@panelizer.entity_context:entity'
         id: panels_variant
         label: Default
-        uuid: f9605ddf-c2ab-4ceb-b4ae-dccb68f6d666
+        uuid: 54eaca50-198e-4071-8545-756050069bb4
         weight: 0
-        layout: search
+        layout: title_date
         layout_settings: {  }
         page_title: ''
         storage_type: panelizer_default
-        storage_id: 'node:dcz_landing_page:search_index:default'
+        storage_id: 'node:tutorial:title_date:default'
         builder: ipe
         pattern: panelizer
         static_context: {  }
-id: node.dcz_landing_page.search_index
+id: node.tutorial.title_date
 targetEntityType: node
-bundle: dcz_landing_page
-mode: search_index
+bundle: tutorial
+mode: title_date
 content:
   body:
+    weight: 2
     label: hidden
-    type: text_default
-    weight: 101
     settings: {  }
     third_party_settings: {  }
-    region: content
-  field_hero_widget:
-    type: entity_reference_revisions_entity_view
-    weight: 102
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
+    type: text_default
     region: content
   field_paragraphs:
-    weight: 104
+    weight: 1
     label: hidden
     settings:
       view_mode: default
@@ -98,9 +98,15 @@ content:
     type: entity_reference_revisions_entity_view
     region: content
   links:
-    weight: 100
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_authors: true
+  field_clients: true
+  field_coauthors: true
+  field_creditors: true
+  field_teaser_image: true
+  field_teaser_text: true
   langcode: true

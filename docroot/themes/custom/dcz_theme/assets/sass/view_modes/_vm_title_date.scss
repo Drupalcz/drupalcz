@@ -1,0 +1,30 @@
+.vm-title_date {
+  margin-bottom: 0.5em;
+
+  .vm-title {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 0.1em;
+  }
+
+  .vm-date {
+    font-size: 0.85em;
+
+    .block-region-date {
+      display: flex;
+
+     > * {
+       border-right: 1px solid $gray-2;
+       margin-right: 0.5em;
+       padding-right: 0.5em;
+
+       &:last-child {
+         border-right: none;
+         margin-right: 0;
+         padding-right: 0;
+       }
+     }
+    }
+  }
+}
+

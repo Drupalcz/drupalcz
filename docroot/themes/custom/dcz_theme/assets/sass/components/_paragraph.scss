@@ -17,6 +17,14 @@
   a {
     color: $white;
   }
+
+  .button {
+    background: $drupal-primary;
+
+    &:hover {
+      background: darken($drupal-primary, 3);
+    }
+  }
 }
 
 .dcz-para-light {
@@ -38,6 +46,14 @@
 
   a {
     color: $white;
+  }
+
+  .button {
+    background: $drupal-third;
+
+    &:hover {
+      background: darken($drupal-third, 3);
+    }
   }
 }
 
