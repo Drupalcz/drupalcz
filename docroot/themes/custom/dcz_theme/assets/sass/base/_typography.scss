@@ -47,6 +47,17 @@ a {
   }
 }
 
+.field--type-string-long,
+.field--type-text-long {
+  a {
+    box-shadow: 0 1px 0 0 $gray-5;
+
+    &:hover {
+      box-shadow: 0 1px 0 0 $gray-1;
+    }
+  }
+}
+
 .text-formatted { // To prevent leaking UL style to other elements like menu.
   ul {
     margin-left: 1em;
