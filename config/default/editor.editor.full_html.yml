@@ -50,6 +50,7 @@ settings:
         -
           name: Tools
           items:
+            - CodeSnippet
             - Source
             - Maximize
             - ShowBlocks
