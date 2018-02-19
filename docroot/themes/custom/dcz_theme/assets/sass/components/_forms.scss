@@ -1,5 +1,5 @@
 form {
-  background: rgba(51, 122, 183, 0.1);
+  background: rgba(51, 122, 183, .1);
   padding: 1em 2em;
 
   label {
@@ -17,8 +17,9 @@ form {
     border: none;
     box-shadow: 0 0 0 2px $drupal-secondary;
     border-radius: 3px;
-    padding: 0.5em 1em;
     color: $drupal-secondary;
+    padding: .5em 1em;
+    max-width: 100%;
   }
 
   .form-textarea {
@@ -26,8 +27,8 @@ form {
   }
 
   .form-item .description {
-    font-size: 0.85em;
+    font-size: .85em;
     line-height: 1.3em;
-    margin-top: 0.5em;
+    margin-top: .5em;
   }
 }

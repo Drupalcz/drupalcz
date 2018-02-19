@@ -393,7 +393,7 @@ ul.tabs {
     background: #337ab7;
     box-shadow: none; }
 
-article.comment.by-viewer .comment__meta::before, article.comment.by-node-author .comment__meta::before, article.comment.by-viewer.by-node-author .comment__meta::before {
+article.comment.by-viewer:not(.by-anonymous) .comment__meta::before, article.comment.by-node-author .comment__meta::before, article.comment.by-viewer.by-node-author .comment__meta::before {
   font-size: 1.8rem;
   position: absolute;
   right: 0;
@@ -411,9 +411,9 @@ article.comment {
       margin: 0; }
     article.comment .comment__meta .permalink {
       float: right; }
-  article.comment.by-viewer .comment__meta {
+  article.comment.by-viewer:not(.by-anonymous) .comment__meta {
     background: rgba(51, 122, 183, 0.1); }
-    article.comment.by-viewer .comment__meta::before {
+    article.comment.by-viewer:not(.by-anonymous) .comment__meta::before {
       content: "Submitted by me!";
       color: rgba(51, 122, 183, 0.1); }
   article.comment.by-node-author .comment__meta {
@@ -436,6 +436,10 @@ mark {
 .indented {
   margin-left: 3em; }
 
+.field--label-inline {
+  display: -ms-flexbox;
+  display: flex; }
+
 form {
   background: rgba(51, 122, 183, 0.1);
   padding: 1em 2em; }
@@ -450,14 +454,15 @@ form {
     border: none;
     box-shadow: 0 0 0 2px #29537d;
     border-radius: 3px;
-    padding: 0.5em 1em;
-    color: #29537d; }
+    color: #29537d;
+    padding: .5em 1em;
+    max-width: 100%; }
   form .form-textarea {
     border-radius: 3px; }
   form .form-item .description {
-    font-size: 0.85em;
+    font-size: .85em;
     line-height: 1.3em;
-    margin-top: 0.5em; }
+    margin-top: .5em; }
 
 .forum .time {
   font-size: 1.44rem; }
@@ -854,6 +859,14 @@ tbody td {
     margin-bottom: 1em;
     padding-bottom: 0; }
 
+.node--type-forum .field--name-taxonomy-forums,
+.node--type-forum .field--name-field-drupal-version {
+  float: left;
+  margin-bottom: 1em; }
+
+.node--type-forum .field--name-body {
+  clear: both; }
+
 .view-blog-tags .view-content {
   display: -ms-flexbox;
   display: flex;
@@ -981,6 +994,15 @@ tbody td {
   margin: 0 auto;
   max-width: 120rem;
   padding: 0 2rem; }
+
+.view-dcz-tutorials .views-row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 1em;
+  padding-bottom: 1em; }
+  .view-dcz-tutorials .views-row:last-child {
+    border-bottom: none;
+    margin-bottom: 1em;
+    padding-bottom: 0; }
 
 @media (min-width: 48rem) {
   .user--view-mode-full .block-entity-fielduserfield-dcz-user-image {
