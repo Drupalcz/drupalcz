@@ -16,6 +16,16 @@
     }
   }
 
+  @include bp(small) {
+    // Two columns stacked layout 2:(1/2).
+    &.layout-two-one-halves {
+      .field--name-field-paragraphs {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+      }
+    }
+  }
+
   @include bp(medium) {
     // One column layout FULL width.
     &.layout-full {
@@ -27,35 +37,117 @@
     // Two column layout HALF width.
     &.layout-half {
       .field--name-field-paragraphs {
-        grid-template-columns: [first] 1fr [second] 1fr;
+        grid-template-columns: 1fr 1fr;
+
+        > .field__item:nth-child(2) {
+          -ms-grid-column: 2;
+        }
       }
     }
 
     // Two columns layout THIRDS.
     &.layout-third {
       .field--name-field-paragraphs {
-        grid-template-columns: [first] 1fr [second] 1fr [third] 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        > .field__item:nth-child(2) {
+          -ms-grid-column: 2;
+        }
+
+        > .field__item:nth-child(3) {
+          -ms-grid-column: 3;
+        }
       }
     }
 
     // Two columns layout QUARTERS.
     &.layout-quarter {
       .field--name-field-paragraphs {
-        grid-template-columns: [first] 1fr [second] 1fr [third] 1fr [fourth] 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+
+        > .field__item:nth-child(32) {
+          -ms-grid-column: 2;
+        }
+
+        > .field__item:nth-child(3) {
+          -ms-grid-column: 3;
+        }
+
+        > .field__item:nth-child(4) {
+          -ms-grid-column: 4;
+        }
       }
     }
 
     // Two columns layout 1:2 ratio.
     &.layout-one-two {
       .field--name-field-paragraphs {
-        grid-template-columns: [first] 1fr [second] 2fr;
+        grid-template-columns: 1fr 2fr;
+
+        > .field__item:nth-child(2) {
+          -ms-grid-column: 2;
+        }
       }
     }
 
     // Three columns layout 1:2:1 ratio.
     &.layout-two-one {
       .field--name-field-paragraphs {
-        grid-template-columns: [first] 2fr [second] 1fr;
+        grid-template-columns: 2fr 1fr;
+
+        > .field__item:nth-child(2) {
+          -ms-grid-column: 2;
+        }
+      }
+    }
+
+    // Two columns stacked layout 2:(1/2).
+    &.layout-two-one-halves {
+      .field--name-field-paragraphs {
+        grid-template-columns: 3fr 2fr;
+        grid-template-rows: auto auto 1fr;
+
+
+        .field__item:first-child {
+          -ms-grid-column: 1;
+          -ms-grid-column-span: 1;
+          -ms-grid-row: 1;
+          -ms-grid-row-span: 3;
+          grid-area: 1 / 1 / 4 / 2;
+        }
+
+        .field__item:nth-child(2) {
+          -ms-grid-column: 2;
+          -ms-grid-column-span: 1;
+          -ms-grid-row: 1;
+          -ms-grid-row-span: 1;
+          grid-area: 1 / 2 / 2 / 3;
+        }
+
+        .field__item:nth-child(3) {
+          -ms-grid-column: 2;
+          -ms-grid-column-span: 1;
+          -ms-grid-row: 2;
+          -ms-grid-row-span: 1;
+          grid-area: 2 / 2 / 3 / 3;
+        }
+
+        .field__item:last-child {
+          -ms-grid-column: 2;
+          -ms-grid-column-span: 1;
+          -ms-grid-row: 3;
+          -ms-grid-row-span: 1;
+          grid-area: 3 / 2 / 4 / 3;
+        }
+      }
+    }
+  }
+  @include bp(large) {
+    // Two columns stacked layout 2:(1/2).
+    &.layout-two-one-halves {
+      .field--name-field-paragraphs {
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto auto 1fr;
       }
     }
   }

@@ -1,0 +1,133 @@
+uuid: 98a18762-95b6-41aa-89db-753f64caaadf
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.stack
+    - field.field.node.dcz_showcase.body
+    - field.field.node.dcz_showcase.field_display_options
+    - field.field.node.dcz_showcase.field_drupal_version
+    - field.field.node.dcz_showcase.field_logo
+    - field.field.node.dcz_showcase.field_main_screenshot
+    - field.field.node.dcz_showcase.field_other_screenshots
+    - field.field.node.dcz_showcase.field_url
+    - image.style.screenshot_large
+    - node.type.dcz_showcase
+  module:
+    - image
+    - link
+    - panelizer
+    - text
+    - user
+third_party_settings:
+  panelizer:
+    enable: true
+    custom: false
+    allow: false
+    default: default
+    displays:
+      default:
+        blocks:
+          9f3f2d44-d534-4aab-94e7-1f7ea64ff5eb:
+            id: 'entity_field:node:field_main_screenshot'
+            label: 'Main screenshot'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: image
+              settings:
+                image_style: landscape
+                image_link: content
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: image
+            weight: 0
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: 9f3f2d44-d534-4aab-94e7-1f7ea64ff5eb
+          46b1e217-73d7-4eef-905d-7bf3f03c3202:
+            id: 'entity_field:node:title'
+            label: Title
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: string
+              settings:
+                link_to_entity: true
+              third_party_settings: {  }
+              weight: 0
+            region: title
+            weight: 0
+            uuid: 46b1e217-73d7-4eef-905d-7bf3f03c3202
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+        id: panels_variant
+        label: Default
+        uuid: 13bb8147-737a-4222-8c68-6514e63f2841
+        weight: 0
+        layout: stack
+        layout_settings: {  }
+        page_title: ''
+        storage_type: panelizer_default
+        storage_id: 'node:dcz_showcase:stack:default'
+        builder: ipe
+        pattern: panelizer
+        static_context: {  }
+id: node.dcz_showcase.stack
+targetEntityType: node
+bundle: dcz_showcase
+mode: stack
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_drupal_version:
+    weight: 1
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_logo:
+    weight: 2
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_main_screenshot:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: screenshot_large
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_url:
+    weight: 4
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden:
+  field_display_options: true
+  field_other_screenshots: true
+  langcode: true
+  links: true

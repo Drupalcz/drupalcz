@@ -2,6 +2,8 @@ uuid: ad0de3a6-6462-48be-9d00-f51916fa8774
 langcode: cs
 status: true
 dependencies:
+  config:
+    - node.type.forum
   module:
     - comment
     - node
@@ -196,6 +198,46 @@ display:
           group: 1
           entity_type: node
           entity_field: status
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: node
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            forum: forum
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
       sorts:
         created:
           id: created
@@ -262,4 +304,64 @@ display:
         - 'languages:language_interface'
         - user.permissions
       max-age: -1
+      tags: {  }
+  embed_1:
+    display_plugin: embed
+    id: embed_1
+    display_title: 'Front page comments'
+    position: 2
+    display_options:
+      display_extenders:
+        metatag_display_extender: {  }
+      display_description: ''
+      pager:
+        type: mini
+        options:
+          items_per_page: 5
+          offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+      defaults:
+        pager: false
+        use_ajax: false
+        style: false
+        row: false
+        use_more: false
+        use_more_always: false
+        use_more_text: false
+      use_ajax: true
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      use_more: false
+      use_more_always: true
+      use_more_text: more
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - user.permissions
       tags: {  }

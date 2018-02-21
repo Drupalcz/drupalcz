@@ -1,0 +1,142 @@
+uuid: 5b17cd45-2feb-48a5-b3d3-1b8c2f14d227
+langcode: cs
+status: true
+dependencies:
+  config:
+    - core.entity_view_display.comment.comment_article.default
+    - core.entity_view_mode.node.title_date
+    - field.field.node.dcz_article.body
+    - field.field.node.dcz_article.field_comments_article
+    - field.field.node.dcz_article.field_paragraphs
+    - field.field.node.dcz_article.field_tags
+    - field.field.node.dcz_article.field_teaser_image
+    - field.field.node.dcz_article.field_teaser_text
+    - node.type.dcz_article
+  module:
+    - comment
+    - entity_reference_revisions
+    - panelizer
+    - text
+    - user
+third_party_settings:
+  panelizer:
+    enable: true
+    custom: false
+    allow: false
+    default: default
+    displays:
+      default:
+        blocks:
+          21f3c805-ea7b-4200-ad61-4adda99a8eca:
+            id: 'entity_field:node:uid'
+            label: 'Authored by'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: author
+              settings: {  }
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: date
+            weight: 0
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: 21f3c805-ea7b-4200-ad61-4adda99a8eca
+          5d2db8b7-8533-462f-ac84-61c2395e3dae:
+            id: 'entity_field:node:created'
+            label: 'Authored on'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: timestamp
+              settings:
+                date_format: czech_date
+                custom_date_format: ''
+                timezone: ''
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: date
+            weight: 1
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: 5d2db8b7-8533-462f-ac84-61c2395e3dae
+          eb8932f8-d1c1-41bc-bd60-9f68a5c2aabb:
+            id: 'entity_field:node:title'
+            label: Title
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: string
+              settings:
+                link_to_entity: true
+              third_party_settings: {  }
+              weight: 0
+            region: title
+            weight: 0
+            uuid: eb8932f8-d1c1-41bc-bd60-9f68a5c2aabb
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+        id: panels_variant
+        label: Default
+        uuid: b13e1ada-14c4-41cb-ae58-5bf2cb5e90dd
+        weight: 0
+        layout: title_date
+        layout_settings: {  }
+        page_title: ''
+        storage_type: panelizer_default
+        storage_id: 'node:dcz_article:title_date:default'
+        builder: ipe
+        pattern: panelizer
+        static_context: {  }
+id: node.dcz_article.title_date
+targetEntityType: node
+bundle: dcz_article
+mode: title_date
+content:
+  body:
+    type: text_default
+    weight: 1
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_comments_article:
+    weight: 4
+    label: above
+    settings:
+      pager_id: 0
+      view_mode: default
+    third_party_settings: {  }
+    type: comment_default
+    region: content
+  field_paragraphs:
+    type: entity_reference_revisions_entity_view
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_tags:
+    weight: 3
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_teaser_image: true
+  field_teaser_text: true
+  langcode: true

@@ -1,0 +1,14 @@
+// Forum content type.
+
+.node--type-forum {
+
+  .field--name-taxonomy-forums,
+  .field--name-field-drupal-version {
+    float: left;
+    margin-bottom: 1em;
+  }
+
+  .field--name-body {
+    clear: both;
+  }
+}

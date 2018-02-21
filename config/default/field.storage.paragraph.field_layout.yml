@@ -29,6 +29,9 @@ settings:
     -
       value: layout_two_one
       label: '2:1'
+    -
+      value: layout_two_one_halves
+      label: '2:(1/2)'
   allowed_values_function: ''
 module: options
 locked: false

@@ -48,8 +48,8 @@ settings:
     who_s_online: 0
   enabled_settings:
     pager: pager
+    title: title
     argument: 0
     limit: 0
     offset: 0
-    title: 0
 field_type: viewsreference

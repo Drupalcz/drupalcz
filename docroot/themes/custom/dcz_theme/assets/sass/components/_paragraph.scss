@@ -17,6 +17,14 @@
   a {
     color: $white;
   }
+
+  .button {
+    background: $drupal-primary;
+
+    &:hover {
+      background: darken($drupal-primary, 3);
+    }
+  }
 }
 
 .dcz-para-light {
@@ -39,6 +47,14 @@
   a {
     color: $white;
   }
+
+  .button {
+    background: $drupal-third;
+
+    &:hover {
+      background: darken($drupal-third, 3);
+    }
+  }
 }
 
 .dcz-para-text-center {
@@ -46,7 +62,7 @@
 }
 
 .dcz-para-box-shadow {
-  box-shadow: 0 0 1.5rem $gray-7;
+  box-shadow: 0 0 2.5rem $gray-3;
 }
 
 .dcz-para-text-shadow{

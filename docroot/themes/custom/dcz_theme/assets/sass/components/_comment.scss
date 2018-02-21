@@ -32,7 +32,7 @@ article.comment {
   }
 
   // Special styling for better comments distinguishability.
-  &.by-viewer {
+  &.by-viewer:not(.by-anonymous) {
     .comment__meta {
       background: $light-blue;
 

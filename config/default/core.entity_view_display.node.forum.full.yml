@@ -1,0 +1,193 @@
+uuid: 2438dcbb-8c33-44ca-9a62-0d30665affd1
+langcode: cs
+status: true
+dependencies:
+  config:
+    - core.entity_view_display.comment.comment_forum.default
+    - core.entity_view_mode.node.full
+    - field.field.node.forum.body
+    - field.field.node.forum.comment_forum
+    - field.field.node.forum.field_drupal_version
+    - field.field.node.forum.taxonomy_forums
+    - node.type.forum
+  module:
+    - comment
+    - panelizer
+    - text
+    - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+    displays:
+      default:
+        blocks:
+          4266d7f5-3efe-4a9c-a2b2-2100eb25c1cc:
+            id: 'entity_field:node:uid'
+            label: 'Authored by'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: author
+              settings: {  }
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: top
+            weight: -2
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: 4266d7f5-3efe-4a9c-a2b2-2100eb25c1cc
+          07ffeb4c-cd29-45d8-8ab9-d7dcd4f94a16:
+            id: 'entity_field:node:created'
+            label: 'Authored on'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: timestamp
+              settings:
+                date_format: medium
+                custom_date_format: ''
+                timezone: ''
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: top
+            weight: -1
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: 07ffeb4c-cd29-45d8-8ab9-d7dcd4f94a16
+          369ea78d-6d01-4b08-8134-7ed715d82116:
+            id: 'entity_field:node:body'
+            label: Text
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: text_default
+              settings: {  }
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: middle
+            weight: -10
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: 369ea78d-6d01-4b08-8134-7ed715d82116
+          3132bec0-e67c-4e6d-bc6f-f67b1de4fe29:
+            id: 'entity_field:node:comment_forum'
+            label: Komentáře
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: comment_default
+              settings:
+                view_mode: default
+                pager_id: 0
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: bottom
+            weight: -2
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: 3132bec0-e67c-4e6d-bc6f-f67b1de4fe29
+          c79850be-045b-4613-bb5b-e5df49149904:
+            id: 'entity_field:node:field_drupal_version'
+            label: 'Drupal version'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: inline
+              type: entity_reference_label
+              settings:
+                link: true
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: first_above
+            weight: -1
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: c79850be-045b-4613-bb5b-e5df49149904
+          37afdc9a-7c33-4bbb-8054-31dc94aca5b6:
+            id: 'entity_field:node:taxonomy_forums'
+            label: Fórum
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: inline
+              type: entity_reference_label
+              settings:
+                link: true
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: first_above
+            weight: -2
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: 37afdc9a-7c33-4bbb-8054-31dc94aca5b6
+        id: panels_variant
+        label: Default
+        uuid: ecaa952b-1f0d-4ac3-8fdc-c2fbda9c08b4
+        weight: 0
+        layout: layout_twocol_bricks
+        layout_settings: {  }
+        page_title: '[node:title]'
+        storage_type: panelizer_default
+        storage_id: 'node:forum:full:default'
+        builder: ipe
+        pattern: panelizer
+        static_context: {  }
+_core:
+  default_config_hash: TM_8DV1XKUAtF-wGxTBLOtg_GTtF5CX9WLrADxG7Xm4
+id: node.forum.full
+targetEntityType: node
+bundle: forum
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  comment_forum:
+    label: hidden
+    type: comment_default
+    weight: 3
+    region: content
+    settings:
+      view_mode: default
+      pager_id: 0
+    third_party_settings: {  }
+  field_drupal_version:
+    weight: 1
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  taxonomy_forums:
+    type: entity_reference_label
+    weight: 0
+    region: content
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+hidden:
+  langcode: true
