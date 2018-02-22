@@ -1,0 +1,15 @@
+{% block view_mode %}
+  <div class="vm vm-title_date">
+    {% if content.title|render|trim %}
+      <h3 class="vm-title">
+        {{ content.title }}
+      </h3>
+    {% endif %}
+
+    {% if content.date|render|trim %}
+      <div class="vm-date">
+        {{ content.date }}
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

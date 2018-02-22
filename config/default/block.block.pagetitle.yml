@@ -23,6 +23,7 @@ visibility:
     bundles:
       dcz_article: dcz_article
       dcz_showcase: dcz_showcase
+      forum: forum
       individual: individual
       organization: organization
       page: page
