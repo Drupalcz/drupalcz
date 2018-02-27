@@ -17,6 +17,16 @@
 
   .menu {
     margin: 0;
+    display: flex;
+
+    @include bp(medium) {
+      justify-content: right;
+    }
+
+    li {
+      margin-right: 1em;
+      padding-top: 0;
+    }
   }
 
   a {

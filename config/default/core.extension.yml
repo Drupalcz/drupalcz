@@ -1,5 +1,4 @@
 module:
-  acquia_connector: 0
   admin_toolbar: 0
   admin_toolbar_tools: 0
   block: 0
@@ -33,6 +32,8 @@ module:
   field_ui: 0
   file: 0
   filter: 0
+  flexslider: 0
+  flexslider_views: 0
   geolocation: 0
   geshifilter: 0
   google_analytics: 0
@@ -60,7 +61,6 @@ module:
   redirect: 0
   search: 0
   shortcut: 0
-  syslog: 0
   system: 0
   taxonomy: 0
   text: 0

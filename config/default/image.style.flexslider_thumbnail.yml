@@ -1,0 +1,16 @@
+uuid: 64582f16-fc29-4088-8d67-7f253cb91fd6
+langcode: cs
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: CaB9WW_9yUbbica2-gL171M13OrbHwR9xFL1_UIqPY0
+name: flexslider_thumbnail
+label: 'Flexslider Thumbnail'
+effects:
+  b4778d08-beca-43b7-8403-3d87e42991f6:
+    uuid: b4778d08-beca-43b7-8403-3d87e42991f6
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 160
+      height: 100
