@@ -308,7 +308,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Operace
+          label: Operations
           exclude: false
           alter:
             alter_text: false

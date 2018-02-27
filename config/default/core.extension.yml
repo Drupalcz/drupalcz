@@ -33,6 +33,8 @@ module:
   field_ui: 0
   file: 0
   filter: 0
+  flexslider: 0
+  flexslider_views: 0
   geolocation: 0
   geshifilter: 0
   google_analytics: 0

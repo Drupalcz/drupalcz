@@ -76,8 +76,8 @@ content:
   field_url:
     weight: 3
     settings:
-      placeholder_url: 'https://www.whitehouse.gov/'
-      placeholder_title: 'White House (USA)'
+      placeholder_url: 'https://www.drupal.cz'
+      placeholder_title: 'Drupal Česká Republika'
     third_party_settings: {  }
     type: link_default
     region: content
@@ -135,4 +135,6 @@ content:
   url_redirects:
     weight: 50
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden: {  }
