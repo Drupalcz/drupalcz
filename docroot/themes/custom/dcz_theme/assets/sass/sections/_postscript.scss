@@ -10,4 +10,50 @@
   margin: 0 auto;
   max-width: $max-width;
   padding: 0 $content-layout-padding;
+
+  @include bp(medium) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  > div {
+    border-bottom: 1px solid rgba(51, 122, 183, .2);
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    @include bp(medium) {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      padding: 0 $site-padding;
+
+      &:first-child {
+        padding-left: 0;
+      }
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+
+  h2 {
+    font-size: 1.2em;
+    margin-top: 0;
+  }
+
+  ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+
+    li {
+      margin-left: 0;
+    }
+  }
 }
