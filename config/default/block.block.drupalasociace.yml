@@ -1,0 +1,25 @@
+uuid: 3276ce82-e27f-442c-bd77-1a5c810fbe16
+langcode: cs
+status: true
+dependencies:
+  content:
+    - 'block_content:content_block:a2b72088-8c5f-4e1b-afad-174041a96d37'
+  module:
+    - block_content
+  theme:
+    - dcz_theme
+id: drupalasociace
+theme: dcz_theme
+region: postscript
+weight: -5
+provider: null
+plugin: 'block_content:a2b72088-8c5f-4e1b-afad-174041a96d37'
+settings:
+  id: 'block_content:a2b72088-8c5f-4e1b-afad-174041a96d37'
+  label: 'Drupal asociace'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

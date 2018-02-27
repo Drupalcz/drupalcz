@@ -1,0 +1,25 @@
+uuid: 716cc43b-4588-4705-a89a-81af42532df2
+langcode: cs
+status: true
+dependencies:
+  content:
+    - 'block_content:content_block:5188b6a4-c45a-467a-ad7f-b2b9116159cd'
+  module:
+    - block_content
+  theme:
+    - dcz_theme
+id: registeredtrademark
+theme: dcz_theme
+region: footer_one
+weight: 0
+provider: null
+plugin: 'block_content:5188b6a4-c45a-467a-ad7f-b2b9116159cd'
+settings:
+  id: 'block_content:5188b6a4-c45a-467a-ad7f-b2b9116159cd'
+  label: 'Registered trademark'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
