@@ -12,7 +12,7 @@ id: node.forum.taxonomy_forums
 field_name: taxonomy_forums
 entity_type: node
 bundle: forum
-label: Forums
+label: Fórum
 description: ''
 required: true
 translatable: true

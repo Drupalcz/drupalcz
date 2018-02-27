@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b8d5f05bd21cff1c7949c208dfbeb093",
+    "content-hash": "5b54fcf9f668ad43126754ea8212d0b7",
     "packages": [
         {
             "name": "acquia/blt",
@@ -1057,6 +1057,18 @@
             ],
             "description": "Provides a way to patch Composer packages.",
             "time": "2017-12-07T16:16:31+00:00"
+        },
+        {
+            "name": "dcz/flexslider",
+            "version": "2.6.3.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/woocommerce/FlexSlider/archive/2.6.3.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-library",
+            "description": "This is the woocommerce/flexslider package retyped to drupal-library."
         },
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
@@ -4001,6 +4013,74 @@
             "homepage": "https://www.drupal.org/project/features",
             "support": {
                 "source": "http://cgit.drupalcode.org/features"
+            }
+        },
+        {
+            "name": "drupal/flexslider",
+            "version": "2.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/flexslider",
+                "reference": "8.x-2.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/flexslider-8.x-2.0-beta1.zip",
+                "reference": "8.x-2.0-beta1",
+                "shasum": "fa298a5b065c5868a36c45d95fa57068be079220"
+            },
+            "require": {
+                "drupal/core": "*",
+                "drupal/libraries": "*"
+            },
+            "require-dev": {
+                "drupal/flexslider_fields": "*",
+                "drupal/flexslider_views": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.0-beta1",
+                    "datestamp": "1492020545",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "ClassicCut",
+                    "homepage": "https://www.drupal.org/user/2703101"
+                },
+                {
+                    "name": "amaria",
+                    "homepage": "https://www.drupal.org/user/66428"
+                },
+                {
+                    "name": "minorOffense",
+                    "homepage": "https://www.drupal.org/user/129088"
+                },
+                {
+                    "name": "ryanwebpage",
+                    "homepage": "https://www.drupal.org/user/737596"
+                },
+                {
+                    "name": "spotzero",
+                    "homepage": "https://www.drupal.org/user/657848"
+                }
+            ],
+            "description": "Integrate the FlexSlider 2 library with Drupal",
+            "homepage": "https://www.drupal.org/project/flexslider",
+            "support": {
+                "source": "http://cgit.drupalcode.org/flexslider"
             }
         },
         {
@@ -12580,6 +12660,7 @@
     "stability-flags": {
         "drupal/entity_class_formatter": 20,
         "drupal/entity_embed": 10,
+        "drupal/flexslider": 10,
         "drupal/juicebox": 10,
         "drupal/libraries": 20,
         "drupal/youtube": 10
