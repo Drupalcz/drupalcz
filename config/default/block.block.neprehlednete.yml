@@ -1,0 +1,25 @@
+uuid: fca46e3a-5b69-4f6b-8fe6-66310cc80534
+langcode: cs
+status: true
+dependencies:
+  content:
+    - 'block_content:content_block:3f0c9dc6-0d64-490c-8165-b11d74eab427'
+  module:
+    - block_content
+  theme:
+    - dcz_theme
+id: neprehlednete
+theme: dcz_theme
+region: postscript
+weight: 0
+provider: null
+plugin: 'block_content:3f0c9dc6-0d64-490c-8165-b11d74eab427'
+settings:
+  id: 'block_content:3f0c9dc6-0d64-490c-8165-b11d74eab427'
+  label: Nepřehlédněte
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

@@ -1,0 +1,24 @@
+uuid: 96c0a2b2-f558-4df0-ab66-4bc38e28d38f
+langcode: cs
+status: true
+dependencies:
+  config:
+    - views.view.who_s_online
+  module:
+    - views
+  theme:
+    - dcz_theme
+id: views_block__who_s_online_who_s_online_block
+theme: dcz_theme
+region: postscript
+weight: -6
+provider: null
+plugin: 'views_block:who_s_online-who_s_online_block'
+settings:
+  id: 'views_block:who_s_online-who_s_online_block'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: '5'
+visibility: {  }

@@ -1,6 +1,6 @@
 uuid: 15c26f8d-e798-4632-a94e-9cd08b77632a
 langcode: cs
-status: true
+status: false
 dependencies:
   module:
     - dcz_custom_blocks
@@ -9,7 +9,7 @@ dependencies:
 id: copyrightblock
 theme: dcz_theme
 region: postscript
-weight: 0
+weight: -4
 provider: null
 plugin: dcz_custom_blocks_copyright
 settings:
