@@ -24,4 +24,5 @@ libraries:
   - 'dcz_theme/font_dcz'
 
 ckeditor_stylesheets:
+  - //fonts.googleapis.com/css?family=Fira+Sans:300,400,600&subset=latin-ext
   - css/style.css
