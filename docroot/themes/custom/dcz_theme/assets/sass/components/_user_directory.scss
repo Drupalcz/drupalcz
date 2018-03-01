@@ -1,0 +1,26 @@
+.view-user-directory {
+  .view-content {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: - $content-layout-padding/3;
+    margin-right: - $content-layout-padding/3;
+
+    .views-row {
+      max-width: calc(100 / 2 * 1%);
+      padding: $content-layout-padding/3;
+
+      @include bp(small) {
+        width: calc(100 / 3 * 1%);
+      }
+      @include bp(medium) {
+        width: calc(100 / 4 * 1%);
+      }
+      @include bp(big) {
+        width: calc(100 / 5 * 1%);
+      }
+      @include bp(large) {
+        width: calc(100 / 6 * 1%);
+      }
+    }
+  }
+}
