@@ -1,0 +1,134 @@
+uuid: 5c2ce745-7d6f-4a79-9371-4bb284f9f95c
+langcode: cs
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.stack
+    - field.field.user.user.field_dcz_bio
+    - field.field.user.user.field_dcz_name
+    - field.field.user.user.field_dcz_surname
+    - field.field.user.user.field_dcz_user_image
+    - field.field.user.user.field_location
+    - image.style.thumbnail
+  module:
+    - geolocation
+    - image
+    - panelizer
+    - user
+third_party_settings:
+  panelizer:
+    enable: true
+    custom: false
+    allow: false
+    default: default
+    displays:
+      default:
+        blocks:
+          5a1396ce-a682-4ad8-ae17-bdef9cc76f32:
+            id: 'entity_field:user:field_dcz_name'
+            label: Name
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: string
+              settings:
+                link_to_entity: true
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: title
+            weight: -10
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: 5a1396ce-a682-4ad8-ae17-bdef9cc76f32
+          e0534c3d-dc92-4049-a54d-8057a1ee8c3b:
+            id: 'entity_field:user:field_dcz_surname'
+            label: Surname
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: string
+              settings:
+                link_to_entity: true
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: title
+            weight: -9
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: e0534c3d-dc92-4049-a54d-8057a1ee8c3b
+          402d0dcb-eb24-41cd-a590-2f2b61e2f304:
+            id: 'entity_field:user:field_dcz_user_image'
+            label: Avatar
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: image
+              settings:
+                image_style: medium
+                image_link: content
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: image
+            weight: -10
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: 402d0dcb-eb24-41cd-a590-2f2b61e2f304
+        id: panels_variant
+        label: Default
+        uuid: e78ba45e-a380-4cef-b5e0-8686aa27c505
+        weight: 0
+        layout: stack
+        layout_settings: {  }
+        page_title: ''
+        storage_type: panelizer_default
+        storage_id: 'user:user:stack:default'
+        builder: standard
+        pattern: panelizer
+        static_context: {  }
+id: user.user.stack
+targetEntityType: user
+bundle: user
+mode: stack
+content:
+  field_dcz_name:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_dcz_surname:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_dcz_user_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_location:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: geolocation_latlng
+    region: content
+hidden:
+  field_dcz_bio: true
+  langcode: true
+  member_for: true

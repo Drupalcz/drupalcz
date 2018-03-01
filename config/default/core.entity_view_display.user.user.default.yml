@@ -5,8 +5,6 @@ dependencies:
   config:
     - field.field.user.user.field_dcz_bio
     - field.field.user.user.field_dcz_name
-    - field.field.user.user.field_dcz_pos_lat
-    - field.field.user.user.field_dcz_pos_long
     - field.field.user.user.field_dcz_surname
     - field.field.user.user.field_dcz_user_image
     - field.field.user.user.field_location
@@ -39,7 +37,7 @@ third_party_settings:
               weight: 0
               region: content
             region: first_above
-            weight: -3
+            weight: -10
             context_mapping:
               entity: '@panelizer.entity_context:entity'
             uuid: 5a1396ce-a682-4ad8-ae17-bdef9cc76f32
@@ -57,7 +55,7 @@ third_party_settings:
               weight: 0
               region: content
             region: first_above
-            weight: -2
+            weight: -9
             context_mapping:
               entity: '@panelizer.entity_context:entity'
             uuid: e0534c3d-dc92-4049-a54d-8057a1ee8c3b
@@ -76,7 +74,7 @@ third_party_settings:
               weight: 0
               region: content
             region: second_above
-            weight: -3
+            weight: -10
             context_mapping:
               entity: '@panelizer.entity_context:entity'
             uuid: 402d0dcb-eb24-41cd-a590-2f2b61e2f304
@@ -86,14 +84,42 @@ third_party_settings:
             provider: ctools_block
             label_display: '0'
             formatter:
-              label: above
-              type: geolocation_latlng
-              settings: {  }
+              label: hidden
+              type: geolocation_map
+              settings:
+                set_marker: '1'
+                title: ''
+                info_text: ''
+                replacement_patterns:
+                  token_geolocation:
+                    token_items: ''
+                google_map_settings:
+                  height: 200px
+                  width: 100%
+                  type: ROADMAP
+                  zoom: '14'
+                  maxZoom: 18
+                  minZoom: 0
+                  mapTypeControl: 1
+                  streetViewControl: 0
+                  zoomControl: 1
+                  rotateControl: 0
+                  fullscreenControl: 0
+                  scrollwheel: 1
+                  gestureHandling: auto
+                  draggable: 1
+                  preferScrollingToZooming: 1
+                  disableDoubleClickZoom: 0
+                  style: ''
+                  info_auto_display: 0
+                  marker_icon_path: /themes/custom/dcz_theme/images/drupal-marker.svg
+                  disableAutoPan: 0
+                use_overridden_map_settings: 0
               third_party_settings: {  }
               weight: 0
               region: content
-            region: first_above
-            weight: 0
+            region: bottom
+            weight: -4
             context_mapping:
               entity: '@panelizer.entity_context:entity'
             uuid: 6291af4c-08ca-4133-9a84-4c9b6fef1a08
@@ -128,7 +154,7 @@ third_party_settings:
               third_party_settings: {  }
               weight: 0
             region: first_above
-            weight: -1
+            weight: -8
             uuid: 19091d04-9e4d-4342-8be4-fe46fe8536f8
             context_mapping:
               entity: '@panelizer.entity_context:entity'
@@ -222,7 +248,5 @@ content:
     region: content
 hidden:
   field_dcz_bio: true
-  field_dcz_pos_lat: true
-  field_dcz_pos_long: true
   langcode: true
   member_for: true

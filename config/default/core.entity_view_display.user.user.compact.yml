@@ -6,8 +6,6 @@ dependencies:
     - core.entity_view_mode.user.compact
     - field.field.user.user.field_dcz_bio
     - field.field.user.user.field_dcz_name
-    - field.field.user.user.field_dcz_pos_lat
-    - field.field.user.user.field_dcz_pos_long
     - field.field.user.user.field_dcz_surname
     - field.field.user.user.field_dcz_user_image
     - field.field.user.user.field_location
@@ -39,8 +37,6 @@ content:
 hidden:
   field_dcz_bio: true
   field_dcz_name: true
-  field_dcz_pos_lat: true
-  field_dcz_pos_long: true
   field_dcz_surname: true
   field_location: true
   langcode: true
