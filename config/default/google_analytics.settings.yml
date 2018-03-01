@@ -1,4 +1,4 @@
-account: UA-12345678-90
+account: UA-114938389-1
 domain_mode: 0
 cross_domains: ''
 visibility:
@@ -35,3 +35,4 @@ debug: false
 _core:
   default_config_hash: 5YkLBJiAXgH9BDLkDIb1ozqfCXWwvZggf4XfcXgfjzc
 langcode: cs
+premium: false
