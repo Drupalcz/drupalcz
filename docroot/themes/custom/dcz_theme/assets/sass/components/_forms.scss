@@ -19,7 +19,11 @@ form {
     border-radius: 3px;
     color: $drupal-secondary;
     padding: .5em 1em;
-    max-width: 100%;
+    width: 100%;
+
+    @include bp(small) {
+      max-width: 100%;
+    }
   }
 
   .form-textarea {

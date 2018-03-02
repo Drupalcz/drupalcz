@@ -1,0 +1,488 @@
+uuid: 4a95ffb9-b4f0-4237-86c6-253d8bdd6d3a
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_dcz_name
+    - field.storage.user.field_dcz_surname
+    - field.storage.user.field_dcz_user_image
+    - field.storage.user.field_location
+    - image.style.thumbnail
+  module:
+    - geolocation
+    - image
+    - user
+id: user_map
+label: 'User map'
+module: views
+description: ''
+tag: ''
+base_table: users_field_data
+base_field: uid
+core: 8.x
+display:
+  default:
+    display_plugin: default
+    id: default
+    display_title: Master
+    position: 0
+    display_options:
+      access:
+        type: perm
+        options:
+          perm: 'access user profiles'
+      cache:
+        type: tag
+        options: {  }
+      query:
+        type: views_query
+        options:
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_comment: ''
+          query_tags: {  }
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      pager:
+        type: none
+        options:
+          offset: 0
+      style:
+        type: maps_common
+        options:
+          geolocation_field: field_location
+          title_field: field_dcz_surname
+          centre:
+            fit_bounds:
+              enable: true
+              weight: 0
+            first_row:
+              weight: 0
+              enable: false
+            fixed_value:
+              enable: true
+              weight: 0
+              settings:
+                latitude: '49.85137184970849'
+                longitude: '15.518857862499999'
+            client_location:
+              enable: true
+              weight: 0
+              settings:
+                update_map: '0'
+          show_raw_locations: 0
+          even_empty: 1
+          icon_field: none
+          marker_row_number: 0
+          context_popup_content: ''
+          marker_clusterer: 1
+          marker_clusterer_image_path: ''
+          marker_clusterer_styles: ''
+          google_map_settings:
+            height: 800px
+            width: 100%
+            type: ROADMAP
+            zoom: '8'
+            maxZoom: 18
+            minZoom: 0
+            mapTypeControl: 1
+            streetViewControl: 0
+            zoomControl: 1
+            rotateControl: 0
+            fullscreenControl: 0
+            scrollwheel: 1
+            gestureHandling: auto
+            draggable: 1
+            preferScrollingToZooming: 1
+            disableDoubleClickZoom: 0
+            style: ''
+            info_auto_display: 0
+            marker_icon_path: /themes/custom/dcz_theme/images/drupal-marker.svg
+            disableAutoPan: 1
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline:
+            field_dcz_name: field_dcz_name
+            field_dcz_surname: field_dcz_surname
+          separator: ''
+          hide_empty: false
+      fields:
+        field_location:
+          id: field_location
+          table: user__field_location
+          field: field_location
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: ''
+          type: geolocation_latlng
+          settings: {  }
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: geolocation_field
+        field_dcz_name:
+          id: field_dcz_name
+          table: user__field_dcz_name
+          field: field_dcz_name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_dcz_surname:
+          id: field_dcz_surname
+          table: user__field_dcz_surname
+          field: field_dcz_surname
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: true
+            text: '{{ field_dcz_name }} {{ field_dcz_surname }} '
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_dcz_user_image:
+          id: field_dcz_user_image
+          table: user__field_dcz_user_image
+          field: field_dcz_user_image
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: image
+          settings:
+            image_style: thumbnail
+            image_link: content
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        name:
+          id: name
+          table: users_field_data
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'User: '
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: false
+            ellipsis: false
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: user_name
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: user
+          entity_field: name
+          plugin_id: field
+      filters:
+        status:
+          value: '1'
+          table: users_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: user
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+          group: 1
+      sorts: {  }
+      header: {  }
+      footer: {  }
+      empty: {  }
+      relationships: {  }
+      arguments: {  }
+      display_extenders:
+        metatag_display_extender: {  }
+      use_ajax: true
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - user.permissions
+      tags:
+        - 'config:field.storage.user.field_dcz_name'
+        - 'config:field.storage.user.field_dcz_surname'
+        - 'config:field.storage.user.field_dcz_user_image'
+        - 'config:field.storage.user.field_location'
+  embed_1:
+    display_plugin: embed
+    id: embed_1
+    display_title: Embed
+    position: 1
+    display_options:
+      display_extenders:
+        metatag_display_extender: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - user.permissions
+      tags:
+        - 'config:field.storage.user.field_dcz_name'
+        - 'config:field.storage.user.field_dcz_surname'
+        - 'config:field.storage.user.field_dcz_user_image'
+        - 'config:field.storage.user.field_location'

@@ -10,12 +10,20 @@ dependencies:
     - image.style.hero
     - paragraphs.paragraphs_type.dcz_para_hero
   module:
+    - entity_class_formatter
     - image
 id: paragraph.dcz_para_hero.default
 targetEntityType: paragraph
 bundle: dcz_para_hero
 mode: default
 content:
+  field_class:
+    type: entity_class_formatter
+    weight: 2
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   field_image:
     weight: 0
     label: hidden
@@ -35,6 +43,5 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  field_class: true
   field_description: true
   uid: true

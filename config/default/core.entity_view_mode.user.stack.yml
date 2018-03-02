@@ -1,0 +1,10 @@
+uuid: 56460285-f58b-46db-bd72-d3c1d26ca8ed
+langcode: cs
+status: true
+dependencies:
+  module:
+    - user
+id: user.stack
+label: Stack
+targetEntityType: user
+cache: true

@@ -30,6 +30,9 @@ settings:
       value: dcz_para_padding-big
       label: 'Bigger padding'
     -
+      value: dcz_para_bottom_gap
+      label: 'Bottom gap'
+    -
       value: dcz_para_text_center
       label: 'Text center align'
     -
