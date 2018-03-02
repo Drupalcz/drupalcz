@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.tutorial.field_coauthors
     - field.field.node.tutorial.field_creditors
     - field.field.node.tutorial.field_paragraphs
+    - field.field.node.tutorial.field_tags
     - field.field.node.tutorial.field_teaser_image
     - field.field.node.tutorial.field_teaser_text
     - node.type.tutorial
@@ -43,6 +44,14 @@ content:
       link: ''
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
+    region: content
+  field_tags:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   links:
     weight: 0
