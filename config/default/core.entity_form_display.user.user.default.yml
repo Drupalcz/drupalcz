@@ -5,13 +5,12 @@ dependencies:
   config:
     - field.field.user.user.field_dcz_bio
     - field.field.user.user.field_dcz_name
-    - field.field.user.user.field_dcz_pos_lat
-    - field.field.user.user.field_dcz_pos_long
     - field.field.user.user.field_dcz_surname
     - field.field.user.user.field_dcz_user_image
     - field.field.user.user.field_location
     - image.style.thumbnail
   module:
+    - geolocation
     - image
     - path
     - text
@@ -23,16 +22,16 @@ mode: default
 content:
   account:
     weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   contact:
     weight: 2
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_dcz_bio:
-    weight: 6
+    weight: 7
     settings:
       rows: 5
       placeholder: ''
@@ -40,30 +39,6 @@ content:
     type: text_textarea
     region: content
   field_dcz_name:
-    weight: 4
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_dcz_pos_lat:
-    type: string_textfield
-    weight: 8
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    region: content
-  field_dcz_pos_long:
-    type: string_textfield
-    weight: 7
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    region: content
-  field_dcz_surname:
     weight: 5
     settings:
       size: 60
@@ -71,33 +46,77 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_dcz_surname:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_dcz_user_image:
-    weight: 31
+    weight: 12
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
     region: content
+  field_location:
+    type: geolocation_googlegeocoder
+    weight: 8
+    region: content
+    settings:
+      default_longitude: '15.518857862499999'
+      default_latitude: '49.85137184970849'
+      auto_client_location: '1'
+      auto_client_location_marker: '1'
+      google_map_settings:
+        height: 400px
+        width: 100%
+        type: ROADMAP
+        zoom: '10'
+        maxZoom: 18
+        minZoom: 0
+        mapTypeControl: 1
+        zoomControl: 1
+        scrollwheel: 1
+        gestureHandling: auto
+        draggable: 1
+        preferScrollingToZooming: 1
+        style: ''
+        info_auto_display: 1
+        marker_icon_path: ''
+        disableAutoPan: 1
+        streetViewControl: 0
+        rotateControl: 0
+        fullscreenControl: 0
+        disableDoubleClickZoom: 0
+      allow_override_map_settings: 0
+      populate_address_field: ''
+      target_address_field: null
+      explicite_actions_address_field: ''
+    third_party_settings: {  }
   google_analytics:
     weight: 3
     region: content
-  language:
-    weight: 1
     settings: {  }
     third_party_settings: {  }
+  language:
+    weight: 1
     region: content
+    settings: {  }
+    third_party_settings: {  }
   path:
     type: path
-    weight: 30
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     region: content
   timezone:
-    weight: 3
+    weight: 4
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
-  field_location: true
   langcode: true
