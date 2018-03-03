@@ -1092,6 +1092,9 @@ tbody td {
 .user--view-mode-full .block-entity-fielduserfield-dcz-bio {
   clear: both; }
 
+.user--view-mode-full .field--name-field-location {
+  margin-top: 1em; }
+
 .user--view-mode-stack .vm-title .block,
 .user--view-mode-stack .vm-title .field {
   display: inline; }
