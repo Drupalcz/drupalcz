@@ -9,9 +9,9 @@ is_admin: false
 permissions:
   - 'access comments'
   - 'access content'
+  - 'access user profiles'
   - 'create forum content'
   - 'display eu cookie compliance popup'
   - 'post comments'
-  - 'search content'
   - 'skip comment approval'
   - 'use text format basic_html'
