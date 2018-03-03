@@ -64,6 +64,23 @@ third_party_settings:
             uuid: 46b1e217-73d7-4eef-905d-7bf3f03c3202
             context_mapping:
               entity: '@panelizer.entity_context:entity'
+          093a3336-8b11-425a-8fcb-a78545afa882:
+            id: 'entity_field:node:field_drupal_version'
+            label: 'Drupal version'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: entity_reference_label
+              settings:
+                link: false
+              third_party_settings: {  }
+              weight: 0
+            region: content
+            weight: 0
+            uuid: 093a3336-8b11-425a-8fcb-a78545afa882
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
         id: panels_variant
         label: Default
         uuid: 13bb8147-737a-4222-8c68-6514e63f2841
@@ -73,7 +90,7 @@ third_party_settings:
         page_title: ''
         storage_type: panelizer_default
         storage_id: 'node:dcz_showcase:stack:default'
-        builder: ipe
+        builder: standard
         pattern: panelizer
         static_context: {  }
 id: node.dcz_showcase.stack
