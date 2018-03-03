@@ -28,7 +28,7 @@ settings:
   title_field: false
   title_field_required: false
   default_image:
-    uuid: 1f7c9731-e7e7-4744-be1b-777e2fc98401
+    uuid: b68c1bad-85d3-4d09-8cad-4fe9a007fc6f
     alt: 'Drupal user'
     title: ''
     width: 200
