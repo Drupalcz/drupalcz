@@ -1,6 +1,10 @@
 form {
   background: rgba(51, 122, 183, .1);
-  padding: 1em 2em;
+  padding: 1em $site-padding;
+
+  @include bp(medium) {
+    padding: 1em 2em;
+  }
 
   label {
     display: block;

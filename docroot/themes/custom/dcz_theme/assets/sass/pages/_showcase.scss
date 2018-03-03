@@ -1,0 +1,25 @@
+// Main listing of showcases
+.view-showcase.view-display-id-embed_2 {
+  .view-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    margin-left: - $content-layout-padding/3;
+    margin-right: - $content-layout-padding/3;
+
+    .views-row {
+      max-width: calc(100 / 1 * 1%);
+      padding: $content-layout-padding/2;
+
+      @include bp(small) {
+        width: calc(100 / 2 * 1%);
+      }
+      @include bp(medium) {
+        width: calc(100 / 3 * 1%);
+      }
+      @include bp(big) {
+        width: calc(100 / 4 * 1%);
+      }
+    }
+  }
+}

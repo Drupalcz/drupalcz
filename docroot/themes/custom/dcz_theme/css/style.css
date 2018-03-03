@@ -487,7 +487,10 @@ mark {
 
 form {
   background: rgba(51, 122, 183, 0.1);
-  padding: 1em 2em; }
+  padding: 1em 2rem; }
+  @media (min-width: 77rem) {
+    form {
+      padding: 1em 2em; } }
   form label {
     display: block; }
   form input {
@@ -868,6 +871,13 @@ tbody td {
   .vm-stack .vm-image img {
     display: block; }
 
+.node--view-mode-stack {
+  height: 100%; }
+  .node--view-mode-stack > div {
+    height: 100%; }
+    .node--view-mode-stack > div > .vm-stack {
+      height: 100%; }
+
 @media (min-width: 48rem) {
   .vm-teaser {
     display: -ms-flexbox;
@@ -967,24 +977,22 @@ tbody td {
   .view-showcase.view-display-id-embed_1 .node--view-mode-stack .vm-stack {
     position: relative; }
   .view-showcase.view-display-id-embed_1 .node--view-mode-stack .vm-content-wrapper {
+    background: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
     bottom: 2em;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    padding: 0;
+    padding: 1em;
     position: absolute;
+    text-align: center;
     width: 100%;
     z-index: 50; }
     .view-showcase.view-display-id-embed_1 .node--view-mode-stack .vm-content-wrapper h2 {
       margin: 0; }
       .view-showcase.view-display-id-embed_1 .node--view-mode-stack .vm-content-wrapper h2 a {
-        background: rgba(255, 255, 255, 0.7);
-        border-bottom: 1px solid white;
-        border-top: 1px solid white;
         color: black;
         display: block;
-        margin: 0;
-        padding: 1em;
-        text-align: center;
-        text-shadow: 0 0 5px rgba(0, 0, 0, 0.4); }
+        margin: 0; }
 
 @media (min-width: 77rem) {
   .path-frontpage .paragraph--type--layout.layout-two-one-halves .field--name-field-paragraphs {
@@ -1075,6 +1083,28 @@ tbody td {
   max-width: 120rem;
   padding: 0 2rem; }
 
+.view-showcase.view-display-id-embed_2 .view-content {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-align: stretch;
+      align-items: stretch;
+  margin-left: -1.33333rem;
+  margin-right: -1.33333rem; }
+  .view-showcase.view-display-id-embed_2 .view-content .views-row {
+    max-width: calc(100 / 1 * 1%);
+    padding: 2rem; }
+    @media (min-width: 48rem) {
+      .view-showcase.view-display-id-embed_2 .view-content .views-row {
+        width: calc(100 / 2 * 1%); } }
+    @media (min-width: 77rem) {
+      .view-showcase.view-display-id-embed_2 .view-content .views-row {
+        width: calc(100 / 3 * 1%); } }
+    @media (min-width: 102rem) {
+      .view-showcase.view-display-id-embed_2 .view-content .views-row {
+        width: calc(100 / 4 * 1%); } }
+
 .view-dcz-tutorials .views-row {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   margin-bottom: 1em;
@@ -1091,6 +1121,9 @@ tbody td {
 
 .user--view-mode-full .block-entity-fielduserfield-dcz-bio {
   clear: both; }
+
+.user--view-mode-full .field--name-field-location {
+  margin-top: 1em; }
 
 .user--view-mode-stack .vm-title .block,
 .user--view-mode-stack .vm-title .field {

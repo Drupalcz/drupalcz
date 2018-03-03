@@ -19,3 +19,15 @@
   }
 }
 
+// Make the view mode appears same height in lists.
+.node--view-mode-stack {
+  height: 100%;
+
+  > div {
+    height: 100%;
+
+    > .vm-stack {
+      height: 100%;
+    }
+  }
+}

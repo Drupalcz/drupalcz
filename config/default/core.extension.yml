@@ -28,6 +28,7 @@ module:
   entity_embed: 0
   entity_reference: 0
   entity_reference_revisions: 0
+  eu_cookie_compliance: 0
   field: 0
   field_ui: 0
   file: 0
@@ -38,6 +39,7 @@ module:
   geshifilter: 0
   google_analytics: 0
   history: 0
+  honeypot: 0
   image: 0
   juicebox: 0
   language: 0
