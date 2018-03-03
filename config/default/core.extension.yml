@@ -38,6 +38,7 @@ module:
   geshifilter: 0
   google_analytics: 0
   history: 0
+  honeypot: 0
   image: 0
   juicebox: 0
   language: 0

@@ -24,6 +24,7 @@
         "drupal/geolocation": "^1.11",
         "drupal/geshifilter": "^1.2",
         "drupal/google_analytics": "^2.2",
+        "drupal/honeypot": "^1.27",
         "drupal/juicebox": "^2.0@beta",
         "drupal/libraries": "3.x-dev",
         "drupal/migrate_plus": "^2.0",
