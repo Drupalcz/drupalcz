@@ -1,0 +1,23 @@
+uuid: 92ce0f7f-1e69-48fc-abc7-404f4b718c4a
+langcode: cs
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: taxonomy_terms
+label: 'Drupal versions'
+type: 'canonical_entities:taxonomy_term'
+pattern: '[term:name]'
+selection_criteria:
+  cc733fe9-0e4d-4760-b3de-5d5788678ed4:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      drupal_version: drupal_version
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: cc733fe9-0e4d-4760-b3de-5d5788678ed4
+selection_logic: and
+weight: -5
+relationships: {  }

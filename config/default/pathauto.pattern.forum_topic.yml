@@ -1,0 +1,22 @@
+uuid: 0661d822-d524-4405-b96c-34d9923daf1d
+langcode: cs
+status: true
+dependencies:
+  module:
+    - node
+id: forum_topic
+label: 'Téma diskuze'
+type: 'canonical_entities:node'
+pattern: 'forum/[node:taxonomy_forums:entity:parents:join-path]/[node:taxonomy_forums:entity]/[node:title]'
+selection_criteria:
+  338502a3-8bea-47a1-be60-0a1de1031f37:
+    id: node_type
+    bundles:
+      forum: forum
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 338502a3-8bea-47a1-be60-0a1de1031f37
+selection_logic: and
+weight: -5
+relationships: {  }
