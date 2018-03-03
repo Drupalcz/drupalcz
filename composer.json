@@ -34,8 +34,7 @@
         "drupal/redirect": "^1.0",
         "drupal/viewsreference": "^2.0",
         "drupal/youtube": "^1.0@beta",
-        "drush/drush": "8.1.15",
-        "geshi/geshi": "^1.0"
+        "drush/drush": "8.1.15"
     },
     "require-dev": {},
     "config": {
