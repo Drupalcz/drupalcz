@@ -27,10 +27,14 @@
     }
 
     .vm-content-wrapper {
+      background: $white-7;
+      border-bottom: 1px solid $white;
+      border-top: 1px solid $white;
       bottom: 2em;
       box-shadow: 0 0 15px $gray-2;
-      padding: 0;
+      padding: 1em;
       position: absolute;
+      text-align: center;
       width: 100%;
       z-index: 50;
 
@@ -38,15 +42,9 @@
         margin: 0;
 
         a {
-          background: $white-7;
-          border-bottom: 1px solid $white;
-          border-top: 1px solid $white;
           color: $black;
           display: block;
           margin: 0;
-          padding: 1em;
-          text-align: center;
-          text-shadow: 0 0 5px $gray-4;
         }
       }
     }
@@ -54,7 +52,7 @@
 }
 
 .path-frontpage {
-  // Article section.
+  // Article section overriding the standard 2:(1/2).
   .paragraph--type--layout {
 
     @include bp(medium) {
