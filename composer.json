@@ -42,18 +42,6 @@
         {
             "type": "package",
             "package": {
-                "name": "ckeditor/codesnippet",
-                "version": "4.8.0",
-                "type": "drupal-library",
-                "dist": {
-                    "url": "https://download.ckeditor.com/codesnippet/releases/codesnippet_4.8.0.zip",
-                    "type": "zip"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
                 "name": "dcz/flexslider",
                 "version": "2.6.3.0",
                 "version_normalized": "2.6.3.0",
