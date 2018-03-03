@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b6dbd0c6ce0335e27d1ee44ecdeb112b",
+    "content-hash": "2332c475008a44cae3b48d2be6ccae8c",
     "packages": [
         {
             "name": "acquia/blt",
@@ -510,17 +510,6 @@
                 "html"
             ],
             "time": "2017-06-12T17:35:44+00:00"
-        },
-        {
-            "name": "ckeditor/codesnippet",
-            "version": "4.8.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://download.ckeditor.com/codesnippet/releases/codesnippet_4.8.0.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "type": "drupal-library"
         },
         {
             "name": "composer/installers",
@@ -2098,58 +2087,6 @@
                 "standards"
             ],
             "time": "2017-03-18T10:28:49+00:00"
-        },
-        {
-            "name": "drupal/codesnippet",
-            "version": "1.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/codesnippet",
-                "reference": "8.x-1.6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/codesnippet-8.x-1.6.zip",
-                "reference": "8.x-1.6",
-                "shasum": "cda07e671361defed098a8e82da0cd42c44d3970"
-            },
-            "require": {
-                "drupal/core": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.6",
-                    "datestamp": "1473688439",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Kevin Quillen (kevinquillen)",
-                    "homepage": "https://www.drupal.org/u/kevinquillen",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "Adds the CodeSnippet plugin to CKEditor.",
-            "homepage": "http://drupal.org/project/codesnippet",
-            "keywords": [
-                "Drupal"
-            ],
-            "support": {
-                "source": "http://cgit.drupalcode.org/codesnippet",
-                "issues": "http://drupal.org/project/issues/codesnippet"
-            }
         },
         {
             "name": "drupal/cog",
