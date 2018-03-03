@@ -20,6 +20,7 @@ permissions:
   - 'delete own dcz_showcase content'
   - 'delete own individual content'
   - 'delete own organization content'
+  - 'display eu cookie compliance popup'
   - 'edit own comments'
   - 'edit own dcz_showcase content'
   - 'edit own forum content'
