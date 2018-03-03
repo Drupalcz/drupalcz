@@ -1,0 +1,41 @@
+cookie_lifetime: 100
+domain: ''
+domains_option: 1
+domains_list: ''
+eu_only: false
+exclude_paths: "/admin\r\n/admin/*\r\n/batch\r\n/node/add*\r\n/node/*/*\r\n/user/*/*"
+exclude_admin_theme: true
+export:
+  folder: custom
+langcode: cs
+popup_agreed:
+  value: "<h2>Thank you for accepting cookies</h2>\r\n\r\n<p>You can now hide this message or find out more about cookies.</p>\r\n"
+  format: full_html
+popup_agree_button_message: 'OK, I agree'
+popup_agreed_enabled: false
+popup_bg_hex: 29537D
+popup_clicking_confirmation: true
+popup_scrolling_confirmation: false
+popup_delay: 1
+popup_disagree_button_message: 'No, give me more info'
+popup_enabled: true
+popup_find_more_button_message: 'More info'
+popup_height: null
+popup_hide_agreed: false
+popup_hide_button_message: Hide
+popup_info:
+  value: "<h2>K ukládání nastavení a správnému fungování využíváme soubory cookies.</h2>\r\n\r\n<p>Kliknutím na jakýkoliv odakz s jejich používáním souhlasíte.</p>\r\n"
+  format: full_html
+mobile_popup_info:
+  value: "<h2>K ukládání nastavení a správnému fungování využíváme soubory cookies.</h2>\r\n\r\n<p>Tapnutím na jakýkoliv odakz s jejich používáním souhlasíte.</p>\r\n\r\n<p>&nbsp;</p>\r\n"
+  format: full_html
+mobile_breakpoint: 768
+popup_link: /ochrana-osobnich-udaju
+popup_link_new_window: true
+popup_position: false
+fixed_top_position: false
+popup_text_hex: FFFFFF
+popup_width: 100%
+_core:
+  default_config_hash: xbhmYBGlCdrYkMKHxAz_-rnqz-jpRV1ycKZRRmzbrOM
+use_mobile_message: 1
