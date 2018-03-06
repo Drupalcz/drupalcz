@@ -65,4 +65,8 @@ $settings['extension_discovery_scan_tests'] = TRUE;
  */
 $settings['rebuild_access'] = TRUE;
 
+/**
+ * Set active config split.
+ */
 $config['config_split.config_split.dev']['status'] = TRUE;
+//$config['config_split.config_split.prod']['status'] = TRUE;
