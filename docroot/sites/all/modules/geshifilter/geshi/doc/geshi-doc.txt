@@ -1,0 +1,585 @@
+
+        GeSHi Documentation
+        -------------------
+          Version 1.0.0
+
+Author:          Oracle
+Copyright:       (c) Oracle, 2004
+Email:           oracle.shinoda@gmail.com
+GeSHi Website:   http://qbnz.com/highlighter
+
+This is the documentation for GeSHi - GEneric Syntax HIghlighter.
+The most modern version of this document is available on the web -
+go to http://qbnz.com/highlighter/documentation.php to view it.
+
+Any comments, questions, confusing points? Please contact me! I
+need all the information I can get to make the use of GeSHi and
+everything related to it (including this documentation) a breeze.
+
+
+CONTENTS
+--------
+
+1      Introduction
+
+1.1      About GeSHi
+
+1.2      Credits
+
+1.3      Feedback
+
+
+2      The Basics
+
+2.1      Getting GeSHi
+2.1.1      Downloading and Extracting GeSHi
+
+2.2      Installing GeSHi
+2.2.1      Requirements
+2.2.2      Installation
+
+2.3      Basic Usage
+
+
+3      Advanced Features
+
+3.1      Using CSS Classes
+3.1.1      Enabling CSS Classes
+3.1.2      Setting the CSS Class and ID
+3.1.3      Getting the stylesheet for your code
+3.1.4      Using an External Stylesheet
+
+3.2      Line Numbers
+3.2.1    Enabling Line Numbers
+3.2.2    Notes on Styling Line Numbers
+
+3.3      Changing Styles
+3.3.1      The Overall Styles
+3.3.2      Line Number Styles
+3.3.3      Setting Keyword Styles
+3.3.4      Setting Comment Styles
+3.3.5      Setting Other Styles
+
+4      Language Files
+
+5      Method/Constant Reference
+
+
+  1      INTRODUCTION
+         ------------
+
+GeSHi is exactly what the acronym stands for: a GEneric Syntax
+Highlighter. As long as you have a language file for almost any
+computer language - whether it be a scripting language, object
+orientated, markup or anything in between - GeSHi can highlight
+it. GeSHi is extremely customisable - the same source can be
+highlighted multiple times in multiple ways - even with a different
+language. GeSHi outputs XHTML compliant code, and can make use
+of CSS to save on the amount of output. And what is the cost for
+all of this? You need PHP. That's all!
+
+  1.1    About GeSHi
+
+GeSHi started as a mod for the phpBB forum system, to enable
+highlighting of more languages than the available (which was 0).
+However, it quickly spawned into an entire project on its own. But
+now it has been released work continues on a mod for phpBB - and
+hopefully for many forum systems, blogs and other such thinks.
+
+GeSHi is the work of me, the Oracle. I'm not prepared to be more
+specific that that about my identity unless I have to be. GeSHi's
+my first real piece of free software, and I'm hoping there's much
+more to come.
+
+  1.2    Credits
+
+I'm grateful to the help of the following people or groups who have
+helped in some way to the development of GeSHi:
+
+* Sterling Christensen - Thanks for those links to language specs
+* forum.qbasicnews.com - Thanks for putting up with the crappy versions
+                         that I "forced" on you guys before ;)
+
+It's a small list currently, but hey, this is early days. You want
+your name on this list? Why not make a language file, or submit a valid
+bug? Or perhaps help me with an added feature I can't get my head around,
+or suggest a new feature, or even port GeSHi to anothe language? There's
+lots you can do to help out, and I need it all :)
+
+  1.3    Feedback
+
+I need your feedback! ANYthing you have to say is fine, whether it be a
+query, congratulations, a bug report or complaint, I don't care! I want
+to make this software the best it can be, and I need your help! You can
+contact me in the following ways:
+
+* E-mail:  oracle.shinoda@gmail.com
+* Forums:  http://qbnz.com/pages/forum
+
+Remember, any help I am grateful for :)
+
+
+  2      THE BASICS
+         ----------
+
+In this section, you'll learn a bit about GeSHi, how it works and what it
+uses, how to install it and how to use it to perform basic highlighting.
+
+  2.1    Getting GeSHi
+
+If you're reading this and don't have GeSHi, that's a problem ;). So, how
+do you get your hands on it? Visit http://qbnz.com/highlighter/downloads.php
+to obtain the latest version. 
+
+  2.1.1  Downloading and Extracting GeSHi
+
+If you haven't downloaded GeSHi before, you'll probably want the full version -
+select the latest full version and download to where ever you please (though
+somewhere near your web stuff is a good idea).
+
+Packages come in .zip, .tar.gz and .tar.bz2 format, so there's no complaining
+about whether it's available for you. Linux users probably want .tar.gz or
+.tar.bz2 and windows users probably want .zip.
+
+To extract GeSHi in Linux (.tar.gz):
+
+* Open a shell
+* cd to the directory where the archive lies
+* Type  tar -xzvf [filename]  where [filename] is the name of the archive
+* GeSHi will be extracted to its own directory
+
+To extract GeSHi in Windows (.zip):
+
+* Open Explorer
+* Navigate to the directory where the archive lies
+* Extract the archive. The method you use will depend on your configuration.
+  Some people can right-click upon the archive and select "Extract" from there,
+  others may have to drag the archive and drop it upon an extraction program
+
+To extract from .zip you'll need an unzipping program - unzip in Linux, or
+Winzip, Winrar or similar for Windows.
+
+  2.2    Installing GeSHi
+
+  2.2.1  Requirements
+
+GeSHi requires the following to be installable:
+
+* PHP. It's untested with anything other than 4.3.X. I hope to extend this
+  range soon. I see no reason why it won't work with any version of PHP
+  above 4.1.0. I'm also guessing that GeSHi won't work with PHP5, but a new
+  version will be made available soon that runs with PHP5.
+* Approximately 100 kilobytes of space. GeSHi is very small, the main script
+  running at under 50KB. The more language files you have, the more space
+  you'll take. Language files average around 10KB, with the largest being
+  around 40KB.
+
+As you can see, the requirements are very small. If GeSHi does NOT work for
+you in a particular version of PHP, let me know why and I'll fix it.
+
+  2.2.2  Installation
+
+GeSHi is nothing more than a PHP class with related language support files.
+Those of you familiar with PHP can then guess how easy the installation will
+be: simply copy it into your include path somewhere. You can put it wherever
+you like in this include path, but make sure that the language files remain
+in a subdirectory called geshi/ relative to wherever geshi.php is.
+
+If you don't know what an include path is, don't worry. Simply copy GeSHi to
+your webserver, observing the geshi/ subdirectory limitation above. So for
+example, say your site is at http://mysite.com/myfolder, you can copy GeSHi
+to your site so the directory structure is like this:
+
+http://mysite.com/myfolder/geshi/[language files]
+http://mysite.com/myfolder/geshi.php
+
+Or you can put it in any subdirectory you like:
+
+http://mysite.com/myfolder/includes/geshi/[language files]
+http://mysite.com/myfolder/includes/geshi.php
+
+Just remember the relative path for later.
+
+  2.3    Basic Usage
+
+Use of GeSHi is very easy. Here's a simple example:
+
+  //
+  // Include the GeSHi library
+  //
+  include_once('geshi.php');
+  
+  //
+  // Define some source to highlight and a language to use
+  //
+  $source = '$foo = 45;
+  for ( $i = 1; $i < $foo; $i++ )
+  {
+    echo "$foo<br />\n";
+    --$foo;
+  }';
+  $language = 'php';
+  
+  //
+  // Create a GeSHi object
+  //
+  $geshi = new GeSHi($source, $language);
+  
+  //
+  // And echo the result!
+  //
+  echo $geshi->parse_code();
+
+As you can see, there's only three really important lines:
+
+1:  include_once('geshi.php');
+This line includes the GeSHi class for use
+
+2: $geshi = new GeSHi($source, $language);
+This line creates a new GeSHi object, holding the source and the language
+you want to use for highlighting.
+
+3: echo $geshi->parse_code();
+This line spits out the result :)
+
+So as you can see, simple usage of GeSHi is really easy. Just create a new
+GeSHi object and get the code!
+
+However, this is a really simple example and doesn't even begin to cover all
+the advanced features of GeSHi. If you want to learn more, continue on to
+section 3: Advanced Features.
+
+
+  3      ADVANCED FEATURES
+         -----------------
+
+This section documents the advanced features of GeSHi - strict mode, using
+CSS classes, changing styles on the fly, disabling highlighting of some things
+and more.
+
+In this section there are many code snippets. For all of these, you should assume
+that the GeSHi library has been included, and a GeSHi object has been created
+and is referenced by the variable $geshi. Normally, the source and language used
+are arbitary.
+
+  3.1    Using CSS Classes
+
+Using CSS to highlight your code instead of in-lining the styles is a definate
+bonus. Not only is it more compliant (the w3c is deprecating the style attribute
+in XHTML 2.0) but it results in far less outputted code - up to a whopping 50%
+saving - which makes a *huge* difference to those of us on modems!
+
+  3.1.1  Enabling CSS Classes
+
+By default, GeSHi doesn't use the classes, so it's easy just to whack out some
+highlighted code if you need without worrying about stylesheets. To turn the
+use of classes on, you call the enable_classes() method:
+
+  $geshi->enable_classes();
+
+If you want to turn classes OFF for some reason later:
+
+  $geshi->enable_classes(false);
+
+If classes are enabled when parse_code() is called, then the resultant source will
+use CSS classes in the output, otherwise it will in-line the styles. The advantages
+of using classes are great - the reduction in source will be very noticeable, and
+what's more you can use one stylesheet for several different highlights on the same
+page. In fact, you can even use an external stylesheet and link to that, saving even
+more time and source (because stylesheets are cached by browsers).
+
+  3.1.2  Setting the CSS class and ID
+
+You can set an overall class and id for the code. This is a good feature that allows
+you to use the same stylesheet for many different snippets of code. You call
+set_overall_class() and set_overall_id to accomplish this:
+
+  $geshi->set_overall_class('mycode');
+  $geshi->set_overall_id('dk48ck');
+
+The default classname is the name of the language being used. This means you can use
+just the one stylesheet for all sources that use the same language, and incidentally
+means that you probably won't have to call these methods too often.
+
+CSS IDs are supposed to be unique, and you should use them as such. Basically, you can
+specify an ID for your code and then use that ID to highlight that code in a unique way.
+
+  3.1.3  Getting the stylesheet for your code
+
+The other half of using CSS classes is getting the stylesheet for use with the classes.
+GeSHi makes it very easy to get a stylesheet for your code, with one easy method call:
+
+  echo '<html>
+  <head><title>Code</title>
+  <style type="text/css">
+  <!--';
+  
+  echo $geshi->get_stylesheet();
+  
+  echo '-->
+  </style></head>
+  <body>';
+  
+  $geshi->enable_classes();
+  
+  echo $geshi->parse_code();
+  
+  echo '</body></html>';
+
+The get_stylesheet() method gets the stylesheet for your code in one easy call. All you
+need to do is output it in the correct place. As you can also see, you don't even have
+to enable class usage to get the stylesheet nessecary either - however not enabling
+classes but using the stylesheet may be a silly idea.
+
+By default, get_stylesheet() tries to echo the least amount of code possible. Although
+currently it doesn't check to see if a certain lexic is even in the source, you can
+expect this feature in the future. At least for the present however, if you explicitly
+disable the highlighting of a certain lexic, or disable line numbers, the related CSS
+will not be outputted. This may be a bad thing for you perhaps you're going to use
+the stylesheet for many blocks of code, some with line numbers, others with some lexic
+enabled where this source has it disabled. So to get around this problem, you do this:
+
+  $geshi->get_stylesheet(false);
+
+This turns economy mode off, and all of the stylesheet will be outputted regardless.
+
+Now lets say you have several snippets of code, using the same language. In most of them
+you don't mind if they're highlighted the same way (in fact, that's exactly what you want)
+but in one of them you'd like the source to be highlighted differently. Here's how you
+can do that:
+
+  $geshi1 = new GeSHi($source1, $lang);
+  $geshi2 = new GeSHi($source2, $lang);
+  $geshi3 = new GeSHi($source3, $lang);
+  
+  // Make $geshi3 unique
+  $geshi3->set_overall_id('different');
+
+  //
+  // Methods are called on $geshi3 to change styles...
+  //
+  
+  echo '<html>
+  <head><title>Code</title>
+  <style type="text/css">
+  <!--
+  ';
+  
+  // Get the nessecary stylesheets
+  echo $geshi1->get_stylesheet();
+  echo $geshi3->get_stylesheet();
+  
+  echo '-->
+  </style></head>
+  <body>';
+  
+  // Turn classes on for all sources
+  $geshi1->enable_classes();
+  $geshi2->enable_classes();
+  $geshi3->enable_classes();
+  
+  echo 'Code snippet 1:';
+  echo $geshi1->parse_code();
+  echo 'Code snippet 2 (same highlighting as 1):';
+  echo $geshi2->parse_code();
+  echo 'Code snippet 3 (DIFFERENT highlighting):';
+  echo $geshi3->parse_code();
+  
+  echo '</body></html>';
+
+Note that because we didn't change the CSS class for any of the source, any CSS styles
+specified for $geshi1 will carry over to $geshi3 if they're not explicitly altered by
+$geshi3's stylesheet. To solve this problem, we add this line:
+
+  $geshi3->set_overall_class('');
+
+So now only styles that are in $geshi3's stylesheet apply to $geshi3's code.
+
+  3.1.4  Using an External Stylesheet
+
+An external stylesheet can reduce even more the amount of code needed to highlight
+some source. However there are some drawbacks with this. To use an external stylesheet,
+it's up to you to link it in to your document, normally with the following HTML:
+
+  <html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="url_to_stylesheet.css" />
+    ...
+
+In your external stylesheet you put CSS declarations for your code. Then just make sure
+you're using the correct class (use set_overall_class() to ensure this) and this should
+work fine.
+
+This method is great if you don't mind the source always being highlighted the same. It
+saves a small amount of code and your bandwidth, and it's relatively easy to just change
+the stylesheet should you need to. However, using this will render the methods that
+change the styles of the code useless, because of course the stylesheet is no longer being
+dynamically generated. You can still disable highlighting of certain lexics dynamically,
+however.
+
+  3.2    Line Numbers
+
+GeSHi has the ability to add line numbers to your code (see the demo available at
+http://qbnz.com/highlighter/demo.php to see what can be achieved). Line numbers are
+a great way to make your code look professional, especially if you use the fancy
+line numbers feature.
+
+  3.2.1  Enabling Line Numbers
+
+To highlight a source with line numbers, you call the enable_line_numbers() method:
+
+  $geshi->enable_line_numbers($flag);
+
+Where $flag is one of the following:
+
+  GESHI_NORMAL_LINE_NUMBERS  -  Use normal line numbering
+  GESHI_FANCY_LINE_NUMBERS   -  Use fancy line numbering
+  GESHI_NO_LINE_NUMBERS      -  Disable line numbers (default)
+
+Normal line numbers means you specify a style for them, and that style gets applied
+to all of them. Fancy line numbers means that you can specify a different style
+for each nth line number. You change the value of n (default 5):
+
+  $geshi->enable_line_numbers(GESHI_FANCY_LINE_NUMBERS, 37);
+
+The second parameter is not used in any other mode.
+
+Also note that the values above are CONSTANTS - so don't put them in strings!
+
+  3.2.2  Notes on Styling Line Numbers
+
+Since line numbers are in-lined with the code, they'll inherit styles from the code.
+What does this mean? Well, if the source has a multi-lined string in it somewhere and
+that string is set to be coloured red, then line numbers in that string will also be
+red.
+
+Normally, this is not what you want at all. The default styles for line numbers take
+this into account, by forcing the colour to black, and the font style and weight to
+normal. If you're defining styles for line numbers, make sure you explicitly set
+styles that might be overrided!
+
+  3.3    Changing Styles
+
+One of the more powerful features of GeSHi is the ability to change the style of the
+output dynamically. Why be chained to the boring styles I make up? You can change almost
+every single aspect of highlighted code - and can even say whether something is to be
+highlighted at all.
+
+If you're confused about "styles", you probably want to have a quick tutorial in them
+so you know what you can do with them. Checkout the homepage of CSS:
+
+http://www.w3.org/Styles/CSS
+
+  3.3.1  The Overall Styles
+
+The code outputted by GeSHi is in a <div>, and this div can be styled. By default, the
+only styles that apply are "font-family: 'Courier New', Courier, monospace;" to get that
+"code" feel, but you can specify whatever styles you like:
+
+  $geshi->set_overall_style('... styles ...');
+
+Where styles is a string containing valid CSS declarations. By default, these styles
+overwrite the current styles, but you can change this by adding a second parameter:
+
+  $geshi->set_overall_style('color: blue;', true);
+
+In particular, using true the first time you call this enables you to forget re-defining
+the font-family declaration.
+
+The default styles "shine through" wherever anything isn't highlighted. Also, you can
+apply more advanced styles, like position: (fixed|relative) etc, because a <div> is a
+block level element.
+
+  3.3.2  Line Number Styles
+
+Refer to the notes in the section entitled "Notes on Styling Line Numbers" for a
+discussion on how to use line number styles.
+
+Styles are set for line numbers using the set_line_style() method:
+
+  $geshi->set_line_style('background: #fcfcfc;');
+
+If you're using Fancy Line Numbers mode, you pass a second string for the style
+of the nth line number:
+
+  $geshi->set_line_style('background: #fcfcfc;', 'background: #f0f0f0;');
+
+The second style will have no effect if you're not using Fancy Line Numbers mode.
+
+By default, the styles you pass overwrite the current styles. Add a boolean "true"
+after the styles you specify to combine them with the current styles:
+
+  $geshi->set_line_style('background: red;', true);
+  // or, for fancy line numbers
+  $geshi->set_line_style('background: red;', 'background: blue;', true);
+
+  3.3.3  Setting Keyword Styles
+
+Perhaps the most regular change you will make will be to the styles of a keyword set. In
+order to change the styles for a particular set, you'll have to know what the set is
+called first. Sets are numbered from 1 up. Typically, set 1 contains keywords like if,
+while, do, for, switch etc, set 2 contains null, false, true etc, set 3 contains
+function inbuilt into the language (echo, htmlspecialchars etc. in PHP) and set 4 contains
+data types and similar variable modifiers: int, double, real, static etc. However
+these things are not fixed, and you should check the language file to see what key
+you want. Having a familiarity with a language file is definately a plus for using it.
+
+To change the styles for a keyword set, call the set_keyword_group_style() method:
+
+  $geshi->set_keyword_group_style($group, $styles);
+
+Where $group is the group to change the styles for and $styles is a string containing
+the styles to apply to that group.
+
+By default, the styles you pass overwrite the current styles. Add a boolean "true"
+after the styles you specify to combine them with the current styles:
+
+  $geshi->set_keyword_group_style(3, 'color: white;', true);
+
+  3.3.4    Setting Comment Styles
+
+To change the styles for a comment group, call the set_comments_style() method:
+
+  $geshi->set_comments_style($group, $styles);
+
+Where $group is either a number corresponding to a single-line comment, or the string
+'MULTI' to specify multiline comments:
+
+  $geshi->set_comments_style(1, 'font-style: italic;');
+  $geshi->set_comments_style('MULTI', 'display: hidden;');
+
+By default, the styles you pass overwrite the current styles. Add a boolean "true"
+after the styles you specify to combine them with the current styles:
+
+  $geshi->set_comments_style(1, 'font-weight: 100;', true);
+  
+  3.3.5    Setting Other Styles
+
+GeSHi can highlight many other aspects of your source other than just keywords and
+comments. Strings, Numbers, Methods and Brackets among other things can all also be
+highlighted. Here are the related methods:
+
+  set_escape_characters_style($styles[, $preserve_defaults]);
+  set_brackets_style($styles[, $preserve_defaults]);
+  set_strings_style($styles[, $preserve_defaults]);
+  set_numbers_style($styles[, $preserve_defaults]);
+  set_methods_style($styles[, $preserve_defaults]);
+
+$styles is a string containing valid stylesheet declarations, while $preserve_defaults
+should be set to true if you want your styles to be merged with the previous styles.
+
+
+------------------------------
+
+That's all, folks!
+
+I know the documentation is incomplete, but it will be improved quickly. If you need
+help with any of the features of GeSHi (and there are many more to document also), you're
+welcome to email me asking about them. You can also look at the source in geshi.php -
+the source contains comments for each method header, so you can see what each method does.
+
+Look out for improved versions soon!
+
+Oracle
+oracle.shinoda@gmail.com
+http://qbnz.com/highlighter

@@ -1,0 +1,21 @@
+
+  TODO - List of things to do as of 2004/07/15
+
+* Add methods for adding/removing regexps for highlighting
+* Better number highlighting!!!
+* Better error handling/more error detection
+* Setters for max/min tabs
+* Better add/remove keyword groups methods
+* More commenting for the engine part
+* Re-look at logic, especially in get_stylesheet()
+* Let users specify custom header/footer for the outputted code
+* Remove unnessecary $func var and calls to parse_non_string_part()
+* Rename parse_non_string_part (?)
+* Review setters' names and make shorter (?)
+* Review the way attributes are inserted in parse_non_string_part
+  so there's no possibility of conflict with inputted source code
+* Review line numbers (and the use of \r\n?)
+* Create a wrapper class/include for easy use of CSS/easy highlighting
+  with only one function call etc.
+* More customisability for multiline comment styling
+* Fix tabs so "tabs" are actually "tab stops" as in a normal editor
