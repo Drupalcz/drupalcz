@@ -82,7 +82,7 @@ third_party_settings:
         weight: 0
         layout: layout_onecol
         layout_settings: {  }
-        page_title: '[node:title]'
+        page_title: ''
         storage_type: panelizer_default
         storage_id: 'node:dcz_landing_page:full:default'
         builder: ipe
