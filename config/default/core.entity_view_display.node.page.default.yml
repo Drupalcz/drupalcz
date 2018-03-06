@@ -8,10 +8,12 @@ dependencies:
     - field.field.node.page.field_clients
     - field.field.node.page.field_coauthors
     - field.field.node.page.field_creditors
+    - field.field.node.page.field_meta_tags
     - field.field.node.page.field_paragraphs
     - node.type.page
   module:
     - entity_reference_revisions
+    - metatag
     - panelizer
     - text
     - user
@@ -32,6 +34,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
+  field_meta_tags:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_empty_formatter
     region: content
   field_paragraphs:
     weight: 2

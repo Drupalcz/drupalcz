@@ -8,9 +8,11 @@ dependencies:
     - field.field.node.page.field_clients
     - field.field.node.page.field_coauthors
     - field.field.node.page.field_creditors
+    - field.field.node.page.field_meta_tags
     - field.field.node.page.field_paragraphs
     - node.type.page
   module:
+    - metatag
     - paragraphs
     - path
     - text
@@ -69,6 +71,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_meta_tags:
+    weight: 121
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
     region: content
   field_paragraphs:
     weight: 2

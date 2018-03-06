@@ -5,10 +5,13 @@ dependencies:
   config:
     - field.field.node.dcz_landing_page.body
     - field.field.node.dcz_landing_page.field_hero_widget
+    - field.field.node.dcz_landing_page.field_meta_tags
     - field.field.node.dcz_landing_page.field_paragraphs
+    - field.field.node.dcz_landing_page.panelizer
     - node.type.dcz_landing_page
   module:
     - entity_reference_revisions
+    - metatag
     - panelizer
     - text
     - user
@@ -38,6 +41,13 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    region: content
+  field_meta_tags:
+    weight: 105
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_empty_formatter
     region: content
   field_paragraphs:
     weight: 104
