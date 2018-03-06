@@ -1,15 +1,15 @@
-uuid: b7b0dd58-cf48-4674-8a9b-4f46ed716a04
+uuid: 170d472e-a01a-4eb2-bd8d-6553174c96a4
 langcode: cs
 status: true
 dependencies:
   config:
     - field.storage.node.field_tags
-    - node.type.tutorial
+    - node.type.dcz_showcase
     - taxonomy.vocabulary.tags
-id: node.tutorial.field_tags
+id: node.dcz_showcase.field_tags
 field_name: field_tags
 entity_type: node
-bundle: tutorial
+bundle: dcz_showcase
 label: Tags
 description: ''
 required: false

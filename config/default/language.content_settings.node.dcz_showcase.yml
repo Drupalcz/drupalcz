@@ -1,0 +1,11 @@
+uuid: 111a01b4-4643-422e-90b2-3ea206b96b62
+langcode: cs
+status: true
+dependencies:
+  config:
+    - node.type.dcz_showcase
+id: node.dcz_showcase
+target_entity_type_id: node
+target_bundle: dcz_showcase
+default_langcode: site_default
+language_alterable: false

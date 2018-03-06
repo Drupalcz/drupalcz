@@ -127,7 +127,7 @@ third_party_settings:
             id: 'entity_field:user:field_dcz_bio'
             label: Bio
             provider: ctools_block
-            label_display: visible
+            label_display: '0'
             formatter:
               label: hidden
               type: text_default

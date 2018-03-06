@@ -13,6 +13,6 @@ name: 'Landing page'
 type: dcz_landing_page
 description: 'Special <em>edge2edge</em> content type for front page and other important pages. Can be add to menu.'
 help: ''
-new_revision: false
+new_revision: true
 preview_mode: 1
 display_submitted: false
