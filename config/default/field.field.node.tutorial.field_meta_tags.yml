@@ -1,0 +1,23 @@
+uuid: d8982506-166b-4b44-95e2-a07af787c163
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_meta_tags
+    - node.type.tutorial
+  module:
+    - metatag
+id: node.tutorial.field_meta_tags
+field_name: field_meta_tags
+entity_type: node
+bundle: tutorial
+label: 'Meta tags'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 'a:0:{}'
+default_value_callback: ''
+settings: {  }
+field_type: metatag
