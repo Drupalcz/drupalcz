@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * dcz_retire
+ */
+
+/**
+ * Implements hook_init().
+ */
+function dcz_retire_init() {
+  drupal_set_message("Toto je archivovaná verze české komunitní stránky o CMS Drupal. Nejde na ni již přidávat nový obsah. Pro aktuální informace a kontakt s komunitou navštivte <a href='https://www.drupal.cz'>Drupal.cz</a>");
+}

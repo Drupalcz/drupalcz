@@ -1,0 +1,8 @@
+name = dcz_retire
+description = dcz_retire
+package = dcz_retire
+core = 6.x
+version = 6.x-1.x
+
+;files[] =
+;dependencies[] =
