@@ -30,6 +30,7 @@
         "drupal/migrate_tools": "^2.0",
         "drupal/paragraphs": "^1.2",
         "drupal/redirect": "^1.0",
+        "drupal/shield": "^1.2",
         "drupal/viewsreference": "^2.0",
         "drupal/youtube": "^1.0@beta",
         "drush/drush": "8.1.15"
