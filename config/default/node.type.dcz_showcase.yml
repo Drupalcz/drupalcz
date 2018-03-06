@@ -12,6 +12,6 @@ name: Showcase
 type: dcz_showcase
 description: 'Allows adding showcases to Drupal.cz front page.'
 help: ''
-new_revision: false
+new_revision: true
 preview_mode: 0
 display_submitted: false

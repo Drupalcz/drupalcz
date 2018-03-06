@@ -1,0 +1,11 @@
+exclude_paths: "/admin\n/admin/*\n/batch\n/node/add*\n/node/*/*\n/user/*/*"
+popup_agreed:
+  value: '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>'
+popup_agree_button_message: 'OK, I agree'
+popup_disagree_button_message: 'No, give me more info'
+popup_find_more_button_message: 'More info'
+popup_hide_button_message: Hide
+popup_info:
+  value: '<h2>We use cookies on this site to enhance your user experience</h2><p>By clicking any link on this page you are giving your consent for us to set cookies.</p>'
+mobile_popup_info:
+  value: '<h2>We use cookies on this site to enhance your user experience</h2><p>By tapping any link on this page you are giving your consent for us to set cookies.</p>'

@@ -8,16 +8,16 @@ dependencies:
 id: blog_tags
 label: 'Blog tags'
 type: 'canonical_entities:taxonomy_term'
-pattern: 'blog/[term:name]'
+pattern: 'stitky/[term:name]'
 selection_criteria:
-  8aec4629-7854-4b66-a529-415eb7f1b7a5:
+  96d7f0aa-2b6a-4371-829f-46cc8628b135:
     id: 'entity_bundle:taxonomy_term'
     bundles:
       tags: tags
     negate: false
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: 8aec4629-7854-4b66-a529-415eb7f1b7a5
+    uuid: 96d7f0aa-2b6a-4371-829f-46cc8628b135
 selection_logic: and
 weight: -5
 relationships: {  }

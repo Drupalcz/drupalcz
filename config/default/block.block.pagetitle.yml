@@ -2,8 +2,6 @@ uuid: ea854cdd-e543-46f9-a49b-19d16b3e4484
 langcode: cs
 status: true
 dependencies:
-  module:
-    - ctools
   theme:
     - dcz_theme
 id: pagetitle
@@ -17,17 +15,4 @@ settings:
   label: 'Page title'
   provider: core
   label_display: '0'
-visibility:
-  'entity_bundle:node':
-    id: 'entity_bundle:node'
-    bundles:
-      dcz_article: dcz_article
-      dcz_showcase: dcz_showcase
-      forum: forum
-      individual: individual
-      organization: organization
-      page: page
-      tutorial: tutorial
-    negate: false
-    context_mapping:
-      node: '@node.node_route_context:node'
+visibility: {  }

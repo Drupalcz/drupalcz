@@ -63,14 +63,19 @@ strong {
 }
 
 .text-formatted { // To prevent leaking UL style to other elements like menu.
-  ul {
-    margin-left: 1em;
-    padding-left: 1em;
-  }
-
+  ul,
   ol {
     margin-left: 1em;
     padding-left: 1em;
+
+    ul,
+    ol {
+      margin-top: .5em;
+    }
+
+    li {
+      margin-bottom: .5em;
+    }
   }
 }
 
