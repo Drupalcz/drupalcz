@@ -23,8 +23,18 @@ $settings['hash_salt'] = '7yYcmIWkPnXwJwkR7_efzJqfGP4L8MvC-_4Gac27A2YElqLxLQVn_9
 /**
  * Domain redirects.
  */
+$prod_base_url = 'https://www.drupal.cz';
 $aliases = array(
-  'http://drupal.cz' => 'http://www.drupal.cz',
+  'http://drupal.cz' => $prod_base_url,
+  'http://www.drupal.cz' => $prod_base_url,
+  'https://drupal.cz' => $prod_base_url,
+);
+
+/**
+ * Unshielded base URLs.
+ */
+$unshielded = array(
+  $prod_base_url,
 );
 
 /**
@@ -57,6 +67,17 @@ if (!empty($aliases[$full])) {
   header("Location: $domain$uri");
   exit();
 }
+
+/**
+ * Shield.
+ */
+$config['shield.settings']['allow_cli'] = TRUE;
+if (!in_array($base_url, $unshielded)) {
+  $config['shield.settings']['credentials']['shield']['user'] = 'drupal';
+  $config['shield.settings']['credentials']['shield']['pass'] = 'cz';
+  $config['shield.settings']['print'] = 'Check out https://github.com/Drupalcz/drupalcz ;-)';
+}
+
 
 // Custom Travis CI settings.
 $travis_settings = DRUPAL_ROOT . "/sites/default/settings/travis.settings.php";
