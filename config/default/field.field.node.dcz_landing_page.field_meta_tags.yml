@@ -1,0 +1,23 @@
+uuid: a479ba58-7d76-4cd8-9122-d4344516a1b8
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_meta_tags
+    - node.type.dcz_landing_page
+  module:
+    - metatag
+id: node.dcz_landing_page.field_meta_tags
+field_name: field_meta_tags
+entity_type: node
+bundle: dcz_landing_page
+label: 'Meta tags'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 'a:0:{}'
+default_value_callback: ''
+settings: {  }
+field_type: metatag
