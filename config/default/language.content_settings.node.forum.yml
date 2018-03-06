@@ -1,0 +1,11 @@
+uuid: ac2b6d25-33ab-4c6c-94cb-34503b27cf08
+langcode: cs
+status: true
+dependencies:
+  config:
+    - node.type.forum
+id: node.forum
+target_entity_type_id: node
+target_bundle: forum
+default_langcode: site_default
+language_alterable: false

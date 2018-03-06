@@ -1,0 +1,11 @@
+uuid: 12e90eaa-6688-4108-bc2c-de7d8ba39fb9
+langcode: cs
+status: true
+dependencies:
+  config:
+    - node.type.dcz_article
+id: node.dcz_article
+target_entity_type_id: node
+target_bundle: dcz_article
+default_langcode: site_default
+language_alterable: false

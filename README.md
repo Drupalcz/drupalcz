@@ -18,9 +18,6 @@ Branch | Build status | Dev site
 * hooks/ - Acquia cloud hooks. (See https://docs.acquia.com/cloud/manage/cloud-hooks )
 * patches/ - Our custom patches. (But we prefer linking drupal.org.)
 * reports/ - PHP Unit results.
-* scripts/ - Our custom scripts.
-  * scrub.sql - script to strip sensitive data from D6 production database.
-  * slim.sql - script to make scrubbed database smaller so we can run tests quicker.
 * tests/ - Collection of tests for Travis CI and local development.
 * .gitignore - Gitignore - be sure to check your own local gitignore so you don't commit your IDE's tmp files.
 * .travis.yml - Travis CI test suite configuration.
