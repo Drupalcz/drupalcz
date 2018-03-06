@@ -50,13 +50,18 @@ strong {
   .field--type-text-long a:hover {
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1); }
 
-.text-formatted ul {
-  margin-left: 1em;
-  padding-left: 1em; }
-
+.text-formatted ul,
 .text-formatted ol {
   margin-left: 1em;
   padding-left: 1em; }
+  .text-formatted ul ul,
+  .text-formatted ul ol,
+  .text-formatted ol ul,
+  .text-formatted ol ol {
+    margin-top: .5em; }
+  .text-formatted ul li,
+  .text-formatted ol li {
+    margin-bottom: .5em; }
 
 blockquote {
   background: rgba(51, 122, 183, 0.1);
@@ -919,6 +924,9 @@ tbody td {
 
 .node--type-dcz_article .vm-teaser .vm-title:after {
   content: "Článek"; }
+
+.node--sticky .vm-teaser .vm-title a {
+  color: #d98426; }
 
 .vm-title_date {
   margin-bottom: 0.5em; }

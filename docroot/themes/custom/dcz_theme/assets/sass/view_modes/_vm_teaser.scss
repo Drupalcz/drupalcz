@@ -51,4 +51,10 @@
       content: "Článek";
     }
   }
+
+  .node--sticky & {
+    .vm-title a {
+      color: $drupal-third;
+    }
+  }
 }
