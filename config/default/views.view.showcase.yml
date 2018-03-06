@@ -580,7 +580,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: '<p><a href="/node/add/showcase" title="Přidat showcase" class="button">Přidat showcase</a></p>'
+            value: '<p><a href="/node/add/dcz_showcase" title="Přidat showcase" class="button">Přidat showcase</a></p>'
             format: full_html
           plugin_id: text
     cache_metadata:

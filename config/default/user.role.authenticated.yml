@@ -9,7 +9,6 @@ is_admin: false
 permissions:
   - 'access comments'
   - 'access content'
-  - 'access toolbar'
   - 'access user contact forms'
   - 'access user profiles'
   - 'cancel account'
