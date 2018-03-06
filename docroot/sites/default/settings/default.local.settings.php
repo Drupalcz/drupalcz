@@ -1,20 +1,10 @@
 <?php
 
-// Your local database connection.
-$databases['default']['default'] = array(
-  'database' => 'SOMETHING',
-  'username' => 'SOMETHING',
-  'password' => 'SOMETHING',
-  'prefix' => '',
-  'host' => 'localhost',
-  'port' => '3306',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver' => 'mysql',
-);
 
-// Connection to old D6 version. (If you want to test migrations.)
-// Get the actual DB here: https://github.com/Drupalcz/drupalcz_db
-$databases['migrate']['default'] = array(
+/**
+ * Your local database connection.
+ */
+$databases['default']['default'] = array(
   'database' => 'SOMETHING',
   'username' => 'SOMETHING',
   'password' => 'SOMETHING',
