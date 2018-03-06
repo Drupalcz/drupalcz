@@ -56,6 +56,14 @@ $settings['extension_discovery_scan_tests'] = TRUE;
 $settings['rebuild_access'] = TRUE;
 
 /**
+ * Shield.
+ */
+$config['shield.settings']['allow_cli'] = TRUE;
+$config['shield.settings']['credentials']['shield']['user'] = '';
+$config['shield.settings']['credentials']['shield']['pass'] = '';
+$config['shield.settings']['print'] = '¯\_(ツ)_/¯';
+
+/**
  * Set active config split.
  */
 $config['config_split.config_split.dev']['status'] = TRUE;
