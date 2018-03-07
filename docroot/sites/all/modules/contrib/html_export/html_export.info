@@ -1,0 +1,13 @@
+name = "HTML Export"
+description = "This allows you to export drupal paths to a HTML package."
+core = "6.x"
+project = "html_export"
+package = "HTML Export"
+dependencies[] = "simplehtmldom"
+
+; Information added by drupal.org packaging script on 2013-09-30
+version = "6.x-2.0-beta1+0-dev"
+core = "6.x"
+project = "html_export"
+datestamp = "1380582216"
+

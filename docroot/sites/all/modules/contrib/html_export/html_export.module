@@ -1,0 +1,384 @@
+<?php
+
+define('HTML_EXPORT_PROCESS_LIMIT', 5);
+define('HTML_EXPORT_FILE_PROCESS_LIMIT', 2);
+
+// ELMS: HTML Export - Export drupal paths to HTML
+// Copyright (C) 2008-2012  The Pennsylvania State University
+//
+// Bryan Ollendyke
+// bto108@psu.edu
+//
+// Keith D. Bailey
+// kdb163@psu.edu
+//
+// 12 Borland
+// University Park, PA 16802
+
+/**
+ * Implementation of hook_help().
+ */
+function html_export_help($section) {
+  switch ($section) {
+    case 'admin':
+      return t("HTML Export lets you export drupal paths to static HTML.");
+  }
+}
+
+/**
+ * Implementation of hook_perm().
+ */
+function html_export_perm() {
+  return array('use html export', 'download html export', 'sftp html export');
+}
+
+/**
+ * Implementation of hook_menu().
+ */
+function html_export_menu() {
+  $items = array();
+  $items['html_export'] = array(
+    'title' => 'HTML export',
+    'description' => 'Export paths to HTML files',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('_html_export_job_page'),
+    'access arguments' => array('use html export'),
+    'file' => 'html_export.pages.inc',
+  );
+  $items['admin/settings/html_export'] = array(
+    'title' => 'HTML export',
+    'description' => 'Configure how HTML is exported',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('_html_export_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'html_export.admin.inc',
+  );
+  $items['html_export/download'] = array(
+    'title' => 'Download html export',
+    'description' => 'Download the export in tar format',
+    'page callback' => '_html_export_download_folder',
+    'page arguments' => array(2, 3),
+    'access arguments' => array('download html export'),
+    'type' => MENU_CALLBACK,
+    'file' => 'html_export.pages.inc',
+  );
+  /*
+  $items['html_export/sftp'] = array(
+    'title' => 'SFTP html export',
+    'description' => 'Push the export to an sftp location',
+    'page callback' => 'html_export_sftp_folder',
+    'page arguments' => array(2, 3),
+    'access arguments' => array('sftp html export'),
+    'type' => MENU_CALLBACK,
+    'file' => 'html_export.pages.inc',
+  );
+  */
+  return $items;
+}
+
+/**
+ * Implementation of hook_html_export_add_path_provider().
+ */
+function html_export_html_export_add_path_provider() {
+  $items = array(
+    'core_all_nodes' => array(
+      'title' => 'Core: All nodes',
+      'callback' => '_html_export_all_nodes',
+    ),
+    'core_all_paths' => array(
+      'title' => 'Core: all menu paths',
+      'callback' => '_html_export_all_menu_links',
+    ),
+  );
+  // create an option for each type
+  $avail_types = variable_get('html_export_available_types', array());
+  foreach ($avail_types as $key => $type) {
+    $items['types_'. $key] = array(
+      'title' => 'Node type: '. $key,
+      'callback' => '_html_export_node_type',
+      'arg' => $key,
+    );
+  }
+  // if views is active then add in those paths
+  if (module_exists('views')) {
+    $avail_views = variable_get('html_export_available_views', array());
+    foreach ($avail_views as $view) {
+      $items['views_'. $view] = array(
+        'title' => 'Views: '. $view,
+        'callback' => '_html_export_handle_view',
+        'arg' => $view,
+      );
+    }
+  }
+  return $items;
+}
+
+
+/**
+ * Callback for core_all_paths provider.
+ */
+function _html_export_handle_view($view_name) {
+  $paths = array();
+  $results = views_get_view_result($view_name);
+  // list of nodes from a view
+  foreach ($results as $row) {
+    if (isset($row->nid)) {
+      $paths['node/'. $row->nid] = 'node/'. $row->nid;
+    }
+  }
+  return $paths;
+}
+
+/**
+ * Callback for core_all_paths provider.
+ */
+function _html_export_all_menu_links() {
+  $paths = array();
+  $result = db_query("SELECT link_path FROM {menu_links}");
+  while ($val = db_fetch_array($result)) {
+    // ensure that % isn't taking context into account w/ the path
+    if (strpos($val['link_path'], '%') === FALSE) {
+      $paths[$val['link_path']] = $val['link_path'];
+    }
+  }
+  return $paths;
+}
+
+/**
+ * Callback for core_all_nodes provider.
+ */
+function _html_export_all_nodes() {
+  $paths = array();
+  // grab all nodes the user has access to
+  $result = db_query(db_rewrite_sql("SELECT nid FROM {node} as n"));
+  while ($val = db_fetch_array($result)) {
+    $paths['node/'. $val['nid']] = 'node/'. $val['nid'];
+  }
+  return $paths;
+}
+
+/**
+ * Callback for core_node_type provider.
+ */
+function _html_export_node_type($type) {
+  $paths = array();
+  // grab all nodes the user has access to for this type
+  $result = db_query(db_rewrite_sql("SELECT nid FROM {node} as n WHERE type='%s'"), $type);
+  while ($val = db_fetch_array($result)) {
+    $paths['node/'. $val['nid']] = 'node/'. $val['nid'];
+  }
+  return $paths;
+}
+
+/**
+ * Implementation of hook_html_export_data_alter().
+ */
+function html_export_html_export_data_alter(&$data, $paths, $active_path, $dom_remove, $remove_base = TRUE) {
+  // advanced dom removal routine
+  // Create a DOM object
+  $html_obj = new simple_html_dom();
+  // Load HTML from a string
+  $html_obj->load($data);
+  // remove the selectors
+  foreach ($dom_remove as $find) {
+    // find the selectors in the document
+    $objs = $html_obj->find($find);
+    // account for ability to find multiple objects
+    foreach ($objs as $obj) {
+      $obj->outertext = '';
+    }
+  }
+  // only remove base if told
+  if ($remove_base) {
+    // remove base_path so that everything is relative to root
+    $sub = '';
+    // we need to retrace paths to account for nesting
+    $tmp = explode('/', $active_path);
+    foreach ($tmp as $dir) {
+      $sub .= '../';
+    }
+  }
+  else {
+    $sub = '';
+  }
+  $resources = array('link', 'img', 'script', 'a', 'object');
+  // repair paths for these resources
+  foreach ($resources as $find) {
+    // find the selectors in the document
+    $objs = $html_obj->find($find);
+    // account for ability to find multiple objects
+    foreach ($objs as $obj) {
+      // account for internal href resources
+      if (isset($obj->href) && strpos($obj->href, 'http://') === FALSE && strpos($obj->href, 'https://') === FALSE) {
+        // only replace first occurance as this will be base path
+        $pos = strpos($obj->href, base_path());
+        if ($pos !== FALSE) {
+          $obj->href = substr_replace($obj->href, $sub, $pos, drupal_strlen(base_path()));
+        }
+      }
+      // account for internal src resources
+      if (isset($obj->src) && strpos($obj->src, 'http://') === FALSE && strpos($obj->src, 'https://') === FALSE) {
+        // only replace first occurance as this will be base path
+        $pos = strpos($obj->src, base_path());
+        if ($pos !== FALSE) {
+          $obj->src = substr_replace($obj->src, $sub, $pos, drupal_strlen(base_path()));
+        }
+      }
+    }
+  }
+  // write all these changes back into the data string
+  $data = $html_obj->save();
+  // process all paths we were given to append .html
+  foreach ($paths as $path) {
+    // rewrite aliases to non-aliases
+    $alias = drupal_get_path_alias($path);
+    // seems odd but ensures that its not part of another string
+    // and is instead the end of a resource
+    $data = str_replace($path .'"', $path .'/index.html"', $data);
+    $data = str_replace($path ."'", $path ."/index.html'", $data);
+    if ($alias != $path) {
+      $data = str_replace($alias .'"', $path .'/index.html"', $data);
+      $data = str_replace($alias ."'", $path ."/index.html'", $data);
+    }
+  }
+  // clean up for potentially full paths goofed up
+  $data = str_replace('/index.html/', '/', $data);
+}
+
+/**
+ * Helper function to tar a file based on Features.
+ */
+function html_export_tar_create($name, $contents) {
+  $tar = '';
+  $binary_data_first = pack("a100a8a8a8a12A12",
+    $name,
+    '100644 ', // File permissions
+    '   765 ', // UID,
+    '   765 ', // GID,
+    sprintf("%11s ", decoct(drupal_strlen($contents))), // Filesize,
+    sprintf("%11s", decoct(time())) // Creation time
+  );
+  $binary_data_last = pack("a1a100a6a2a32a32a8a8a155a12", '', '', '', '', '', '', '', '', '', '');
+
+  $checksum = 0;
+  for ($i = 0; $i < 148; $i++) {
+    $checksum += ord(drupal_strlen($binary_data_first, $i, 1));
+  }
+  for ($i = 148; $i < 156; $i++) {
+    $checksum += ord(' ');
+  }
+  for ($i = 156, $j = 0; $i < 512; $i++, $j++) {
+    $checksum += ord(drupal_strlen($binary_data_last, $j, 1));
+  }
+
+  $tar .= $binary_data_first;
+  $tar .= pack("a8", sprintf("%6s ", decoct($checksum)));
+  $tar .= $binary_data_last;
+
+  $buffer = str_split($contents, 512);
+  foreach ($buffer as $item) {
+    $tar .= pack("a512", $item);
+  }
+  return $tar;
+}
+
+/**
+ * Helper function to pull in page data
+ */
+function _html_export_get_page_data($path, $anonymous, $render_errors) {
+  if ($anonymous) {
+    global $base_url;
+    // default settings for the request
+    $headers = array();
+    $method = 'GET';
+    $data = NULL;
+    $retry = 3;
+    $timeout = 20.0;
+    // defined in settings.php
+    $root = $base_url . base_path();
+    // allow projects to modify root for odd environments
+    drupal_alter('html_export_root', $root);
+    // modify path arguments to appear as data
+    /*$tmp = explode('&', $path);
+    array_shift($tmp);
+    // make sure we found something
+    if (count($tmp) > 0) {
+      // convert args into data string
+      $data = implode('&', $tmp);
+    }
+    $path = str_replace('=', '/', $path);
+    $path = str_replace('&', '/', $path);*/
+    if (variable_get('clean_url', 0)) {
+      $http = drupal_http_request($root . $path, $headers, $method, $data, $retry, $timeout);
+    }
+    else {
+      $http = drupal_http_request($root .'index.php?q='. $path, $headers, $method, $data, $retry, $timeout);
+    }
+    // store http data object in variable for processing
+    $error_codes = array(403, 404, 500);
+    // if errors are allowed to be rendered otherwise FALSE
+    if ($render_errors) {
+      $data = $http->data;
+    }
+    elseif (!in_array($http->code, $error_codes)) {
+      $data = $http->data;
+    }
+    else {
+      $data = FALSE;
+    }
+  }
+  else {
+    menu_set_active_item($path);
+    $menu_item = menu_get_item($path);
+    menu_set_item(NULL, $menu_item);
+    // squelch any and all messages at this time
+    $tmpmsg = drupal_get_messages();
+    // issue all calls by making things active
+    // get object to then be able to activate menu
+    $result = menu_execute_active_handler($path);
+    if (strpos($path, 'node') !== FALSE) {
+      $obj = menu_get_object('node', 1, $path);
+      if (isset($obj->book)) {
+        menu_tree_all_data($obj->book['menu_name'], $obj->book);
+      }
+      elseif (isset($obj->menu)) {
+        menu_tree_all_data($obj->menu['menu_name'], $obj->menu);
+      }
+    }
+    // render page
+    $data = theme('page', $result);
+  }
+  return $data;
+}
+
+/**
+ * Implementation of hook_html_export_add_format().
+ */
+function html_export_html_export_add_format() {
+  $formats = array(
+    'none' => array(
+      'option' => 'Leave in files folder',
+      'text' => 'Click to access export',
+      'path' => file_directory_path() .'/html_export/%/index.html',
+    ),
+  );
+  // verify they can access the download method
+  if (user_access('download html export')) {
+    $formats['tar_download'] = array(
+      'option' => 'Tar export for download',
+      'text' => 'Click to download export',
+      'path' => 'html_export/download/%',
+    );
+  }
+  // if curl is active, and they have access then add sftp option
+  /*
+  if (extension_loaded('curl') && user_access('sftp html export')) {
+    $formats['sftp_upload'] = array(
+      'option' => 'Push directory to SFTP location',
+      'text' => 'Click to upload export',
+      'path' => 'html_export/sftp/%',
+    );
+  }
+  */
+  return $formats;
+}

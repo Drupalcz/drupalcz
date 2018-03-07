@@ -1,0 +1,115 @@
+<?php
+// ELMS: HTML Export OG
+// Copyright (C) 2008-2012  The Pennsylvania State University
+//
+// Bryan Ollendyke
+// bto108@psu.edu
+//
+// Keith D. Bailey
+// kdb163@psu.edu
+//
+// 12 Borland
+// University Park, PA 16802
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function html_export_og_form_alter(&$form, &$form_state, $form_id) {
+  // default the publishing form to og_active_paths
+  $group = og_get_group_context();
+  if ($form_id == '_html_export_job_page' && isset($group->nid)) {
+    $form['path_selector']['#default_value'] = 'og_active_paths';
+  }
+}
+/**
+ * Implementation of hook_html_export_add_path_provider().
+ */
+function html_export_og_html_export_add_path_provider() {
+  $items = array();
+  $group = og_get_group_context();
+  // only add to the list of available if its og
+  if (isset($group->nid)) {
+    $items['og_active_paths'] = array(
+      'title' => 'Select all nodes in this group',
+      'callback' => '_html_export_og_active_og_nodes',
+    );
+  }
+  return $items;
+}
+
+/**
+ * Implementation of hook_html_export_add_path_provider_alter().
+ */
+function html_export_og_html_export_add_path_provider_alter($providers) {
+  $group = og_get_group_context();
+  // if we are in a group prune core options that dont make sense
+  if (isset($group->nid)) {
+    unset($providers['core_all_nodes']);
+    unset($providers['core_all_paths']);
+    // alter type exports to account for og
+    $avail_types = variable_get('html_export_available_types', array());
+    foreach ($avail_types as $key => $type) {
+      $providers['types_'. $key]['callback'] = '_html_export_node_type_og';
+    }
+  }
+}
+
+/**
+ * Callback for og_active_paths provider.
+ */
+function _html_export_og_active_og_nodes() {
+  $paths = array();
+  $group = og_get_group_context();
+  // grab all nodes the user has access to
+  $result = db_query(db_rewrite_sql("SELECT n.nid FROM {node} AS n JOIN {og_ancestry} AS oga ON n.nid=oga.nid WHERE oga.group_nid=%d"), $group->nid);
+  while ($val = db_fetch_array($result)) {
+    $paths['node/'. $val['nid']] = 'node/'. $val['nid'];
+  }
+  return $paths;
+}
+
+/**
+ * Callback for og version of type provider.
+ */
+function _html_export_node_type_og($type) {
+  $paths = array();
+  $group = og_get_group_context();
+  $base = '';
+  if (isset($group->purl)) {
+    $base = $group->purl .'/';
+  }
+  // grab all nodes the user has access to for this type
+  $result = db_query(db_rewrite_sql("SELECT nid FROM {node} as n JOIN {og_ancestry} AS oga ON n.nid=oga.nid WHERE oga.group_nid=%d AND type='%s'"), $group->nid, $type);
+  while ($val = db_fetch_array($result)) {
+    $paths[$base .'node/'. $val['nid']] = $base .'node/'. $val['nid'];
+  }
+  return $paths;
+}
+
+/**
+ * Implementation of hook_html_export_data_alter().
+ */
+function html_export_og_html_export_data_alter(&$data, $paths, $active_path, $dom_remove, $remove_base = TRUE) {
+  // only run this if purl is installed as it gets complicated
+  if (module_exists('purl')) {
+    $tmp = explode('/', $active_path);
+    if ($tmp[0] == 'node') {
+      $node = node_load($tmp[1]);
+      // if this is the group type and purl is set
+      if (og_is_group_type($node->type) && isset($node->purl)) {
+        $data = str_replace('/'. $node->purl .'/', '/', $data);
+      }
+      elseif (isset($node->og_groups) && count($node->og_groups) == 1) {
+        // set the group because one is set for this to target
+        $group = node_load(array_pop($node->og_groups));
+        // if purl is set for the group wipe, otherwise we wasted time :)
+        //if (isset($group->purl)) {
+        //  $data = str_replace('/'. $group->purl .'/', '/', $data);
+        //}
+      }
+      else {
+        // do nothing, purl wasn't found on whatever the content was
+      }
+    }
+  }
+}
