@@ -174,7 +174,7 @@ display:
       use_more: true
       use_more_always: true
       use_more_text: more
-      link_url: /forum
+      link_url: forum
       link_display: custom_url
     cache_metadata:
       max-age: -1
