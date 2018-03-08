@@ -118,8 +118,7 @@ article.comment .comment__meta .profile, .node__meta .profile {
 
 .paragraph--type--layout > .paragraph--layout {
   margin: 0 auto;
-  max-width: 120rem;
-  padding: 0 2rem; }
+  max-width: 120rem; }
   .paragraph--type--layout > .paragraph--layout .field--name-field-paragraphs {
     display: -ms-grid;
     display: grid;
@@ -355,7 +354,7 @@ header {
 .region-postscript {
   margin: 0 auto;
   max-width: 120rem;
-  padding: 0 4rem; }
+  padding: 0 2rem; }
   @media (min-width: 77rem) {
     .region-postscript {
       display: -ms-flexbox;
@@ -721,6 +720,22 @@ img {
       .paragraph--type--dcz-para-hero .hero-title h1 {
         font-size: 6rem; } }
 
+.block-slack-invite {
+  max-width: 380px; }
+  .block-slack-invite form {
+    -ms-flex-align: center;
+        align-items: center;
+    background: transparent;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0; }
+  .block-slack-invite .form-item-slack-email {
+    margin-right: 1em; }
+  .block-slack-invite .form-item,
+  .block-slack-invite .form-actions {
+    margin-bottom: 0;
+    margin-top: 0; }
+
 table {
   border-bottom: 5px solid #337ab7;
   width: 100%; }
@@ -1074,6 +1089,9 @@ tbody td {
 .page-node-type-dcz-landing-page .block-page-title-block {
   margin: 0 auto;
   max-width: 120rem;
+  padding: 0 2rem; }
+
+.page-node-type-dcz-landing-page .paragraph--type--layout > .paragraph--layout {
   padding: 0 2rem; }
 
 .page-node-type-dcz-landing-page .paragraph-content,
