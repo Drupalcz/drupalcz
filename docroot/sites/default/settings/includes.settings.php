@@ -91,6 +91,14 @@ if (getenv('TRAVIS') && file_exists($travis_settings)) {
 if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   $env = $_ENV['AH_SITE_ENVIRONMENT'];
   $path = DRUPAL_ROOT . "/sites/default/settings/ac.{$env}.settings.php";
+
+  // Load secure variables.
+  // @See: https://docs.acquia.com/acquia-cloud/manage/files/system-files/private
+  if (file_exists("/mnt/gfs/drupalcz.$env/nobackup/secure.php")) {
+    require "/mnt/gfs/drupalcz.$env/nobackup/secure.php";
+  }
+  // Populate secure variables.
+  $config['slack_invite.settings']['token'] = getenv('SLACK_TOKEN');
 }
 
 // Load settings.
