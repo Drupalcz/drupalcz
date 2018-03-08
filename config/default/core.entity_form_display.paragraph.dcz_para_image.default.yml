@@ -3,11 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image_browser
     - field.field.paragraph.dcz_para_image.field_class
     - field.field.paragraph.dcz_para_image.field_description
     - field.field.paragraph.dcz_para_image.field_image
     - field.field.paragraph.dcz_para_image.field_title
     - paragraphs.paragraphs_type.dcz_para_image
+  module:
+    - entity_browser
 id: paragraph.dcz_para_image.default
 targetEntityType: paragraph
 bundle: dcz_para_image
@@ -28,13 +31,18 @@ content:
     type: string_textfield
     region: content
   field_image:
-    weight: 4
+    weight: 2
     settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      entity_browser: image_browser
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: preview
+      open: false
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: entity_browser_entity_reference
     region: content
   field_title:
     weight: 0
