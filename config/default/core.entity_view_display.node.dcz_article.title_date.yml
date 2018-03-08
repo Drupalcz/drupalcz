@@ -136,5 +136,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_teaser_image: true
   field_teaser_text: true
   langcode: true

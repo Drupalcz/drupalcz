@@ -111,6 +111,7 @@ hidden:
   field_drupal_version: true
   field_logo: true
   field_main_screenshot: true
+  field_other_screenshots: true
   field_tags: true
   field_url: true
   langcode: true
