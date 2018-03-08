@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image_browser
     - field.field.node.tutorial.body
     - field.field.node.tutorial.field_authors
     - field.field.node.tutorial.field_clients
@@ -13,10 +14,9 @@ dependencies:
     - field.field.node.tutorial.field_tags
     - field.field.node.tutorial.field_teaser_image
     - field.field.node.tutorial.field_teaser_text
-    - image.style.thumbnail
     - node.type.tutorial
   module:
-    - image
+    - entity_browser
     - metatag
     - paragraphs
     - path
@@ -78,7 +78,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_meta_tags:
-    weight: 26
+    weight: 18
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
@@ -109,10 +109,16 @@ content:
   field_teaser_image:
     weight: 3
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      entity_browser: image_browser
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: preview
+      open: false
     third_party_settings: {  }
-    type: image_image
+    type: entity_browser_entity_reference
     region: content
   field_teaser_text:
     weight: 2

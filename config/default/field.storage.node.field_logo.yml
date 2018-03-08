@@ -1,27 +1,17 @@
-uuid: 4ce47103-329f-4545-8d03-3f044d1f32b5
-langcode: en
+uuid: 5776d70c-1984-426e-8754-b17d94d8d41d
+langcode: cs
 status: true
 dependencies:
   module:
-    - file
-    - image
+    - media
     - node
 id: node.field_logo
 field_name: field_logo
 entity_type: node
-type: image
+type: entity_reference
 settings:
-  uri_scheme: public
-  default_image:
-    uuid: ''
-    alt: ''
-    title: ''
-    width: null
-    height: null
-  target_type: file
-  display_field: false
-  display_default: false
-module: image
+  target_type: media
+module: core
 locked: false
 cardinality: 1
 translatable: true
