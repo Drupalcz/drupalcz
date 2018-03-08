@@ -48,6 +48,7 @@ module:
   libraries: 0
   link: 0
   locale: 0
+  media: 0
   menu_ui: 0
   metatag: 0
   metatag_facebook: 0
@@ -63,6 +64,7 @@ module:
   path: 0
   redirect: 0
   redirect_404: 0
+  responsive_image: 0
   search: 0
   shield: 0
   shortcut: 0
