@@ -72,6 +72,7 @@ module:
   search: 0
   shield: 0
   shortcut: 0
+  slack_invite: 0
   system: 0
   taxonomy: 0
   text: 0
