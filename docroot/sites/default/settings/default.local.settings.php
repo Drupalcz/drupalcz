@@ -56,6 +56,14 @@ $settings['extension_discovery_scan_tests'] = TRUE;
 $settings['rebuild_access'] = TRUE;
 
 /**
+ * Simulate config we have available on Acquia.
+ *
+ * Get your own keys:
+ * * Slack token: https://api.slack.com/custom-integrations/legacy-tokens .
+ */
+$config['slack_invite.settings']['token'] = "DUMMY_TOKEN";
+
+/**
  * Shield.
  */
 $config['shield.settings']['allow_cli'] = TRUE;
