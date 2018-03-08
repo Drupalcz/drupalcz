@@ -192,5 +192,6 @@ content:
 hidden:
   body: true
   field_paragraphs: true
+  field_teaser_image: true
   field_teaser_text: true
   langcode: true

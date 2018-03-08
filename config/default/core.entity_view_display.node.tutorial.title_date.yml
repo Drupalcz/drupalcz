@@ -110,5 +110,6 @@ hidden:
   field_creditors: true
   field_meta_tags: true
   field_tags: true
+  field_teaser_image: true
   field_teaser_text: true
   langcode: true

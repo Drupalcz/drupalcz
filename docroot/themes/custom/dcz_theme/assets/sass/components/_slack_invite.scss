@@ -1,0 +1,19 @@
+.block-slack-invite {
+  max-width: 380px;
+  form {
+    align-items: center;
+    background: transparent;
+    display: flex;
+    padding: 0;
+  }
+
+  .form-item-slack-email {
+    margin-right: 1em;
+  }
+
+  .form-item,
+  .form-actions {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+}

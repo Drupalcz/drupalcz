@@ -25,6 +25,7 @@ content: {  }
 hidden:
   body: true
   field_emails: true
+  field_logo: true
   field_websites: true
   langcode: true
   links: true
