@@ -1,0 +1,24 @@
+dcz_theme.smallest:
+  label: smallest
+  mediaQuery: ''
+  weight: 0
+  multipliers:
+    - 1x
+dcz_theme.small:
+  label: small
+  mediaQuery: 'screen and (min-width: 30em)'
+  weight: 1
+  multipliers:
+    - 1x
+dcz_theme.medium:
+  label: medium
+  mediaQuery: 'screen and (min-width: 48em)'
+  weight: 2
+  multipliers:
+    - 1x
+dcz_theme.large:
+  label: large
+  mediaQuery: 'screen and (min-width: 75em)'
+  weight: 3
+  multipliers:
+    - 1x

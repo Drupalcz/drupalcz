@@ -1,0 +1,15 @@
+uuid: 522afa91-777d-4bd9-86f8-39b7b6210b5c
+langcode: cs
+status: true
+dependencies: {  }
+name: original
+label: Original
+effects:
+  1ad4f224-8a1a-4206-96b9-e98ca3594fa1:
+    uuid: 1ad4f224-8a1a-4206-96b9-e98ca3594fa1
+    id: image_scale
+    weight: 1
+    data:
+      width: 1000
+      height: 1000
+      upscale: false

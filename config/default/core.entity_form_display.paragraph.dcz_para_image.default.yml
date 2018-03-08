@@ -7,10 +7,7 @@ dependencies:
     - field.field.paragraph.dcz_para_image.field_description
     - field.field.paragraph.dcz_para_image.field_image
     - field.field.paragraph.dcz_para_image.field_title
-    - image.style.thumbnail
     - paragraphs.paragraphs_type.dcz_para_image
-  module:
-    - image
 id: paragraph.dcz_para_image.default
 targetEntityType: paragraph
 bundle: dcz_para_image
@@ -31,12 +28,13 @@ content:
     type: string_textfield
     region: content
   field_image:
-    weight: 2
+    weight: 4
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: image_image
+    type: entity_reference_autocomplete
     region: content
   field_title:
     weight: 0
