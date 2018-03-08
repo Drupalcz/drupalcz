@@ -9,8 +9,9 @@ dependencies:
     - field.field.node.tutorial.field_clients
     - field.field.node.tutorial.field_coauthors
     - field.field.node.tutorial.field_creditors
+    - field.field.node.tutorial.field_meta_tags
     - field.field.node.tutorial.field_paragraphs
-    - field.field.node.tutorial.field_teaser_image
+    - field.field.node.tutorial.field_tags
     - field.field.node.tutorial.field_teaser_text
     - node.type.tutorial
   module:
@@ -103,6 +104,7 @@ hidden:
   field_clients: true
   field_coauthors: true
   field_creditors: true
-  field_teaser_image: true
+  field_meta_tags: true
+  field_tags: true
   field_teaser_text: true
   langcode: true

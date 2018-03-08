@@ -10,11 +10,10 @@ dependencies:
     - field.field.node.dcz_showcase.field_logo
     - field.field.node.dcz_showcase.field_main_screenshot
     - field.field.node.dcz_showcase.field_other_screenshots
+    - field.field.node.dcz_showcase.field_tags
     - field.field.node.dcz_showcase.field_url
-    - image.style.screenshot_large
     - node.type.dcz_showcase
   module:
-    - image
     - link
     - panelizer
     - text
@@ -35,10 +34,9 @@ third_party_settings:
             label_display: '0'
             formatter:
               label: hidden
-              type: image
+              type: entity_reference_entity_view
               settings:
-                image_style: landscape
-                image_link: content
+                view_mode: screenshot
               third_party_settings: {  }
               weight: 0
               region: content
@@ -113,24 +111,6 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_logo:
-    weight: 2
-    label: hidden
-    settings:
-      image_style: thumbnail
-      image_link: ''
-    third_party_settings: {  }
-    type: image
-    region: content
-  field_main_screenshot:
-    weight: 0
-    label: hidden
-    settings:
-      image_style: screenshot_large
-      image_link: ''
-    third_party_settings: {  }
-    type: image
-    region: content
   field_url:
     weight: 4
     label: hidden
@@ -145,6 +125,9 @@ content:
     region: content
 hidden:
   field_display_options: true
+  field_logo: true
+  field_main_screenshot: true
   field_other_screenshots: true
+  field_tags: true
   langcode: true
   links: true

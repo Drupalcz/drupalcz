@@ -1,0 +1,24 @@
+uuid: 56cdde51-bf1a-48de-bbf0-6f4619f8324c
+langcode: cs
+status: true
+dependencies:
+  config:
+    - image.style.screenshot_large
+    - image.style.screenshot_small
+  theme:
+    - dcz_theme
+id: screenshot
+label: Screenshot
+image_style_mappings:
+  -
+    breakpoint_id: dcz_theme.large
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: screenshot_large
+  -
+    breakpoint_id: dcz_theme.small
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: screenshot_small
+breakpoint_group: dcz_theme
+fallback_image_style: screenshot_small

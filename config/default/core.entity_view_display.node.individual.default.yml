@@ -11,10 +11,8 @@ dependencies:
     - field.field.node.individual.field_image
     - field.field.node.individual.field_surname
     - field.field.node.individual.field_websites
-    - image.style.medium
     - node.type.individual
   module:
-    - image
     - link
     - panelizer
     - text
@@ -57,10 +55,10 @@ content:
     weight: 2
     label: hidden
     settings:
-      image_style: medium
-      image_link: ''
+      view_mode: default
+      link: false
     third_party_settings: {  }
-    type: image
+    type: entity_reference_entity_view
     region: content
   field_surname:
     type: string

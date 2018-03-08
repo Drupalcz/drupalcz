@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image_browser
     - field.field.node.dcz_showcase.body
     - field.field.node.dcz_showcase.field_display_options
     - field.field.node.dcz_showcase.field_drupal_version
@@ -11,10 +12,9 @@ dependencies:
     - field.field.node.dcz_showcase.field_other_screenshots
     - field.field.node.dcz_showcase.field_tags
     - field.field.node.dcz_showcase.field_url
-    - image.style.thumbnail
     - node.type.dcz_showcase
   module:
-    - image
+    - entity_browser
     - link
     - path
     - text
@@ -25,7 +25,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 7
+    weight: 4
     settings:
       rows: 9
       summary_rows: 3
@@ -45,34 +45,52 @@ content:
     type: options_select
     region: content
   field_drupal_version:
-    weight: 6
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_logo:
-    weight: 2
+    weight: 5
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      entity_browser: image_browser
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: preview
+      open: false
     third_party_settings: {  }
-    type: image_image
+    type: entity_browser_entity_reference
     region: content
   field_main_screenshot:
-    weight: 4
+    weight: 6
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      entity_browser: image_browser
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: preview
+      open: false
     third_party_settings: {  }
-    type: image_image
+    type: entity_browser_entity_reference
     region: content
   field_other_screenshots:
-    weight: 8
+    weight: 7
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      entity_browser: image_browser
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: preview
+      open: false
     third_party_settings: {  }
-    type: image_image
+    type: entity_browser_entity_reference
     region: content
   field_tags:
     weight: 1
@@ -84,7 +102,7 @@ content:
     type: entity_reference_autocomplete_tags
     region: content
   field_url:
-    weight: 5
+    weight: 2
     settings:
       placeholder_url: 'https://www.drupal.cz'
       placeholder_title: 'Drupal Česká Republika'
@@ -93,7 +111,7 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 3
+    weight: 8
     settings:
       include_locked: true
     third_party_settings: {  }

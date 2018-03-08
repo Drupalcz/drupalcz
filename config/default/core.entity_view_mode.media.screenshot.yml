@@ -1,0 +1,10 @@
+uuid: f9c9da28-d589-4bd4-a69c-fc0ba82ee45c
+langcode: cs
+status: true
+dependencies:
+  module:
+    - media
+id: media.screenshot
+label: Screenshot
+targetEntityType: media
+cache: true
