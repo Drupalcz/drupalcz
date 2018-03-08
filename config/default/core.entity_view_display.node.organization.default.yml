@@ -9,7 +9,6 @@ dependencies:
     - field.field.node.organization.field_websites
     - node.type.organization
   module:
-    - image
     - link
     - panelizer
     - text
@@ -40,13 +39,12 @@ content:
     type: basic_string
     region: content
   field_logo:
-    weight: 1
+    weight: 5
     label: above
     settings:
-      image_style: ''
-      image_link: ''
+      link: true
     third_party_settings: {  }
-    type: image
+    type: entity_reference_label
     region: content
   field_websites:
     weight: 2

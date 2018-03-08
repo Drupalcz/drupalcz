@@ -7,11 +7,9 @@ dependencies:
     - field.field.paragraph.dcz_para_hero.field_description
     - field.field.paragraph.dcz_para_hero.field_image
     - field.field.paragraph.dcz_para_hero.field_title
-    - image.style.hero
     - paragraphs.paragraphs_type.dcz_para_hero
   module:
     - entity_class_formatter
-    - image
 id: paragraph.dcz_para_hero.default
 targetEntityType: paragraph
 bundle: dcz_para_hero
@@ -28,10 +26,10 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: hero
-      image_link: ''
+      view_mode: hero
+      link: false
     third_party_settings: {  }
-    type: image
+    type: entity_reference_entity_view
     region: content
   field_title:
     type: string

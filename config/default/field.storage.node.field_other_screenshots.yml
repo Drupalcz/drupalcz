@@ -1,27 +1,17 @@
-uuid: 6634fac6-9393-4e92-8a47-7121a3b41718
-langcode: en
+uuid: dba5f304-b875-4b4c-b9e9-cf31a56815d9
+langcode: cs
 status: true
 dependencies:
   module:
-    - file
-    - image
+    - media
     - node
 id: node.field_other_screenshots
 field_name: field_other_screenshots
 entity_type: node
-type: image
+type: entity_reference
 settings:
-  uri_scheme: public
-  default_image:
-    uuid: ''
-    alt: ''
-    title: ''
-    width: null
-    height: null
-  target_type: file
-  display_field: false
-  display_default: false
-module: image
+  target_type: media
+module: core
 locked: false
 cardinality: -1
 translatable: true

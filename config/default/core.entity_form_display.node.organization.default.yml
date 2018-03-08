@@ -3,14 +3,14 @@ langcode: cs
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image_browser
     - field.field.node.organization.body
     - field.field.node.organization.field_emails
     - field.field.node.organization.field_logo
     - field.field.node.organization.field_websites
-    - image.style.thumbnail
     - node.type.organization
   module:
-    - image
+    - entity_browser
     - link
     - path
     - text
@@ -35,7 +35,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_emails:
-    weight: 2
+    weight: 1
     settings:
       size: 60
       placeholder: ''
@@ -43,15 +43,21 @@ content:
     type: email_default
     region: content
   field_logo:
-    weight: 1
+    weight: 3
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      entity_browser: image_browser
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: preview
+      open: false
     third_party_settings: {  }
-    type: image_image
+    type: entity_browser_entity_reference
     region: content
   field_websites:
-    weight: 3
+    weight: 2
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -62,7 +68,8 @@ content:
     type: language_select
     weight: 5
     region: content
-    settings: {  }
+    settings:
+      include_locked: true
     third_party_settings: {  }
   path:
     type: path
@@ -81,7 +88,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 120
+    weight: 12
     region: content
     third_party_settings: {  }
   sticky:
@@ -109,6 +116,8 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 50
+    weight: 11
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden: {  }

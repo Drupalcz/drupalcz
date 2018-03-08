@@ -1,0 +1,20 @@
+uuid: 9f97f29a-e0a0-4821-93de-1131862ddd55
+langcode: cs
+status: true
+dependencies:
+  module:
+    - slack_invite
+  theme:
+    - dcz_theme
+id: slackinviteform
+theme: dcz_theme
+region: postscript
+weight: -7
+provider: null
+plugin: slack_invite_form_block
+settings:
+  id: slack_invite_form_block
+  label: 'Získejte pozvánku na Slack'
+  provider: slack_invite
+  label_display: visible
+visibility: {  }
