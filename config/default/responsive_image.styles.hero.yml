@@ -1,0 +1,44 @@
+uuid: 2ac10186-e9a9-46ca-b945-d30f82dac1d9
+langcode: cs
+status: true
+dependencies:
+  config:
+    - image.style.hero
+    - image.style.hero_medium
+    - image.style.hero_small
+  theme:
+    - dcz_theme
+id: hero
+label: Hero
+image_style_mappings:
+  -
+    breakpoint_id: dcz_theme.large
+    multiplier: 1x
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: 100vw
+      sizes_image_styles:
+        - hero
+  -
+    breakpoint_id: dcz_theme.medium
+    multiplier: 1x
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: 100vw
+      sizes_image_styles:
+        - hero_medium
+  -
+    breakpoint_id: dcz_theme.small
+    multiplier: 1x
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: 100vw
+      sizes_image_styles:
+        - hero_small
+  -
+    breakpoint_id: dcz_theme.smallest
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: hero_small
+breakpoint_group: dcz_theme
+fallback_image_style: hero_medium

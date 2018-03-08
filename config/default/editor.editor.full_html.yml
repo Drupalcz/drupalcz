@@ -46,11 +46,11 @@ settings:
           items:
             - Blockquote
             - Table
+            - image
             - node
         -
           name: Tools
           items:
-            - CodeSnippet
             - Source
             - Maximize
             - ShowBlocks
@@ -59,40 +59,6 @@ settings:
       language_list: un
     stylescombo:
       styles: "a.button|Button\r\np.lead|Leading text\r\np.extra-large|Extra large text\r\ncode|Inline code"
-    codesnippet:
-      highlight_style: github
-      highlight_languages:
-        css: css
-        gherkin: gherkin
-        json: json
-        javascript: javascript
-        less: less
-        php: php
-        scss: scss
-        sql: sql
-        twig: twig
-        yaml: yaml
-        apache: 0
-        bash: 0
-        coffeescript: 0
-        dart: 0
-        dockerfile: 0
-        dust: 0
-        go: 0
-        haml: 0
-        handlebars: 0
-        ini: 0
-        java: 0
-        makefile: 0
-        markdown: 0
-        nginx: 0
-        perl: 0
-        powershell: 0
-        puppet: 0
-        python: 0
-        ruby: 0
-        typescript: 0
-        xml: 0
 image_upload:
   status: true
   scheme: public

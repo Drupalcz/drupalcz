@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - editor
+    - entity_embed
     - geshifilter
 name: 'Full HTML'
 format: full_html
@@ -75,3 +76,9 @@ filters:
     settings:
       general_tags: {  }
       per_language_settings: {  }
+  entity_embed:
+    id: entity_embed
+    provider: entity_embed
+    status: true
+    weight: 0
+    settings: {  }

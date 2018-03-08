@@ -1,12 +1,11 @@
-uuid: 2d401254-2fd5-438f-b8b6-4b707afcd7e4
+uuid: e6a6a000-df48-4ba7-b355-b3acba140adb
 langcode: cs
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_image
+    - media.type.image
     - paragraphs.paragraphs_type.dcz_para_image
-  module:
-    - image
 id: paragraph.dcz_para_image.field_image
 field_name: field_image
 entity_type: paragraph
@@ -18,21 +17,12 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  file_directory: '[date:custom:Y]-[date:custom:m]'
-  file_extensions: 'png gif jpg jpeg'
-  max_filesize: ''
-  max_resolution: ''
-  min_resolution: ''
-  alt_field: true
-  alt_field_required: true
-  title_field: false
-  title_field_required: false
-  default_image:
-    uuid: ''
-    alt: ''
-    title: ''
-    width: null
-    height: null
-  handler: 'default:file'
-  handler_settings: {  }
-field_type: image
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

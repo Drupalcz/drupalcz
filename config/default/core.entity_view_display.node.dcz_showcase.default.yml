@@ -11,11 +11,8 @@ dependencies:
     - field.field.node.dcz_showcase.field_other_screenshots
     - field.field.node.dcz_showcase.field_tags
     - field.field.node.dcz_showcase.field_url
-    - image.style.screenshot_large
     - node.type.dcz_showcase
   module:
-    - image
-    - juicebox
     - link
     - panelizer
     - text
@@ -47,49 +44,28 @@ content:
     type: entity_reference_label
     region: content
   field_logo:
-    weight: 2
-    label: hidden
+    weight: 8
+    label: above
     settings:
-      image_style: thumbnail
-      image_link: ''
+      link: true
     third_party_settings: {  }
-    type: image
+    type: entity_reference_label
     region: content
   field_main_screenshot:
-    weight: 0
-    label: hidden
+    weight: 9
+    label: above
     settings:
-      image_style: screenshot_large
-      image_link: ''
+      link: true
     third_party_settings: {  }
-    type: image
+    type: entity_reference_label
     region: content
   field_other_screenshots:
-    weight: 5
-    label: hidden
+    weight: 10
+    label: above
     settings:
-      image_style: juicebox_medium
-      thumb_style: juicebox_square_thumb
-      caption_source: alt
-      title_source: ''
-      jlib_galleryWidth: 100%
-      jlib_galleryHeight: 100%
-      jlib_backgroundColor: '#222222'
-      jlib_textColor: 'rgba(255,255,255,1)'
-      jlib_thumbFrameColor: 'rgba(255,255,255,.5)'
-      jlib_showOpenButton: true
-      jlib_showExpandButton: true
-      jlib_showThumbsButton: true
-      manual_config: ''
-      incompatible_file_action: show_icon_and_link
-      linkurl_source: ''
-      linkurl_target: _blank
-      custom_parent_classes: ''
-      jlib_useFullscreenExpand: '0'
-      jlib_useThumbDots: false
-      apply_markup_filter: true
+      link: true
     third_party_settings: {  }
-    type: juicebox_formatter
+    type: entity_reference_label
     region: content
   field_tags:
     weight: 7

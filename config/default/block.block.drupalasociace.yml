@@ -11,7 +11,7 @@ dependencies:
 id: drupalasociace
 theme: dcz_theme
 region: postscript
-weight: -5
+weight: -6
 provider: null
 plugin: 'block_content:a2b72088-8c5f-4e1b-afad-174041a96d37'
 settings:

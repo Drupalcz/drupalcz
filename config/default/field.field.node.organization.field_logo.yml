@@ -1,12 +1,11 @@
-uuid: 6899ac0f-dbf1-4b4f-9e0e-f463fea7d8ea
+uuid: 25ef4291-f19a-49b8-8d86-7feaa5c9527b
 langcode: cs
 status: true
 dependencies:
   config:
     - field.storage.node.field_logo
+    - media.type.image
     - node.type.organization
-  module:
-    - image
 id: node.organization.field_logo
 field_name: field_logo
 entity_type: node
@@ -18,21 +17,12 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  file_directory: '[date:custom:Y]-[date:custom:m]'
-  file_extensions: 'png gif jpg jpeg'
-  max_filesize: ''
-  max_resolution: ''
-  min_resolution: ''
-  alt_field: true
-  alt_field_required: true
-  title_field: false
-  title_field_required: false
-  default_image:
-    uuid: ''
-    alt: ''
-    title: ''
-    width: null
-    height: null
-  handler: 'default:file'
-  handler_settings: {  }
-field_type: image
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
