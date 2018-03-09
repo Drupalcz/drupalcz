@@ -573,6 +573,10 @@ img {
   height: auto;
   width: 100%; }
 
+.embedded-entity .media--type-image img {
+  max-width: 100%;
+  width: auto; }
+
 .menu-switch {
   width: 35px;
   height: 28px;
