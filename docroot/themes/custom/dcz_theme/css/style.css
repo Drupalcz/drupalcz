@@ -632,6 +632,10 @@ img {
 .block-page-title-block {
   padding: 0; }
 
+.paragraph--type--layout {
+  padding-left: 0;
+  padding-right: 0; }
+
 .dcz-para-black {
   background: black;
   color: white;
@@ -685,10 +689,6 @@ img {
 
 .dcz-para-bottom-gap {
   margin-bottom: 2em; }
-
-.paragraph--type--layout {
-  padding-left: 0;
-  padding-right: 0; }
 
 .paragraph--type--dcz-para-hero {
   position: relative; }

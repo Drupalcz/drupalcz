@@ -1,3 +1,8 @@
+.paragraph--type--layout {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 // Paragraph classes
 .dcz-para-black {
   background: $black;
@@ -76,12 +81,6 @@
 .dcz-para-bottom-gap {
   margin-bottom: 2em;
 }
-
-.paragraph--type--layout {
-  padding-left: 0;
-  padding-right: 0;
-}
-
 
 // Hero paragraph
 .paragraph--type--dcz-para-hero {
