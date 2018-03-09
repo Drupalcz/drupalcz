@@ -573,6 +573,10 @@ img {
   height: auto;
   width: 100%; }
 
+.embedded-entity .media--type-image img {
+  max-width: 100%;
+  width: auto; }
+
 .menu-switch {
   width: 35px;
   height: 28px;
@@ -628,6 +632,10 @@ img {
 .block-page-title-block {
   padding: 0; }
 
+.paragraph--type--layout {
+  padding-left: 0;
+  padding-right: 0; }
+
 .dcz-para-black {
   background: black;
   color: white;
@@ -681,10 +689,6 @@ img {
 
 .dcz-para-bottom-gap {
   margin-bottom: 2em; }
-
-.paragraph--type--layout {
-  padding-left: 0;
-  padding-right: 0; }
 
 .paragraph--type--dcz-para-hero {
   position: relative; }

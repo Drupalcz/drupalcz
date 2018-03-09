@@ -18,7 +18,7 @@ settings:
   id: 'block_content:a2b72088-8c5f-4e1b-afad-174041a96d37'
   label: 'Drupal asociace'
   provider: block_content
-  label_display: visible
+  label_display: '0'
   status: true
   info: ''
   view_mode: full

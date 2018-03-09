@@ -34,9 +34,10 @@ third_party_settings:
             label_display: '0'
             formatter:
               label: hidden
-              type: entity_reference_entity_view
+              type: media_thumbnail
               settings:
-                view_mode: screenshot
+                image_style: screenshot_small
+                image_link: content
               third_party_settings: {  }
               weight: 0
               region: content
