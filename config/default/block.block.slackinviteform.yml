@@ -9,7 +9,7 @@ dependencies:
 id: slackinviteform
 theme: dcz_theme
 region: postscript
-weight: -7
+weight: -5
 provider: null
 plugin: slack_invite_form_block
 settings:

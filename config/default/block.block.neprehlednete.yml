@@ -11,7 +11,7 @@ dependencies:
 id: neprehlednete
 theme: dcz_theme
 region: postscript
-weight: -5
+weight: -7
 provider: null
 plugin: 'block_content:3f0c9dc6-0d64-490c-8165-b11d74eab427'
 settings:
