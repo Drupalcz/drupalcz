@@ -101,4 +101,5 @@ hidden:
   field_clients: true
   field_coauthors: true
   field_creditors: true
+  field_meta_tags: true
   langcode: true
