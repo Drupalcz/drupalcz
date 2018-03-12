@@ -1,5 +1,5 @@
 uuid: 8d756c08-7a4d-40c5-8412-184d9aa019d6
-langcode: en
+langcode: cs
 status: true
 dependencies:
   config:
@@ -181,7 +181,7 @@ display:
       group_by: true
       use_more: true
       use_more_always: true
-      use_more_text: more
+      use_more_text: více
       link_url: blog
       link_display: custom_url
     cache_metadata:
