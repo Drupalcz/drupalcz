@@ -21,6 +21,7 @@ permissions:
   - 'create media'
   - 'create organization content'
   - 'create tutorial content'
+  - 'delete own dcz_article content'
   - 'delete own dcz_showcase content'
   - 'delete own individual content'
   - 'delete own organization content'
