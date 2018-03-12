@@ -589,7 +589,7 @@ display:
           offset: 0
       use_more: true
       use_more_always: true
-      use_more_text: more
+      use_more_text: více
       enabled: false
       header: {  }
     cache_metadata:

@@ -287,7 +287,7 @@ display:
       display_extenders: {  }
       use_more: false
       use_more_always: false
-      use_more_text: More
+      use_more_text: více
       link_url: ''
       link_display: '0'
     cache_metadata:

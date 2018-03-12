@@ -1,5 +1,5 @@
 uuid: 5c737c01-f16b-4237-8a07-7b8b6d87ee3d
-langcode: en
+langcode: cs
 status: true
 dependencies:
   config:
@@ -104,6 +104,7 @@ content:
     third_party_settings: {  }
 hidden:
   field_hero_widget: true
+  field_meta_tags: true
   field_paragraphs: true
   langcode: true
   panelizer: true

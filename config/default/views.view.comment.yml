@@ -823,7 +823,7 @@ display:
       display_extenders: {  }
       use_more: false
       use_more_always: true
-      use_more_text: more
+      use_more_text: více
       use_ajax: false
       hide_attachment_summary: false
       show_admin_links: true
