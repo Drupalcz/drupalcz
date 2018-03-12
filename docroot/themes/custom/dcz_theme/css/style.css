@@ -389,6 +389,9 @@ header {
     .region-postscript ul li {
       margin-left: 0; }
 
+.page-node-type-dcz-landing-page .postscript {
+  margin-top: 16px; }
+
 ul.tabs {
   margin: .5em auto; }
   ul.tabs li {
@@ -632,7 +635,7 @@ img {
 .block-page-title-block {
   padding: 0; }
 
-.paragraph--type--layout {
+.page-node-type-dcz-landing-page .paragraph--type--layout {
   padding-left: 0;
   padding-right: 0; }
 
@@ -685,7 +688,7 @@ img {
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.7); }
 
 .dcz-para-padding-big {
-  padding: 3em 2em; }
+  padding: 3em 0; }
 
 .dcz-para-bottom-gap {
   margin-bottom: 2em; }
