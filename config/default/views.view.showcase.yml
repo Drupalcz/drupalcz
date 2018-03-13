@@ -1,9 +1,10 @@
 uuid: a279d190-11c7-448b-8b00-bb8aa25a6f80
-langcode: en
+langcode: cs
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.stack
+    - core.entity_view_mode.node.teaser
     - node.type.dcz_showcase
     - taxonomy.vocabulary.drupal_version
   module:
@@ -153,7 +154,22 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
-      sorts: {  }
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          granularity: second
+          entity_type: node
+          entity_field: created
+          plugin_id: date
       title: Showcase
       header: {  }
       footer: {  }
@@ -178,7 +194,8 @@ display:
     display_title: 'Front page logo block'
     position: 3
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender: {  }
       style:
         type: default
         options:
@@ -195,12 +212,10 @@ display:
         sorts: false
         title: false
       row:
-        type: fields
+        type: 'entity:node'
         options:
-          default_field_elements: false
-          inline: {  }
-          separator: ''
-          hide_empty: false
+          relationship: none
+          view_mode: teaser
       fields: {  }
       pager:
         type: some
@@ -286,6 +301,7 @@ display:
           plugin_id: random
       display_description: ''
       title: 'Using Drupal'
+      enabled: false
     cache_metadata:
       max-age: 0
       contexts:

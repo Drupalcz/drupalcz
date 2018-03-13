@@ -1,5 +1,5 @@
 uuid: 2164de12-c99d-4b71-97c1-323fd1ffb0c0
-langcode: en
+langcode: cs
 status: true
 dependencies:
   config:
@@ -103,5 +103,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_meta_tags: true
   langcode: true
   panelizer: true

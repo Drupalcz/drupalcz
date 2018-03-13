@@ -1,5 +1,5 @@
 uuid: aff94002-b948-4f85-b2d1-dd1af54b7d2c
-langcode: en
+langcode: cs
 status: true
 dependencies:
   config:
@@ -101,4 +101,5 @@ hidden:
   field_clients: true
   field_coauthors: true
   field_creditors: true
+  field_meta_tags: true
   langcode: true

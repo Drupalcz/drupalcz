@@ -1,5 +1,5 @@
 uuid: 4c4a0da5-bffc-4bc7-ba5d-88c6fc711051
-langcode: en
+langcode: cs
 status: true
 dependencies:
   config:
@@ -102,5 +102,6 @@ hidden:
   field_clients: true
   field_coauthors: true
   field_creditors: true
+  field_meta_tags: true
   field_paragraphs: true
   langcode: true
