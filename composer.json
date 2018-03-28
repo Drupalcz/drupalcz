@@ -60,6 +60,11 @@
     ],
     "extra": {
         "enable-patching": true,
+        "patches": {
+            "drupal/core": {
+                "sa-2018-002": "https://github.com/drupal/core/commit/687f6a382dc9623b5dcee20c7bda50761522a422.patch"
+            }
+        },
         "installer-types": [
             "bower-asset",
             "npm-asset"
