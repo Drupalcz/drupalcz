@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9acd27980cb16c806153c5a368e0429f",
+    "content-hash": "7bb609e8bff3f142b31c4efedbfeb1a1",
     "packages": [
         {
             "name": "acquia/blt",
@@ -2924,6 +2924,7 @@
             "extra": {
                 "patches_applied": {
                     "Clear Twig caches on deploys": "https://www.drupal.org/files/issues/2752961-90.patch",
+                    "sa-2018-002": "https://github.com/drupal/core/commit/687f6a382dc9623b5dcee20c7bda50761522a422.patch",
                     "1356276 - Allow profiles to provide a base/parent profile and load them in the correct order": "https://www.drupal.org/files/issues/1356276-408--8.4.3.patch",
                     "2880374 - Experimental modules should not have warnings after being installed": "https://www.drupal.org/files/issues/2880374-remove-experimental-warnings-6.patch",
                     "2880445 - Config sync should not throw a warning when not being writable": "https://www.drupal.org/files/issues/2880445-remove-config-write-warning-2.patch",
