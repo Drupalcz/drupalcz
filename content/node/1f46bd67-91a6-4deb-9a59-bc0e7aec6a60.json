@@ -1,0 +1,170 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/jak-zacit?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/node\/page"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/revision_uid": [
+            {
+                "href": "http:\/\/default\/user\/evar?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/uid": [
+            {
+                "href": "http:\/\/default\/user\/pepino710?_format=hal_json",
+                "lang": "cs"
+            }
+        ]
+    },
+    "nid": [
+        {
+            "value": 211
+        }
+    ],
+    "uuid": [
+        {
+            "value": "1f46bd67-91a6-4deb-9a59-bc0e7aec6a60"
+        }
+    ],
+    "vid": [
+        {
+            "value": 2381
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "page"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2018-03-22T07:55:59+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/revision_uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/evar?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "8f89e458-000b-422a-9dd9-66dddd953c98"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/pepino710?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "c535d34f-a1bb-4140-ab0e-400f9d7d4bf9"
+                    }
+                ],
+                "lang": "cs"
+            }
+        ]
+    },
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "title": [
+        {
+            "value": "Jak za\u010d\u00edt",
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-03-04T16:40:20+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-03-22T07:55:59+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "sticky": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "Jak za\u010d\u00edt | Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/jak-zacit",
+                "description": "Pro v\u00fdvoj\u00e1\u0159e\n\nM\u00e1te zku\u0161enost s v\u00fdvojem web\u016f \u010di webov\u00fdch aplikac\u00ed a r\u00e1di byste vyzkou\u0161eli Drupal?\n\nPro v\u00e1s jsme p\u0159ipravili:\n\ntutori\u00e1l Instalace Drupalu.\n\ttutori\u00e1l Aktualizace Drupalu.\n\trozcestn\u00edk Kam pro informace (v\u00fdvoj, v\u00fdvoj, bezpe\u010dnost, p\u0159eklady, \u0159e\u0161en\u00ed probl\u00e9m\u016f...)\nPro za\u010d\u00e1te\u010dn\u00edky\n\nZa\u010d\u00edn\u00e1te s v\u00fdvojem Drupalu a pot\u0159ebujete si na sv\u00e9m po\u010d\u00edta\u010di zprovoznit v\u00fdvojov\u00e9 prost\u0159ed\u00ed, Drupal samotn\u00fd a v\u0161echny pot\u0159ebn\u00e9 n\u00e1stroje pro v\u00fdvoj?",
+                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "og_title": "| Drupal.cz",
+                "article_published_time": "2018-03-04T17:40:20+0100",
+                "article_modified_time": "2018-03-22T08:55:59+0100"
+            }
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/jak-zacit",
+            "pid": 261,
+            "langcode": "cs",
+            "lang": "cs"
+        }
+    ],
+    "body": [
+        {
+            "value": "<h2>Pro v\u00fdvoj\u00e1\u0159e<\/h2>\r\n\r\n<p>M\u00e1te zku\u0161enost s v\u00fdvojem web\u016f \u010di webov\u00fdch aplikac\u00ed a r\u00e1di byste vyzkou\u0161eli Drupal?<\/p>\r\n\r\n<p><strong>Pro v\u00e1s jsme p\u0159ipravili:<\/strong><\/p>\r\n\r\n<ul>\r\n\t<li>tutori\u00e1l <a href=\"\/node\/56\">Instalace Drupalu<\/a>.<\/li>\r\n\t<li>tutori\u00e1l <a href=\"\/node\/51\">Aktualizace Drupalu<\/a>.<\/li>\r\n\t<li>rozcestn\u00edk <a href=\"\/node\/216\">Kam pro informace<\/a> (v\u00fdvoj, v\u00fdvoj, bezpe\u010dnost, p\u0159eklady, \u0159e\u0161en\u00ed probl\u00e9m\u016f...)<\/li>\r\n<\/ul>\r\n\r\n<h2>Pro za\u010d\u00e1te\u010dn\u00edky<\/h2>\r\n\r\n<p>Za\u010d\u00edn\u00e1te s v\u00fdvojem Drupalu a pot\u0159ebujete si na sv\u00e9m po\u010d\u00edta\u010di zprovoznit v\u00fdvojov\u00e9 prost\u0159ed\u00ed, Drupal samotn\u00fd a v\u0161echny pot\u0159ebn\u00e9 n\u00e1stroje pro v\u00fdvoj?<\/p>\r\n\r\n<p>Rozhodli jste se st\u00e1t v\u00fdvoj\u00e1\u0159em? M\u00e1te v pl\u00e1nu na Drupalu postavit sv\u016fj prvn\u00ed web, anebo snad n\u011bco v\u011bt\u0161\u00edho? Skv\u011bl\u00e9, m\u00e1te na\u0161i plnou podporu.<\/p>\r\n\r\n<p>Na po\u010d\u00e1tku je d\u016fle\u017eit\u00e9 si pro ka\u017edou \u010dinnost vytvo\u0159it optim\u00e1ln\u00ed podm\u00ednky. V p\u0159\u00edpad\u011b v\u00fdvoj\u00e1\u0159e je to zprovozn\u011bn\u00ed v\u00fdvojov\u00e9ho prost\u0159ed\u00ed a n\u00e1stroj\u016f, kter\u00e9 mu dlouhodob\u011b budou usnad\u0148ovat pr\u00e1ci a \u0161et\u0159it \u010das.<\/p>\r\n\r\n<p>P\u0159esto\u017ee existuje mnoho p\u0159\u00edstup\u016f a n\u00e1stroj\u016f pro v\u00fdvoj, zam\u011b\u0159\u00edme pozornost na ty, kter\u00e9 maj\u00ed v celosv\u011btov\u00e9 Drupal komunit\u011b dlouhodobou podporu a kter\u00e9 jsou pova\u017eov\u00e1ny za tzv. best practices.<\/p>\r\n\r\n<h3>U\u017eite\u010dn\u00e9 texty<\/h3>\r\n\r\n<ul>\r\n\t<li><a href=\"\/node\/66\">Instalace a konfigurace lok\u00e1ln\u00edho serveru<\/a><\/li>\r\n\t<li><a href=\"\/node\/76\">Nastaven\u00ed lok\u00e1ln\u00ed dom\u00e9ny<\/a><\/li>\r\n\t<li><a href=\"\/node\/56\">Instalace Drupalu<\/a><\/li>\r\n\t<li><a href=\"\/node\/216\">Kam pro informace<\/a> (v\u00fdvoj, v\u00fdvoj, bezpe\u010dnost, p\u0159eklady, \u0159e\u0161en\u00ed probl\u00e9m\u016f...)<\/li>\r\n\t<li><a href=\"\/node\/16\">DDD - Dos and Don\u00b4ts Drupalu<\/a><\/li>\r\n\t<li>... a dal\u0161\u00ed, kter\u00e9 najdete pod \u0161t\u00edtkem <a href=\"\/taxonomy\/term\/61\">pro za\u010d\u00e1te\u010dn\u00edky<\/a>.<\/li>\r\n<\/ul>\r\n\r\n<h2>Drupal Demo<\/h2>\r\n\r\n<p>Jste za\u010d\u00e1te\u010dn\u00edk a prozat\u00edm si nechcete instalovat lok\u00e1ln\u00ed webov\u00fd server, ale p\u0159esto byste si r\u00e1di Drupal vyzkou\u0161eli?<\/p>\r\n\r\n<p>Tak\u00e9 pro V\u00e1s m\u00e1me \u0159e\u0161en\u00ed, a to skrze online slu\u017ebu zdarma na adrese <a href=\"https:\/\/simplytest.me\/project\/drupal\">simplytest.me<\/a>.<\/p>\r\n\r\n<center>\r\n<p class=\"lead\"><a class=\"button\" href=\"https:\/\/simplytest.me\/project\/drupal\">Vyzkou\u0161ejte Drupal<\/a>&nbsp;<\/p>\r\n<\/center>\r\n\r\n<p>Tuto slu\u017ebu pr\u00e1v\u011b za t\u00edmto \u00fa\u010delem vytvo\u0159il drupalista Patrick Drotleff. Na str\u00e1nce Jednodu\u0161e v pol\u00ed\u010dku \u201cEnter a project name\u201d zvol\u00edte projekt, nap\u0159. Core Test Sandbox, a n\u00e1sledn\u011b kliknete na tla\u010d\u00edtko \u201cLaunch sandbox\u201d.<\/p>\r\n\r\n<p>V nab\u00eddce je mnoho projekt\u016f v\u010detn\u011b n\u011bkter\u00fdch distribuc\u00ed, nap\u0159. Panopoly sandbox, co\u017e v\u00e1m d\u00e1v\u00e1 p\u0159\u00edle\u017eitost poznat r\u016fzn\u00e9 p\u0159\u00edstupy v\u00fdvoje na t\u00e9to platform\u011b.&nbsp; Pro zku\u0161en\u011bj\u0161\u00ed z v\u00e1s je v \u010d\u00e1sti \"<span class=\"fieldset-legend\">Add additional projects<\/span>\" mo\u017en\u00e9 do instalace zahrnout konkr\u00e9tn\u00ed modul, kter\u00fd si chcete vyzkou\u0161et.<\/p>\r\n\r\n<p>Po dokon\u010den\u00ed instalace m\u00e1te pln\u011b funk\u010dn\u00ed web v Drupalu a m\u016f\u017eete za\u010d\u00edt objevovat tento skv\u011bl\u00fd syst\u00e9m. Web je v\u00e1m k dispozici po dobu 24 hodin. Informaci o tom, kolik \u010dasu v\u00e1m je\u0161t\u011b zb\u00fdv\u00e1 do vypr\u0161en\u00ed jeho platnosti, najdete v lev\u00e9m spodn\u00edm rohu str\u00e1nky.<\/p>\r\n\r\n<p>P\u0159ihla\u0161ovac\u00ed str\u00e1nka se nach\u00e1z\u00ed na url: <strong>\/user<\/strong><br \/>\r\nP\u0159ihla\u0161ovac\u00ed jm\u00e9no: <strong>admin<\/strong><br \/>\r\nHeslo: <strong>admin<\/strong><\/p>\r\n\r\n<p>Nebojte se experimentovat! Kdykoliv svou akc\u00ed n\u011bco rozbijete, anebo zm\u011bn\u00edte tak, \u017ee to nebudete um\u011bt uv\u00e9st do p\u016fvodn\u00edho stavu, m\u016f\u017eete aktu\u00e1ln\u00ed instanci webu zahodit a vygenerovat si dal\u0161\u00ed.<\/p>\r\n\r\n<p>V\u00edtejte ve sv\u011bt\u011b Drupalu!<\/p>\r\n",
+            "format": "full_html",
+            "summary": "",
+            "lang": "cs"
+        }
+    ]
+}
