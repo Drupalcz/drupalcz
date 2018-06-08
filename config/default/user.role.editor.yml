@@ -49,6 +49,7 @@ permissions:
   - 'revert tutorial revisions'
   - 'update any media'
   - 'use text format basic_html'
+  - 'use text format forum'
   - 'use text format full_html'
   - 'view all revisions'
   - 'view dcz_article revisions'

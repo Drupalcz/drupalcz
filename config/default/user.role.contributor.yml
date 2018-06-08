@@ -10,4 +10,5 @@ permissions:
   - 'create dcz_article content'
   - 'delete own dcz_article content'
   - 'edit own dcz_article content'
+  - 'use text format forum'
   - 'view own unpublished content'
