@@ -59,11 +59,6 @@ before_install:
 install:
   - source ${BLT_DIR}/scripts/travis/setup_environment
   - source ${BLT_DIR}/scripts/travis/setup_project
-  - cd docroot
-  - drush cr
-  - drush dcdi -y
-  - drush cr
-  - cd ..
 
 script:
   - source ${BLT_DIR}/scripts/travis/run_tests

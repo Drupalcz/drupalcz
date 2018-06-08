@@ -71,7 +71,11 @@ If you want to have some default content for your development,
   
   To samé na stránce Komunity (http://dcz.localhost/node/171/edit) opravit 
   views referenci "User directory".
-       
+  
+  Než se vyřeší problém v Travis, je třeba nastavit homepage.
+  Na stránce http://dcz.localhost/admin/config/system/site-information nastavte Front page 
+  na hodnotu /drupal-cz.
+
   
 * Optional: Migrate data from D6 Drupal.cz
   * Get the database snapshot: https://github.com/Drupalcz/drupalcz_db
