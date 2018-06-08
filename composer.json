@@ -38,7 +38,10 @@
         "drupal/youtube": "^1.0@beta",
         "drush/drush": "8.1.15"
     },
-    "require-dev": {},
+    "require-dev": {
+        "drupal/better_normalizers": "^1.0@beta",
+        "drupal/default_content_deploy": "^1.0@alpha"
+    },
     "config": {
         "sort-packages": true
     },
