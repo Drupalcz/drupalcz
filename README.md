@@ -49,6 +49,21 @@ Branch | Build status | Dev site | HTTP Basic auth
   * `drush cim -y`
   * Login to new site:
   * `drush uli`
+  
+If you want to have some default content for your development, 
+
+  * add this row to local.settings.php 
+     
+      ` $config['content_directory'] = '../content';`
+  
+  * Run commands
+       
+        drush cr
+        drush dcdi
+        drush cr
+        
+       
+  
 * Optional: Migrate data from D6 Drupal.cz
   * Get the database snapshot: https://github.com/Drupalcz/drupalcz_db
   * Import it into new database separarate from D8 version.
