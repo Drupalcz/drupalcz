@@ -1,0 +1,70 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/en\/user\/admin?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+        }
+    },
+    "uid": [
+        {
+            "value": 1
+        }
+    ],
+    "uuid": [
+        {
+            "value": "729cc54c-cd71-4b21-9d99-8744decd2dc7"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en",
+            "lang": "en"
+        }
+    ],
+    "name": [
+        {
+            "value": "admin"
+        }
+    ],
+    "created": [
+        {
+            "value": "2017-10-02T12:28:11+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-06-08T09:47:11+00:00",
+            "lang": "en",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "en"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "admin | Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/user\/1",
+                "description": "Drupal.cz",
+                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "og_title": "| Drupal.cz"
+            }
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/user\/admin",
+            "pid": 966,
+            "langcode": "en",
+            "lang": "en"
+        }
+    ]
+}

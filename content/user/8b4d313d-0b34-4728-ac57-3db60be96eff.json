@@ -1,0 +1,124 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/user\/petr?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/user\/user\/field_dcz_user_image": [
+            {
+                "href": "http:\/\/default\/sites\/default\/files\/users\/petr-illek-druplicon.jpg"
+            }
+        ]
+    },
+    "uid": [
+        {
+            "value": 51
+        }
+    ],
+    "uuid": [
+        {
+            "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "name": [
+        {
+            "value": "petr"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-02-27T10:35:04+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-03-09T06:57:27+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "petr | Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/user\/petr",
+                "description": "Drupal.cz",
+                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "og_title": "| Drupal.cz"
+            }
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/user\/petr",
+            "pid": 111,
+            "langcode": "cs",
+            "lang": "cs"
+        }
+    ],
+    "field_dcz_bio": [
+        {
+            "value": "<p>Od p\u0159elomu tis\u00edcilet\u00ed jsem se p\u0159i studij\u00edch <strong>ekologie vodn\u00edch \u0159as<\/strong> za\u010dal \u017eivit jako grafick\u00fd design\u00e9r a saze\u010d, ob\u010das jsem si pro zpest\u0159en\u00ed zakoketoval s \u010dist\u00fdm HTML a CSS. V roce 2009 jsem <strong>objevil Drupal<\/strong> a byla z toho l\u00e1ska na prvn\u00ed pohled. Jako samostatn\u00fd \u017eivnostn\u00edk jsem dod\u00e1val kompletn\u00ed \u0159e\u0161en\u00ed od tiskov\u00e9 grafiky, polepu aut (v\u010detn\u011b polepov\u00e1n\u00ed :), p\u0159es tvo\u0159en\u00ed webu a\u017e po hosting. V roce 2014 jsem za\u010dal na st\u00e1lo pracovat pro <strong>australskou Drupal agenturu<\/strong> <a href=\"https:\/\/www.morpht.com\">Morpht.com<\/a> kde se specializuji hlavn\u011b na Front-end development.<\/p>\r\n\r\n<p>V r\u00e1mci sv\u011btov\u00e9 komunity Drupalu jsem se jako dobrovoln\u00edk (pozd\u011bji i jako koordin\u00e1tor dobrovoln\u00edk\u016f) pod\u00edlel na n\u011bkolika posledn\u00edch evropsk\u00fdch konferenc\u00edch <strong>DrupalCon<\/strong>. Roku 2016 jsme s kamar\u00e1dy z okoln\u00edch st\u00e1t\u016f \u00fasp\u011b\u0161n\u011b zorganizovali v Praze <strong>mezin\u00e1rodn\u00ed konferenci<\/strong> <a href=\"http:\/\/drupalironcamp.com\/\">Drupal IronCamp<\/a> pro cca 230 \u00fa\u010dastn\u00edk\u016f.<\/p>\r\n\r\n<p>V \u010desk\u00e9 kotlin\u011b se sna\u017e\u00edm pom\u00e1hat zde na <a href=\"\/forum\">f\u00f3ru<\/a>, \u00fa\u010dastn\u00edm se v\u00fdvoje a dal\u0161\u00edho rozvoje <a href=\"\/\">drupal.cz<\/a>. Spole\u010dn\u011b se Slovenskou komunitou p\u0159ipravujeme <a href=\"http:\/\/drupalcs.camp\/\">Drupal CampCS<\/a>. Od roku 2016 jsem \u010dlenem \u010desk\u00e9<strong> <a href=\"https:\/\/www.drupalasociace.cz\/\">Asociace pro Drupal<\/a><\/strong>, kterou jsem spoluzakl\u00e1dal.<\/p>\r\n\r\n<p>&nbsp;<\/p>\r\n\r\n<table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 500px;\">\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width: 250px; text-align: center; vertical-align: middle;\"><img alt=\"Drupal Association Individual Member\" src=\"https:\/\/assoc.drupal.org\/files\/Drupal_Association_ind_member_217_0.png\" \/><\/td>\r\n\t\t\t<td style=\"width: 250px; text-align: center; vertical-align: middle;\">\r\n\t\t\t<p><img alt=\"Acquia Front End Specialist\" src=\"https:\/\/www.drupal.org\/files\/issues\/ACD-FES2015.png\" \/><\/p>\r\n\t\t\t<\/td>\r\n\t\t<\/tr>\r\n\t<\/tbody>\r\n<\/table>\r\n\r\n<p>&nbsp;<\/p>\r\n",
+            "format": "full_html"
+        }
+    ],
+    "field_dcz_name": [
+        {
+            "value": "Petr"
+        }
+    ],
+    "field_dcz_surname": [
+        {
+            "value": "Illek"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/user\/user\/field_dcz_user_image": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/sites\/default\/files\/users\/petr-illek-druplicon.jpg"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "207af8c5-b35a-442f-848c-9cf77a134b2e"
+                    }
+                ],
+                "alt": "Petr Illek, Drupalista",
+                "title": "",
+                "width": "600",
+                "height": "600"
+            }
+        ]
+    },
+    "field_location": [
+        {
+            "lat": 50.200377679937,
+            "lng": 12.3727496569,
+            "lat_sin": 0.76828774302533,
+            "lat_cos": 0.64010463513166,
+            "lng_rad": 0.2159452190379,
+            "data": []
+        }
+    ]
+}

@@ -1,0 +1,74 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/stitky\/bezpecnost?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/taxonomy_term\/tags"
+        }
+    },
+    "tid": [
+        {
+            "value": 6
+        }
+    ],
+    "uuid": [
+        {
+            "value": "d9764c6d-10eb-40cc-bc7b-2204ee060eb7"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "vid": [
+        {
+            "target_id": "tags"
+        }
+    ],
+    "name": [
+        {
+            "value": "bezpe\u010dnost",
+            "lang": "cs"
+        }
+    ],
+    "weight": [
+        {
+            "value": 0
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-03-06T15:31:45+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "bezpe\u010dnost | Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/stitky\/bezpecnost",
+                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "og_title": "| Drupal.cz"
+            }
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/stitky\/bezpecnost",
+            "pid": 51,
+            "langcode": "cs",
+            "lang": "cs"
+        }
+    ]
+}
