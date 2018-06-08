@@ -1,0 +1,123 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/admin\/structure\/menu\/item\/11\/edit?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/menu_link_content\/menu_link_content"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/menu_link_content\/menu_link_content\/menu_link_content_target_entity": [
+            {
+                "href": "http:\/\/default\/o-drupalu?_format=hal_json"
+            }
+        ]
+    },
+    "id": [
+        {
+            "value": 11
+        }
+    ],
+    "uuid": [
+        {
+            "value": "61b00fe4-fbf7-4fd2-b0bf-d5d5fcce1d76"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "bundle": [
+        {
+            "value": "menu_link_content"
+        }
+    ],
+    "title": [
+        {
+            "value": "O Drupalu",
+            "lang": "cs"
+        }
+    ],
+    "menu_name": [
+        {
+            "value": "main"
+        }
+    ],
+    "link": [
+        {
+            "uri": "entity:node\/71",
+            "title": null,
+            "options": [],
+            "target_uuid": "d78255b8-8879-492f-b2a1-49bf882c6126"
+        }
+    ],
+    "external": [
+        {
+            "value": false
+        }
+    ],
+    "rediscover": [
+        {
+            "value": false
+        }
+    ],
+    "weight": [
+        {
+            "value": -50
+        }
+    ],
+    "expanded": [
+        {
+            "value": false
+        }
+    ],
+    "enabled": [
+        {
+            "value": true
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-03-02T20:38:49+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "| Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/%3Cnone%3E",
+                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "og_title": "| Drupal.cz"
+            }
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/menu_link_content\/menu_link_content\/menu_link_content_target_entity": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/o-drupalu?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/node\/page"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "d78255b8-8879-492f-b2a1-49bf882c6126"
+                    }
+                ]
+            }
+        ]
+    }
+}
