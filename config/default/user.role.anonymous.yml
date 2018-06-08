@@ -14,5 +14,5 @@ permissions:
   - 'display eu cookie compliance popup'
   - 'post comments'
   - 'skip comment approval'
-  - 'use text format basic_html'
+  - 'use text format forum'
   - 'view media'
