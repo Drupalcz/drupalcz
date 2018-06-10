@@ -1,0 +1,270 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/clanky\/drupal-8-5-je-nyni-k-dispozici?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/node\/dcz_article"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/revision_uid": [
+            {
+                "href": "http:\/\/default\/user\/petr?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/uid": [
+            {
+                "href": "http:\/\/default\/user\/petr?_format=hal_json",
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/field_tags": [
+            {
+                "href": "http:\/\/default\/stitky\/drupal-8?_format=hal_json"
+            },
+            {
+                "href": "http:\/\/default\/stitky\/novinka?_format=hal_json"
+            },
+            {
+                "href": "http:\/\/default\/stitky\/drupal?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/field_teaser_image": [
+            {
+                "href": "http:\/\/default\/media\/11?_format=hal_json"
+            }
+        ]
+    },
+    "nid": [
+        {
+            "value": 376
+        }
+    ],
+    "uuid": [
+        {
+            "value": "be51f6af-3195-42e3-9316-9b5f374f3204"
+        }
+    ],
+    "vid": [
+        {
+            "value": 1806
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "dcz_article"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2018-03-08T21:13:03+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/revision_uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/petr?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/petr?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
+                    }
+                ],
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/field_tags": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/stitky\/drupal-8?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/taxonomy_term\/tags"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "64e6e6dd-6697-4cf9-803c-1a679d5a7186"
+                    }
+                ]
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/stitky\/novinka?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/taxonomy_term\/tags"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "02a615af-bdcd-426d-a254-a865af75d35f"
+                    }
+                ]
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/stitky\/drupal?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/taxonomy_term\/tags"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "9caf0007-c7d0-4c38-b9e6-9b7bd315f2fb"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/field_teaser_image": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/media\/11?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/media\/image"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "5e655fd6-b546-4a76-9baa-1d02e70296bf"
+                    }
+                ]
+            }
+        ]
+    },
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "title": [
+        {
+            "value": "Drupal 8.5. je nyn\u00ed k dispozici",
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-03-08T06:37:56+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-03-08T21:13:03+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "sticky": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "| Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/clanky\/drupal-8-5-je-nyni-k-dispozici",
+                "og_type": "article",
+                "description": "Nov\u00e1 verze zp\u0159\u00edstup\u0148uje media modul pro v\u0161echny u\u017eivatele, v\u00fdznamn\u011b zlep\u0161uje migraci, stabilizuje moduly Content Moderation a Settings Tray, urychleje zobrazen\u00ed dynamick\u00fdch str\u00e1nek pomoc\u00ed BigPipe a dal\u0161\u00ed\u2026",
+                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "keywords": "drupal 8, novinka, drupal",
+                "og_title": "| Drupal.cz",
+                "og_description": "Nov\u00e1 verze zp\u0159\u00edstup\u0148uje media modul pro v\u0161echny u\u017eivatele, v\u00fdznamn\u011b zlep\u0161uje migraci, stabilizuje moduly Content Moderation a Settings Tray, urychleje zobrazen\u00ed dynamick\u00fdch str\u00e1nek pomoc\u00ed BigPipe a dal\u0161\u00ed\u2026",
+                "og_image": "Drupal 8",
+                "article_tag": "drupal 8, novinka, drupal",
+                "article_published_time": "2018-03-08T07:37:56+0100",
+                "article_modified_time": "2018-03-08T22:13:03+0100"
+            }
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/clanky\/drupal-8-5-je-nyni-k-dispozici",
+            "pid": 331,
+            "langcode": "cs",
+            "lang": "cs"
+        }
+    ],
+    "body": [
+        {
+            "value": "<p class=\"lead\">Nov\u00e1 verze zp\u0159\u00edstup\u0148uje modul media pro v\u0161echny u\u017eivatele, v\u00fdznamn\u011b zlep\u0161uje migraci, stabilizuje moduly Content Moderation a Settings Tray, urychluje zobrazen\u00ed dynamick\u00fdch str\u00e1nek pomoc\u00ed BigPipe a p\u0159in\u00e1\u0161\u00ed nov\u00e9 (experiment\u00e1ln\u00ed) u\u017eivatelsk\u00e9 rozhran\u00ed pro nastaven\u00ed zobrazen\u00ed entit. Zahrnuje n\u011bkolik velmi d\u016fle\u017eit\u00fdch oprav pro workflow p\u0159eklad\u016f obsahu a podporuje b\u011bh na PHP 7. 2.<\/p>\r\n\r\n<h2><span class=\"tlid-translation translation\">M\u00e9dia v j\u00e1d\u0159e se zlep\u0161uj\u00ed a jsou k dispozici pro v\u0161echny <\/span><\/h2>\r\n\r\n<p><span class=\"tlid-translation translation\">V Drupal 8.4 jsme p\u0159idali Media API do j\u00e1dra, kter\u00e9 vych\u00e1z\u00ed z modulu Media Entity. Modul byl skryt z u\u017eivatelsk\u00e9ho rozhran\u00ed kv\u016fli probl\u00e9m\u016fm s UX. V Drupal 8.5 byla vy\u0159e\u0161ena \u0159ada probl\u00e9m\u016f s pou\u017eitelnost\u00ed a modul je nyn\u00ed mo\u017en\u00e9 norm\u00e1ln\u011b povolit. M\u00e9dia v aplikaci Drupal 8.5 podporuj\u00ed nahr\u00e1v\u00e1n\u00ed a p\u0159ehr\u00e1v\u00e1n\u00ed zvukov\u00fdch a video soubor\u016f, stejn\u011b jako v\u00fdpis a op\u011btovn\u00e9 pou\u017eit\u00ed m\u00e9di\u00ed. <\/span><\/p>\r\n\r\n<p><span class=\"tlid-translation translation\">Pro optim\u00e1ln\u00ed u\u017eivatelskou zku\u0161enost doporu\u010dujeme roz\u0161\u00ed\u0159it z\u00e1kladn\u00ed sadu n\u011bkter\u00fdm z bohat\u00e9ho ekosyst\u00e9mu modul\u016f, kter\u00e9 roz\u0161i\u0159uj\u00ed hlavn\u00ed modul Media. V budouc\u00edch verz\u00edch vylep\u0161\u00edme z\u00e1kladn\u00ed pr\u00e1ci s multimedi\u00e1ln\u00ed knihovnou a dal\u0161\u00edmi n\u00e1stroji, p\u0159id\u00e1me integraci do WYSIWYGu, p\u0159id\u00e1me podporu pro extern\u00ed typy m\u00e9di\u00ed, jako jsou videa YouTube, a poskytneme cestu k upgradu dat ze z\u00e1kladn\u00edch pol\u00ed Soubor a Obr\u00e1zek na existuj\u00edc\u00edch str\u00e1nk\u00e1ch. <\/span><\/p>\r\n\r\n<h2><span class=\"tlid-translation translation\">Settings Tray a moderov\u00e1n\u00ed obsahu je nyn\u00ed stabiln\u00ed <\/span><\/h2>\r\n\r\n<p><span class=\"tlid-translation translation\">Dva experiment\u00e1ln\u00ed moduly p\u016fvodn\u011b p\u0159idan\u00e9 v Drupalu 8.2.0 se v minul\u00fdch verz\u00edch neust\u00e1le vylep\u0161ovali a jsou nyn\u00ed stabiln\u00ed. Modul Settings Tray poskytuje rychl\u00e9 \u0159e\u0161en\u00ed pro spr\u00e1vu nastaven\u00ed v dan\u00e9m kontextu, nap\u0159\u00edklad p\u0159esunut\u00ed polo\u017eek v menu. Modul Moderov\u00e1n\u00ed obsahu umo\u017e\u0148uje definovat stavy workflow obsahu, jako jsou Koncept, Archivov\u00e1no a Publikov\u00e1no, stejn\u011b jako role, kter\u00e9 maj\u00ed schopnost p\u0159esouvat obsah mezi st\u00e1vy. Drupal 8.5.0 tak\u00e9 p\u0159id\u00e1v\u00e1 podporu pro p\u0159eklady, kter\u00e9 jsou moderov\u00e1ny nez\u00e1visle. <\/span><\/p>\r\n\r\n<h2><span class=\"tlid-translation translation\">Nov\u00fd experiment\u00e1ln\u00ed modul Layout Builder <\/span><\/h2>\r\n\r\n<p><span class=\"tlid-translation translation\">Nov\u00fd experiment\u00e1ln\u00ed modul Layout Builder poskytuje funkce pro rozlo\u017een\u00ed zobrazen\u00ed \u010dl\u00e1nk\u016f, str\u00e1nek, u\u017eivatelsk\u00fdch profil\u016f a dal\u0161\u00edch zobrazen\u00ed entity. Layout Builder pou\u017e\u00edv\u00e1 stejn\u00e9 u\u017eivatelsk\u00e9 rozhran\u00ed \"outside-in\" jako v modulu Settings tray, co\u017e umo\u017e\u0148uje stavitel\u016fm webu upravit jejich rozvr\u017een\u00ed na aktu\u00e1ln\u00ed str\u00e1nce (sp\u00ed\u0161e ne\u017e muset p\u0159ej\u00edt na samostatn\u00fd formul\u00e1\u0159 v backendu). Aktu\u00e1ln\u00ed u\u017eivatelsk\u00e9 rozhran\u00ed je z\u00e1kladn\u00ed implementac\u00ed, ale o\u010dek\u00e1v\u00e1me, \u017ee se v p\u0159\u00ed\u0161t\u00edch m\u011bs\u00edc\u00edch v\u00fdrazn\u011b zlep\u0161\u00ed. <\/span><\/p>\r\n\r\n<p><span class=\"tlid-translation translation\">Uk\u00e1zka um\u00eds\u0165ov\u00e1n\u00ed blok\u016f pomoc\u00ed n\u00e1stroje Layout Builder <\/span><\/p>\r\n\r\n<p><img alt=\"\" src=\"https:\/\/www.drupal.org\/files\/umami-8.5-layout-builder.gif\" \/><\/p>\r\n\r\n<h2><span class=\"tlid-translation translation\">Migraci je stabiln\u00ed<\/span><\/h2>\r\n\r\n<p><span class=\"tlid-translation translation\">Po v\u00edce ne\u017e \u010dty\u0159ech letech pr\u00e1ce je architektura syst\u00e9mu Migrate je stabiln\u00ed. Moduly Drupal Migrate a Drupal Migrate UI jsou pova\u017eov\u00e1ny za stabiln\u00ed pro modernizaci jednojazy\u010dn\u00fdch str\u00e1nek. (Migrace v\u00edcejazy\u010dn\u00fdch str\u00e1nek je\u0161t\u011b nen\u00ed pln\u011b podporov\u00e1na.) Podpora p\u0159\u00edr\u016fstkov\u00fdch migrac\u00ed je tak\u00e9 sou\u010d\u00e1st\u00ed t\u00e9to verze. Dal\u0161\u00ed podrobnosti o migraci do aplikace Drupal 8 naleznete v ozn\u00e1men\u00ed o migraci. <\/span><\/p>\r\n\r\n<h2><span class=\"tlid-translation translation\">BigPipe je ve v\u00fdchoz\u00edm stavu zapnut\u00fd<\/span><\/h2>\r\n\r\n<p><span class=\"tlid-translation translation\">Modul BigPipe poskytuje pokro\u010dilou implementaci renderov\u00e1n\u00ed str\u00e1nky pomoc\u00ed&nbsp;BigPipe techniky vytvo\u0159en\u00e9 Facebookem. T\u00edm doch\u00e1z\u00ed ke zna\u010dn\u00e9mu zlep\u0161en\u00ed vn\u00edman\u00e9ho v\u00fdkonu pro str\u00e1nky s dynamick\u00fdm, personalizovan\u00fdm nebo neke\u0161ovateln\u00fdm obsahem. Modul byl experiment\u00e1ln\u011b p\u0159id\u00e1n v aplikaci Drupal 8.1.0 a stal se stabiln\u00ed v aplikaci Drupal 8.3.0. Po testov\u00e1n\u00ed v re\u00e1lu je BigPipe nyn\u00ed sou\u010d\u00e1st\u00ed standardn\u00edho instala\u010dn\u00edho profilu Drupalu 8.5.0, tak\u017ee v\u0161echny nov\u00e9 instalace Drupal 8 budou ve v\u00fdchoz\u00edm nastaven\u00ed rychlej\u0161\u00ed. BigPipe je tak\u00e9 prvn\u00ed novou funkc\u00ed Drupalu 8, kter\u00fd to dot\u00e1hl z experiment\u00e1ln\u00edho prototypu, a\u017e na sou\u010d\u00e1st standardn\u00ed instalace! <\/span><\/p>\r\n\r\n<h2><span class=\"tlid-translation translation\">Z\u00e1klad pro nov\u00fd demo instala\u010dn\u00ed profil \"Out of the box\" <\/span><\/h2>\r\n\r\n<p><span class=\"tlid-translation translation\">Drupal 8.5.0 obsahuje z\u00e1klad pro nov\u00fd demo instala\u010dn\u00ed profil a t\u00e9ma vzhledu od iniciativy Out of the Box, kter\u00e9 bude demonstrac\u00ed modern\u00edch schopnost\u00ed Drupalu a jeho kr\u00e1sy. To n\u00e1m umo\u017en\u00ed poskytnout demo jako experiment\u00e1ln\u00ed profil a t\u00e9ma, v budouc\u00ed verzi Drupal 8.5. (Demo profil a t\u00e9ma vzhledu by nem\u011bly b\u00fdt pou\u017eity na skute\u010dn\u00fdch produk\u010dn\u00edch nebo v\u00fdvojov\u00fdch webech, proto\u017ee nen\u00ed zaru\u010dena zp\u011btn\u00e1 kompatibility nebo upgrady.) Pokud byste cht\u011bli vid\u011bt toto demo v akci, pod\u00edvejte se na v\u00fdvojovou verzi 8.6.x. <\/span><\/p>\r\n\r\n<h2><span class=\"tlid-translation translation\">PHP 7. 2. je nyn\u00ed podporov\u00e1no <\/span><\/h2>\r\n\r\n<p><span class=\"tlid-translation translation\">Drupal 8.5.0 nyn\u00ed b\u011b\u017e\u00ed i na PHP 7. 2., kter\u00fd p\u0159ich\u00e1z\u00ed s nov\u00fdmi funkcemi a d\u00e1le zlep\u0161uje v\u00fdkon proti PHP 7. 1. PHP 7. 2. je nyn\u00ed doporu\u010denou verz\u00ed PHP pro Drupal 8.<\/span><\/p>\r\n",
+            "format": "full_html",
+            "summary": "",
+            "lang": "cs"
+        }
+    ],
+    "field_comments_article": [
+        {
+            "status": 2,
+            "cid": 0,
+            "last_comment_timestamp": 1520493507,
+            "last_comment_name": null,
+            "last_comment_uid": 51,
+            "comment_count": 0
+        }
+    ],
+    "field_teaser_text": [
+        {
+            "value": "Nov\u00e1 verze zp\u0159\u00edstup\u0148uje media modul pro v\u0161echny u\u017eivatele, v\u00fdznamn\u011b zlep\u0161uje migraci, stabilizuje moduly Content Moderation a Settings Tray, urychleje zobrazen\u00ed dynamick\u00fdch str\u00e1nek pomoc\u00ed BigPipe a dal\u0161\u00ed\u2026"
+        }
+    ]
+}

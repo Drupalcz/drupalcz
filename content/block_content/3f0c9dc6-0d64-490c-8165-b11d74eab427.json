@@ -1,0 +1,86 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/block\/11?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/block_content\/content_block"
+        }
+    },
+    "id": [
+        {
+            "value": 11
+        }
+    ],
+    "uuid": [
+        {
+            "value": "3f0c9dc6-0d64-490c-8165-b11d74eab427"
+        }
+    ],
+    "revision_id": [
+        {
+            "value": 11
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "content_block"
+        }
+    ],
+    "info": [
+        {
+            "value": "Nep\u0159ehl\u00e9dn\u011bte",
+            "lang": "cs"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-02-27T13:47:14+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2018-02-27T13:47:14+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "| Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/%3Cnone%3E",
+                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "og_title": "| Drupal.cz"
+            }
+        }
+    ],
+    "body": [
+        {
+            "value": "<ul>\r\n\t<li><a href=\"https:\/\/twitter.com\/drupalcz\">Twitter<\/a><\/li>\r\n\t<li><a href=\"https:\/\/www.facebook.com\/drupalcz\/\">Facebook<\/a><\/li>\r\n\t<li><a href=\"https:\/\/groups.drupal.org\/czech-republic\">\u010cesk\u00e1 Drupal skupina<\/a><\/li>\r\n\t<li><a href=\"https:\/\/localize.drupal.org\/translate\/languages\/cs\">\u010cesk\u00e1 lokaliza\u010dn\u00ed skupina<\/a><\/li>\r\n\t<li><a href=\"https:\/\/www.drupal.org\/planet\">Drupal planeta (en)<\/a><\/li>\r\n<\/ul>\r\n",
+            "format": "full_html",
+            "summary": "",
+            "lang": "cs"
+        }
+    ]
+}

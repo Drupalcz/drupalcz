@@ -1,0 +1,86 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/block\/6?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/block_content\/content_block"
+        }
+    },
+    "id": [
+        {
+            "value": 6
+        }
+    ],
+    "uuid": [
+        {
+            "value": "a2b72088-8c5f-4e1b-afad-174041a96d37"
+        }
+    ],
+    "revision_id": [
+        {
+            "value": 6
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "content_block"
+        }
+    ],
+    "info": [
+        {
+            "value": "Drupal asociace",
+            "lang": "cs"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-03-09T21:04:16+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "2018-02-27T13:05:33+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "| Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/%3Cnone%3E",
+                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "og_title": "| Drupal.cz"
+            }
+        }
+    ],
+    "body": [
+        {
+            "value": "<drupal-entity data-embed-button=\"image\" data-entity-embed-display=\"view_mode:media.embed\" data-entity-type=\"media\" data-entity-uuid=\"6273bf17-88ff-49d7-9c34-2f7102c44457\"><\/drupal-entity>\r\n\r\n<p>Drupal.cz je dlouhodob\u011b podporov\u00e1n Asociac\u00ed pro Drupal.<\/p>\r\n\r\n<p><a class=\"button\" href=\"\/drupal-asociace\">Zjisti v\u00edce a sta\u0148 se \u010dlenem<\/a><\/p>\r\n",
+            "format": "full_html",
+            "summary": "",
+            "lang": "cs"
+        }
+    ]
+}

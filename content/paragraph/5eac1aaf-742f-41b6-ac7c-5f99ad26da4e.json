@@ -1,0 +1,156 @@
+{
+    "_links": {
+        "self": {
+            "href": ""
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_content"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_content\/uid": [
+            {
+                "href": "http:\/\/default\/user\/petr?_format=hal_json",
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_content\/revision_uid": [
+            {
+                "href": "http:\/\/default\/user\/petr?_format=hal_json"
+            }
+        ]
+    },
+    "id": [
+        {
+            "value": 606
+        }
+    ],
+    "uuid": [
+        {
+            "value": "5eac1aaf-742f-41b6-ac7c-5f99ad26da4e"
+        }
+    ],
+    "revision_id": [
+        {
+            "value": 9091
+        }
+    ],
+    "type": [
+        {
+            "target_id": "dcz_para_content"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_content\/uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/petr?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
+                    }
+                ],
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_content\/revision_uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/petr?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
+                    }
+                ]
+            }
+        ]
+    },
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-02-27T11:38:53+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "parent_id": [
+        {
+            "value": "611"
+        }
+    ],
+    "parent_type": [
+        {
+            "value": "paragraph"
+        }
+    ],
+    "parent_field_name": [
+        {
+            "value": "field_paragraphs"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": "a:0:{}"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "field_class": [
+        {
+            "value": "dcz_para_dark",
+            "lang": "cs"
+        },
+        {
+            "value": "dcz_para_text_center",
+            "lang": "cs"
+        },
+        {
+            "value": "dcz_para_text_shadow",
+            "lang": "cs"
+        }
+    ],
+    "field_content": [
+        {
+            "value": "<drupal-entity data-align=\"center\" data-embed-button=\"image\" data-entity-embed-display=\"view_mode:media.embed\" data-entity-type=\"media\" data-entity-uuid=\"b212d949-4e97-4053-a970-53b123c29e3b\"><\/drupal-entity>\r\n\r\n<p class=\"lead\">D\u011bkujeme <strong>Morpht.com<\/strong> za podporu v\u00fdvoje Drupal.cz.<\/p>\r\n\r\n<p><a class=\"button\" href=\"\/clanky\/drupal-8-prijemneji-bpm-bricks-paragraphs-modifiers\">\u010ct\u011bte d\u00e1l<\/a><\/p>\r\n",
+            "format": "full_html",
+            "lang": "cs"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "Advertisement",
+            "lang": "cs"
+        }
+    ]
+}
