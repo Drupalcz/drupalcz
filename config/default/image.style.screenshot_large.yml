@@ -3,12 +3,13 @@ langcode: cs
 status: true
 dependencies: {  }
 name: screenshot_large
-label: 'Screenshot large (1024x768)'
+label: 'Screenshot large (1024px width)'
 effects:
-  bc5f346e-8d47-4887-9263-992606556991:
-    uuid: bc5f346e-8d47-4887-9263-992606556991
-    id: image_scale_and_crop
-    weight: 1
+  9face638-a1b5-4ac8-b987-506e2c38120e:
+    uuid: 9face638-a1b5-4ac8-b987-506e2c38120e
+    id: image_scale
+    weight: 2
     data:
       width: 1024
-      height: 768
+      height: null
+      upscale: false
