@@ -39,5 +39,6 @@ permissions:
   - 'post comments'
   - 'skip comment approval'
   - 'use text format basic_html'
+  - 'use text format forum'
   - 'view media'
   - 'view the administration theme'

@@ -1,12 +1,12 @@
-uuid: a579d49e-c54e-4934-9300-f4ca3de57f23
+uuid: fde64fb4-4c19-4acd-90d0-d628a8923ba9
 langcode: cs
 status: true
 dependencies:
   config:
-    - filter.format.basic_html
+    - filter.format.forum
   module:
     - ckeditor
-format: basic_html
+format: forum
 editor: ckeditor
 settings:
   toolbar:
@@ -18,15 +18,8 @@ settings:
             - Bold
             - Italic
             - Styles
-            - '-'
+            - Blockquote
             - RemoveFormat
-        -
-          name: Input
-          items:
-            - Paste
-            - PasteText
-            - PasteFromWord
-            - SpecialChar
         -
           name: Links
           items:
@@ -37,28 +30,27 @@ settings:
           items:
             - BulletedList
             - NumberedList
-            - Indent
-            - Outdent
         -
           name: Media
           items:
-            - Blockquote
-            - Table
-            - node
+            - DrupalImage
         -
           name: Tools
           items:
+            - Undo
+            - Redo
             - Source
+            - Maximize
   plugins:
     stylescombo:
-      styles: "h2|H2\r\nh3|H3\r\nh4|H4"
+      styles: "h2|H2\r\nh3|H3\r\nh4|H4\r\ncode.php|PHP kód\r\ncode.html|HTML kód\r\ncode.css|CSS styl\r\ncode.js|Javascriptový kód\r\ncode.jquery|jQuery kód\r\ncode.sql|SQL kód\r\ncode.twig|Twig kód\r\ncode.yaml|YAMLkód\r\n\r\n\r\n"
     language:
       language_list: un
 image_upload:
   status: true
   scheme: public
-  directory: inline-images
-  max_size: ''
+  directory: forum
+  max_size: '5 MB'
   max_dimensions:
-    width: 1024
-    height: 1024
+    width: 1000
+    height: 1000
