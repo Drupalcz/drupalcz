@@ -1,0 +1,124 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/user\/pepino710?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/user\/user\/field_dcz_user_image": [
+            {
+                "href": "http:\/\/default\/sites\/default\/files\/users\/profil-ruka.jpg"
+            }
+        ]
+    },
+    "uid": [
+        {
+            "value": 11
+        }
+    ],
+    "uuid": [
+        {
+            "value": "c535d34f-a1bb-4140-ab0e-400f9d7d4bf9"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "name": [
+        {
+            "value": "pepino710"
+        }
+    ],
+    "created": [
+        {
+            "value": "2017-10-02T13:53:25+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-03-04T14:56:39+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "pepino710 | Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/user\/pepino710",
+                "description": "Drupal.cz",
+                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "og_title": "| Drupal.cz"
+            }
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/user\/pepino710",
+            "pid": 246,
+            "langcode": "cs",
+            "lang": "cs"
+        }
+    ],
+    "field_dcz_bio": [
+        {
+            "value": "<p>M\u00e1 IT historie za\u010d\u00edn\u00e1 zhruba v roce 2009, kdy jsem se nau\u010dil trochu programovat v jazyce EasyLanguage, co\u017e je jazyk, kter\u00fd se pou\u017e\u00edv\u00e1 k programov\u00e1n\u00ed obchodn\u00edch strategi\u00ed v r\u00e1mci aplikace Tradestation.<br \/>\r\nZhruba v roce 2011 jsem se za\u010dal ztr\u00e1cet v tom, kter\u00e9 verze kter\u00fdch funkc\u00ed jsou sou\u010d\u00e1st\u00ed kter\u00e9 verze obchodn\u00ed strategie a za\u010dal jsem aktivn\u011b hledat software, v n\u011bm\u017e budu si budu moci vytvo\u0159it n\u011bco jako \u201cchytrou\u201d dokumentaci\u201d.<\/p>\r\n\r\n<p>Pom\u011brn\u011b n\u00e1hodou jsem v t\u00e9 dob\u011b narazil na Drupal a velmi rychle mi do\u0161lo, \u017ee v tomto syst\u00e9mu budu moci na m\u00edru vytvo\u0159it p\u0159esn\u011b to, co pot\u0159ebuji a mnohem v\u00edc. Bohu\u017eel jsem byl v t\u00e9 dob\u011b zcela nepol\u00edben\u00fd v\u00fdvojem webov\u00fdch aplikac\u00ed a neznal ani \u017e\u00e1dnou z podkladov\u00fdch technologi\u00ed, na kter\u00fdch Drupal stoj\u00ed (html, css, php, javascript) ani v\u00fdvoj\u00e1\u0159sk\u00e9 n\u00e1stroje jako je nap\u0159. Git. Na po\u010d\u00e1tku m\u011b tedy \u010dekalo mnoho u\u010den\u00ed :-).<\/p>\r\n\r\n<p>Od roku 2013 se v\u011bnuji v\u00fdvoji webov\u00fdch aplikac\u00ed profesion\u00e1ln\u011b. Nejprve jsem pracoval na juniorsk\u00e9 pozici ve firm\u011b Macron Software a od roku 2015 jsem zam\u011bstn\u00e1n jako v\u00fdvoj\u00e1\u0159 v \u010cesk\u00e9m rohlasu.<\/p>\r\n\r\n<p>V \u010desk\u00e9 Drupal komunit\u011b jsem se v posledn\u00edch letech pod\u00edlel na p\u0159\u00edprav\u011b nov\u00e9ho webu na Drupal 8, a d\u00e1le pom\u00e1h\u00e1m s organizac\u00ed pra\u017esk\u00fdch Drupal setk\u00e1n\u00ed, kter\u00e9 d\u00edky vst\u0159\u00edcnosti zam\u011bstnavatele po\u0159\u00e1d\u00e1me v prostor\u00e1ch \u010cesk\u00e9ho rohzlasu. Od roku 2016 jsem \u010dlenem \u010desk\u00e9 <a href=\"https:\/\/www.drupalasociace.cz\/\">Asociace pro Drupal<\/a>, kterou jsem spoluzakl\u00e1dal.<\/p>\r\n",
+            "format": "full_html"
+        }
+    ],
+    "field_dcz_name": [
+        {
+            "value": "Josef"
+        }
+    ],
+    "field_dcz_surname": [
+        {
+            "value": "R\u016f\u017ei\u010dka"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/user\/user\/field_dcz_user_image": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/sites\/default\/files\/users\/profil-ruka.jpg"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "97391b02-592c-4055-9bf4-971e1925c3d5"
+                    }
+                ],
+                "alt": "Josef R\u016f\u017ei\u010dka image",
+                "title": "",
+                "width": "360",
+                "height": "360"
+            }
+        ]
+    },
+    "field_location": [
+        {
+            "lat": 50.0755381,
+            "lng": 14.4378005,
+            "lat_sin": 0.76689122095248,
+            "lat_cos": 0.6417771071221,
+            "lng_rad": 0.25198715547108,
+            "data": []
+        }
+    ]
+}

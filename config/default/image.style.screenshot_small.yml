@@ -3,12 +3,13 @@ langcode: cs
 status: true
 dependencies: {  }
 name: screenshot_small
-label: 'Screenshot small (600x450)'
+label: 'Screenshot small (600px width)'
 effects:
-  4a70e64d-0ddd-42b8-9200-a8367e53150a:
-    uuid: 4a70e64d-0ddd-42b8-9200-a8367e53150a
-    id: image_scale_and_crop
-    weight: 1
+  f5016e6c-d44c-4592-97f8-24b24862968a:
+    uuid: f5016e6c-d44c-4592-97f8-24b24862968a
+    id: image_scale
+    weight: 2
     data:
       width: 600
-      height: 450
+      height: null
+      upscale: false

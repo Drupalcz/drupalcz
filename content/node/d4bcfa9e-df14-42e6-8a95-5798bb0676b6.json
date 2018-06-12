@@ -1,0 +1,288 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/clanky\/na-co-si-dat-pozor-pri-alteraci-selectquery?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/node\/dcz_article"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/revision_uid": [
+            {
+                "href": "http:\/\/default\/user\/petr?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/uid": [
+            {
+                "href": "http:\/\/default\/user\/martinklima?_format=hal_json",
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/field_tags": [
+            {
+                "href": "http:\/\/default\/stitky\/development?_format=hal_json"
+            },
+            {
+                "href": "http:\/\/default\/stitky\/hook?_format=hal_json"
+            },
+            {
+                "href": "http:\/\/default\/stitky\/query?_format=hal_json"
+            },
+            {
+                "href": "http:\/\/default\/stitky\/pro-vyvojare?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/field_teaser_image": [
+            {
+                "href": "http:\/\/default\/media\/11?_format=hal_json"
+            }
+        ]
+    },
+    "nid": [
+        {
+            "value": 416
+        }
+    ],
+    "uuid": [
+        {
+            "value": "d4bcfa9e-df14-42e6-8a95-5798bb0676b6"
+        }
+    ],
+    "vid": [
+        {
+            "value": 2366
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "dcz_article"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2018-03-22T07:50:34+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/revision_uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/petr?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/martinklima?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "562772c7-9cf7-4157-b1cc-787734e49ab4"
+                    }
+                ],
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/field_tags": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/stitky\/development?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/taxonomy_term\/tags"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "6b8d1cc9-6762-4deb-9a21-c10407564c05"
+                    }
+                ]
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/stitky\/hook?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/taxonomy_term\/tags"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "7b46062c-8ca2-4872-9d42-63ab0e3bbd6c"
+                    }
+                ]
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/stitky\/query?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/taxonomy_term\/tags"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "9d8e2f3e-b432-4157-862e-25a25443c1ab"
+                    }
+                ]
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/stitky\/pro-vyvojare?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/taxonomy_term\/tags"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "4042e6ca-d7b2-4cce-82f6-ddb2112740c6"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/field_teaser_image": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/media\/11?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/media\/image"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "5e655fd6-b546-4a76-9baa-1d02e70296bf"
+                    }
+                ]
+            }
+        ]
+    },
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "title": [
+        {
+            "value": "Na co si d\u00e1t pozor p\u0159i alteraci SelectQuery",
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-03-20T16:48:01+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-03-22T07:50:34+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "sticky": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "| Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/clanky\/na-co-si-dat-pozor-pri-alteraci-selectquery",
+                "og_type": "article",
+                "description": "P\u0159i pr\u00e1ci na alterov\u00e1n\u00ed SQL query jsem narazil na neo\u010dek\u00e1van\u00e9 chov\u00e1n\u00ed n\u011bkter\u00fdch metod, kter\u00e9 a\u010d se zdaj\u00ed b\u00fdt zcela pasivn\u00ed, maj\u00ed ne\u010dekan\u00e9 d\u016fsledky.",
+                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "keywords": "development, hook, query, pro v\u00fdvoj\u00e1\u0159e",
+                "og_title": "| Drupal.cz",
+                "og_description": "P\u0159i pr\u00e1ci na alterov\u00e1n\u00ed SQL query jsem narazil na neo\u010dek\u00e1van\u00e9 chov\u00e1n\u00ed n\u011bkter\u00fdch metod, kter\u00e9 a\u010d se zdaj\u00ed b\u00fdt zcela pasivn\u00ed, maj\u00ed ne\u010dekan\u00e9 d\u016fsledky.",
+                "og_image": "Drupal 8",
+                "article_tag": "development, hook, query, pro v\u00fdvoj\u00e1\u0159e",
+                "article_published_time": "2018-03-20T17:48:01+0100",
+                "article_modified_time": "2018-03-22T08:50:34+0100"
+            }
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/clanky\/na-co-si-dat-pozor-pri-alteraci-selectquery",
+            "pid": 506,
+            "langcode": "cs",
+            "lang": "cs"
+        }
+    ],
+    "body": [
+        {
+            "value": "<p>Toto je jen stru\u010dn\u00fd \u010dl\u00e1nek pro v\u00fdvoj\u00e1\u0159e, kte\u0159\u00ed pot\u0159ebuj\u00ed v Drupalu 7 \u010di 8 alterovat SQL query. Pokud mu nebudete rozum\u011bt, nezoufejte, mo\u017en\u00e1 nen\u00ed pro v\u00e1s.<\/p>\r\n\r\n<p>P\u0159i pr\u00e1ci na alterov\u00e1n\u00ed SQL query jsem narazil na neo\u010dek\u00e1van\u00e9 chov\u00e1n\u00ed n\u011bkter\u00fdch metod, kter\u00e9 a\u010d se zdaj\u00ed b\u00fdt zcela pasivn\u00ed, maj\u00ed ne\u010dekan\u00e9 d\u016fsledky.<\/p>\r\n\r\n<p>Hooky pro query alter slou\u017e\u00ed k tomu, abychom mohli ji\u017e vytvo\u0159en\u00fd SelectQuery objekt modifikovat, nap\u0159. joinovat dal\u0161\u00ed tabulku, nebo \u010dast\u011bji upravit podm\u00ednky, kter\u00e9 se nach\u00e1zej\u00ed v \u010d\u00e1sti za WHERE, a to t\u011bsn\u011b p\u0159ed t\u00edm, ne\u017e je query provedena a vytvo\u0159en\u00fd SQL dotaz zasl\u00e1n na MySQL (\u010di jin\u00fd) server.<\/p>\r\n\r\n<p>Pokud ov\u0161em p\u0159ed modifikac\u00ed query pou\u017eijete n\u011bkterou z n\u00e1sleduj\u00edc\u00edch funkc\u00ed<\/p>\r\n\r\n<p><span><strong>$query-&gt;__toString()<\/strong>, nap\u0159. ve spojen\u00ed s print($query-&gt;__toString()) pro v\u00fdpis vznikl\u00e9ho dotazu,<\/span> nebo<br \/>\r\n<strong><em>$query<\/em><span>-&gt;<\/span><span>getArguments<\/span>()<\/strong>, pro zji\u0161t\u011bn\u00ed, jak\u00e9 jsou v query argumenty (to jsou ty prom\u011bnn\u00e9 ozna\u010dovan\u00e9 jako <em>:db_placeholder_x<\/em>),<\/p>\r\n\r\n<p>budete p\u0159ekvapeni ne\u010dekan\u00fdmi v\u00fdsledky. Jakmile toti\u017e funkci&nbsp;<strong><span>getArguments<\/span><\/strong><span> pou\u017eijete v domn\u011bn\u00ed, \u017ee v\u00e1m pouze vr\u00e1t\u00ed argumenty, nev\u0161imnete si, \u017ee funkce k vr\u00e1cen\u00ed argument\u016f pot\u0159ebuje <\/span>SelectQuery<span> objekt nejprve zkompilovat.<\/span> Pokud pak provedete po\u017eadovan\u00e9 zm\u011bny v SelectQuery objektu, nap\u0159. zm\u011bn\u00edte podm\u00ednku, nem\u00e1 tato zm\u011bna efekt, proto\u017ee query je ji\u017e zkompilov\u00e1na. M\u016f\u017eete se pak dostat do situace, \u017ee k\u00f3d, kter\u00fd by m\u011bl norm\u00e1ln\u011b fungovat a vy v n\u011bm nevid\u00edte \u017e\u00e1dnou chybu, prost\u011b nefunguje. S funkc\u00ed <span>__toString() je to podobn\u00e9. <\/span><\/p>\r\n\r\n<p><span>Pro v\u00fdvoj\u00e1\u0159e je podstatn\u00fd fakt, \u017ee tyto funkce ne\u010dekan\u011b m\u011bn\u00ed v\u00fdsledky k\u00f3du, a to i p\u0159esto, \u017ee podle sv\u00fdch n\u00e1zv\u016f p\u016fsob\u00ed zcela pasivn\u011b, pouze jako n\u011bco, co m\u00e1 z\u00edskat data \u010di zkonvertovat <\/span>SelectQuery objekt<span> do \u0159et\u011bzce.<\/span><\/p>\r\n\r\n<p>P\u0159\u00edklad:<\/p>\r\n\r\n<p><code>\/**<br \/>\r\n* Implements hook_query_TAG_alter().<br \/>\r\n*\/<br \/>\r\nfunction hook_query_TAG_alter(QueryAlterableInterface &amp;$query) {<br \/>\r\n&nbsp; \/** @var \\SelectQuery $query *\/<br \/>\r\n&nbsp;<br \/>\r\n&nbsp; \/\/ S n\u00e1sleduj\u00ed \u0159\u00e1dkou nebude m\u00edt dal\u0161\u00ed k\u00f3d \u017e\u00e1dn\u00fd efekt.<br \/>\r\n&nbsp; <strong>$query_argumants = $query-&gt;getArguments();<\/strong><br \/>\r\n&nbsp;<br \/>\r\n&nbsp; $conditions = &amp;$query-&gt;conditions();<br \/>\r\n&nbsp; \/** @var \\DatabaseCondition $condition_field *\/<br \/>\r\n&nbsp; $condition_field = &amp;$conditions[0]['field'];<br \/>\r\n&nbsp; $inner_conditions = &amp;$condition_field-&gt;conditions();<br \/>\r\n&nbsp;<br \/>\r\n&nbsp; \/\/ Zde si p\u0159edstavte konkr\u00e9tn\u00ed manipulace s conditions...<br \/>\r\n}<\/code><\/p>\r\n\r\n<p>&nbsp;<\/p>\r\n\r\n<p>&nbsp;<\/p>\r\n",
+            "format": "basic_html",
+            "summary": "",
+            "lang": "cs"
+        }
+    ],
+    "field_comments_article": [
+        {
+            "status": 2,
+            "cid": 66,
+            "last_comment_timestamp": 1521834342,
+            "last_comment_name": "Milo\u0161",
+            "last_comment_uid": 0,
+            "comment_count": 1
+        }
+    ],
+    "field_teaser_text": [
+        {
+            "value": "P\u0159i pr\u00e1ci na alterov\u00e1n\u00ed SQL query jsem narazil na neo\u010dek\u00e1van\u00e9 chov\u00e1n\u00ed n\u011bkter\u00fdch metod, kter\u00e9 a\u010d se zdaj\u00ed b\u00fdt zcela pasivn\u00ed, maj\u00ed ne\u010dekan\u00e9 d\u016fsledky."
+        }
+    ]
+}

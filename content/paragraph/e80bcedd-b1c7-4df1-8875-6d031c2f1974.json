@@ -1,0 +1,175 @@
+{
+    "_links": {
+        "self": {
+            "href": ""
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/layout"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/paragraph\/layout\/uid": [
+            {
+                "href": "http:\/\/default\/user\/petr?_format=hal_json",
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/paragraph\/layout\/revision_uid": [
+            {
+                "href": "http:\/\/default\/user\/petr?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/paragraph\/layout\/field_paragraphs": [
+            {
+                "href": "",
+                "lang": "cs"
+            },
+            {
+                "href": "",
+                "lang": "cs"
+            }
+        ]
+    },
+    "id": [
+        {
+            "value": 786
+        }
+    ],
+    "uuid": [
+        {
+            "value": "e80bcedd-b1c7-4df1-8875-6d031c2f1974"
+        }
+    ],
+    "revision_id": [
+        {
+            "value": 9686
+        }
+    ],
+    "type": [
+        {
+            "target_id": "layout"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/paragraph\/layout\/uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/petr?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
+                    }
+                ],
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/paragraph\/layout\/revision_uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/petr?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/paragraph\/layout\/field_paragraphs": [
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_content"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "66e1fdc5-802b-4839-a01f-e6138dff5662"
+                    }
+                ],
+                "lang": "cs",
+                "target_revision_id": "9676"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_view_reference"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "77397aa0-b657-4895-b797-20eb5e769291"
+                    }
+                ],
+                "lang": "cs",
+                "target_revision_id": "9681"
+            }
+        ]
+    },
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-03-02T20:27:01+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "parent_id": [
+        {
+            "value": "171"
+        }
+    ],
+    "parent_type": [
+        {
+            "value": "node"
+        }
+    ],
+    "parent_field_name": [
+        {
+            "value": "field_paragraphs"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": "a:0:{}"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ]
+}

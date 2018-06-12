@@ -1,0 +1,124 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/user\/evar?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/user\/user\/field_dcz_user_image": [
+            {
+                "href": "http:\/\/default\/sites\/default\/files\/users\/Portr_850_0.jpg"
+            }
+        ]
+    },
+    "uid": [
+        {
+            "value": 16
+        }
+    ],
+    "uuid": [
+        {
+            "value": "8f89e458-000b-422a-9dd9-66dddd953c98"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "name": [
+        {
+            "value": "EvaR"
+        }
+    ],
+    "created": [
+        {
+            "value": "2017-10-02T13:54:46+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-05-03T06:53:25+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "EvaR | Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/user\/evar",
+                "description": "Drupal.cz",
+                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "og_title": "| Drupal.cz"
+            }
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/user\/evar",
+            "pid": 116,
+            "langcode": "cs",
+            "lang": "cs"
+        }
+    ],
+    "field_dcz_bio": [
+        {
+            "value": "<p>Drupalem se zab\u00fdv\u00e1m od roku 2007 - tedy od verze 5.x. Za\u010dala jsem jako freelancer; v roce 2011 jsem spole\u010dn\u011b s kolegou Michalem Pazdersk\u00fdm zalo\u017eila spole\u010dnost Squelle. Kdysi jsem stav\u011bla weby od A do Z, dnes u\u017e mnoho v\u011bc\u00ed p\u0159enech\u00e1v\u00e1m specialist\u016fm z na\u0161eho t\u00fdmu. Nejv\u00edc m\u011b bav\u00ed informa\u010dn\u00ed architektura. To ov\u0161em znamen\u00e1, \u017ee se po\u0159\u00e1d sna\u017e\u00edm um\u011bt \"od v\u0161eho trochu\", proto\u017ee bez toho se \u017e\u00e1dn\u00fd projekt rozumn\u011b postavit ned\u00e1. Na\u0161t\u011bst\u00ed m\u011b bav\u00ed taky psan\u00ed tutori\u00e1l\u016f, tak\u017ee to vyu\u017eiju nadvakr\u00e1t. V komunit\u011b pom\u00e1h\u00e1m i s propagac\u00ed, se spr\u00e1vou webu Drupal.cz a s p\u0159eklady administra\u010dn\u00edho rozhran\u00ed Drupalu.<\/p>\r\n",
+            "format": "full_html"
+        }
+    ],
+    "field_dcz_name": [
+        {
+            "value": "Eva"
+        }
+    ],
+    "field_dcz_surname": [
+        {
+            "value": "R\u00e1zgov\u00e1"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/user\/user\/field_dcz_user_image": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/sites\/default\/files\/users\/Portr_850_0.jpg"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "a2c7f348-bbad-4238-958a-a7074f8c8472"
+                    }
+                ],
+                "alt": "Eva R\u00e1zgov\u00e1 photo",
+                "title": "",
+                "width": "850",
+                "height": "850"
+            }
+        ]
+    },
+    "field_location": [
+        {
+            "lat": 50.1594656,
+            "lng": 14.3050972,
+            "lat_sin": 0.76783048016751,
+            "lat_cos": 0.64065306814666,
+            "lng_rad": 0.24967104595782,
+            "data": []
+        }
+    ]
+}

@@ -49,6 +49,34 @@ Branch | Build status | Dev site | HTTP Basic auth
   * `drush cim -y`
   * Login to new site:
   * `drush uli`
+  
+If you want to have some default content for your development, 
+
+  * add this row to local.settings.php 
+     
+      ` $config['content_directory'] = '../content';`
+  
+  * Run commands
+       
+        drush cr
+        drush dcdi
+        drush cr
+        
+  ### Poznámka pro české vývojáře:
+  Na stránce Články (http://dcz.localhost/clanky) se nezobrazují články, 
+  protože nefunguje korektně import views reference fieldu (bug v modulu a v Drupal core,
+  co čeká na vyřešení). Ručně je třeba na stránce http://dcz.localhost/node/46/edit 
+  jít do paragraphs Layout, kliknout na Edit, kliknout Edit u paragrafu typu 
+  View reference a do položky View reference vepsat slovo "Articles".
+  
+  To samé na stránce Komunity (http://dcz.localhost/node/171/edit) opravit 
+  views referenci "User directory".
+  
+  Než se vyřeší problém v Travis, je třeba nastavit homepage.
+  Na stránce http://dcz.localhost/admin/config/system/site-information nastavte Front page 
+  na hodnotu /drupal-cz.
+
+  
 * Optional: Migrate data from D6 Drupal.cz
   * Get the database snapshot: https://github.com/Drupalcz/drupalcz_db
   * Import it into new database separarate from D8 version.
