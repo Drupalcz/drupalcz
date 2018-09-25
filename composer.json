@@ -55,6 +55,7 @@
         "drupal/token": "^1.0",
         "drupal/viewsreference": "^2.0",
         "drupal/youtube": "^1.0",
+        "drush/drush": "^9.4",
         "oomphinc/composer-installers-extender": "^1.1",
         "pear/versioncontrol_git": "^0.5"
     },
