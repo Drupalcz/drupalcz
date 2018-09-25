@@ -92,8 +92,7 @@
         "patchLevel": {
             "drupal/core": "-p2"
         },
-        "patches": {
-        },
+        "patches": [],
         "installer-types": [
             "bower-asset",
             "npm-asset"
@@ -125,13 +124,13 @@
                 "type:bower-asset",
                 "type:npm-asset"
             ],
-            "drush/contrib/{$name}": [
+            "drush/Commands/{$name}": [
                 "type:drupal-drush"
             ]
         },
         "merge-plugin": {
             "require": [
-                "vendor/acquia/blt/composer.required.json"
+                "blt/composer.required.json"
             ],
             "merge-extra": true,
             "merge-extra-deep": true,

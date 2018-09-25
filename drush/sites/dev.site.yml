@@ -1,0 +1,15 @@
+dev:
+  host: staging-6645.prod.hosting.acquia.com
+  options:
+    ac-env: dev
+    ac-realm: prod
+    ac-site: drupalcz
+  paths:
+    drush-script: drush8
+  root: /var/www/html/drupalcz.dev/docroot
+  uri: drupalczdev.prod.acquia-sites.com
+  user: drupalcz.dev
+livedev:
+  options:
+    parent: '@drupalcz.dev'
+  root: /mnt/gfs/drupalcz.dev/livedev/docroot
