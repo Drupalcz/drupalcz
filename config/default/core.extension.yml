@@ -97,4 +97,4 @@ theme:
   seven: 0
   dcz_theme: 0
 langcode: cs
-profile: dcz
+profile: minimal
