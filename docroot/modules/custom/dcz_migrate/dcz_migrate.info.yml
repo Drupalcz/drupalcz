@@ -2,7 +2,6 @@ name: D.cz migrate
 type: module
 description: 'Contains migrate script for D.cz community website from D6 to D8'
 core: 8.x
-version: 8.x-1.0
 package: dcz
 dependencies:
   - migrate

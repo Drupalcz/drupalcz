@@ -1,5 +1,4 @@
 name: 'DCZ Tags taxonomy'
 type: module
 core: 8.x
-version: 8.x-1.0
 features: true

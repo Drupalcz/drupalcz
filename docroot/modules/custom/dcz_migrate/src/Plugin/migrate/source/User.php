@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\dcz_migrate\Plugin\migrate\source\User.
- */
-
 namespace Drupal\dcz_migrate\Plugin\migrate\source;
 
 use Drupal\migrate\Row;
@@ -40,7 +35,7 @@ class User extends DrupalSqlBase {
     // Profile fields.
     if ($this->moduleExists('profile')) {
       $fields += $this->select('profile_fields', 'pf')
-        ->fields('pf', array('name', 'title'))
+        ->fields('pf', ['name', 'title'])
         ->execute()
         ->fetchAllKeyed();
     }
@@ -56,7 +51,7 @@ class User extends DrupalSqlBase {
 
     // User roles.
     $roles = $this->select('users_roles', 'ur')
-      ->fields('ur', array('rid'))
+      ->fields('ur', ['rid'])
       ->condition('ur.uid', $row->getSourceProperty('uid'))
       ->execute()
       ->fetchCol();
@@ -67,7 +62,7 @@ class User extends DrupalSqlBase {
     if ($row->hasSourceProperty('timezone_id') && $row->getSourceProperty('timezone_id')) {
       if ($this->getDatabase()->schema()->tableExists('event_timezones')) {
         $event_timezone = $this->select('event_timezones', 'e')
-          ->fields('e', array('name'))
+          ->fields('e', ['name'])
           ->condition('e.timezone', $row->getSourceProperty('timezone_id'))
           ->execute()
           ->fetchField();
@@ -86,7 +81,7 @@ class User extends DrupalSqlBase {
       WHERE
         prf.uid = :uid
         AND prf.fid=1
-    ', array(':uid' => $uid));
+    ', [':uid' => $uid]);
     foreach ($result as $record) {
       $names = explode(' ', $record->value, 2);
       $row->setSourceProperty('dcz6_name', array_shift($names));
@@ -102,7 +97,7 @@ class User extends DrupalSqlBase {
       LEFT JOIN {location_instance} lic ON lic.lid=loc.lid
       WHERE
         lic.uid = :uid
-    ', array(':uid' => $uid));
+    ', [':uid' => $uid]);
     foreach ($result as $record) {
       $row->setSourceProperty('dcz6_lat', $record->latitude);
       $row->setSourceProperty('dcz6_long', $record->longitude);
@@ -112,10 +107,10 @@ class User extends DrupalSqlBase {
     $info = unserialize($row->getSourceProperty('data'));
     if (isset($info['info'])) {
       $row->setSourceProperty('dcz6_bio_value', $info['info']);
-    } else{
+    }
+    else {
       $row->setSourceProperty('dcz6_bio_value', '');
     }
-
 
     // Unserialize Data.
     $row->setSourceProperty('data', unserialize($row->getSourceProperty('data')));
@@ -127,12 +122,12 @@ class User extends DrupalSqlBase {
    * {@inheritdoc}
    */
   public function getIds() {
-    return array(
-      'uid' => array(
+    return [
+      'uid' => [
         'type' => 'integer',
         'alias' => 'u',
-      ),
-    );
+      ],
+    ];
   }
 
   /**
@@ -142,7 +137,7 @@ class User extends DrupalSqlBase {
    *   Associative array having field name as key and description as value.
    */
   protected function baseFields() {
-    $fields = array(
+    $fields = [
       'uid' => $this->t('User ID'),
       'name' => $this->t('Username'),
       'pass' => $this->t('Password'),
@@ -158,7 +153,7 @@ class User extends DrupalSqlBase {
       'picture' => $this->t('Picture'),
       'init' => $this->t('Init'),
       'data' => $this->t('User data'),
-    );
+    ];
 
     // Possible field added by Date contributed module.
     // @see https://api.drupal.org/api/drupal/modules%21user%21user.install/function/user_update_7002/7
