@@ -25,6 +25,7 @@ module:
   dcz_user: 0
   default_content: 0
   default_content_deploy: 0
+  diff: 0
   dropzonejs: 0
   dropzonejs_eb_widget: 0
   dynamic_page_cache: 0
