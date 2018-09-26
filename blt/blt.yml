@@ -3,7 +3,7 @@ project:
   prefix: dcz
   human_name: Drupal.cz
   profile:
-    name: dcz
+    name: minimal
   local:
     protocol: http
     hostname: 'local.${project.machine_name}.com'
