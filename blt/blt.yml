@@ -11,6 +11,8 @@ git:
   default_branch: master
   remotes:
     - 'drupalcz@svn-1745.prod.hosting.acquia.com:drupalcz.git'
+deploy:
+  tag_source: true
 drush:
   aliases:
     remote: '${project.machine_name}.test'

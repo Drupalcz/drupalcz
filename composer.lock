@@ -1,23 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "bdad38028d1f56420f068a517a51f522",
     "packages": [
         {
             "name": "acquia/blt",
-            "version": "9.2.0-alpha2",
+            "version": "9.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acquia/blt.git",
-                "reference": "0f39080e4a5dd6ce19ba630d33b730e723d3a38e"
+                "reference": "19c7a582e2c23737dbc7840e10d6d0ca62fab78c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acquia/blt/zipball/0f39080e4a5dd6ce19ba630d33b730e723d3a38e",
-                "reference": "0f39080e4a5dd6ce19ba630d33b730e723d3a38e",
+                "url": "https://api.github.com/repos/acquia/blt/zipball/19c7a582e2c23737dbc7840e10d6d0ca62fab78c",
+                "reference": "19c7a582e2c23737dbc7840e10d6d0ca62fab78c",
                 "shasum": ""
             },
             "require": {
@@ -32,13 +32,13 @@
                 "doctrine/common": "^2.5",
                 "doctrine/inflector": "~1.1.0",
                 "drupal/coder": "^8.2.11",
-                "drush/drush": "^9.3.0",
+                "drush/drush": "^9.4.0",
                 "grasmash/drupal-security-warning": "^1.0.0",
                 "grasmash/yaml-cli": "^1.0.0",
                 "grasmash/yaml-expander": "^1.2.0",
                 "oomphinc/composer-installers-extender": "^1.1",
                 "php": ">=5.6",
-                "phpunit/phpunit": "^4.8|^5.7|^6.5",
+                "phpunit/phpunit": "^4.8|^6.5",
                 "squizlabs/php_codesniffer": "^2.7",
                 "symfony/console": "^3.4.0",
                 "symfony/twig-bridge": "^3.3",
@@ -94,7 +94,7 @@
                 "template",
                 "testing"
             ],
-            "time": "2018-09-08T21:31:18+00:00"
+            "time": "2018-10-09T18:45:11+00:00"
         },
         {
             "name": "acquia/http-hmac-php",
@@ -280,7 +280,7 @@
             "version": "v5.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/enyo/dropzone.git",
+                "url": "git@github.com:enyo/dropzone.git",
                 "reference": "7d0792d1346d83a8b0c0d2919121bdd2b8e7fee4"
             },
             "dist": {
