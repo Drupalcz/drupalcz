@@ -40,7 +40,7 @@
         "drupal/jsonapi": "^1.23",
         "drupal/juicebox": "^2.0",
         "drupal/libraries": "^3.0",
-        "drupal/media_entity_actions": "^1.0",
+        "drupal/media_entity_actions": "^1.0@alpha",
         "drupal/memcache": "^2.0",
         "drupal/metatag": "^1.0",
         "drupal/migrate_plus": "^2.0",

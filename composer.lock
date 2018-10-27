@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "17738656eca1ab311c82bb4ea792f911",
+    "content-hash": "913e0f99794375517a070c0b07849a46",
     "packages": [
         {
             "name": "acquia/blt",
@@ -13013,6 +13013,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/diff": 5,
+        "drupal/media_entity_actions": 15,
         "sensiolabs-de/deprecation-detector": 20
     },
     "prefer-stable": true,
