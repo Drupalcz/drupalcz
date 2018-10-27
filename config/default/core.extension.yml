@@ -54,6 +54,7 @@ module:
   link: 0
   locale: 0
   media: 0
+  media_entity_actions: 0
   menu_ui: 0
   metatag: 0
   metatag_facebook: 0

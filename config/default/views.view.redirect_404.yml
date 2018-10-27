@@ -500,7 +500,7 @@ display:
         groups:
           1: AND
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_interface'
         - url
@@ -518,7 +518,7 @@ display:
       display_description: 'Lists 404 error paths with no redirect assigned yet.'
       enabled: true
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_interface'
         - url
