@@ -29,7 +29,6 @@ module:
   entity_embed: 0
   entity_reference: 0
   entity_reference_revisions: 0
-  eu_cookie_compliance: 0
   field: 0
   field_ui: 0
   file: 0
@@ -50,7 +49,6 @@ module:
   link: 0
   locale: 0
   media: 0
-  media_entity_actions: 0
   menu_ui: 0
   metatag: 0
   metatag_facebook: 0
@@ -84,6 +82,7 @@ module:
   pathauto: 1
   views: 10
   minimal: 1000
+  eu_cookie_compliance: 1001
 theme:
   stable: 0
   classy: 0

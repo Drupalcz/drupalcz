@@ -6,7 +6,6 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.forum.body
     - field.field.node.forum.comment_forum
-    - field.field.node.forum.field_drupal_version
     - field.field.node.forum.taxonomy_forums
     - node.type.forum
   module:
@@ -30,8 +29,6 @@ content:
   links:
     weight: 101
     region: content
-    settings: {  }
-    third_party_settings: {  }
   taxonomy_forums:
     type: entity_reference_label
     weight: 10
@@ -42,5 +39,4 @@ content:
     third_party_settings: {  }
 hidden:
   comment_forum: true
-  field_drupal_version: true
   langcode: true

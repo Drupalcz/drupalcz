@@ -1,4 +1,4 @@
-uuid: 76ec95e1-e3c5-4ddf-92a3-85e972738c4a
+uuid: 2df0b6f8-8f49-400b-9908-25fa3b4fbba1
 langcode: cs
 status: true
 dependencies:
@@ -6,9 +6,11 @@ dependencies:
     - system
   theme:
     - stark
-id: stark_sitebranding
+_core:
+  default_config_hash: fRKXNB91UxDvEMkzCR8ZBsawfC6Fqbme2gtobei3gu4
+id: stark_branding
 theme: stark
-region: sidebar_first
+region: header
 weight: 0
 provider: null
 plugin: system_branding_block
@@ -18,6 +20,6 @@ settings:
   provider: system
   label_display: '0'
   use_site_logo: true
-  use_site_name: false
-  use_site_slogan: false
+  use_site_name: true
+  use_site_slogan: true
 visibility: {  }

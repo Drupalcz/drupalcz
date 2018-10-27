@@ -7,6 +7,7 @@ dependencies:
   module:
     - image
     - media
+    - system
     - user
 _core:
   default_config_hash: '-q24ItFnGZ_VzC81AjnWyuzS-enfH7uGYBz7Pe2kLP4'
@@ -22,7 +23,7 @@ display:
   default:
     display_plugin: default
     id: default
-    display_title: Master
+    display_title: Nadřízené
     position: 0
     display_options:
       access:
@@ -46,10 +47,10 @@ display:
           submit_button: Filter
           reset_button: false
           reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          exposed_sorts_label: 'Řadit dle'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Vzestupně
+          sort_desc_label: Sestupně
       pager:
         type: full
         options:
@@ -59,12 +60,12 @@ display:
           total_pages: null
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
+            items_per_page_label: 'Položek na stránku'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: '- Vše -'
             offset: false
-            offset_label: Offset
+            offset_label: 'Vynechat položky'
           tags:
             previous: '‹ Previous'
             next: 'Next ›'
@@ -310,7 +311,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Source
+          label: Typ
           exclude: false
           alter:
             alter_text: false
@@ -507,7 +508,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Updated
+          label: Aktualizováno
           exclude: false
           alter:
             alter_text: false
@@ -574,7 +575,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Operations
+          label: Operace
           exclude: false
           alter:
             alter_text: false
@@ -644,7 +645,6 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -673,7 +673,7 @@ display:
           exposed: true
           expose:
             operator_id: bundle_op
-            label: Source
+            label: Typ
             description: ''
             use_operator: false
             operator: bundle_op

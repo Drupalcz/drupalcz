@@ -9,7 +9,6 @@ dependencies:
     - field.field.node.page.field_clients
     - field.field.node.page.field_coauthors
     - field.field.node.page.field_creditors
-    - field.field.node.page.field_meta_tags
     - field.field.node.page.field_paragraphs
     - node.type.page
   module:

@@ -19,7 +19,7 @@ display:
   default:
     display_plugin: default
     id: default
-    display_title: Master
+    display_title: Nadřízené
     position: 0
     display_options:
       access:
@@ -43,10 +43,10 @@ display:
           submit_button: Filter
           reset_button: true
           reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          exposed_sorts_label: 'Řadit dle'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Vzestupně
+          sort_desc_label: Sestupně
       pager:
         type: mini
         options:
@@ -56,12 +56,12 @@ display:
           total_pages: null
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
+            items_per_page_label: 'Položek na stránku'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: '- Vše -'
             offset: false
-            offset_label: Offset
+            offset_label: 'Vynechat položky'
           tags:
             previous: ‹‹
             next: ››
@@ -317,7 +317,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Operations
+          label: Operace
           exclude: false
           alter:
             alter_text: false
@@ -385,7 +385,6 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -500,7 +499,7 @@ display:
         groups:
           1: AND
     cache_metadata:
-      max-age: -1
+      max-age: 0
       contexts:
         - 'languages:language_interface'
         - url
@@ -510,7 +509,7 @@ display:
   page_1:
     display_plugin: page
     id: page_1
-    display_title: Page
+    display_title: Stránka
     position: 1
     display_options:
       display_extenders: {  }
@@ -518,7 +517,7 @@ display:
       display_description: 'Lists 404 error paths with no redirect assigned yet.'
       enabled: true
     cache_metadata:
-      max-age: -1
+      max-age: 0
       contexts:
         - 'languages:language_interface'
         - url
