@@ -75,7 +75,7 @@ if (isset($_SERVER['HTTP_HOST'])) {
  * Shield.
  */
 $config['shield.settings']['allow_cli'] = TRUE;
-if (!in_array($base_url, $unshielded)) {
+if (isset($_SERVER['HTTP_HOST']) && !in_array($base_url, $unshielded)) {
   $config['shield.settings']['credentials']['shield']['user'] = 'drupal';
   $config['shield.settings']['credentials']['shield']['pass'] = 'cz';
   $config['shield.settings']['print'] = 'Check out https://github.com/Drupalcz/drupalcz ;-)';
