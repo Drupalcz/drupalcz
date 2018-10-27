@@ -1,2 +1,35 @@
-# This is a placeholder file used to track when drupalcz.aliases.drushrc.php was converted.
-# If you delete drupalcz.aliases.drushrc.php, then you may delete this file.
+dev:
+  host: staging-6645.prod.hosting.acquia.com
+  options:
+    ac-env: dev
+    ac-realm: prod
+    ac-site: drupalcz
+  paths:
+    drush-script: drush8
+  root: /var/www/html/drupalcz.dev/docroot
+  uri: drupalczdev.prod.acquia-sites.com
+  user: drupalcz.dev
+test:
+  host: staging-6517.prod.hosting.acquia.com
+  options:
+    ac-env: test
+    ac-realm: prod
+    ac-site: drupalcz
+  paths:
+    drush-script: drush8
+  root: /var/www/html/drupalcz.test/docroot
+  uri: drupalczstg.prod.acquia-sites.com
+  user: drupalcz.test
+prod:
+  host: ded-2299.prod.hosting.acquia.com
+  options:
+    ac-env: prod
+    ac-realm: prod
+    ac-site: drupalcz
+  paths:
+    drush-script: drush8
+  root: /var/www/html/drupalcz.prod/docroot
+  uri: drupalcz.prod.acquia-sites.com
+  user: drupalcz.prod
+loc:
+  uri: drupalcz.localhost
