@@ -1,0 +1,20 @@
+uuid: 3b83284c-efd3-4ab0-ba40-17c97e6390b7
+langcode: cs
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - stark
+id: stark_content
+theme: stark
+region: content
+weight: -6
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

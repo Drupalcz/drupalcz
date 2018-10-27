@@ -1,0 +1,20 @@
+uuid: f7eab288-8d7c-41c8-bce7-b0217cd6fe66
+langcode: cs
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - stark
+id: stark_messages
+theme: stark
+region: sidebar_first
+weight: -3
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

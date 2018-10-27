@@ -1,0 +1,25 @@
+uuid: 10db8589-bc2a-4abc-be9c-8a6bc85d5bc5
+langcode: cs
+status: true
+dependencies:
+  content:
+    - 'block_content:content_block:a2b72088-8c5f-4e1b-afad-174041a96d37'
+  module:
+    - block_content
+  theme:
+    - stark
+id: stark_drupalasociace
+theme: stark
+region: sidebar_first
+weight: -6
+provider: null
+plugin: 'block_content:a2b72088-8c5f-4e1b-afad-174041a96d37'
+settings:
+  id: 'block_content:a2b72088-8c5f-4e1b-afad-174041a96d37'
+  label: 'Drupal asociace'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
