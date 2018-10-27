@@ -59,6 +59,8 @@ before_install:
 install:
   - source ${BLT_DIR}/scripts/travis/setup_environment
   - source ${BLT_DIR}/scripts/travis/setup_project
+  # Import test content.
+  - drush --root=${$TRAVIS_BUILD_DIR}/docroot dcdi -y
 
 script:
   - source ${BLT_DIR}/scripts/travis/run_tests
