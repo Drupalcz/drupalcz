@@ -27,6 +27,6 @@ drush @$alias cr --yes
 drush @$alias updb --yes
 # We should not need this, but reality is different.
 drush @$alias entup --yes
-drush @$alias cim sync --yes
+#drush @$alias cim sync --yes
 drush @$alias cr --yes
 drush @$alias state-set system.maintenance_mode 0 --format=integer
