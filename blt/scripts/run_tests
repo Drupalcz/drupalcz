@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Copied from vendor/acquia/blt/scripts/travis/run_tests
+# and added our dcdi command.
+
+set -ev
+
+blt validate:all --no-interaction
+${BLT_DIR}/scripts/blt/ci/tick-tock.sh blt setup --define drush.alias='${drush.aliases.ci}' --environment=ci --no-interaction --yes --verbose
+
+# Import test content.
+drush --root=${TRAVIS_BUILD_DIR}/docroot dcdi -y
+
+blt tests:all --define drush.alias='${drush.aliases.ci}' --define tests.run-server=true --environment=ci --yes --verbose
+
+set +v
