@@ -14,4 +14,4 @@ require DRUPAL_ROOT . "/../vendor/acquia/blt/settings/blt.settings.php";
  *
  * It needs to be here. Otherwise install process edits this file.
  */
-$settings['install_profile'] = 'dcz';
+$settings['install_profile'] = 'minimal';

@@ -86,11 +86,11 @@ module:
   menu_link_content: 1
   pathauto: 1
   views: 10
-  dcz: 1000
+  minimal: 1000
 theme:
   stable: 0
   classy: 0
   seven: 0
   dcz_theme: 0
 langcode: cs
-profile: dcz
+profile: minimal
