@@ -41,7 +41,7 @@
         "drupal/juicebox": "^2.0@beta",
         "drupal/libraries": "^3.0@alpha",
         "drupal/media_entity_actions": "^1.0@alpha",
-        "drupal/memcache": "^2.0",
+        "drupal/memcache": "2.0-alpha7",
         "drupal/metatag": "^1.7",
         "drupal/migrate_plus": "^2.0",
         "drupal/migrate_tools": "^2.0",
