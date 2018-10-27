@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Install profile.
+ *
+ * It needs to be here. Otherwise install process edits this file.
+ */
+$settings['install_profile'] = 'minimal';
+
 // Set content directory for default_content_deploy.
 $config['content_directory'] = '../content';
 

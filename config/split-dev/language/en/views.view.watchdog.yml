@@ -50,7 +50,7 @@ display:
       title: 'Recent log messages'
       empty:
         area:
-          content:
-            value: 'No log messages available.'
+          admin_label: 'No log messages available.'
+          content: 'No log messages available.'
   page:
     display_title: Page

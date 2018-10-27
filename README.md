@@ -44,9 +44,7 @@ Branch | Build status | Dev site | HTTP Basic auth
   * If this is first time you are setting up BLT, run `composer run-script blt-alias`
   * `blt setup:git-hooks` (Learn more about BLT: https://blt.readthedocs.io/)
   * `cd docroot`
-  * `drush si dcz`
-  * Import configuration:
-  * `drush cim -y`
+  * `drush si minimal --existing-config`
   * Login to new site:
   * `drush uli`
 * If you want to have some default content for your development, 

@@ -61,7 +61,9 @@ install:
   - source ${BLT_DIR}/scripts/travis/setup_project
 
 script:
-  - source ${BLT_DIR}/scripts/travis/run_tests
+  # Run customized script instead.
+  #- source ${BLT_DIR}/scripts/travis/run_tests
+  - source ${TRAVIS_BUILD_DIR}/blt/scripts/run_tests
 
 deploy:
    - provider: script
