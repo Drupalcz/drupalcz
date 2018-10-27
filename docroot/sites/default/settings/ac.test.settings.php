@@ -7,3 +7,4 @@ $conf['mail_system'] = array(
 
 // Keep stage as close to prod as possible.
 $config['config_split.config_split.prod']['status'] = TRUE;
+$config['config_split.config_split.default_content']['status'] = FALSE;

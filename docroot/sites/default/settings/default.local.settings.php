@@ -72,7 +72,13 @@ $config['shield.settings']['credentials']['shield']['pass'] = '';
 $config['shield.settings']['print'] = '¯\_(ツ)_/¯';
 
 /**
+ * Set content directory for default_content_deploy.
+ */
+$config['content_directory'] = '../content';
+
+/**
  * Set active config split.
  */
-$config['config_split.config_split.dev']['status'] = TRUE;
-//$config['config_split.config_split.prod']['status'] = TRUE;
+$config['config_split.config_split.dev']['status'] = TRUE;;
+$config['config_split.config_split.default_content']['status'] = TRUE;
+$config['config_split.config_split.prod']['status'] = FALSE;
