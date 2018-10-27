@@ -27,6 +27,7 @@
         "drupal/honeypot": "^1.27",
         "drupal/juicebox": "^2.0@beta",
         "drupal/libraries": "3.x-dev",
+        "drupal/media_entity_actions": "^1.0",
         "drupal/migrate_plus": "^2.0",
         "drupal/migrate_tools": "^2.0",
         "drupal/paragraphs": "^1.2",
