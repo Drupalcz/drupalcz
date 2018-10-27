@@ -18,10 +18,7 @@ module:
   ctools: 0
   ctools_block: 0
   datetime: 0
-  dcz_article: 0
   dcz_custom_blocks: 0
-  dcz_tags_taxonomy: 0
-  dcz_user: 0
   diff: 0
   dropzonejs: 0
   dropzonejs_eb_widget: 0
@@ -54,6 +51,7 @@ module:
   link: 0
   locale: 0
   media: 0
+  media_entity_actions: 0
   menu_ui: 0
   metatag: 0
   metatag_facebook: 0
