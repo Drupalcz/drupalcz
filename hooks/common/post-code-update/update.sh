@@ -21,12 +21,12 @@ repo_type="$6"
 alias=$site.$target_env
 
 # Run updates and import config.
-drush @$alias state-set system.maintenance_mode 1 --format=integer
-# drush @$alias rr
-drush @$alias cr --yes
-drush @$alias updb --yes
+drush9 @$alias state-set system.maintenance_mode 1 --format=integer
+# drush9 @$alias rr
+drush9 @$alias cr --yes
+drush9 @$alias updb --yes
 # We should not need this, but reality is different.
-drush @$alias entup --yes
-#drush @$alias cim sync --yes
-drush @$alias cr --yes
-drush @$alias state-set system.maintenance_mode 0 --format=integer
+drush9 @$alias entup --yes
+#drush9 @$alias cim sync --yes
+drush9 @$alias cr --yes
+drush9 @$alias state-set system.maintenance_mode 0 --format=integer
