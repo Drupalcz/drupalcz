@@ -45,7 +45,7 @@ Branch | Build status | Dev site | HTTP Basic auth
   * `blt setup:git-hooks` (Learn more about BLT: https://blt.readthedocs.io/)
   * `cd docroot`
   * `drush si minimal --existing-config`
-  * Login to new site
+  * Login to new site:
   * read admin password from console, or
   * `drush uli`
 * If you want to have some default content for your development, 
