@@ -1,0 +1,18 @@
+uuid: dad314af-59f8-4747-bb28-485795cfcf5c
+langcode: cs
+status: true
+dependencies:
+  theme:
+    - stark
+id: stark_pagetitle
+theme: stark
+region: sidebar_first
+weight: -4
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

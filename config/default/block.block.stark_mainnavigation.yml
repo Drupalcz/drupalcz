@@ -1,0 +1,24 @@
+uuid: 7fc97f86-e2bf-4183-8db4-5b4822c8a199
+langcode: cs
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - stark
+id: stark_mainnavigation
+theme: stark
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 1
+visibility: {  }

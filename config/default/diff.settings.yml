@@ -1,5 +1,5 @@
 general_settings:
-  radio_behavior: simple
+  radio_behavior: jednoduché
   context_lines_leading: 1
   context_lines_trailing: 1
   revision_pager_limit: 50

@@ -1,0 +1,8 @@
+name: DCZ Article
+type: module
+core: 8.x
+package: dcz
+features:
+  bundle: dcz
+dependencies:
+  - node
