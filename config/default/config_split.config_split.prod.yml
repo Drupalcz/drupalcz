@@ -4,9 +4,11 @@ status: false
 dependencies: {  }
 id: prod
 label: PROD
+description: ''
 folder: ../config/split-prod
 module:
   acquia_connector: 0
+  cleantalk: 0
   syslog: 0
 theme: {  }
 blacklist: {  }
