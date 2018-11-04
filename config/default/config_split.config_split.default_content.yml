@@ -4,6 +4,7 @@ status: false
 dependencies: {  }
 id: default_content
 label: 'Default content'
+description: ''
 folder: ../config/split-default_content
 module:
   better_normalizers: 0

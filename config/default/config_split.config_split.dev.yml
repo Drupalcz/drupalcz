@@ -4,6 +4,7 @@ status: false
 dependencies: {  }
 id: dev
 label: DEV
+description: ''
 folder: ../config/split-dev
 module:
   dblog: 0

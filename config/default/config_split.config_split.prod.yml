@@ -4,6 +4,7 @@ status: false
 dependencies: {  }
 id: prod
 label: PROD
+description: ''
 folder: ../config/split-prod
 module:
   acquia_connector: 0
