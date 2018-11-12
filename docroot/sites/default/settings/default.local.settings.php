@@ -89,4 +89,5 @@ $config['content_directory'] = '../content';
  */
 $config['config_split.config_split.dev']['status'] = TRUE;;
 $config['config_split.config_split.default_content']['status'] = TRUE;
+$config['config_split.config_split.cleantalk']['status'] = FALSE;
 $config['config_split.config_split.prod']['status'] = FALSE;
