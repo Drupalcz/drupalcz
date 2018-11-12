@@ -64,6 +64,14 @@ $settings['rebuild_access'] = TRUE;
 $config['slack_invite.settings']['token'] = "DUMMY_TOKEN";
 
 /**
+ * Simulate config we have available on Acquia.
+ *
+ * Get your own keys:
+ * * CleanTalk free trial: https://cleantalk.org/ .
+ */
+$config['cleantalk.settings']['cleantalk_authkey'] = "DUMMY_KEY";
+
+/**
  * Shield.
  */
 $config['shield.settings']['allow_cli'] = TRUE;
