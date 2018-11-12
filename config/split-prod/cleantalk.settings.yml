@@ -1,0 +1,19 @@
+cleantalk_authkey: 'see-secure.php-include'
+cleantalk_automod: 1
+cleantalk_ccf: 1
+cleantalk_link: 0
+cleantalk_sfw: 0
+cleantalk_sfw_last_updated: 0
+cleantalk_sfw_last_logs_sent: 0
+cleantalk_comments: 3
+cleantalk_work_url: 'http://moderate.cleantalk.org'
+cleantalk_server_url: 'http://moderate.cleantalk.org'
+cleantalk_server_ttl: 0
+cleantalk_server_changed: 0
+_core:
+  default_config_hash: F824Vlrau_mmnzHBA7WDdKIOm3ry-QiRHRxzPDop6Cs
+langcode: cs
+actions: null
+form_build_id: form-XpirCA64e99JggbUEYMR_njZCSlJi_DyFf612y-CM98
+form_token: GOExIlHSgU6-0dmrqMfkUzzCI7hEMs-SCKhpr0oYcyk
+form_id: cleantalk_settings_form
