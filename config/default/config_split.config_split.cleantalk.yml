@@ -1,0 +1,16 @@
+uuid: 72108f3a-a8ab-4c51-b6e7-277bcb56a1bf
+langcode: cs
+status: true
+dependencies: {  }
+id: cleantalk
+label: CleanTalk
+description: 'Split that enables Cleantalk antispam. We need this to exlude Cleantalk on Travis and local because it breaks site install and default content deploy. See: https://www.drupal.org/project/cleantalk/issues/3007022#comment-12851916'
+folder: ../config/split-cleantalk
+module:
+  cleantalk: 0
+theme: {  }
+blacklist: {  }
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0

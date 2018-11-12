@@ -10,3 +10,4 @@
  */
 
 putenv('SLACK_TOKEN=dummy-token');
+putenv('CLEANTALK_KEY=dummy-key');
