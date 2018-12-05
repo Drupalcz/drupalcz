@@ -28,6 +28,10 @@ $aliases = array(
   'http://drupal.cz' => $prod_base_url,
   'http://www.drupal.cz' => $prod_base_url,
   'https://drupal.cz' => $prod_base_url,
+  'http://drupalasociace.cz' => $prod_base_url,
+  'https://drupalasociace.cz' => $prod_base_url,
+  'http://www.drupalasociace.cz' => $prod_base_url,
+  'https://www.drupalasociace.cz' => $prod_base_url,
 );
 
 /**
