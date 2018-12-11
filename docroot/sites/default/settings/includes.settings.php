@@ -37,9 +37,10 @@ $aliases = array(
 /**
  * Unshielded base URLs.
  */
-$unshielded = array(
-  $prod_base_url,
-);
+// Make sure redirects are not covered by shield.
+$unshielded = array_keys($aliases);
+// Unlock production.
+$unshielded[] = $prod_base_url;
 
 /**
  * Varnish.
