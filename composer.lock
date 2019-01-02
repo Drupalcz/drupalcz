@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4beb13822152d33badb1406d358ba16b",
+    "content-hash": "85eb2025354213c520a45c6f58d3d53b",
     "packages": [
         {
             "name": "acquia/blt",
@@ -5855,6 +5855,9 @@
                 },
                 "branch-alias": {
                     "dev-master": "9.x-dev"
+                },
+                "patches_applied": {
+                    "github.com/drush-ops/drush/issues/3572": "https://github.com/drush-ops/drush/files/2534033/drush-ops_drush-3572.patch"
                 }
             },
             "autoload": {
