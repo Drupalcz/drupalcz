@@ -15,5 +15,6 @@ permissions:
   - 'view dcz_showcase revisions'
   - 'view individual revisions'
   - 'view organization revisions'
-  - 'view own unpublished content'
   - 'view tutorial revisions'
+  - 'use text format full_html'
+  - 'view own unpublished content'
