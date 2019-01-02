@@ -4,7 +4,6 @@ status: true
 dependencies:
   module:
     - editor
-    - geshifilter
 name: Fórum
 format: forum
 weight: -8
@@ -30,11 +29,3 @@ filters:
     status: true
     weight: 0
     settings: {  }
-  filter_geshifilter:
-    id: filter_geshifilter
-    provider: geshifilter
-    status: true
-    weight: 0
-    settings:
-      general_tags: {  }
-      per_language_settings: {  }

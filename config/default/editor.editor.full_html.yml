@@ -52,6 +52,7 @@ settings:
           name: Tools
           items:
             - Source
+            - Markdown
             - Maximize
             - ShowBlocks
   plugins:
