@@ -28,14 +28,19 @@ $aliases = array(
   'http://drupal.cz' => $prod_base_url,
   'http://www.drupal.cz' => $prod_base_url,
   'https://drupal.cz' => $prod_base_url,
+  'http://drupalasociace.cz' => $prod_base_url,
+  'https://drupalasociace.cz' => $prod_base_url,
+  'http://www.drupalasociace.cz' => $prod_base_url,
+  'https://www.drupalasociace.cz' => $prod_base_url,
 );
 
 /**
  * Unshielded base URLs.
  */
-$unshielded = array(
-  $prod_base_url,
-);
+// Make sure redirects are not covered by shield.
+$unshielded = array_keys($aliases);
+// Unlock production.
+$unshielded[] = $prod_base_url;
 
 /**
  * Varnish.
@@ -102,6 +107,7 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   }
   // Populate secure variables.
   $config['slack_invite.settings']['token'] = getenv('SLACK_TOKEN');
+  $config['cleantalk.settings']['cleantalk_authkey'] = getenv('CLEANTALK_KEY');
 }
 
 // Load settings.
