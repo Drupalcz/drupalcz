@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4beb13822152d33badb1406d358ba16b",
+    "content-hash": "60b82dedac41c1cae336e6913b75a84a",
     "packages": [
         {
             "name": "acquia/blt",
@@ -3475,6 +3475,69 @@
             }
         },
         {
+            "name": "drupal/entity",
+            "version": "1.0.0-rc1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/entity",
+                "reference": "8.x-1.0-rc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity-8.x-1.0-rc1.zip",
+                "reference": "8.x-1.0-rc1",
+                "shasum": "f2dcd7afd0d36b6f261b10a204057a5c801ad20b"
+            },
+            "require": {
+                "drupal/core": "^8.6"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-rc1",
+                    "datestamp": "1539272769",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "bojanz",
+                    "homepage": "https://www.drupal.org/user/86106"
+                },
+                {
+                    "name": "dawehner",
+                    "homepage": "https://www.drupal.org/user/99340"
+                },
+                {
+                    "name": "dixon_",
+                    "homepage": "https://www.drupal.org/user/239911"
+                },
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                }
+            ],
+            "description": "Provides expanded entity APIs, which will be moved to Drupal core one day.",
+            "homepage": "http://drupal.org/project/entity",
+            "support": {
+                "source": "http://cgit.drupalcode.org/entity"
+            }
+        },
+        {
             "name": "drupal/entity_browser",
             "version": "2.0.0",
             "source": {
@@ -5062,6 +5125,72 @@
             }
         },
         {
+            "name": "drupal/profile",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/profile",
+                "reference": "716e81dd0328bab469bf1574351c0de373d1ae9a"
+            },
+            "require": {
+                "drupal/core": "~8.5",
+                "drupal/entity": "^1.0@beta"
+            },
+            "require-dev": {
+                "drupal/token": "1.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-rc1+3-dev",
+                    "datestamp": "1520881680",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "bojanz",
+                    "homepage": "https://www.drupal.org/user/86106"
+                },
+                {
+                    "name": "daggerhart",
+                    "homepage": "https://www.drupal.org/user/167806"
+                },
+                {
+                    "name": "dakala",
+                    "homepage": "https://www.drupal.org/user/53175"
+                },
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                },
+                {
+                    "name": "mglaman",
+                    "homepage": "https://www.drupal.org/user/2416470"
+                },
+                {
+                    "name": "pcambra",
+                    "homepage": "https://www.drupal.org/user/122101"
+                }
+            ],
+            "description": "Provides configurable user profiles.",
+            "homepage": "http://drupal.org/project/profile",
+            "support": {
+                "source": "http://cgit.drupalcode.org/profile"
+            },
+            "time": "2018-08-27T12:02:24+00:00"
+        },
+        {
             "name": "drupal/purge",
             "version": "3.0.0-beta8",
             "source": {
@@ -5855,6 +5984,9 @@
                 },
                 "branch-alias": {
                     "dev-master": "9.x-dev"
+                },
+                "patches_applied": {
+                    "github.com/drush-ops/drush/issues/3572": "https://github.com/drush-ops/drush/files/2534033/drush-ops_drush-3572.patch"
                 }
             },
             "autoload": {
@@ -13098,6 +13230,7 @@
         "drupal/juicebox": 10,
         "drupal/libraries": 15,
         "drupal/media_entity_actions": 15,
+        "drupal/profile": 20,
         "drupal/purge": 10,
         "drupal/security_review": 20,
         "drupal/youtube": 10,

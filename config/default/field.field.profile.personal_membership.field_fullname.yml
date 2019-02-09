@@ -1,0 +1,19 @@
+uuid: 4272309f-8287-49cc-964a-a84edaccfd9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_fullname
+    - profile.type.personal_membership
+id: profile.personal_membership.field_fullname
+field_name: field_fullname
+entity_type: profile
+bundle: personal_membership
+label: Fullname
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
