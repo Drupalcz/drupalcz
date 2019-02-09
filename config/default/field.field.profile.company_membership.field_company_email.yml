@@ -1,0 +1,19 @@
+uuid: fcd662cb-3b57-40f0-afb5-5f4091413a2d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_company_email
+    - profile.type.company_membership
+id: profile.company_membership.field_company_email
+field_name: field_company_email
+entity_type: profile
+bundle: company_membership
+label: E-mail
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

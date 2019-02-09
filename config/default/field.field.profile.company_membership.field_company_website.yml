@@ -1,0 +1,23 @@
+uuid: 53066b43-39ab-4a33-b7cc-9dc777db42e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_company_website
+    - profile.type.company_membership
+  module:
+    - link
+id: profile.company_membership.field_company_website
+field_name: field_company_website
+entity_type: profile
+bundle: company_membership
+label: 'Webové stránky'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 1
+field_type: link

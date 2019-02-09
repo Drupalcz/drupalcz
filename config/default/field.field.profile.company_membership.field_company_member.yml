@@ -9,7 +9,7 @@ id: profile.company_membership.field_company_member
 field_name: field_company_member
 entity_type: profile
 bundle: company_membership
-label: 'Company member'
+label: 'Naši lidé'
 description: 'Kdo patří do této firmy?'
 required: false
 translatable: false
