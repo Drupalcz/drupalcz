@@ -1,0 +1,23 @@
+uuid: db5fd72c-cd17-40b6-ae37-cef3b934f968
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_subscribe_agreement
+    - profile.type.personal_membership
+id: profile.personal_membership.field_subscribe_agreement
+field_name: field_subscribe_agreement
+entity_type: profile
+bundle: personal_membership
+label: 'Posílejte mi informace'
+description: 'Souhlasím, aby mi asociace zasílala informace o akcích, které pořádá, nebo souvisejí s její činností.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

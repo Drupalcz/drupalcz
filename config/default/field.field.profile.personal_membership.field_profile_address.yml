@@ -1,0 +1,19 @@
+uuid: b4d3fda8-0f53-45d6-adaf-914f8e3b12a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_profile_address
+    - profile.type.personal_membership
+id: profile.personal_membership.field_profile_address
+field_name: field_profile_address
+entity_type: profile
+bundle: personal_membership
+label: Adresa
+description: 'Do přihlášky potřebujeme vaši adresu.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

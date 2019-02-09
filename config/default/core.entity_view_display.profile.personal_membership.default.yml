@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.profile.personal_membership.field_fullname
+    - field.field.profile.personal_membership.field_profile_address
+    - field.field.profile.personal_membership.field_subscribe_agreement
     - profile.type.personal_membership
 id: profile.personal_membership.default
 targetEntityType: profile
@@ -17,5 +19,22 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_profile_address:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_subscribe_agreement:
+    weight: 2
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
 hidden: {  }
