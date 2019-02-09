@@ -1,0 +1,22 @@
+uuid: 31f3d27e-1137-4b59-8373-33e305e2341b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.company_membership.field_company_member
+    - profile.type.company_membership
+id: profile.company_membership.default
+targetEntityType: profile
+bundle: company_membership
+mode: default
+content:
+  field_company_member:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+hidden: {  }

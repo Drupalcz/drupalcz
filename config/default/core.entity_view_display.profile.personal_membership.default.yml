@@ -1,0 +1,21 @@
+uuid: dffe0fc3-4907-46d0-8c7d-8e59e8b93445
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.personal_membership.field_fullname
+    - profile.type.personal_membership
+id: profile.personal_membership.default
+targetEntityType: profile
+bundle: personal_membership
+mode: default
+content:
+  field_fullname:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

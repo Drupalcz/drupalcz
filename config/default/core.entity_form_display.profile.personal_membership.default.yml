@@ -1,0 +1,21 @@
+uuid: a837f677-cba1-42df-9cc2-3542f890babe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.personal_membership.field_fullname
+    - profile.type.personal_membership
+id: profile.personal_membership.default
+targetEntityType: profile
+bundle: personal_membership
+mode: default
+content:
+  field_fullname:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden: {  }

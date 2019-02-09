@@ -1,0 +1,28 @@
+uuid: e80fe8a9-80d2-4780-a6ec-db2fa137a98e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_company_member
+    - profile.type.company_membership
+id: profile.company_membership.field_company_member
+field_name: field_company_member
+entity_type: profile
+bundle: company_membership
+label: 'Company member'
+description: 'Kdo patří do této firmy?'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    include_anonymous: false
+    filter:
+      type: _none
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference
