@@ -1,0 +1,5 @@
+entity.apd_membership.add_form:
+  route_name: entity.apd_membership.add_form
+  title: 'Add APD membership'
+  appears_on:
+    - entity.apd_membership.collection
