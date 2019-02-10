@@ -19,7 +19,9 @@ class ApdMembershipListBuilder extends EntityListBuilder {
    */
   public function buildHeader() {
     $header['id'] = $this->t('APD membership ID');
-    $header['name'] = $this->t('Name');
+    $header['profile_id'] = $this->t('Member profile ID');
+    $header['valid_from'] = $this->t('Valid since');
+    $header['valid_to'] = $this->t('Valid to');
     return $header + parent::buildHeader();
   }
 
@@ -29,11 +31,9 @@ class ApdMembershipListBuilder extends EntityListBuilder {
   public function buildRow(EntityInterface $entity) {
     /* @var $entity \Drupal\dcz_apd\Entity\ApdMembership */
     $row['id'] = $entity->id();
-    $row['name'] = Link::createFromRoute(
-      $entity->label(),
-      'entity.apd_membership.edit_form',
-      ['apd_membership' => $entity->id()]
-    );
+    $row['profile_id'] = $entity->getProfileId();
+    $row['valid_from'] = $entity->get('valid_from')->value;
+    $row['valid_to'] = $entity->get('valid_to')->value;
     return $row + parent::buildRow($entity);
   }
 

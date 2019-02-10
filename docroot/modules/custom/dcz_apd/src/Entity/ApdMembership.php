@@ -53,11 +53,16 @@ use Drupal\user\UserInterface;
  *     "canonical" = "/admin/structure/apd_membership/{apd_membership}",
  *     "add-form" = "/admin/structure/apd_membership/add",
  *     "edit-form" = "/admin/structure/apd_membership/{apd_membership}/edit",
- *     "delete-form" = "/admin/structure/apd_membership/{apd_membership}/delete",
- *     "version-history" = "/admin/structure/apd_membership/{apd_membership}/revisions",
- *     "revision" = "/admin/structure/apd_membership/{apd_membership}/revisions/{apd_membership_revision}/view",
- *     "revision_revert" = "/admin/structure/apd_membership/{apd_membership}/revisions/{apd_membership_revision}/revert",
- *     "revision_delete" = "/admin/structure/apd_membership/{apd_membership}/revisions/{apd_membership_revision}/delete",
+ *     "delete-form" =
+ *   "/admin/structure/apd_membership/{apd_membership}/delete",
+ *     "version-history" =
+ *   "/admin/structure/apd_membership/{apd_membership}/revisions",
+ *     "revision" =
+ *   "/admin/structure/apd_membership/{apd_membership}/revisions/{apd_membership_revision}/view",
+ *     "revision_revert" =
+ *   "/admin/structure/apd_membership/{apd_membership}/revisions/{apd_membership_revision}/revert",
+ *     "revision_delete" =
+ *   "/admin/structure/apd_membership/{apd_membership}/revisions/{apd_membership_revision}/delete",
  *     "collection" = "/admin/structure/apd_membership",
  *   },
  *   field_ui_base_route = "apd_membership.settings"
@@ -70,7 +75,8 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
   /**
    * {@inheritdoc}
    */
-  public static function preCreate(EntityStorageInterface $storage_controller, array &$values) {
+  public static function preCreate(EntityStorageInterface $storage_controller,
+                                   array &$values) {
     parent::preCreate($storage_controller, $values);
     $values += [
       'user_id' => \Drupal::currentUser()->id(),
@@ -113,21 +119,6 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
     if (!$this->getRevisionUser()) {
       $this->setRevisionUserId($this->getOwnerId());
     }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getName() {
-    return $this->get('name')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setName($name) {
-    $this->set('name', $name);
-    return $this;
   }
 
   /**
@@ -178,16 +169,45 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
   /**
    * {@inheritdoc}
    */
-  public function isPublished() {
-    return (bool) $this->getEntityKey('status');
+  public function setValid($status) {
+    $this->set('status', $status ? TRUE : FALSE);
+    return $this;
   }
 
   /**
-   * {@inheritdoc}
+   * Gets the APD membership profile.
+   *
+   * @return string
+   *   ID of the APD membership profile.
    */
-  public function setPublished($published) {
-    $this->set('status', $published ? TRUE : FALSE);
+  public function getProfileId() {
+    return $this->get('profile_id')->target_id;
+  }
+
+  /**
+   * Sets the APD membership profile ID.
+   *
+   * @param int $pid
+   *   The APD membership profile ID.
+   *
+   * @return \Drupal\dcz_apd\Entity\ApdMembershipInterface
+   *   The called APD membership entity.
+   */
+  public function setProfileId($pid) {
+    $this->set('profile_id', $pid);
     return $this;
+  }
+
+  /**
+   * Returns the APD membership valid status indicator.
+   *
+   * Invalidated APD membership are only visible to restricted users.
+   *
+   * @return bool
+   *   TRUE if the APD membership is valid.
+   */
+  public function isValid() {
+    return (bool) $this->getEntityKey('status');
   }
 
   /**

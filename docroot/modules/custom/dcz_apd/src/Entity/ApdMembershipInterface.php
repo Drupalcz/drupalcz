@@ -17,23 +17,23 @@ interface ApdMembershipInterface extends ContentEntityInterface, RevisionLogInte
   // Add get/set methods for your configuration properties here.
 
   /**
-   * Gets the APD membership name.
+   * Gets the APD membership profile.
    *
    * @return string
-   *   Name of the APD membership.
+   *   ID of the APD membership profile.
    */
-  public function getName();
+  public function getProfileId();
 
   /**
-   * Sets the APD membership name.
+   * Sets the APD membership profile ID.
    *
-   * @param string $name
-   *   The APD membership name.
+   * @param int $pid
+   *   The APD membership profile ID.
    *
    * @return \Drupal\dcz_apd\Entity\ApdMembershipInterface
    *   The called APD membership entity.
    */
-  public function setName($name);
+  public function setProfileId($pid);
 
   /**
    * Gets the APD membership creation timestamp.
@@ -55,25 +55,25 @@ interface ApdMembershipInterface extends ContentEntityInterface, RevisionLogInte
   public function setCreatedTime($timestamp);
 
   /**
-   * Returns the APD membership published status indicator.
+   * Returns the APD membership valid status indicator.
    *
-   * Unpublished APD membership are only visible to restricted users.
+   * Invalidated APD membership are only visible to restricted users.
    *
    * @return bool
-   *   TRUE if the APD membership is published.
+   *   TRUE if the APD membership is valid.
    */
-  public function isPublished();
+  public function isValid();
 
   /**
    * Sets the published status of a APD membership.
    *
-   * @param bool $published
-   *   TRUE to set this APD membership to published, FALSE to set it to unpublished.
+   * @param bool $status
+   *   TRUE to set this APD membership to valid, FALSE to set it to invalid.
    *
    * @return \Drupal\dcz_apd\Entity\ApdMembershipInterface
    *   The called APD membership entity.
    */
-  public function setPublished($published);
+  public function setValid($status);
 
   /**
    * Gets the APD membership revision creation timestamp.
