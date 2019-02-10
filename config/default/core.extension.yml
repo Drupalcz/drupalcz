@@ -18,6 +18,7 @@ module:
   ctools: 0
   ctools_block: 0
   datetime: 0
+  dcz_apd: 0
   diff: 0
   dropzonejs: 0
   dropzonejs_eb_widget: 0
