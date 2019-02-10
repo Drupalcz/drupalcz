@@ -42,10 +42,11 @@ use Drupal\user\UserInterface;
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "vid",
- *     "label" = "name",
  *     "uuid" = "uuid",
  *     "uid" = "user_id",
- *     "langcode" = "langcode",
+ *     "profile_id" = "profile_id",
+ *     "valid_from" = "valid_from",
+ *     "valid_to" = "valid_to",
  *     "status" = "status",
  *   },
  *   links = {
@@ -196,8 +197,8 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Authored by'))
-      ->setDescription(t('The user ID of author of the APD membership entity.'))
+      ->setLabel(t('Created by'))
+      ->setDescription(t('The user ID of author created the APD membership entity.'))
       ->setRevisionable(TRUE)
       ->setSetting('target_type', 'user')
       ->setSetting('handler', 'default')
@@ -205,7 +206,7 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
       ->setDisplayOptions('view', [
         'label' => 'hidden',
         'type' => 'author',
-        'weight' => 0,
+        'weight' => 5,
       ])
       ->setDisplayOptions('form', [
         'type' => 'entity_reference_autocomplete',
@@ -220,37 +221,58 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['name'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Name'))
-      ->setDescription(t('The name of the APD membership entity.'))
+    $fields['profile_id'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Profile ID'))
+      ->setDescription(t('The profile ID of an APD member.'))
       ->setRevisionable(TRUE)
-      ->setSettings([
-        'max_length' => 50,
-        'text_processing' => 0,
-      ])
-      ->setDefaultValue('')
+      ->setSetting('target_type', 'profile')
+      ->setSetting('handler', 'default')
+      ->setTranslatable(FALSE)
       ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
+        'label' => 'hidden',
+        'type' => 'profile',
+        'weight' => 1,
       ])
       ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -4,
+        'type' => 'entity_reference_autocomplete',
+        'weight' => 1,
+        'settings' => [
+          'match_operator' => 'CONTAINS',
+          'size' => '60',
+          'autocomplete_type' => 'tags',
+          'placeholder' => '',
+        ],
       ])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE)
-      ->setRequired(TRUE);
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
-      ->setLabel(t('Publishing status'))
-      ->setDescription(t('A boolean indicating whether the APD membership is published.'))
+      ->setLabel(t('APD membership is valid'))
+      ->setDescription(t('A boolean indicating whether the APD membership is valid.'))
       ->setRevisionable(TRUE)
       ->setDefaultValue(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'boolean_checkbox',
-        'weight' => -3,
+        'weight' => 0,
       ]);
+
+    $fields['valid_from'] = BaseFieldDefinition::create('datetime')
+      ->setLabel(t('Membership valid since'))
+      ->setDescription(t('The time since the entity is valid.'))
+      ->setRevisionable(TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'datetime',
+        'weight' => 3,
+      ]);
+
+    $fields['valid_to'] = BaseFieldDefinition::create('datetime')
+      ->setLabel(t('Membership valid to'))
+      ->setDescription(t('The time the entity is valid to.'))
+      ->setRevisionable(TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'datetime',
+        'weight' => 4,
+      ]);;
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
