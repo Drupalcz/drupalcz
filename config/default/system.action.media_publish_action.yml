@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: dP8_fdyCut6SD0rkBuyf1yuwuK-m2lTBzHk2Uq6BVMM
 id: media_publish_action
-label: 'Publish media'
+label: 'Vydat média'
 type: media
 plugin: media_publish_action
 configuration: {  }
