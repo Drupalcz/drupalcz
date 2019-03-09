@@ -573,8 +573,7 @@ form {
   display: none; }
 
 img {
-  height: auto;
-  width: 100%; }
+  width: auto; }
 
 .embedded-entity .media--type-image img {
   max-width: 100%;
