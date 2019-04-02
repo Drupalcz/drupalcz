@@ -20,4 +20,8 @@ repo_type="$6"
 # Update
 alias=$site.$target_env
 
-echo "At this point shield would be disabled. // Temp solution to prevent basic auth and shield conflict on prod."
+# Temp solution to prevent basic auth and shield conflict on prod.
+# At this point shield should be disabled on prod.
+# On dev we will call enable to get confirmation on dev that this is
+# executed in correct order.
+drush9 @$alias en shield --yes
