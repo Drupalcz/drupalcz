@@ -21,7 +21,4 @@ repo_type="$6"
 alias=$site.$target_env
 
 # Temp solution to prevent basic auth and shield conflict on prod.
-# At this point shield should be disabled on prod.
-# On dev we will call enable to get confirmation on dev that this is
-# executed in correct order.
-drush9 @$alias en shield --yes
+drush9 @$alias pmu basic_auth --yes

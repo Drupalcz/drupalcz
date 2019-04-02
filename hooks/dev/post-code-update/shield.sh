@@ -21,4 +21,4 @@ repo_type="$6"
 alias=$site.$target_env
 
 # Temp solution to prevent basic auth and shield conflict on prod.
-drush9 @$alias pmu shield --yes
+drush9 @$alias pmu basic_auth --yes
