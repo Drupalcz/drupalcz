@@ -1,5 +1,5 @@
 use_format_specific_options: false
-default_highlighting: php
+default_highlighting: GESHIFILTER_DEFAULT_DONOTHING
 default_line_numbering: 0
 use_highlight_string_for_php: true
 enable_keyword_urls: true
