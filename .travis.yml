@@ -1,7 +1,6 @@
-# Note that the example .travis.yml file for child projects lives in /install.
 sudo: true
 language: php
-dist: trusty
+dist: xenial
 
 php:
   - 7.1
@@ -26,10 +25,12 @@ cache:
   - "$HOME/.drush/cache"
   - "$HOME/.npm"
   - "$HOME/.nvm"
+  - ".rules"
   - "vendor"
-  # Cache front end dependecies to dramatically improve build time.
-  # - "docroot/themes/custom/mytheme/node_modules"
-  # - "docroot/themes/custom/mytheme/bower_components"
+
+services:
+- mysql
+- xvfb
 
 addons:
   ssh_known_hosts:
@@ -43,11 +44,6 @@ notifications:
       - drupalcz:7SUVOYlvaxuqA7PGJ5xu8Afs#dcz-web
 
 before_install:
-  # Refs SSH keys on free Travis.
-  - openssl aes-256-cbc -K $encrypted_76cf46cb768e_key -iv $encrypted_76cf46cb768e_iv -in .travis/dcz_travis_ssh_key.enc -out $HOME/deploy_rsa -d
-  - eval "$(ssh-agent -s)"
-  - chmod 600 $HOME/deploy_rsa
-  - ssh-add $HOME/deploy_rsa
   # Disable xdebug.
   - phpenv config-rm xdebug.ini
   - composer self-update
@@ -61,9 +57,9 @@ install:
   - source ${BLT_DIR}/scripts/travis/setup_project
 
 script:
-  # Run customized script instead.
-  #- source ${BLT_DIR}/scripts/travis/run_tests
-  - source ${TRAVIS_BUILD_DIR}/blt/scripts/run_tests
+  # Uncomment these lines to test database updates using live content.
+  # - blt drupal:sync:default:site
+  - source ${BLT_DIR}/scripts/travis/run_tests
 
 deploy:
    - provider: script

@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "acquia/blt": "^9.2",
+        "acquia/blt": "^10.0.0",
         "bower-asset/dropzone": "^5.1",
         "bower-asset/flexslider": "^2.6",
         "composer/installers": "^1.2",
@@ -23,6 +23,7 @@
         "drupal/cleantalk": "^2.5",
         "drupal/config_update": "^1.5",
         "drupal/console": "^1.3",
+        "drupal/core": "^8.6.0",
         "drupal/ctools": "^3.0",
         "drupal/devel": "^2.1",
         "drupal/diff": "^1.0@RC",
@@ -59,7 +60,8 @@
         "drupal/youtube": "^1.0@beta",
         "drush/drush": "^9.5",
         "oomphinc/composer-installers-extender": "^1.1",
-        "pear/versioncontrol_git": "^0.5.0"
+        "pear/versioncontrol_git": "^0.5.0",
+        "php": ">=7.1"
     },
     "replace": {
         "bower-asset/jquery": "*",
@@ -72,23 +74,34 @@
         "npm-asset/underscore": "*"
     },
     "require-dev": {
+        "acquia/blt-require-dev": "^10.0.0-alpha1",
         "drupal/better_normalizers": "^1.0",
         "drupal/default_content_deploy": "^1.0"
     },
     "config": {
         "sort-packages": true,
-        "process-timeout": 0
+        "process-timeout": 0,
+        "optimize-autoloader": true,
+        "apcu-autoloader": true
     },
-    "repositories": [
-        {
+    "repositories": {
+        "0": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
-        {
+        "1": {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        },
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        "asset-packagist": {
             "type": "composer",
             "url": "https://asset-packagist.org"
         }
-    ],
+    },
     "extra": {
         "enable-patching": true,
         "patchLevel": {
@@ -134,15 +147,33 @@
                 "type:drupal-drush"
             ]
         },
-        "merge-plugin": {
-            "require": [
-                "blt/composer.required.json"
-            ],
-            "merge-extra": true,
-            "merge-extra-deep": true,
-            "merge-scripts": true,
-            "replace": false,
-            "ignore-duplicates": true
+        "composer-exit-on-patch-failure": true,
+        "drupal-scaffold": {
+            "initial": {
+                "sites/default/default.services.yml": "sites/default/services.yml",
+                "sites/default/default.settings.php": "sites/default/settings.php"
+            }
         }
+    },
+    "autoload": {
+        "psr-4": {
+            "Example\\": "blt/src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Drupal\\Tests\\PHPUnit\\": "tests/phpunit/src/"
+        }
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "blt internal:create-project:init-repo"
+        ],
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "nuke": [
+            "rm -rf vendor composer.lock docroot/core docroot/modules/contrib docroot/profiles/contrib docroot/themes/contrib",
+            "@composer clearcache --ansi",
+            "@composer install --ansi"
+        ]
     }
 }
