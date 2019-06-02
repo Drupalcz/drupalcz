@@ -1,0 +1,18 @@
+uuid: 85aafd08-4772-49e9-86cf-edf72d834267
+langcode: cs
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - dcz_rest
+    - serialization
+id: dcz_rest_drupalcs_awards
+plugin_id: dcz_rest_drupalcs_awards
+granularity: resource
+configuration:
+  methods:
+    - PATCH
+  formats:
+    - json
+  authentication:
+    - basic_auth
