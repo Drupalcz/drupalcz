@@ -46,8 +46,10 @@ Branch | Build status | Dev site | HTTP Basic auth
   * `cd docroot`
   * `drush si minimal --existing-config`
   * Login to new site:
+  * read admin password from console, or
   * `drush uli`
 * If you want to have some default content for your development, 
+  * `drush dcdi`
   * `drush dcdi`
   * `drush cr`
   * Poznámka pro české vývojáře:
