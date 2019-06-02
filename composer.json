@@ -38,7 +38,6 @@
         "drupal/google_analytics": "^2.2",
         "drupal/honeypot": "^1.27",
         "drupal/inline_entity_form": "^1.0@RC",
-        "drupal/jsonapi": "^1.23",
         "drupal/juicebox": "^2.0@beta",
         "drupal/libraries": "^3.0@alpha",
         "drupal/media_entity_actions": "^1.0@alpha",
