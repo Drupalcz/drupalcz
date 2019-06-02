@@ -49,7 +49,7 @@ Branch | Build status | Dev site | HTTP Basic auth
   * read admin password from console, or
   * `drush uli`
 * If you want to have some default content for your development, 
-  * `drush csim default_content`
+  * `drush dcdi`
   * `drush dcdi`
   * `drush cr`
   * Poznámka pro české vývojáře:
