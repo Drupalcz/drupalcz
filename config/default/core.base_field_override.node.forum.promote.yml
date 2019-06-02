@@ -10,7 +10,7 @@ id: node.forum.promote
 field_name: promote
 entity_type: node
 bundle: forum
-label: 'Promoted to front page'
+label: 'Zobrazit na titulní stránce'
 description: ''
 required: false
 translatable: true
@@ -19,6 +19,6 @@ default_value:
     value: 0
 default_value_callback: ''
 settings:
-  on_label: 'On'
-  off_label: 'Off'
+  on_label: Zapnuto
+  off_label: Vypnuto
 field_type: boolean

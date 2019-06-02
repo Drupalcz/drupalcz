@@ -10,7 +10,7 @@ id: node.forum.title
 field_name: title
 entity_type: node
 bundle: forum
-label: Subject
+label: Předmět
 description: ''
 required: true
 translatable: true

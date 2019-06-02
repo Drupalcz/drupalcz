@@ -7,7 +7,7 @@ dependencies:
     - node
 _core:
   default_config_hash: xgvZUh-eaMilacE1XYCQ9nLH-2-meOjCyofXSO82gqg
-label: Node
+label: Uzly
 id: node
 type_id: entity
 type_settings:
