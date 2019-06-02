@@ -10,7 +10,6 @@ permissions:
   - 'access comments'
   - 'access content'
   - 'access user profiles'
-  - 'create forum content'
   - 'display eu cookie compliance popup'
   - 'post comments'
   - 'skip comment approval'
