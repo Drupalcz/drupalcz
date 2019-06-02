@@ -51,3 +51,4 @@ withdraw_message:
 withdraw_action_button_label: 'Withdraw consent'
 withdraw_tab_button_label: 'Privacy settings'
 withdraw_enabled: false
+popup_info_template: legacy
