@@ -66,8 +66,8 @@ script:
   # Uncomment these lines to test database updates using live content.
   # - blt drupal:sync:default:site
   - source ${BLT_DIR}/scripts/travis/run_tests
-  - drupal-check.phar docroot/modules/custom
-  - drupal-check.phar docroot/themes/custom
+  - php drupal-check.phar docroot/modules/custom
+  - php drupal-check.phar docroot/themes/custom
 
 deploy:
    - provider: script
