@@ -576,6 +576,9 @@ img {
   height: auto;
   width: 100%; }
 
+article .field.text-formatted img {
+  width: auto; }
+
 .embedded-entity .media--type-image img {
   max-width: 100%;
   width: auto; }
