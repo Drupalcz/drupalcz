@@ -2,12 +2,13 @@
 
 namespace Drupal\dcz_apd\Entity;
 
+use Drupal;
+use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Entity\RevisionableInterface;
-use Drupal\Core\Entity\EntityChangedTrait;
-use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\user\UserInterface;
 
 /**
@@ -19,16 +20,15 @@ use Drupal\user\UserInterface;
  *   id = "apd_membership",
  *   label = @Translation("APD membership"),
  *   handlers = {
- *     "storage" = "Drupal\dcz_apd\ApdMembershipStorage",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\dcz_apd\ApdMembershipListBuilder",
- *     "views_data" = "Drupal\dcz_apd\Entity\ApdMembershipViewsData",
+ *     "views_data" = "Drupal\views\EntityViewsData",
  *
  *     "form" = {
  *       "default" = "Drupal\dcz_apd\Form\ApdMembershipForm",
  *       "add" = "Drupal\dcz_apd\Form\ApdMembershipForm",
  *       "edit" = "Drupal\dcz_apd\Form\ApdMembershipForm",
- *       "delete" = "Drupal\dcz_apd\Form\ApdMembershipDeleteForm",
+ *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },
  *     "access" = "Drupal\dcz_apd\ApdMembershipAccessControlHandler",
  *     "route_provider" = {
@@ -79,135 +79,8 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
                                    array &$values) {
     parent::preCreate($storage_controller, $values);
     $values += [
-      'user_id' => \Drupal::currentUser()->id(),
+      'user_id' => Drupal::currentUser()->id(),
     ];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function urlRouteParameters($rel) {
-    $uri_route_parameters = parent::urlRouteParameters($rel);
-
-    if ($rel === 'revision_revert' && $this instanceof RevisionableInterface) {
-      $uri_route_parameters[$this->getEntityTypeId() . '_revision'] = $this->getRevisionId();
-    }
-    elseif ($rel === 'revision_delete' && $this instanceof RevisionableInterface) {
-      $uri_route_parameters[$this->getEntityTypeId() . '_revision'] = $this->getRevisionId();
-    }
-
-    return $uri_route_parameters;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function preSave(EntityStorageInterface $storage) {
-    parent::preSave($storage);
-
-    foreach (array_keys($this->getTranslationLanguages()) as $langcode) {
-      $translation = $this->getTranslation($langcode);
-
-      // If no owner has been set explicitly, make the anonymous user the owner.
-      if (!$translation->getOwner()) {
-        $translation->setOwnerId(0);
-      }
-    }
-
-    // If no revision author has been set explicitly, make the apd_membership owner the
-    // revision author.
-    if (!$this->getRevisionUser()) {
-      $this->setRevisionUserId($this->getOwnerId());
-    }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getCreatedTime() {
-    return $this->get('created')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setCreatedTime($timestamp) {
-    $this->set('created', $timestamp);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getOwner() {
-    return $this->get('user_id')->entity;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getOwnerId() {
-    return $this->get('user_id')->target_id;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setOwnerId($uid) {
-    $this->set('user_id', $uid);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setOwner(UserInterface $account) {
-    $this->set('user_id', $account->id());
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setValid($status) {
-    $this->set('status', $status ? TRUE : FALSE);
-    return $this;
-  }
-
-  /**
-   * Gets the APD membership profile.
-   *
-   * @return string
-   *   ID of the APD membership profile.
-   */
-  public function getProfileId() {
-    return $this->get('profile_id')->target_id;
-  }
-
-  /**
-   * Sets the APD membership profile ID.
-   *
-   * @param int $pid
-   *   The APD membership profile ID.
-   *
-   * @return \Drupal\dcz_apd\Entity\ApdMembershipInterface
-   *   The called APD membership entity.
-   */
-  public function setProfileId($pid) {
-    $this->set('profile_id', $pid);
-    return $this;
-  }
-
-  /**
-   * Returns the APD membership valid status indicator.
-   *
-   * Invalidated APD membership are only visible to restricted users.
-   *
-   * @return bool
-   *   TRUE if the APD membership is valid.
-   */
-  public function isValid() {
-    return (bool) $this->getEntityKey('status');
   }
 
   /**
@@ -303,6 +176,133 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
       ->setDescription(t('The time that the entity was last edited.'));
 
     return $fields;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function preSave(EntityStorageInterface $storage) {
+    parent::preSave($storage);
+
+    foreach (array_keys($this->getTranslationLanguages()) as $langcode) {
+      $translation = $this->getTranslation($langcode);
+
+      // If no owner has been set explicitly, make the anonymous user the owner.
+      if (!$translation->getOwner()) {
+        $translation->setOwnerId(0);
+      }
+    }
+
+    // If no revision author has been set explicitly, make the apd_membership owner the
+    // revision author.
+    if (!$this->getRevisionUser()) {
+      $this->setRevisionUserId($this->getOwnerId());
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getOwner() {
+    return $this->get('user_id')->entity;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setOwnerId($uid) {
+    $this->set('user_id', $uid);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getOwnerId() {
+    return $this->get('user_id')->target_id;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCreatedTime() {
+    return $this->get('created')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setCreatedTime($timestamp) {
+    $this->set('created', $timestamp);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setOwner(UserInterface $account) {
+    $this->set('user_id', $account->id());
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setValid($status) {
+    $this->set('status', $status ? TRUE : FALSE);
+    return $this;
+  }
+
+  /**
+   * Gets the APD membership profile.
+   *
+   * @return string
+   *   ID of the APD membership profile.
+   */
+  public function getProfileId() {
+    return $this->get('profile_id')->target_id;
+  }
+
+  /**
+   * Sets the APD membership profile ID.
+   *
+   * @param int $pid
+   *   The APD membership profile ID.
+   *
+   * @return \Drupal\dcz_apd\Entity\ApdMembershipInterface
+   *   The called APD membership entity.
+   */
+  public function setProfileId($pid) {
+    $this->set('profile_id', $pid);
+    return $this;
+  }
+
+  /**
+   * Returns the APD membership valid status indicator.
+   *
+   * Invalidated APD membership are only visible to restricted users.
+   *
+   * @return bool
+   *   TRUE if the APD membership is valid.
+   */
+  public function isValid() {
+    return (bool) $this->getEntityKey('status');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function urlRouteParameters($rel) {
+    $uri_route_parameters = parent::urlRouteParameters($rel);
+
+    if ($rel === 'revision_revert' && $this instanceof RevisionableInterface) {
+      $uri_route_parameters[$this->getEntityTypeId() . '_revision'] = $this->getRevisionId();
+    }
+    elseif ($rel === 'revision_delete' && $this instanceof RevisionableInterface) {
+      $uri_route_parameters[$this->getEntityTypeId() . '_revision'] = $this->getRevisionId();
+    }
+
+    return $uri_route_parameters;
   }
 
 }

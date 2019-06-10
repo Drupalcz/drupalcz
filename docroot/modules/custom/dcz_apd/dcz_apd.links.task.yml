@@ -1,4 +1,3 @@
-# APD membership routing definition
 apd_membership.settings_tab:
   route_name: apd_membership.settings
   title: 'Settings'

@@ -20,9 +20,6 @@ use Drupal\Core\Render\Element;
  *   - attributes: HTML attributes for the containing element.
  */
 function template_preprocess_apd_membership(array &$variables) {
-  // Fetch ApdMembership Entity Object.
-  $apd_membership = $variables['elements']['#apd_membership'];
-
   // Helpful $content variable for templates.
   foreach (Element::children($variables['elements']) as $key) {
     $variables['content'][$key] = $variables['elements'][$key];

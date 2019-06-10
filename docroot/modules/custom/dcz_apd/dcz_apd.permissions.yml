@@ -1,7 +1,7 @@
-
 view members:
   title: 'View members'
   description: 'User can view a list of APD members'
+
 add apd membership entities:
   title: 'Create new APD membership entities'
 

@@ -23,13 +23,3 @@ function dcz_apd_help($route_name, RouteMatchInterface $route_match) {
   }
 }
 
-/**
- * Implements hook_theme().
- */
-function dcz_apd_theme() {
-  return [
-    'dcz_apd' => [
-      'render element' => 'children',
-    ],
-  ];
-}

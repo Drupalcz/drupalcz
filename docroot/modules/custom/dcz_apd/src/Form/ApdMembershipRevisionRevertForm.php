@@ -6,6 +6,7 @@ use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\Core\Url;
 use Drupal\dcz_apd\Entity\ApdMembershipInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -17,6 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class ApdMembershipRevisionRevertForm extends ConfirmFormBase {
 
+  use MessengerTrait;
 
   /**
    * The APD membership revision.
@@ -119,8 +121,15 @@ class ApdMembershipRevisionRevertForm extends ConfirmFormBase {
     $this->revision->revision_log = t('Copy of the revision from %date.', ['%date' => $this->dateFormatter->format($original_revision_timestamp)]);
     $this->revision->save();
 
-    $this->logger('content')->notice('APD membership: reverted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    drupal_set_message(t('APD membership %title has been reverted to the revision from %revision-date.', ['%title' => $this->revision->label(), '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)]));
+    $this->logger('content')
+      ->notice('APD membership: reverted %title revision %revision.', [
+        '%title' => $this->revision->label(),
+        '%revision' => $this->revision->getRevisionId(),
+      ]);
+    $this->messenger()->addStatus($this->t('APD membership %title has been reverted to the revision from %revision-date.', [
+      '%title' => $this->revision->label(),
+      '%revision-date' => $this->dateFormatter->format($original_revision_timestamp),
+    ]));
     $form_state->setRedirect(
       'entity.apd_membership.version_history',
       ['apd_membership' => $this->revision->id()]

@@ -106,16 +106,24 @@ class ApdMembershipRevisionDeleteForm extends ConfirmFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->ApdMembershipStorage->deleteRevision($this->revision->getRevisionId());
 
-    $this->logger('content')->notice('APD membership: deleted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    drupal_set_message(t('Revision from %revision-date of APD membership %title has been deleted.', ['%revision-date' => format_date($this->revision->getRevisionCreationTime()), '%title' => $this->revision->label()]));
+    $this->logger('content')
+      ->notice('APD membership: deleted %title revision %revision.', [
+        '%title' => $this->revision->label(),
+        '%revision' => $this->revision->getRevisionId(),
+      ]);
+    drupal_set_message(t('Revision from %revision-date of APD membership %title has been deleted.', [
+      '%revision-date' => format_date($this->revision->getRevisionCreationTime()),
+      '%title' => $this->revision->label(),
+    ]));
     $form_state->setRedirect(
       'entity.apd_membership.canonical',
-       ['apd_membership' => $this->revision->id()]
+      ['apd_membership' => $this->revision->id()]
     );
-    if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {apd_membership_field_revision} WHERE id = :id', [':id' => $this->revision->id()])->fetchField() > 1) {
+    if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {apd_membership_field_revision} WHERE id = :id', [':id' => $this->revision->id()])
+        ->fetchField() > 1) {
       $form_state->setRedirect(
         'entity.apd_membership.version_history',
-         ['apd_membership' => $this->revision->id()]
+        ['apd_membership' => $this->revision->id()]
       );
     }
   }

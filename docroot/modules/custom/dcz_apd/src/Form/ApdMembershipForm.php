@@ -2,6 +2,7 @@
 
 namespace Drupal\dcz_apd\Form;
 
+use Drupal;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -45,7 +46,7 @@ class ApdMembershipForm extends ContentEntityForm {
 
       // If a new revision is created, save the current user as revision author.
       $entity->setRevisionCreationTime(REQUEST_TIME);
-      $entity->setRevisionUserId(\Drupal::currentUser()->id());
+      $entity->setRevisionUserId(Drupal::currentUser()->id());
     }
     else {
       $entity->setNewRevision(FALSE);

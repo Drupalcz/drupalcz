@@ -10,7 +10,8 @@ use Drupal\dcz_apd\Entity\ApdMembershipInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides a form for reverting a APD membership revision for a single translation.
+ * Provides a form for reverting a APD membership revision for a single
+ * translation.
  *
  * @ingroup dcz_apd
  */
@@ -68,7 +69,10 @@ class ApdMembershipRevisionRevertTranslationForm extends ApdMembershipRevisionRe
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return t('Are you sure you want to revert @language translation to the revision from %revision-date?', ['@language' => $this->languageManager->getLanguageName($this->langcode), '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())]);
+    return t('Are you sure you want to revert @language translation to the revision from %revision-date?', [
+      '@language' => $this->languageManager->getLanguageName($this->langcode),
+      '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime()),
+    ]);
   }
 
   /**
@@ -101,7 +105,8 @@ class ApdMembershipRevisionRevertTranslationForm extends ApdMembershipRevisionRe
 
     foreach ($latest_revision_translation->getFieldDefinitions() as $field_name => $definition) {
       if ($definition->isTranslatable() || $revert_untranslated_fields) {
-        $latest_revision_translation->set($field_name, $revision_translation->get($field_name)->getValue());
+        $latest_revision_translation->set($field_name, $revision_translation->get($field_name)
+          ->getValue());
       }
     }
 

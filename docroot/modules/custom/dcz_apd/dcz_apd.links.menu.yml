@@ -1,5 +1,3 @@
-
-# APD membership menu items definition
 entity.apd_membership.collection:
   title: 'APD membership list'
   route_name: entity.apd_membership.collection
