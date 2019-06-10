@@ -1,0 +1,21 @@
+uuid: 2f2493c8-914b-4fec-ae80-ff568a644535
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_company_about
+    - profile.type.company_membership
+  module:
+    - text
+id: profile.company_membership.field_company_about
+field_name: field_company_about
+entity_type: profile
+bundle: company_membership
+label: 'O organizaci'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

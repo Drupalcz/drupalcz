@@ -19,6 +19,7 @@ module:
   ctools: 0
   ctools_block: 0
   datetime: 0
+  dcz_apd: 0
   dcz_rest: 0
   diff: 0
   dropzonejs: 0
@@ -26,6 +27,7 @@ module:
   dynamic_page_cache: 0
   editor: 0
   embed: 0
+  entity: 0
   entity_browser: 0
   entity_class_formatter: 0
   entity_embed: 0
@@ -65,6 +67,7 @@ module:
   panels_ipe: 0
   paragraphs: 0
   path: 0
+  profile: 0
   redirect: 0
   redirect_404: 0
   responsive_image: 0
