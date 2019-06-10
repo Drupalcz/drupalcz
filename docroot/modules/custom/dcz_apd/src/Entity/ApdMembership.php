@@ -193,8 +193,8 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
       }
     }
 
-    // If no revision author has been set explicitly, make the apd_membership owner the
-    // revision author.
+    // If no revision author has been set explicitly, make the apd_membership
+    // owner the revision author.
     if (!$this->getRevisionUser()) {
       $this->setRevisionUserId($this->getOwnerId());
     }

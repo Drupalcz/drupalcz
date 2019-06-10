@@ -120,7 +120,7 @@ class ApdMembershipRevisionDeleteForm extends ConfirmFormBase {
       ['apd_membership' => $this->revision->id()]
     );
     if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {apd_membership_field_revision} WHERE id = :id', [':id' => $this->revision->id()])
-        ->fetchField() > 1) {
+      ->fetchField() > 1) {
       $form_state->setRedirect(
         'entity.apd_membership.version_history',
         ['apd_membership' => $this->revision->id()]

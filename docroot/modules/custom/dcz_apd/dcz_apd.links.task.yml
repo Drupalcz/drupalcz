@@ -23,4 +23,3 @@ entity.apd_membership.delete_form:
   base_route:  entity.apd_membership.canonical
   title: Delete
   weight: 10
-

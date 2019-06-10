@@ -12,7 +12,6 @@ use Drupal\Core\Entity\EntityListBuilder;
  */
 class ApdMembershipListBuilder extends EntityListBuilder {
 
-
   /**
    * {@inheritdoc}
    */

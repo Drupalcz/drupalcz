@@ -10,8 +10,7 @@ use Drupal\dcz_apd\Entity\ApdMembershipInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides a form for reverting a APD membership revision for a single
- * translation.
+ * Provides a form for reverting a APD membership revision for a translation.
  *
  * @ingroup dcz_apd
  */

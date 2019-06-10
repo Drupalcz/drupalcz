@@ -132,7 +132,7 @@ class ApdMembershipController extends ControllerBase implements ContainerInjecti
       // Only show revisions that are affected by the language that is being
       // displayed.
       if ($revision->hasTranslation($langcode) && $revision->getTranslation($langcode)
-          ->isRevisionTranslationAffected()) {
+        ->isRevisionTranslationAffected()) {
         $username = [
           '#theme' => 'username',
           '#account' => $revision->getRevisionUser(),

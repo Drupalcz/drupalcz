@@ -22,4 +22,3 @@ function dcz_apd_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
-
