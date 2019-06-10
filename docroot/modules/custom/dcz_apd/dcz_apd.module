@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains dcz_apd.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dcz_apd_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dcz_apd module.
+    case 'help.page.dcz_apd':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Manages many APD membership things') . '</p>';
+      return $output;
+
+    default:
+  }
+}

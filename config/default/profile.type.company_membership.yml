@@ -1,0 +1,15 @@
+uuid: 2ac102e1-3f2c-4ed4-a734-21f341920d87
+langcode: en
+status: true
+dependencies: {  }
+id: company_membership
+label: 'Company membership'
+multiple: true
+registration: false
+roles:
+  authenticated: authenticated
+  contributor: '0'
+  editor: '0'
+  administrator: '0'
+allow_revisions: false
+new_revision: false

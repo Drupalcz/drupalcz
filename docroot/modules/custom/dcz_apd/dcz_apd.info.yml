@@ -1,0 +1,9 @@
+name: 'DCZ APD'
+type: module
+description: 'Manages many APD membership things'
+core: 8.x
+package: 'APD'
+dependencies:
+  - profile
+  - datetime
+  - entity_reference

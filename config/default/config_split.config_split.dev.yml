@@ -11,10 +11,6 @@ module:
   devel: 0
   devel_generate: 0
   kint: 0
-  migrate: 0
-  migrate_drupal: 0
-  migrate_plus: 0
-  migrate_tools: 0
   update: 0
   views_ui: 0
 theme: {  }
