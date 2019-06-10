@@ -11,6 +11,9 @@ box/local.config.yml
 project.local.yml
 local.blt.yml
 
+# Lando
+lando.local.yml
+
 # Ignore drupal core.
 docroot/core
 
