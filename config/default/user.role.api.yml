@@ -1,0 +1,12 @@
+uuid: c5fe523a-29ff-418e-9270-c98823520d14
+langcode: cs
+status: true
+dependencies: {  }
+id: api
+label: API
+weight: -5
+is_admin: null
+permissions:
+  - 'create dcz_showcase content'
+  - 'edit any dcz_showcase content'
+  - 'restful patch dcz_rest_drupalcs_awards'

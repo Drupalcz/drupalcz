@@ -6,3 +6,5 @@ $conf['mail_system'] = array(
 );
 
 $config['config_split.config_split.dev']['status'] = TRUE;
+$config['config_split.config_split.cleantalk']['status'] = TRUE;
+$config['config_split.config_split.default_content']['status'] = FALSE;

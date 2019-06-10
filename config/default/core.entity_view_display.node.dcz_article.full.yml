@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.dcz_article.field_comments_article
     - field.field.node.dcz_article.field_paragraphs
     - field.field.node.dcz_article.field_tags
+    - field.field.node.dcz_article.field_teaser_image
     - field.field.node.dcz_article.field_teaser_text
     - node.type.dcz_article
   module:

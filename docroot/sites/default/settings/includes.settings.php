@@ -28,14 +28,19 @@ $aliases = array(
   'http://drupal.cz' => $prod_base_url,
   'http://www.drupal.cz' => $prod_base_url,
   'https://drupal.cz' => $prod_base_url,
+  'http://drupalasociace.cz' => $prod_base_url,
+  'https://drupalasociace.cz' => $prod_base_url,
+  'http://www.drupalasociace.cz' => $prod_base_url,
+  'https://www.drupalasociace.cz' => $prod_base_url,
 );
 
 /**
  * Unshielded base URLs.
  */
-$unshielded = array(
-  $prod_base_url,
-);
+// Make sure redirects are not covered by shield.
+$unshielded = array_keys($aliases);
+// Unlock production.
+$unshielded[] = $prod_base_url;
 
 /**
  * Varnish.
@@ -53,26 +58,29 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
 /**
  * Host and $base_url.
  */
-$host = $_SERVER['HTTP_HOST'];
-$full = $protocol . $host;
-$base_url = $full;
+// Travis doesn't have HTTP_HOST.
+if (isset($_SERVER['HTTP_HOST'])) {
+  $host = $_SERVER['HTTP_HOST'];
+  $full = $protocol . $host;
+  $base_url = $full;
 
-/**
- * Domain/Alias redirects.
- */
-if (!empty($aliases[$full])) {
-  $domain = $aliases[$full];
-  $uri = $_SERVER['REQUEST_URI'];
-  header('HTTP/1.0 301 Moved Permanently');
-  header("Location: $domain$uri");
-  exit();
+  /**
+   * Domain/Alias redirects.
+   */
+  if (!empty($aliases[$full])) {
+    $domain = $aliases[$full];
+    $uri = $_SERVER['REQUEST_URI'];
+    header('HTTP/1.0 301 Moved Permanently');
+    header("Location: $domain$uri");
+    exit();
+  }
 }
 
 /**
  * Shield.
  */
 $config['shield.settings']['allow_cli'] = TRUE;
-if (!in_array($base_url, $unshielded)) {
+if (isset($_SERVER['HTTP_HOST']) && !in_array($base_url, $unshielded)) {
   $config['shield.settings']['credentials']['shield']['user'] = 'drupal';
   $config['shield.settings']['credentials']['shield']['pass'] = 'cz';
   $config['shield.settings']['print'] = 'Check out https://github.com/Drupalcz/drupalcz ;-)';
@@ -99,6 +107,7 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   }
   // Populate secure variables.
   $config['slack_invite.settings']['token'] = getenv('SLACK_TOKEN');
+  $config['cleantalk.settings']['cleantalk_authkey'] = getenv('CLEANTALK_KEY');
 }
 
 // Load settings.

@@ -16,13 +16,13 @@ popup_agreed_enabled: false
 popup_bg_hex: 29537D
 popup_clicking_confirmation: true
 popup_scrolling_confirmation: false
-popup_delay: 1
-popup_disagree_button_message: 'No, give me more info'
+popup_delay: 1000
+popup_disagree_button_message: 'More info'
 popup_enabled: true
 popup_find_more_button_message: 'More info'
 popup_height: null
 popup_hide_agreed: false
-popup_hide_button_message: Hide
+popup_hide_button_message: Skrýt
 popup_info:
   value: "<h2>K ukládání nastavení a správnému fungování využíváme soubory cookies.</h2>\r\n\r\n<p>Kliknutím na jakýkoliv odakz s jejich používáním souhlasíte.</p>\r\n"
   format: full_html
@@ -38,4 +38,17 @@ popup_text_hex: FFFFFF
 popup_width: 100%
 _core:
   default_config_hash: xbhmYBGlCdrYkMKHxAz_-rnqz-jpRV1ycKZRRmzbrOM
-use_mobile_message: 1
+use_mobile_message: true
+show_disagree_button: true
+method: default
+disagree_button_label: 'No, thanks'
+disabled_javascripts: ''
+whitelisted_cookies: ''
+consent_storage_method: do_not_store
+withdraw_message:
+  value: '<h2>We use cookies on this site to enhance your user experience</h2><p>You have given your consent for us to set cookies.</p>'
+  format: forum
+withdraw_action_button_label: 'Withdraw consent'
+withdraw_tab_button_label: 'Privacy settings'
+withdraw_enabled: false
+popup_info_template: legacy

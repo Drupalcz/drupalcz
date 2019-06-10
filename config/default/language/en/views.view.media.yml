@@ -31,7 +31,7 @@ display:
           label: 'Media name'
           separator: ', '
         bundle:
-          label: Source
+          label: Type
           separator: ', '
         uid:
           label: Author
@@ -53,7 +53,7 @@ display:
             label: 'Media name'
         bundle:
           expose:
-            label: Source
+            label: Type
         status:
           expose:
             label: 'True'
@@ -70,7 +70,7 @@ display:
       title: Media
       empty:
         area_text_custom:
-          content: 'No content available.'
+          content: 'No media available.'
   media_page_list:
     display_title: Media
     display_options:

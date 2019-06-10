@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.paragraph.preview
     - field.field.paragraph.dcz_para_image.field_class
     - field.field.paragraph.dcz_para_image.field_description
+    - field.field.paragraph.dcz_para_image.field_image
     - field.field.paragraph.dcz_para_image.field_title
     - paragraphs.paragraphs_type.dcz_para_image
 id: paragraph.dcz_para_image.preview

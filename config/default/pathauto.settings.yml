@@ -46,3 +46,11 @@ langcode: cs
 enabled_entity_types:
   - comment
   - user
+safe_tokens:
+  - alias
+  - alias
+  - path
+  - join-path
+  - login-url
+  - url
+  - url-brief

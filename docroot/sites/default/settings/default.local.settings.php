@@ -64,6 +64,14 @@ $settings['rebuild_access'] = TRUE;
 $config['slack_invite.settings']['token'] = "DUMMY_TOKEN";
 
 /**
+ * Simulate config we have available on Acquia.
+ *
+ * Get your own keys:
+ * * CleanTalk free trial: https://cleantalk.org/ .
+ */
+$config['cleantalk.settings']['cleantalk_authkey'] = "DUMMY_KEY";
+
+/**
  * Shield.
  */
 $config['shield.settings']['allow_cli'] = TRUE;
@@ -72,7 +80,14 @@ $config['shield.settings']['credentials']['shield']['pass'] = '';
 $config['shield.settings']['print'] = '¯\_(ツ)_/¯';
 
 /**
+ * Set content directory for default_content_deploy.
+ */
+$config['content_directory'] = '../content';
+
+/**
  * Set active config split.
  */
-$config['config_split.config_split.dev']['status'] = TRUE;
-//$config['config_split.config_split.prod']['status'] = TRUE;
+$config['config_split.config_split.dev']['status'] = TRUE;;
+$config['config_split.config_split.default_content']['status'] = TRUE;
+$config['config_split.config_split.cleantalk']['status'] = FALSE;
+$config['config_split.config_split.prod']['status'] = FALSE;

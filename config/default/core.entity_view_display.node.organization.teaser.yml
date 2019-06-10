@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.organization.body
     - field.field.node.organization.field_emails
+    - field.field.node.organization.field_logo
     - field.field.node.organization.field_websites
     - node.type.organization
   module:

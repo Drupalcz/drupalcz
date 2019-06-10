@@ -5,7 +5,7 @@ dependencies: {  }
 _core:
   default_config_hash: zW8dEKuN_hbYbIx-q05dK7KEUuXcAjFV4-9MKe9EOiw
 id: default
-label: Default
+label: Výchozí
 options:
   animation: fade
   animationSpeed: 600

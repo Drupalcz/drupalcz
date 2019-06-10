@@ -1,0 +1,40 @@
+uuid: 1067954c-5491-46f5-a79f-034e842d71dc
+langcode: cs
+status: true
+dependencies:
+  module:
+    - editor
+    - geshifilter
+name: Fórum
+format: forum
+weight: -8
+filters:
+  editor_file_reference:
+    id: editor_file_reference
+    provider: editor
+    status: true
+    weight: 0
+    settings: {  }
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: '<a href hreflang> <em> <strong> <cite> <blockquote cite> <code class> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <p> <br> <span> <img src alt data-entity-type data-entity-uuid data-align data-caption width height> <drupal-entity data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr>'
+      filter_html_help: true
+      filter_html_nofollow: true
+  filter_caption:
+    id: filter_caption
+    provider: filter
+    status: true
+    weight: 0
+    settings: {  }
+  filter_geshifilter:
+    id: filter_geshifilter
+    provider: geshifilter
+    status: true
+    weight: 0
+    settings:
+      general_tags: {  }
+      per_language_settings: {  }

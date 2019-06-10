@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Custom updates.
+ */
+
+/**
+ * Enable media_entity_actions otherwise post_update hooks will fail.
+ */
+function dcz_custom_blocks_update_8000(&$sandbox) {
+  \Drupal::service('module_installer')->install(['media_entity_actions']);
+}

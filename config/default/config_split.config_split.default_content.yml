@@ -1,0 +1,20 @@
+uuid: 22d83b9f-358d-4776-b8ff-7187d20f6835
+langcode: en
+status: false
+dependencies: {  }
+id: default_content
+label: 'Default content'
+description: ''
+folder: ../config/split-default_content
+module:
+  better_normalizers: 0
+  default_content: 0
+  default_content_deploy: 0
+  hal: 0
+  serialization: 0
+theme: {  }
+blacklist: {  }
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0
