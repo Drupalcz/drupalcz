@@ -1,0 +1,62 @@
+uuid: 31f3d27e-1137-4b59-8373-33e305e2341b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.company_membership.field_company_about
+    - field.field.profile.company_membership.field_company_email
+    - field.field.profile.company_membership.field_company_logo
+    - field.field.profile.company_membership.field_company_member
+    - field.field.profile.company_membership.field_company_website
+    - profile.type.company_membership
+  module:
+    - link
+    - text
+id: profile.company_membership.default
+targetEntityType: profile
+bundle: company_membership
+mode: default
+content:
+  field_company_about:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_company_email:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
+    region: content
+  field_company_logo:
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_company_member:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_company_website:
+    weight: 3
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+hidden: {  }

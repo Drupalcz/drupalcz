@@ -1,0 +1,16 @@
+uuid: c46e9960-fbfa-474d-8646-e6304f7e94c6
+langcode: en
+status: true
+dependencies: {  }
+id: personal_membership
+label: 'Personal membership'
+registration: false
+multiple: false
+roles:
+  authenticated: authenticated
+  contributor: '0'
+  editor: '0'
+  administrator: '0'
+weight: 0
+use_revisions: false
+description: ''
