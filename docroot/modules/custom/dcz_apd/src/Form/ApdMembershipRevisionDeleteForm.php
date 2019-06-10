@@ -6,6 +6,7 @@ use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -16,6 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class ApdMembershipRevisionDeleteForm extends ConfirmFormBase {
 
+  use MessengerTrait;
 
   /**
    * The APD membership revision.
@@ -55,7 +57,7 @@ class ApdMembershipRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    $entity_manager = $container->get('entity.manager');
+    $entity_manager = $container->get('entity_type.manager');
     return new static(
       $entity_manager->getStorage('apd_membership'),
       $container->get('database')
@@ -73,7 +75,7 @@ class ApdMembershipRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return t('Are you sure you want to delete the revision from %revision-date?', ['%revision-date' => format_date($this->revision->getRevisionCreationTime())]);
+    return $this->t('Are you sure you want to delete the revision from %revision-date?', ['%revision-date' => format_date($this->revision->getRevisionCreationTime())]);
   }
 
   /**
@@ -87,7 +89,7 @@ class ApdMembershipRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getConfirmText() {
-    return t('Delete');
+    return $this->t('Delete');
   }
 
   /**
@@ -111,7 +113,7 @@ class ApdMembershipRevisionDeleteForm extends ConfirmFormBase {
         '%title' => $this->revision->label(),
         '%revision' => $this->revision->getRevisionId(),
       ]);
-    drupal_set_message(t('Revision from %revision-date of APD membership %title has been deleted.', [
+    $this->messenger()->addStatus($this->t('Revision from %revision-date of APD membership %title has been deleted.', [
       '%revision-date' => format_date($this->revision->getRevisionCreationTime()),
       '%title' => $this->revision->label(),
     ]));

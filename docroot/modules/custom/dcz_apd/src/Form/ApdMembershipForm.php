@@ -13,6 +13,8 @@ use Drupal\Core\Form\FormStateInterface;
  */
 class ApdMembershipForm extends ContentEntityForm {
 
+  use Drupal\Core\Messenger\MessengerTrait;
+
   /**
    * {@inheritdoc}
    */
@@ -29,8 +31,6 @@ class ApdMembershipForm extends ContentEntityForm {
       ];
     }
 
-    $entity = $this->entity;
-
     return $form;
   }
 
@@ -46,7 +46,7 @@ class ApdMembershipForm extends ContentEntityForm {
 
       // If a new revision is created, save the current user as revision author.
       $entity->setRevisionCreationTime(REQUEST_TIME);
-      $entity->setRevisionUserId(Drupal::currentUser()->id());
+      $entity->setRevisionUserId($this->currentUser()->id());
     }
     else {
       $entity->setNewRevision(FALSE);
@@ -56,15 +56,17 @@ class ApdMembershipForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        drupal_set_message($this->t('Created the %label APD membership.', [
-          '%label' => $entity->label(),
-        ]));
+        $this->messenger()
+          ->addStatus($this->t('Created the %label APD membership.', [
+            '%label' => $entity->label(),
+          ]));
         break;
 
       default:
-        drupal_set_message($this->t('Saved the %label APD membership.', [
-          '%label' => $entity->label(),
-        ]));
+        $this->messenger()
+          ->addStatus($this->t('Saved the %label APD membership.', [
+            '%label' => $entity->label(),
+          ]));
     }
     $form_state->setRedirect('entity.apd_membership.canonical', ['apd_membership' => $entity->id()]);
   }
