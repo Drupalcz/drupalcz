@@ -11,8 +11,9 @@ box/local.config.yml
 project.local.yml
 local.blt.yml
 
-# Lando
-lando.local.yml
+# Lando for SASS
+.lando.local.yml
+/docroot/themes/custom/dcz_theme/config_local.json
 
 # Ignore drupal core.
 docroot/core
@@ -140,3 +141,4 @@ drush/sites/.checksums
 
 # Deprecation detector rules
 .rules
+
