@@ -21,6 +21,27 @@ Branch | Build status | Dev site | HTTP Basic auth
 * .travis.yml - Travis CI test suite configuration.
 
 ## Requirements
+### Pokud používáte Lando
+* Nainstalujte si Lando, https://docs.devwithlando.io/installation/system-requirements.html
+* V adresáři projektu spusťe Lando
+
+      lando start
+
+* Pokud děláte frontend a potřebujete kompilovat SASS na CSS,
+podívejte se do souboru `sass.lando.local.yml`, kde jsou instrukce, jak na to.
+
+  * Zkopírujte si soubor `default.config_local.json` do `config_local.json`
+
+  * Přepněte se do adresáře tématu:
+    
+        cd docroot/themes/custom/dcz_theme
+  
+  * Pro kompilaci SASS na CSS použijte: 
+  
+      `lando gulp css` 
+  * Nebo `lando gulp` pro kompilaci všeho a čekání na změny.         
+    
+### Pokud používáte jiné vývojové prostředí
 * You need PHP ^7.1
 * Install composer: https://getcomposer.org/doc/00-intro.md
 * Install Drush version 8: http://docs.drush.org/en/master/install/

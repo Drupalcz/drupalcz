@@ -1,0 +1,18 @@
+# If you need to compile SASS files to CSS,
+# rename this file to .lando.local.yml and run
+# lando rebuild
+
+services:
+  node:
+    type: node:8
+    globals:
+      gulp-cli: "latest"
+      gulp: "latest"
+    build:
+      - "cd $LANDO_MOUNT/docroot/themes/custom/dcz_theme && npm install"
+
+tooling:
+  gulp:
+    # Use `lando gulp css` for compiling sass files.
+    # or `lando gulp` for watching for changes.
+    service: node
