@@ -4,13 +4,12 @@ status: true
 dependencies: {  }
 id: company_membership
 label: 'Company membership'
-registration: false
 multiple: true
+registration: false
 roles:
   authenticated: authenticated
   contributor: '0'
   editor: '0'
   administrator: '0'
-weight: 0
-use_revisions: false
-description: ''
+allow_revisions: false
+new_revision: false
