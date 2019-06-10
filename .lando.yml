@@ -5,7 +5,6 @@ config:
   webroot: docroot
   ssl: true
   xdebug: true
-  drush: 9
   overrides:
     volumes:
       - ${HOME}/.lando/composer_cache:/var/www/.composer
