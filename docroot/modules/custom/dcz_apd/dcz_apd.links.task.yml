@@ -1,0 +1,27 @@
+# APD membership routing definition
+apd_membership.settings_tab:
+  route_name: apd_membership.settings
+  title: 'Settings'
+  base_route: apd_membership.settings
+
+entity.apd_membership.canonical:
+  route_name: entity.apd_membership.canonical
+  base_route: entity.apd_membership.canonical
+  title: 'View'
+
+entity.apd_membership.edit_form:
+  route_name: entity.apd_membership.edit_form
+  base_route: entity.apd_membership.canonical
+  title: 'Edit'
+
+entity.apd_membership.version_history:
+  route_name: entity.apd_membership.version_history
+  base_route: entity.apd_membership.canonical
+  title: 'Revisions'
+
+entity.apd_membership.delete_form:
+  route_name:  entity.apd_membership.delete_form
+  base_route:  entity.apd_membership.canonical
+  title: Delete
+  weight: 10
+

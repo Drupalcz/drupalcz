@@ -1,0 +1,14 @@
+
+# APD membership menu items definition
+entity.apd_membership.collection:
+  title: 'APD membership list'
+  route_name: entity.apd_membership.collection
+  description: 'List APD membership entities'
+  parent: system.admin_structure
+  weight: 100
+
+apd_membership.admin.structure.settings:
+  title: 'APD membership settings'
+  description: 'Configure APD membership entities'
+  route_name: apd_membership.settings
+  parent: system.admin_structure

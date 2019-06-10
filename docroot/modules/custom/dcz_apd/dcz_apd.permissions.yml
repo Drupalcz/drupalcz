@@ -1,0 +1,34 @@
+
+view members:
+  title: 'View members'
+  description: 'User can view a list of APD members'
+add apd membership entities:
+  title: 'Create new APD membership entities'
+
+administer apd membership entities:
+  title: 'Administer APD membership entities'
+  description: 'Allow to access the administration form to configure APD membership entities.'
+  restrict access: true
+
+delete apd membership entities:
+  title: 'Delete APD membership entities'
+
+edit apd membership entities:
+  title: 'Edit APD membership entities'
+
+view published apd membership entities:
+  title: 'View published APD membership entities'
+
+view unpublished apd membership entities:
+  title: 'View unpublished APD membership entities'
+
+view all apd membership revisions:
+  title: 'View all APD membership revisions'
+
+revert all apd membership revisions:
+  title: 'Revert all APD membership revisions'
+  description: 'Role requires permission <em>view APD membership revisions</em> and <em>edit rights</em> for apd membership entities in question or <em>administer apd membership entities</em>.'
+
+delete all apd membership revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view APD membership revisions</em> and <em>delete rights</em> for apd membership entities in question or <em>administer apd membership entities</em>.'
