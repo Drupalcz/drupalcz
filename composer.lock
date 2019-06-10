@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "71b9ad30e3fbcab172e153dc59c648a9",
+    "content-hash": "8d05523fa70b9aa6bf8b43aa7581e267",
     "packages": [
         {
             "name": "acquia/blt",
@@ -819,7 +819,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/enyo/dropzone/zipball/08b9e0a763b54a685404dea523a9c54242fbe1b9",
-                "reference": "08b9e0a763b54a685404dea523a9c54242fbe1b9"
+                "reference": "08b9e0a763b54a685404dea523a9c54242fbe1b9",
+                "shasum": null
             },
             "type": "bower-asset"
         },
@@ -834,7 +835,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/woocommerce/FlexSlider/zipball/690832b7f972298e76e2965714657a2beec9e35c",
-                "reference": "690832b7f972298e76e2965714657a2beec9e35c"
+                "reference": "690832b7f972298e76e2965714657a2beec9e35c",
+                "shasum": null
             },
             "require": {
                 "bower-asset/jquery": ">=1.11.3"
@@ -3103,7 +3105,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0",
-                    "datestamp": "1559138877",
+                    "datestamp": "1559137685",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4664,7 +4666,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-beta3",
-                    "datestamp": "1560008285",
+                    "datestamp": "1556906881",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -4864,6 +4866,61 @@
                 "forum": "https://drupal.stackexchange.com/search?q=eu+cookie+compliance",
                 "issues": "https://www.drupal.org/project/issues/eu_cookie_compliance?version=8.x",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
+            "name": "drupal/extlink",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/extlink.git",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/extlink-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "0894f1cd12e2e1aa6b00ea4a6dd5e7234eb2b2b2"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1524232684",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "elachlan",
+                    "homepage": "https://www.drupal.org/user/1021502"
+                },
+                {
+                    "name": "jjeff",
+                    "homepage": "https://www.drupal.org/user/17190"
+                },
+                {
+                    "name": "quicksketch",
+                    "homepage": "https://www.drupal.org/user/35821"
+                }
+            ],
+            "description": "Modify behavior and appearance of external links.",
+            "homepage": "https://www.drupal.org/project/extlink",
+            "support": {
+                "source": "https://git.drupalcode.org/project/extlink"
             }
         },
         {
@@ -5459,7 +5516,7 @@
             "description": "High performance integration with memcache.",
             "homepage": "http://drupal.org/project/memcache",
             "support": {
-                "source": "http://cgit.drupalcode.org/memcache",
+                "source": "https://git.drupalcode.org/project/memcache",
                 "issues": "https://www.drupal.org/project/issues/memcache"
             }
         },
@@ -11532,7 +11589,7 @@
             "version": "1.0.0-beta3",
             "source": {
                 "type": "git",
-                "url": "https://git.drupal.org/project/better_normalizers",
+                "url": "https://git.drupalcode.org/project/better_normalizers.git",
                 "reference": "8.x-1.0-beta3"
             },
             "dist": {
@@ -11591,7 +11648,7 @@
             "version": "1.4.0",
             "source": {
                 "type": "git",
-                "url": "https://git.drupal.org/project/config_filter",
+                "url": "https://git.drupalcode.org/project/config_filter.git",
                 "reference": "8.x-1.4"
             },
             "dist": {
@@ -11660,7 +11717,7 @@
             "version": "1.4.0",
             "source": {
                 "type": "git",
-                "url": "https://git.drupal.org/project/config_split",
+                "url": "https://git.drupalcode.org/project/config_split.git",
                 "reference": "8.x-1.4"
             },
             "dist": {
@@ -11732,7 +11789,7 @@
             "version": "1.0.0-alpha7",
             "source": {
                 "type": "git",
-                "url": "https://git.drupal.org/project/default_content",
+                "url": "https://git.drupalcode.org/project/default_content.git",
                 "reference": "8.x-1.0-alpha7"
             },
             "dist": {
@@ -11803,7 +11860,7 @@
             "version": "1.0.0-alpha6",
             "source": {
                 "type": "git",
-                "url": "https://git.drupal.org/project/default_content_deploy",
+                "url": "https://git.drupalcode.org/project/default_content_deploy.git",
                 "reference": "8.x-1.0-alpha6"
             },
             "dist": {
@@ -12131,7 +12188,7 @@
             "time": "2019-01-14T23:55:14+00:00"
         },
         {
-            "name": "mikey179/vfsstream",
+            "name": "mikey179/vfsStream",
             "version": "v1.6.6",
             "source": {
                 "type": "git",
