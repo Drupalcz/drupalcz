@@ -8,9 +8,9 @@ dependencies:
 _core:
   default_config_hash: tp4wP6wVrEPZfApiCfkpoCxUzN-B1ceGcGv5sEzQ2Sg
 id: block_content
-label: 'Custom block library'
+label: 'Knihovna vlastních bloků'
 module: views
-description: 'Find and manage custom blocks.'
+description: 'Hledat a spravovat vlastní bloky.'
 tag: default
 base_table: block_content_field_data
 base_field: id
@@ -19,7 +19,7 @@ display:
   default:
     display_plugin: default
     id: default
-    display_title: Master
+    display_title: Nadřízené
     position: 0
     display_options:
       access:
@@ -43,10 +43,10 @@ display:
           submit_button: Použít
           reset_button: false
           reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          exposed_sorts_label: 'Řadit dle'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Vzestupně
+          sort_desc_label: Sestupně
       pager:
         type: mini
         options:
@@ -55,16 +55,16 @@ display:
           id: 0
           total_pages: null
           tags:
-            previous: '‹ Previous'
-            next: 'Next ›'
+            previous: '‹ Předchozí'
+            next: 'Další ›'
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
+            items_per_page_label: 'Položek na stránku'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: '- Vše -'
             offset: false
-            offset_label: Offset
+            offset_label: Posun
       style:
         type: table
         options:
@@ -252,7 +252,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Updated
+          label: Aktualizováno
           exclude: false
           alter:
             alter_text: false
@@ -308,7 +308,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Operations
+          label: Operace
           exclude: false
           alter:
             alter_text: false
@@ -472,7 +472,7 @@ display:
           entity_field: reusable
           plugin_id: boolean
       sorts: {  }
-      title: 'Custom block library'
+      title: 'Knihovna vlastních bloků'
       header: {  }
       footer: {  }
       empty:
@@ -513,14 +513,14 @@ display:
   page_1:
     display_plugin: page
     id: page_1
-    display_title: Page
+    display_title: Stránka
     position: 1
     display_options:
       display_extenders: {  }
       path: admin/structure/block/block-content
       menu:
         type: tab
-        title: 'Custom block library'
+        title: 'Knihovna vlastních bloků'
         description: ''
         parent: block.admin_display
         weight: 0

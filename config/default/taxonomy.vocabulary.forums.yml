@@ -10,5 +10,4 @@ _core:
 name: Fórum
 vid: forums
 description: 'Slovník pro kategorizaci fóra'
-hierarchy: 0
 weight: -10

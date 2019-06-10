@@ -13,7 +13,7 @@ id: node.forum.comment_forum
 field_name: comment_forum
 entity_type: node
 bundle: forum
-label: Comments
+label: Komentáře
 description: ''
 required: true
 translatable: true
