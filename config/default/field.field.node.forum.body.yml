@@ -13,7 +13,7 @@ id: node.forum.body
 field_name: body
 entity_type: node
 bundle: forum
-label: Body
+label: Text
 description: ''
 required: false
 translatable: true

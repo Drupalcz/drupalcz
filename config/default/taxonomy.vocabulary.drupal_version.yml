@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Drupal version'
 vid: drupal_version
 description: 'Which version of Drupal is your question about.'
-hierarchy: 0
 weight: 0

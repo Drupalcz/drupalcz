@@ -1,7 +1,6 @@
-# Note that the example .travis.yml file for child projects lives in /install.
 sudo: true
 language: php
-dist: trusty
+dist: xenial
 
 php:
   - 7.1
@@ -26,10 +25,12 @@ cache:
   - "$HOME/.drush/cache"
   - "$HOME/.npm"
   - "$HOME/.nvm"
+  - ".rules"
   - "vendor"
-  # Cache front end dependecies to dramatically improve build time.
-  # - "docroot/themes/custom/mytheme/node_modules"
-  # - "docroot/themes/custom/mytheme/bower_components"
+
+services:
+- mysql
+- xvfb
 
 addons:
   ssh_known_hosts:
@@ -61,9 +62,9 @@ install:
   - source ${BLT_DIR}/scripts/travis/setup_project
 
 script:
-  # Run customized script instead.
-  #- source ${BLT_DIR}/scripts/travis/run_tests
-  - source ${TRAVIS_BUILD_DIR}/blt/scripts/run_tests
+  # Uncomment these lines to test database updates using live content.
+  # - blt drupal:sync:default:site
+  - source ${BLT_DIR}/scripts/travis/run_tests
 
 deploy:
    - provider: script

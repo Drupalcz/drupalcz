@@ -57,7 +57,6 @@ module:
   metatag_facebook: 0
   metatag_open_graph: 0
   metatag_views: 0
-  minimal: 0
   node: 0
   options: 0
   page_cache: 0
@@ -87,6 +86,7 @@ module:
   menu_link_content: 1
   pathauto: 1
   views: 10
+  minimal: 1000
   eu_cookie_compliance: 1001
 theme:
   stable: 0
