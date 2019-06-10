@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb56e0b0fe415e357f9bc40626850930",
+    "content-hash": "71b9ad30e3fbcab172e153dc59c648a9",
     "packages": [
         {
             "name": "acquia/blt",
@@ -819,8 +819,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/enyo/dropzone/zipball/08b9e0a763b54a685404dea523a9c54242fbe1b9",
-                "reference": "08b9e0a763b54a685404dea523a9c54242fbe1b9",
-                "shasum": null
+                "reference": "08b9e0a763b54a685404dea523a9c54242fbe1b9"
             },
             "type": "bower-asset"
         },
@@ -835,8 +834,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/woocommerce/FlexSlider/zipball/690832b7f972298e76e2965714657a2beec9e35c",
-                "reference": "690832b7f972298e76e2965714657a2beec9e35c",
-                "shasum": null
+                "reference": "690832b7f972298e76e2965714657a2beec9e35c"
             },
             "require": {
                 "bower-asset/jquery": ">=1.11.3"
@@ -3105,7 +3103,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0",
-                    "datestamp": "1559137685",
+                    "datestamp": "1559138877",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4666,7 +4664,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-beta3",
-                    "datestamp": "1556906881",
+                    "datestamp": "1560008285",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -5395,17 +5393,17 @@
         },
         {
             "name": "drupal/memcache",
-            "version": "2.0.0",
+            "version": "2.0.0-alpha7",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/memcache.git",
-                "reference": "8.x-2.0"
+                "reference": "8.x-2.0-alpha7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/memcache-8.x-2.0.zip",
-                "reference": "8.x-2.0",
-                "shasum": "78c09097c42781343f4069b4823dce7acd98a8b1"
+                "url": "https://ftp.drupal.org/files/projects/memcache-8.x-2.0-alpha7.zip",
+                "reference": "8.x-2.0-alpha7",
+                "shasum": "06a2db4cc3699c5c54a2845058da0869b08371bf"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -5416,11 +5414,11 @@
                     "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.0",
-                    "datestamp": "1540546681",
+                    "version": "8.x-2.0-alpha7",
+                    "datestamp": "1536739683",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -5461,7 +5459,7 @@
             "description": "High performance integration with memcache.",
             "homepage": "http://drupal.org/project/memcache",
             "support": {
-                "source": "https://git.drupalcode.org/project/memcache",
+                "source": "http://cgit.drupalcode.org/memcache",
                 "issues": "https://www.drupal.org/project/issues/memcache"
             }
         },
@@ -11534,7 +11532,7 @@
             "version": "1.0.0-beta3",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/better_normalizers.git",
+                "url": "https://git.drupal.org/project/better_normalizers",
                 "reference": "8.x-1.0-beta3"
             },
             "dist": {
@@ -11593,7 +11591,7 @@
             "version": "1.4.0",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/config_filter.git",
+                "url": "https://git.drupal.org/project/config_filter",
                 "reference": "8.x-1.4"
             },
             "dist": {
@@ -11662,7 +11660,7 @@
             "version": "1.4.0",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/config_split.git",
+                "url": "https://git.drupal.org/project/config_split",
                 "reference": "8.x-1.4"
             },
             "dist": {
@@ -11734,7 +11732,7 @@
             "version": "1.0.0-alpha7",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/default_content.git",
+                "url": "https://git.drupal.org/project/default_content",
                 "reference": "8.x-1.0-alpha7"
             },
             "dist": {
@@ -11805,7 +11803,7 @@
             "version": "1.0.0-alpha6",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/default_content_deploy.git",
+                "url": "https://git.drupal.org/project/default_content_deploy",
                 "reference": "8.x-1.0-alpha6"
             },
             "dist": {
@@ -12133,7 +12131,7 @@
             "time": "2019-01-14T23:55:14+00:00"
         },
         {
-            "name": "mikey179/vfsStream",
+            "name": "mikey179/vfsstream",
             "version": "v1.6.6",
             "source": {
                 "type": "git",
