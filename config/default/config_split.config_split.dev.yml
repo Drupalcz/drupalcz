@@ -7,6 +7,7 @@ label: DEV
 description: ''
 folder: ../config/split-dev
 module:
+  better_normalizers: 0
   dblog: 0
   devel: 0
   devel_generate: 0
