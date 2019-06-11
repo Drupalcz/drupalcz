@@ -33,6 +33,18 @@
             "target_id": "content_block"
         }
     ],
+    "revision_created": [
+        {
+            "value": "2018-02-27T12:50:05+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
     "info": [
         {
             "value": "Registered trademark",
@@ -46,10 +58,9 @@
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
-    "revision_created": [
+    "reusable": [
         {
-            "value": "2018-02-27T12:50:05+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": true
         }
     ],
     "default_langcode": [
@@ -69,8 +80,8 @@
             "value": {
                 "title": "| Drupal.cz",
                 "og_site_name": "Drupal.cz",
-                "canonical_url": "http:\/\/default\/%3Cnone%3E",
-                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "canonical_url": "http:\/\/default\/drupal-cz",
+                "og_url": "http:\/\/default\/drupal-cz",
                 "og_title": "| Drupal.cz"
             }
         }
@@ -79,6 +90,7 @@
         {
             "value": "<p>Drupal je registrovan\u00e1 ochrann\u00e1 zn\u00e1mka <a href=\"http:\/\/buytaert.net\">Driese Buytaerta<\/a>. <a href=\"https:\/\/www.acquia.com\/products-services\/acquia-managed-cloud\">Drupal Hosting<\/a> powered by Acquia Cloud.<\/p>\r\n",
             "format": "full_html",
+            "processed": "<p>Drupal je registrovan\u00e1 ochrann\u00e1 zn\u00e1mka <a href=\"http:\/\/buytaert.net\">Driese Buytaerta<\/a>. <a href=\"https:\/\/www.acquia.com\/products-services\/acquia-managed-cloud\">Drupal Hosting<\/a> powered by Acquia Cloud.<\/p>\n",
             "summary": "",
             "lang": "cs"
         }

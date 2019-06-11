@@ -1,7 +1,7 @@
 {
     "_links": {
         "self": {
-            "href": "http:\/\/default\/sites\/default\/files\/users\/petr-illek-druplicon.jpg"
+            "href": ""
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
@@ -53,7 +53,8 @@
     ],
     "uri": [
         {
-            "value": "public:\/\/users\/petr-illek-druplicon.jpg"
+            "value": "public:\/\/users\/petr-illek-druplicon.jpg",
+            "url": "\/sites\/default\/files\/users\/petr-illek-druplicon.jpg"
         }
     ],
     "filemime": [

@@ -1,7 +1,7 @@
 {
     "_links": {
         "self": {
-            "href": "http:\/\/default\/sites\/default\/files\/users\/profil-ruka.jpg"
+            "href": ""
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
@@ -53,7 +53,8 @@
     ],
     "uri": [
         {
-            "value": "public:\/\/users\/profil-ruka.jpg"
+            "value": "public:\/\/users\/profil-ruka.jpg",
+            "url": "\/sites\/default\/files\/users\/profil-ruka.jpg"
         }
     ],
     "filemime": [
