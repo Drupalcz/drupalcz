@@ -31,6 +31,7 @@ module:
   entity_embed: 0
   entity_reference: 0
   entity_reference_revisions: 0
+  extlink: 0
   field: 0
   field_ui: 0
   file: 0
