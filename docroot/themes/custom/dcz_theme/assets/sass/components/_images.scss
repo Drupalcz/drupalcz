@@ -9,6 +9,15 @@ img {
   width: 100%;
 }
 
+// Reset image width for images in text.
+article {
+  .field.text-formatted {
+    img {
+      width: auto;
+    }
+  }
+}
+
 .embedded-entity .media--type-image img {
   max-width: 100%;
   width: auto;
