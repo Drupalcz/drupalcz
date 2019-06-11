@@ -1,0 +1,243 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/drupal-cz?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/node\/dcz_landing_page"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_landing_page\/revision_uid": [
+            {
+                "href": "http:\/\/default\/user\/petr?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_landing_page\/uid": [
+            {
+                "href": "http:\/\/default\/en\/user\/admin?_format=hal_json",
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_landing_page\/field_paragraphs": [
+            {
+                "href": "",
+                "lang": "cs"
+            },
+            {
+                "href": "",
+                "lang": "cs"
+            },
+            {
+                "href": "",
+                "lang": "cs"
+            },
+            {
+                "href": "",
+                "lang": "cs"
+            }
+        ]
+    },
+    "nid": [
+        {
+            "value": 21
+        }
+    ],
+    "uuid": [
+        {
+            "value": "b7932dd5-ffb5-4688-8a66-62c3a9701ba3"
+        }
+    ],
+    "vid": [
+        {
+            "value": 375431
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "dcz_landing_page"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2019-05-20T13:27:48+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_landing_page\/revision_uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/petr?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_landing_page\/uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/en\/user\/admin?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "729cc54c-cd71-4b21-9d99-8744decd2dc7"
+                    }
+                ],
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_landing_page\/field_paragraphs": [
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/layout"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "5343f9f2-8725-4f4a-bddc-2cbf293f4411"
+                    }
+                ],
+                "lang": "cs",
+                "target_revision_id": "11726"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/layout"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "612bffcc-d99c-4f47-a1e8-1734fe9eea77"
+                    }
+                ],
+                "lang": "cs",
+                "target_revision_id": "11731"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/layout"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "8edc9c82-3728-4d69-866b-8f87a0b55c7d"
+                    }
+                ],
+                "lang": "cs",
+                "target_revision_id": "11746"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/layout"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "5c0f96c5-05c4-4593-ae22-1be9c55a913e"
+                    }
+                ],
+                "lang": "cs",
+                "target_revision_id": "9111"
+            }
+        ]
+    },
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "title": [
+        {
+            "value": "Drupal.cz",
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-02-18T10:09:22+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2019-05-20T13:27:48+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "sticky": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "Drupal.cz | Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/drupal-cz",
+                "og_url": "http:\/\/default\/drupal-cz",
+                "og_title": "| Drupal.cz",
+                "article_published_time": "2018-02-18T11:09:22+0100",
+                "article_modified_time": "2019-05-20T15:27:48+0200"
+            }
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/drupal-cz",
+            "pid": 26,
+            "langcode": "cs",
+            "lang": "cs"
+        }
+    ]
+}

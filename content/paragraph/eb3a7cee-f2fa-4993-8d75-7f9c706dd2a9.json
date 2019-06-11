@@ -1,0 +1,89 @@
+{
+    "_links": {
+        "self": {
+            "href": ""
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_content"
+        }
+    },
+    "id": [
+        {
+            "value": 576
+        }
+    ],
+    "uuid": [
+        {
+            "value": "eb3a7cee-f2fa-4993-8d75-7f9c706dd2a9"
+        }
+    ],
+    "revision_id": [
+        {
+            "value": 9061
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "dcz_para_content"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-02-27T11:35:14+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "parent_id": [
+        {
+            "value": "586"
+        }
+    ],
+    "parent_type": [
+        {
+            "value": "paragraph"
+        }
+    ],
+    "parent_field_name": [
+        {
+            "value": "field_paragraphs"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "field_content": [
+        {
+            "value": "<p class=\"extra-large\">Vytvo\u0159te n\u011bco \u00fa\u017easn\u00e9ho.<\/p>\n",
+            "format": "full_html",
+            "processed": "<p class=\"extra-large\">Vytvo\u0159te n\u011bco \u00fa\u017easn\u00e9ho.<\/p>\n",
+            "lang": "cs"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "Hlavn\u00ed motto",
+            "lang": "cs"
+        }
+    ]
+}

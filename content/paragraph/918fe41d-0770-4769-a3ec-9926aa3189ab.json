@@ -1,0 +1,113 @@
+{
+    "_links": {
+        "self": {
+            "href": ""
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/layout"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/paragraph\/layout\/field_paragraphs": [
+            {
+                "href": "",
+                "lang": "cs"
+            }
+        ]
+    },
+    "id": [
+        {
+            "value": 171
+        }
+    ],
+    "uuid": [
+        {
+            "value": "918fe41d-0770-4769-a3ec-9926aa3189ab"
+        }
+    ],
+    "revision_id": [
+        {
+            "value": 8681
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "layout"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-02-19T19:26:29+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "parent_id": [
+        {
+            "value": "46"
+        }
+    ],
+    "parent_type": [
+        {
+            "value": "node"
+        }
+    ],
+    "parent_field_name": [
+        {
+            "value": "field_paragraphs"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "field_layout": [
+        {
+            "value": "layout_full"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/paragraph\/layout\/field_paragraphs": [
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_view_reference"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "72efefd3-28cb-4b8d-8879-b006ff5b6ab6"
+                    }
+                ],
+                "lang": "cs",
+                "target_revision_id": "8676"
+            }
+        ]
+    }
+}

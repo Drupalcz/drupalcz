@@ -1,0 +1,94 @@
+{
+    "_links": {
+        "self": {
+            "href": ""
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_view_reference"
+        }
+    },
+    "id": [
+        {
+            "value": 591
+        }
+    ],
+    "uuid": [
+        {
+            "value": "666756a1-ee88-4326-867a-9998ec2a343c"
+        }
+    ],
+    "revision_id": [
+        {
+            "value": 11736
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "dcz_para_view_reference"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-02-27T11:36:54+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "parent_id": [
+        {
+            "value": "611"
+        }
+    ],
+    "parent_type": [
+        {
+            "value": "paragraph"
+        }
+    ],
+    "parent_field_name": [
+        {
+            "value": "field_paragraphs"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "\u010cl\u00e1nky",
+            "lang": "cs"
+        }
+    ],
+    "field_title": [
+        {
+            "value": "\u010cl\u00e1nky",
+            "lang": "cs"
+        }
+    ],
+    "field_view_reference": [
+        {
+            "target_id": "dcz_articles",
+            "display_id": "embed_2",
+            "data": "a:5:{s:5:\"pager\";s:4:\"some\";s:5:\"title\";i:0;s:8:\"argument\";N;s:6:\"offset\";N;s:5:\"limit\";N;}"
+        }
+    ]
+}

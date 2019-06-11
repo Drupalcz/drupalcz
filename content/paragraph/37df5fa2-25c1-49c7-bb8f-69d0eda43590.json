@@ -1,0 +1,88 @@
+{
+    "_links": {
+        "self": {
+            "href": ""
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_view_reference"
+        }
+    },
+    "id": [
+        {
+            "value": 571
+        }
+    ],
+    "uuid": [
+        {
+            "value": "37df5fa2-25c1-49c7-bb8f-69d0eda43590"
+        }
+    ],
+    "revision_id": [
+        {
+            "value": 9051
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "dcz_para_view_reference"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-02-27T11:22:42+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "parent_id": [
+        {
+            "value": "106"
+        }
+    ],
+    "parent_type": [
+        {
+            "value": "paragraph"
+        }
+    ],
+    "parent_field_name": [
+        {
+            "value": "field_paragraphs"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "Frontpage slider",
+            "lang": "cs"
+        }
+    ],
+    "field_view_reference": [
+        {
+            "target_id": "showcase",
+            "display_id": "embed_1",
+            "data": "a:5:{s:5:\"pager\";s:4:\"some\";s:5:\"title\";i:0;s:8:\"argument\";N;s:6:\"offset\";N;s:5:\"limit\";N;}"
+        }
+    ]
+}
