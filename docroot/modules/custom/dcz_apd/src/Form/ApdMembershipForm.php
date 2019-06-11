@@ -19,17 +19,34 @@ class ApdMembershipForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    /* @var $entity \Drupal\dcz_apd\Entity\ApdMembership */
-    $form = parent::buildForm($form, $form_state);
+    $form = [];
+    $account = \Drupal::currentUser();
 
-    if (!$this->entity->isNew()) {
-      $form['new_revision'] = [
-        '#type' => 'checkbox',
-        '#title' => $this->t('Create new revision'),
-        '#default_value' => FALSE,
-        '#weight' => 10,
-      ];
+    // Profile selector
+    $profilesSource = \Drupal::entityTypeManager()->getStorage('profile')
+      ->loadByProperties(['uid' => $account->id()]);
+    $profiles = [];
+    foreach ($profilesSource as $profile) {
+      $profiles[$profile->id()] = "{$profile->get('field_fullname')->value} ({$profile->type->entity->label()})";
     }
+    $form['profiles'] = [
+      '#type' => 'select',
+      '#options' => $profiles,
+      '#title' => 'Select profile',
+      '#description' => 'You can edit profiles in <a href="/user/' . $account->id() . '/edit">your user account</a>.',
+      '#required' => TRUE,
+    ];
+
+    $form['agreement'] = [
+      '#type' => 'checkbox',
+      '#title' => 'Souhlas se stanovami a zprac. osobních údajů',
+      '#required' => TRUE,
+    ];
+
+    $form['submit'] = [
+      '#type' => 'submit',
+      '#value' => 'Become a member',
+    ];
 
     return $form;
   }

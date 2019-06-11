@@ -51,7 +51,7 @@ use Drupal\user\UserInterface;
  *   },
  *   links = {
  *     "canonical" = "/admin/structure/apd_membership/{apd_membership}",
- *     "add-form" = "/admin/structure/apd_membership/add",
+ *     "add-form" = "/komunita/stat-se-clenom",
  *     "edit-form" = "/admin/structure/apd_membership/{apd_membership}/edit",
  *     "delete-form" =
  *   "/admin/structure/apd_membership/{apd_membership}/delete",
