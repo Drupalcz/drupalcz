@@ -24,7 +24,7 @@ class ApdMembershipHtmlRouteProvider extends AdminHtmlRouteProvider {
     $addForm->setDefaults([
       '_entity_form' => 'apd_membership.add',
       'entity_type_id' => 'apd_membership',
-      '_title' => 'Chci se stat pozarnikem',
+      '_title' => 'Chci se stát členem Asociace pro Drupal',
     ])
       ->setOption('_admin_route', FALSE);
 

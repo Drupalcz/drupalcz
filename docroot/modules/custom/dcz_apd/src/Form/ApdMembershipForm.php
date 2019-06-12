@@ -32,20 +32,31 @@ class ApdMembershipForm extends ContentEntityForm {
     $form['profiles'] = [
       '#type' => 'select',
       '#options' => $profiles,
-      '#title' => 'Select profile',
-      '#description' => 'You can edit profiles in <a href="/user/' . $account->id() . '/edit">your user account</a>.',
+      '#title' => 'Vyberte profil, pro který se chcete stát členem',
+      '#description' => 'Svoje profily můžete spravovat vo <a href="/user/' . $account->id() . '/edit">svém používatelském účtu.</a>.',
       '#required' => TRUE,
     ];
 
-    $form['agreement'] = [
+    $form['agreement_bylaws'] = [
       '#type' => 'checkbox',
-      '#title' => 'Souhlas se stanovami a zprac. osobních údajů',
+      '#title' => 'Souhlasím se stanovami Asociace pro Drupal.',
       '#required' => TRUE,
     ];
 
-    $form['submit'] = [
+    $form['agreement_gdpr'] = [
+      '#type' => 'checkbox',
+      '#title' => 'Souhlasím se spracováním mých osobních údajů po dobu mého členství v Asociaci pro Drupal.',
+      '#required' => TRUE,
+    ];
+
+    $form['actions'] = [
+      '#type' => 'actions',
+    ];
+
+    $form['actions']['submit'] = [
       '#type' => 'submit',
-      '#value' => 'Become a member',
+      '#value' => 'Stát se členem',
+      '#button_type' => 'primary',
     ];
 
     return $form;
@@ -56,6 +67,8 @@ class ApdMembershipForm extends ContentEntityForm {
    */
   public function save(array $form, FormStateInterface $form_state) {
     $entity = $this->entity;
+
+
 
     // Save as a new revision if requested to do so.
     if (!$form_state->isValueEmpty('new_revision') && $form_state->getValue('new_revision') != FALSE) {
