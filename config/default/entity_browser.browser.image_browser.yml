@@ -22,6 +22,16 @@ selection_display_configuration: {  }
 widget_selector: tabs
 widget_selector_configuration: {  }
 widgets:
+  54ca927b-ad56-4763-949e-f0fe908713ca:
+    settings:
+      view: entity_browser
+      view_display: entity_browser_1
+      submit_text: 'Select entities'
+      auto_select: false
+    uuid: 54ca927b-ad56-4763-949e-f0fe908713ca
+    weight: 2
+    label: Library
+    id: view
   045fabb4-d917-45ab-8f7c-2c79d37c2901:
     settings:
       form_mode: default
@@ -41,13 +51,3 @@ widgets:
     weight: 1
     label: Upload
     id: dropzonejs_media_entity_inline_entity_form
-  54ca927b-ad56-4763-949e-f0fe908713ca:
-    settings:
-      view: entity_browser
-      view_display: entity_browser_1
-      submit_text: 'Select entities'
-      auto_select: false
-    uuid: 54ca927b-ad56-4763-949e-f0fe908713ca
-    weight: 2
-    label: Library
-    id: view
