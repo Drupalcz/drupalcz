@@ -49,7 +49,7 @@ use Drupal\user\UserInterface;
  *     "status" = "status",
  *   },
  *   links = {
- *     "canonical" = "/admin/structure/apd_membership/{apd_membership}",
+ *     "canonical" = "/moje-clenstvi/{apd_membership}",
  *     "add-form" = "/komunita/stat-se-clenom",
  *     "edit-form" = "/admin/structure/apd_membership/{apd_membership}/edit",
  *     "delete-form" =
