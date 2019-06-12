@@ -103,7 +103,7 @@ class DrupalCsAwardsResource extends ResourceBase {
     // Get main screenshot URL.
     /** @var \Drupal\file\Entity\File $file */
     $file = $node->field_main_screenshot->entity->field_media_image->entity;
-    $coverUrl = $file->url();
+    $coverUrl = $file->toUrl();
 
     return new Response(json_encode(['data' => ['image' => $coverUrl]]));
   }
