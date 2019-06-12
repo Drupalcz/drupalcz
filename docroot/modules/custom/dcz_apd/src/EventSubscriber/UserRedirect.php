@@ -30,12 +30,15 @@ class UserRedirect extends HttpExceptionSubscriberBase {
     $this->currentUser = $current_user;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function getHandledFormats() {
     return ['html'];
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritdoc}
    */
   public function onException(GetResponseForExceptionEvent $event) {
     $route = $event->getRequest()->attributes->get('_route');

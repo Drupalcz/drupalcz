@@ -8,6 +8,7 @@ dependencies:
     - field.field.profile.company_membership.field_company_logo
     - field.field.profile.company_membership.field_company_member
     - field.field.profile.company_membership.field_company_website
+    - field.field.profile.company_membership.field_fullname
     - profile.type.company_membership
   module:
     - link
@@ -58,5 +59,13 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  field_fullname:
+    weight: 26
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
 hidden: {  }
