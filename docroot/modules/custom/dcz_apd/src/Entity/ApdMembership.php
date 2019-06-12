@@ -23,7 +23,6 @@ use Drupal\user\UserInterface;
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\dcz_apd\ApdMembershipListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
- *
  *     "form" = {
  *       "default" = "Drupal\dcz_apd\Form\ApdMembershipForm",
  *       "add" = "Drupal\dcz_apd\Form\ApdMembershipForm",
