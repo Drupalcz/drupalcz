@@ -41,6 +41,7 @@ module:
   geolocation: 0
   geshifilter: 0
   google_analytics: 0
+  hal: 0
   history: 0
   honeypot: 0
   image: 0

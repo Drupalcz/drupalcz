@@ -1,0 +1,216 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/clanky\/drupalcamp-cs-je-zpet?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/node\/dcz_article"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/revision_uid": [
+            {
+                "href": "http:\/\/default\/user\/evar?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/uid": [
+            {
+                "href": "http:\/\/default\/en\/user\/radimklaska?_format=hal_json",
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/field_teaser_image": [
+            {
+                "href": "http:\/\/default\/media\/96?_format=hal_json"
+            }
+        ]
+    },
+    "nid": [
+        {
+            "value": 371671
+        }
+    ],
+    "uuid": [
+        {
+            "value": "9a2312bc-69db-4be6-9481-c99893fe3baa"
+        }
+    ],
+    "vid": [
+        {
+            "value": 374826
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "dcz_article"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2019-03-21T08:23:14+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/revision_uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/evar?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "8f89e458-000b-422a-9dd9-66dddd953c98"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/en\/user\/radimklaska?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "ce6a80ed-d70b-4f17-a280-5a3c525f3a8b"
+                    }
+                ],
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/field_teaser_image": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/media\/96?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/media\/image"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "187c472c-cd57-47ac-b8c9-79ce6eedeaa8"
+                    }
+                ]
+            }
+        ]
+    },
+    "revision_log": [
+        {
+            "value": "korektura wellnes > wellness"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "title": [
+        {
+            "value": "DrupalCamp CS je zp\u011bt!",
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2019-02-14T17:10:32+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2019-03-21T08:23:14+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "sticky": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "| Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/clanky\/drupalcamp-cs-je-zpet",
+                "og_type": "article",
+                "description": "V roce 2019 v\u00e1m \u010desk\u00e1 a slovensk\u00e1 Drupal komunita p\u0159in\u00e1\u0161\u00ed u\u017e \u010dtvrt\u00fd \u010deskoslovensk\u00fd DrupalCamp. Tentokr\u00e1t jsme se p\u0159esunuli z aul vysok\u00fdch \u0161kol do p\u0159\u00edjemn\u00e9ho wellness hotelu na Morav\u011b. B\u011bhem cel\u00e9ho v\u00edkendu budete m\u00edt mo\u017enost poznat mnoho profesion\u00e1l\u016f v oblasti webov\u00e9ho v\u00fdvoje, nau\u010dit se, vyzkou\u0161et si a dozv\u011bd\u011bt se mnoho zaj\u00edmav\u00e9ho, a to jak v p\u0159edn\u00e1\u0161kov\u00fdch s\u00e1lech, tak i na p\u00e1te\u010dn\u00ed grilova\u010dce, sobotn\u00ed p\u0159ehl\u00eddce nejlep\u0161\u00edch projekt\u016f, u ve\u010de\u0159e nebo b\u011bhem celodenn\u00edch neform\u00e1ln\u00edch debat.",
+                "og_url": "http:\/\/default\/drupal-cz",
+                "og_title": "| Drupal.cz",
+                "og_description": "V roce 2019 v\u00e1m \u010desk\u00e1 a slovensk\u00e1 Drupal komunita p\u0159in\u00e1\u0161\u00ed u\u017e \u010dtvrt\u00fd \u010deskoslovensk\u00fd DrupalCamp. Tentokr\u00e1t jsme se p\u0159esunuli z aul vysok\u00fdch \u0161kol do p\u0159\u00edjemn\u00e9ho wellness hotelu na Morav\u011b. B\u011bhem cel\u00e9ho v\u00edkendu budete m\u00edt mo\u017enost poznat mnoho profesion\u00e1l\u016f v oblasti webov\u00e9ho v\u00fdvoje, nau\u010dit se, vyzkou\u0161et si a dozv\u011bd\u011bt se mnoho zaj\u00edmav\u00e9ho, a to jak v p\u0159edn\u00e1\u0161kov\u00fdch s\u00e1lech, tak i na p\u00e1te\u010dn\u00ed grilova\u010dce, sobotn\u00ed p\u0159ehl\u00eddce nejlep\u0161\u00edch projekt\u016f, u ve\u010de\u0159e nebo b\u011bhem celodenn\u00edch neform\u00e1ln\u00edch debat.",
+                "og_image_0": "http:\/\/defaultDrupal CampCS - skupinov\u00e9 foto",
+                "article_published_time": "2019-02-14T18:10:32+0100",
+                "article_modified_time": "2019-03-21T09:23:14+0100"
+            }
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/clanky\/drupalcamp-cs-je-zpet",
+            "pid": 365936,
+            "langcode": "cs",
+            "lang": "cs"
+        }
+    ],
+    "body": [
+        {
+            "value": "<h2>Hustope\u010de, 17. 5. - 19. 5.&nbsp;<\/h2>\r\n\r\n<p>V roce 2019 v\u00e1m \u010desk\u00e1 a slovensk\u00e1 Drupal komunita p\u0159in\u00e1\u0161\u00ed u\u017e \u010dtvrt\u00fd \u010deskoslovensk\u00fd DrupalCamp. Tentokr\u00e1t jsme se p\u0159esunuli z aul vysok\u00fdch \u0161kol do p\u0159\u00edjemn\u00e9ho wellness hotelu na Morav\u011b. B\u011bhem cel\u00e9ho v\u00edkendu budete m\u00edt mo\u017enost poznat mnoho profesion\u00e1l\u016f v oblasti webov\u00e9ho v\u00fdvoje, nau\u010dit se, vyzkou\u0161et si a dozv\u011bd\u011bt se mnoho zaj\u00edmav\u00e9ho, a to jak v p\u0159edn\u00e1\u0161kov\u00fdch s\u00e1lech, tak i na p\u00e1te\u010dn\u00ed grilova\u010dce, sobotn\u00ed p\u0159ehl\u00eddce nejlep\u0161\u00edch projekt\u016f, u ve\u010de\u0159e nebo b\u011bhem celodenn\u00edch neform\u00e1ln\u00edch debat.<\/p>\r\n\r\n<h2>Na co se t\u011b\u0161it<\/h2>\r\n\r\n<h3>P\u00e1tek<\/h3>\r\n\r\n<ul>\r\n\t<li>P\u0159\u00edprava lok\u00e1ln\u00edch prost\u0159ed\u00ed s konzultac\u00ed<\/li>\r\n\t<li>Grilov\u00e1n\u00ed<\/li>\r\n<\/ul>\r\n\r\n<h3>Sobota<\/h3>\r\n\r\n<ul>\r\n\t<li>Workshopy<\/li>\r\n\t<li>P\u0159edn\u00e1\u0161ky<\/li>\r\n\t<li>Ud\u00edlen\u00ed&nbsp;cen Drupal asociac\u00ed<\/li>\r\n<\/ul>\r\n\r\n<h3>Ned\u011ble<\/h3>\r\n\r\n<ul>\r\n\t<li>Konzultace s odborn\u00edky<\/li>\r\n\t<li>Sout\u011b\u017e v hackov\u00e1n\u00ed Drupalu :)<\/li>\r\n\t<li>Dopoledn\u00ed workshop<\/li>\r\n<\/ul>\r\n\r\n<h2>V\u0161e na jednom m\u00edst\u011b<\/h2>\r\n\r\n<p>Ubytov\u00e1n\u00ed je v m\u00edst\u011b kon\u00e1n\u00ed konference. Doporu\u010dujeme zakoupit si co nejd\u0159\u00edve sponzorovan\u00fd Early bird s ubytov\u00e1n\u00edm a u\u017e\u00edt si kompletn\u00ed program od p\u00e1tku do ned\u011ble bez starost\u00ed. Tento l\u00edstek V\u00e1m zajist\u00ed kompletn\u00ed p\u0159\u00edstup a stravu od p\u00e1te\u010dn\u00ed ve\u010de\u0159e do ned\u011bln\u00edho ob\u011bda v\u010detn\u011b l\u00e1kadel hotelu&nbsp;<a href=\"https:\/\/drupalcs.camp\/misto?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=drupalcampcs1\" target=\"_blank\">Amande<\/a>&nbsp;jako 90 minut pobytu v hotelov\u00e9m wellness. ;-)<\/p>\r\n\r\n<p><strong>V\u0161echny aktu\u00e1ln\u00ed informace naleznete&nbsp;na&nbsp;https:\/\/drupalcs.camp\/ - v\u010detn\u011b l\u00edstk\u016f, kter\u00e9 jsou ji\u017e v prodeji!<\/strong><\/p>\r\n",
+            "format": "full_html",
+            "processed": "<h2>Hustope\u010de, 17. 5. - 19. 5.\u00a0<\/h2>\n\n<p>V roce 2019 v\u00e1m \u010desk\u00e1 a slovensk\u00e1 Drupal komunita p\u0159in\u00e1\u0161\u00ed u\u017e \u010dtvrt\u00fd \u010deskoslovensk\u00fd DrupalCamp. Tentokr\u00e1t jsme se p\u0159esunuli z aul vysok\u00fdch \u0161kol do p\u0159\u00edjemn\u00e9ho wellness hotelu na Morav\u011b. B\u011bhem cel\u00e9ho v\u00edkendu budete m\u00edt mo\u017enost poznat mnoho profesion\u00e1l\u016f v oblasti webov\u00e9ho v\u00fdvoje, nau\u010dit se, vyzkou\u0161et si a dozv\u011bd\u011bt se mnoho zaj\u00edmav\u00e9ho, a to jak v p\u0159edn\u00e1\u0161kov\u00fdch s\u00e1lech, tak i na p\u00e1te\u010dn\u00ed grilova\u010dce, sobotn\u00ed p\u0159ehl\u00eddce nejlep\u0161\u00edch projekt\u016f, u ve\u010de\u0159e nebo b\u011bhem celodenn\u00edch neform\u00e1ln\u00edch debat.<\/p>\n\n<h2>Na co se t\u011b\u0161it<\/h2>\n\n<h3>P\u00e1tek<\/h3>\n\n<ul><li>P\u0159\u00edprava lok\u00e1ln\u00edch prost\u0159ed\u00ed s konzultac\u00ed<\/li>\n\t<li>Grilov\u00e1n\u00ed<\/li>\n<\/ul><h3>Sobota<\/h3>\n\n<ul><li>Workshopy<\/li>\n\t<li>P\u0159edn\u00e1\u0161ky<\/li>\n\t<li>Ud\u00edlen\u00ed\u00a0cen Drupal asociac\u00ed<\/li>\n<\/ul><h3>Ned\u011ble<\/h3>\n\n<ul><li>Konzultace s odborn\u00edky<\/li>\n\t<li>Sout\u011b\u017e v hackov\u00e1n\u00ed Drupalu :)<\/li>\n\t<li>Dopoledn\u00ed workshop<\/li>\n<\/ul><h2>V\u0161e na jednom m\u00edst\u011b<\/h2>\n\n<p>Ubytov\u00e1n\u00ed je v m\u00edst\u011b kon\u00e1n\u00ed konference. Doporu\u010dujeme zakoupit si co nejd\u0159\u00edve sponzorovan\u00fd Early bird s ubytov\u00e1n\u00edm a u\u017e\u00edt si kompletn\u00ed program od p\u00e1tku do ned\u011ble bez starost\u00ed. Tento l\u00edstek V\u00e1m zajist\u00ed kompletn\u00ed p\u0159\u00edstup a stravu od p\u00e1te\u010dn\u00ed ve\u010de\u0159e do ned\u011bln\u00edho ob\u011bda v\u010detn\u011b l\u00e1kadel hotelu\u00a0<a href=\"https:\/\/drupalcs.camp\/misto?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=drupalcampcs1\" target=\"_blank\">Amande<\/a>\u00a0jako 90 minut pobytu v hotelov\u00e9m wellness. ;-)<\/p>\n\n<p><strong>V\u0161echny aktu\u00e1ln\u00ed informace naleznete\u00a0na\u00a0<a href=\"https:\/\/drupalcs.camp\/\">https:\/\/drupalcs.camp\/<\/a> - v\u010detn\u011b l\u00edstk\u016f, kter\u00e9 jsou ji\u017e v prodeji!<\/strong><\/p>\n",
+            "summary": "",
+            "lang": "cs"
+        }
+    ],
+    "field_comments_article": [
+        {
+            "status": 2,
+            "cid": 0,
+            "last_comment_timestamp": 1550164479,
+            "last_comment_name": null,
+            "last_comment_uid": 6,
+            "comment_count": 0
+        }
+    ],
+    "field_teaser_text": [
+        {
+            "value": "V roce 2019 v\u00e1m \u010desk\u00e1 a slovensk\u00e1 Drupal komunita p\u0159in\u00e1\u0161\u00ed u\u017e \u010dtvrt\u00fd \u010deskoslovensk\u00fd DrupalCamp. Tentokr\u00e1t jsme se p\u0159esunuli z aul vysok\u00fdch \u0161kol do p\u0159\u00edjemn\u00e9ho wellness hotelu na Morav\u011b. B\u011bhem cel\u00e9ho v\u00edkendu budete m\u00edt mo\u017enost poznat mnoho profesion\u00e1l\u016f v oblasti webov\u00e9ho v\u00fdvoje, nau\u010dit se, vyzkou\u0161et si a dozv\u011bd\u011bt se mnoho zaj\u00edmav\u00e9ho, a to jak v p\u0159edn\u00e1\u0161kov\u00fdch s\u00e1lech, tak i na p\u00e1te\u010dn\u00ed grilova\u010dce, sobotn\u00ed p\u0159ehl\u00eddce nejlep\u0161\u00edch projekt\u016f, u ve\u010de\u0159e nebo b\u011bhem celodenn\u00edch neform\u00e1ln\u00edch debat."
+        }
+    ]
+}

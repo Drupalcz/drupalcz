@@ -23,9 +23,29 @@
             "lang": "en"
         }
     ],
+    "preferred_langcode": [
+        {
+            "value": "en"
+        }
+    ],
     "name": [
         {
             "value": "admin"
+        }
+    ],
+    "mail": [
+        {
+            "value": "uid1@drupal.cz"
+        }
+    ],
+    "timezone": [
+        {
+            "value": "Europe\/Prague"
+        }
+    ],
+    "status": [
+        {
+            "value": true
         }
     ],
     "created": [
@@ -36,9 +56,26 @@
     ],
     "changed": [
         {
-            "value": "2018-06-08T11:04:48+00:00",
+            "value": "2019-06-11T19:15:53+00:00",
             "lang": "en",
             "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "access": [
+        {
+            "value": "2019-06-11T20:32:08+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "login": [
+        {
+            "value": "2019-06-11T19:35:07+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "init": [
+        {
+            "value": "community@drupal.cz"
         }
     ],
     "default_langcode": [
@@ -54,7 +91,7 @@
                 "og_site_name": "Drupal.cz",
                 "canonical_url": "http:\/\/default\/user\/1",
                 "description": "Drupal.cz",
-                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "og_url": "http:\/\/default\/drupal-cz",
                 "og_title": "| Drupal.cz"
             }
         }
@@ -62,7 +99,7 @@
     "path": [
         {
             "alias": "\/user\/admin",
-            "pid": 966,
+            "pid": 366447,
             "langcode": "en",
             "lang": "en"
         }

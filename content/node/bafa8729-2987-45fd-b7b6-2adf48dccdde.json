@@ -1,0 +1,268 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/node\/371831?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/node\/dcz_showcase"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_showcase\/revision_uid": [
+            {
+                "href": "http:\/\/default\/en\/user\/admin?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_showcase\/uid": [
+            {
+                "href": "http:\/\/default\/user\/mirom?_format=hal_json",
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_showcase\/field_drupal_version": [
+            {
+                "href": "http:\/\/default\/taxonomy\/term\/46?_format=hal_json",
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_showcase\/field_logo": [
+            {
+                "href": "http:\/\/default\/media\/1148?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_showcase\/field_main_screenshot": [
+            {
+                "href": "http:\/\/default\/media\/1147?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_showcase\/field_tags": [
+            {
+                "href": "http:\/\/default\/stitky\/drupalcs-awards-2019?_format=hal_json",
+                "lang": "cs"
+            }
+        ]
+    },
+    "nid": [
+        {
+            "value": 371831
+        }
+    ],
+    "uuid": [
+        {
+            "value": "bafa8729-2987-45fd-b7b6-2adf48dccdde"
+        }
+    ],
+    "vid": [
+        {
+            "value": 375798
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "dcz_showcase"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2019-06-11T19:50:40+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_showcase\/revision_uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/en\/user\/admin?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "729cc54c-cd71-4b21-9d99-8744decd2dc7"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_showcase\/uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/mirom?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "ab1692a6-3861-4d8a-b088-e72fdc75cec0"
+                    }
+                ],
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_showcase\/field_drupal_version": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/taxonomy\/term\/46?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/taxonomy_term\/drupal_version"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "10e106a0-6400-4f38-85ff-bd8f5f59ef32"
+                    }
+                ],
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_showcase\/field_logo": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/media\/1148?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/media\/image"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "e911e79b-1417-4f65-9c83-b689061a26eb"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_showcase\/field_main_screenshot": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/media\/1147?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/media\/image"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "36711462-9349-4282-859d-f863646cebde"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_showcase\/field_tags": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/stitky\/drupalcs-awards-2019?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/taxonomy_term\/tags"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "cb9eb10d-a758-428a-9494-206d2c4abce5"
+                    }
+                ],
+                "lang": "cs"
+            }
+        ]
+    },
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "title": [
+        {
+            "value": "Pam\u011b\u0165 n\u00e1roda",
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2019-05-05T09:31:34+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2019-06-11T19:50:40+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "sticky": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "Pam\u011b\u0165 n\u00e1roda | Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/node\/371831",
+                "description": "Drupal enables researchers from Memory of Nations to preserve valuable memories of witnesses of the recent communist and fascist past.",
+                "og_url": "http:\/\/default\/drupal-cz",
+                "og_title": "| Drupal.cz",
+                "article_tag_0": "DrupalCS Awards 2019",
+                "article_published_time": "2019-05-05T11:31:34+0200",
+                "article_modified_time": "2019-06-11T21:50:40+0200"
+            }
+        }
+    ],
+    "body": [
+        {
+            "value": "<p>Drupal enables researchers from Memory of Nations to preserve valuable memories of witnesses of the recent communist and fascist past.<\/p>\r\n\r\n<p>Post Bellum, a Czech-based NGO, selected Made It Digital to modernize the Memory of Nations project website which was created in 2008. The aim of the Memory of Nations project is to link and interconnect oral history projects that are focused on similar topics from all over the world. Made It Digital was brought in to rebuild the legacy database in Drupal 8, in partnership with Czech Drupal community and Czech Radio which provided hosting for the project.<\/p>\r\n\r\n<p>The database rebuild consisted of migrating data from a custom database to Drupal 8 in 14 languages. Made It Digital developed a customised translation system comprising a complex system of fallbacks and default languages. The design was delivered by the client in Patternlab which Made It Digital integrated into Drupal 8. Patternlab is advantageous because now Post Bellum is able to do design changes on its live Drupal 8 website with minimal assistance from Made It Digital.<\/p>\r\n\r\n<p>Why Drupal was chosen:&nbsp;<\/p>\r\n\r\n<p>The previous website was almost ten years old and despite good maintenance over the years it wasn\u2019t following the latest trends in technology and user experience.<\/p>\r\n\r\n<p>Drupal was chosen because it:<\/p>\r\n\r\n<ul>\r\n\t<li>Is proven in the NGO sector<\/li>\r\n\t<li>Is open-source and has an open vendor market<\/li>\r\n\t<li>Has strong multilingual capabilities<\/li>\r\n\t<li>Can manage large media collections<\/li>\r\n\t<li>Is flexibility and easy to extend<\/li>\r\n<\/ul>\r\n\r\n<p>Drupal was also recommended by Czech Radio, technical supervisor of the project, because of its past experiences of Drupal as a flexible and secure CMS system.<\/p>\r\n\r\n<p>Describe the project (goals, requirements and outcome):&nbsp;<\/p>\r\n\r\n<p>The main goals of the project were to:<\/p>\r\n\r\n<ul>\r\n\t<li>Migrate several thousand pieces of content in 14 languages into Drupal 8<\/li>\r\n\t<li>Implement advanced search options on the front and backend<\/li>\r\n\t<li>Separate access between public and private content<\/li>\r\n\t<li>Maintain tens of thousands multimedia library items including video and audio<\/li>\r\n\t<li>Implement component based design from PatternLab<\/li>\r\n<\/ul>\r\n\r\n<p>The information system powering the website is focused on researchers who are working with it daily (~800 unique users\/day). They are managing approximately 8,000 witnesses and each witness has a couple of their memories on the events of their lifetime collected. These memories are audio and video recordings resulting in over 180TB of data. Given the amount of content, it was clear to all that automated migration would be required.<\/p>\r\n\r\n<p>One of the challenges was due to the former website not creating translations in the standard Drupal way, instead, administrators selected a primary language for an entity and was restricted to only adding English language translation to the fields on the same entity. This resulted in English being the only common language and therefore we picked it as the default of the site and now we\u2019re using proper Drupal translations. This approach enables researchers to add multiple different translations.<\/p>\r\n\r\n<p>The public version of the website is primarily only in Czech and English, but users can visit specific language versions from the witness detail page. Because several languages in central Europe are similar and understandable to each other, we created a novel system of language fallback: Using this system of fallback we are able to display all the content of the website even though it doesn\u2019t have comprehensive translation.<\/p>\r\n\r\n<p>Regarding advanced search, on the frontend users can use fulltext search based on Apache Solr. It enables them to search in literally any content on any page. For different content types we set different priorities for specific fields to make the results more relevant. On the backend researchers can access multiple lists of content created using \u2018views\u2019 and search in them using \u2018exposed\u2019 filters.<\/p>\r\n\r\n<p>The former website had multiple user roles with the same permissions because they were used to indicate a work role. We simplified and improved the permissions system for both visitors and administrators. Previously there were many administrator roles making it difficult to use and maintain. For visitors to the website, authenticated visitors can access more multimedia than anonymous visitors and anonymous visitors can register via an SMS validation code. This is an important innovation because after implementation there was a reduction in extremists seeking to exploit the private data of witnesses.<\/p>\r\n\r\n<p>To secure private data we created a special set of permissions for access to, and editing of, witness testimonies. Now only system administrators and moderators can access private content at all the times. If any other user wants access then they need to first ask and then be assigned to specific witness\u2019s content.<\/p>\r\n\r\n<p>Updating to Drupal 8 also presented the opportunity to update the visual identity of the website. Post Bellum wanted to attract more visitors with magazine-style content comprising interesting articles and eye-catching photography and font use. The new visual identity was created by Post Bellum and delivered to us in form of PatternLab templates. We decided to integrate PatternLab with Drupal so that it is easier for Post Bellum to make minor design changes in the future.<\/p>\r\n",
+            "format": "full_html",
+            "processed": "<p>Drupal enables researchers from Memory of Nations to preserve valuable memories of witnesses of the recent communist and fascist past.<\/p>\n\n<p>Post Bellum, a Czech-based NGO, selected Made It Digital to modernize the Memory of Nations project website which was created in 2008. The aim of the Memory of Nations project is to link and interconnect oral history projects that are focused on similar topics from all over the world. Made It Digital was brought in to rebuild the legacy database in Drupal 8, in partnership with Czech Drupal community and Czech Radio which provided hosting for the project.<\/p>\n\n<p>The database rebuild consisted of migrating data from a custom database to Drupal 8 in 14 languages. Made It Digital developed a customised translation system comprising a complex system of fallbacks and default languages. The design was delivered by the client in Patternlab which Made It Digital integrated into Drupal 8. Patternlab is advantageous because now Post Bellum is able to do design changes on its live Drupal 8 website with minimal assistance from Made It Digital.<\/p>\n\n<p>Why Drupal was chosen:\u00a0<\/p>\n\n<p>The previous website was almost ten years old and despite good maintenance over the years it wasn\u2019t following the latest trends in technology and user experience.<\/p>\n\n<p>Drupal was chosen because it:<\/p>\n\n<ul><li>Is proven in the NGO sector<\/li>\n\t<li>Is open-source and has an open vendor market<\/li>\n\t<li>Has strong multilingual capabilities<\/li>\n\t<li>Can manage large media collections<\/li>\n\t<li>Is flexibility and easy to extend<\/li>\n<\/ul><p>Drupal was also recommended by Czech Radio, technical supervisor of the project, because of its past experiences of Drupal as a flexible and secure CMS system.<\/p>\n\n<p>Describe the project (goals, requirements and outcome):\u00a0<\/p>\n\n<p>The main goals of the project were to:<\/p>\n\n<ul><li>Migrate several thousand pieces of content in 14 languages into Drupal 8<\/li>\n\t<li>Implement advanced search options on the front and backend<\/li>\n\t<li>Separate access between public and private content<\/li>\n\t<li>Maintain tens of thousands multimedia library items including video and audio<\/li>\n\t<li>Implement component based design from PatternLab<\/li>\n<\/ul><p>The information system powering the website is focused on researchers who are working with it daily (~800 unique users\/day). They are managing approximately 8,000 witnesses and each witness has a couple of their memories on the events of their lifetime collected. These memories are audio and video recordings resulting in over 180TB of data. Given the amount of content, it was clear to all that automated migration would be required.<\/p>\n\n<p>One of the challenges was due to the former website not creating translations in the standard Drupal way, instead, administrators selected a primary language for an entity and was restricted to only adding English language translation to the fields on the same entity. This resulted in English being the only common language and therefore we picked it as the default of the site and now we\u2019re using proper Drupal translations. This approach enables researchers to add multiple different translations.<\/p>\n\n<p>The public version of the website is primarily only in Czech and English, but users can visit specific language versions from the witness detail page. Because several languages in central Europe are similar and understandable to each other, we created a novel system of language fallback: Using this system of fallback we are able to display all the content of the website even though it doesn\u2019t have comprehensive translation.<\/p>\n\n<p>Regarding advanced search, on the frontend users can use fulltext search based on Apache Solr. It enables them to search in literally any content on any page. For different content types we set different priorities for specific fields to make the results more relevant. On the backend researchers can access multiple lists of content created using \u2018views\u2019 and search in them using \u2018exposed\u2019 filters.<\/p>\n\n<p>The former website had multiple user roles with the same permissions because they were used to indicate a work role. We simplified and improved the permissions system for both visitors and administrators. Previously there were many administrator roles making it difficult to use and maintain. For visitors to the website, authenticated visitors can access more multimedia than anonymous visitors and anonymous visitors can register via an SMS validation code. This is an important innovation because after implementation there was a reduction in extremists seeking to exploit the private data of witnesses.<\/p>\n\n<p>To secure private data we created a special set of permissions for access to, and editing of, witness testimonies. Now only system administrators and moderators can access private content at all the times. If any other user wants access then they need to first ask and then be assigned to specific witness\u2019s content.<\/p>\n\n<p>Updating to Drupal 8 also presented the opportunity to update the visual identity of the website. Post Bellum wanted to attract more visitors with magazine-style content comprising interesting articles and eye-catching photography and font use. The new visual identity was created by Post Bellum and delivered to us in form of PatternLab templates. We decided to integrate PatternLab with Drupal so that it is easier for Post Bellum to make minor design changes in the future.<\/p>\n",
+            "summary": "",
+            "lang": "cs"
+        }
+    ],
+    "field_display_options": [
+        {
+            "value": "hp_logo"
+        }
+    ],
+    "field_url": [
+        {
+            "uri": "https:\/\/www.pametnaroda.cz",
+            "title": "Pam\u011b\u0165 n\u00e1roda",
+            "options": []
+        }
+    ]
+}

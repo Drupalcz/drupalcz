@@ -33,6 +33,18 @@
             "target_id": "content_block"
         }
     ],
+    "revision_created": [
+        {
+            "value": "2018-02-27T13:05:33+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
     "info": [
         {
             "value": "Drupal asociace",
@@ -46,10 +58,9 @@
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
-    "revision_created": [
+    "reusable": [
         {
-            "value": "2018-02-27T13:05:33+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": true
         }
     ],
     "default_langcode": [
@@ -69,8 +80,8 @@
             "value": {
                 "title": "| Drupal.cz",
                 "og_site_name": "Drupal.cz",
-                "canonical_url": "http:\/\/default\/%3Cnone%3E",
-                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "canonical_url": "http:\/\/default\/drupal-cz",
+                "og_url": "http:\/\/default\/drupal-cz",
                 "og_title": "| Drupal.cz"
             }
         }
@@ -79,6 +90,7 @@
         {
             "value": "<drupal-entity data-embed-button=\"image\" data-entity-embed-display=\"view_mode:media.embed\" data-entity-type=\"media\" data-entity-uuid=\"6273bf17-88ff-49d7-9c34-2f7102c44457\"><\/drupal-entity>\r\n\r\n<p>Drupal.cz je dlouhodob\u011b podporov\u00e1n Asociac\u00ed pro Drupal.<\/p>\r\n\r\n<p><a class=\"button\" href=\"\/drupal-asociace\">Zjisti v\u00edce a sta\u0148 se \u010dlenem<\/a><\/p>\r\n",
             "format": "full_html",
+            "processed": "<div data-embed-button=\"image\" data-entity-embed-display=\"view_mode:media.embed\" data-entity-type=\"media\" data-entity-uuid=\"6273bf17-88ff-49d7-9c34-2f7102c44457\" data-langcode=\"cs\" class=\"embedded-entity\"><article class=\"contextual-region media media--type-image media--view-mode-embed\"><div data-contextual-id=\"media:media=246:changed=1520629423&amp;langcode=cs\" data-contextual-token=\"MzLkAfA2c83XBQFXaq4LLgzzj6iORjjE2uKBElp6YjU\"><\/div>\n      \n            <div class=\"field field--name-field-media-image field--type-image field--label-hidden field__item\">  <img src=\"\/sites\/default\/files\/styles\/original\/public\/images\/2018-03\/asociace-pro-drupal-logo-250.png?itok=GnMLfimf\" width=\"219\" height=\"69\" alt=\"Asociace pro Drupal\" class=\"image-style-original\" \/><\/div>\n      \n  <\/article><\/div>\n<p>Drupal.cz je dlouhodob\u011b podporov\u00e1n Asociac\u00ed pro Drupal.<\/p>\n\n<p><a class=\"button\" href=\"\/drupal-asociace\">Zjisti v\u00edce a sta\u0148 se \u010dlenem<\/a><\/p>\n",
             "summary": "",
             "lang": "cs"
         }

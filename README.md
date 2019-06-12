@@ -69,22 +69,11 @@ podívejte se do souboru `sass.lando.local.yml`, kde jsou instrukce, jak na to.
   * Login to new site:
   * read admin password from console, or
   * `drush uli`
-* If you want to have some default content for your development, 
-  * `drush dcdi`
-  * `drush dcdi`
+  * or `drush upwd admin vase_heslo`
+* If you want to have some default content for your development, import it
+  * `drush dcdi --force update`
   * `drush cr`
-  * Poznámka pro české vývojáře:
-    * Na stránce Články (http://dcz.localhost/clanky) se nezobrazují články, 
-  protože nefunguje korektně import views reference fieldu (bug v modulu a v Drupal core,
-  co čeká na vyřešení). Ručně je třeba na stránce /node/46/edit 
-  jít do paragraphs Layout, kliknout na Edit, kliknout Edit u paragrafu typu 
-  View reference a do položky View reference vepsat slovo "Articles".
-    * To samé na stránce Komunity (/node/171/edit) opravit 
-  views referenci "User directory".
-    * Než se vyřeší problém v Travis, je třeba nastavit homepage.
-  Na stránce /admin/config/system/site-information nastavte Front page 
-  na hodnotu /drupal-cz.
-
+  
 ## Contributing
 * We are using GitFlow(https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow/) branching strategy
 * Learn how to manage config: https://www.youtube.com/watch?v=WsMuQFO8yGU

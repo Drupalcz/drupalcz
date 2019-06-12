@@ -5,12 +5,7 @@
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/menu_link_content\/menu_link_content"
-        },
-        "http:\/\/drupal.org\/rest\/relation\/menu_link_content\/menu_link_content\/menu_link_content_target_entity": [
-            {
-                "href": "http:\/\/default\/katalog?_format=hal_json"
-            }
-        ]
+        }
     },
     "id": [
         {
@@ -33,6 +28,11 @@
             "value": "menu_link_content"
         }
     ],
+    "enabled": [
+        {
+            "value": true
+        }
+    ],
     "title": [
         {
             "value": "Katalog",
@@ -46,10 +46,9 @@
     ],
     "link": [
         {
-            "uri": "entity:node\/466",
-            "title": null,
-            "options": [],
-            "target_uuid": "22f28b56-8272-45e1-87ba-cdfb33e19207"
+            "uri": "internal:\/katalog\/?aaa",
+            "title": "",
+            "options": []
         }
     ],
     "external": [
@@ -59,7 +58,7 @@
     ],
     "rediscover": [
         {
-            "value": false
+            "value": true
         }
     ],
     "weight": [
@@ -72,14 +71,9 @@
             "value": false
         }
     ],
-    "enabled": [
-        {
-            "value": true
-        }
-    ],
     "changed": [
         {
-            "value": "2018-04-04T06:57:27+00:00",
+            "value": "2019-04-24T14:03:22+00:00",
             "lang": "cs",
             "format": "Y-m-d\\TH:i:sP"
         }
@@ -95,29 +89,10 @@
             "value": {
                 "title": "| Drupal.cz",
                 "og_site_name": "Drupal.cz",
-                "canonical_url": "http:\/\/default\/%3Cnone%3E",
-                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "canonical_url": "http:\/\/default\/drupal-cz",
+                "og_url": "http:\/\/default\/drupal-cz",
                 "og_title": "| Drupal.cz"
             }
         }
-    ],
-    "_embedded": {
-        "http:\/\/drupal.org\/rest\/relation\/menu_link_content\/menu_link_content\/menu_link_content_target_entity": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http:\/\/default\/katalog?_format=hal_json"
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/node\/dcz_landing_page"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "22f28b56-8272-45e1-87ba-cdfb33e19207"
-                    }
-                ]
-            }
-        ]
-    }
+    ]
 }

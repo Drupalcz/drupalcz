@@ -1,0 +1,89 @@
+{
+    "_links": {
+        "self": {
+            "href": ""
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_content"
+        }
+    },
+    "id": [
+        {
+            "value": 946
+        }
+    ],
+    "uuid": [
+        {
+            "value": "d1052fd4-afe2-432e-a48e-f2ab98c774b0"
+        }
+    ],
+    "revision_id": [
+        {
+            "value": 9181
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "dcz_para_content"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-03-06T21:44:00+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "parent_id": [
+        {
+            "value": "956"
+        }
+    ],
+    "parent_type": [
+        {
+            "value": "paragraph"
+        }
+    ],
+    "parent_field_name": [
+        {
+            "value": "field_paragraphs"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "field_content": [
+        {
+            "value": "<h2>F\u00f3rum<\/h2>\n\n<p>Zkou\u0161\u00edte Drupal a m\u00e1te spoustu technick\u00fdch ot\u00e1zek? A\u0165 ji\u017e jste za\u010d\u00e1te\u010dn\u00edk, anebo zku\u0161en\u00fd Drupalista, pro v\u0161echny technick\u00e9 i m\u00e9n\u011b technick\u00e9 dotazy zde m\u00e1me <a href=\"\/forum\">f\u00f3rum<\/a>, kter\u00e9 je rozd\u011bleno do vhodn\u00fdch t\u00e9matick\u00fdch sekc\u00ed.<\/p>\n\n<p>V\u011b\u0159te, \u017ee my v\u0161ichni v souvislosti s Drupalem \u0159e\u0161\u00edme podobn\u00e9 probl\u00e9my. Je velk\u00e1 \u0161ance, \u017ee pr\u00e1v\u011b V\u00e1\u0161 probl\u00e9m m\u016f\u017ee b\u00fdt jedn\u00edm z t\u011bch, na kter\u00e9 ji\u017e ve f\u00f3ru existuje odpov\u011b\u010f. F\u00f3rum je jednodu\u0161e skv\u011bl\u00e1 studnice informac\u00ed.<\/p>\n\n<p><a class=\"button\" href=\"\/node\/add\/forum\">Zeptat se ve f\u00f3ru<\/a><\/p>\n",
+            "format": "full_html",
+            "processed": "<h2>F\u00f3rum<\/h2>\n\n<p>Zkou\u0161\u00edte Drupal a m\u00e1te spoustu technick\u00fdch ot\u00e1zek? A\u0165 ji\u017e jste za\u010d\u00e1te\u010dn\u00edk, anebo zku\u0161en\u00fd Drupalista, pro v\u0161echny technick\u00e9 i m\u00e9n\u011b technick\u00e9 dotazy zde m\u00e1me <a href=\"\/forum\">f\u00f3rum<\/a>, kter\u00e9 je rozd\u011bleno do vhodn\u00fdch t\u00e9matick\u00fdch sekc\u00ed.<\/p>\n\n<p>V\u011b\u0159te, \u017ee my v\u0161ichni v souvislosti s Drupalem \u0159e\u0161\u00edme podobn\u00e9 probl\u00e9my. Je velk\u00e1 \u0161ance, \u017ee pr\u00e1v\u011b V\u00e1\u0161 probl\u00e9m m\u016f\u017ee b\u00fdt jedn\u00edm z t\u011bch, na kter\u00e9 ji\u017e ve f\u00f3ru existuje odpov\u011b\u010f. F\u00f3rum je jednodu\u0161e skv\u011bl\u00e1 studnice informac\u00ed.<\/p>\n\n<p><a class=\"button\" href=\"\/node\/add\/forum\">Zeptat se ve f\u00f3ru<\/a><\/p>\n",
+            "lang": "cs"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "F\u00f3rum",
+            "lang": "cs"
+        }
+    ]
+}

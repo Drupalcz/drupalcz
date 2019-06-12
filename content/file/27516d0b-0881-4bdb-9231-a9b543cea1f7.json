@@ -1,7 +1,7 @@
 {
     "_links": {
         "self": {
-            "href": "http:\/\/default\/sites\/default\/files\/images\/2018-03\/drupal8.png"
+            "href": ""
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
@@ -53,7 +53,8 @@
     ],
     "uri": [
         {
-            "value": "public:\/\/images\/2018-03\/drupal8.png"
+            "value": "public:\/\/images\/2018-03\/drupal8.png",
+            "url": "\/sites\/default\/files\/images\/2018-03\/drupal8.png"
         }
     ],
     "filemime": [

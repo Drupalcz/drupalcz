@@ -33,6 +33,11 @@
             "value": "menu_link_content"
         }
     ],
+    "enabled": [
+        {
+            "value": true
+        }
+    ],
     "title": [
         {
             "value": "Komunita",
@@ -47,7 +52,7 @@
     "link": [
         {
             "uri": "entity:node\/171",
-            "title": null,
+            "title": "",
             "options": [],
             "target_uuid": "a802ad65-5e94-4365-a40b-fbdd2078bf11"
         }
@@ -69,17 +74,12 @@
     ],
     "expanded": [
         {
-            "value": false
-        }
-    ],
-    "enabled": [
-        {
             "value": true
         }
     ],
     "changed": [
         {
-            "value": "2018-03-04T17:03:23+00:00",
+            "value": "2019-05-20T13:11:44+00:00",
             "lang": "cs",
             "format": "Y-m-d\\TH:i:sP"
         }
@@ -95,8 +95,8 @@
             "value": {
                 "title": "| Drupal.cz",
                 "og_site_name": "Drupal.cz",
-                "canonical_url": "http:\/\/default\/%3Cnone%3E",
-                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "canonical_url": "http:\/\/default\/drupal-cz",
+                "og_url": "http:\/\/default\/drupal-cz",
                 "og_title": "| Drupal.cz"
             }
         }

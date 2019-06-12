@@ -10,8 +10,6 @@ module:
   better_normalizers: 0
   default_content: 0
   default_content_deploy: 0
-  hal: 0
-  serialization: 0
 theme: {  }
 blacklist: {  }
 graylist: {  }

@@ -1,0 +1,175 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/en\/user\/radimklaska?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/user\/user\/field_dcz_user_image": [
+            {
+                "href": ""
+            }
+        ]
+    },
+    "uid": [
+        {
+            "value": 6
+        }
+    ],
+    "uuid": [
+        {
+            "value": "ce6a80ed-d70b-4f17-a280-5a3c525f3a8b"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en",
+            "lang": "en"
+        }
+    ],
+    "preferred_langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "preferred_admin_langcode": [
+        {
+            "value": "cs"
+        }
+    ],
+    "name": [
+        {
+            "value": "radimklaska"
+        }
+    ],
+    "mail": [
+        {
+            "value": "radim@klaska.net"
+        }
+    ],
+    "timezone": [
+        {
+            "value": "Europe\/Prague"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2017-10-02T13:32:22+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-03-10T18:38:20+00:00",
+            "lang": "en",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "access": [
+        {
+            "value": "2019-05-31T09:12:39+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "login": [
+        {
+            "value": "2019-05-28T13:18:59+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "init": [
+        {
+            "value": "radim@klaska.net"
+        }
+    ],
+    "roles": [
+        {
+            "target_id": "editor"
+        },
+        {
+            "target_id": "administrator"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "en"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "radimklaska | Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/user\/6",
+                "description": "Drupal.cz",
+                "og_url": "http:\/\/default\/drupal-cz",
+                "og_title": "| Drupal.cz"
+            }
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/user\/radimklaska",
+            "pid": 301,
+            "langcode": "en",
+            "lang": "en"
+        }
+    ],
+    "field_dcz_bio": [
+        {
+            "value": "<p>About me: <a href=\"http:\/\/klaska.net\/informace?utm_source=drupalcz&amp;utm_medium=dczsignature&amp;utm_content=aboutme&amp;utm_campaign=signature\">Klaska.net<\/a> &amp; <a href=\"https:\/\/goo.gl\/zNEIkX\">Morpht Pty. Ltd.<\/a><br \/>\r\nDrupal.org: <a href=\"https:\/\/drupal.org\/user\/229127\">https:\/\/drupal.org\/user\/229127<\/a><br \/>\r\nTwitter : <a href=\"https:\/\/twitter.com\/radimklaska\">http:\/\/twitter.com\/radimklaska<\/a><br \/>\r\nT\u00e9\u017e spravuji \u00fa\u010dty d.cz na <a href=\"https:\/\/plus.google.com\/118101142637427341014\" rel=\"publisher\">G+<\/a>, <a href=\"https:\/\/twitter.com\/drupalcz\">Twitteru<\/a> a <a href=\"https:\/\/www.facebook.com\/drupalcz\">FB<\/a><br \/>\r\n<a href=\"https:\/\/www.drupal.org\/association\/support\/individual-members?country=Czech+Republic&amp;n=&amp;fn=&amp;ln=&amp;expertise=&amp;sort_by=field_da_join_date_value&amp;sort_order=ASC\" title=\"Jsem \u010dlenem Drupal Associace\"><img alt=\"Jsem \u010dlenem Drupal Associace\" height=\"80\" src=\"https:\/\/association.drupal.org\/files\/Drupal_Association_ind_member_80.png\" style=\"float:left\" width=\"80\" \/><\/a><\/p>\r\n",
+            "format": "full_html",
+            "processed": "<p>About me: <a href=\"http:\/\/klaska.net\/informace?utm_source=drupalcz&amp;utm_medium=dczsignature&amp;utm_content=aboutme&amp;utm_campaign=signature\">Klaska.net<\/a> &amp; <a href=\"https:\/\/goo.gl\/zNEIkX\">Morpht Pty. Ltd.<\/a><br \/>\nDrupal.org: <a href=\"https:\/\/drupal.org\/user\/229127\">https:\/\/drupal.org\/user\/229127<\/a><br \/>\nTwitter : <a href=\"https:\/\/twitter.com\/radimklaska\">http:\/\/twitter.com\/radimklaska<\/a><br \/>\nT\u00e9\u017e spravuji \u00fa\u010dty d.cz na <a href=\"https:\/\/plus.google.com\/118101142637427341014\" rel=\"publisher\">G+<\/a>, <a href=\"https:\/\/twitter.com\/drupalcz\">Twitteru<\/a> a <a href=\"https:\/\/www.facebook.com\/drupalcz\">FB<\/a><br \/><a href=\"https:\/\/www.drupal.org\/association\/support\/individual-members?country=Czech+Republic&amp;n=&amp;fn=&amp;ln=&amp;expertise=&amp;sort_by=field_da_join_date_value&amp;sort_order=ASC\" title=\"Jsem \u010dlenem Drupal Associace\"><img alt=\"Jsem \u010dlenem Drupal Associace\" height=\"80\" src=\"https:\/\/association.drupal.org\/files\/Drupal_Association_ind_member_80.png\" style=\"float:left\" width=\"80\" \/><\/a><\/p>\n"
+        }
+    ],
+    "field_dcz_name": [
+        {
+            "value": "Radim"
+        }
+    ],
+    "field_dcz_surname": [
+        {
+            "value": "Kla\u0161ka"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/user\/user\/field_dcz_user_image": [
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "03000cbb-d4a7-401a-9311-1c4a2c58bcb9"
+                    }
+                ],
+                "alt": "Radim Kla\u0161ka",
+                "title": "",
+                "width": "975",
+                "height": "982"
+            }
+        ]
+    },
+    "field_location": [
+        {
+            "lat": 50.6630909,
+            "lng": 13.8371943,
+            "lat_sin": 0.77343203453322,
+            "lat_cos": 0.63387923767687,
+            "lng_rad": 0.24150459977319,
+            "data": []
+        }
+    ]
+}

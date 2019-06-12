@@ -1,0 +1,137 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/user\/mirom?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+        }
+    },
+    "uid": [
+        {
+            "value": 86
+        }
+    ],
+    "uuid": [
+        {
+            "value": "ab1692a6-3861-4d8a-b088-e72fdc75cec0"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "preferred_langcode": [
+        {
+            "value": "cs"
+        }
+    ],
+    "preferred_admin_langcode": [
+        {
+            "value": "cs"
+        }
+    ],
+    "name": [
+        {
+            "value": "mirom"
+        }
+    ],
+    "mail": [
+        {
+            "value": "miro.michalicka@gmail.com"
+        }
+    ],
+    "timezone": [
+        {
+            "value": "Europe\/Bratislava"
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-03-09T06:08:29+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-03-12T13:57:33+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "access": [
+        {
+            "value": "2019-06-10T16:30:57+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "login": [
+        {
+            "value": "2019-06-05T14:44:45+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "init": [
+        {
+            "value": "miro.michalicka@gmail.com"
+        }
+    ],
+    "roles": [
+        {
+            "target_id": "administrator"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "mirom | Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/user\/mirom",
+                "description": "Drupal.cz",
+                "og_url": "http:\/\/default\/drupal-cz",
+                "og_title": "| Drupal.cz"
+            }
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/user\/mirom",
+            "pid": 356,
+            "langcode": "cs",
+            "lang": "cs"
+        }
+    ],
+    "field_dcz_name": [
+        {
+            "value": "Miro"
+        }
+    ],
+    "field_dcz_surname": [
+        {
+            "value": "Michalicka"
+        }
+    ],
+    "field_location": [
+        {
+            "lat": 48.1815976,
+            "lng": 17.1357373,
+            "lat_sin": 0.74526188269026,
+            "lat_cos": 0.6667718696893,
+            "lng_rad": 0.2990750356418,
+            "data": []
+        }
+    ]
+}

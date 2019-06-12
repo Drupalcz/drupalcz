@@ -5,18 +5,7 @@
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_view_reference"
-        },
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_view_reference\/uid": [
-            {
-                "href": "http:\/\/default\/en\/user\/admin?_format=hal_json",
-                "lang": "cs"
-            }
-        ],
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_view_reference\/revision_uid": [
-            {
-                "href": "http:\/\/default\/en\/user\/admin?_format=hal_json"
-            }
-        ]
+        }
     },
     "id": [
         {
@@ -33,54 +22,17 @@
             "value": 8676
         }
     ],
-    "type": [
-        {
-            "target_id": "dcz_para_view_reference"
-        }
-    ],
     "langcode": [
         {
             "value": "cs",
             "lang": "cs"
         }
     ],
-    "_embedded": {
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_view_reference\/uid": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http:\/\/default\/en\/user\/admin?_format=hal_json"
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "729cc54c-cd71-4b21-9d99-8744decd2dc7"
-                    }
-                ],
-                "lang": "cs"
-            }
-        ],
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_view_reference\/revision_uid": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http:\/\/default\/en\/user\/admin?_format=hal_json"
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "729cc54c-cd71-4b21-9d99-8744decd2dc7"
-                    }
-                ]
-            }
-        ]
-    },
+    "type": [
+        {
+            "target_id": "dcz_para_view_reference"
+        }
+    ],
     "status": [
         {
             "value": true,
@@ -111,7 +63,7 @@
     ],
     "behavior_settings": [
         {
-            "value": "a:0:{}"
+            "value": []
         }
     ],
     "default_langcode": [
