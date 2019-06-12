@@ -48,7 +48,7 @@
     ],
     "vid": [
         {
-            "value": 2401
+            "value": 375431
         }
     ],
     "langcode": [
@@ -64,7 +64,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2018-03-22T08:31:42+00:00",
+            "value": "2019-05-20T13:27:48+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -120,7 +120,7 @@
                     }
                 ],
                 "lang": "cs",
-                "target_revision_id": "9056"
+                "target_revision_id": "11726"
             },
             {
                 "_links": {
@@ -137,7 +137,7 @@
                     }
                 ],
                 "lang": "cs",
-                "target_revision_id": "9071"
+                "target_revision_id": "11731"
             },
             {
                 "_links": {
@@ -154,7 +154,7 @@
                     }
                 ],
                 "lang": "cs",
-                "target_revision_id": "9096"
+                "target_revision_id": "11746"
             },
             {
                 "_links": {
@@ -196,7 +196,7 @@
     ],
     "changed": [
         {
-            "value": "2018-03-22T08:31:42+00:00",
+            "value": "2019-05-20T13:27:48+00:00",
             "lang": "cs",
             "format": "Y-m-d\\TH:i:sP"
         }
@@ -219,22 +219,16 @@
             "lang": "cs"
         }
     ],
-    "revision_translation_affected": [
-        {
-            "value": true,
-            "lang": "cs"
-        }
-    ],
     "metatag": [
         {
             "value": {
                 "title": "Drupal.cz | Drupal.cz",
                 "og_site_name": "Drupal.cz",
                 "canonical_url": "http:\/\/default\/drupal-cz",
-                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "og_url": "http:\/\/default\/drupal-cz",
                 "og_title": "| Drupal.cz",
                 "article_published_time": "2018-02-18T11:09:22+0100",
-                "article_modified_time": "2018-03-22T09:31:42+0100"
+                "article_modified_time": "2019-05-20T15:27:48+0200"
             }
         }
     ],

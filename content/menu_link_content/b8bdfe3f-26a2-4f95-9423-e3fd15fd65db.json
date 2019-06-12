@@ -1,0 +1,127 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/admin\/structure\/menu\/item\/51\/edit?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/menu_link_content\/menu_link_content"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/menu_link_content\/menu_link_content\/menu_link_content_parent_entity": [
+            {
+                "href": "http:\/\/default\/admin\/structure\/menu\/item\/16\/edit?_format=hal_json"
+            }
+        ]
+    },
+    "id": [
+        {
+            "value": 51
+        }
+    ],
+    "uuid": [
+        {
+            "value": "b8bdfe3f-26a2-4f95-9423-e3fd15fd65db"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "bundle": [
+        {
+            "value": "menu_link_content"
+        }
+    ],
+    "enabled": [
+        {
+            "value": false
+        }
+    ],
+    "title": [
+        {
+            "value": "DrupalCS Awards",
+            "lang": "cs"
+        }
+    ],
+    "menu_name": [
+        {
+            "value": "main"
+        }
+    ],
+    "link": [
+        {
+            "uri": "internal:\/drupal-cs-awards",
+            "title": "",
+            "options": []
+        }
+    ],
+    "external": [
+        {
+            "value": false
+        }
+    ],
+    "rediscover": [
+        {
+            "value": true
+        }
+    ],
+    "weight": [
+        {
+            "value": 0
+        }
+    ],
+    "expanded": [
+        {
+            "value": true
+        }
+    ],
+    "parent": [
+        {
+            "value": "menu_link_content:6dbe5cbb-f64a-4267-a3ac-6a0988411780"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2019-05-20T13:13:44+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "| Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/drupal-cz",
+                "og_url": "http:\/\/default\/drupal-cz",
+                "og_title": "| Drupal.cz"
+            }
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/menu_link_content\/menu_link_content\/menu_link_content_parent_entity": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/admin\/structure\/menu\/item\/16\/edit?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/menu_link_content\/menu_link_content"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "6dbe5cbb-f64a-4267-a3ac-6a0988411780"
+                    }
+                ]
+            }
+        ]
+    }
+}

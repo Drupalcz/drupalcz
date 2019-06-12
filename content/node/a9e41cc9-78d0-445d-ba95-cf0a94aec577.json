@@ -1,0 +1,235 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/clanky\/vysel-drupal-8-7?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/node\/dcz_article"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/revision_uid": [
+            {
+                "href": "http:\/\/default\/user\/petr?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/uid": [
+            {
+                "href": "http:\/\/default\/user\/petr?_format=hal_json",
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/field_tags": [
+            {
+                "href": "http:\/\/default\/stitky\/drupal-8?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/field_teaser_image": [
+            {
+                "href": "http:\/\/default\/media\/11?_format=hal_json"
+            }
+        ]
+    },
+    "nid": [
+        {
+            "value": 371901
+        }
+    ],
+    "uuid": [
+        {
+            "value": "a9e41cc9-78d0-445d-ba95-cf0a94aec577"
+        }
+    ],
+    "vid": [
+        {
+            "value": 375176
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "dcz_article"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2019-05-14T23:50:44+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/revision_uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/petr?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/petr?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
+                    }
+                ],
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/field_tags": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/stitky\/drupal-8?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/taxonomy_term\/tags"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "64e6e6dd-6697-4cf9-803c-1a679d5a7186"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/dcz_article\/field_teaser_image": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/media\/11?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/media\/image"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "5e655fd6-b546-4a76-9baa-1d02e70296bf"
+                    }
+                ]
+            }
+        ]
+    },
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "title": [
+        {
+            "value": "Vy\u0161el Drupal 8. 7.",
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2019-05-14T23:46:38+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2019-05-14T23:50:44+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "sticky": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "| Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/clanky\/vysel-drupal-8-7",
+                "og_type": "article",
+                "description": "Podle dlouhodob\u00e9ho pl\u00e1nu vy\u0161la na prvn\u00edho M\u00e1je nov\u00e1 minoritn\u00ed verze Drupalu s po\u0159adov\u00fdm \u010d\u00edslem 8.7. Tato verze p\u0159in\u00e1\u0161\u00ed mnoho drobn\u00fdch vylep\u0161en\u00ed ale i n\u011bkolik v\u00fdrazn\u011bj\u0161\u00edch zm\u011bn.",
+                "og_url": "http:\/\/default\/drupal-cz",
+                "keywords": "drupal 8",
+                "og_title": "| Drupal.cz",
+                "og_description": "Podle dlouhodob\u00e9ho pl\u00e1nu vy\u0161la na prvn\u00edho M\u00e1je nov\u00e1 minoritn\u00ed verze Drupalu s po\u0159adov\u00fdm \u010d\u00edslem 8.7. Tato verze p\u0159in\u00e1\u0161\u00ed mnoho drobn\u00fdch vylep\u0161en\u00ed ale i n\u011bkolik v\u00fdrazn\u011bj\u0161\u00edch zm\u011bn.",
+                "og_image_0": "http:\/\/defaultDrupal 8",
+                "article_tag_0": "drupal 8",
+                "article_published_time": "2019-05-15T01:46:38+0200",
+                "article_modified_time": "2019-05-15T01:50:44+0200"
+            }
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/clanky\/vysel-drupal-8-7",
+            "pid": 366241,
+            "langcode": "cs",
+            "lang": "cs"
+        }
+    ],
+    "body": [
+        {
+            "value": "<p class=\"lead\">Podle dlouhodob\u00e9ho pl\u00e1nu vy\u0161la na prvn\u00edho M\u00e1je nov\u00e1 minoritn\u00ed verze Drupalu s po\u0159adov\u00fdm \u010d\u00edslem 8. 7. Tato verze p\u0159in\u00e1\u0161\u00ed mnoho drobn\u00fdch vylep\u0161en\u00ed ale i n\u011bkolik v\u00fdrazn\u011bj\u0161\u00edch zm\u011bn.<\/p>\r\n\r\n<h2>Zru\u0161en\u00ed podpory star\u00fdch verz\u00ed PHP<\/h2>\r\n\r\n<p>Od t\u00e9to verze ji\u017e nejsou podporovan\u00e9 verze PHP 5.5 a 5.6. jejich\u017e bezpe\u010dnostn\u00ed podpora byla ukon\u010dena v prosinci minul\u00e9ho roku. Pokud je\u0161t\u011b pou\u017e\u00edv\u00e1te Drupal 8 s t\u011bmito verzemi, m\u011bli byste zv\u00e1\u017eit co nejrychlej\u0161\u00ed update alespo\u0148 na verzi 7.1, ide\u00e1ln\u011b v\u0161ak na verzi 7.2. Do\u010dk\u00e1te se jednak bezpe\u010dnostn\u00ed podpory a vyd\u00e1v\u00e1n\u00ed nov\u00fdch verz\u00ed, ale tak\u00e9 znateln\u011b vy\u0161\u0161\u00edho v\u00fdkonu pro va\u0161i str\u00e1nku.<\/p>\r\n\r\n<h2>Konec podpory pro star\u0161\u00ed prohl\u00ed\u017ee\u010de<\/h2>\r\n\r\n<p>Internet Explorer 9 a 10 nejsou podporov\u00e1ny od verze Drupalu 8.4, ale a\u017e do te\u010f je\u0161t\u011b z\u016fstavala v syst\u00e9mu funkce na umo\u017en\u011bn\u00ed vlo\u017een\u00ed v\u00edce jak 32 stylopis\u016f CSS pro tyto prohl\u00ed\u017ee\u010de. Pokud je je\u0161t\u011b pot\u0159ebujete podporovat, zapn\u011bte agregaci, nebo si nainstalujete roz\u0161i\u0159uj\u00edc\u00ed modul <a href=\"https:\/\/www.drupal.org\/project\/ie9\">IE9 compatibility<\/a>.<\/p>\r\n\r\n<h2>Zm\u011bny v syst\u00e9mu pol\u00ed\u010dek a entit<\/h2>\r\n\r\n<p>Odkazy menu a taxonomick\u00e9 term\u00edny umo\u017e\u0148uj\u00ed nyn\u00ed zapnut\u00ed reviz\u00ed a t\u00edm p\u00e1dem i kompletn\u00edho editorsk\u00e9ho workflow.<br \/>\r\nPozn\u00e1mka: S updatem po\u010dkejte na verzi 8.7.2, kde je opraven\u00e1 chyba znemo\u017e\u0148uj\u00edc\u00ed hladk\u00fd pr\u016fb\u011bh aktualizace pro str\u00e1nky s jin\u00fdm ne\u017e anglick\u00fdm jazykem. (Patch pro nedo\u010dkavce: https:\/\/www.drupal.org\/project\/drupal\/issues\/3052492)<\/p>\r\n\r\n<h2>Layout Builder \u2013 revolu\u010dn\u00ed modul je stabiln\u00ed<\/h2>\r\n\r\n<p>Jako editor nebo sitebuilder m\u00e1te nyn\u00ed v ruce mocn\u00fd n\u00e1stroj pro jednoduchou a rychlou visu\u00e1ln\u00ed tvorbu laoyut\u016f pro v\u0161echny entity a jejich typy zobrazen\u00ed. Rozhran\u00ed pro pr\u00e1ci s Layout builderem je relativn\u011b intuitivn\u00ed, nab\u00edz\u00ed n\u011bkolik ovl\u00e1dac\u00edch prvk\u016f a drag and drop rozhran\u00ed.<br \/>\r\nModul m\u016f\u017ee b\u00fdt n\u00e1hradou za popul\u00e1rn\u00ed moduly Display Suite, Panels a Panelizer. Neobshauje sice v\u0161echny jejich mo\u017enosti, ale na dal\u0161\u00edm v\u00fdvoji se pracuje. K dispozci je jak tvorba layt\u016f glob\u00e1ln\u00ed, tak i mo\u017enost jejich p\u0159eps\u00e1n\u00ed na \u00farovni ka\u017ed\u00e9ho uzlu.<\/p>\r\n\r\n<h2>JSON:API \u2013 nov\u00fd stabiln\u00ed modul<\/h2>\r\n\r\n<p>Je nejnov\u011bj\u0161\u00ed p\u0159\u00edr\u016fstek do j\u00e1dra Drupalu. Jeliko\u017e byl ji\u017e del\u0161\u00ed dobu vyv\u00edjen jako roz\u0161i\u0159uj\u00edc\u00ed modul, dostal se do j\u00e1dra hned ve stabiln\u00ed verzi. Pokud pou\u017e\u00edv\u00e1te verzi 8.x-2.x tohoto roz\u0161i\u0159uj\u00edc\u00edho modulu, m\u016f\u017eete jej nyn\u00ed bez starost\u00ed odinstalovat \u201ccomposer remove drupal\/jsonapi\u201d. V\u0161echny jeho funkce jsou obsa\u017eeny p\u0159\u00edmo v j\u00e1d\u0159e.<\/p>\r\n\r\n<p>Pro detailn\u00ed seznam v\u0161ech zm\u011bn se pod\u00edvejte na origin\u00e1ln\u00ed release notes: https:\/\/www.drupal.org\/project\/drupal\/releases\/8.7.0<\/p>\r\n",
+            "format": "full_html",
+            "processed": "<p class=\"lead\">Podle dlouhodob\u00e9ho pl\u00e1nu vy\u0161la na prvn\u00edho M\u00e1je nov\u00e1 minoritn\u00ed verze Drupalu s po\u0159adov\u00fdm \u010d\u00edslem 8. 7. Tato verze p\u0159in\u00e1\u0161\u00ed mnoho drobn\u00fdch vylep\u0161en\u00ed ale i n\u011bkolik v\u00fdrazn\u011bj\u0161\u00edch zm\u011bn.<\/p>\n\n<h2>Zru\u0161en\u00ed podpory star\u00fdch verz\u00ed PHP<\/h2>\n\n<p>Od t\u00e9to verze ji\u017e nejsou podporovan\u00e9 verze PHP 5.5 a 5.6. jejich\u017e bezpe\u010dnostn\u00ed podpora byla ukon\u010dena v prosinci minul\u00e9ho roku. Pokud je\u0161t\u011b pou\u017e\u00edv\u00e1te Drupal 8 s t\u011bmito verzemi, m\u011bli byste zv\u00e1\u017eit co nejrychlej\u0161\u00ed update alespo\u0148 na verzi 7.1, ide\u00e1ln\u011b v\u0161ak na verzi 7.2. Do\u010dk\u00e1te se jednak bezpe\u010dnostn\u00ed podpory a vyd\u00e1v\u00e1n\u00ed nov\u00fdch verz\u00ed, ale tak\u00e9 znateln\u011b vy\u0161\u0161\u00edho v\u00fdkonu pro va\u0161i str\u00e1nku.<\/p>\n\n<h2>Konec podpory pro star\u0161\u00ed prohl\u00ed\u017ee\u010de<\/h2>\n\n<p>Internet Explorer 9 a 10 nejsou podporov\u00e1ny od verze Drupalu 8.4, ale a\u017e do te\u010f je\u0161t\u011b z\u016fstavala v syst\u00e9mu funkce na umo\u017en\u011bn\u00ed vlo\u017een\u00ed v\u00edce jak 32 stylopis\u016f CSS pro tyto prohl\u00ed\u017ee\u010de. Pokud je je\u0161t\u011b pot\u0159ebujete podporovat, zapn\u011bte agregaci, nebo si nainstalujete roz\u0161i\u0159uj\u00edc\u00ed modul <a href=\"https:\/\/www.drupal.org\/project\/ie9\">IE9 compatibility<\/a>.<\/p>\n\n<h2>Zm\u011bny v syst\u00e9mu pol\u00ed\u010dek a entit<\/h2>\n\n<p>Odkazy menu a taxonomick\u00e9 term\u00edny umo\u017e\u0148uj\u00ed nyn\u00ed zapnut\u00ed reviz\u00ed a t\u00edm p\u00e1dem i kompletn\u00edho editorsk\u00e9ho workflow.<br \/>\nPozn\u00e1mka: S updatem po\u010dkejte na verzi 8.7.2, kde je opraven\u00e1 chyba znemo\u017e\u0148uj\u00edc\u00ed hladk\u00fd pr\u016fb\u011bh aktualizace pro str\u00e1nky s jin\u00fdm ne\u017e anglick\u00fdm jazykem. (Patch pro nedo\u010dkavce: <a href=\"https:\/\/www.drupal.org\/project\/drupal\/issues\/3052492\">https:\/\/www.drupal.org\/project\/drupal\/issues\/3052492<\/a>)<\/p>\n\n<h2>Layout Builder \u2013 revolu\u010dn\u00ed modul je stabiln\u00ed<\/h2>\n\n<p>Jako editor nebo sitebuilder m\u00e1te nyn\u00ed v ruce mocn\u00fd n\u00e1stroj pro jednoduchou a rychlou visu\u00e1ln\u00ed tvorbu laoyut\u016f pro v\u0161echny entity a jejich typy zobrazen\u00ed. Rozhran\u00ed pro pr\u00e1ci s Layout builderem je relativn\u011b intuitivn\u00ed, nab\u00edz\u00ed n\u011bkolik ovl\u00e1dac\u00edch prvk\u016f a drag and drop rozhran\u00ed.<br \/>\nModul m\u016f\u017ee b\u00fdt n\u00e1hradou za popul\u00e1rn\u00ed moduly Display Suite, Panels a Panelizer. Neobshauje sice v\u0161echny jejich mo\u017enosti, ale na dal\u0161\u00edm v\u00fdvoji se pracuje. K dispozci je jak tvorba layt\u016f glob\u00e1ln\u00ed, tak i mo\u017enost jejich p\u0159eps\u00e1n\u00ed na \u00farovni ka\u017ed\u00e9ho uzlu.<\/p>\n\n<h2>JSON:API \u2013 nov\u00fd stabiln\u00ed modul<\/h2>\n\n<p>Je nejnov\u011bj\u0161\u00ed p\u0159\u00edr\u016fstek do j\u00e1dra Drupalu. Jeliko\u017e byl ji\u017e del\u0161\u00ed dobu vyv\u00edjen jako roz\u0161i\u0159uj\u00edc\u00ed modul, dostal se do j\u00e1dra hned ve stabiln\u00ed verzi. Pokud pou\u017e\u00edv\u00e1te verzi 8.x-2.x tohoto roz\u0161i\u0159uj\u00edc\u00edho modulu, m\u016f\u017eete jej nyn\u00ed bez starost\u00ed odinstalovat \u201ccomposer remove drupal\/jsonapi\u201d. V\u0161echny jeho funkce jsou obsa\u017eeny p\u0159\u00edmo v j\u00e1d\u0159e.<\/p>\n\n<p>Pro detailn\u00ed seznam v\u0161ech zm\u011bn se pod\u00edvejte na origin\u00e1ln\u00ed release notes: <a href=\"https:\/\/www.drupal.org\/project\/drupal\/releases\/8.7.0\">https:\/\/www.drupal.org\/project\/drupal\/releases\/8.7.0<\/a><\/p>\n",
+            "summary": "",
+            "lang": "cs"
+        }
+    ],
+    "field_comments_article": [
+        {
+            "status": 2,
+            "cid": 0,
+            "last_comment_timestamp": 1557877787,
+            "last_comment_name": null,
+            "last_comment_uid": 51,
+            "comment_count": 0
+        }
+    ],
+    "field_teaser_text": [
+        {
+            "value": "Podle dlouhodob\u00e9ho pl\u00e1nu vy\u0161la na prvn\u00edho M\u00e1je nov\u00e1 minoritn\u00ed verze Drupalu s po\u0159adov\u00fdm \u010d\u00edslem 8.7. Tato verze p\u0159in\u00e1\u0161\u00ed mnoho drobn\u00fdch vylep\u0161en\u00ed ale i n\u011bkolik v\u00fdrazn\u011bj\u0161\u00edch zm\u011bn."
+        }
+    ]
+}

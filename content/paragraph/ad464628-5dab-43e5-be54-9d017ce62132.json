@@ -5,18 +5,7 @@
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_content"
-        },
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_content\/uid": [
-            {
-                "href": "http:\/\/default\/user\/petr?_format=hal_json",
-                "lang": "cs"
-            }
-        ],
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_content\/revision_uid": [
-            {
-                "href": "http:\/\/default\/user\/petr?_format=hal_json"
-            }
-        ]
+        }
     },
     "id": [
         {
@@ -30,12 +19,7 @@
     ],
     "revision_id": [
         {
-            "value": 9086
-        }
-    ],
-    "type": [
-        {
-            "target_id": "dcz_para_content"
+            "value": 11691
         }
     ],
     "langcode": [
@@ -44,43 +28,11 @@
             "lang": "cs"
         }
     ],
-    "_embedded": {
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_content\/uid": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http:\/\/default\/user\/petr?_format=hal_json"
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
-                    }
-                ],
-                "lang": "cs"
-            }
-        ],
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_content\/revision_uid": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http:\/\/default\/user\/petr?_format=hal_json"
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
-                    }
-                ]
-            }
-        ]
-    },
+    "type": [
+        {
+            "target_id": "dcz_para_content"
+        }
+    ],
     "status": [
         {
             "value": true,
@@ -111,7 +63,7 @@
     ],
     "behavior_settings": [
         {
-            "value": "a:0:{}"
+            "value": []
         }
     ],
     "default_langcode": [
@@ -134,6 +86,7 @@
         {
             "value": "<h2>Bezpe\u010dnost Drupalu<\/h2>\r\n\r\n<p>Z&nbsp;hlediska bezpe\u010dnosti je Drupal na velmi vysok\u00e9 \u00farovni, d\u00edky propracovan\u00e9mu syst\u00e9mu hl\u00e1\u0161en\u00ed, prov\u011b\u0159ov\u00e1n\u00ed a \u0159e\u0161en\u00ed mo\u017en\u00fdch probl\u00e9m\u016f.<\/p>\r\n\r\n<p><a class=\"button\" href=\"\/bezpecnost-drupalu\">\u010ct\u011bte v\u00edce a odeb\u00edrejte bezpe\u010dnostn\u00ed aktuality<\/a><\/p>\r\n",
             "format": "full_html",
+            "processed": "<h2>Bezpe\u010dnost Drupalu<\/h2>\n\n<p>Z\u00a0hlediska bezpe\u010dnosti je Drupal na velmi vysok\u00e9 \u00farovni, d\u00edky propracovan\u00e9mu syst\u00e9mu hl\u00e1\u0161en\u00ed, prov\u011b\u0159ov\u00e1n\u00ed a \u0159e\u0161en\u00ed mo\u017en\u00fdch probl\u00e9m\u016f.<\/p>\n\n<p><a class=\"button\" href=\"\/bezpecnost-drupalu\">\u010ct\u011bte v\u00edce a odeb\u00edrejte bezpe\u010dnostn\u00ed aktuality<\/a><\/p>\n",
             "lang": "cs"
         }
     ],

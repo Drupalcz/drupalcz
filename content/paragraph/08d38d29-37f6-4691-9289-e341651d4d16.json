@@ -1,0 +1,95 @@
+{
+    "_links": {
+        "self": {
+            "href": ""
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_content"
+        }
+    },
+    "id": [
+        {
+            "value": 961
+        }
+    ],
+    "uuid": [
+        {
+            "value": "08d38d29-37f6-4691-9289-e341651d4d16"
+        }
+    ],
+    "revision_id": [
+        {
+            "value": 9196
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "dcz_para_content"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-03-06T21:45:25+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "parent_id": [
+        {
+            "value": "966"
+        }
+    ],
+    "parent_type": [
+        {
+            "value": "paragraph"
+        }
+    ],
+    "parent_field_name": [
+        {
+            "value": "field_paragraphs"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "field_content": [
+        {
+            "value": "<h2 id=\"drupal-team\">T\u00fdm Drupal.cz<\/h2>\r\n\r\n<p>Drupal t\u00fdmem naz\u00fdv\u00e1me skupinu lid\u00ed, kter\u00e1 se star\u00e1 o provoz komunitn\u00edho webu drupal.cz. V\u011b\u0159te, \u017ee jak obsahov\u00e9, tak technick\u00e9 pr\u00e1ce je v r\u00e1mci provozu komunitn\u00edho webu hodn\u011b, a proto budeme velmi r\u00e1di, pokud se rozhodne zapojit a p\u0159idat ruku k d\u00edlu.<\/p>\r\n\r\n<p>Chcete b\u00fdt redaktorem na d.cz? Chcete pom\u00e1hat moderovat sekce f\u00f3ra \u010di udr\u017eovat kvalitu webu? Kontaktuje kter\u00e9hokoli \u010dlena Drupal t\u00fdmu, anebo se pod\u00edvejte na n\u00e1\u0161 <a href=\"https:\/\/github.com\/Drupalcz\/drupalcz\">github<\/a>.<\/p>\r\n\r\n<ul>\r\n\t<li><a href=\"\/user\/petr\">Petr Illek<\/a><\/li>\r\n\t<li><a href=\"\/user\/6\">Radim Kla\u0161ka<\/a><\/li>\r\n\t<li><a href=\"\/user\/26\">Karel Majzl\u00edk<\/a><\/li>\r\n\t<li><a href=\"\/user\/21\">Honza Nagy<\/a><\/li>\r\n\t<li><a href=\"\/user\/evar\">Eva R\u00e1zgov\u00e1<\/a><\/li>\r\n\t<li><a href=\"\/user\/pepino710\">Josef R\u016f\u017ei\u010dka<\/a><\/li>\r\n<\/ul>\r\n",
+            "format": "full_html",
+            "processed": "<h2 id=\"drupal-team\">T\u00fdm Drupal.cz<\/h2>\n\n<p>Drupal t\u00fdmem naz\u00fdv\u00e1me skupinu lid\u00ed, kter\u00e1 se star\u00e1 o provoz komunitn\u00edho webu drupal.cz. V\u011b\u0159te, \u017ee jak obsahov\u00e9, tak technick\u00e9 pr\u00e1ce je v r\u00e1mci provozu komunitn\u00edho webu hodn\u011b, a proto budeme velmi r\u00e1di, pokud se rozhodne zapojit a p\u0159idat ruku k d\u00edlu.<\/p>\n\n<p>Chcete b\u00fdt redaktorem na d.cz? Chcete pom\u00e1hat moderovat sekce f\u00f3ra \u010di udr\u017eovat kvalitu webu? Kontaktuje kter\u00e9hokoli \u010dlena Drupal t\u00fdmu, anebo se pod\u00edvejte na n\u00e1\u0161 <a href=\"https:\/\/github.com\/Drupalcz\/drupalcz\">github<\/a>.<\/p>\n\n<ul><li><a href=\"\/user\/petr\">Petr Illek<\/a><\/li>\n\t<li><a href=\"\/user\/6\">Radim Kla\u0161ka<\/a><\/li>\n\t<li><a href=\"\/user\/26\">Karel Majzl\u00edk<\/a><\/li>\n\t<li><a href=\"\/user\/21\">Honza Nagy<\/a><\/li>\n\t<li><a href=\"\/user\/evar\">Eva R\u00e1zgov\u00e1<\/a><\/li>\n\t<li><a href=\"\/user\/pepino710\">Josef R\u016f\u017ei\u010dka<\/a><\/li>\n<\/ul>",
+            "lang": "cs"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "T\u00fdm Drupal cz",
+            "lang": "cs"
+        }
+    ]
+}

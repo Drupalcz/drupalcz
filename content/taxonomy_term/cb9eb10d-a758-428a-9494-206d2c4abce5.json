@@ -1,0 +1,88 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/stitky\/drupalcs-awards-2019?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/taxonomy_term\/tags"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/taxonomy_term\/tags\/parent": [
+            null
+        ]
+    },
+    "tid": [
+        {
+            "value": 251
+        }
+    ],
+    "uuid": [
+        {
+            "value": "cb9eb10d-a758-428a-9494-206d2c4abce5"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "vid": [
+        {
+            "target_id": "tags"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "name": [
+        {
+            "value": "DrupalCS Awards 2019",
+            "lang": "cs"
+        }
+    ],
+    "weight": [
+        {
+            "value": 0
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/taxonomy_term\/tags\/parent": [
+            null
+        ]
+    },
+    "changed": [
+        {
+            "value": "2019-03-09T17:12:48+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "DrupalCS Awards 2019 | Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/stitky\/drupalcs-awards-2019",
+                "og_url": "http:\/\/default\/drupal-cz",
+                "og_title": "| Drupal.cz"
+            }
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/stitky\/drupalcs-awards-2019",
+            "pid": 366006,
+            "langcode": "cs",
+            "lang": "cs"
+        }
+    ]
+}

@@ -33,6 +33,18 @@
             "target_id": "content_block"
         }
     ],
+    "revision_created": [
+        {
+            "value": "2018-03-06T22:23:30+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
     "info": [
         {
             "value": "Pros\u00edme, vytvo\u0159te si nov\u00fd \u00fa\u010det.",
@@ -46,10 +58,9 @@
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
-    "revision_created": [
+    "reusable": [
         {
-            "value": "2018-03-06T22:23:30+00:00",
-            "format": "Y-m-d\\TH:i:sP"
+            "value": true
         }
     ],
     "default_langcode": [
@@ -69,8 +80,8 @@
             "value": {
                 "title": "| Drupal.cz",
                 "og_site_name": "Drupal.cz",
-                "canonical_url": "http:\/\/default\/%3Cnone%3E",
-                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "canonical_url": "http:\/\/default\/drupal-cz",
+                "og_url": "http:\/\/default\/drupal-cz",
                 "og_title": "| Drupal.cz"
             }
         }
@@ -79,6 +90,7 @@
         {
             "value": "<h3 dir=\"ltr\">Jestli jste tak je\u0161t\u011b neu\u010dinili, pros\u00edme, vytvo\u0159te si <a href=\"\/user\/register\">nov\u00fd \u00fa\u010det<\/a>.<\/h3>\r\n\r\n<p dir=\"ltr\">Star\u00e9 p\u0159ihla\u0161ovac\u00ed \u00fadaje z Drupal.cz jsme nemigrovali, mj. kv\u016fli velk\u00e9mu po\u010dtu neaktivn\u00edch \u00fa\u010dt\u016f.<\/p>\r\n\r\n<p dir=\"ltr\">D\u011bkujeme za pochopen\u00ed, t\u00fdm Drupal.cz<\/p>\r\n",
             "format": "full_html",
+            "processed": "<h3 dir=\"ltr\">Jestli jste tak je\u0161t\u011b neu\u010dinili, pros\u00edme, vytvo\u0159te si <a href=\"\/user\/register\">nov\u00fd \u00fa\u010det<\/a>.<\/h3>\n\n<p dir=\"ltr\">Star\u00e9 p\u0159ihla\u0161ovac\u00ed \u00fadaje z Drupal.cz jsme nemigrovali, mj. kv\u016fli velk\u00e9mu po\u010dtu neaktivn\u00edch \u00fa\u010dt\u016f.<\/p>\n\n<p dir=\"ltr\">D\u011bkujeme za pochopen\u00ed, t\u00fdm Drupal.cz<\/p>\n",
             "summary": "",
             "lang": "cs"
         }

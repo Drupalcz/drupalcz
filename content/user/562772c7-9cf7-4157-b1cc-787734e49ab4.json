@@ -8,7 +8,7 @@
         },
         "http:\/\/drupal.org\/rest\/relation\/user\/user\/field_dcz_user_image": [
             {
-                "href": "http:\/\/default\/sites\/default\/files\/users\/profil_7429_600x600px.jpg"
+                "href": ""
             }
         ]
     },
@@ -28,9 +28,34 @@
             "lang": "cs"
         }
     ],
+    "preferred_langcode": [
+        {
+            "value": "cs"
+        }
+    ],
+    "preferred_admin_langcode": [
+        {
+            "value": "cs"
+        }
+    ],
     "name": [
         {
             "value": "martin_klima"
+        }
+    ],
+    "mail": [
+        {
+            "value": "martin.klima@hqis.cz"
+        }
+    ],
+    "timezone": [
+        {
+            "value": "Europe\/Berlin"
+        }
+    ],
+    "status": [
+        {
+            "value": true
         }
     ],
     "created": [
@@ -41,9 +66,31 @@
     ],
     "changed": [
         {
-            "value": "2018-03-27T13:40:37+00:00",
+            "value": "2019-03-11T21:46:38+00:00",
             "lang": "cs",
             "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "access": [
+        {
+            "value": "2019-05-17T05:49:55+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "login": [
+        {
+            "value": "2019-05-14T10:29:51+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "init": [
+        {
+            "value": "martin.klima@hqis.cz"
+        }
+    ],
+    "roles": [
+        {
+            "target_id": "contributor"
         }
     ],
     "default_langcode": [
@@ -59,7 +106,7 @@
                 "og_site_name": "Drupal.cz",
                 "canonical_url": "http:\/\/default\/user\/martinklima",
                 "description": "Drupal.cz",
-                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "og_url": "http:\/\/default\/drupal-cz",
                 "og_title": "| Drupal.cz"
             }
         }
@@ -74,8 +121,9 @@
     ],
     "field_dcz_bio": [
         {
-            "value": "<p>Jsem v\u00fdvoj\u00e1\u0159 se specializac\u00ed na Drupal 7 a 8. Programuji p\u0159es 30 let, cca 20 let weby a cca 10 let d\u011bl\u00e1m pouze s Drupalem. Stav\u00edm weby na Drupalu, ale p\u0159edev\u0161\u00edm vyv\u00edj\u00edm nov\u00e9 funkce a moduly. Na Drupal.org jsem p\u0159inesl n\u011bkolik vlastn\u00edch modul\u016f, nap\u0159. Access Unpublished, Default Content Deploy, Commerce: Product taxonomy filter, CKEditor custom config a dal\u0161\u00ed. Pod\u00edl\u00edm se na v\u00fdvoji a oprav\u00e1ch komunitn\u00edch modul\u016f, v\u00edce na m\u00e9m <a href=\"https:\/\/www.drupal.org\/u\/martin_klima\">Drupal.org profilu<\/a>.<\/p>\r\n\r\n<p>Jako v\u00fdvoj\u00e1\u0159 v\u011bt\u0161\u00edch projekt\u016f se soust\u0159ed\u00edm na t\u00fdmov\u00e9 workflow, t\u00fdmov\u00e9 v\u00fdvojov\u00e9 prost\u0159ed\u00ed, vz\u00e1jemnou kooperaci p\u0159i v\u00fdvoji, p\u0159i pr\u00e1ci s Gitem, p\u0159enosy konfigurace i obsahu.<\/p>\r\n\r\n<p>Sna\u017e\u00edm se b\u00fdt aktivn\u00ed i v \u010desk\u00e9 Drupal komunit\u011b. V\u011bnuji se p\u0159eklad\u016fm a schvalov\u00e1n\u00ed p\u0159eklad\u016f, p\u0159edn\u00e1\u0161\u00edm na meetupech, jednu prezentaci jsem si u\u017eil i na CS Drupal Campu v Brn\u011b. Jsem \u010dlenem Asociace pro Drupal a mezin\u00e1rodn\u00ed Drupal asociace. Sna\u017e\u00edm se poradit drupalist\u016fm v nasn\u00e1z\u00edch na Slacku, Drupal Exchange a Drupal.cz.<\/p>\r\n\r\n<p>Jsem svobodn\u00fd v\u00fdvoj\u00e1\u0159, pracuji na \u017eivnostensk\u00fd list. Pracovn\u011b se nech\u00e1v\u00e1m naj\u00edmat na zaj\u00edmav\u00e9 a zpravidla n\u00e1ro\u010dn\u00e9 projekty. V roce 2012 jsem za\u010dal dlouhodobou spolupr\u00e1ci s technologick\u00fdm centrem Yamazaki Mazak Central Europe, pro kter\u00e9 jsem na Drupalu 7 vyv\u00edjel sofistikovan\u00e9 intranetov\u00e9 syst\u00e9my pro podporu prodeje obr\u00e1b\u011bc\u00edch stroj\u016f, zpracov\u00e1n\u00ed servisn\u00edch po\u017eadavk\u016f a projektov\u00fd management. Od roku 2013 jsem na Drupalu vyv\u00edjel komplexn\u00ed syst\u00e9m pro j\u00f3gov\u00e1 cvi\u010den\u00ed <a href=\"www.mishayoga.cz\">Mishayoga.cz<\/a>, zahrnuj\u00edc\u00ed prodej elektronick\u00fdch permanentek, kreditn\u00ed a rezerva\u010dn\u00ed syst\u00e9m, e-shop s on-line generov\u00e1n\u00edm elektronick\u00fdch soci\u00e1ln\u00edch licenc\u00ed pro e-booky a placen\u00fdm vys\u00edl\u00e1n\u00edm cvi\u010den\u00ed on-demand. Vyv\u00edjel jsem web pro firmu <a href=\"apicz.com\">APICZ<\/a>, zab\u00fdvaj\u00edc\u00ed se \u00fapravami vozidel pro t\u011blesn\u011b posti\u017een\u00e9, kter\u00fd m\u00e1 pro z\u00e1kazn\u00edky on-line sledov\u00e1n\u00ed pr\u016fb\u011bhu zak\u00e1zek propojen\u00e9 se syst\u00e9mem SAP a zabudovanou podporu celosv\u011btov\u00e9 prodejn\u00ed s\u00edt\u011b. Od konce roku 2014 se tak\u00e9 v\u011bnuji l\u00e9\u010den\u00ed napaden\u00fdch Drupal web\u016f, posouzen\u00ed jejich bezpe\u010dnosti a zaji\u0161\u0165ov\u00e1n\u00ed n\u00e1pravy. S t\u00edm \u010dasto souvis\u00ed i napravov\u00e1n\u00ed \u0161patn\u011b ud\u011blan\u00fdch web\u016f, kter\u00e9 z d\u016fvodu zasahov\u00e1n\u00ed do k\u00f3du j\u00e1dra \u010di modul\u016f nelze aktualizovat (nemohu jmenovat). Kr\u00e1tce jsem v roce 2017 spolupracoval s \u010cesk\u00fdm rozhlasem na metodice p\u0159i v\u00fdvoji webu. Od b\u0159ezna 2016 pracuji s kolegy na zaj\u00edmav\u00fdch projektech pod hlavi\u010dkou firmy HBF Slovakia. Mezi lety 2016-2017 jsem se pod\u00edlel na v\u00fdvoji rozs\u00e1hl\u00e9ho redak\u010dn\u00edho syst\u00e9mu pro rakousk\u00e9 vydavatelstv\u00ed <a href=\"https:\/\/kurier.at\">Kurier<\/a>, kde jsme spojovali velk\u00e9 mno\u017estv\u00ed technologi\u00ed do jednoho celku \u0159\u00edzen\u00e9ho Drupalem 8, tento projekt z\u00edskal <a href=\"http:\/\/www.splashawards.de\/de\/2018\/Hermes\">Splash Award 2018<\/a> v kategorii&nbsp;Publishing \/ Media - Large Scale Daily News a hovo\u0159ilo se o n\u011bm na <a href=\"https:\/\/events.drupal.org\/vienna2017\/sessions\/headless-stateless-db-less-how-kurierat-transforming-digital-production-drupal\">DrupalConu Vienna 2017<\/a> a tak\u00e9 na <a href=\"https:\/\/www.youtube.com\/watch?v=ooagDlCY1xE\">Thunder Day v Hamburgu<\/a>. Od roku 2018 jsem pod hlavi\u010dkou HBF extern\u00ed sou\u010d\u00e1st\u00ed t\u00fdmu <a href=\"http:\/\/epiqo.com\">Epiqo<\/a> a pod\u00edl\u00edm se na v\u00fdvoji platformy <a href=\"https:\/\/www.jobiqo.com\/en\">Jobiqo<\/a> slou\u017e\u00edc\u00ed k prodeji pr\u00e1ce. V\u011bt\u0161ina m\u00fdch referenc\u00ed nen\u00ed vid\u011bt, proto\u017ee se jedn\u00e1 o intranetov\u00e9 a neve\u0159ejn\u00e9 projekty pro firemn\u00ed sektor, nebo jsem je d\u011blal pod hlavi\u010dkou agentury.<\/p>\r\n\r\n<p>Vybran\u00e9 Drupal reference:<\/p>\r\n\r\n<ul>\r\n\t<li><a href=\"www.mishayoga.cz\">mishayoga.cz<\/a><\/li>\r\n\t<li><a href=\"www.apicz.com\">apicz.com<\/a><\/li>\r\n\t<li><a href=\"kamba.eu\">kamba.eu<\/a><\/li>\r\n\t<li><a href=\"elbe.co.at\">elbe.co.at<\/a> (jako sou\u010d\u00e1st t\u00fdmu HBF)<\/li>\r\n<\/ul>\r\n\r\n<p>&nbsp; <img alt=\"\" height=\"155\" src=\"https:\/\/www.drupal.org\/sites\/all\/modules\/drupalorg\/drupalorg\/images\/association_ind_member_badge.svg\" width=\"155\" \/><\/p>\r\n",
-            "format": "basic_html"
+            "value": "<p>Jsem v\u00fdvoj\u00e1\u0159 se specializac\u00ed na Drupal 7 a 8. Programuji p\u0159es 30 let, cca 20 let weby a cca 10 let d\u011bl\u00e1m pouze s Drupalem. Stav\u00edm weby na Drupalu, ale p\u0159edev\u0161\u00edm vyv\u00edj\u00edm nov\u00e9 funkce a moduly. Na Drupal.org jsem p\u0159inesl n\u011bkolik vlastn\u00edch modul\u016f, nap\u0159. Access Unpublished, Default Content Deploy, Commerce: Product taxonomy filter, CKEditor custom config a dal\u0161\u00ed. Pod\u00edl\u00edm se na v\u00fdvoji a oprav\u00e1ch komunitn\u00edch modul\u016f, v\u00edce na m\u00e9m <a href=\"https:\/\/www.drupal.org\/u\/martin_klima\">Drupal.org profilu<\/a>.<\/p>\r\n\r\n<p>Jako v\u00fdvoj\u00e1\u0159 v\u011bt\u0161\u00edch projekt\u016f se soust\u0159ed\u00edm na t\u00fdmov\u00e9 workflow, t\u00fdmov\u00e9 v\u00fdvojov\u00e9 prost\u0159ed\u00ed, vz\u00e1jemnou kooperaci p\u0159i v\u00fdvoji, p\u0159i pr\u00e1ci s Gitem, p\u0159enosy konfigurace i obsahu.<\/p>\r\n\r\n<p>Sna\u017e\u00edm se b\u00fdt aktivn\u00ed i v \u010desk\u00e9 Drupal komunit\u011b. V\u011bnuji se p\u0159eklad\u016fm a schvalov\u00e1n\u00ed p\u0159eklad\u016f, p\u0159edn\u00e1\u0161\u00edm na meetupech, jednu prezentaci jsem si u\u017eil i na CS Drupal Campu v Brn\u011b. Jsem \u010dlenem Asociace pro Drupal a mezin\u00e1rodn\u00ed Drupal asociace. Sna\u017e\u00edm se poradit drupalist\u016fm v nasn\u00e1z\u00edch na Slacku, Drupal Exchange a Drupal.cz.<\/p>\r\n\r\n<p>Jsem svobodn\u00fd v\u00fdvoj\u00e1\u0159, pracuji na \u017eivnostensk\u00fd list. Pracovn\u011b se nech\u00e1v\u00e1m naj\u00edmat na zaj\u00edmav\u00e9 a zpravidla n\u00e1ro\u010dn\u00e9 projekty. V roce 2012 jsem za\u010dal dlouhodobou spolupr\u00e1ci s technologick\u00fdm centrem Yamazaki Mazak Central Europe, pro kter\u00e9 jsem na Drupalu 7 vyv\u00edjel sofistikovan\u00e9 intranetov\u00e9 syst\u00e9my pro podporu prodeje obr\u00e1b\u011bc\u00edch stroj\u016f, zpracov\u00e1n\u00ed servisn\u00edch po\u017eadavk\u016f a projektov\u00fd management. Od roku 2013 jsem na Drupalu vyv\u00edjel komplexn\u00ed syst\u00e9m pro j\u00f3gov\u00e1 cvi\u010den\u00ed <a href=\"www.mishayoga.cz\">Mishayoga.cz<\/a>, zahrnuj\u00edc\u00ed prodej elektronick\u00fdch permanentek, kreditn\u00ed a rezerva\u010dn\u00ed syst\u00e9m, e-shop s on-line generov\u00e1n\u00edm elektronick\u00fdch soci\u00e1ln\u00edch licenc\u00ed pro e-booky a placen\u00fdm vys\u00edl\u00e1n\u00edm cvi\u010den\u00ed on-demand. Vyv\u00edjel jsem web pro firmu <a href=\"apicz.com\">APICZ<\/a>, zab\u00fdvaj\u00edc\u00ed se \u00fapravami vozidel pro t\u011blesn\u011b posti\u017een\u00e9, kter\u00fd m\u00e1 pro z\u00e1kazn\u00edky on-line sledov\u00e1n\u00ed pr\u016fb\u011bhu zak\u00e1zek propojen\u00e9 se syst\u00e9mem SAP a zabudovanou podporu celosv\u011btov\u00e9 prodejn\u00ed s\u00edt\u011b. Od konce roku 2014 se tak\u00e9 v\u011bnuji l\u00e9\u010den\u00ed napaden\u00fdch Drupal web\u016f, posouzen\u00ed jejich bezpe\u010dnosti a zaji\u0161\u0165ov\u00e1n\u00ed n\u00e1pravy. S t\u00edm \u010dasto souvis\u00ed i napravov\u00e1n\u00ed \u0161patn\u011b ud\u011blan\u00fdch web\u016f, kter\u00e9 z d\u016fvodu zasahov\u00e1n\u00ed do k\u00f3du j\u00e1dra \u010di modul\u016f nelze aktualizovat (nemohu jmenovat). Kr\u00e1tce jsem v roce 2017 spolupracoval s \u010cesk\u00fdm rozhlasem na metodice p\u0159i v\u00fdvoji webu. Od b\u0159ezna 2016 pracuji s kolegy na zaj\u00edmav\u00fdch projektech pod hlavi\u010dkou slovensk\u00e9 firmy <a href=\"https:\/\/www.hbf.sk\/\">HBF<\/a>. Mezi lety 2016-2017 jsem se pod\u00edlel na v\u00fdvoji rozs\u00e1hl\u00e9ho redak\u010dn\u00edho syst\u00e9mu pro rakousk\u00e9 vydavatelstv\u00ed <a href=\"https:\/\/kurier.at\">Kurier<\/a>, kde jsme spojovali velk\u00e9 mno\u017estv\u00ed technologi\u00ed do jednoho celku \u0159\u00edzen\u00e9ho Drupalem 8. Tento projekt z\u00edskal <a href=\"http:\/\/www.splashawards.de\/de\/2018\/Hermes\">Splash Award 2018<\/a> v kategorii&nbsp;Publishing \/ Media - Large Scale Daily News a hovo\u0159ilo se o n\u011bm na <a href=\"https:\/\/events.drupal.org\/vienna2017\/sessions\/headless-stateless-db-less-how-kurierat-transforming-digital-production-drupal\">DrupalConu Vienna 2017<\/a> a tak\u00e9 na <a href=\"https:\/\/www.youtube.com\/watch?v=ooagDlCY1xE\">Thunder Day v Hamburgu<\/a>. Od roku 2018 jsem pod hlavi\u010dkou HBF extern\u00ed sou\u010d\u00e1st\u00ed rakousk\u00e9ho t\u00fdmu <a href=\"https:\/\/www.jobiqo.com\/en\">Jobiqo<\/a> a pod\u00edl\u00edm se na v\u00fdvoji stejnojmenn\u00e9 platformy slou\u017e\u00edc\u00ed k prodeji pr\u00e1ce.<\/p>\r\n\r\n<p>V druh\u00e9 polovin\u011b roku 2018 jsem se pod\u00edlel na v\u00fdvoji nov\u00e9 verze webu pro <a href=\"https:\/\/www.pametnaroda.cz\">Pam\u011b\u0165 n\u00e1roda<\/a> jako sou\u010d\u00e1st t\u00fdmu&nbsp;MADE it digital Mira Michali\u010dky. Na starost jsem m\u011bl ve\u0161ker\u00e9 migrace dat (cca 450 tis\u00edc polo\u017eek obsahu v n\u011bkolika jazyc\u00edch) ze star\u00e9ho syst\u00e9mu do nov\u00e9ho webu postaven\u00e9ho na Drupal 8.<\/p>\r\n\r\n<p>V\u011bt\u0161ina m\u00fdch referenc\u00ed nen\u00ed vid\u011bt, proto\u017ee se jedn\u00e1 o intranetov\u00e9 a neve\u0159ejn\u00e9 projekty pro firemn\u00ed sektor, nebo jsem je d\u011blal pod hlavi\u010dkou agentury, \u010di jako sou\u010d\u00e1st n\u011bjak\u00e9ho t\u00fdmu.<\/p>\r\n\r\n<p>Vybran\u00e9 Drupal reference:<\/p>\r\n\r\n<ul>\r\n\t<li><a href=\"www.mishayoga.cz\">mishayoga.cz<\/a><\/li>\r\n\t<li><a href=\"www.apicz.com\">apicz.com<\/a><\/li>\r\n\t<li><a href=\"kamba.eu\">kamba.eu<\/a><\/li>\r\n\t<li><a href=\"elbe.co.at\">elbe.co.at<\/a> (jako sou\u010d\u00e1st t\u00fdmu HBF)<\/li>\r\n<\/ul>\r\n\r\n<p>&nbsp; <img alt=\"\" height=\"155\" src=\"https:\/\/www.drupal.org\/sites\/all\/modules\/drupalorg\/drupalorg\/images\/association_ind_member_badge.svg\" width=\"155\" \/><\/p>\r\n",
+            "format": "basic_html",
+            "processed": "<p>Jsem v\u00fdvoj\u00e1\u0159 se specializac\u00ed na Drupal 7 a 8. Programuji p\u0159es 30 let, cca 20 let weby a cca 10 let d\u011bl\u00e1m pouze s Drupalem. Stav\u00edm weby na Drupalu, ale p\u0159edev\u0161\u00edm vyv\u00edj\u00edm nov\u00e9 funkce a moduly. Na Drupal.org jsem p\u0159inesl n\u011bkolik vlastn\u00edch modul\u016f, nap\u0159. Access Unpublished, Default Content Deploy, Commerce: Product taxonomy filter, CKEditor custom config a dal\u0161\u00ed. Pod\u00edl\u00edm se na v\u00fdvoji a oprav\u00e1ch komunitn\u00edch modul\u016f, v\u00edce na m\u00e9m <a href=\"https:\/\/www.drupal.org\/u\/martin_klima\">Drupal.org profilu<\/a>.<\/p>\n\n<p>Jako v\u00fdvoj\u00e1\u0159 v\u011bt\u0161\u00edch projekt\u016f se soust\u0159ed\u00edm na t\u00fdmov\u00e9 workflow, t\u00fdmov\u00e9 v\u00fdvojov\u00e9 prost\u0159ed\u00ed, vz\u00e1jemnou kooperaci p\u0159i v\u00fdvoji, p\u0159i pr\u00e1ci s Gitem, p\u0159enosy konfigurace i obsahu.<\/p>\n\n<p>Sna\u017e\u00edm se b\u00fdt aktivn\u00ed i v \u010desk\u00e9 Drupal komunit\u011b. V\u011bnuji se p\u0159eklad\u016fm a schvalov\u00e1n\u00ed p\u0159eklad\u016f, p\u0159edn\u00e1\u0161\u00edm na meetupech, jednu prezentaci jsem si u\u017eil i na CS Drupal Campu v Brn\u011b. Jsem \u010dlenem Asociace pro Drupal a mezin\u00e1rodn\u00ed Drupal asociace. Sna\u017e\u00edm se poradit drupalist\u016fm v nasn\u00e1z\u00edch na Slacku, Drupal Exchange a Drupal.cz.<\/p>\n\n<p>Jsem svobodn\u00fd v\u00fdvoj\u00e1\u0159, pracuji na \u017eivnostensk\u00fd list. Pracovn\u011b se nech\u00e1v\u00e1m naj\u00edmat na zaj\u00edmav\u00e9 a zpravidla n\u00e1ro\u010dn\u00e9 projekty. V roce 2012 jsem za\u010dal dlouhodobou spolupr\u00e1ci s technologick\u00fdm centrem Yamazaki Mazak Central Europe, pro kter\u00e9 jsem na Drupalu 7 vyv\u00edjel sofistikovan\u00e9 intranetov\u00e9 syst\u00e9my pro podporu prodeje obr\u00e1b\u011bc\u00edch stroj\u016f, zpracov\u00e1n\u00ed servisn\u00edch po\u017eadavk\u016f a projektov\u00fd management. Od roku 2013 jsem na Drupalu vyv\u00edjel komplexn\u00ed syst\u00e9m pro j\u00f3gov\u00e1 cvi\u010den\u00ed <a href=\"www.mishayoga.cz\">Mishayoga.cz<\/a>, zahrnuj\u00edc\u00ed prodej elektronick\u00fdch permanentek, kreditn\u00ed a rezerva\u010dn\u00ed syst\u00e9m, e-shop s on-line generov\u00e1n\u00edm elektronick\u00fdch soci\u00e1ln\u00edch licenc\u00ed pro e-booky a placen\u00fdm vys\u00edl\u00e1n\u00edm cvi\u010den\u00ed on-demand. Vyv\u00edjel jsem web pro firmu <a href=\"apicz.com\">APICZ<\/a>, zab\u00fdvaj\u00edc\u00ed se \u00fapravami vozidel pro t\u011blesn\u011b posti\u017een\u00e9, kter\u00fd m\u00e1 pro z\u00e1kazn\u00edky on-line sledov\u00e1n\u00ed pr\u016fb\u011bhu zak\u00e1zek propojen\u00e9 se syst\u00e9mem SAP a zabudovanou podporu celosv\u011btov\u00e9 prodejn\u00ed s\u00edt\u011b. Od konce roku 2014 se tak\u00e9 v\u011bnuji l\u00e9\u010den\u00ed napaden\u00fdch Drupal web\u016f, posouzen\u00ed jejich bezpe\u010dnosti a zaji\u0161\u0165ov\u00e1n\u00ed n\u00e1pravy. S t\u00edm \u010dasto souvis\u00ed i napravov\u00e1n\u00ed \u0161patn\u011b ud\u011blan\u00fdch web\u016f, kter\u00e9 z d\u016fvodu zasahov\u00e1n\u00ed do k\u00f3du j\u00e1dra \u010di modul\u016f nelze aktualizovat (nemohu jmenovat). Kr\u00e1tce jsem v roce 2017 spolupracoval s \u010cesk\u00fdm rozhlasem na metodice p\u0159i v\u00fdvoji webu. Od b\u0159ezna 2016 pracuji s kolegy na zaj\u00edmav\u00fdch projektech pod hlavi\u010dkou slovensk\u00e9 firmy <a href=\"https:\/\/www.hbf.sk\/\">HBF<\/a>. Mezi lety 2016-2017 jsem se pod\u00edlel na v\u00fdvoji rozs\u00e1hl\u00e9ho redak\u010dn\u00edho syst\u00e9mu pro rakousk\u00e9 vydavatelstv\u00ed <a href=\"https:\/\/kurier.at\">Kurier<\/a>, kde jsme spojovali velk\u00e9 mno\u017estv\u00ed technologi\u00ed do jednoho celku \u0159\u00edzen\u00e9ho Drupalem 8. Tento projekt z\u00edskal <a href=\"http:\/\/www.splashawards.de\/de\/2018\/Hermes\">Splash Award 2018<\/a> v kategorii\u00a0Publishing \/ Media - Large Scale Daily News a hovo\u0159ilo se o n\u011bm na <a href=\"https:\/\/events.drupal.org\/vienna2017\/sessions\/headless-stateless-db-less-how-kurierat-transforming-digital-production-drupal\">DrupalConu Vienna 2017<\/a> a tak\u00e9 na <a href=\"https:\/\/www.youtube.com\/watch?v=ooagDlCY1xE\">Thunder Day v Hamburgu<\/a>. Od roku 2018 jsem pod hlavi\u010dkou HBF extern\u00ed sou\u010d\u00e1st\u00ed rakousk\u00e9ho t\u00fdmu <a href=\"https:\/\/www.jobiqo.com\/en\">Jobiqo<\/a> a pod\u00edl\u00edm se na v\u00fdvoji stejnojmenn\u00e9 platformy slou\u017e\u00edc\u00ed k prodeji pr\u00e1ce.<\/p>\n\n<p>V druh\u00e9 polovin\u011b roku 2018 jsem se pod\u00edlel na v\u00fdvoji nov\u00e9 verze webu pro <a href=\"https:\/\/www.pametnaroda.cz\">Pam\u011b\u0165 n\u00e1roda<\/a> jako sou\u010d\u00e1st t\u00fdmu\u00a0MADE it digital Mira Michali\u010dky. Na starost jsem m\u011bl ve\u0161ker\u00e9 migrace dat (cca 450 tis\u00edc polo\u017eek obsahu v n\u011bkolika jazyc\u00edch) ze star\u00e9ho syst\u00e9mu do nov\u00e9ho webu postaven\u00e9ho na Drupal 8.<\/p>\n\n<p>V\u011bt\u0161ina m\u00fdch referenc\u00ed nen\u00ed vid\u011bt, proto\u017ee se jedn\u00e1 o intranetov\u00e9 a neve\u0159ejn\u00e9 projekty pro firemn\u00ed sektor, nebo jsem je d\u011blal pod hlavi\u010dkou agentury, \u010di jako sou\u010d\u00e1st n\u011bjak\u00e9ho t\u00fdmu.<\/p>\n\n<p>Vybran\u00e9 Drupal reference:<\/p>\n\n<ul><li><a href=\"www.mishayoga.cz\">mishayoga.cz<\/a><\/li>\n\t<li><a href=\"www.apicz.com\">apicz.com<\/a><\/li>\n\t<li><a href=\"kamba.eu\">kamba.eu<\/a><\/li>\n\t<li><a href=\"elbe.co.at\">elbe.co.at<\/a> (jako sou\u010d\u00e1st t\u00fdmu HBF)<\/li>\n<\/ul><p>\u00a0 <img alt=\"\" height=\"155\" src=\"https:\/\/www.drupal.org\/sites\/all\/modules\/drupalorg\/drupalorg\/images\/association_ind_member_badge.svg\" width=\"155\" \/><\/p>"
         }
     ],
     "field_dcz_name": [
@@ -93,7 +141,7 @@
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/sites\/default\/files\/users\/profil_7429_600x600px.jpg"
+                        "href": ""
                     },
                     "type": {
                         "href": "http:\/\/drupal.org\/rest\/type\/file\/file"

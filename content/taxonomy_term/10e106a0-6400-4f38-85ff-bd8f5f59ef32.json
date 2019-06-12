@@ -1,0 +1,80 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/taxonomy\/term\/46?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/taxonomy_term\/drupal_version"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/taxonomy_term\/drupal_version\/parent": [
+            null
+        ]
+    },
+    "tid": [
+        {
+            "value": 46
+        }
+    ],
+    "uuid": [
+        {
+            "value": "10e106a0-6400-4f38-85ff-bd8f5f59ef32"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "vid": [
+        {
+            "target_id": "drupal_version"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "name": [
+        {
+            "value": "Drupal 8",
+            "lang": "cs"
+        }
+    ],
+    "weight": [
+        {
+            "value": 0
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/taxonomy_term\/drupal_version\/parent": [
+            null
+        ]
+    },
+    "changed": [
+        {
+            "value": "2018-02-27T14:04:58+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "Drupal 8 | Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/taxonomy\/term\/46",
+                "og_url": "http:\/\/default\/drupal-cz",
+                "og_title": "| Drupal.cz"
+            }
+        }
+    ]
+}

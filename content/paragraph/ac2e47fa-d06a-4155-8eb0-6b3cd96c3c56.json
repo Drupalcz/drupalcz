@@ -1,0 +1,89 @@
+{
+    "_links": {
+        "self": {
+            "href": ""
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_content"
+        }
+    },
+    "id": [
+        {
+            "value": 951
+        }
+    ],
+    "uuid": [
+        {
+            "value": "ac2e47fa-d06a-4155-8eb0-6b3cd96c3c56"
+        }
+    ],
+    "revision_id": [
+        {
+            "value": 9186
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "dcz_para_content"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-03-06T21:44:45+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "parent_id": [
+        {
+            "value": "956"
+        }
+    ],
+    "parent_type": [
+        {
+            "value": "paragraph"
+        }
+    ],
+    "parent_field_name": [
+        {
+            "value": "field_paragraphs"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "field_content": [
+        {
+            "value": "<h2>Slack kan\u00e1l<\/h2>\r\n\r\n<p>Jestli se do komunitn\u00edho d\u011bn\u00ed chcete zapojit trochu v\u00edce, rozhodn\u011b nevynechte Slack kan\u00e1l. Prob\u00edr\u00e1me tam nap\u0159. n\u00e1m\u011bty na programy akc\u00ed, p\u0159eklady rozhran\u00ed a mnoho dal\u0161\u00edho.<\/p>\r\n\r\n<p><a class=\"button\" href=\"#block-slackinviteform\">Viz formul\u00e1\u0159 v pati\u010dce<\/a><\/p>\r\n",
+            "format": "full_html",
+            "processed": "<h2>Slack kan\u00e1l<\/h2>\n\n<p>Jestli se do komunitn\u00edho d\u011bn\u00ed chcete zapojit trochu v\u00edce, rozhodn\u011b nevynechte Slack kan\u00e1l. Prob\u00edr\u00e1me tam nap\u0159. n\u00e1m\u011bty na programy akc\u00ed, p\u0159eklady rozhran\u00ed a mnoho dal\u0161\u00edho.<\/p>\n\n<p><a class=\"button\" href=\"#block-slackinviteform\">Viz formul\u00e1\u0159 v pati\u010dce<\/a><\/p>\n",
+            "lang": "cs"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "Slack",
+            "lang": "cs"
+        }
+    ]
+}

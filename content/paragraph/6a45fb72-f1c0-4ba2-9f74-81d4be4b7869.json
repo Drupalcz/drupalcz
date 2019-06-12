@@ -1,0 +1,101 @@
+{
+    "_links": {
+        "self": {
+            "href": ""
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_content"
+        }
+    },
+    "id": [
+        {
+            "value": 836
+        }
+    ],
+    "uuid": [
+        {
+            "value": "6a45fb72-f1c0-4ba2-9f74-81d4be4b7869"
+        }
+    ],
+    "revision_id": [
+        {
+            "value": 7436
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "dcz_para_content"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-03-04T14:36:45+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "parent_id": [
+        {
+            "value": "71"
+        }
+    ],
+    "parent_type": [
+        {
+            "value": "node"
+        }
+    ],
+    "parent_field_name": [
+        {
+            "value": "field_paragraphs"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "field_class": [
+        {
+            "value": "dcz_para_light",
+            "lang": "cs"
+        }
+    ],
+    "field_content": [
+        {
+            "value": "<h2>Historie Drupalu<\/h2>\r\n\r\n<p>Prvn\u00ed podobu Drupalu vytvo\u0159il v roce 2000 belgick\u00fd student <a href=\"http:\/\/www.buytaert.net\/\">Dries Buytaert<\/a>. Umo\u017enil tak sd\u00edlet koleg\u016fm z univerzity informace a novinky, p\u016fvodn\u011b bez p\u0159ipojen\u00ed k internetu. Hned v n\u00e1sleduj\u00edc\u00edm roce vznikla online verze s n\u00e1zvem Drop, kter\u00fd se zrodil z p\u0159eklepu v holandsk\u00e9m slov\u011b Dorp - vesnice. Novinka p\u0159it\u00e1hla mnoho nad\u0161en\u00fdch z\u00e1jemc\u016f o progresivn\u00ed webov\u00e9 technologie, proto se Dries rozhodl zp\u0159\u00edstupnit kompletn\u00ed k\u00f3d. Prvn\u00ed ofici\u00e1ln\u00ed verze z r. 2001 se ji\u017e jmenovala Drupal; vych\u00e1z\u00ed z anglick\u00e9 v\u00fdslovnosti holandsk\u00e9ho slova druppel (neboli kapka - drop). Drupal rychle z\u00edskal popularitu po cel\u00e9m sv\u011bt\u011b a dnes je spolehlivou platformou i pro ty nejn\u00e1ro\u010dn\u011bj\u0161\u00ed projekty. Na jeho v\u00fdvoji se nyn\u00ed pod\u00edl\u00ed tis\u00edce v\u00fdvoj\u00e1\u0159\u016f a b\u011b\u017e\u00ed na n\u011bm <a href=\"https:\/\/www.drupal.org\/project\/usage\/drupal\">p\u0159es milion web\u016f<\/a>.<\/p>\r\n",
+            "format": "full_html",
+            "processed": "<h2>Historie Drupalu<\/h2>\n\n<p>Prvn\u00ed podobu Drupalu vytvo\u0159il v roce 2000 belgick\u00fd student <a href=\"http:\/\/www.buytaert.net\/\">Dries Buytaert<\/a>. Umo\u017enil tak sd\u00edlet koleg\u016fm z univerzity informace a novinky, p\u016fvodn\u011b bez p\u0159ipojen\u00ed k internetu. Hned v n\u00e1sleduj\u00edc\u00edm roce vznikla online verze s n\u00e1zvem Drop, kter\u00fd se zrodil z p\u0159eklepu v holandsk\u00e9m slov\u011b Dorp - vesnice. Novinka p\u0159it\u00e1hla mnoho nad\u0161en\u00fdch z\u00e1jemc\u016f o progresivn\u00ed webov\u00e9 technologie, proto se Dries rozhodl zp\u0159\u00edstupnit kompletn\u00ed k\u00f3d. Prvn\u00ed ofici\u00e1ln\u00ed verze z r. 2001 se ji\u017e jmenovala Drupal; vych\u00e1z\u00ed z anglick\u00e9 v\u00fdslovnosti holandsk\u00e9ho slova druppel (neboli kapka - drop). Drupal rychle z\u00edskal popularitu po cel\u00e9m sv\u011bt\u011b a dnes je spolehlivou platformou i pro ty nejn\u00e1ro\u010dn\u011bj\u0161\u00ed projekty. Na jeho v\u00fdvoji se nyn\u00ed pod\u00edl\u00ed tis\u00edce v\u00fdvoj\u00e1\u0159\u016f a b\u011b\u017e\u00ed na n\u011bm <a href=\"https:\/\/www.drupal.org\/project\/usage\/drupal\">p\u0159es milion web\u016f<\/a>.<\/p>\n",
+            "lang": "cs"
+        }
+    ],
+    "field_description": [
+        {
+            "value": "Box - historie Drupalu",
+            "lang": "cs"
+        }
+    ]
+}
