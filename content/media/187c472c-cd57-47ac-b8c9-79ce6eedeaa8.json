@@ -6,21 +6,21 @@
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/media\/image"
         },
-        "http:\/\/drupal.org\/rest\/relation\/media\/image\/thumbnail": [
-            {
-                "href": "http:\/\/default\/sites\/default\/files\/images\/2018-03\/drupal-komunita.jpg",
-                "lang": "cs"
-            }
-        ],
         "http:\/\/drupal.org\/rest\/relation\/media\/image\/uid": [
             {
                 "href": "http:\/\/default\/user\/petr?_format=hal_json",
                 "lang": "cs"
             }
         ],
+        "http:\/\/drupal.org\/rest\/relation\/media\/image\/thumbnail": [
+            {
+                "href": "",
+                "lang": "cs"
+            }
+        ],
         "http:\/\/drupal.org\/rest\/relation\/media\/image\/field_media_image": [
             {
-                "href": "http:\/\/default\/sites\/default\/files\/images\/2018-03\/drupal-komunita.jpg",
+                "href": "",
                 "lang": "cs"
             }
         ]
@@ -63,35 +63,7 @@
             "lang": "cs"
         }
     ],
-    "name": [
-        {
-            "value": "Drupal CampCS - skupinov\u00e9 foto",
-            "lang": "cs"
-        }
-    ],
     "_embedded": {
-        "http:\/\/drupal.org\/rest\/relation\/media\/image\/thumbnail": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http:\/\/default\/sites\/default\/files\/images\/2018-03\/drupal-komunita.jpg"
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "c5f9d78c-2195-4a3b-b633-93b90bf39831"
-                    }
-                ],
-                "lang": "cs",
-                "alt": "Thumbnail",
-                "title": "Drupal CampCS - skupinov\u00e9 foto",
-                "width": "3753",
-                "height": "1210"
-            }
-        ],
         "http:\/\/drupal.org\/rest\/relation\/media\/image\/uid": [
             {
                 "_links": {
@@ -110,11 +82,33 @@
                 "lang": "cs"
             }
         ],
+        "http:\/\/drupal.org\/rest\/relation\/media\/image\/thumbnail": [
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "c5f9d78c-2195-4a3b-b633-93b90bf39831"
+                    }
+                ],
+                "lang": "cs",
+                "alt": "Thumbnail",
+                "title": "Drupal CampCS - skupinov\u00e9 foto",
+                "width": "3753",
+                "height": "1210"
+            }
+        ],
         "http:\/\/drupal.org\/rest\/relation\/media\/image\/field_media_image": [
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/sites\/default\/files\/images\/2018-03\/drupal-komunita.jpg"
+                        "href": ""
                     },
                     "type": {
                         "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
@@ -133,6 +127,12 @@
             }
         ]
     },
+    "name": [
+        {
+            "value": "Drupal CampCS - skupinov\u00e9 foto",
+            "lang": "cs"
+        }
+    ],
     "created": [
         {
             "value": "2018-03-08T21:43:22+00:00",
@@ -164,8 +164,8 @@
             "value": {
                 "title": "| Drupal.cz",
                 "og_site_name": "Drupal.cz",
-                "canonical_url": "http:\/\/default\/%3Cnone%3E",
-                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "canonical_url": "http:\/\/default\/drupal-cz",
+                "og_url": "http:\/\/default\/drupal-cz",
                 "og_title": "| Drupal.cz"
             }
         }

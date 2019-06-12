@@ -33,6 +33,7 @@ module:
   entity_embed: 0
   entity_reference: 0
   entity_reference_revisions: 0
+  extlink: 0
   field: 0
   field_ui: 0
   file: 0
@@ -42,6 +43,7 @@ module:
   geolocation: 0
   geshifilter: 0
   google_analytics: 0
+  hal: 0
   history: 0
   honeypot: 0
   image: 0

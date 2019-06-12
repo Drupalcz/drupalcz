@@ -6,21 +6,21 @@
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/media\/image"
         },
-        "http:\/\/drupal.org\/rest\/relation\/media\/image\/thumbnail": [
-            {
-                "href": "http:\/\/default\/sites\/default\/files\/images\/2018-03\/katalog-webu.jpg",
-                "lang": "cs"
-            }
-        ],
         "http:\/\/drupal.org\/rest\/relation\/media\/image\/uid": [
             {
                 "href": "http:\/\/default\/user\/petr?_format=hal_json",
                 "lang": "cs"
             }
         ],
+        "http:\/\/drupal.org\/rest\/relation\/media\/image\/thumbnail": [
+            {
+                "href": "",
+                "lang": "cs"
+            }
+        ],
         "http:\/\/drupal.org\/rest\/relation\/media\/image\/field_media_image": [
             {
-                "href": "http:\/\/default\/sites\/default\/files\/images\/2018-03\/katalog-webu.jpg",
+                "href": "",
                 "lang": "cs"
             }
         ]
@@ -63,35 +63,7 @@
             "lang": "cs"
         }
     ],
-    "name": [
-        {
-            "value": "Katalog webu",
-            "lang": "cs"
-        }
-    ],
     "_embedded": {
-        "http:\/\/drupal.org\/rest\/relation\/media\/image\/thumbnail": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http:\/\/default\/sites\/default\/files\/images\/2018-03\/katalog-webu.jpg"
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "66549c44-1a01-45fa-8721-9599ea075238"
-                    }
-                ],
-                "lang": "cs",
-                "alt": "Thumbnail",
-                "title": "Katalog webu",
-                "width": "5001",
-                "height": "1671"
-            }
-        ],
         "http:\/\/drupal.org\/rest\/relation\/media\/image\/uid": [
             {
                 "_links": {
@@ -110,11 +82,33 @@
                 "lang": "cs"
             }
         ],
+        "http:\/\/drupal.org\/rest\/relation\/media\/image\/thumbnail": [
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "66549c44-1a01-45fa-8721-9599ea075238"
+                    }
+                ],
+                "lang": "cs",
+                "alt": "Thumbnail",
+                "title": "Katalog webu",
+                "width": "5001",
+                "height": "1671"
+            }
+        ],
         "http:\/\/drupal.org\/rest\/relation\/media\/image\/field_media_image": [
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/sites\/default\/files\/images\/2018-03\/katalog-webu.jpg"
+                        "href": ""
                     },
                     "type": {
                         "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
@@ -133,6 +127,12 @@
             }
         ]
     },
+    "name": [
+        {
+            "value": "Katalog webu",
+            "lang": "cs"
+        }
+    ],
     "created": [
         {
             "value": "2018-03-08T21:50:02+00:00",
@@ -164,8 +164,8 @@
             "value": {
                 "title": "| Drupal.cz",
                 "og_site_name": "Drupal.cz",
-                "canonical_url": "http:\/\/default\/%3Cnone%3E",
-                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "canonical_url": "http:\/\/default\/drupal-cz",
+                "og_url": "http:\/\/default\/drupal-cz",
                 "og_title": "| Drupal.cz"
             }
         }

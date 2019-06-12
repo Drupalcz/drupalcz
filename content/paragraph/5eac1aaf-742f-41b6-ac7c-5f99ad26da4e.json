@@ -5,18 +5,7 @@
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_content"
-        },
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_content\/uid": [
-            {
-                "href": "http:\/\/default\/user\/petr?_format=hal_json",
-                "lang": "cs"
-            }
-        ],
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_content\/revision_uid": [
-            {
-                "href": "http:\/\/default\/user\/petr?_format=hal_json"
-            }
-        ]
+        }
     },
     "id": [
         {
@@ -30,12 +19,7 @@
     ],
     "revision_id": [
         {
-            "value": 9091
-        }
-    ],
-    "type": [
-        {
-            "target_id": "dcz_para_content"
+            "value": 11741
         }
     ],
     "langcode": [
@@ -44,43 +28,11 @@
             "lang": "cs"
         }
     ],
-    "_embedded": {
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_content\/uid": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http:\/\/default\/user\/petr?_format=hal_json"
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
-                    }
-                ],
-                "lang": "cs"
-            }
-        ],
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_content\/revision_uid": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http:\/\/default\/user\/petr?_format=hal_json"
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
-                    }
-                ]
-            }
-        ]
-    },
+    "type": [
+        {
+            "target_id": "dcz_para_content"
+        }
+    ],
     "status": [
         {
             "value": true,
@@ -111,7 +63,7 @@
     ],
     "behavior_settings": [
         {
-            "value": "a:0:{}"
+            "value": []
         }
     ],
     "default_langcode": [
@@ -128,22 +80,19 @@
     ],
     "field_class": [
         {
-            "value": "dcz_para_dark",
+            "value": "dcz_para_black",
             "lang": "cs"
         },
         {
             "value": "dcz_para_text_center",
             "lang": "cs"
-        },
-        {
-            "value": "dcz_para_text_shadow",
-            "lang": "cs"
         }
     ],
     "field_content": [
         {
-            "value": "<drupal-entity data-align=\"center\" data-embed-button=\"image\" data-entity-embed-display=\"view_mode:media.embed\" data-entity-type=\"media\" data-entity-uuid=\"b212d949-4e97-4053-a970-53b123c29e3b\"><\/drupal-entity>\r\n\r\n<p class=\"lead\">D\u011bkujeme <strong>Morpht.com<\/strong> za podporu v\u00fdvoje Drupal.cz.<\/p>\r\n\r\n<p><a class=\"button\" href=\"\/clanky\/drupal-8-prijemneji-bpm-bricks-paragraphs-modifiers\">\u010ct\u011bte d\u00e1l<\/a><\/p>\r\n",
+            "value": "<drupal-entity data-align=\"center\" data-embed-button=\"image\" data-entity-embed-display=\"view_mode:media.embed\" data-entity-type=\"media\" data-entity-uuid=\"47c6e12e-57f4-4169-bdba-d889214e0509\"><\/drupal-entity>\r\n\r\n<p class=\"lead\">DrupalCS Awards 2019<\/p>\r\n\r\n<p><a class=\"button\" href=\"\/drupalcs-awards\">Pod\u00edvejte se na v\u00fdsledky<\/a><\/p>\r\n",
             "format": "full_html",
+            "processed": "<div data-embed-button=\"image\" data-entity-embed-display=\"view_mode:media.embed\" data-entity-type=\"media\" data-entity-uuid=\"47c6e12e-57f4-4169-bdba-d889214e0509\" class=\"align-center embedded-entity\" data-langcode=\"cs\"><article class=\"contextual-region media media--type-image media--view-mode-embed\"><div data-contextual-id=\"media:media=1121:changed=1559228760&amp;langcode=cs\" data-contextual-token=\"16Qh4YD_Oa81dxzj1XmkhJOu68jCGQKATYRQOrmfu9I\"><\/div>\n      \n            <div class=\"field field--name-field-media-image field--type-image field--label-hidden field__item\">  <img src=\"\/sites\/default\/files\/styles\/original\/public\/images\/2019-05\/drupal-cs-awards-gold-ad.jpg?itok=3XBgm_yj\" width=\"400\" height=\"482\" alt=\"DrupalCS Awards gold price\" class=\"image-style-original\" \/><\/div>\n      \n  <\/article><\/div>\n<p class=\"lead\">DrupalCS Awards 2019<\/p>\n\n<p><a class=\"button\" href=\"\/drupalcs-awards\">Pod\u00edvejte se na v\u00fdsledky<\/a><\/p>\n",
             "lang": "cs"
         }
     ],

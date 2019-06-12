@@ -5,18 +5,7 @@
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_content"
-        },
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_content\/uid": [
-            {
-                "href": "http:\/\/default\/user\/petr?_format=hal_json",
-                "lang": "cs"
-            }
-        ],
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_content\/revision_uid": [
-            {
-                "href": "http:\/\/default\/user\/petr?_format=hal_json"
-            }
-        ]
+        }
     },
     "id": [
         {
@@ -33,54 +22,17 @@
             "value": 9066
         }
     ],
-    "type": [
-        {
-            "target_id": "dcz_para_content"
-        }
-    ],
     "langcode": [
         {
             "value": "cs",
             "lang": "cs"
         }
     ],
-    "_embedded": {
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_content\/uid": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http:\/\/default\/user\/petr?_format=hal_json"
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
-                    }
-                ],
-                "lang": "cs"
-            }
-        ],
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_content\/revision_uid": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http:\/\/default\/user\/petr?_format=hal_json"
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "8b4d313d-0b34-4728-ac57-3db60be96eff"
-                    }
-                ]
-            }
-        ]
-    },
+    "type": [
+        {
+            "target_id": "dcz_para_content"
+        }
+    ],
     "status": [
         {
             "value": true,
@@ -111,7 +63,7 @@
     ],
     "behavior_settings": [
         {
-            "value": "a:0:{}"
+            "value": []
         }
     ],
     "default_langcode": [
@@ -124,6 +76,7 @@
         {
             "value": "<p><a class=\"button\" href=\"\/jak-zacit\">Vyzkou\u0161ejte Drupal<\/a><\/p>\r\n",
             "format": "full_html",
+            "processed": "<p><a class=\"button\" href=\"\/jak-zacit\">Vyzkou\u0161ejte Drupal<\/a><\/p>\n",
             "lang": "cs"
         }
     ],

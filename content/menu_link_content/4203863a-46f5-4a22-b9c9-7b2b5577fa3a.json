@@ -33,6 +33,11 @@
             "value": "menu_link_content"
         }
     ],
+    "enabled": [
+        {
+            "value": true
+        }
+    ],
     "title": [
         {
             "value": "\u010cl\u00e1nky",
@@ -72,11 +77,6 @@
             "value": false
         }
     ],
-    "enabled": [
-        {
-            "value": true
-        }
-    ],
     "changed": [
         {
             "value": "2018-03-04T17:03:23+00:00",
@@ -95,8 +95,8 @@
             "value": {
                 "title": "| Drupal.cz",
                 "og_site_name": "Drupal.cz",
-                "canonical_url": "http:\/\/default\/%3Cnone%3E",
-                "og_url": "http:\/\/default\/%3Cnone%3E",
+                "canonical_url": "http:\/\/default\/drupal-cz",
+                "og_url": "http:\/\/default\/drupal-cz",
                 "og_title": "| Drupal.cz"
             }
         }
