@@ -142,13 +142,13 @@ class ApdMembershipController extends ControllerBase implements ContainerInjecti
         $date = $this->dateFormatter
           ->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $apd_membership->getRevisionId()) {
-          $link = $this->l($date, new Url('entity.apd_membership.revision', [
+          $link = $this->getLinkGenerator()->generate($date, new Url('entity.apd_membership.revision', [
             'apd_membership' => $apd_membership->id(),
             'apd_membership_revision' => $vid,
           ]));
         }
         else {
-          $link = $apd_membership->link($date);
+          $link = $apd_membership->toLink($date);
         }
 
         $row = [];
