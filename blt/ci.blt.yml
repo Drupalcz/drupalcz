@@ -14,3 +14,6 @@ disable-targets:
   tests:
     behat:
       run: true
+    php:
+      sniff:
+        deprecated: true
