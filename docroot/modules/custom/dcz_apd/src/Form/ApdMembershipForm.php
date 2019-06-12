@@ -46,17 +46,13 @@ class ApdMembershipForm extends ContentEntityForm {
       $availableProfiles = array_diff_key($profiles, $existingMembershipProfiles);
     }
 
-    $text = $this->t('Pro účely přihlášky ke členství v asociaci potřebujeme více údajů. 
-Přihlášku můžete spojit s jedním osobním a několika firemními profily. 
-Můžete mít tedy členství jako soukromá osoba i jako firma.
-Svůj osobní profil či firemní profily si vytvořte ve <a href="@url">svém uživatelském účtu</a>. 
-', [
+    $text = $this->t('Pro účely přihlášky ke členství v asociaci potřebujeme více údajů. Přihlášku můžete spojit s jedním osobním a několika firemními profily. Můžete mít tedy členství jako soukromá osoba i jako firma. Svůj osobní profil či firemní profily si vytvořte ve <a href="@url">svém uživatelském účtu</a>.', [
       '@url' => Url::fromRoute('user.page', [
         'user' => $this->currentUser()
           ->id(),
       ])->toString(),
     ])->render();
-    // var_dump($text); die();
+
     $form['profiles'] = [
       '#type' => 'select',
       '#options' => $availableProfiles,
