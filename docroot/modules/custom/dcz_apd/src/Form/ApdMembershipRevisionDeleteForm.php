@@ -3,6 +3,7 @@
 namespace Drupal\dcz_apd\Form;
 
 use Drupal\Core\Database\Connection;
+use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -41,16 +42,26 @@ class ApdMembershipRevisionDeleteForm extends ConfirmFormBase {
   protected $connection;
 
   /**
+   * Date formatter service.
+   *
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   */
+  protected $dateFormatter;
+
+  /**
    * Constructs a new ApdMembershipRevisionDeleteForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
    *   The entity storage.
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
+   * @param \Drupal\Core\Datetime\DateFormatterInterface $dateFormatter
+   *   Date formatter service.
    */
-  public function __construct(EntityStorageInterface $entity_storage, Connection $connection) {
+  public function __construct(EntityStorageInterface $entity_storage, Connection $connection, DateFormatterInterface $dateFormatter) {
     $this->ApdMembershipStorage = $entity_storage;
     $this->connection = $connection;
+    $this->dateFormatter = $dateFormatter;
   }
 
   /**
@@ -60,7 +71,8 @@ class ApdMembershipRevisionDeleteForm extends ConfirmFormBase {
     $entity_manager = $container->get('entity_type.manager');
     return new static(
       $entity_manager->getStorage('apd_membership'),
-      $container->get('database')
+      $container->get('database'),
+      $container->get('date.formatter')
     );
   }
 
@@ -75,7 +87,7 @@ class ApdMembershipRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Are you sure you want to delete the revision from %revision-date?', ['%revision-date' => format_date($this->revision->getRevisionCreationTime())]);
+    return $this->t('Are you sure you want to delete the revision from %revision-date?', ['%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())]);
   }
 
   /**
@@ -113,16 +125,16 @@ class ApdMembershipRevisionDeleteForm extends ConfirmFormBase {
         '%title' => $this->revision->label(),
         '%revision' => $this->revision->getRevisionId(),
       ]);
-    $this->messenger()->addStatus($this->t('Revision from %revision-date of APD membership %title has been deleted.', [
-      '%revision-date' => format_date($this->revision->getRevisionCreationTime()),
-      '%title' => $this->revision->label(),
-    ]));
+    $this->messenger()
+      ->addStatus($this->t('Revision from %revision-date of APD membership %title has been deleted.', [
+        '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime()),
+        '%title' => $this->revision->label(),
+      ]));
     $form_state->setRedirect(
       'entity.apd_membership.canonical',
       ['apd_membership' => $this->revision->id()]
     );
-    if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {apd_membership_field_revision} WHERE id = :id', [':id' => $this->revision->id()])
-      ->fetchField() > 1) {
+    if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {apd_membership_field_revision} WHERE id = :id', [':id' => $this->revision->id()])->fetchField() > 1) {
       $form_state->setRedirect(
         'entity.apd_membership.version_history',
         ['apd_membership' => $this->revision->id()]

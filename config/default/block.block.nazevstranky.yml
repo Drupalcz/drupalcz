@@ -1,0 +1,18 @@
+uuid: f6198991-8188-499b-9c7d-ed63a8f7f308
+langcode: cs
+status: true
+dependencies:
+  theme:
+    - seven
+id: nazevstranky
+theme: seven
+region: header
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Název stránky'
+  provider: core
+  label_display: '0'
+visibility: {  }

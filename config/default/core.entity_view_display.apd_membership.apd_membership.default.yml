@@ -1,0 +1,29 @@
+uuid: b53bc638-c819-4cc1-ab8a-6b622462b55e
+langcode: cs
+status: true
+dependencies:
+  module:
+    - dcz_apd
+    - user
+id: apd_membership.apd_membership.default
+targetEntityType: apd_membership
+bundle: apd_membership
+mode: default
+content:
+  profile_id:
+    label: hidden
+    type: entity_reference_entity_view
+    weight: 1
+    region: content
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+  user_id:
+    label: above
+    type: author
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

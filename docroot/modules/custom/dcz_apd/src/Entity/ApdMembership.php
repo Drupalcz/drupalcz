@@ -23,7 +23,6 @@ use Drupal\user\UserInterface;
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\dcz_apd\ApdMembershipListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
- *
  *     "form" = {
  *       "default" = "Drupal\dcz_apd\Form\ApdMembershipForm",
  *       "add" = "Drupal\dcz_apd\Form\ApdMembershipForm",
@@ -50,8 +49,8 @@ use Drupal\user\UserInterface;
  *     "status" = "status",
  *   },
  *   links = {
- *     "canonical" = "/admin/structure/apd_membership/{apd_membership}",
- *     "add-form" = "/admin/structure/apd_membership/add",
+ *     "canonical" = "/asociace/moje-clenstvi/{apd_membership}",
+ *     "add-form" = "/asociace/prihlaska",
  *     "edit-form" = "/admin/structure/apd_membership/{apd_membership}/edit",
  *     "delete-form" =
  *   "/admin/structure/apd_membership/{apd_membership}/delete",

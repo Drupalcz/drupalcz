@@ -20,6 +20,14 @@ class ApdMembershipHtmlRouteProvider extends AdminHtmlRouteProvider {
   public function getRoutes(EntityTypeInterface $entity_type) {
     $collection = parent::getRoutes($entity_type);
 
+    $addForm = &$collection->get('entity.apd_membership.add_form');
+    $addForm->setDefaults([
+      '_entity_form' => 'apd_membership.add',
+      'entity_type_id' => 'apd_membership',
+      '_title' => 'Chci se stát členem Asociace pro Drupal',
+    ])
+      ->setOption('_admin_route', FALSE);
+
     $entity_type_id = $entity_type->id();
 
     if ($history_route = $this->getHistoryRoute($entity_type)) {
