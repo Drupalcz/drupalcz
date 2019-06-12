@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: personal_membership
-label: 'Personal membership'
+label: 'Můj profil'
 multiple: false
 registration: false
 roles:
@@ -11,5 +11,6 @@ roles:
   contributor: '0'
   editor: '0'
   administrator: '0'
-allow_revisions: false
-new_revision: false
+  api: '0'
+allow_revisions: true
+new_revision: true

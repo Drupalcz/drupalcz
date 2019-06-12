@@ -49,8 +49,8 @@ use Drupal\user\UserInterface;
  *     "status" = "status",
  *   },
  *   links = {
- *     "canonical" = "/moje-clenstvi/{apd_membership}",
- *     "add-form" = "/komunita/stat-se-clenom",
+ *     "canonical" = "/asociace/moje-clenstvi/{apd_membership}",
+ *     "add-form" = "/asociace/prihlaska",
  *     "edit-form" = "/admin/structure/apd_membership/{apd_membership}/edit",
  *     "delete-form" =
  *   "/admin/structure/apd_membership/{apd_membership}/delete",

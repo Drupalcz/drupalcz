@@ -29,31 +29,39 @@ class ApdMembershipForm extends ContentEntityForm {
     foreach ($profilesSource as $profile) {
       $profiles[$profile->id()] = "{$profile->get('field_fullname')->value} ({$profile->type->entity->label()})";
     }
+    $availableProfiles = $profiles;
     $profileIds = array_keys($profiles);
-    $existingMembershipIds = $this->entityTypeManager->getStorage('apd_membership')
-      ->getQuery()
-      ->condition('profile_id', $profileIds, 'IN')
-      ->condition('valid_to', 'NOW()', '<')
-      ->execute();
-    $existingMemberships = $this->entityTypeManager->getStorage('apd_membership')
-      ->loadMultiple($existingMembershipIds);
-    $existingMembershipProfiles = [];
-    foreach ($existingMemberships as $existingMembership) {
-      $existingMembershipProfiles[$existingMembership->getProfileId()] = $existingMembership->id();
+    if (!empty($profileIds)) {
+      $existingMembershipIds = $this->entityTypeManager->getStorage('apd_membership')
+        ->getQuery()
+        ->condition('profile_id', $profileIds, 'IN')
+        ->condition('valid_to', 'NOW()', '<')
+        ->execute();
+      $existingMemberships = $this->entityTypeManager->getStorage('apd_membership')
+        ->loadMultiple($existingMembershipIds);
+      $existingMembershipProfiles = [];
+      foreach ($existingMemberships as $existingMembership) {
+        $existingMembershipProfiles[$existingMembership->getProfileId()] = $existingMembership->id();
+      }
+      $availableProfiles = array_diff_key($profiles, $existingMembershipProfiles);
     }
 
-    $availableProfiles = array_diff_key($profiles, $existingMembershipProfiles);
-
+    $text = $this->t('Pro účely přihlášky ke členství v asociaci potřebujeme více údajů. 
+Přihlášku můžete spojit s jedním osobním a několika firemními profily. 
+Můžete mít tedy členství jako soukromá osoba i jako firma.
+Svůj osobní profil či firemní profily si vytvořte ve <a href="@url">svém uživatelském účtu</a>. 
+', [
+      '@url' => Url::fromRoute('user.page', [
+        'user' => $this->currentUser()
+          ->id(),
+      ])->toString(),
+    ])->render();
+    // var_dump($text); die();
     $form['profiles'] = [
       '#type' => 'select',
       '#options' => $availableProfiles,
-      '#title' => $this->t('Vyberte profil, pro který se chcete stát členem'),
-      '#description' => $this->t('Svoje profily můžete spravovat vo <a href=@url>svém používatelském účtu.</a>.', [
-        '@url' => Url::fromRoute('user.page', [
-          'user' => $this->currentUser()
-            ->id(),
-        ]),
-      ]),
+      '#title' => $this->t('Vyberte profil pro členství v asociaci:'),
+      '#description' => $text,
       '#required' => TRUE,
     ];
 
@@ -102,7 +110,7 @@ class ApdMembershipForm extends ContentEntityForm {
     $entity->set('valid_to', strtotime('+1year'));
     $entity->save();
     $this->messenger()
-      ->addStatus('Děkujeme za projevený zájem stát se členem. Prosíme Vás o úhradu členského poplatku dle instrukcí níže.');
+      ->addStatus('Děkujeme za Vaši přihlášku ke členství v asociaci. Prosíme Vás o úhradu členského poplatku dle instrukcí na této stránce.');
     $form_state->setRedirect('entity.apd_membership.canonical', ['apd_membership' => $entity->id()]);
   }
 
