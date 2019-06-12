@@ -1,0 +1,111 @@
+{
+    "_links": {
+        "self": {
+            "href": ""
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_hero"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_hero\/field_image": [
+            {
+                "href": "http:\/\/default\/media\/106?_format=hal_json"
+            }
+        ]
+    },
+    "id": [
+        {
+            "value": 1026
+        }
+    ],
+    "uuid": [
+        {
+            "value": "917223b5-a913-44ae-9de6-331399e9f7d6"
+        }
+    ],
+    "revision_id": [
+        {
+            "value": 9656
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "dcz_para_hero"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-04-03T14:20:16+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "parent_id": [
+        {
+            "value": "466"
+        }
+    ],
+    "parent_type": [
+        {
+            "value": "node"
+        }
+    ],
+    "parent_field_name": [
+        {
+            "value": "field_hero_widget"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "field_class": [
+        {
+            "value": "dcz_para_bottom_gap",
+            "lang": "cs"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_hero\/field_image": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/media\/106?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/media\/image"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "fa4c4a8f-6b0b-46cc-93bf-66d6d3c1138e"
+                    }
+                ]
+            }
+        ]
+    },
+    "field_title": [
+        {
+            "value": "Katalog web\u016f na Drupalu",
+            "lang": "cs"
+        }
+    ]
+}

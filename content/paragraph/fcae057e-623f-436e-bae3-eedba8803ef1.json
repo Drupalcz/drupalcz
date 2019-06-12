@@ -1,0 +1,82 @@
+{
+    "_links": {
+        "self": {
+            "href": ""
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_view_reference"
+        }
+    },
+    "id": [
+        {
+            "value": 1031
+        }
+    ],
+    "uuid": [
+        {
+            "value": "fcae057e-623f-436e-bae3-eedba8803ef1"
+        }
+    ],
+    "revision_id": [
+        {
+            "value": 9661
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "dcz_para_view_reference"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-04-03T14:20:25+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "parent_id": [
+        {
+            "value": "1036"
+        }
+    ],
+    "parent_type": [
+        {
+            "value": "paragraph"
+        }
+    ],
+    "parent_field_name": [
+        {
+            "value": "field_paragraphs"
+        }
+    ],
+    "behavior_settings": [
+        {
+            "value": []
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "field_view_reference": [
+        {
+            "target_id": "showcase",
+            "display_id": "embed_2",
+            "data": "a:5:{s:5:\"title\";i:0;s:8:\"argument\";N;s:5:\"pager\";s:4:\"full\";s:6:\"offset\";N;s:5:\"limit\";N;}"
+        }
+    ]
+}
