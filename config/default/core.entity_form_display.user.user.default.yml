@@ -119,4 +119,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  company_membership_profiles: true
   langcode: true
+  personal_membership_profiles: true

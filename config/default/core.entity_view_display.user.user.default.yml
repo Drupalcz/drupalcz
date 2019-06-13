@@ -247,6 +247,8 @@ content:
     type: geolocation_latlng
     region: content
 hidden:
+  company_membership_profiles: true
   field_dcz_bio: true
   langcode: true
   member_for: true
+  personal_membership_profiles: true

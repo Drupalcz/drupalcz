@@ -1,4 +1,4 @@
-uuid: b53bc638-c819-4cc1-ab8a-6b622462b55e
+uuid: c0d071c1-7b9c-4047-8901-c3273d4ef4ac
 langcode: cs
 status: true
 dependencies:
@@ -10,8 +10,13 @@ targetEntityType: apd_membership
 bundle: apd_membership
 mode: default
 content:
+  computed_status:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   profile_id:
-    label: hidden
+    label: above
     type: entity_reference_entity_view
     weight: 1
     region: content
@@ -20,9 +25,9 @@ content:
       link: false
     third_party_settings: {  }
   user_id:
-    label: above
+    label: hidden
     type: author
-    weight: 5
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }

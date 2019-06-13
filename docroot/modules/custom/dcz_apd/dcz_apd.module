@@ -5,20 +5,30 @@
  * Contains dcz_apd.module.
  */
 
-use Drupal\Core\Routing\RouteMatchInterface;
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function dcz_apd_entity_extra_field_info() {
+  $extra = [];
+
+  $extra['apd_membership']['apd_membership']['display']['computed_status'] = [
+    'label' => t('Human-readable status'),
+    'description' => 'Display humnan-readable status.',
+    'weight' => 0,
+    'visible' => FALSE,
+  ];
+  return $extra;
+}
 
 /**
- * Implements hook_help().
+ * Implements hook_ENTITY_TYPE_view().
  */
-function dcz_apd_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
-    // Main module help for the dcz_apd module.
-    case 'help.page.dcz_apd':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('Manages many APD membership things') . '</p>';
-      return $output;
-
-    default:
+function dcz_apd_apd_membership_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+  /** @var \Drupal\dcz_apd\Entity\ApdMembershipInterface $entity */
+  if ($display->getComponent('computed_status')) {
+    $build['computed_status'] = [
+      '#type' => 'markup',
+      '#markup' => '<strong>Status přihlášky</strong>' . $entity->getHumanStatus(),
+    ];
   }
 }

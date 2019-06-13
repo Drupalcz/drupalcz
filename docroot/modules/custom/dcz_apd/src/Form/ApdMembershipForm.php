@@ -100,7 +100,6 @@ class ApdMembershipForm extends ContentEntityForm {
     $entity = $this->entity;
     $formValues = $form_state->getValues();
     $entity->setOwnerId($this->currentUser()->id());
-    $entity->setValid(FALSE);
     $entity->setProfileId($formValues['profiles']);
     $entity->save();
     $this->messenger()

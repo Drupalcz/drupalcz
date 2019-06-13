@@ -69,6 +69,12 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
 
   use EntityChangedTrait;
 
+  const STATUS_NOT_PAID_YET = 0;
+
+  const STATUS_PAID_AND_VALID = 1;
+
+  const STATUS_EXPIRED = 2;
+
   /**
    * {@inheritdoc}
    */
@@ -136,15 +142,23 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['status'] = BaseFieldDefinition::create('boolean')
-      ->setLabel(t('APD membership is valid'))
-      ->setDescription(t('A boolean indicating whether the APD membership is valid.'))
-      ->setRevisionable(TRUE)
-      ->setDefaultValue(FALSE)
+    $fields['status'] = BaseFieldDefinition::create('list_integer')
+      ->setLabel(t('Status of the membership'))
+      ->setDefaultValue(3600)
+      ->setSetting('unsigned', TRUE)
+      ->setRequired(TRUE)
+      ->setDefaultValue(self::STATUS_NOT_PAID_YET)
+      ->setSetting('allowed_values', [
+        self::STATUS_NOT_PAID_YET => 'Ještě nezaplaceno',
+        self::STATUS_PAID_AND_VALID => 'Platní',
+        self::STATUS_EXPIRED => 'Expirováno',
+      ])
       ->setDisplayOptions('form', [
-        'type' => 'boolean_checkbox',
-        'weight' => 0,
-      ]);
+        'type' => 'options_select',
+        'weight' => 2,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['valid_from'] = BaseFieldDefinition::create('datetime')
       ->setLabel(t('Membership valid since'))
@@ -156,7 +170,9 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
       ->setDisplayOptions('form', [
         'type' => 'datetime',
         'weight' => 3,
-      ]);
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['valid_to'] = BaseFieldDefinition::create('datetime')
       ->setLabel(t('Membership valid to'))
@@ -168,7 +184,9 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
       ->setDisplayOptions('form', [
         'type' => 'datetime',
         'weight' => 4,
-      ]);;
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
@@ -251,8 +269,16 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
   /**
    * {@inheritdoc}
    */
-  public function setValid($status) {
-    $this->set('status', $status ? TRUE : FALSE);
+  public function setValid() {
+    $this->set('status', self::STATUS_PAID_AND_VALID);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setExpired() {
+    $this->set('status', self::STATUS_EXPIRED);
     return $this;
   }
 
@@ -289,7 +315,28 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
    *   TRUE if the APD membership is valid.
    */
   public function isValid() {
-    return (bool) $this->getEntityKey('status');
+    return (bool) $this->get('status')->value == self::STATUS_PAID_AND_VALID;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getHumanStatus() {
+    if ($this->isValid()) {
+      return 'Aktívne';
+    }
+    return 'Neaktívne';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function calculateRemainingDays() {
+    if (!$this->isValid()) {
+      return 0;
+    }
+
+    return (int) ($this->get('valid_to')->value - time()) / (3600*24);
   }
 
   /**

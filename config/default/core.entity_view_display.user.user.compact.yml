@@ -35,9 +35,11 @@ content:
       image_link: ''
     third_party_settings: {  }
 hidden:
+  company_membership_profiles: true
   field_dcz_bio: true
   field_dcz_name: true
   field_dcz_surname: true
   field_location: true
   langcode: true
   member_for: true
+  personal_membership_profiles: true

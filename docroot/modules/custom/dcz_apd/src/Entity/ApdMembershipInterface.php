@@ -65,13 +65,34 @@ interface ApdMembershipInterface extends ContentEntityInterface, RevisionLogInte
   /**
    * Sets the published status of a APD membership.
    *
-   * @param bool $status
-   *   TRUE to set this APD membership to valid, FALSE to set it to invalid.
+   * @return \Drupal\dcz_apd\Entity\ApdMembershipInterface
+   *   The called APD membership entity.
+   */
+  public function setValid();
+
+  /**
+   * Sets the expired status of a APD membership.
    *
    * @return \Drupal\dcz_apd\Entity\ApdMembershipInterface
    *   The called APD membership entity.
    */
-  public function setValid($status);
+  public function setExpired();
+
+  /**
+   * Return human-readable validity.
+   *
+   * @return string
+   *   Human-readable validity.
+   */
+  public function getHumanStatus();
+
+  /**
+   * Calculate remaining days until expiration.
+   *
+   * @return int
+   *   Remaining days.
+   */
+  public function calculateRemainingDays();
 
   /**
    * Gets the APD membership revision creation timestamp.
