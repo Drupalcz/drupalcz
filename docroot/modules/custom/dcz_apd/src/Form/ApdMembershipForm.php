@@ -102,8 +102,6 @@ class ApdMembershipForm extends ContentEntityForm {
     $entity->setOwnerId($this->currentUser()->id());
     $entity->setValid(FALSE);
     $entity->setProfileId($formValues['profiles']);
-    $entity->set('valid_from', time());
-    $entity->set('valid_to', strtotime('+1year'));
     $entity->save();
     $this->messenger()
       ->addStatus('Děkujeme za Vaši přihlášku ke členství v asociaci. Prosíme Vás o úhradu členského poplatku dle instrukcí na této stránce.');

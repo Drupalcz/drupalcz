@@ -44,8 +44,6 @@ use Drupal\user\UserInterface;
  *     "uuid" = "uuid",
  *     "uid" = "user_id",
  *     "profile_id" = "profile_id",
- *     "valid_from" = "valid_from",
- *     "valid_to" = "valid_to",
  *     "status" = "status",
  *   },
  *   links = {
@@ -142,7 +140,7 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
       ->setLabel(t('APD membership is valid'))
       ->setDescription(t('A boolean indicating whether the APD membership is valid.'))
       ->setRevisionable(TRUE)
-      ->setDefaultValue(TRUE)
+      ->setDefaultValue(FALSE)
       ->setDisplayOptions('form', [
         'type' => 'boolean_checkbox',
         'weight' => 0,
@@ -152,6 +150,9 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
       ->setLabel(t('Membership valid since'))
       ->setDescription(t('The time since the entity is valid.'))
       ->setRevisionable(TRUE)
+      ->setRequired(FALSE)
+      ->setStorageRequired(FALSE)
+      ->setDefaultValue(NULL)
       ->setDisplayOptions('form', [
         'type' => 'datetime',
         'weight' => 3,
@@ -161,6 +162,9 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
       ->setLabel(t('Membership valid to'))
       ->setDescription(t('The time the entity is valid to.'))
       ->setRevisionable(TRUE)
+      ->setRequired(FALSE)
+      ->setStorageRequired(FALSE)
+      ->setDefaultValue(NULL)
       ->setDisplayOptions('form', [
         'type' => 'datetime',
         'weight' => 4,
