@@ -13,7 +13,7 @@ function dcz_apd_entity_extra_field_info() {
 
   $extra['apd_membership']['apd_membership']['display']['computed_status'] = [
     'label' => t('Human-readable status'),
-    'description' => 'Display humnan-readable status.',
+    'description' => 'Display human-readable status.',
     'weight' => 0,
     'visible' => FALSE,
   ];
