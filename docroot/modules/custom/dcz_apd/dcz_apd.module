@@ -5,6 +5,9 @@
  * Contains dcz_apd.module.
  */
 
+use Drupal\Core\Url;
+use Drupal\dcz_apd\Entity\ApdMembership;
+
 /**
  * Implements hook_entity_extra_field_info().
  */
@@ -14,6 +17,18 @@ function dcz_apd_entity_extra_field_info() {
   $extra['apd_membership']['apd_membership']['display']['computed_status'] = [
     'label' => t('Human-readable status'),
     'description' => 'Display human-readable status.',
+    'weight' => 0,
+    'visible' => FALSE,
+  ];
+  $extra['apd_membership']['apd_membership']['display']['payment_info'] = [
+    'label' => t('Payment information'),
+    'description' => 'Display payment information for different statuses of membership.',
+    'weight' => 0,
+    'visible' => FALSE,
+  ];
+  $extra['apd_membership']['apd_membership']['display']['cta'] = [
+    'label' => t('CTA'),
+    'description' => 'Call to action element for different statuses of membership.',
     'weight' => 0,
     'visible' => FALSE,
   ];
@@ -28,7 +43,65 @@ function dcz_apd_apd_membership_view(array &$build, \Drupal\Core\Entity\EntityIn
   if ($display->getComponent('computed_status')) {
     $build['computed_status'] = [
       '#type' => 'markup',
-      '#markup' => '<strong>Stav přihlášky</strong>' . $entity->getHumanStatus(),
+      '#markup' => '<strong>Stav přihlášky:</strong>&nbsp;' . $entity->getHumanStatus(),
     ];
   }
+
+  if ($display->getComponent('payment_info')) {
+    $membershipStatus = $entity->getStatus();
+    switch ($membershipStatus) {
+      case ApdMembership::STATUS_NOT_PAID_YET:
+      case ApdMembership::STATUS_PAID_AND_VALID:
+        $build['payment_info'] = [
+          '#theme' => 'apd_payment_info',
+          '#vs' => ApdMembership::VS_PREFIX + $entity->id(),
+        ];
+        break;
+      case ApdMembership::STATUS_EXPIRED:
+        break;
+    }
+  }
+
+  if ($display->getComponent('cta')) {
+    $membershipStatus = $entity->getStatus();
+    switch ($membershipStatus) {
+      case ApdMembership::STATUS_NOT_PAID_YET:
+        $build['cta'] = [
+          '#type' => 'markup',
+          '#markup' => 'Zaplaťte prosím členský příspěvek.',
+        ];
+        break;
+      case ApdMembership::STATUS_PAID_AND_VALID:
+        $build['cta'] = [
+          '#type' => 'markup',
+          '#markup' => 'Prodlužte si členství, máte ho aktivní ješte @count dní.',
+        ];
+        break;
+      case ApdMembership::STATUS_EXPIRED:
+        $build['cta'] = [
+          '#type' => 'link',
+          '#title' => 'Obnovte si členství',
+          '#url' => Url::fromRoute('entity.apd_membership.add-form'),
+          '#attributes' => [
+            'class' => ['button', 'primary-button'],
+          ],
+        ];
+        break;
+    }
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dcz_apd_theme($existing, $type, $theme, $path) {
+  return [
+    'apd_payment_info' => [
+      'variables' => [
+        'vs' => '',
+        'ss' => '',
+        'ks' => '',
+      ],
+    ],
+  ];
 }

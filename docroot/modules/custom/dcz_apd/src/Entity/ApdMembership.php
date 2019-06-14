@@ -75,6 +75,8 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
 
   const STATUS_EXPIRED = 2;
 
+  const VS_PREFIX = 100000000;
+
   /**
    * {@inheritdoc}
    */
@@ -315,6 +317,13 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
    */
   public function isPaidAndValid() {
     return (bool) $this->get('status')->value == self::STATUS_PAID_AND_VALID;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getStatus() {
+    return $this->get('status')->value;
   }
 
   /**

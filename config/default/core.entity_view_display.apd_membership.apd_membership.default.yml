@@ -3,8 +3,112 @@ langcode: cs
 status: true
 dependencies:
   module:
+    - datetime
     - dcz_apd
-    - user
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          column_widths: 50-50
+        components:
+          3391001f-e29a-47a0-bf78-bdf0dd09a448:
+            uuid: 3391001f-e29a-47a0-bf78-bdf0dd09a448
+            region: first
+            configuration:
+              id: 'extra_field_block:apd_membership:apd_membership:computed_status'
+              label: 'Human-readable status'
+              provider: layout_builder
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 0
+          1a31109c-9d54-45ab-8e87-69c158480fe0:
+            uuid: 1a31109c-9d54-45ab-8e87-69c158480fe0
+            region: first
+            configuration:
+              id: 'field_block:apd_membership:apd_membership:valid_from'
+              label: 'Členství platné od'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: inline
+                type: datetime_default
+                settings:
+                  timezone_override: ''
+                  format_type: short
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 1
+          29810fe7-7704-4c66-b0d5-7cdce7c8a4a8:
+            uuid: 29810fe7-7704-4c66-b0d5-7cdce7c8a4a8
+            region: first
+            configuration:
+              id: 'field_block:apd_membership:apd_membership:valid_to'
+              label: 'Membership valid to'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: inline
+                type: datetime_default
+                settings:
+                  timezone_override: ''
+                  format_type: short
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 2
+          7262f5d0-f5a8-428b-a320-e5800eb1681d:
+            uuid: 7262f5d0-f5a8-428b-a320-e5800eb1681d
+            region: second
+            configuration:
+              id: 'extra_field_block:apd_membership:apd_membership:payment_info'
+              label: 'Payment information'
+              provider: layout_builder
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 1
+          034c18c9-81c3-4ed8-a078-5dddca6bb8d8:
+            uuid: 034c18c9-81c3-4ed8-a078-5dddca6bb8d8
+            region: first
+            configuration:
+              id: 'field_block:apd_membership:apd_membership:profile_id'
+              label: 'Profile ID'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: above
+                type: entity_reference_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 3
+          4b3fadae-0bb8-47bc-9e5d-606334ad7549:
+            uuid: 4b3fadae-0bb8-47bc-9e5d-606334ad7549
+            region: second
+            configuration:
+              id: 'extra_field_block:apd_membership:apd_membership:cta'
+              label: CTA
+              provider: layout_builder
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
 id: apd_membership.apd_membership.default
 targetEntityType: apd_membership
 bundle: apd_membership
@@ -15,20 +119,43 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  cta:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  payment_info:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   profile_id:
     label: above
     type: entity_reference_entity_view
-    weight: 1
+    weight: 5
     region: content
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
-  user_id:
-    label: hidden
-    type: author
-    weight: 2
+  valid_from:
+    type: datetime_default
+    weight: 3
     region: content
-    settings: {  }
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
     third_party_settings: {  }
-hidden: {  }
+  valid_to:
+    type: datetime_default
+    weight: 4
+    region: content
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+hidden:
+  status: true
+  user_id: true

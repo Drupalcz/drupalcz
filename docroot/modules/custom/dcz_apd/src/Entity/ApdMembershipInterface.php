@@ -132,4 +132,12 @@ interface ApdMembershipInterface extends ContentEntityInterface, RevisionLogInte
    */
   public function setRevisionUserId($uid);
 
-}
+  /**
+   * Get status of the membership.
+   *
+   * @return int
+   *   Status of the membership.
+   */
+  public function getStatus();
+
+  }
