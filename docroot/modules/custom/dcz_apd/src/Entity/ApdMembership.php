@@ -144,7 +144,6 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
 
     $fields['status'] = BaseFieldDefinition::create('list_integer')
       ->setLabel(t('Status of the membership'))
-      ->setDefaultValue(3600)
       ->setSetting('unsigned', TRUE)
       ->setRequired(TRUE)
       ->setDefaultValue(self::STATUS_NOT_PAID_YET)
@@ -269,7 +268,7 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
   /**
    * {@inheritdoc}
    */
-  public function setValid() {
+  public function setPaidAndValid() {
     $this->set('status', self::STATUS_PAID_AND_VALID);
     return $this;
   }
@@ -314,7 +313,7 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
    * @return bool
    *   TRUE if the APD membership is valid.
    */
-  public function isValid() {
+  public function isPaidAndValid() {
     return (bool) $this->get('status')->value == self::STATUS_PAID_AND_VALID;
   }
 
@@ -322,7 +321,7 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
    * {@inheritdoc}
    */
   public function getHumanStatus() {
-    if ($this->isValid()) {
+    if ($this->isPaidAndValid()) {
       return 'Aktivní';
     }
     return 'Neaktivní';
@@ -332,7 +331,7 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
    * {@inheritdoc}
    */
   public function calculateRemainingDays() {
-    if (!$this->isValid()) {
+    if (!$this->isPaidAndValid()) {
       return 0;
     }
 

@@ -60,7 +60,7 @@ interface ApdMembershipInterface extends ContentEntityInterface, RevisionLogInte
    * @return bool
    *   TRUE if the APD membership is valid.
    */
-  public function isValid();
+  public function isPaidAndValid();
 
   /**
    * Sets the published status of a APD membership.
@@ -68,7 +68,7 @@ interface ApdMembershipInterface extends ContentEntityInterface, RevisionLogInte
    * @return \Drupal\dcz_apd\Entity\ApdMembershipInterface
    *   The called APD membership entity.
    */
-  public function setValid();
+  public function setPaidAndValid();
 
   /**
    * Sets the expired status of a APD membership.
