@@ -325,7 +325,7 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
     if ($this->isValid()) {
       return 'Aktivní';
     }
-    return 'Neaktívne';
+    return 'Neaktivní';
   }
 
   /**
