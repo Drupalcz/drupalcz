@@ -28,7 +28,7 @@ function dcz_apd_apd_membership_view(array &$build, \Drupal\Core\Entity\EntityIn
   if ($display->getComponent('computed_status')) {
     $build['computed_status'] = [
       '#type' => 'markup',
-      '#markup' => '<strong>Status přihlášky</strong>' . $entity->getHumanStatus(),
+      '#markup' => '<strong>Stav přihlášky</strong>' . $entity->getHumanStatus(),
     ];
   }
 }
