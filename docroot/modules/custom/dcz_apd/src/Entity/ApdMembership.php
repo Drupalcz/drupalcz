@@ -151,7 +151,7 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
       ->setSetting('allowed_values', [
         self::STATUS_NOT_PAID_YET => 'Ještě nezaplaceno',
         self::STATUS_PAID_AND_VALID => 'Platní',
-        self::STATUS_EXPIRED => 'Expirováno',
+        self::STATUS_EXPIRED => 'Expirované',
       ])
       ->setDisplayOptions('form', [
         'type' => 'options_select',
