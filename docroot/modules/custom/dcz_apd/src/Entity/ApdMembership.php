@@ -120,7 +120,7 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['profile_id'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Profile ID'))
+      ->setLabel(t('Profile'))
       ->setDescription(t('The profile ID of an APD member.'))
       ->setRevisionable(TRUE)
       ->setSetting('target_type', 'profile')

@@ -5,6 +5,8 @@
  * Contains dcz_apd.module.
  */
 
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Url;
 use Drupal\dcz_apd\Entity\ApdMembership;
 
@@ -38,7 +40,7 @@ function dcz_apd_entity_extra_field_info() {
 /**
  * Implements hook_ENTITY_TYPE_view().
  */
-function dcz_apd_apd_membership_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+function dcz_apd_apd_membership_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
   /** @var \Drupal\dcz_apd\Entity\ApdMembershipInterface $entity */
   if ($display->getComponent('computed_status')) {
     $build['computed_status'] = [
@@ -57,6 +59,7 @@ function dcz_apd_apd_membership_view(array &$build, \Drupal\Core\Entity\EntityIn
           '#vs' => ApdMembership::VS_PREFIX + $entity->id(),
         ];
         break;
+
       case ApdMembership::STATUS_EXPIRED:
         break;
     }
@@ -71,12 +74,14 @@ function dcz_apd_apd_membership_view(array &$build, \Drupal\Core\Entity\EntityIn
           '#markup' => 'Zaplaťte prosím členský příspěvek.',
         ];
         break;
+
       case ApdMembership::STATUS_PAID_AND_VALID:
         $build['cta'] = [
           '#type' => 'markup',
           '#markup' => 'Prodlužte si členství, máte ho aktivní ješte @count dní.',
         ];
         break;
+
       case ApdMembership::STATUS_EXPIRED:
         $build['cta'] = [
           '#type' => 'link',
