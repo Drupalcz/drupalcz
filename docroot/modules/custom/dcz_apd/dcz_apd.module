@@ -86,7 +86,7 @@ function dcz_apd_apd_membership_view(array &$build, EntityInterface $entity, Ent
         $build['cta'] = [
           '#type' => 'link',
           '#title' => 'Obnovte si členství',
-          '#url' => Url::fromRoute('entity.apd_membership.add-form'),
+          '#url' => Url::fromRoute('entity.apd_membership.add_form'),
           '#attributes' => [
             'class' => ['button', 'primary-button'],
           ],

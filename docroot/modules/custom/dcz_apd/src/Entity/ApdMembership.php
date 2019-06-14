@@ -26,7 +26,7 @@ use Drupal\user\UserInterface;
  *     "form" = {
  *       "default" = "Drupal\dcz_apd\Form\ApdMembershipForm",
  *       "add" = "Drupal\dcz_apd\Form\ApdMembershipForm",
- *       "edit" = "Drupal\dcz_apd\Form\ApdMembershipForm",
+ *       "edit" = "Drupal\Core\Entity\ContentEntityForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },
  *     "access" = "Drupal\dcz_apd\ApdMembershipAccessControlHandler",
@@ -316,7 +316,7 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
    *   TRUE if the APD membership is valid.
    */
   public function isPaidAndValid() {
-    return (bool) $this->get('status')->value == self::STATUS_PAID_AND_VALID;
+    return (bool) ($this->get('status')->value == self::STATUS_PAID_AND_VALID);
   }
 
   /**
@@ -348,6 +348,13 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function showRevisionUi() {
+    return FALSE;
+  }
+
+    /**
    * {@inheritdoc}
    */
   protected function urlRouteParameters($rel) {
