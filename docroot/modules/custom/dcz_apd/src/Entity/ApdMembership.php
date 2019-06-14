@@ -336,7 +336,7 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
       return 0;
     }
 
-    return (int) ($this->get('valid_to')->value - time()) / (3600*24);
+    return (int) $this->dateFormatter->formatTimeDiffUntil($this->get('valid_to')->value);
   }
 
   /**
