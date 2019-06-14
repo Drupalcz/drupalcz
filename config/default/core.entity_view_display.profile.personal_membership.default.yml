@@ -14,7 +14,7 @@ mode: default
 content:
   field_fullname:
     weight: 0
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -29,11 +29,11 @@ content:
     region: content
   field_subscribe_agreement:
     weight: 2
-    label: above
+    label: inline
     settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
+      format: custom
+      format_custom_true: Ano
+      format_custom_false: Ne
     third_party_settings: {  }
     type: boolean
     region: content
