@@ -11,23 +11,23 @@ langcode: cs
 popup_agreed:
   value: "<h2>Děkujeme za váš souhlas.</h2>\r\n\r\n<p>Nyní můžete tuto zprávu skrýt, nebo zjistit o cookies více informací.</p>\r\n"
   format: full_html
-popup_agree_button_message: 'OK, I agree'
+popup_agree_button_message: Souhlasím
 popup_agreed_enabled: false
 popup_bg_hex: 29537D
 popup_clicking_confirmation: true
 popup_scrolling_confirmation: false
 popup_delay: 1000
-popup_disagree_button_message: 'More info'
+popup_disagree_button_message: 'Více informací'
 popup_enabled: true
-popup_find_more_button_message: 'More info'
+popup_find_more_button_message: 'Více informací'
 popup_height: null
 popup_hide_agreed: false
 popup_hide_button_message: Skrýt
 popup_info:
-  value: "<h2>K ukládání nastavení a správnému fungování využíváme soubory cookies.</h2>\r\n\r\n<p>Kliknutím na jakýkoliv odakz s jejich používáním souhlasíte.</p>\r\n"
+  value: '<h2>K ukládání nastavení a správnému fungování využíváme soubory cookies.</h2><p>Kliknutím na jakýkoliv odkaz s jejich používáním souhlasíte.</p>'
   format: full_html
 mobile_popup_info:
-  value: "<h2>K ukládání nastavení a správnému fungování využíváme soubory cookies.</h2>\r\n\r\n<p>Tapnutím na jakýkoliv odakz s jejich používáním souhlasíte.</p>\r\n"
+  value: '<h2>K ukládání nastavení a správnému fungování využíváme soubory cookies.</h2><p>Tapnutím na jakýkoliv odkaz s jejich používáním souhlasíte.</p>'
   format: full_html
 mobile_breakpoint: 768
 popup_link: /ochrana-osobnich-udaju

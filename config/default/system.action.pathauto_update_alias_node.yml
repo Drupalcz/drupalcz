@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: K4TLVR8Hl7ioVRKK09NwtUWLrIBOPPxBvl2MmJVCVyY
 id: pathauto_update_alias_node
-label: 'Update URL-Alias'
+label: 'Aktualizovat URL alias'
 type: node
 plugin: pathauto_update_alias
 configuration: {  }

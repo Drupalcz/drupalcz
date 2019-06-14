@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: 8FWYvCPMGuE3eJVeh_845hWGbwwDhddj949Hx-dh-pQ
 id: pathauto_update_alias_user
-label: 'Update URL-Alias'
+label: 'Aktualizovat URL alias'
 type: user
 plugin: pathauto_update_alias
 configuration: {  }

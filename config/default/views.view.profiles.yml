@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: YD0hw-cg1_R36IQ1hO2vQlrhYAQqM7kF6mw3hFGrwI8
 id: profiles
-label: Profiles
+label: Profily
 module: views
 description: ''
 tag: ''
@@ -293,7 +293,7 @@ display:
           entity_field: status
           plugin_id: numeric
       display_extenders: {  }
-      title: Profiles
+      title: Profily
     cache_metadata:
       max-age: -1
       contexts:
