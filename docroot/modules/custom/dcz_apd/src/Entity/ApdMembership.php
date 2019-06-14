@@ -323,7 +323,7 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
    */
   public function getHumanStatus() {
     if ($this->isValid()) {
-      return 'Aktívne';
+      return 'Aktivní';
     }
     return 'Neaktívne';
   }
