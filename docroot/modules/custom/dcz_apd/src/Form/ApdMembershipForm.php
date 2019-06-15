@@ -6,6 +6,7 @@ use Drupal\Core\Url;
 use Drupal;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\dcz_apd\Entity\ApdMembership;
 
 /**
  * Form controller for APD membership edit forms.
@@ -35,7 +36,7 @@ class ApdMembershipForm extends ContentEntityForm {
       $existingMembershipIds = $this->entityTypeManager->getStorage('apd_membership')
         ->getQuery()
         ->condition('profile_id', $profileIds, 'IN')
-        ->condition('valid_to', 'NOW()', '<')
+        ->condition('status', ApdMembership::STATUS_EXPIRED, '<')
         ->execute();
       $existingMemberships = $this->entityTypeManager->getStorage('apd_membership')
         ->loadMultiple($existingMembershipIds);
