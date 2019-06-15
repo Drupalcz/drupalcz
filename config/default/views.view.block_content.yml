@@ -40,7 +40,7 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: 'Použít'
+          submit_button: Použít
           reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Řadit dle'
