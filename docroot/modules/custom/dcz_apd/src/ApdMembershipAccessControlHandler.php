@@ -21,7 +21,7 @@ class ApdMembershipAccessControlHandler extends EntityAccessControlHandler {
     /** @var \Drupal\dcz_apd\Entity\ApdMembershipInterface $entity */
     switch ($operation) {
       case 'view':
-        if (!$entity->isValid()) {
+        if (!$entity->isPaidAndValid()) {
           return AccessResult::allowedIfHasPermission($account, 'view invalid apd membership entities');
         }
         return AccessResult::allowedIfHasPermission($account, 'view valid apd membership entities');

@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: YD0hw-cg1_R36IQ1hO2vQlrhYAQqM7kF6mw3hFGrwI8
 id: profiles
-label: Profiles
+label: Profily
 module: views
 description: ''
 tag: ''
@@ -18,7 +18,7 @@ display:
   default:
     display_plugin: default
     id: default
-    display_title: Master
+    display_title: Nadřízené
     position: 0
     display_options:
       access:
@@ -41,10 +41,10 @@ display:
           submit_button: Apply
           reset_button: false
           reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          exposed_sorts_label: 'Řadit dle'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Vzestupně
+          sort_desc_label: Sestupně
       pager:
         type: none
         options:
@@ -293,7 +293,7 @@ display:
           entity_field: status
           plugin_id: numeric
       display_extenders: {  }
-      title: Profiles
+      title: Profily
     cache_metadata:
       max-age: -1
       contexts:

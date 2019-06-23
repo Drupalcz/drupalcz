@@ -26,7 +26,7 @@ use Drupal\user\UserInterface;
  *     "form" = {
  *       "default" = "Drupal\dcz_apd\Form\ApdMembershipForm",
  *       "add" = "Drupal\dcz_apd\Form\ApdMembershipForm",
- *       "edit" = "Drupal\dcz_apd\Form\ApdMembershipForm",
+ *       "edit" = "Drupal\Core\Entity\ContentEntityForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },
  *     "access" = "Drupal\dcz_apd\ApdMembershipAccessControlHandler",
@@ -44,8 +44,6 @@ use Drupal\user\UserInterface;
  *     "uuid" = "uuid",
  *     "uid" = "user_id",
  *     "profile_id" = "profile_id",
- *     "valid_from" = "valid_from",
- *     "valid_to" = "valid_to",
  *     "status" = "status",
  *   },
  *   links = {
@@ -70,6 +68,14 @@ use Drupal\user\UserInterface;
 class ApdMembership extends RevisionableContentEntityBase implements ApdMembershipInterface {
 
   use EntityChangedTrait;
+
+  const STATUS_NOT_PAID_YET = 0;
+
+  const STATUS_PAID_AND_VALID = 1;
+
+  const STATUS_EXPIRED = 2;
+
+  const VS_PREFIX = 100000000;
 
   /**
    * {@inheritdoc}
@@ -114,7 +120,7 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['profile_id'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Profile ID'))
+      ->setLabel(t('Profile'))
       ->setDescription(t('The profile ID of an APD member.'))
       ->setRevisionable(TRUE)
       ->setSetting('target_type', 'profile')
@@ -138,33 +144,50 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['status'] = BaseFieldDefinition::create('boolean')
-      ->setLabel(t('APD membership is valid'))
-      ->setDescription(t('A boolean indicating whether the APD membership is valid.'))
-      ->setRevisionable(TRUE)
-      ->setDefaultValue(TRUE)
+    $fields['status'] = BaseFieldDefinition::create('list_integer')
+      ->setLabel(t('Status of the membership'))
+      ->setSetting('unsigned', TRUE)
+      ->setRequired(TRUE)
+      ->setDefaultValue(self::STATUS_NOT_PAID_YET)
+      ->setSetting('allowed_values', [
+        self::STATUS_NOT_PAID_YET => 'Čeká se na platbu',
+        self::STATUS_PAID_AND_VALID => 'Aktivní',
+        self::STATUS_EXPIRED => 'Expirované',
+      ])
       ->setDisplayOptions('form', [
-        'type' => 'boolean_checkbox',
-        'weight' => 0,
-      ]);
+        'type' => 'options_select',
+        'weight' => 2,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['valid_from'] = BaseFieldDefinition::create('datetime')
       ->setLabel(t('Membership valid since'))
       ->setDescription(t('The time since the entity is valid.'))
       ->setRevisionable(TRUE)
+      ->setRequired(FALSE)
+      ->setStorageRequired(FALSE)
+      ->setDefaultValue(NULL)
       ->setDisplayOptions('form', [
         'type' => 'datetime',
         'weight' => 3,
-      ]);
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['valid_to'] = BaseFieldDefinition::create('datetime')
       ->setLabel(t('Membership valid to'))
       ->setDescription(t('The time the entity is valid to.'))
       ->setRevisionable(TRUE)
+      ->setRequired(FALSE)
+      ->setStorageRequired(FALSE)
+      ->setDefaultValue(NULL)
       ->setDisplayOptions('form', [
         'type' => 'datetime',
         'weight' => 4,
-      ]);;
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
@@ -247,8 +270,16 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
   /**
    * {@inheritdoc}
    */
-  public function setValid($status) {
-    $this->set('status', $status ? TRUE : FALSE);
+  public function setPaidAndValid() {
+    $this->set('status', self::STATUS_PAID_AND_VALID);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setExpired() {
+    $this->set('status', self::STATUS_EXPIRED);
     return $this;
   }
 
@@ -284,8 +315,43 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
    * @return bool
    *   TRUE if the APD membership is valid.
    */
-  public function isValid() {
-    return (bool) $this->getEntityKey('status');
+  public function isPaidAndValid() {
+    return (bool) ($this->get('status')->value == self::STATUS_PAID_AND_VALID);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getStatus() {
+    return $this->get('status')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getHumanStatus() {
+    if ($this->isPaidAndValid()) {
+      return 'Aktivní';
+    }
+    return 'Neaktivní';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function calculateRemainingDays() {
+    if (!$this->isPaidAndValid()) {
+      return 0;
+    }
+
+    return (int) $this->dateFormatter->formatTimeDiffUntil($this->get('valid_to')->value);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function showRevisionUi() {
+    return FALSE;
   }
 
   /**

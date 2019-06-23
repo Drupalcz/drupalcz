@@ -2,10 +2,11 @@
 
 namespace Drupal\dcz_apd\Form;
 
-use Drupal\Core\Url;
 use Drupal;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\dcz_apd\Entity\ApdMembership;
 
 /**
  * Form controller for APD membership edit forms.
@@ -35,7 +36,7 @@ class ApdMembershipForm extends ContentEntityForm {
       $existingMembershipIds = $this->entityTypeManager->getStorage('apd_membership')
         ->getQuery()
         ->condition('profile_id', $profileIds, 'IN')
-        ->condition('valid_to', 'NOW()', '<')
+        ->condition('status', ApdMembership::STATUS_EXPIRED, '<')
         ->execute();
       $existingMemberships = $this->entityTypeManager->getStorage('apd_membership')
         ->loadMultiple($existingMembershipIds);
@@ -100,10 +101,7 @@ class ApdMembershipForm extends ContentEntityForm {
     $entity = $this->entity;
     $formValues = $form_state->getValues();
     $entity->setOwnerId($this->currentUser()->id());
-    $entity->setValid(FALSE);
     $entity->setProfileId($formValues['profiles']);
-    $entity->set('valid_from', time());
-    $entity->set('valid_to', strtotime('+1year'));
     $entity->save();
     $this->messenger()
       ->addStatus('Děkujeme za Vaši přihlášku ke členství v asociaci. Prosíme Vás o úhradu členského poplatku dle instrukcí na této stránce.');
