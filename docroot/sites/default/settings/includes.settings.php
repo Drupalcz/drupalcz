@@ -49,7 +49,7 @@ $protocol = 'http://';
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
   $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' &&
   isset($_SERVER['REMOTE_ADDR']) &&
-  strpos($_SERVER['REMOTE_ADDR'], '10.') === 0
+  preg_match("#^(10\.|172\.|192\.168\.)(.*)#", $_SERVER['REMOTE_ADDR'])
 ) {
   $_SERVER['HTTPS'] = 'on';
   $protocol = 'https://';
