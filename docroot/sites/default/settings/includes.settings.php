@@ -47,9 +47,7 @@ $unshielded[] = $prod_base_url;
  */
 $protocol = 'http://';
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
-  $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' &&
-  isset($_SERVER['REMOTE_ADDR']) &&
-  preg_match("#^(10\.|172\.|192\.168\.)(.*)#", $_SERVER['REMOTE_ADDR'])
+  $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'
 ) {
   $_SERVER['HTTPS'] = 'on';
   $protocol = 'https://';
