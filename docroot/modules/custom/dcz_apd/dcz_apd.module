@@ -78,7 +78,7 @@ function dcz_apd_apd_membership_view(array &$build, EntityInterface $entity, Ent
       case ApdMembership::STATUS_PAID_AND_VALID:
         $build['cta'] = [
           '#type' => 'markup',
-          '#markup' => 'Prodlužte si členství, máte ho aktivní ješte @count dní.',
+          '#markup' => "Prodlužte si členství, máte ho aktivní ješte {$entity->calculateRemainingDays()} dní.",
         ];
         break;
 
