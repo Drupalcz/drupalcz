@@ -1,6 +1,7 @@
 // Set HTML to get easy calculation. 62.5% = 10px.
 html {
   font-size: 62.5%;
+  word-wrap: break-word
 }
 
 // Set font size back to 16px.
@@ -107,6 +108,12 @@ blockquote {
     line-height: 1;
 
   }
+}
+
+code {
+  display: block;
+  overflow: auto;
+  word-break: keep-all;
 }
 
 .lead {
