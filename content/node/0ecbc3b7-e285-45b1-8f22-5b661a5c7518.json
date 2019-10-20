@@ -1,0 +1,228 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/kontakt?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/node\/page"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/revision_uid": [
+            {
+                "href": "http:\/\/default\/user\/pepino710?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/uid": [
+            {
+                "href": "http:\/\/default\/user\/pepino710?_format=hal_json",
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/field_paragraphs": [
+            {
+                "href": "",
+                "lang": "cs"
+            },
+            {
+                "href": "",
+                "lang": "cs"
+            },
+            {
+                "href": "",
+                "lang": "cs"
+            }
+        ]
+    },
+    "nid": [
+        {
+            "value": 201
+        }
+    ],
+    "uuid": [
+        {
+            "value": "0ecbc3b7-e285-45b1-8f22-5b661a5c7518"
+        }
+    ],
+    "vid": [
+        {
+            "value": 2451
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "page"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2018-03-25T06:30:27+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/revision_uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/pepino710?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "c535d34f-a1bb-4140-ab0e-400f9d7d4bf9"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/pepino710?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "c535d34f-a1bb-4140-ab0e-400f9d7d4bf9"
+                    }
+                ],
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/field_paragraphs": [
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/layout"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "f94bb4c3-f113-46e0-8d55-0433c5572c77"
+                    }
+                ],
+                "lang": "cs",
+                "target_revision_id": "9191"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/layout"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "8d8e7c61-5b08-4e53-9c0f-50692612d4c2"
+                    }
+                ],
+                "lang": "cs",
+                "target_revision_id": "9201"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/layout"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "70d3f855-2b13-4b36-9858-9f328b06814c"
+                    }
+                ],
+                "lang": "cs",
+                "target_revision_id": "9211"
+            }
+        ]
+    },
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "title": [
+        {
+            "value": "Kontakt",
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-03-04T16:14:45+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-03-25T06:30:27+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "sticky": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "Kontakt | Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/kontakt",
+                "og_url": "http:\/\/default\/drupal-cz",
+                "og_title": "| Drupal.cz",
+                "article_published_time": "2018-03-04T17:14:45+0100",
+                "article_modified_time": "2018-03-25T08:30:27+0200"
+            }
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/kontakt",
+            "pid": 251,
+            "langcode": "cs",
+            "lang": "cs"
+        }
+    ]
+}

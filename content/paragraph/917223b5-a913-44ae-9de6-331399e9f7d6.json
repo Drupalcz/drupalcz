@@ -6,17 +6,6 @@
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_hero"
         },
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_hero\/uid": [
-            {
-                "href": "http:\/\/default\/user\/evar?_format=hal_json",
-                "lang": "cs"
-            }
-        ],
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_hero\/revision_uid": [
-            {
-                "href": "http:\/\/default\/user\/evar?_format=hal_json"
-            }
-        ],
         "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_hero\/field_image": [
             {
                 "href": "http:\/\/default\/media\/106?_format=hal_json"
@@ -38,71 +27,17 @@
             "value": 9656
         }
     ],
-    "type": [
-        {
-            "target_id": "dcz_para_hero"
-        }
-    ],
     "langcode": [
         {
             "value": "cs",
             "lang": "cs"
         }
     ],
-    "_embedded": {
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_hero\/uid": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http:\/\/default\/user\/evar?_format=hal_json"
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "8f89e458-000b-422a-9dd9-66dddd953c98"
-                    }
-                ],
-                "lang": "cs"
-            }
-        ],
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_hero\/revision_uid": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http:\/\/default\/user\/evar?_format=hal_json"
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "8f89e458-000b-422a-9dd9-66dddd953c98"
-                    }
-                ]
-            }
-        ],
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_hero\/field_image": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http:\/\/default\/media\/106?_format=hal_json"
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/media\/image"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "fa4c4a8f-6b0b-46cc-93bf-66d6d3c1138e"
-                    }
-                ]
-            }
-        ]
-    },
+    "type": [
+        {
+            "target_id": "dcz_para_hero"
+        }
+    ],
     "status": [
         {
             "value": true,
@@ -133,7 +68,7 @@
     ],
     "behavior_settings": [
         {
-            "value": "a:0:{}"
+            "value": []
         }
     ],
     "default_langcode": [
@@ -148,6 +83,25 @@
             "lang": "cs"
         }
     ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/paragraph\/dcz_para_hero\/field_image": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/media\/106?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/media\/image"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "fa4c4a8f-6b0b-46cc-93bf-66d6d3c1138e"
+                    }
+                ]
+            }
+        ]
+    },
     "field_title": [
         {
             "value": "Katalog web\u016f na Drupalu",

@@ -1,0 +1,196 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/o-drupalu?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/node\/page"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/revision_uid": [
+            {
+                "href": "http:\/\/default\/user\/evar?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/uid": [
+            {
+                "href": "http:\/\/default\/user\/pepino710?_format=hal_json",
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/field_paragraphs": [
+            {
+                "href": "",
+                "lang": "cs"
+            }
+        ]
+    },
+    "nid": [
+        {
+            "value": 71
+        }
+    ],
+    "uuid": [
+        {
+            "value": "d78255b8-8879-492f-b2a1-49bf882c6126"
+        }
+    ],
+    "vid": [
+        {
+            "value": 1571
+        }
+    ],
+    "langcode": [
+        {
+            "value": "cs",
+            "lang": "cs"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "page"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2018-03-07T06:29:26+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/revision_uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/evar?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "8f89e458-000b-422a-9dd9-66dddd953c98"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/pepino710?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "c535d34f-a1bb-4140-ab0e-400f9d7d4bf9"
+                    }
+                ],
+                "lang": "cs"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/field_paragraphs": [
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/dcz_para_content"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "6a45fb72-f1c0-4ba2-9f74-81d4be4b7869"
+                    }
+                ],
+                "lang": "cs",
+                "target_revision_id": "7436"
+            }
+        ]
+    },
+    "status": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "title": [
+        {
+            "value": "O Drupalu",
+            "lang": "cs"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-02-22T05:34:30+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-03-07T06:29:26+00:00",
+            "lang": "cs",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "sticky": [
+        {
+            "value": false,
+            "lang": "cs"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "cs"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "O Drupalu | Drupal.cz",
+                "og_site_name": "Drupal.cz",
+                "canonical_url": "http:\/\/default\/o-drupalu",
+                "description": "Drupal je v sou\u010dasnosti jeden z nejzaj\u00edmav\u011bj\u0161\u00edch a nejmodern\u011bj\u0161\u00edch open source webov\u00fdch syst\u00e9m\u016f na spr\u00e1vu obsahu na sv\u011bt\u011b. P\u0159esto\u017ee m\u00e1 za sebou v\u00edce ne\u017e 15letou historii, dr\u017e\u00ed krok s internetov\u00fdmi trendy a v mnoha oblastech ud\u00e1v\u00e1 sm\u011br a je inspirac\u00ed pro dal\u0161\u00ed v\u00fdvoj.",
+                "og_url": "http:\/\/default\/drupal-cz",
+                "og_title": "| Drupal.cz",
+                "article_published_time": "2018-02-22T06:34:30+0100",
+                "article_modified_time": "2018-03-07T07:29:26+0100"
+            }
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/o-drupalu",
+            "pid": 86,
+            "langcode": "cs",
+            "lang": "cs"
+        }
+    ],
+    "body": [
+        {
+            "value": "<p>Drupal je v sou\u010dasnosti jeden z nejzaj\u00edmav\u011bj\u0161\u00edch a nejmodern\u011bj\u0161\u00edch <a href=\"https:\/\/en.wikipedia.org\/wiki\/Open-source_model\">open source<\/a> webov\u00fdch syst\u00e9m\u016f na spr\u00e1vu obsahu na sv\u011bt\u011b. P\u0159esto\u017ee m\u00e1 za sebou v\u00edce ne\u017e 15letou historii, dr\u017e\u00ed krok s internetov\u00fdmi trendy a v mnoha oblastech ud\u00e1v\u00e1 sm\u011br a je inspirac\u00ed pro dal\u0161\u00ed v\u00fdvoj.<\/p>\r\n\r\n<p>Skute\u010dn\u00fd boom za\u017e\u00edv\u00e1 Drupal pr\u00e1v\u011b v posledn\u00edch n\u011bkolika letech, konkr\u00e9tn\u011b od roku 2011, kdy byla vyd\u00e1na verze 7. Ta p\u0159inesla mnoho vylep\u0161en\u00ed ve smyslu podpory obecn\u00fdch webov\u00fdch standard\u016f, u\u017eivatelsk\u00e9 p\u0159\u00edv\u011btivosti (<a href=\"https:\/\/en.wikipedia.org\/wiki\/UX\">UX<\/a>) a multijazy\u010dnosti. Dal\u0161\u00ed zdokonalen\u00ed se t\u00fdkaj\u00ed bezpe\u010dnosti, co\u017e je ov\u0161em ji\u017e tradi\u010dn\u011b siln\u00e1 str\u00e1nka Drupalu.<\/p>\r\n\r\n<p>Pr\u00e1v\u011b d\u00edky zm\u00edn\u011bn\u00fdm atribut\u016fm za\u010daly Drupal masivn\u011b nasazovat - krom\u011b komer\u010dn\u00edch a neziskov\u00fdch organizac\u00ed - tak\u00e9 vl\u00e1dn\u00ed instituce, a to p\u0159edev\u0161\u00edm v USA, Austr\u00e1lii, Velk\u00e9 Brit\u00e1nii a N\u011bmecku, viz. <a href=\"https:\/\/www.drupal.com\/showcases\">weby na Drupalu<\/a>.<\/p>\r\n\r\n<p>V \u010cesk\u00e9 republice zaznamenal Drupal prvn\u00ed velk\u00fd \u00fasp\u011bch se spu\u0161t\u011bn\u00edm webu spole\u010dnosti <a href=\"https:\/\/www.iprima.cz\/\">Prima<\/a> v roce 2009, a to ve verzi Drupal 6. Na platformu Drupal 7 p\u0159ech\u00e1zej\u00ed v sou\u010dasn\u00e9 dob\u011b weby <a href=\"http:\/\/www.ceskatelevize.cz\/ct24\/ct24\">\u010cesk\u00e9 televize<\/a> a <a href=\"http:\/\/vltava.rozhlas.cz\">\u010cesk\u00e9ho rozhlasu<\/a>.<\/p>\r\n\r\n<p>Na konci roku 2015 byl ofici\u00e1ln\u011b a slavnostn\u011b vyd\u00e1n Drupal 8. V\u00fdvoj t\u00e9to verze trval t\u00e9m\u011b\u0159 5 let a jedn\u00e1 se o nejv\u011bt\u0161\u00ed update v historii Drupalu. Krom\u011b usnadn\u011bn\u00ed pr\u00e1ce u\u017eivatel\u016fm (jednodu\u0161\u0161\u00ed a rychlej\u0161\u00ed implementace i velmi n\u00e1ro\u010dn\u00fdch funkcionalit) jsou hlavn\u00ed zm\u011bny p\u0159edev\u0161\u00edm na \u00farovni k\u00f3du. J\u00e1dro bylo kompletn\u011b p\u0159epracov\u00e1no do <a href=\"https:\/\/en.wikipedia.org\/wiki\/PHP#PHP_Objects\">OOPHP<\/a> a integruje v sob\u011b mnoho komponent uzn\u00e1van\u00e9ho a popul\u00e1rn\u00edho PHP frameworku <a href=\"https:\/\/symfony.com\/\">Symfony2<\/a>.<\/p>\r\n\r\n<p>Samotn\u00fd Drupal se v posledn\u00edch letech pozvolna prom\u011b\u0148uje z klasick\u00e9ho redak\u010dn\u00edho syst\u00e9mu sp\u00ed\u0161e na framework, na kter\u00e9m lze relativn\u011b jednodu\u0161e postavit v podstat\u011b cokoliv, od osobn\u00edch \u010di produktov\u00fdch web\u016f p\u0159es korpor\u00e1tn\u00ed weby, e-shopy a intranety a\u017e po velmi komplexn\u00ed \u0159e\u0161en\u00ed propojuj\u00edc\u00ed datov\u00e9 toky r\u016fzn\u00fdch syst\u00e9m\u016f, zahrnuj\u00edc\u00ed nap\u0159. pokro\u010dil\u00e1 workflow \u010di opr\u00e1vn\u011bn\u00ed s p\u0159esn\u011b definovanou granularitou na m\u00edru po\u017eadavk\u016fm.<\/p>\r\n\r\n<p>Drupal 8 oproti star\u0161\u00edm verz\u00edm je\u0161t\u011b v\u00edce odd\u011bluje logickou vrstvu spr\u00e1vy obsahu od prezenta\u010dn\u00ed vrstvy. V praxi to znamen\u00e1 nejen mo\u017enost spravovat obsah skrze responzivn\u00ed webov\u00e9 rozhran\u00ed (mobil, tablet, desktop), ale i mo\u017enost prezentovat \u010di spravovat obsah prost\u0159ednictv\u00edm jin\u00fdch syst\u00e9m\u016f, nap\u0159. mobiln\u00edch aplikac\u00ed, HbbTV \u010di DAB. Pr\u00e1v\u011b jednoduch\u00e1 integrace s ostatn\u00edmi syst\u00e9my \u010din\u00ed z Drupalu platformu budoucnosti.<\/p>\r\n\r\n<h2>Pro\u010d pou\u017e\u00edvat Drupal?<\/h2>\r\n\r\n<ul>\r\n\t<li>Syst\u00e9m je <strong>open source<\/strong> (<a href=\"https:\/\/en.wikipedia.org\/wiki\/GNU_General_Public_License\">GPL licence<\/a>), co\u017e znamen\u00e1, \u017ee v\u00e1m software bude v\u017edy k dispozici zdarma a \u017ee vy nebo va\u0161i v\u00fdvoj\u00e1\u0159i budete m\u00edt v\u017edy p\u0159\u00edstup k ve\u0161ker\u00e9mu k\u00f3du - vyhnete se tak riziku tzv. propriet\u00e1rn\u00edho uzam\u010den\u00ed. Dodan\u00e9 \u0159e\u0161en\u00ed budete moci kdykoli d\u00e1le upravovat dle va\u0161ich pot\u0159eb.<\/li>\r\n\t<li>Za Drupalem stoj\u00ed <strong>obrovsk\u00e1 komunita lid\u00ed<\/strong>, kte\u0159\u00ed jej neust\u00e1le vylep\u0161uj\u00ed a v\u011bnuj\u00ed se mu nejen ve voln\u00e9m \u010dase, ale p\u0159edev\u0161\u00edm profesion\u00e1ln\u011b. Nebudete m\u00edt probl\u00e9m naj\u00edt zku\u0161en\u00e9 v\u00fdvoj\u00e1\u0159e nebo konzultanty, kte\u0159\u00ed jsou experti na syst\u00e9m, kter\u00fd pou\u017e\u00edv\u00e1te.<\/li>\r\n\t<li>Drupal do sebe integruje st\u00e1le v\u00edce <strong>webov\u00fdch standard\u016f<\/strong> a tzv. <strong>best practices<\/strong> pou\u017e\u00edvan\u00fdch technologi\u00ed. Syst\u00e9m v\u00e1s tedy doslova nut\u00ed k jejich spr\u00e1vn\u00e9mu pou\u017e\u00edv\u00e1n\u00ed. Ve\u0161ker\u00fd \u010das, kter\u00fd investujete do studia technologi\u00ed na pozad\u00ed syst\u00e9mu, se v\u00e1m dlouhodob\u011b vyplat\u00ed - znalosti uplatn\u00edte i v jin\u00fdch oblastech.<\/li>\r\n\t<li>Drupal je maxim\u00e1ln\u011b <strong>modul\u00e1rn\u00ed, flexibiln\u00ed a \u0161k\u00e1lovateln\u00fd<\/strong> syst\u00e9m. Dle pot\u0159eb dan\u00e9ho \u0159e\u0161en\u00ed lze syst\u00e9m postupn\u011b roz\u0161i\u0159ovat o pot\u0159ebn\u00e9 moduly, tj. stavebn\u00ed bloky poskytuj\u00edc\u00ed ur\u010ditou funkcionalitu. D\u00edky p\u0159\u00edsn\u00fdm standard\u016fm obvykle nedoch\u00e1z\u00ed ke konflikt\u016fm p\u0159i pou\u017eit\u00ed r\u016fzn\u00fdch modul\u016f.<\/li>\r\n\t<li><strong>Rychlost realizace a bohat\u00e1 nab\u00eddka hotov\u00fdch \u0159e\u0161en\u00ed.<\/strong> S obrovskou komunitou, kter\u00e1 za Drupalem stoj\u00ed, si trouf\u00e1me tvrdit, \u017ee pokud n\u011bco v Drupalu pot\u0159ebujete, na 99 % u\u017e to n\u011bkdo p\u0159ed v\u00e1mi vy\u0159e\u0161il, v\u011bt\u0161inou v podob\u011b p\u0159\u00eddavn\u00e9ho modulu. Jednou z nejlep\u0161\u00edch prax\u00ed je tak nejprve hledat existuj\u00edc\u00ed modul, a teprve na jeho z\u00e1klad\u011b (nap\u0159. s vyu\u017eit\u00edm jeho API) p\u0159\u00edpadn\u011b programovat specifi\u010dt\u011bj\u0161\u00ed \u0159e\u0161en\u00ed.<\/li>\r\n\t<li>Drupal od verze 7 podporuje <a href=\"https:\/\/en.wikipedia.org\/wiki\/Responsive_web_design\">responsivn\u00ed design<\/a> a v nab\u00eddce tzv. t\u00e9mat vzhledu disponuje n\u011bkolika frameworky, kter\u00e9 v\u00e1m implementaci responzivn\u00edho designu v\u00fdrazn\u011b usnadn\u00ed.<\/li>\r\n\t<li>V Drupalu je mo\u017en\u00e9 doslova \u201cnaklikat\u201d \u0159adu slo\u017eit\u00fdch funkcionalit a dos\u00e1hnout tak <strong>velmi specifick\u00e9ho \u0159e\u0161en\u00ed<\/strong> pouze za pou\u017eit\u00ed p\u0159\u00eddavn\u00fdch modul\u016f a jejich <strong>konfigurace skrze webov\u00e9 rozhran\u00ed<\/strong>. To ov\u0161em nijak <strong>neomezuje mo\u017enost vlastn\u00edho programov\u00e1n\u00ed<\/strong> na m\u00edru tam, kde je t\u0159eba. Zku\u0161en\u00fdm v\u00fdvoj\u00e1\u0159\u016fm pak Drupal umo\u017e\u0148uje pou\u017e\u00edvat pokro\u010dil\u00e9 n\u00e1stroje jako nap\u0159. <a href=\"https:\/\/getcomposer.org\/\">Composer<\/a>, <a href=\"http:\/\/www.drush.org\/\">Drush<\/a> a <a href=\"https:\/\/www.drupal.org\/docs\/8\/configuration-management\">Configuration Management<\/a>, d\u00edky nim\u017e je mo\u017en\u00e9 proces v\u00fdvoje a deploymentu automatizovat, a t\u00edm v\u00fdznamn\u011b \u0161et\u0159it \u010das.<\/li>\r\n<\/ul>\r\n",
+            "format": "basic_html",
+            "processed": "<p>Drupal je v sou\u010dasnosti jeden z nejzaj\u00edmav\u011bj\u0161\u00edch a nejmodern\u011bj\u0161\u00edch <a href=\"https:\/\/en.wikipedia.org\/wiki\/Open-source_model\">open source<\/a> webov\u00fdch syst\u00e9m\u016f na spr\u00e1vu obsahu na sv\u011bt\u011b. P\u0159esto\u017ee m\u00e1 za sebou v\u00edce ne\u017e 15letou historii, dr\u017e\u00ed krok s internetov\u00fdmi trendy a v mnoha oblastech ud\u00e1v\u00e1 sm\u011br a je inspirac\u00ed pro dal\u0161\u00ed v\u00fdvoj.<\/p>\n\n<p>Skute\u010dn\u00fd boom za\u017e\u00edv\u00e1 Drupal pr\u00e1v\u011b v posledn\u00edch n\u011bkolika letech, konkr\u00e9tn\u011b od roku 2011, kdy byla vyd\u00e1na verze 7. Ta p\u0159inesla mnoho vylep\u0161en\u00ed ve smyslu podpory obecn\u00fdch webov\u00fdch standard\u016f, u\u017eivatelsk\u00e9 p\u0159\u00edv\u011btivosti (<a href=\"https:\/\/en.wikipedia.org\/wiki\/UX\">UX<\/a>) a multijazy\u010dnosti. Dal\u0161\u00ed zdokonalen\u00ed se t\u00fdkaj\u00ed bezpe\u010dnosti, co\u017e je ov\u0161em ji\u017e tradi\u010dn\u011b siln\u00e1 str\u00e1nka Drupalu.<\/p>\n\n<p>Pr\u00e1v\u011b d\u00edky zm\u00edn\u011bn\u00fdm atribut\u016fm za\u010daly Drupal masivn\u011b nasazovat - krom\u011b komer\u010dn\u00edch a neziskov\u00fdch organizac\u00ed - tak\u00e9 vl\u00e1dn\u00ed instituce, a to p\u0159edev\u0161\u00edm v USA, Austr\u00e1lii, Velk\u00e9 Brit\u00e1nii a N\u011bmecku, viz. <a href=\"https:\/\/www.drupal.com\/showcases\">weby na Drupalu<\/a>.<\/p>\n\n<p>V \u010cesk\u00e9 republice zaznamenal Drupal prvn\u00ed velk\u00fd \u00fasp\u011bch se spu\u0161t\u011bn\u00edm webu spole\u010dnosti <a href=\"https:\/\/www.iprima.cz\/\">Prima<\/a> v roce 2009, a to ve verzi Drupal 6. Na platformu Drupal 7 p\u0159ech\u00e1zej\u00ed v sou\u010dasn\u00e9 dob\u011b weby <a href=\"http:\/\/www.ceskatelevize.cz\/ct24\/ct24\">\u010cesk\u00e9 televize<\/a> a <a href=\"http:\/\/vltava.rozhlas.cz\">\u010cesk\u00e9ho rozhlasu<\/a>.<\/p>\n\n<p>Na konci roku 2015 byl ofici\u00e1ln\u011b a slavnostn\u011b vyd\u00e1n Drupal 8. V\u00fdvoj t\u00e9to verze trval t\u00e9m\u011b\u0159 5 let a jedn\u00e1 se o nejv\u011bt\u0161\u00ed update v historii Drupalu. Krom\u011b usnadn\u011bn\u00ed pr\u00e1ce u\u017eivatel\u016fm (jednodu\u0161\u0161\u00ed a rychlej\u0161\u00ed implementace i velmi n\u00e1ro\u010dn\u00fdch funkcionalit) jsou hlavn\u00ed zm\u011bny p\u0159edev\u0161\u00edm na \u00farovni k\u00f3du. J\u00e1dro bylo kompletn\u011b p\u0159epracov\u00e1no do <a href=\"https:\/\/en.wikipedia.org\/wiki\/PHP#PHP_Objects\">OOPHP<\/a> a integruje v sob\u011b mnoho komponent uzn\u00e1van\u00e9ho a popul\u00e1rn\u00edho PHP frameworku <a href=\"https:\/\/symfony.com\/\">Symfony2<\/a>.<\/p>\n\n<p>Samotn\u00fd Drupal se v posledn\u00edch letech pozvolna prom\u011b\u0148uje z klasick\u00e9ho redak\u010dn\u00edho syst\u00e9mu sp\u00ed\u0161e na framework, na kter\u00e9m lze relativn\u011b jednodu\u0161e postavit v podstat\u011b cokoliv, od osobn\u00edch \u010di produktov\u00fdch web\u016f p\u0159es korpor\u00e1tn\u00ed weby, e-shopy a intranety a\u017e po velmi komplexn\u00ed \u0159e\u0161en\u00ed propojuj\u00edc\u00ed datov\u00e9 toky r\u016fzn\u00fdch syst\u00e9m\u016f, zahrnuj\u00edc\u00ed nap\u0159. pokro\u010dil\u00e1 workflow \u010di opr\u00e1vn\u011bn\u00ed s p\u0159esn\u011b definovanou granularitou na m\u00edru po\u017eadavk\u016fm.<\/p>\n\n<p>Drupal 8 oproti star\u0161\u00edm verz\u00edm je\u0161t\u011b v\u00edce odd\u011bluje logickou vrstvu spr\u00e1vy obsahu od prezenta\u010dn\u00ed vrstvy. V praxi to znamen\u00e1 nejen mo\u017enost spravovat obsah skrze responzivn\u00ed webov\u00e9 rozhran\u00ed (mobil, tablet, desktop), ale i mo\u017enost prezentovat \u010di spravovat obsah prost\u0159ednictv\u00edm jin\u00fdch syst\u00e9m\u016f, nap\u0159. mobiln\u00edch aplikac\u00ed, HbbTV \u010di DAB. Pr\u00e1v\u011b jednoduch\u00e1 integrace s ostatn\u00edmi syst\u00e9my \u010din\u00ed z Drupalu platformu budoucnosti.<\/p>\n\n<h2>Pro\u010d pou\u017e\u00edvat Drupal?<\/h2>\n\n<ul><li>Syst\u00e9m je <strong>open source<\/strong> (<a href=\"https:\/\/en.wikipedia.org\/wiki\/GNU_General_Public_License\">GPL licence<\/a>), co\u017e znamen\u00e1, \u017ee v\u00e1m software bude v\u017edy k dispozici zdarma a \u017ee vy nebo va\u0161i v\u00fdvoj\u00e1\u0159i budete m\u00edt v\u017edy p\u0159\u00edstup k ve\u0161ker\u00e9mu k\u00f3du - vyhnete se tak riziku tzv. propriet\u00e1rn\u00edho uzam\u010den\u00ed. Dodan\u00e9 \u0159e\u0161en\u00ed budete moci kdykoli d\u00e1le upravovat dle va\u0161ich pot\u0159eb.<\/li>\n\t<li>Za Drupalem stoj\u00ed <strong>obrovsk\u00e1 komunita lid\u00ed<\/strong>, kte\u0159\u00ed jej neust\u00e1le vylep\u0161uj\u00ed a v\u011bnuj\u00ed se mu nejen ve voln\u00e9m \u010dase, ale p\u0159edev\u0161\u00edm profesion\u00e1ln\u011b. Nebudete m\u00edt probl\u00e9m naj\u00edt zku\u0161en\u00e9 v\u00fdvoj\u00e1\u0159e nebo konzultanty, kte\u0159\u00ed jsou experti na syst\u00e9m, kter\u00fd pou\u017e\u00edv\u00e1te.<\/li>\n\t<li>Drupal do sebe integruje st\u00e1le v\u00edce <strong>webov\u00fdch standard\u016f<\/strong> a tzv. <strong>best practices<\/strong> pou\u017e\u00edvan\u00fdch technologi\u00ed. Syst\u00e9m v\u00e1s tedy doslova nut\u00ed k jejich spr\u00e1vn\u00e9mu pou\u017e\u00edv\u00e1n\u00ed. Ve\u0161ker\u00fd \u010das, kter\u00fd investujete do studia technologi\u00ed na pozad\u00ed syst\u00e9mu, se v\u00e1m dlouhodob\u011b vyplat\u00ed - znalosti uplatn\u00edte i v jin\u00fdch oblastech.<\/li>\n\t<li>Drupal je maxim\u00e1ln\u011b <strong>modul\u00e1rn\u00ed, flexibiln\u00ed a \u0161k\u00e1lovateln\u00fd<\/strong> syst\u00e9m. Dle pot\u0159eb dan\u00e9ho \u0159e\u0161en\u00ed lze syst\u00e9m postupn\u011b roz\u0161i\u0159ovat o pot\u0159ebn\u00e9 moduly, tj. stavebn\u00ed bloky poskytuj\u00edc\u00ed ur\u010ditou funkcionalitu. D\u00edky p\u0159\u00edsn\u00fdm standard\u016fm obvykle nedoch\u00e1z\u00ed ke konflikt\u016fm p\u0159i pou\u017eit\u00ed r\u016fzn\u00fdch modul\u016f.<\/li>\n\t<li><strong>Rychlost realizace a bohat\u00e1 nab\u00eddka hotov\u00fdch \u0159e\u0161en\u00ed.<\/strong> S obrovskou komunitou, kter\u00e1 za Drupalem stoj\u00ed, si trouf\u00e1me tvrdit, \u017ee pokud n\u011bco v Drupalu pot\u0159ebujete, na 99 % u\u017e to n\u011bkdo p\u0159ed v\u00e1mi vy\u0159e\u0161il, v\u011bt\u0161inou v podob\u011b p\u0159\u00eddavn\u00e9ho modulu. Jednou z nejlep\u0161\u00edch prax\u00ed je tak nejprve hledat existuj\u00edc\u00ed modul, a teprve na jeho z\u00e1klad\u011b (nap\u0159. s vyu\u017eit\u00edm jeho API) p\u0159\u00edpadn\u011b programovat specifi\u010dt\u011bj\u0161\u00ed \u0159e\u0161en\u00ed.<\/li>\n\t<li>Drupal od verze 7 podporuje <a href=\"https:\/\/en.wikipedia.org\/wiki\/Responsive_web_design\">responsivn\u00ed design<\/a> a v nab\u00eddce tzv. t\u00e9mat vzhledu disponuje n\u011bkolika frameworky, kter\u00e9 v\u00e1m implementaci responzivn\u00edho designu v\u00fdrazn\u011b usnadn\u00ed.<\/li>\n\t<li>V Drupalu je mo\u017en\u00e9 doslova \u201cnaklikat\u201d \u0159adu slo\u017eit\u00fdch funkcionalit a dos\u00e1hnout tak <strong>velmi specifick\u00e9ho \u0159e\u0161en\u00ed<\/strong> pouze za pou\u017eit\u00ed p\u0159\u00eddavn\u00fdch modul\u016f a jejich <strong>konfigurace skrze webov\u00e9 rozhran\u00ed<\/strong>. To ov\u0161em nijak <strong>neomezuje mo\u017enost vlastn\u00edho programov\u00e1n\u00ed<\/strong> na m\u00edru tam, kde je t\u0159eba. Zku\u0161en\u00fdm v\u00fdvoj\u00e1\u0159\u016fm pak Drupal umo\u017e\u0148uje pou\u017e\u00edvat pokro\u010dil\u00e9 n\u00e1stroje jako nap\u0159. <a href=\"https:\/\/getcomposer.org\/\">Composer<\/a>, <a href=\"http:\/\/www.drush.org\/\">Drush<\/a> a <a href=\"https:\/\/www.drupal.org\/docs\/8\/configuration-management\">Configuration Management<\/a>, d\u00edky nim\u017e je mo\u017en\u00e9 proces v\u00fdvoje a deploymentu automatizovat, a t\u00edm v\u00fdznamn\u011b \u0161et\u0159it \u010das.<\/li>\n<\/ul>",
+            "summary": "",
+            "lang": "cs"
+        }
+    ]
+}

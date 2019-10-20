@@ -3,7 +3,8 @@
   box-sizing: border-box; }
 
 html {
-  font-size: 62.5%; }
+  font-size: 62.5%;
+  word-wrap: break-word; }
 
 body {
   color: #161c21;
@@ -86,6 +87,11 @@ blockquote {
     right: 6px;
     text-shadow: 3px 0 rgba(51, 122, 183, 0.1);
     line-height: 1; }
+
+code {
+  display: block;
+  overflow: auto;
+  word-break: keep-all; }
 
 .lead {
   font-size: 2.43rem;
@@ -575,6 +581,9 @@ form {
 img {
   height: auto;
   width: 100%; }
+
+article .field.text-formatted img {
+  width: auto; }
 
 .embedded-entity .media--type-image img {
   max-width: 100%;

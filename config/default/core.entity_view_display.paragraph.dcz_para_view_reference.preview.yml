@@ -9,8 +9,6 @@ dependencies:
     - field.field.paragraph.dcz_para_view_reference.field_title
     - field.field.paragraph.dcz_para_view_reference.field_view_reference
     - paragraphs.paragraphs_type.dcz_para_view_reference
-  module:
-    - viewsreference
 id: paragraph.dcz_para_view_reference.preview
 targetEntityType: paragraph
 bundle: dcz_para_view_reference

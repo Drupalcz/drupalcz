@@ -1,7 +1,7 @@
 {
     "_links": {
         "self": {
-            "href": "http:\/\/default\/sites\/default\/files\/users\/profil_7429_600x600px.jpg"
+            "href": ""
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
@@ -53,7 +53,8 @@
     ],
     "uri": [
         {
-            "value": "public:\/\/users\/profil_7429_600x600px.jpg"
+            "value": "public:\/\/users\/profil_7429_600x600px.jpg",
+            "url": "\/sites\/default\/files\/users\/profil_7429_600x600px.jpg"
         }
     ],
     "filemime": [
