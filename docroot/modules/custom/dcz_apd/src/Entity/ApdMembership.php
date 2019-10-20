@@ -78,6 +78,13 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
   const VS_PREFIX = 100000000;
 
   /**
+   * Instance of DateFormatter.
+   *
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   */
+  private $dateFormatter;
+
+  /**
    * {@inheritdoc}
    */
   public static function preCreate(EntityStorageInterface $storage_controller,
@@ -344,7 +351,7 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
       return 0;
     }
 
-    return (int) $this->dateFormatter->formatTimeDiffUntil($this->get('valid_to')->value);
+    return (int) $this->dateFormatter()->formatTimeDiffUntil(strtotime($this->get('valid_to')->value));
   }
 
   /**
@@ -368,6 +375,19 @@ class ApdMembership extends RevisionableContentEntityBase implements ApdMembersh
     }
 
     return $uri_route_parameters;
+  }
+
+  /**
+   * Helper function to get instance of DateFormatter.
+   *
+   * @return \Drupal\Core\Datetime\DateFormatterInterface
+   *   Instance of DateFormatter.
+   */
+  private function dateFormatter() {
+    if (empty($this->dateFormatter)) {
+      $this->dateFormatter = \Drupal::service('date.formatter');
+    }
+    return $this->dateFormatter;
   }
 
 }
