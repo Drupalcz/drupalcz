@@ -76,10 +76,7 @@
         "npm-asset/underscore": "*"
     },
     "require-dev": {
-        "acquia/blt-require-dev": "^10.0.0-alpha1",
-        "drupal/better_normalizers": "^1.0",
-        "drupal/default_content_deploy": "^1.0",
-        "drupal/stage_file_proxy": "^1.0@beta"
+        "acquia/blt-require-dev": "^10.0.0-alpha1"
     },
     "config": {
         "sort-packages": true,
