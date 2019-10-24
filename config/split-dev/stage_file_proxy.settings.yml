@@ -1,6 +1,6 @@
 hotlink: false
-origin: ''
-origin_dir: ''
+origin: 'https://www.drupal.cz'
+origin_dir: sites/default/files
 use_imagecache_root: true
 verify: true
 _core:
