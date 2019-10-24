@@ -58,6 +58,7 @@
         "drupal/security_review": "1.x-dev",
         "drupal/shield": "^1.2",
         "drupal/slack_invite": "^1.1",
+        "drupal/stage_file_proxy": "^1.0@RC",
         "drupal/token": "^1.5",
         "drupal/viewsreference": "^2.0",
         "drupal/youtube": "^1.0@beta",
