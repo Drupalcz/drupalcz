@@ -24,8 +24,6 @@ alias=$site.$target_env
 drush9 @$alias sset system.maintenance_mode 1 --yes
 drush9 @$alias cr --yes
 drush9 @$alias updb --yes
-# We should not need this, but reality is different.
-drush9 @$alias entup --yes
 drush9 @$alias cim sync --yes
 drush9 @$alias cr --yes
 drush9 @$alias sset system.maintenance_mode 0 --yes
