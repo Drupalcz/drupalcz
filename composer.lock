@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef1d2e3a28d24f5527d1d57a9b2dd9cc",
+    "content-hash": "893107e7f25bcf13077033f905fb2e74",
     "packages": [
         {
             "name": "acquia/blt",
@@ -3271,6 +3271,73 @@
             }
         },
         {
+            "name": "drupal/captcha",
+            "version": "1.0.0-beta4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/captcha.git",
+                "reference": "8.x-1.0-beta4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/captcha-8.x-1.0-beta4.zip",
+                "reference": "8.x-1.0-beta4",
+                "shasum": "08ecd947204852302704b0bd6ec73a6f6a871854"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta4",
+                    "datestamp": "1571689089",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "RobLoach",
+                    "homepage": "https://www.drupal.org/user/61114"
+                },
+                {
+                    "name": "elachlan",
+                    "homepage": "https://www.drupal.org/user/1021502"
+                },
+                {
+                    "name": "naveenvalecha",
+                    "homepage": "https://www.drupal.org/user/2665733"
+                },
+                {
+                    "name": "podarok",
+                    "homepage": "https://www.drupal.org/user/116002"
+                },
+                {
+                    "name": "soxofaan",
+                    "homepage": "https://www.drupal.org/user/41478"
+                },
+                {
+                    "name": "wundo",
+                    "homepage": "https://www.drupal.org/user/25523"
+                }
+            ],
+            "description": "The CAPTCHA module provides this feature to virtually any user facing web form on a Drupal site.",
+            "homepage": "https://www.drupal.org/project/captcha",
+            "support": {
+                "source": "https://git.drupalcode.org/project/captcha"
+            }
+        },
+        {
             "name": "drupal/coder",
             "version": "8.3.4",
             "source": {
@@ -6391,6 +6458,62 @@
             "homepage": "https://www.drupal.org/project/redirect",
             "support": {
                 "source": "http://cgit.drupalcode.org/redirect"
+            }
+        },
+        {
+            "name": "drupal/riddler",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/riddler.git",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/riddler-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "a52a0cb56bb927d17b103053570b7524c725e30b"
+            },
+            "require": {
+                "drupal/captcha": "*",
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1534623481",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "alex_optim",
+                    "homepage": "https://www.drupal.org/user/3317601"
+                },
+                {
+                    "name": "awolfey",
+                    "homepage": "https://www.drupal.org/user/277371"
+                },
+                {
+                    "name": "imerlin",
+                    "homepage": "https://www.drupal.org/user/21895"
+                }
+            ],
+            "description": "Provides a question and answer CAPTCHA.",
+            "homepage": "https://www.drupal.org/project/riddler",
+            "support": {
+                "source": "https://git.drupalcode.org/project/riddler"
             }
         },
         {
@@ -13744,6 +13867,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/better_normalizers": 10,
+        "drupal/captcha": 10,
         "drupal/default_content_deploy": 15,
         "drupal/diff": 5,
         "drupal/inline_entity_form": 5,
