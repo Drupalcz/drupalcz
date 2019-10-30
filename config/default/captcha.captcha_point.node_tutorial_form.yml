@@ -1,0 +1,7 @@
+uuid: 0207b36f-34d2-4b66-b631-4a8d44f8676a
+langcode: cs
+status: false
+dependencies: {  }
+formId: node_tutorial_form
+captchaType: default
+label: null
