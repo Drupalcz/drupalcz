@@ -72,6 +72,7 @@ module:
   redirect_404: 0
   responsive_image: 0
   rest: 0
+  riddler: 0
   search: 0
   serialization: 0
   shield: 0
