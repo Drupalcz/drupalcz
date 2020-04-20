@@ -1,5 +1,5 @@
 name: DCZ Custom Blocks
-core: 8.x
+core_version_requirement: ^8 || ^9
 description: Custom blocks with pieces of information.
 package: Custom
 type: module
