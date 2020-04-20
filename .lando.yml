@@ -4,10 +4,14 @@ recipe: drupal8
 config:
   webroot: docroot
   ssl: true
-  xdebug: true
+  xdebug: false
+  php: 7.2
   overrides:
     volumes:
       - ${HOME}/.lando/composer_cache:/var/www/.composer
+    environment:
+      PHP_IDE_CONFIG: "serverName=appserver"
+      DRUSH_ALLOW_XDEBUG: 1
 
 services:
   database:
@@ -17,3 +21,16 @@ services:
     type: mailhog
     hogfrom:
       - appserver
+
+tooling:
+  xdebug-on:
+    service: appserver
+    description: Enable xdebug for apache.
+    cmd: "docker-php-ext-enable xdebug && /etc/init.d/apache2 reload"
+    user: root
+
+  xdebug-off:
+    service: appserver
+    description: Disable xdebug for apache.
+    cmd: "rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && /etc/init.d/apache2 reload"
+    user: root

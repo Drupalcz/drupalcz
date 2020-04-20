@@ -1,4 +1,5 @@
 module:
+  acquia_connector: 0
   admin_toolbar: 0
   admin_toolbar_search: 0
   admin_toolbar_tools: 0
@@ -8,6 +9,7 @@ module:
   block_content: 0
   breakpoint: 0
   ckeditor: 0
+  cleantalk: 0
   color: 0
   comment: 0
   config: 0
@@ -32,7 +34,6 @@ module:
   entity_embed: 0
   entity_reference: 0
   entity_reference_revisions: 0
-  extlink: 0
   field: 0
   field_ui: 0
   file: 0
@@ -42,7 +43,6 @@ module:
   geolocation: 0
   geshifilter: 0
   google_analytics: 0
-  hal: 0
   history: 0
   honeypot: 0
   image: 0
@@ -60,6 +60,7 @@ module:
   metatag_facebook: 0
   metatag_open_graph: 0
   metatag_views: 0
+  minimal: 0
   node: 0
   options: 0
   page_cache: 0
@@ -68,15 +69,16 @@ module:
   panels_ipe: 0
   paragraphs: 0
   path: 0
+  path_alias: 0
   redirect: 0
   redirect_404: 0
   responsive_image: 0
   rest: 0
   search: 0
-  serialization: 0
   shield: 0
   shortcut: 0
   slack_invite: 0
+  syslog: 0
   system: 0
   taxonomy: 0
   text: 0
@@ -89,12 +91,12 @@ module:
   menu_link_content: 1
   pathauto: 1
   views: 10
-  minimal: 1000
   eu_cookie_compliance: 1001
 theme:
   stable: 0
   classy: 0
   seven: 0
   dcz_theme: 0
+  stark: 0
 langcode: cs
 profile: minimal

@@ -5,7 +5,7 @@ dependencies: {  }
 _core:
   default_config_hash: rpwvgyEURXLz_JjgMCrkS1rUv-0k3L79BpO-ReN7fDI
 id: node
-label: Obsah
+label: Content
 tags:
   canonical_url: '[node:url]'
   description: '[node:summary]'

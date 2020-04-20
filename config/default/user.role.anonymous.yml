@@ -11,7 +11,5 @@ permissions:
   - 'access content'
   - 'access user profiles'
   - 'display eu cookie compliance popup'
-  - 'post comments'
-  - 'skip comment approval'
   - 'use text format forum'
   - 'view media'

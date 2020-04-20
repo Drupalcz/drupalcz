@@ -7,4 +7,4 @@ _core:
 id: comment_forum
 label: Comment_forum
 target_entity_type_id: node
-description: 'Výchozí pole komentáře'
+description: 'Default comment field'

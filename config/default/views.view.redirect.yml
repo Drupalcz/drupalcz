@@ -15,12 +15,11 @@ description: 'List of redirects'
 tag: ''
 base_table: redirect
 base_field: rid
-core: 8.x
 display:
   default:
     display_plugin: default
     id: default
-    display_title: Nadřízené
+    display_title: Master
     position: 0
     display_options:
       access:
@@ -41,13 +40,13 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Filtr
+          submit_button: Filter
           reset_button: false
           reset_button_label: Reset
-          exposed_sorts_label: 'Řadit dle'
+          exposed_sorts_label: 'Sort by'
           expose_sort_order: true
-          sort_asc_label: Vzestupně
-          sort_desc_label: Sestupně
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       pager:
         type: full
         options:
@@ -57,17 +56,17 @@ display:
           total_pages: null
           tags:
             previous: '‹ previous'
-            next: 'následující ›'
-            first: '« první'
-            last: 'poslední »'
+            next: 'next ›'
+            first: '« first'
+            last: 'last »'
           expose:
             items_per_page: false
-            items_per_page_label: 'Položek na stránku'
+            items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Vše -'
+            items_per_page_options_all_label: '- All -'
             offset: false
-            offset_label: Posun
+            offset_label: Offset
           quantity: 9
       style:
         type: table
@@ -195,7 +194,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Od
+          label: From
           exclude: false
           alter:
             alter_text: false
@@ -280,7 +279,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Vytvořeno
+          label: Created
           exclude: false
           alter:
             alter_text: false
@@ -347,7 +346,7 @@ display:
           exposed: true
           expose:
             operator_id: redirect_source__path_op
-            label: Od
+            label: From
             description: ''
             use_operator: false
             operator: redirect_source__path_op
@@ -360,6 +359,8 @@ display:
               anonymous: '0'
               administrator: '0'
             placeholder: ''
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -388,7 +389,7 @@ display:
           exposed: true
           expose:
             operator_id: redirect_redirect__uri_op
-            label: Komu
+            label: To
             description: ''
             use_operator: false
             operator: redirect_redirect__uri_op
@@ -401,6 +402,8 @@ display:
               anonymous: '0'
               administrator: '0'
             placeholder: ''
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -447,6 +450,8 @@ display:
             placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: true
           group_info:
             label: 'Status code'
@@ -524,7 +529,7 @@ display:
           exposed: true
           expose:
             operator_id: language_op
-            label: 'Původní jazyk'
+            label: 'Original language'
             description: ''
             use_operator: false
             operator: language_op
@@ -537,6 +542,8 @@ display:
               anonymous: '0'
               administrator: '0'
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -588,7 +595,7 @@ display:
   page_1:
     display_plugin: page
     id: page_1
-    display_title: Stránka
+    display_title: Page
     position: 1
     display_options:
       display_extenders: {  }

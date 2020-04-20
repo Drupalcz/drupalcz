@@ -13,7 +13,7 @@ id: comment.comment_forum.comment_body
 field_name: comment_body
 entity_type: comment
 bundle: comment_forum
-label: Komentář
+label: Comment
 description: ''
 required: true
 translatable: true

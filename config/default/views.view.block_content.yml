@@ -8,13 +8,12 @@ dependencies:
 _core:
   default_config_hash: tp4wP6wVrEPZfApiCfkpoCxUzN-B1ceGcGv5sEzQ2Sg
 id: block_content
-label: 'Knihovna vlastních bloků'
+label: 'Custom block library'
 module: views
-description: 'Hledat a spravovat vlastní bloky.'
+description: 'Find and manage custom blocks.'
 tag: default
 base_table: block_content_field_data
 base_field: id
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -55,8 +54,8 @@ display:
           id: 0
           total_pages: null
           tags:
-            previous: '‹ Předchozí'
-            next: 'Další ›'
+            previous: '‹ Previous'
+            next: 'Next ›'
           expose:
             items_per_page: false
             items_per_page_label: 'Položek na stránku'
@@ -64,7 +63,7 @@ display:
             items_per_page_options_all: false
             items_per_page_options_all_label: '- Vše -'
             offset: false
-            offset_label: Posun
+            offset_label: 'Vynechat položky'
       style:
         type: table
         options:
@@ -379,6 +378,8 @@ display:
               anonymous: '0'
               administrator: '0'
             placeholder: ''
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -420,6 +421,8 @@ display:
               anonymous: '0'
               administrator: '0'
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -456,6 +459,8 @@ display:
             required: false
             remember: false
             multiple: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -472,7 +477,7 @@ display:
           entity_field: reusable
           plugin_id: boolean
       sorts: {  }
-      title: 'Knihovna vlastních bloků'
+      title: 'Custom block library'
       header: {  }
       footer: {  }
       empty:
@@ -520,7 +525,7 @@ display:
       path: admin/structure/block/block-content
       menu:
         type: tab
-        title: 'Knihovna vlastních bloků'
+        title: 'Custom block library'
         description: ''
         parent: block.admin_display
         weight: 0

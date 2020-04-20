@@ -6,7 +6,8 @@ id: cleantalk
 label: CleanTalk
 description: 'Split that enables Cleantalk antispam. We need this to exlude Cleantalk on Travis and local because it breaks site install and default content deploy. See: https://www.drupal.org/project/cleantalk/issues/3007022#comment-12851916'
 folder: ../config/split-cleantalk
-module: {  }
+module:
+  cleantalk: 0
 theme: {  }
 blacklist: {  }
 graylist: {  }

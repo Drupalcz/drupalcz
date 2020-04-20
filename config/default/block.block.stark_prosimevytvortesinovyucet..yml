@@ -1,0 +1,39 @@
+uuid: 87339702-97c1-4b47-bd65-e18af221ce37
+langcode: cs
+status: true
+dependencies:
+  content:
+    - 'block_content:content_block:aa1d0e14-8b25-48cc-bb1b-f4667c14bcf4'
+  module:
+    - block_content
+    - system
+    - user
+  theme:
+    - stark
+id: stark_prosimevytvortesinovyucet.
+theme: stark
+region: content
+weight: -7
+provider: null
+plugin: 'block_content:aa1d0e14-8b25-48cc-bb1b-f4667c14bcf4'
+settings:
+  id: 'block_content:aa1d0e14-8b25-48cc-bb1b-f4667c14bcf4'
+  label: 'Prosíme, vytvořte si nový účet.'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: "/user/login\r\n/user/password"
+    negate: false
+    context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      anonymous: anonymous
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
