@@ -13,9 +13,9 @@ third_party_settings:
     parent: ''
 _core:
   default_config_hash: ERCHDVB33lub-cz7DSYR7HuBlYJjmVUdPw0IIYa3ZXc
-name: 'Forum topic'
+name: 'Téma diskuse'
 type: forum
-description: 'A <em>forum topic</em> starts a new discussion thread within a forum.'
+description: '<em>Téma fóra</em> začíná nové diskusní vlákno uvnitř fóra.'
 help: ''
 new_revision: true
 preview_mode: 1

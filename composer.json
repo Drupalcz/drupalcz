@@ -12,13 +12,12 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "acquia/blt": "^11",
+        "acquia/blt": "^10.0.0",
         "acquia/memcache-settings": "*",
         "bower-asset/dropzone": "^5.1",
         "bower-asset/flexslider": "^2.6",
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6",
-        "drupal-composer/drupal-scaffold": "^2.5.4",
         "drupal/acquia_connector": "^1.5",
         "drupal/acquia_purge": "^1.0",
         "drupal/admin_toolbar": "~2.0",
@@ -27,8 +26,7 @@
         "drupal/config_split": "^1.4",
         "drupal/config_update": "^1.5",
         "drupal/console": "^1.3",
-        "drupal/core": "~8.8.0",
-        "drupal/core-recommended": "^8.8",
+        "drupal/core": "~8.7.0",
         "drupal/ctools": "^3.0",
         "drupal/default_content_deploy": "^1.0@alpha",
         "drupal/devel": "^2.1",
@@ -54,7 +52,7 @@
         "drupal/panels": "^4.3",
         "drupal/panels_ipe": "^4.3",
         "drupal/paragraphs": "^1.5",
-        "drupal/pathauto": "^1.6.0",
+        "drupal/pathauto": "^1.3",
         "drupal/purge": "^3.0@beta",
         "drupal/redirect": "^1.0",
         "drupal/seckit": "^1.1",
@@ -81,7 +79,7 @@
         "npm-asset/underscore": "*"
     },
     "require-dev": {
-        "acquia/blt-require-dev": "11.x-dev"
+        "acquia/blt-require-dev": "^10.0.0-alpha1"
     },
     "config": {
         "sort-packages": true,

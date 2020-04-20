@@ -1,5 +1,4 @@
 label: Media
-description: 'Find and manage media.'
 display:
   default:
     display_title: Master
