@@ -20,7 +20,7 @@
         "cweagans/composer-patches": "^1.6",
         "drupal/acquia_connector": "^1.5",
         "drupal/acquia_purge": "^1.0",
-        "drupal/admin_toolbar": "^1.21",
+        "drupal/admin_toolbar": "~2.0",
         "drupal/better_normalizers": "^1.0@beta",
         "drupal/cleantalk": "^2.5",
         "drupal/config_split": "^1.4",
