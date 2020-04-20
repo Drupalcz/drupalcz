@@ -17,3 +17,6 @@ disable-targets:
     php:
       sniff:
         deprecated: true
+    security:
+      check:
+        updates: true
