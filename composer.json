@@ -66,7 +66,7 @@
         "drush/drush": "^9.5",
         "oomphinc/composer-installers-extender": "^1.1",
         "pear/versioncontrol_git": "^0.5.0",
-        "php": ">=7.1"
+        "php": ">=7.2"
     },
     "replace": {
         "bower-asset/jquery": "*",
