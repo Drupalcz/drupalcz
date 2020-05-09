@@ -111,11 +111,6 @@
         "patchLevel": {
             "drupal/core": "-p2"
         },
-        "patches": {
-            "drush/drush": {
-                "github.com/drush-ops/drush/issues/3572": "https://github.com/drush-ops/drush/files/2534033/drush-ops_drush-3572.patch"
-            }
-        },
         "installer-types": [
             "bower-asset",
             "npm-asset"
@@ -178,6 +173,7 @@
             "rm -rf vendor composer.lock docroot/core docroot/modules/contrib docroot/profiles/contrib docroot/themes/contrib",
             "@composer clearcache --ansi",
             "@composer install --ansi"
-        ]
+        ],
+        "init-theme": "sh scripts/init-theme.sh"
     }
 }

@@ -60,14 +60,11 @@ before_install:
 install:
   - source ${BLT_DIR}/scripts/travis/setup_environment
   - source ${BLT_DIR}/scripts/travis/setup_project
-  - curl -O -L https://github.com/mglaman/drupal-check/releases/latest/download/drupal-check.phar && chmod +x drupal-check.phar
 
 script:
   # Uncomment these lines to test database updates using live content.
   # - blt drupal:sync:default:site
   - source ${BLT_DIR}/scripts/travis/run_tests
-  - php drupal-check.phar docroot/modules/custom
-  - php drupal-check.phar docroot/themes/custom
 
 deploy:
    - provider: script

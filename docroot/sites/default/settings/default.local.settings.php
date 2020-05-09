@@ -5,11 +5,11 @@
  * Your local database connection.
  */
 $databases['default']['default'] = array(
-  'database' => 'SOMETHING',
-  'username' => 'SOMETHING',
-  'password' => 'SOMETHING',
+  'database' => '@@DB_NAME@@',
+  'username' => '@@DB_USER@@',
+  'password' => '@@DB_PASS@@',
   'prefix' => '',
-  'host' => 'localhost',
+  'host' => '@@DB_HOST@@',
   'port' => '3306',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
