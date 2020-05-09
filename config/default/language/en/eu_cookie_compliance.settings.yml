@@ -10,8 +10,3 @@ popup_info:
 mobile_popup_info:
   value: '<h2>We use cookies on this site to enhance your user experience</h2><p>By tapping any link on this page you are giving your consent for us to set cookies.</p>'
 popup_link: '<front>'
-disagree_button_label: 'No, thanks'
-withdraw_message:
-  value: '<h2>We use cookies on this site to enhance your user experience</h2><p>You have given your consent for us to set cookies.</p>'
-withdraw_action_button_label: 'Withdraw consent'
-withdraw_tab_button_label: 'Privacy settings'
