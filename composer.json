@@ -23,7 +23,8 @@
         "drupal/acquia_purge": "^1.0",
         "drupal/admin_toolbar": "~2.0",
         "drupal/better_normalizers": "^1.0@beta",
-        "drupal/cleantalk": "^2.5",
+        "drupal/captcha": "^1.0@beta",
+        "drupal/cleantalk": "^3.5",
         "drupal/config_split": "^1.4",
         "drupal/config_update": "^1.5",
         "drupal/console": "^1.3",
@@ -58,6 +59,7 @@
         "drupal/pathauto": "^1.6.0",
         "drupal/purge": "^3.0@beta",
         "drupal/redirect": "^1.0",
+        "drupal/riddler": "^1.1",
         "drupal/seckit": "^1.1",
         "drupal/security_review": "1.x-dev",
         "drupal/shield": "^1.2",
@@ -167,6 +169,7 @@
             "rm -rf vendor composer.lock docroot/core docroot/modules/contrib docroot/profiles/contrib docroot/themes/contrib",
             "@composer clearcache --ansi",
             "@composer install --ansi"
-        ]
+        ],
+        "init-theme": "sh scripts/init-theme.sh"
     }
 }

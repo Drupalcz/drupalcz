@@ -1,0 +1,13 @@
+riddles:
+  -
+    question: 'Jaká je oblíbená prímořská destinace Čechů a Slováků?'
+    response: 'Chorvatsko, chorvatsko, chorvátsko'
+  -
+    question: 'Která řeka protéká Prahou?'
+    response: 'Vltava, vltava'
+  -
+    question: 'Ktorá rieka preteká Bratislavou?'
+    response: 'Dunaj, dunaj'
+_core:
+  default_config_hash: pKKCV0W4-r3Zf1QQzR2HDXAXmfH81248yrY2d9iR7S4
+langcode: cs

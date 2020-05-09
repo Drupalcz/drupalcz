@@ -5,11 +5,11 @@
  * Your local database connection.
  */
 $databases['default']['default'] = array(
-  'database' => 'SOMETHING',
-  'username' => 'SOMETHING',
-  'password' => 'SOMETHING',
+  'database' => '@@DB_NAME@@',
+  'username' => '@@DB_USER@@',
+  'password' => '@@DB_PASS@@',
   'prefix' => '',
-  'host' => 'localhost',
+  'host' => '@@DB_HOST@@',
   'port' => '3306',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
@@ -64,14 +64,6 @@ $settings['rebuild_access'] = TRUE;
 $config['slack_invite.settings']['token'] = "DUMMY_TOKEN";
 
 /**
- * Simulate config we have available on Acquia.
- *
- * Get your own keys:
- * * CleanTalk free trial: https://cleantalk.org/ .
- */
-$config['cleantalk.settings']['cleantalk_authkey'] = "DUMMY_KEY";
-
-/**
  * Shield.
  */
 $config['shield.settings']['allow_cli'] = TRUE;
@@ -89,5 +81,4 @@ $config['content_directory'] = '../content';
  */
 $config['config_split.config_split.dev']['status'] = TRUE;;
 $config['config_split.config_split.default_content']['status'] = TRUE;
-$config['config_split.config_split.cleantalk']['status'] = FALSE;
 $config['config_split.config_split.prod']['status'] = FALSE;
