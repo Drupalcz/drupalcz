@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bafe66670ae4093ba2207910cce880ba",
+    "content-hash": "2d9ec7709adb4b98fa64df8ee556000e",
     "packages": [
         {
             "name": "acquia/blt",
@@ -2532,27 +2532,30 @@
             }
         },
         {
-            "name": "drupal/cleantalk",
-            "version": "2.9.0",
+            "name": "drupal/captcha",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/cleantalk.git",
-                "reference": "8.x-2.9"
+                "url": "https://git.drupalcode.org/project/captcha.git",
+                "reference": "8.x-1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/cleantalk-8.x-2.9.zip",
-                "reference": "8.x-2.9",
-                "shasum": "d7b516d9c33dc8299de9221b6e17a4cdfb88429a"
+                "url": "https://ftp.drupal.org/files/projects/captcha-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "1707c67b97a17d701a194e6da86ad9b21631915b"
             },
             "require": {
-                "drupal/core": "~8.0"
+                "drupal/core": "*"
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
-                    "version": "8.x-2.9",
-                    "datestamp": "1562838185",
+                    "version": "8.x-1.0",
+                    "datestamp": "1582292983",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2561,33 +2564,38 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
-                    "name": "CleanTalk inc.",
-                    "homepage": "https://www.drupal.org/user/3624869"
+                    "name": "RobLoach",
+                    "homepage": "https://www.drupal.org/user/61114"
                 },
                 {
-                    "name": "Safronik",
-                    "homepage": "https://www.drupal.org/user/3500201"
+                    "name": "elachlan",
+                    "homepage": "https://www.drupal.org/user/1021502"
                 },
                 {
-                    "name": "davydovct",
-                    "homepage": "https://www.drupal.org/user/3510415"
+                    "name": "naveenvalecha",
+                    "homepage": "https://www.drupal.org/user/2665733"
                 },
                 {
-                    "name": "znaeff",
-                    "homepage": "https://www.drupal.org/user/2727147"
+                    "name": "podarok",
+                    "homepage": "https://www.drupal.org/user/116002"
+                },
+                {
+                    "name": "soxofaan",
+                    "homepage": "https://www.drupal.org/user/41478"
+                },
+                {
+                    "name": "wundo",
+                    "homepage": "https://www.drupal.org/user/25523"
                 }
             ],
-            "description": "Cloud antispam solution without captcha.",
-            "homepage": "https://cleantalk.org",
+            "description": "The CAPTCHA module provides this feature to virtually any user facing web form on a Drupal site.",
+            "homepage": "https://www.drupal.org/project/captcha",
             "support": {
-                "source": "https://git.drupalcode.org/project/cleantalk",
-                "issues": "https://cleantalk.org/my/suport",
-                "support_forum": "https://community.cleantalk.org/viewforum.php?f=31&sid=7b6d4323aa6e39b1e0db7ee06a1d71e4",
-                "faq": "https://cleantalk.org/help"
+                "source": "https://git.drupalcode.org/project/captcha"
             }
         },
         {
@@ -3751,6 +3759,9 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-2.1",
                     "datestamp": "1556799496",
@@ -3795,10 +3806,6 @@
                 {
                     "name": "See contributors",
                     "homepage": "https://www.drupal.org/node/3236/committers"
-                },
-                {
-                    "name": "pcambra",
-                    "homepage": "https://www.drupal.org/user/122101"
                 },
                 {
                     "name": "salvis",
@@ -4568,7 +4575,7 @@
             "description": "Integrate the FlexSlider 2 library with Drupal",
             "homepage": "https://www.drupal.org/project/flexslider",
             "support": {
-                "source": "https://git.drupalcode.org/project/flexslider"
+                "source": "http://cgit.drupalcode.org/flexslider"
             }
         },
         {
@@ -4590,6 +4597,9 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-1.11",
                     "datestamp": "1505687043",
@@ -4616,7 +4626,7 @@
             "description": "Provides a simple geolocation Drupal field type to store and display location data (lat, lng).",
             "homepage": "https://www.drupal.org/project/geolocation",
             "support": {
-                "source": "https://git.drupalcode.org/project/geolocation"
+                "source": "http://cgit.drupalcode.org/geolocation"
             }
         },
         {
@@ -4672,7 +4682,7 @@
             "description": "Provides a filter to highlight source code using the GeSHi library (Generic Syntax Highlighter).",
             "homepage": "https://www.drupal.org/project/geshifilter",
             "support": {
-                "source": "https://git.drupalcode.org/project/geshifilter"
+                "source": "http://cgit.drupalcode.org/geshifilter"
             }
         },
         {
@@ -5122,7 +5132,7 @@
             "description": "Provides an integration between the Juicebox HTML5 responsive gallery library and Drupal.",
             "homepage": "https://www.drupal.org/project/juicebox",
             "support": {
-                "source": "https://git.drupalcode.org/project/juicebox"
+                "source": "http://cgit.drupalcode.org/juicebox"
             }
         },
         {
@@ -5164,10 +5174,6 @@
                 {
                     "name": "Pol",
                     "homepage": "https://www.drupal.org/user/47194"
-                },
-                {
-                    "name": "joseph.olstad",
-                    "homepage": "https://www.drupal.org/user/1321830"
                 },
                 {
                     "name": "rjacobs",
@@ -5250,7 +5256,7 @@
             "description": "Provides Actions plugins to be used with Media in core",
             "homepage": "https://www.drupal.org/project/media_entity_actions",
             "support": {
-                "source": "https://git.drupalcode.org/project/media_entity_actions"
+                "source": "http://cgit.drupalcode.org/media_entity_actions"
             }
         },
         {
@@ -5946,6 +5952,62 @@
             }
         },
         {
+            "name": "drupal/riddler",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/riddler.git",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/riddler-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "a52a0cb56bb927d17b103053570b7524c725e30b"
+            },
+            "require": {
+                "drupal/captcha": "*",
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1534623481",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "alex_optim",
+                    "homepage": "https://www.drupal.org/user/3317601"
+                },
+                {
+                    "name": "awolfey",
+                    "homepage": "https://www.drupal.org/user/277371"
+                },
+                {
+                    "name": "imerlin",
+                    "homepage": "https://www.drupal.org/user/21895"
+                }
+            ],
+            "description": "Provides a question and answer CAPTCHA.",
+            "homepage": "https://www.drupal.org/project/riddler",
+            "support": {
+                "source": "https://git.drupalcode.org/project/riddler"
+            }
+        },
+        {
             "name": "drupal/seckit",
             "version": "1.2.0",
             "source": {
@@ -6178,7 +6240,7 @@
             "description": "Invite your users to your slack team",
             "homepage": "https://www.drupal.org/project/slack_invite",
             "support": {
-                "source": "https://git.drupalcode.org/project/slack_invite"
+                "source": "http://cgit.drupalcode.org/slack_invite"
             }
         },
         {
@@ -13781,6 +13843,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/better_normalizers": 10,
+        "drupal/captcha": 10,
         "drupal/default_content_deploy": 15,
         "drupal/diff": 5,
         "drupal/inline_entity_form": 5,
