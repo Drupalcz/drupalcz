@@ -24,6 +24,8 @@ display:
           label: Path
         count:
           label: Count
+        daily_count:
+          label: 'Daily count'
         timestamp:
           label: 'Last accessed'
         langcode:

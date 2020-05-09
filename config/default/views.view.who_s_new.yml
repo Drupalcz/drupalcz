@@ -11,7 +11,6 @@ description: 'Shows a list of the newest user accounts on the site.'
 tag: default
 base_table: users_field_data
 base_field: uid
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -96,6 +95,8 @@ display:
           id: status
           expose:
             operator: '0'
+            operator_limit_selection: false
+            operator_list: {  }
           group: 1
           plugin_id: boolean
           entity_type: user
@@ -130,6 +131,8 @@ display:
             placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
