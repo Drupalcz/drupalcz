@@ -23,26 +23,32 @@ Branch | Build status | Dev site | HTTP Basic auth
 ## Requirements
 ### Pokud používáte Lando
 * Nainstalujte si Lando, https://docs.devwithlando.io/installation/system-requirements.html
-* V adresáři projektu spusťe Lando
+* V adresáři projektu spusťte Lando
 
       lando start
 
-* Pokud děláte frontend a potřebujete kompilovat SASS na CSS,
-podívejte se do souboru `sass.lando.local.yml`, kde jsou instrukce, jak na to.
+#### Inicializacie prostředí pro vývoj frontendu (kompilování SASS na CSS)
+
+  * Spusťte `lando composer run init-theme`
+
+NEBO
+
+  * Zkopírujte si soubor `sass.lando.local.yml` do `.lando.local.yml`
 
   * Zkopírujte si soubor `default.config_local.json` do `config_local.json`
 
-  * Přepněte se do adresáře tématu:
-    
-        cd docroot/themes/custom/dcz_theme
-  
-  * Pro kompilaci SASS na CSS použijte: 
-  
-      `lando gulp css` 
-  * Nebo `lando gulp` pro kompilaci všeho a čekání na změny.         
-    
+  * Spusťte `lando rebuild -y`
+
+##### Kompilace SASS na CSS
+
+  * Přepněte se do adresáře tématu `cd docroot/themes/custom/dcz_theme`
+
+  * Pro kompilaci SASS na CSS použijte `lando gulp css`
+
+  * Pro kompilaci všeho a čekání na změny použijte `lando gulp`
+
 ### Pokud používáte jiné vývojové prostředí
-* You need PHP ^7.1
+* You need PHP ^7.2
 * Install composer: https://getcomposer.org/doc/00-intro.md
 * Install Drush version 8: http://docs.drush.org/en/master/install/
 * We are using Acquia BLT which has it's own set of requirements.
@@ -62,7 +68,11 @@ podívejte se do souboru `sass.lando.local.yml`, kde jsou instrukce, jak na to.
   * edit this config: `docroot/sites/default/settings/local.settings.php`
 * Install the site (it will use the Drupal.cz distribution).
   * `composer install`
-  * If this is first time you are setting up BLT, run `composer run-script blt-alias`
+  * If this is first time you are setting up BLT, run
+    ```
+    ./vendor/bin/blt blt:init:shell-alias
+    source ~/.bash_profile
+    ```
   * `blt setup:git-hooks` (Learn more about BLT: https://blt.readthedocs.io/)
   * `cd docroot`
   * `drush si minimal --existing-config`
@@ -73,7 +83,7 @@ podívejte se do souboru `sass.lando.local.yml`, kde jsou instrukce, jak na to.
 * If you want to have some default content for your development, import it
   * `drush dcdi --force update`
   * `drush cr`
-  
+
 ## Contributing
 * We are using GitFlow(https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow/) branching strategy
 * Learn how to manage config: https://www.youtube.com/watch?v=WsMuQFO8yGU
