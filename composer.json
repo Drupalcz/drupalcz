@@ -172,6 +172,7 @@
             "rm -rf vendor composer.lock docroot/core docroot/modules/contrib docroot/profiles/contrib docroot/themes/contrib",
             "@composer clearcache --ansi",
             "@composer install --ansi"
-        ]
+        ],
+        "init-theme": "sh scripts/init-theme.sh"
     }
 }
