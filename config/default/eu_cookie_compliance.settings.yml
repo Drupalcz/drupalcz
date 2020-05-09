@@ -17,7 +17,6 @@ popup_bg_hex: 29537D
 popup_clicking_confirmation: true
 popup_scrolling_confirmation: false
 popup_delay: 1000
-popup_disagree_button_message: 'More info'
 popup_enabled: true
 popup_find_more_button_message: 'More info'
 popup_height: null
@@ -39,7 +38,6 @@ popup_width: 100%
 _core:
   default_config_hash: xbhmYBGlCdrYkMKHxAz_-rnqz-jpRV1ycKZRRmzbrOM
 use_mobile_message: true
-show_disagree_button: true
 method: default
 disagree_button_label: 'No, thanks'
 disabled_javascripts: ''
@@ -61,3 +59,5 @@ select_all_categories_by_default: false
 withdraw_button_on_info_popup: false
 domain_all_sites: false
 uuid: 633adac6-3952-46ae-a3e9-e1fc5fb57625
+show_more_info: true
+popup_more_info_button_message: 'More info'
