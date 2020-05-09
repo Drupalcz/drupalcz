@@ -20,3 +20,4 @@ disable-targets:
     security:
       check:
         updates: true
+        composer: true
