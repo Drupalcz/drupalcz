@@ -5,7 +5,7 @@ administration_mode: false
 allow_on_admin_pages: false
 add_captcha_description: false
 default_validation: 1
-persistence: 1
+persistence: 0
 enable_stats: false
 log_wrong_responses: false
 _core:
