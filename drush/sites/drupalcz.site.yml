@@ -1,35 +1,53 @@
 dev:
+  root: /var/www/html/drupalcz.dev/docroot
+  ac-site: drupalcz
+  ac-env: dev
+  ac-realm: prod
+  uri: drupalczdev.prod.acquia-sites.com
+  dev.livedev:
+    parent: '@drupalcz.dev'
+    root: /mnt/gfs/drupalcz.dev/livedev/docroot
   host: staging-6645.prod.hosting.acquia.com
+  user: drupalcz.dev
+  paths:
+    drush-script: drush8
   options:
     ac-env: dev
     ac-realm: prod
     ac-site: drupalcz
-  paths:
-    drush-script: drush8
-  root: /var/www/html/drupalcz.dev/docroot
-  uri: drupalczdev.prod.acquia-sites.com
-  user: drupalcz.dev
-test:
-  host: staging-6517.prod.hosting.acquia.com
-  options:
-    ac-env: test
-    ac-realm: prod
-    ac-site: drupalcz
-  paths:
-    drush-script: drush8
-  root: /var/www/html/drupalcz.test/docroot
-  uri: drupalczstg.prod.acquia-sites.com
-  user: drupalcz.test
 prod:
+  root: /var/www/html/drupalcz.prod/docroot
+  ac-site: drupalcz
+  ac-env: prod
+  ac-realm: prod
+  uri: drupalcz.prod.acquia-sites.com
+  prod.livedev:
+    parent: '@drupalcz.prod'
+    root: /mnt/gfs/drupalcz.prod/livedev/docroot
   host: ded-2299.prod.hosting.acquia.com
+  user: drupalcz.prod
+  paths:
+    drush-script: drush8
   options:
     ac-env: prod
     ac-realm: prod
     ac-site: drupalcz
+test:
+  root: /var/www/html/drupalcz.test/docroot
+  ac-site: drupalcz
+  ac-env: test
+  ac-realm: prod
+  uri: drupalczstg.prod.acquia-sites.com
+  test.livedev:
+    parent: '@drupalcz.test'
+    root: /mnt/gfs/drupalcz.test/livedev/docroot
+  host: staging-6517.prod.hosting.acquia.com
+  user: drupalcz.test
   paths:
     drush-script: drush8
-  root: /var/www/html/drupalcz.prod/docroot
-  uri: drupalcz.prod.acquia-sites.com
-  user: drupalcz.prod
-loc:
+  options:
+    ac-env: test
+    ac-realm: prod
+    ac-site: drupalcz
+local:
   uri: drupalcz.localhost

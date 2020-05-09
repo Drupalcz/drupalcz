@@ -3,7 +3,7 @@ language: php
 dist: xenial
 
 php:
-  - 7.1
+  - 7.2
 
 matrix:
   fast_finish: true
@@ -65,6 +65,7 @@ script:
   # Uncomment these lines to test database updates using live content.
   # - blt drupal:sync:default:site
   - source ${BLT_DIR}/scripts/travis/run_tests
+  - source ${BLT_DIR}/scripts/travis/simulate_deploy
 
 deploy:
    - provider: script
@@ -72,16 +73,10 @@ deploy:
      skip_cleanup: true
      on:
        branch: develop
-       php: 7.1
+       php: 7.2
    - provider: script
      script: "${BLT_DIR}/scripts/travis/deploy_branch"
      skip_cleanup: true
      on:
        branch: master
-       php: 7.1
-#   - provider: script
-#     script: "${BLT_DIR}/scripts/travis/deploy_tag"
-#     skip_cleanup: true
-#     on:
-#       tags: true
-#       php: 7.1
+       php: 7.2

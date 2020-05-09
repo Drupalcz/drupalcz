@@ -1,5 +1,6 @@
 module:
   admin_toolbar: 0
+  admin_toolbar_search: 0
   admin_toolbar_tools: 0
   basic_auth: 0
   big_pipe: 0
@@ -47,6 +48,9 @@ module:
   honeypot: 0
   image: 0
   inline_entity_form: 0
+  jquery_ui: 0
+  jquery_ui_draggable: 0
+  jquery_ui_droppable: 0
   juicebox: 0
   language: 0
   layout_discovery: 0
@@ -68,6 +72,7 @@ module:
   panels_ipe: 0
   paragraphs: 0
   path: 0
+  path_alias: 0
   redirect: 0
   redirect_404: 0
   responsive_image: 0

@@ -19,4 +19,5 @@ type_settings:
   entity_browser: image_browser
   entity_browser_settings:
     display_review: true
+icon: {  }
 icon_uuid: null

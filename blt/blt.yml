@@ -21,17 +21,38 @@ drush:
   default_alias: '${drush.aliases.local}'
 modules:
   local:
-    enable: [dblog, devel, seckit, views_ui]
-    uninstall: [acsf, acquia_connector, shield]
+    enable:
+      - dblog
+      - devel
+      - seckit
+      - views_ui
+    uninstall:
+      - acsf
+      - acquia_connector
+      - shield
   ci:
-    enable: {  }
-    uninstall: [acquia_connector, shield]
+    enable: {}
+    uninstall:
+      - acquia_connector
+      - shield
   dev:
-    enable: [acquia_connector, shield]
-    uninstall: {  }
+    enable:
+      - acquia_connector
+      - shield
+    uninstall: {}
   test:
-    enable: [acquia_connector, shield]
-    uninstall: [devel, views_ui]
+    enable:
+      - acquia_connector
+      - shield
+    uninstall:
+      - devel
+      - views_ui
   prod:
-    enable: [acquia_connector, shield]
-    uninstall: [devel, views_ui]
+    enable:
+      - acquia_connector
+      - shield
+    uninstall:
+      - devel
+      - views_ui
+cloud:
+  appId: 0fc2ac59-7446-11e1-9eb5-12313928d5b8
