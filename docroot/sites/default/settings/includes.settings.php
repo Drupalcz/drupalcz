@@ -105,7 +105,6 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   }
   // Populate secure variables.
   $config['slack_invite.settings']['token'] = getenv('SLACK_TOKEN');
-  $config['cleantalk.settings']['cleantalk_authkey'] = getenv('CLEANTALK_KEY');
 }
 
 // Load settings.
