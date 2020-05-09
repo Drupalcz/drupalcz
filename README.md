@@ -41,9 +41,7 @@ NEBO
 
 ##### Kompilace SASS na CSS
 
-  * Přepněte se do adresáře tématu:
-
-        cd docroot/themes/custom/dcz_theme
+  * Přepněte se do adresáře tématu `cd docroot/themes/custom/dcz_theme`
 
   * Pro kompilaci SASS na CSS použijte `lando gulp css`
 
