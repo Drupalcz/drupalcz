@@ -13,7 +13,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.2",
-        "acquia/blt": "^11",
+        "acquia/blt": "12.x-dev",
         "acquia/memcache-settings": "*",
         "bower-asset/dropzone": "^5.1",
         "bower-asset/flexslider": "^2.6",
@@ -27,8 +27,9 @@
         "drupal/coder": "8.3.8",
         "drupal/config_split": "^1.5",
         "drupal/config_update": "^1.5",
-        "drupal/core-composer-scaffold": "^8.8",
-        "drupal/core-recommended": "^8.8",
+        "drupal/core": "9.0.x-dev as 8.9.x-dev",
+        "drupal/core-composer-scaffold": "9.0.x-dev as 8.9.x-dev",
+        "drupal/core-recommended": "9.0.x-dev as 8.9.x-dev",
         "drupal/ctools": "^3.0",
         "drupal/default_content_deploy": "dev-1.x",
         "drupal/devel": "dev-3.x",
@@ -194,9 +195,6 @@
         }
     },
     "scripts": {
-        "post-create-project-cmd": [
-            "blt internal:create-project:init-repo"
-        ],
         "nuke": [
             "rm -rf vendor composer.lock docroot/core docroot/modules/contrib docroot/profiles/contrib docroot/themes/contrib",
             "@composer clearcache --ansi",

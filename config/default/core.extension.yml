@@ -3,6 +3,7 @@ module:
   admin_toolbar_search: 0
   admin_toolbar_tools: 0
   basic_auth: 0
+  better_normalizers: 0
   big_pipe: 0
   block: 0
   block_content: 0
@@ -21,7 +22,12 @@ module:
   ctools: 0
   ctools_block: 0
   datetime: 0
+  dblog: 0
   dcz_rest: 0
+  default_content: 0
+  default_content_deploy: 0
+  devel: 0
+  devel_generate: 0
   diff: 0
   dropzonejs: 0
   dropzonejs_eb_widget: 0
@@ -31,7 +37,6 @@ module:
   entity_browser: 0
   entity_class_formatter: 0
   entity_embed: 0
-  entity_reference: 0
   entity_reference_revisions: 0
   extlink: 0
   field: 0
@@ -82,13 +87,15 @@ module:
   serialization: 0
   shield: 0
   shortcut: 0
-  slack_invite: 0
+  stage_file_proxy: 0
   system: 0
   taxonomy: 0
   text: 0
   token: 0
   toolbar: 0
+  update: 0
   user: 0
+  views_ui: 0
   viewsreference: 0
   youtube: 0
   forum: 1
