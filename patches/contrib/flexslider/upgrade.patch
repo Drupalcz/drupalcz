@@ -1,0 +1,152 @@
+diff --git a/flexslider.info.yml b/flexslider.info.yml
+index 7140b9d..7df25b8 100644
+--- a/flexslider.info.yml
++++ b/flexslider.info.yml
+@@ -1,6 +1,6 @@
+ name: FlexSlider
+ description: 'Integrate the FlexSlider 2 library with Drupal'
+-core: 8.x
++core_version_requirement: ^8 || ^9
+ package: FlexSlider
+ dependencies:
+   - drupal:image
+diff --git a/flexslider.install b/flexslider.install
+index 6a6f9e2..780d77a 100755
+--- a/flexslider.install
++++ b/flexslider.install
+@@ -13,7 +13,7 @@
+ function flexslider_uninstall() {
+   // Delete all of the configuration installed by this module.
+   $dir = drupal_get_path('module', 'flexslider') . '/config/install';
+-  $files = file_scan_directory($dir, '/.*/');
++  $files = \Drupal::service('file_system')->scanDirectory($dir, '/.*/');
+   foreach ($files as $file) {
+     \Drupal::configFactory()->getEditable($file->name)->delete();
+   }
+diff --git a/flexslider_example/flexslider_example.install b/flexslider_example/flexslider_example.install
+index e130df9..0d9cfda 100644
+--- a/flexslider_example/flexslider_example.install
++++ b/flexslider_example/flexslider_example.install
+@@ -33,7 +33,7 @@ function flexslider_example_uninstall() {
+ 
+   // Now delete all of the configuration installed by this module.
+   $dir = drupal_get_path('module', 'flexslider_example') . '/config/install';
+-  $files = file_scan_directory($dir, '/.*/');
++  $files = \Drupal::service('file_system')->scanDirectory($dir, '/.*/');
+   foreach ($files as $file) {
+     \Drupal::configFactory()->getEditable($file->name)->delete();
+   }
+@@ -47,7 +47,7 @@ function flexslider_example_uninstall() {
+ function flexslider_example_generate_content() {
+ 
+   $dir = drupal_get_path('module', 'flexslider') . '/assets/images';
+-  $images = file_scan_directory($dir, '/flexslider-sample/');
++  $images = \Drupal::service('file_system')->scanDirectory($dir, '/flexslider-sample/');
+ 
+   foreach ($images as $image) {
+ 
+@@ -61,8 +61,8 @@ function flexslider_example_generate_content() {
+       'type'  => 'flexslider_example',
+       'title'  => ucfirst(str_replace('-', ' ', $image->name)),
+       'promote' => NODE_NOT_PROMOTED,
+-      'created' => REQUEST_TIME,
+-      'changed' => REQUEST_TIME,
++      'created' => \Drupal::time()->getRequestTime(),
++      'changed' => \Drupal::time()->getRequestTime(),
+       'uid' => 1,
+       'field_flexslider_example_image' => [
+         'target_id' => $file_temp->id(),
+diff --git a/src/Controller/FlexsliderOptionsetController.php b/src/Controller/FlexsliderOptionsetController.php
+index 2dbc0f4..d2a664e 100644
+--- a/src/Controller/FlexsliderOptionsetController.php
++++ b/src/Controller/FlexsliderOptionsetController.php
+@@ -22,7 +22,7 @@ class FlexsliderOptionsetController extends ControllerBase {
+    */
+   public function enable(Flexslider $flexslider) {
+     $flexslider->enable()->save();
+-    return new RedirectResponse($flexslider->url('collection', ['absolute' => TRUE]));
++    return new RedirectResponse($flexslider->toUrl('collection', ['absolute' => TRUE]));
+   }
+ 
+   /**
+@@ -36,7 +36,7 @@ class FlexsliderOptionsetController extends ControllerBase {
+    */
+   public function disable(Flexslider $flexslider) {
+     $flexslider->disable()->save();
+-    return new RedirectResponse($flexslider->url('collection', ['absolute' => TRUE]));
++    return new RedirectResponse($flexslider->toUrl('collection', ['absolute' => TRUE]));
+   }
+ 
+ }
+diff --git a/src/Form/FlexsliderDeleteForm.php b/src/Form/FlexsliderDeleteForm.php
+index 14eb068..5e28ac3 100644
+--- a/src/Form/FlexsliderDeleteForm.php
++++ b/src/Form/FlexsliderDeleteForm.php
+@@ -38,13 +38,11 @@ class FlexsliderDeleteForm extends EntityConfirmFormBase {
+   public function submitForm(array &$form, FormStateInterface $form_state) {
+     $this->entity->delete();
+ 
+-    drupal_set_message(
+-      $this->t('Deleted the %label FlexSlider optionset.',
+-        [
+-          '%label' => $this->entity->label(),
+-        ]
+-        )
+-    );
++    $this->messenger()->addStatus($this->t('Deleted the %label FlexSlider optionset.',
++      [
++        '%label' => $this->entity->label(),
++      ]
++      ));
+ 
+     $form_state->setRedirectUrl($this->getCancelUrl());
+   }
+diff --git a/src/Form/FlexsliderForm.php b/src/Form/FlexsliderForm.php
+index 810e55e..35ba2f6 100644
+--- a/src/Form/FlexsliderForm.php
++++ b/src/Form/FlexsliderForm.php
+@@ -418,13 +418,13 @@ class FlexsliderForm extends EntityForm {
+ 
+     switch ($status) {
+       case SAVED_NEW:
+-        drupal_set_message($this->t('Created the %label FlexSlider optionset.', [
++        $this->messenger()->addStatus($this->t('Created the %label FlexSlider optionset.', [
+           '%label' => $flexslider->label(),
+         ]));
+         break;
+ 
+       default:
+-        drupal_set_message($this->t('Saved the %label FlexSlider optionset.', [
++        $this->messenger()->addStatus($this->t('Saved the %label FlexSlider optionset.', [
+           '%label' => $flexslider->label(),
+         ]));
+     }
+@@ -484,7 +484,7 @@ class FlexsliderForm extends EntityForm {
+   public function validateMinimumVersion22(array &$element, FormStateInterface $form_state) {
+     $lib = libraries_detect('flexslider');
+     if (!isset($lib['version'])) {
+-      drupal_set_message($this->t('Unable to detect FlexSlider library version. Some options may not function properly. Please review the README.md file for installation instructions.'), 'warning');
++      $this->messenger()->addWarning($this->t('Unable to detect FlexSlider library version. Some options may not function properly. Please review the README.md file for installation instructions.'));
+     }
+     else {
+       $version = $lib['version'];
+diff --git a/tests/modules/flexslider_library_test/flexslider_library_test.install b/tests/modules/flexslider_library_test/flexslider_library_test.install
+index aa11093..a8a1f64 100644
+--- a/tests/modules/flexslider_library_test/flexslider_library_test.install
++++ b/tests/modules/flexslider_library_test/flexslider_library_test.install
+@@ -1,5 +1,6 @@
+ <?php
+ 
++use Drupal\Core\File\FileSystemInterface;
+ /**
+  * @file
+  * Install file for the flexslider library test module.
+@@ -17,7 +18,7 @@ function flexslider_library_test_install() {
+     return;
+   }
+ 
+-  file_prepare_directory($library_folder, FILE_MODIFY_PERMISSIONS | FILE_CREATE_DIRECTORY);
++  \Drupal::service('file_system')->prepareDirectory($library_folder, FileSystemInterface::MODIFY_PERMISSIONS | FileSystemInterface::CREATE_DIRECTORY);
+   $zip_file = $library_folder . '/flexslider.zip';
+   copy('https://github.com/woocommerce/FlexSlider/archive/master.zip', $zip_file);
+   $zip = new \ZipArchive();

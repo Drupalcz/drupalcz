@@ -1,0 +1,12 @@
+Index: docroot/modules/contrib/youtube/youtube.module
+--- a/docroot/modules/contrib/youtube/youtube.module
++++ b/docroot/modules/contrib/youtube/youtube.module
+@@ -374,7 +374,7 @@
+     return \Drupal::messenger()->addMessage(t('No files deleted.'));
+   }
+
+-  $files = file_scan_directory($youtube_thumb_uri, '/^.*\.(jpg|png)$/');
++  $files = \Drupal::service('file_system')->scanDirectory($youtube_thumb_uri, '/^.*\.(jpg|png)$/');
+
+   foreach ($files as $raw_file) {
+     $fid = \Drupal::database()->select('file_managed')

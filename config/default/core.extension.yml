@@ -41,6 +41,8 @@ module:
   flexslider: 0
   flexslider_views: 0
   geolocation: 0
+  geolocation_google_maps: 0
+  geolocation_leaflet: 0
   geshifilter: 0
   google_analytics: 0
   hal: 0
@@ -88,6 +90,8 @@ module:
   text: 0
   token: 0
   toolbar: 0
+  upgrade_rector: 0
+  upgrade_status: 0
   user: 0
   viewsreference: 0
   youtube: 0

@@ -1,0 +1,74 @@
+diff --git a/default_content_deploy.info.yml b/default_content_deploy.info.yml
+index 58b845c..4d62607 100644
+--- a/default_content_deploy.info.yml
++++ b/default_content_deploy.info.yml
+@@ -2,7 +2,7 @@ name: 'Default content deploy'
+ type: module
+ description: 'Default content deploy solution for Drupal 8. Export and import content continuously.'
+ package: Web services
+-core: 8.x
++core_version_requirement: ^8 || ^9
+ dependencies:
+   - default_content:default_content
+ configure: default_content_deploy.import
+diff --git a/src/Controller/DownloadController.php b/src/Controller/DownloadController.php
+index 8190628..d30a246 100644
+--- a/src/Controller/DownloadController.php
++++ b/src/Controller/DownloadController.php
+@@ -45,7 +45,7 @@ class DownloadController implements ContainerInjectionInterface {
+    */
+   public function downloadCompressedContent() {
+     $this->deployManager->compressContent();
+-    $path = file_directory_temp() . '/dcd/content.tar.gz';
++    $path = \Drupal::service('file_system')->getTempDirectory() . '/dcd/content.tar.gz';
+ 
+     $headers = [
+       'Content-Type' => 'application/tar+gzip',
+diff --git a/src/DeployManager.php b/src/DeployManager.php
+index f6574d1..ebd0f2d 100644
+--- a/src/DeployManager.php
++++ b/src/DeployManager.php
+@@ -140,7 +140,7 @@ class DeployManager {
+    * @return $this
+    */
+   public function compressContent() {
+-    $folder = file_directory_temp() . '/dcd';
++    $folder = \Drupal::service('file_system')->getTempDirectory() . '/dcd';
+     $content_folder = $folder . '/content';
+ 
+     // Remove old archive.
+@@ -162,7 +162,7 @@ class DeployManager {
+    * @throws \Exception
+    */
+   public function uncompressContent($file) {
+-    $folder = file_directory_temp() . '/dcd';
++    $folder = \Drupal::service('file_system')->getTempDirectory() . '/dcd';
+     $content_folder = $folder . '/content';
+ 
+     // Remove old folder.
+diff --git a/src/Form/ExportForm.php b/src/Form/ExportForm.php
+index a7a75a1..58b9df4 100644
+--- a/src/Form/ExportForm.php
++++ b/src/Form/ExportForm.php
+@@ -279,7 +279,7 @@ class ExportForm extends FormBase {
+     }
+     else {
+       $this->exporter->setForceUpdate(TRUE);
+-      $this->exporter->setFolder(file_directory_temp() . '/dcd/content');
++      $this->exporter->setFolder(\Drupal::service('file_system')->getTempDirectory() . '/dcd/content');
+       $this->exporter->export();
+ 
+       // Redirect for download archive file.
+diff --git a/src/Form/ImportForm.php b/src/Form/ImportForm.php
+index ffbacb0..b7557da 100644
+--- a/src/Form/ImportForm.php
++++ b/src/Form/ImportForm.php
+@@ -141,7 +141,7 @@ class ImportForm extends FormBase {
+ 
+     try {
+       if ($file) {
+-        $this->importer->setFolder(file_directory_temp() . '/dcd/content');
++        $this->importer->setFolder(\Drupal::service('file_system')->getTempDirectory() . '/dcd/content');
+         $this->deployManager->uncompressContent($file);
+       }
+       else {

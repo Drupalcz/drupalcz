@@ -1,0 +1,12 @@
+Index: docroot/modules/contrib/stage_file_proxy/src/FetchManager.php
+--- a/docroot/modules/contrib/stage_file_proxy/src/FetchManager.php
++++ b/docroot/modules/contrib/stage_file_proxy/src/FetchManager.php
+@@ -114,7 +114,7 @@
+     }
+     else {
+       $path = $uri;
+-      $scheme = file_default_scheme();
++      $scheme = \Drupal::config('system.file')->get('default_scheme');
+     }
+
+     // It is a styles path, so we extract the different parts.

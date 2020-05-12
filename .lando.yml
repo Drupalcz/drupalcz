@@ -5,6 +5,7 @@ config:
   webroot: docroot
   ssl: true
   xdebug: false
+  php: 7.3
   overrides:
     volumes:
       - ${HOME}/.lando/composer_cache:/var/www/.composer
