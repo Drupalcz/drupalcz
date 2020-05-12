@@ -28,7 +28,6 @@
         "drupal/config_split": "^1.5",
         "drupal/config_update": "^1.5",
         "drupal/console": "^1.3",
-        "drupal/core": "~8.8.0",
         "drupal/core-composer-scaffold": "^8.8",
         "drupal/core-recommended": "^8.8",
         "drupal/ctools": "^3.0",
@@ -44,12 +43,12 @@
         "drupal/extlink": "^1.1",
         "drupal/flexslider": "dev-2.x",
         "drupal/geolocation": "dev-3.x",
-        "drupal/geshifilter": "^1.2",
-        "drupal/google_analytics": "^2.4",
-        "drupal/honeypot": "^1.27",
+        "drupal/geshifilter": "dev-1.x",
+        "drupal/google_analytics": "^2.5",
+        "drupal/honeypot": "^2.0",
         "drupal/inline_entity_form": "^1.0@RC",
-        "drupal/juicebox": "^2.0@beta",
-        "drupal/libraries": "^3.0@alpha",
+        "drupal/juicebox": "dev-2.x",
+        "drupal/libraries": "dev-3.x",
         "drupal/media_entity_actions": "^1.0@alpha",
         "drupal/metatag": "^1.10",
         "drupal/panelizer": "^4.1",
@@ -59,11 +58,11 @@
         "drupal/pathauto": "^1.6.0",
         "drupal/purge": "^3.0@beta",
         "drupal/redirect": "^1.0",
-        "drupal/riddler": "^1.1",
+        "drupal/riddler": "dev-1.x",
         "drupal/seckit": "^1.1",
         "drupal/security_review": "1.x-dev",
         "drupal/shield": "^1.2",
-        "drupal/slack_invite": "^1.1",
+        "drupal/slack_invite": "dev-1.x",
         "drupal/stage_file_proxy": "^1.0@RC",
         "drupal/token": "^1.5",
         "drupal/upgrade_rector": "^1.0@alpha",
@@ -85,7 +84,6 @@
         "npm-asset/underscore": "*"
     },
     "require-dev": {
-        "acquia/blt-require-dev": "11.x-dev"
     },
     "config": {
         "sort-packages": true,
@@ -129,6 +127,24 @@
             },
             "drupal/default_content_deploy": {
                 "D9 compatibility": "./patches/contrib/default_content_deploy/upgrade.patch"
+            },
+            "drupal/geshifilter": {
+                "D9 compatibility": "./patches/contrib/geshifilter/upgrade.patch"
+            },
+            "drupal/google_analytics": {
+                "D9 compatibility": "https://www.drupal.org/files/issues/2020-04-20/3072207-47.patch"
+            },
+            "drupal/juicebox": {
+                "D9 compatibility": "https://www.drupal.org/files/issues/2020-04-15/updated-3042821-5.patch"
+            },
+            "drupal/libraries": {
+                "D9 compatibility": "https://www.drupal.org/files/issues/2020-04-06/3119010-7.patch"
+            },
+            "drupal/riddler": {
+                "D9 compatibility": "https://www.drupal.org/files/issues/2019-10-31/riddler-drupal9.diff"
+            },
+            "drupal/slack_invite": {
+                "D9 compatibility": "./patches/contrib/slack_invite/upgrade.patch"
             }
         },
         "installer-types": [

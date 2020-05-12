@@ -1,0 +1,502 @@
+diff --git a/geshifield/src/Plugin/Field/FieldFormatter/GeshiFieldDefaultFormatter.php b/geshifield/src/Plugin/Field/FieldFormatter/GeshiFieldDefaultFormatter.php
+index 4b9bf26..e77259f 100644
+--- a/geshifield/src/Plugin/Field/FieldFormatter/GeshiFieldDefaultFormatter.php
++++ b/geshifield/src/Plugin/Field/FieldFormatter/GeshiFieldDefaultFormatter.php
+@@ -4,6 +4,7 @@ namespace Drupal\geshifield\Plugin\Field\FieldFormatter;
+ 
+ use Drupal\Core\Field\FormatterBase;
+ use Drupal\Core\Field\FieldItemListInterface;
++use Drupal\Core\Render\RendererInterface;
+ 
+ /**
+  * Plugin implementation of the 'geshifield_default' formatter.
+@@ -29,7 +30,7 @@ class GeshiFieldDefaultFormatter extends FormatterBase {
+         '#language' => $item->language,
+         '#sourcecode' => $item->sourcecode,
+       ];
+-      $elements[$delta] = ['#markup' => drupal_render($source)];
++      $elements[$delta] = ['#markup' => \Drupal::service('renderer')->render($source)];
+     }
+ 
+     return $elements;
+diff --git a/geshifilter.info.yml b/geshifilter.info.yml
+index aa127a9..9f9e83a 100644
+--- a/geshifilter.info.yml
++++ b/geshifilter.info.yml
+@@ -2,5 +2,5 @@ name: 'GeSHi Filter'
+ description: 'Provides a filter to highlight source code using the GeSHi library (Generic Syntax Highlighter)'
+ type: module
+ package: 'Filters'
+-core: 8.x
++core_version_requirement: ^8 || ^9
+ configure: admin/config/content/formats/geshifilter
+diff --git a/geshifilter.install b/geshifilter.install
+index 985ecec..4a0a0f2 100644
+--- a/geshifilter.install
++++ b/geshifilter.install
+@@ -11,18 +11,19 @@ use Drupal\Core\Url;
+ 
+ use Drupal\geshifilter\GeshiFilterCss;
+ use Drupal\geshifilter\GeshiFilter;
++use Drupal\Core\Link;
+ 
+ /**
+  * Implements hook_install().
+  */
+ function geshifilter_install() {
+-  drupal_set_message(t('GeSHi filter is installed. You should now @configure-geshi
++  \Drupal::messenger()->addMessage(t('GeSHi filter is installed. You should now @configure-geshi
+     and enable it in the desired @text-formats.',
+     [
+       // Geshifilter`s route seems to be unknown at this point, so use
+       // Url::fromUri() with base: scheme instead Url::fromRoute().
+-      '@configure-geshi' => \Drupal::l(t('configure the GeSHi filter'), Url::fromUri('base:admin/config/content/formats/geshifilter')),
+-      '@text-formats' => \Drupal::l(t('text formats'), Url::fromUri('base:admin/config/content/formats')),
++      '@configure-geshi' => Link::fromTextAndUrl(t('configure the GeSHi filter'), Url::fromUri('base:admin/config/content/formats/geshifilter')),
++      '@text-formats' => Link::fromTextAndUrl(t('text formats'), Url::fromUri('base:admin/config/content/formats')),
+     ]
+   ));
+ }
+@@ -79,7 +80,7 @@ function geshifilter_requirements($phase) {
+ 
+     // Warn if GeSHi filter is configured to automatically managed external
+     // stylesheet when it's not possible.
+-    if ($config->get('css_mode') == Geshifilter::CSS_CLASSES_AUTOMATIC && !GeshifilterCss::managedExternalStylesheetPossible()) {
++    if ($config->get('css_mode') == GeshiFilter::CSS_CLASSES_AUTOMATIC && !GeshiFilterCss::managedExternalStylesheetPossible()) {
+       $requirements['geshifilter_css_mode'] = [
+         'title' => 'GeSHi filter CSS mode',
+         'value' => t('GeSHi filter can not automatically manage an external style sheet when the download method is private. Read the <em>INSTALLATION</em> section of <a href=":readme_url">README.txt</a> for information on how to fix this error.', [
+@@ -91,8 +92,8 @@ function geshifilter_requirements($phase) {
+         ]),
+         'severity' => REQUIREMENT_ERROR,
+         'description' => t('Change the CSS mode of the <a href=":geshi">GeSHi filter</a> or change the <a href=":filesystem">download mode</a> to public.', [
+-          ':geshi' => URL::fromRoute('geshifilter.settings')->toString(),
+-          ':filesystem' => URL::fromRoute('system.file_system_settings')->toString(),
++          ':geshi' => Url::fromRoute('geshifilter.settings')->toString(),
++          ':filesystem' => Url::fromRoute('system.file_system_settings')->toString(),
+         ]),
+       ];
+     }
+diff --git a/geshifilter.module b/geshifilter.module
+index a5110d0..8ac437e 100644
+--- a/geshifilter.module
++++ b/geshifilter.module
+@@ -23,7 +23,7 @@ function geshifilter_help($route_name, RouteMatchInterface $route_match) {
+         highlighting of inline source code or blocks of source code based on the
+         PHP library <a href=":GeSHi">GeSHi (Generic Syntax Highlighter)</a>.</p>',
+           [
+-            ':GeSHi' => URL::fromUri('http://qbnz.com/highlighter/')->toString(),
++            ':GeSHi' => Url::fromUri('http://qbnz.com/highlighter/')->toString(),
+           ]);
+       if ($route_name == 'help.page.geshifilter') {
+         $output .= '<p>' . t('The GeSHi filter module for Drupal requires the
+@@ -33,15 +33,15 @@ function geshifilter_help($route_name, RouteMatchInterface $route_match) {
+           however, the GeSHi library is not included in the GeSHi filter
+           package, so you should <a href=":geshi">download</a> and install the
+           GeSHi library separately.', [
+-            ':repositorypolicies' => URL::fromUri('http://drupal.org/node/66113')->toString(),
+-            ':geshi' => URL::fromUri('http://qbnz.com/highlighter/')->toString(),
++            ':repositorypolicies' => Url::fromUri('http://drupal.org/node/66113')->toString(),
++            ':geshi' => Url::fromUri('http://qbnz.com/highlighter/')->toString(),
+           ])
+           . '</p>';
+         $output .= t('<p>Quick overview of how to set up and use the GeSHi filter:</p><ul><li>Install the GeSHi library and specify its path on the <a href=":geshifilter_settings">GeSHi filter administration page</a>.</li><li>Configure the <a href=":geshifilter_settings">general GeSHi filter settings</a>.</li><li><a href=":geshifilter_languages">Enable the relevant languages</a> for your site and set their language tags if needed.</li><li>Enable the GeSHi filter in the desired <a href=":inputformats">text formats</a>.</li><li>Use the text format during content submission as described in the <a href=":filtertips">filter tips</a>.</li></ul>', [
+-          ':geshifilter_settings' => URL::fromRoute('geshifilter.settings')->toString(),
+-          ':geshifilter_languages' => URL::fromRoute('geshifilter.settings_languages_all')->toString(),
+-          ':inputformats' => URL::fromRoute('filter.admin_overview')->toString(),
+-          ':filtertips' => URL::fromRoute('filter.tips_all')->toString(),
++          ':geshifilter_settings' => Url::fromRoute('geshifilter.settings')->toString(),
++          ':geshifilter_languages' => Url::fromRoute('geshifilter.settings_languages_all')->toString(),
++          ':inputformats' => Url::fromRoute('filter.admin_overview')->toString(),
++          ':filtertips' => Url::fromRoute('filter.tips_all')->toString(),
+         ]);
+       }
+       return $output;
+@@ -54,7 +54,7 @@ function geshifilter_help($route_name, RouteMatchInterface $route_match) {
+         site not only to avoid unnecessary cluttering of the GeSHi filter
+         configuration pages and the <a href=":filtertips">filter tips</a>, but also to make the GeSHi
+         filter processing lighter.', [
+-          ':filtertips' => URL::fromRoute('filter.tips_all')->toString(),
++          ':filtertips' => Url::fromRoute('filter.tips_all')->toString(),
+         ])
+         . '</p>';
+       if (!$config->get('use_format_specific_options', FALSE)) {
+diff --git a/src/Form/GeshiFilterLanguagesForm.php b/src/Form/GeshiFilterLanguagesForm.php
+index 449c290..bebd159 100644
+--- a/src/Form/GeshiFilterLanguagesForm.php
++++ b/src/Form/GeshiFilterLanguagesForm.php
+@@ -55,7 +55,7 @@ class GeshiFilterLanguagesForm extends ConfigFormBase {
+     // Check if GeSHi library is available.
+     $geshi_library = GeshiFilter::loadGeshi();
+     if (!$geshi_library['loaded']) {
+-      drupal_set_message($geshi_library['error message'], 'error');
++      \Drupal::messenger()->addMessage($geshi_library['error message'], 'error');
+       return [];
+     }
+     $add_checkbox = TRUE;
+diff --git a/src/Form/GeshiFilterSettingsForm.php b/src/Form/GeshiFilterSettingsForm.php
+index c7d5709..416d286 100644
+--- a/src/Form/GeshiFilterSettingsForm.php
++++ b/src/Form/GeshiFilterSettingsForm.php
+@@ -16,6 +16,7 @@ use Drupal\Core\Cache\Cache;
+ 
+ // Necessary for SafeMarkup::checkPlain().
+ use Drupal\geshifilter\GeshiFilter;
++use Drupal\Core\Link;
+ 
+ /**
+  * Form with the settings for the module.
+@@ -53,8 +54,8 @@ class GeshiFilterSettingsForm extends ConfigFormBase {
+       '#type' => 'fieldset',
+       '#title' => defined('GESHI_VERSION') ? $this->t('GeSHi library version @version detected', ['@version' => GESHI_VERSION]) : $this->t('GeSHi library'),
+       '#description' => $this->t('The GeSHi filter requires the GeSHi library (which needs to be @downloaded and installed seperately). Please review the install instruction at @readme.', [
+-        '@downloaded' => $this->l($this->t('downloaded'), Url::fromUri('http://qbnz.com/highlighter/')),
+-        '@readme' => $this->l($this->t('README.TXT'), Url::fromUri('http://cgit.drupalcode.org/geshifilter/tree/README.txt?h=8.x-1.x')),
++        '@downloaded' => Link::fromTextAndUrl($this->t('downloaded'), Url::fromUri('http://qbnz.com/highlighter/')),
++        '@readme' => Link::fromTextAndUrl($this->t('README.TXT'), Url::fromUri('http://cgit.drupalcode.org/geshifilter/tree/README.txt?h=8.x-1.x')),
+       ]),
+       '#collapsible' => TRUE,
+       '#collapsed' => $geshi_library['loaded'],
+@@ -89,7 +90,7 @@ class GeshiFilterSettingsForm extends ConfigFormBase {
+         '#title' => $this->t('Use text format specific tag settings.'),
+         '#default_value' => $config->get('use_format_specific_options', FALSE),
+         '#description' => $this->t('Enable seperate tag settings of the GeSHi filter for each @text-format instead of global tag settings.', [
+-          '@text-format' => \Drupal::l($this->t('text format'), Url::fromRoute('filter.admin_overview')),
++          '@text-format' => Link::fromTextAndUrl($this->t('text format'), Url::fromRoute('filter.admin_overview')),
+         ]),
+       ];
+       // Generic tags settings.
+@@ -133,7 +134,7 @@ class GeshiFilterSettingsForm extends ConfigFormBase {
+           GeshiFilter::LINE_NUMBERS_DEFAULT_FANCY20 => $this->t('fancy line numbers (every @n lines)', ['@n' => GeshiFilter::LINE_NUMBERS_DEFAULT_FANCY20]),
+         ],
+         '#description' => $this->t('Select the default line numbering scheme: no line numbers, normal line numbers or fancy line numbers. With fancy line numbers every n<sup>th</sup> line number is highlighted. (GeSHi documentation: @line-numbers).', [
+-          '@line-numbers' => \Drupal::l($this->t('Line numbers'), Url::fromUri('http://qbnz.com/highlighter/geshi-doc.html#line-numbers')),
++          '@line-numbers' => Link::fromTextAndUrl($this->t('Line numbers'), Url::fromUri('http://qbnz.com/highlighter/geshi-doc.html#line-numbers')),
+         ]),
+       ];
+       
+@@ -150,7 +151,7 @@ class GeshiFilterSettingsForm extends ConfigFormBase {
+         '#type' => 'checkbox',
+         '#title' => $this->t('Use built-in PHP function <code>highlight_string()</code> for PHP source code.'),
+         '#description' => $this->t('When enabled, PHP source code will be syntax highlighted with the built-in PHP function <code>@highlight-string</code> instead of with the GeSHi library. GeSHi features, like line numbering and usage of an external CSS stylesheet for example, are not available.', [
+-          '@highlight-string' => \Drupal::l('highlight_string()', Url::fromUri('http://php.net/manual/en/function.highlight-string.php')),
++          '@highlight-string' => Link::fromTextAndUrl('highlight_string()', Url::fromUri('http://php.net/manual/en/function.highlight-string.php')),
+         ]),
+         '#default_value' => $config->get('use_highlight_string_for_php'),
+       ];
+@@ -159,7 +160,7 @@ class GeshiFilterSettingsForm extends ConfigFormBase {
+         '#type' => 'checkbox',
+         '#title' => $this->t('Enable GeSHi keyword URLs'),
+         '#description' => $this->t('For some languages GeSHi can link language keywords (e.g. standard library functions) to their online documentation. (GeSHi documentation: @keyword-urls).', [
+-          '@keyword-urls' => \Drupal::l($this->t('Keyword URLs'), Url::fromUri('http://qbnz.com/highlighter/geshi-doc.html#keyword-urls')),
++          '@keyword-urls' => Link::fromTextAndUrl($this->t('Keyword URLs'), Url::fromUri('http://qbnz.com/highlighter/geshi-doc.html#keyword-urls')),
+         ]),
+         '#default_value' => $config->get('enable_keyword_urls'),
+       ];
+@@ -193,11 +194,11 @@ class GeshiFilterSettingsForm extends ConfigFormBase {
+           rules to the pages (e.g. based on @css-defaults).
+           (GeSHi documentation: @css-classes).',
+           [
+-            '@css-classes' => \Drupal::l($this->t('Using CSS Classes'),
++            '@css-classes' => Link::fromTextAndUrl($this->t('Using CSS Classes'),
+               Url::fromUri('http://qbnz.com/highlighter/geshi-doc.html#using-css-classes')
+             ),
+-            '@download-method' => \Drupal::l($this->t('download method'), Url::fromRoute('system.file_system_settings')),
+-            '@css-defaults' => \Drupal::l($this->t('these defaults'), Url::fromRoute('geshifilter.generate_css')),
++            '@download-method' => Link::fromTextAndUrl($this->t('download method'), Url::fromRoute('system.file_system_settings')),
++            '@css-defaults' => Link::fromTextAndUrl($this->t('these defaults'), Url::fromRoute('geshifilter.generate_css')),
+           ]
+         ),
+       ];
+@@ -236,7 +237,7 @@ class GeshiFilterSettingsForm extends ConfigFormBase {
+         '#type' => 'radios',
+         '#title' => $this->t('Code container, wrapping technique'),
+         '#description' => $this->t('Define the wrapping technique to use for code blocks. (GeSHi documentation: @code-container).',
+-          ['@code-container' => \Drupal::l($this->t('The Code Container'), Url::fromUri('http://qbnz.com/highlighter/geshi-doc.html#the-code-container'))]
++          ['@code-container' => Link::fromTextAndUrl($this->t('The Code Container'), Url::fromUri('http://qbnz.com/highlighter/geshi-doc.html#the-code-container'))]
+         ),
+         '#options' => $container_options,
+         '#default_value' => $config->get('code_container'),
+@@ -304,7 +305,7 @@ class GeshiFilterSettingsForm extends ConfigFormBase {
+     }
+     $cache = \Drupal::cache();
+     $cache->delete('geshifilter_available_languages_cache');
+-    drupal_set_message($this->t('Flushed the GeSHi language definition cache.'));
++    \Drupal::messenger()->addMessage($this->t('Flushed the GeSHi language definition cache.'));
+   }
+ 
+   /**
+diff --git a/src/GeshiFilter.php b/src/GeshiFilter.php
+index 5c3bd64..56f7bd4 100644
+--- a/src/GeshiFilter.php
++++ b/src/GeshiFilter.php
+@@ -3,6 +3,7 @@
+ namespace Drupal\geshifilter;
+ 
+ use Drupal\Core\Url;
++use Drupal\Core\Link;
+ 
+ /**
+  * Contains constantas and some helper functions.
+@@ -86,7 +87,7 @@ class GeshiFilter {
+   const BRACKETS_DOUBLESQUARE = 4;
+ 
+   /**
+-   * Parse code with tags inside <?php ?>, example, <?php echo('hi'); ?>.
++   * Parse code with tags inside , example, <?php echo('hi'); ?>.
+    */
+   const BRACKETS_PHPBLOCK = 8;
+ 
+@@ -170,7 +171,7 @@ class GeshiFilter {
+           drupal_get_path('module', 'geshifilter') . '/geshi-extra',
+         ];
+         foreach ($dirs as $dir) {
+-          foreach (file_scan_directory($dir, '/.[pP][hH][pP]$/i') as $filename => $fileinfo) {
++          foreach (\Drupal::service('file_system')->scanDirectory($dir, '/.[pP][hH][pP]$/i') as $filename => $fileinfo) {
+             // Short name.
+             $name = $fileinfo->name;
+             // Get full name.
+@@ -242,8 +243,8 @@ class GeshiFilter {
+       $library['loaded'] = FALSE;
+       $library['library path'] = '';
+       $library['error message'] = t('The GeSHi filter requires the GeSHi library (which needs to be @downloaded and installed seperately). Please review the install instruction at @readme.', [
+-        '@downloaded' => \Drupal::l(t('downloaded'), Url::fromUri('http://qbnz.com/highlighter/')),
+-        '@readme' => \Drupal::l(t('README.TXT'), Url::fromUri('http://cgit.drupalcode.org/geshifilter/tree/README.txt?h=8.x-1.x')),
++        '@downloaded' => Link::fromTextAndUrl(t('downloaded'), Url::fromUri('http://qbnz.com/highlighter/')),
++        '@readme' => Link::fromTextAndUrl(t('README.TXT'), Url::fromUri('http://cgit.drupalcode.org/geshifilter/tree/README.txt?h=8.x-1.x')),
+       ]);
+     }
+     return $library;
+diff --git a/src/GeshiFilterCss.php b/src/GeshiFilterCss.php
+index 699bcda..3e4b55b 100644
+--- a/src/GeshiFilterCss.php
++++ b/src/GeshiFilterCss.php
+@@ -4,6 +4,7 @@ namespace Drupal\geshifilter;
+ 
+ // Necessary for return response of generateCss().
+ use Symfony\Component\HttpFoundation\Response;
++use Drupal\Core\File\FileSystemInterface;
+ 
+ // Necessary for URL.
+ use Drupal\Core\Url;
+@@ -37,9 +38,10 @@ class GeshiFilterCss {
+    */
+   public static function managedExternalStylesheetPossible() {
+     $directory = self::languageCssPath(TRUE);
+-    return file_prepare_directory($directory, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
++    return \Drupal::service('file_system')->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+   }
+ 
++
+   /**
+    * Get the path for css file.
+    *
+@@ -50,7 +52,7 @@ class GeshiFilterCss {
+    *   Full path to css file.
+    */
+   public static function languageCssPath($dironly = FALSE) {
+-    $directory = file_default_scheme() . '://geshi';
++    $directory = \Drupal::config('system.file')->get('default_scheme') . '://geshi';
+     if (!$dironly) {
+       $directory .= '/geshifilter-languages.css';
+     }
+@@ -79,7 +81,7 @@ class GeshiFilterCss {
+       }
+     }
+     else {
+-      drupal_set_message($this->t('Error while generating CSS rules: could not load GeSHi library.'), 'error');
++      \Drupal::messenger()->addMessage(t('Error while generating CSS rules: could not load GeSHi library.'), 'error');
+     }
+     return $output;
+   }
+@@ -102,12 +104,12 @@ class GeshiFilterCss {
+       // Save stylesheet.
+       $stylesheet_filename = self::languageCssPath();
+ 
+-      $ret = file_save_data($stylesheet, $stylesheet_filename, FILE_EXISTS_REPLACE);
++      $ret = file_save_data($stylesheet, $stylesheet_filename, FileSystemInterface::EXISTS_REPLACE);
+       if ($ret) {
+-        drupal_set_message(t('(Re)generated external CSS style sheet %file.', ['%file' => $ret->getFilename()]));
++        \Drupal::messenger()->addMessage(t('(Re)generated external CSS style sheet %file.', ['%file' => $ret->getFilename()]));
+       }
+       else {
+-        drupal_set_message(t('Could not generate external CSS file. Check the settings of your <a href="!filesystem">file system</a>.',
++        \Drupal::messenger()->addMessage(t('Could not generate external CSS file. Check the settings of your <a href="!filesystem">file system</a>.',
+           [
+             '!filesystem' => Url::fromRoute('system.file_system_settings')->toString(),
+           ]), 'error');
+diff --git a/src/GeshiFilterProcess.php b/src/GeshiFilterProcess.php
+index 6a0d600..9b75ba5 100644
+--- a/src/GeshiFilterProcess.php
++++ b/src/GeshiFilterProcess.php
+@@ -2,8 +2,9 @@
+ 
+ namespace Drupal\geshifilter;
+ 
+-// Necessary for SafeMarkup::checkPlain().
+-use Drupal\Component\Utility\SafeMarkup;
++
++use Drupal\Component\Utility\Html;
++
+ 
+ /**
+  * Helpers functions related to processing the source code with geshi.
+@@ -66,7 +67,7 @@ class GeshiFilterProcess {
+     // Load GeSHi library (if not already).
+     $geshi_library = GeshiFilter::loadGeshi();
+     if (!$geshi_library['loaded']) {
+-      drupal_set_message($geshi_library['error message'], 'error');
++      \Drupal::messenger()->addMessage($geshi_library['error message'], 'error');
+       return $source_code;
+     }
+ 
+@@ -94,7 +95,7 @@ class GeshiFilterProcess {
+       $overall_class = 'geshifilter-' . $lang;
+       $code_class = "{$lang} {$overall_class}";
+       $source_code = '<span class="geshifilter"'
+-        . (isset($title) ? ' title="' . SafeMarkup::checkPlain($title) . '"' : '')
++        . (isset($title) ? ' title="' . Html::escape($title) . '"' : '')
+         . '><code class="' . $code_class . '">' . $geshi->parse_code() . '</code></span>';
+     }
+     else {
+@@ -113,7 +114,7 @@ class GeshiFilterProcess {
+         $geshi->start_line_numbers_at($linenumbers_start);
+       }
+       if (isset($title)) {
+-        $source_code = '<div class="geshifilter-title">' . SafeMarkup::checkPlain($title) . '</div>';
++        $source_code = '<div class="geshifilter-title">' . Html::escape($title) . '</div>';
+       }
+       else {
+         $source_code = '';
+diff --git a/src/Plugin/Filter/GeshiFilterFilter.php b/src/Plugin/Filter/GeshiFilterFilter.php
+index 09c7175..be19be1 100644
+--- a/src/Plugin/Filter/GeshiFilterFilter.php
++++ b/src/Plugin/Filter/GeshiFilterFilter.php
+@@ -5,8 +5,6 @@ namespace Drupal\geshifilter\Plugin\Filter;
+ // Base class for filters.
+ use Drupal\filter\Plugin\FilterBase;
+ 
+-// Necessary for SafeMarkup::checkPlain().
+-use Drupal\Component\Utility\SafeMarkup;
+ 
+ // Necessary for passing HTML into t().
+ use Drupal\Core\Render\Markup;
+@@ -122,7 +120,7 @@ class GeshiFilterFilter extends FilterBase {
+     }
+     catch (\Exception $e) {
+       watchdog_exception('geshifilter', $e);
+-      drupal_set_message($geshi_library['error message'], 'error');
++      \Drupal::messenger()->addMessage($geshi_library['error message'], 'error');
+     }
+ 
+     return $result;
+@@ -193,36 +191,36 @@ class GeshiFilterFilter extends FilterBase {
+     $bracket_close = NULL;
+     if (in_array(GeshiFilter::BRACKETS_ANGLE, $tag_styles)) {
+       if (!$bracket_open) {
+-        $bracket_open = SafeMarkup::checkPlain('<');
+-        $bracket_close = SafeMarkup::checkPlain('>');
++        $bracket_open = Html::escape('<');
++        $bracket_close = Html::escape('>');
+       }
+-      $tag_style_examples[] = '<code>' . SafeMarkup::checkPlain('<foo>') . '</code>';
++      $tag_style_examples[] = '<code>' . Html::escape('<foo>') . '</code>';
+     }
+     if (in_array(GeshiFilter::BRACKETS_SQUARE, $tag_styles)) {
+       if (!$bracket_open) {
+-        $bracket_open = SafeMarkup::checkPlain('[');
+-        $bracket_close = SafeMarkup::checkPlain(']');
++        $bracket_open = Html::escape('[');
++        $bracket_close = Html::escape(']');
+       }
+-      $tag_style_examples[] = '<code>' . SafeMarkup::checkPlain('[foo]') . '</code>';
++      $tag_style_examples[] = '<code>' . Html::escape('[foo]') . '</code>';
+     }
+     if (in_array(GeshiFilter::BRACKETS_DOUBLESQUARE, $tag_styles)) {
+       if (!$bracket_open) {
+-        $bracket_open = SafeMarkup::checkPlain('[[');
+-        $bracket_close = SafeMarkup::checkPlain(']]');
++        $bracket_open = Html::escape('[[');
++        $bracket_close = Html::escape(']]');
+       }
+-      $tag_style_examples[] = '<code>' . SafeMarkup::checkPlain('[[foo]]') . '</code>';
++      $tag_style_examples[] = '<code>' . Html::escape('[[foo]]') . '</code>';
+     }
+     if (in_array(GeshiFilter::BRACKETS_MARKDOWNBLOCK, $tag_styles)) {
+       if (!$bracket_open) {
+-        $bracket_open = SafeMarkup::checkPlain('```');
+-        $bracket_close = SafeMarkup::checkPlain('```');
++        $bracket_open = Html::escape('```');
++        $bracket_close = Html::escape('```');
+       }
+-      $tag_style_examples[] = '<code>' . SafeMarkup::checkPlain('```foo ```') . '</code>';
++      $tag_style_examples[] = '<code>' . Html::escape('```foo ```') . '</code>';
+     }
+     if (!$bracket_open) {
+-      drupal_set_message($this->t('Could not determine a valid tag style for GeSHi filtering.'), 'error');
+-      $bracket_open = SafeMarkup::checkPlain('<');
+-      $bracket_close = SafeMarkup::checkPlain('>');
++      \Drupal::messenger()->addMessage($this->t('Could not determine a valid tag style for GeSHi filtering.'), 'error');
++      $bracket_open = Html::escape('<');
++      $bracket_close = Html::escape('>');
+     }
+ 
+     if ($long) {
+@@ -371,10 +369,10 @@ class GeshiFilterFilter extends FilterBase {
+       list($generic_code_tags, $language_tags, $tag_to_lang) = $this->getTags();
+       $tags = [];
+       foreach ($generic_code_tags as $tag) {
+-        $tags[] = '<code>' . $bracket_open . SafeMarkup::checkPlain($tag) . $bracket_close . '</code>';
++        $tags[] = '<code>' . $bracket_open . Html::escape($tag) . $bracket_close . '</code>';
+       }
+       foreach ($language_tags as $tag) {
+-        $tags[] = '<code>' . $bracket_open . SafeMarkup::checkPlain($tag) . $bracket_close . '</code>';
++        $tags[] = '<code>' . $bracket_open . Html::escape($tag) . $bracket_close . '</code>';
+       }
+       $output = $this->t('You can enable syntax highlighting of source code with the following tags: @tags.', ['@tags' => Markup::create(implode(', ', $tags))]);
+       // Tag style options.
+@@ -878,7 +876,7 @@ class GeshiFilterFilter extends FilterBase {
+    *   '[python]foo[/python]' to '[geshifilter-python]foo[/geshifilter-python]'.
+    * Replaces newlines with "&#10;" to prevent issues with the line break filter
+    * Escapes the tricky characters like angle brackets with
+-   * SafeMarkup::checkPlain() to prevent messing up by other filters like the
++   * Html::escape() to prevent messing up by other filters like the
+    * HTML filter.
+    *
+    * @param array $match
+@@ -931,7 +929,7 @@ class GeshiFilterFilter extends FilterBase {
+     }
+     // Return escaped code block.
+     return '[geshifilter-' . $tag_name . $tag_attributes . ']'
+-      . str_replace(["\r", "\n"], ['', '&#10;'], SafeMarkup::checkPlain($content))
++      . str_replace(["\r", "\n"], ['', '&#10;'], Html::escape($content))
+       . '[/geshifilter-' . $tag_name . ']';
+   }
+ 
+@@ -946,7 +944,7 @@ class GeshiFilterFilter extends FilterBase {
+       $match[2] = $this->unencode($match[2]);
+     }
+     return '[geshifilter-questionmarkphp]'
+-    . str_replace(["\r", "\n"], ['', '&#10;'], SafeMarkup::checkPlain($match[2]))
++    . str_replace(["\r", "\n"], ['', '&#10;'], Html::escape($match[2]))
+     . '[/geshifilter-questionmarkphp]';
+   }
+ 
+@@ -958,7 +956,7 @@ class GeshiFilterFilter extends FilterBase {
+    *   '[python]foo[/python]' to '[geshifilter-python]foo[/geshifilter-python]'.
+    * Replaces newlines with "&#10;" to prevent issues with the line break filter
+    * Escapes the tricky characters like angle brackets with
+-   * SafeMarkup::checkPlain() to prevent messing up by other filters like the
++   * Html::escape() to prevent messing up by other filters like the
+    * HTML filter.
+    *
+    * @param array $match
+@@ -996,7 +994,7 @@ class GeshiFilterFilter extends FilterBase {
+     }
+     // Return escaped code block.
+     return '[geshifilter-' . $tag_name . $tag_attributes . ']'
+-      . str_replace(["\r", "\n"], ['', '&#10;'], SafeMarkup::checkPlain($content))
++      . str_replace(["\r", "\n"], ['', '&#10;'], Html::escape($content))
+       . '[/geshifilter-' . $tag_name . ']';
+   }
+ 

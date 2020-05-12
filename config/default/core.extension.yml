@@ -53,14 +53,12 @@ module:
   jquery_ui: 0
   jquery_ui_draggable: 0
   jquery_ui_droppable: 0
-  juicebox: 0
   language: 0
   layout_discovery: 0
   libraries: 0
   link: 0
   locale: 0
   media: 0
-  media_entity_actions: 0
   menu_ui: 0
   metatag: 0
   metatag_facebook: 0
@@ -90,8 +88,6 @@ module:
   text: 0
   token: 0
   toolbar: 0
-  upgrade_rector: 0
-  upgrade_status: 0
   user: 0
   viewsreference: 0
   youtube: 0

@@ -1,0 +1,130 @@
+diff --git a/slack_invite.info.yml b/slack_invite.info.yml
+index 0f59dc6..04d92f4 100644
+--- a/slack_invite.info.yml
++++ b/slack_invite.info.yml
+@@ -3,4 +3,4 @@ type: module
+ description: "Invite your users to your slack team"
+ version: VERSION
+ package: Other
+-core: 8.x
++core_version_requirement: ^8 || ^9
+diff --git a/src/Form/SlackInviteForm.php b/src/Form/SlackInviteForm.php
+index fe71dba..9743446 100644
+--- a/src/Form/SlackInviteForm.php
++++ b/src/Form/SlackInviteForm.php
+@@ -9,6 +9,7 @@ namespace Drupal\slack_invite\Form;
+ use Drupal\Core\Http\Client;
+ use Drupal\Core\Form\FormBase;
+ use Drupal\Core\Form\FormStateInterface;
++use Drupal\Core\Url;
+ use Exception;
+ 
+ /**
+@@ -29,7 +30,7 @@ class SlackInviteForm extends FormBase {
+   public function buildForm(array $form, FormStateInterface $form_state) {
+     $config = $this->config('slack_invite.settings');
+ 
+-    $form['#action'] = $this->url('<current>', [], ['query' => $this->getDestinationArray(), 'external' => FALSE]);
++    $form['#action'] = Url::fromRoute('<current>', [], ['query' => $this->getDestinationArray(), 'external' => FALSE])->toString();
+     $form['slack_email'] = [
+       '#type' => 'textfield',
+       '#title' => $this->t('Email'),
+@@ -52,7 +53,8 @@ class SlackInviteForm extends FormBase {
+    */
+   public function validateForm(array &$form, FormStateInterface $form_state) {
+     $email = $form_state->getValue('slack_email');
+-    if (!valid_email_address($email)) {
++    $email = \Drupal::service('email.validator')->isValid($email);
++    if (!$email) {
+       $form_state->setErrorByName('slack_email', $this->t('Enter email address in valid format (ex. example@example.com)'));
+     }
+   }
+diff --git a/src/SlackInvite.php b/src/SlackInvite.php
+index 724785f..19547c1 100644
+--- a/src/SlackInvite.php
++++ b/src/SlackInvite.php
+@@ -10,6 +10,8 @@ namespace Drupal\slack_invite;
+ use Drupal\Component\Utility\Crypt;
+ use Drupal\Core\Site\Settings;
+ use Drupal\Core\StringTranslation\StringTranslationTrait;
++use Drupal\Core\Messenger\MessengerInterface;
++use Symfony\Component\DependencyInjection\ContainerInterface;
+ use Drupal\Core\Url;
+ 
+ /**
+@@ -20,6 +22,29 @@ class SlackInvite {
+ 
+   use StringTranslationTrait;
+ 
++  /**
++   * The messenger.
++   *
++   * @var \Drupal\Core\Messenger\MessengerInterface
++   */
++  protected $messenger;
++
++  /**
++   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
++   *    The messenger service.
++   */
++  public function __construct(MessengerInterface $messenger) {     
++    $this->messenger = $messenger;   
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public static function create(ContainerInterface $container) {
++    return new static(
++      $container->get('messenger')
++    );
++  }
+   var $config = [];
+   var $email = NULL;
+ 
+@@ -59,7 +84,7 @@ class SlackInvite {
+ 
+       $response_data = json_decode('' . $response->getBody());
+       if ($response_data->ok == TRUE) {
+-        drupal_set_message(t('You will receive an email notification inviting you to join the slack team shortly.'));
++        $this->messenger->addMessage(t('You will receive an email notification inviting you to join the slack team shortly.'));
+       }
+       else {
+         $message = '';
+@@ -80,11 +105,11 @@ class SlackInvite {
+             $message = $data['error'];
+             break;
+         }
+-        drupal_set_message($this->t('There was an error sending your invite. Please contact the administrator with the following error details. The error message from slack was: @message', ['@message' => $message]));
++        $this->messenger->addMessage($this->t('There was an error sending your invite. Please contact the administrator with the following error details. The error message from slack was: @message', ['@message' => $message]));
+       }
+     }
+     catch (Exception $e) {
+-      drupal_set_message($this->t('Something went wrong with the request. Please contact site administrator.'), 'error');
++      $this->messenger->addError($this->t('Something went wrong with the request. Please contact site administrator.'));
+     }
+   }
+ 
+@@ -122,7 +147,7 @@ class SlackInvite {
+ 
+       $response_data = json_decode('' . $response->getBody());
+       if ($response_data->ok == TRUE) {
+-        drupal_set_message($this->t('Your slack invitation request has been made and you will receive an email notification inviting you to join the slack team pending approval.'));
++        $this->messenger->addMessage($this->t('Your slack invitation request has been made and you will receive an email notification inviting you to join the slack team pending approval.'));
+       }
+       else {
+         $message = '';
+@@ -131,11 +156,11 @@ class SlackInvite {
+             $message = $data['error'];
+             break;
+         }
+-        drupal_set_message($this->t('There was an error sending your invitation request. Please contact the administrator with the following error details. The error message from slack was: @message', ['@message' => $message]));
++        $this->messenger->addMessage($this->t('There was an error sending your invitation request. Please contact the administrator with the following error details. The error message from slack was: @message', ['@message' => $message]));
+       }
+     }
+     catch (Exception $e) {
+-      drupal_set_message($this->t('Something went wrong with the request. Please contact site administrator.'), 'error');
++      $this->messenger->addError($this->t('Something went wrong with the request. Please contact site administrator.'));
+     }
+   }
+ 
