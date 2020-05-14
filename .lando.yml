@@ -4,6 +4,7 @@ recipe: drupal8
 config:
   webroot: docroot
   ssl: true
+  php: 7.3
   xdebug: false
   overrides:
     volumes:
