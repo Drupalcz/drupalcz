@@ -539,7 +539,7 @@ display:
           guid_field_options:
             guid_field: view_node
             guid_field_is_permalink: true
-      path: feed/articles.xml
+      path: feed/forum.xml
       sitename_title: true
       style:
         type: rss

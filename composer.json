@@ -43,7 +43,7 @@
         "drupal/eu_cookie_compliance": "^1.0",
         "drupal/extlink": "^1.1",
         "drupal/flexslider": "^2.0",
-        "drupal/geolocation": "^1.11",
+        "drupal/geolocation": "^3",
         "drupal/geshifilter": "^1.2",
         "drupal/google_analytics": "^2.4",
         "drupal/honeypot": "^1.27",
