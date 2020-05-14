@@ -1,7 +1,0 @@
-name: DCZ Custom Blocks
-core_version_requirement: ^8 || ^9
-description: Custom blocks with pieces of information.
-package: Custom
-type: module
-dependencies:
-  - drupal:block
