@@ -10,7 +10,7 @@ dependencies:
     - field.field.user.user.field_location
     - image.style.thumbnail
   module:
-    - geolocation
+    - geolocation_leaflet
     - image
     - path
     - text
@@ -63,39 +63,29 @@ content:
     type: image_image
     region: content
   field_location:
-    type: geolocation_googlegeocoder
+    type: geolocation_leaflet
     weight: 8
     region: content
     settings:
-      default_longitude: '15.518857862499999'
-      default_latitude: '49.85137184970849'
       auto_client_location: '1'
       auto_client_location_marker: '1'
-      google_map_settings:
+      allow_override_map_settings: 0
+      centre:
+        fit_bounds:
+          enable: true
+      hide_textfield_form: false
+      leaflet_settings:
+        map_features:
+          leaflet_control_zoom:
+            enabled: true
+          leaflet_marker_popup:
+            enabled: true
+          leaflet_control_geocoder:
+            enabled: true
+            weight: -100
+        zoom: '10'
         height: 400px
         width: 100%
-        type: ROADMAP
-        zoom: '10'
-        maxZoom: 18
-        minZoom: 0
-        mapTypeControl: 1
-        zoomControl: 1
-        scrollwheel: 1
-        gestureHandling: auto
-        draggable: 1
-        preferScrollingToZooming: 1
-        style: ''
-        info_auto_display: 1
-        marker_icon_path: ''
-        disableAutoPan: 1
-        streetViewControl: 0
-        rotateControl: 0
-        fullscreenControl: 0
-        disableDoubleClickZoom: 0
-      allow_override_map_settings: 0
-      populate_address_field: ''
-      target_address_field: null
-      explicite_actions_address_field: ''
     third_party_settings: {  }
   google_analytics:
     weight: 3
