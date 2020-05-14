@@ -327,8 +327,8 @@ display:
                         checkbox: false
                     FreeMapSK:
                       FreeMapSK:
+                        checkbox: true
                         label: ''
-                        checkbox: false
                     MtbMap:
                       MtbMap:
                         label: ''
@@ -420,9 +420,10 @@ display:
                       apikey: ''
                 enabled: false
               leaflet_tile_layer:
+                enabled: true
                 weight: -9
                 settings:
-                  tile_layer_provider: 'OpenStreetMap Mapnik'
+                  tile_layer_provider: 'OpenStreetMap DE'
                   tile_provider_options:
                     Thunderforest:
                       apikey: ''
@@ -433,7 +434,6 @@ display:
                       app_code: ''
                     GeoportailFrance:
                       apikey: ''
-                enabled: false
               leaflet_tile_layer_overlay:
                 weight: -8
                 settings:
@@ -479,7 +479,6 @@ display:
                 settings:
                   info_auto_display: false
               leaflet_marker_icon:
-                enabled: true
                 weight: -1
                 settings:
                   marker_icon_path: /themes/custom/dcz_theme/images/drupal-marker.svg
@@ -499,6 +498,7 @@ display:
                   shadow_anchor:
                     x: null
                     'y': null
+                enabled: false
               leaflet_control_zoom:
                 enabled: true
                 weight: 0
