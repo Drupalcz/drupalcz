@@ -40,7 +40,7 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
+          submit_button: Hledat
           reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
@@ -50,15 +50,15 @@ display:
       pager:
         type: full
         options:
-          items_per_page: 25
+          items_per_page: 60
           offset: 0
           id: 0
           total_pages: null
           tags:
             previous: ‹‹
             next: ››
-            first: '« First'
-            last: 'Last »'
+            first: '« První'
+            last: 'Poslední »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -278,10 +278,12 @@ display:
           exposed: true
           expose:
             operator_id: combine_op
-            label: Name
+            label: Jméno
             description: ''
             use_operator: false
             operator: combine_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: name
             required: false
             remember: false
@@ -292,9 +294,8 @@ display:
               contributor: '0'
               editor: '0'
               administrator: '0'
+              api: '0'
             placeholder: ''
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
