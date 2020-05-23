@@ -9,15 +9,14 @@ dependencies:
     - field.field.user.user.field_dcz_surname
     - field.field.user.user.field_dcz_user_image
     - field.field.user.user.field_location
-    - image.style.thumbnail
+    - image.style.profile
   module:
-    - geolocation
     - image
     - panelizer
     - user
 third_party_settings:
   panelizer:
-    enable: true
+    enable: false
     custom: false
     allow: false
     default: default
@@ -69,7 +68,7 @@ third_party_settings:
               label: hidden
               type: image
               settings:
-                image_style: medium
+                image_style: profile
                 image_link: content
               third_party_settings: {  }
               weight: 0
@@ -116,19 +115,13 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: thumbnail
-      image_link: ''
+      image_style: profile
+      image_link: content
     third_party_settings: {  }
     type: image
     region: content
-  field_location:
-    weight: 6
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: geolocation_latlng
-    region: content
 hidden:
   field_dcz_bio: true
+  field_location: true
   langcode: true
   member_for: true
