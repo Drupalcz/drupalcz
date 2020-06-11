@@ -5802,30 +5802,34 @@
         },
         {
             "name": "drupal/purge",
-            "version": "3.0.0-beta9",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/purge.git",
-                "reference": "8.x-3.0-beta9"
+                "reference": "8.x-3.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/purge-8.x-3.0-beta9.zip",
-                "reference": "8.x-3.0-beta9",
-                "shasum": "d7d5229806582f7553f3b46b56218a9e41e9e6c4"
+                "url": "https://ftp.drupal.org/files/projects/purge-8.x-3.0.zip",
+                "reference": "8.x-3.0",
+                "shasum": "e7113e9927dbdbbd5c2f4edc2649a14676e14f34"
             },
             "require": {
-                "drupal/core": "~8.0"
+                "drupal/core": "^8.7.7 || ^9",
+                "php": ">=7.2"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.0-beta9",
-                    "datestamp": "1570540105",
+                    "version": "8.x-3.0",
+                    "datestamp": "1590744318",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "branch-alias": {
+                    "dev-8.x-3.x": "3.x-dev"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -5834,8 +5838,8 @@
             ],
             "authors": [
                 {
-                    "name": "SqyD",
-                    "homepage": "https://www.drupal.org/user/106525"
+                    "name": "Niels van Mourik",
+                    "homepage": "http://www.nielsvm.org"
                 },
                 {
                     "name": "djbobbydrake",
@@ -14077,13 +14081,13 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/better_normalizers": 10,
+        "drupal/captcha": 10,
         "drupal/default_content_deploy": 15,
         "drupal/diff": 5,
         "drupal/inline_entity_form": 5,
         "drupal/juicebox": 10,
         "drupal/libraries": 15,
         "drupal/media_entity_actions": 15,
-        "drupal/purge": 10,
         "drupal/security_review": 20,
         "drupal/stage_file_proxy": 5,
         "drupal/youtube": 10,
