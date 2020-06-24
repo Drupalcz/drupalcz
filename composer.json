@@ -44,7 +44,7 @@
         "drupal/flexslider": "^2.0",
         "drupal/geolocation": "^3",
         "drupal/geshifilter": "^1.2",
-        "drupal/google_analytics": "^2.4",
+        "drupal/google_analytics": "^3.1",
         "drupal/honeypot": "^1.27",
         "drupal/inline_entity_form": "^1.0@RC",
         "drupal/juicebox": "^2.0@beta",
