@@ -32,7 +32,7 @@
         "drupal/core-recommended": "^8.9",
         "drupal/ctools": "^3.0",
         "drupal/default_content_deploy": "^1.0@alpha",
-        "drupal/devel": "^2.1",
+        "drupal/devel": "^4.0",
         "drupal/diff": "^1.0@RC",
         "drupal/dropzonejs": "^2.0",
         "drupal/embed": "^1.0",
