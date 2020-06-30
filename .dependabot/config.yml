@@ -5,3 +5,6 @@ update_configs:
     directory: "/"
     update_schedule: "daily"
     version_requirement_updates: "increase_versions_if_necessary"
+    ignored_updates:
+      - match:
+          dependency_name: "drupal/security_review"
