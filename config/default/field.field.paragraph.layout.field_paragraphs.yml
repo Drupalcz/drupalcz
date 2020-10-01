@@ -35,9 +35,6 @@ settings:
       dcz_para_video: dcz_para_video
       dcz_para_view_reference: dcz_para_view_reference
     target_bundles_drag_drop:
-      layout:
-        weight: 11
-        enabled: false
       dcz_para_block_reference:
         enabled: true
         weight: 12
@@ -65,4 +62,7 @@ settings:
       dcz_para_view_reference:
         enabled: true
         weight: 20
+      layout:
+        weight: 11
+        enabled: false
 field_type: entity_reference_revisions
