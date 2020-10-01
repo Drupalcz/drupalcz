@@ -1,8 +1,0 @@
-name: DCZ Article
-type: module
-core_version_requirement: ^8 || ^9
-package: dcz
-features:
-  bundle: dcz
-dependencies:
-  - node

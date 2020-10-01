@@ -40,13 +40,19 @@ settings:
       dcz_para_image:
         weight: 11
         enabled: false
-      dcz_para_video:
-        weight: 12
-        enabled: false
       dcz_para_tab:
         enabled: true
         weight: 14
       dcz_para_tabs:
         weight: 15
+        enabled: false
+      dcz_para_video:
+        weight: 12
+        enabled: false
+      dcz_para_view_reference:
+        weight: 19
+        enabled: false
+      layout:
+        weight: 20
         enabled: false
 field_type: entity_reference_revisions

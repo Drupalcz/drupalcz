@@ -1,0 +1,18 @@
+popup_agreed:
+  value: '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>'
+popup_agree_button_message: Accept
+popup_more_info_button_message: 'More info'
+popup_find_more_button_message: 'More info'
+popup_hide_button_message: Hide
+popup_info:
+  value: '<h2>We use cookies on this site to enhance your user experience</h2><p>By clicking the Accept button, you agree to us doing so.</p>'
+mobile_popup_info:
+  value: '<h2>We use cookies on this site to enhance your user experience</h2><p>By tapping the Accept button, you agree to us doing so.</p>'
+popup_link: '<front>'
+disagree_button_label: 'No, thanks'
+withdraw_message:
+  value: '<h2>We use cookies on this site to enhance your user experience</h2><p>You have given your consent for us to set cookies.</p>'
+withdraw_action_button_label: 'Withdraw consent'
+withdraw_tab_button_label: 'Privacy settings'
+save_preferences_button_label: 'Save preferences'
+accept_all_categories_button_label: 'Accept all cookies'

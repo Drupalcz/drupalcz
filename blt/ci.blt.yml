@@ -14,6 +14,7 @@ disable-targets:
   tests:
     behat:
       run: true
-    php:
+    phpcs:
       sniff:
-        deprecated: true
+        all: true
+        files: true
