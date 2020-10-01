@@ -31,9 +31,6 @@ settings:
       dcz_para_content:
         weight: 10
         enabled: false
-      layout:
-        enabled: true
-        weight: 11
       dcz_para_gallery:
         weight: 11
         enabled: false
@@ -55,4 +52,7 @@ settings:
       dcz_para_view_reference:
         weight: 20
         enabled: false
+      layout:
+        enabled: true
+        weight: 11
 field_type: entity_reference_revisions
