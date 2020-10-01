@@ -8,7 +8,6 @@ description: ''
 folder: ../config/split-default_content
 module:
   better_normalizers: 0
-  default_content: 0
   default_content_deploy: 0
 theme: {  }
 blacklist: {  }
