@@ -1,6 +1,5 @@
 module:
   admin_toolbar: 0
-  admin_toolbar_search: 0
   admin_toolbar_tools: 0
   basic_auth: 0
   big_pipe: 0
