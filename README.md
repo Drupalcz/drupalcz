@@ -4,8 +4,8 @@
 
 Branch | Build status | Dev site | HTTP Basic auth
 ------------ | ------------- | ------------- | -------------
-[Master](https://github.com/Drupalcz/drupalcz/tree/master) | [![Build Status](https://travis-ci.org/Drupalcz/drupalcz.svg?branch=master)](https://travis-ci.org/Drupalcz/drupalcz) | http://stage.drupal.cz | `drupal` / `cz`
-[Develop](https://github.com/Drupalcz/drupalcz/tree/develop) | [![Build Status](https://travis-ci.org/Drupalcz/drupalcz.svg?branch=develop)](https://travis-ci.org/Drupalcz/drupalcz) | http://dev.drupal.cz | `drupal` / `cz`
+[Master](https://github.com/Drupalcz/drupalcz/tree/master) | [![Build Status](https://travis-ci.com/Drupalcz/drupalcz.svg?branch=master)](https://travis-ci.com/Drupalcz/drupalcz) | http://stage.drupal.cz | `drupal` / `cz`
+[Develop](https://github.com/Drupalcz/drupalcz/tree/develop) | [![Build Status](https://travis-ci.com/Drupalcz/drupalcz.svg?branch=develop)](https://travis-ci.com/Drupalcz/drupalcz) | http://dev.drupal.cz | `drupal` / `cz`
 
 ## Contents
 * blt/ - Settings for Acquia BLT.
