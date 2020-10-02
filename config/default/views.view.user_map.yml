@@ -115,416 +115,204 @@ display:
               weight: 0
               map_center_id: fit_bounds
           even_empty: 1
-          map_provider_id: leaflet
+          map_provider_id: google_maps
           map_provider_settings:
             map_features:
-              leaflet_control_layer:
-                weight: -10
-                settings:
-                  position: topleft
-                  default_label: ''
-                  tile_layer_providers:
-                    OpenStreetMap:
-                      'OpenStreetMap Mapnik':
-                        label: ''
-                        checkbox: false
-                      'OpenStreetMap BlackAndWhite':
-                        label: ''
-                        checkbox: false
-                      'OpenStreetMap DE':
-                        label: ''
-                        checkbox: false
-                      'OpenStreetMap CH':
-                        label: ''
-                        checkbox: false
-                      'OpenStreetMap France':
-                        label: ''
-                        checkbox: false
-                      'OpenStreetMap HOT':
-                        label: ''
-                        checkbox: false
-                      'OpenStreetMap BZH':
-                        label: ''
-                        checkbox: false
-                    OpenTopoMap:
-                      OpenTopoMap:
-                        label: ''
-                        checkbox: false
-                    Thunderforest:
-                      'Thunderforest OpenCycleMap':
-                        label: ''
-                        checkbox: false
-                      'Thunderforest Transport':
-                        label: ''
-                        checkbox: false
-                      'Thunderforest TransportDark':
-                        label: ''
-                        checkbox: false
-                      'Thunderforest SpinalMap':
-                        label: ''
-                        checkbox: false
-                      'Thunderforest Landscape':
-                        label: ''
-                        checkbox: false
-                      'Thunderforest Outdoors':
-                        label: ''
-                        checkbox: false
-                      'Thunderforest Pioneer':
-                        label: ''
-                        checkbox: false
-                    OpenMapSurfer:
-                      'OpenMapSurfer Roads':
-                        label: ''
-                        checkbox: false
-                      'OpenMapSurfer Grayscale':
-                        label: ''
-                        checkbox: false
-                    Hydda:
-                      'Hydda Full':
-                        label: ''
-                        checkbox: false
-                      'Hydda Base':
-                        label: ''
-                        checkbox: false
-                    MapBox:
-                      MapBox:
-                        label: ''
-                        checkbox: false
-                    Stamen:
-                      'Stamen Toner':
-                        label: ''
-                        checkbox: false
-                      'Stamen TonerBackground':
-                        label: ''
-                        checkbox: false
-                      'Stamen TonerLite':
-                        label: ''
-                        checkbox: false
-                      'Stamen Watercolor':
-                        label: ''
-                        checkbox: false
-                      'Stamen Terrain':
-                        label: ''
-                        checkbox: false
-                      'Stamen TerrainBackground':
-                        label: ''
-                        checkbox: false
-                      'Stamen TopOSMRelief':
-                        label: ''
-                        checkbox: false
-                    Esri:
-                      'Esri WorldStreetMap':
-                        label: ''
-                        checkbox: false
-                      'Esri DeLorme':
-                        label: ''
-                        checkbox: false
-                      'Esri WorldTopoMap':
-                        label: ''
-                        checkbox: false
-                      'Esri WorldImagery':
-                        label: ''
-                        checkbox: false
-                      'Esri WorldTerrain':
-                        label: ''
-                        checkbox: false
-                      'Esri WorldShadedRelief':
-                        label: ''
-                        checkbox: false
-                      'Esri WorldPhysical':
-                        label: ''
-                        checkbox: false
-                      'Esri OceanBasemap':
-                        label: ''
-                        checkbox: false
-                      'Esri NatGeoWorldMap':
-                        label: ''
-                        checkbox: false
-                      'Esri WorldGrayCanvas':
-                        label: ''
-                        checkbox: false
-                    HERE:
-                      'HERE normalDay':
-                        label: ''
-                        checkbox: false
-                      'HERE normalDayCustom':
-                        label: ''
-                        checkbox: false
-                      'HERE normalDayGrey':
-                        label: ''
-                        checkbox: false
-                      'HERE normalDayMobile':
-                        label: ''
-                        checkbox: false
-                      'HERE normalDayGreyMobile':
-                        label: ''
-                        checkbox: false
-                      'HERE normalDayTransit':
-                        label: ''
-                        checkbox: false
-                      'HERE normalDayTransitMobile':
-                        label: ''
-                        checkbox: false
-                      'HERE normalNight':
-                        label: ''
-                        checkbox: false
-                      'HERE normalNightMobile':
-                        label: ''
-                        checkbox: false
-                      'HERE normalNightGrey':
-                        label: ''
-                        checkbox: false
-                      'HERE normalNightGreyMobile':
-                        label: ''
-                        checkbox: false
-                      'HERE normalNightTransit':
-                        label: ''
-                        checkbox: false
-                      'HERE normalNightTransitMobile':
-                        label: ''
-                        checkbox: false
-                      'HERE redcuedDay':
-                        label: ''
-                        checkbox: false
-                      'HERE redcuedNight':
-                        label: ''
-                        checkbox: false
-                      'HERE basicMap':
-                        label: ''
-                        checkbox: false
-                      'HERE mapLabels':
-                        label: ''
-                        checkbox: false
-                      'HERE trafficFlow':
-                        label: ''
-                        checkbox: false
-                      'HERE carnavDayGrey':
-                        label: ''
-                        checkbox: false
-                      'HERE hybridDayMobile':
-                        label: ''
-                        checkbox: false
-                      'HERE hybridDayTransit':
-                        label: ''
-                        checkbox: false
-                      'HERE hybridDayGrey':
-                        label: ''
-                        checkbox: false
-                      'HERE pedestrianDay':
-                        label: ''
-                        checkbox: false
-                      'HERE pedestrianNight':
-                        label: ''
-                        checkbox: false
-                      'HERE satelliteDay':
-                        label: ''
-                        checkbox: false
-                      'HERE terrainDay':
-                        label: ''
-                        checkbox: false
-                      'HERE terrainDayMobile':
-                        label: ''
-                        checkbox: false
-                    FreeMapSK:
-                      FreeMapSK:
-                        checkbox: true
-                        label: ''
-                    MtbMap:
-                      MtbMap:
-                        label: ''
-                        checkbox: false
-                    CartoDB:
-                      'CartoDB Positron':
-                        label: ''
-                        checkbox: false
-                      'CartoDB PositronNoLabels':
-                        label: ''
-                        checkbox: false
-                      'CartoDB PositronOnlyLabels':
-                        label: ''
-                        checkbox: false
-                      'CartoDB DarkMatter':
-                        label: ''
-                        checkbox: false
-                      'CartoDB DarkMatterNoLabels':
-                        label: ''
-                        checkbox: false
-                      'CartoDB DarkMatterOnlyLabels':
-                        label: ''
-                        checkbox: false
-                      'CartoDB Voyager':
-                        label: ''
-                        checkbox: false
-                      'CartoDB VoyagerNoLabels':
-                        label: ''
-                        checkbox: false
-                      'CartoDB VoyagerOnlyLabels':
-                        label: ''
-                        checkbox: false
-                      'CartoDB VoyagerLabelsUnder':
-                        label: ''
-                        checkbox: false
-                    HikeBike:
-                      HikeBike:
-                        label: ''
-                        checkbox: false
-                      'HikeBike HillShading':
-                        label: ''
-                        checkbox: false
-                    BasemapAT:
-                      'BasemapAT basemap':
-                        label: ''
-                        checkbox: false
-                      'BasemapAT grau':
-                        label: ''
-                        checkbox: false
-                      'BasemapAT overlay':
-                        label: ''
-                        checkbox: false
-                      'BasemapAT highdpi':
-                        label: ''
-                        checkbox: false
-                      'BasemapAT orthofoto':
-                        label: ''
-                        checkbox: false
-                    NLS:
-                      NLS:
-                        label: ''
-                        checkbox: false
-                    Wikimedia:
-                      Wikimedia:
-                        label: ''
-                        checkbox: false
-                    GeoportailFrance:
-                      'GeoportailFrance parcels':
-                        label: ''
-                        checkbox: false
-                      'GeoportailFrance ignMaps':
-                        label: ''
-                        checkbox: false
-                      'GeoportailFrance maps':
-                        label: ''
-                        checkbox: false
-                      'GeoportailFrance orthos':
-                        label: ''
-                        checkbox: false
-                  tile_providers_options:
-                    Thunderforest:
-                      apikey: ''
-                    MapBox:
-                      accessToken: ''
-                    HERE:
-                      app_id: ''
-                      app_code: ''
-                    GeoportailFrance:
-                      apikey: ''
-                enabled: false
-              leaflet_tile_layer:
-                enabled: true
-                weight: -9
-                settings:
-                  tile_layer_provider: 'OpenStreetMap DE'
-                  tile_provider_options:
-                    Thunderforest:
-                      apikey: ''
-                    MapBox:
-                      accessToken: ''
-                    HERE:
-                      app_id: ''
-                      app_code: ''
-                    GeoportailFrance:
-                      apikey: ''
-              leaflet_tile_layer_overlay:
-                weight: -8
-                settings:
-                  tile_layer_overlay: OpenInfraMap.Power
-                enabled: false
-              leaflet_custom_tile_layer:
-                weight: -7
-                settings:
-                  tile_layer_url: ''
-                  tile_layer_attribution: ''
-                  tile_layer_subdomains: ''
-                  tile_layer_zoom: null
-                enabled: false
-              leaflet_max_bounds:
-                weight: -6
-                settings:
-                  north: null
-                  south: null
-                  east: null
-                  west: null
-                enabled: false
-              leaflet_marker_zoom_and_animate:
-                weight: -5
-                settings:
-                  marker_zoom_anchor_id: ''
-                enabled: false
-              leaflet_marker_clusterer:
-                enabled: true
-                weight: -4
-                settings:
-                  cluster_settings:
-                    zoom_to_bounds_on_click: true
-                    show_coverage_on_hover: false
-                  disable_clustering_at_zoom: null
               geolocation_marker_scroll_to_id:
                 weight: -3
                 settings:
                   scroll_target_id: ''
                 enabled: false
-              leaflet_marker_popup:
-                enabled: true
-                weight: -2
+              marker_icon:
+                weight: 0
                 settings:
-                  info_auto_display: false
-              leaflet_marker_icon:
-                weight: -1
-                settings:
-                  marker_icon_path: /themes/custom/dcz_theme/images/drupal-marker.svg
-                  icon_size:
+                  marker_icon_path: ''
+                  anchor:
+                    x: null
+                    'y': null
+                  origin:
+                    x: null
+                    'y': null
+                  label_origin:
+                    x: null
+                    'y': null
+                  size:
                     width: null
                     height: null
-                  icon_anchor:
-                    x: null
-                    'y': null
-                  popup_anchor:
-                    x: null
-                    'y': null
-                  marker_shadow_path: ''
-                  shadow_size:
+                  scaled_size:
                     width: null
                     height: null
-                  shadow_anchor:
-                    x: null
-                    'y': null
                 enabled: false
-              leaflet_control_zoom:
+              control_streetview:
+                weight: 0
+                settings:
+                  position: LEFT_TOP
+                  behavior: default
+                enabled: false
+              control_zoom:
                 enabled: true
                 weight: 0
                 settings:
-                  position: topleft
-              leaflet_control_scale:
-                weight: 1
+                  position: LEFT_TOP
+                  behavior: default
+                  style: SMALL
+              map_restriction:
+                weight: 0
                 settings:
-                  position: topleft
-                  metric: false
-                  imperial: false
+                  north: ''
+                  south: ''
+                  east: ''
+                  west: ''
+                  strict: false
                 enabled: false
-              leaflet_control_recenter:
-                weight: 2
+              map_type_style:
+                weight: 0
                 settings:
-                  position: topleft
+                  style: ''
                 enabled: false
-              leaflet_control_locate:
-                weight: 3
+              marker_clusterer:
+                enabled: true
+                weight: 0
                 settings:
-                  position: topleft
+                  image_path: ''
+                  styles: ''
+                  zoom_on_click: true
+                  grid_size: 50
+                  minimum_cluster_size: 2
+                  max_zoom: null
+                  average_center: false
+              marker_infowindow:
+                enabled: true
+                weight: 0
+                settings:
+                  max_width: null
+                  info_window_solitary: false
+                  info_auto_display: false
+                  disable_auto_pan: false
+              marker_infobubble:
+                weight: 0
+                settings:
+                  close_button_src: ''
+                  shadow_style: null
+                  padding: null
+                  border_radius: null
+                  border_width: null
+                  border_color: ''
+                  background_color: ''
+                  min_width: null
+                  max_width: null
+                  min_height: null
+                  max_height: null
+                  arrow_style: 0
+                  arrow_position: null
+                  arrow_size: null
+                  close_button: 0
+                  close_other: 0
                 enabled: false
-              leaflet_control_geocoder:
-                weight: 4
+              control_recenter:
+                weight: 0
                 settings:
-                  position: topleft
+                  position: LEFT_TOP
+                enabled: false
+              marker_label:
+                weight: 0
+                settings:
+                  color: ''
+                  font_family: ''
+                  font_size: ''
+                  font_weight: ''
+                enabled: false
+              marker_opacity:
+                weight: 0
+                settings:
+                  opacity: null
+                enabled: false
+              marker_zoom_to_animate:
+                weight: 0
+                settings:
+                  marker_zoom_anchor_id: ''
+                enabled: false
+              spiderfying:
+                weight: 0
+                settings:
+                  spiderfiable_marker_path: ''
+                  nearbyDistance: null
+                  circleSpiralSwitchover: null
+                  circleFootSeparation: null
+                  spiralFootSeparation: null
+                  spiralLengthStart: null
+                  spiralLengthFactor: null
+                  legWeight: null
+                  markersWontMove: false
+                  markersWontHide: false
+                  keepSpiderfied: false
+                  ignoreMapClick: false
+                enabled: false
+              google_maps_layer_traffic:
+                weight: 0
+                enabled: false
+              control_rotate:
+                weight: 0
+                settings:
+                  position: LEFT_TOP
+                  behavior: default
+                enabled: false
+              control_maptype:
+                weight: 0
+                settings:
+                  position: LEFT_TOP
+                  behavior: default
+                  style: DEFAULT
+                enabled: false
+              context_popup:
+                weight: 0
+                settings:
+                  content:
+                    value: ''
+                    format: full_html
+                enabled: false
+              google_maps_layer_bicycling:
+                weight: 0
+                enabled: false
+              client_location_indicator:
+                weight: 0
+                enabled: false
+              map_disable_tilt:
+                weight: 0
+                enabled: false
+              control_locate:
+                weight: 0
+                settings:
+                  position: LEFT_TOP
+                enabled: false
+              map_disable_poi:
+                weight: 0
+                enabled: false
+              map_disable_user_interaction:
+                weight: 0
+                enabled: false
+              drawing:
+                weight: 0
+                settings:
+                  strokeColor: ''
+                  strokeOpacity: ''
+                  strokeWeight: ''
+                  fillColor: ''
+                  fillOpacity: ''
+                  polyline: false
+                  geodesic: false
+                  polygon: false
+                enabled: false
+              control_fullscreen:
+                weight: 0
+                settings:
+                  position: LEFT_TOP
+                  behavior: default
+                enabled: false
+              control_geocoder:
+                weight: 0
+                settings:
+                  position: LEFT_TOP
                   geocoder: google_geocoding_api
                   settings:
                     label: Adresa
@@ -542,35 +330,22 @@ display:
                       north: ''
                       east: ''
                 enabled: false
-              leaflet_control_fullscreen:
-                weight: 5
+              control_loading_indicator:
+                weight: 0
                 settings:
-                  position: topleft
+                  position: LEFT_TOP
+                  loading_label: ''
                 enabled: false
-              leaflet_gesture_handling:
-                weight: 6
-                enabled: false
-              leaflet_disable_user_interaction:
-                weight: 7
-                enabled: false
-              leaflet_client_location_indicator:
-                weight: 8
-                enabled: false
-              leaflet_wms:
-                weight: 9
-                settings:
-                  url: ''
-                  version: ''
-                  layers: ''
-                  styles: ''
-                  srs: ''
-                  format: ''
-                  transparent: false
-                  identify: false
+              google_maps_layer_transit:
+                weight: 0
                 enabled: false
             height: 800px
             width: 100%
-            zoom: '8'
+            type: ROADMAP
+            zoom: 8
+            maxZoom: 0
+            minZoom: 0
+            gestureHandling: auto
       row:
         type: fields
         options:
