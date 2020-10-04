@@ -7,12 +7,13 @@ _core:
 id: node
 label: Obsah
 tags:
-  canonical_url: '[node:url]'
   description: '[node:summary]'
   title: '[node:title] | [site:name]'
+  canonical_url: '[node:url]'
   article_modified_time: '[node:changed:html_datetime]'
-  article_published_time: '[node:created:html_datetime]'
   article_tag: '[node:field_tags]'
-  og_site_name: '[site:name]'
   og_title: '[current-page:title] | [site:name]'
+  og_image: /themes/custom/dcz_theme/images/og.png
+  og_site_name: '[site:name]'
+  article_published_time: '[node:created:html_datetime]'
   og_url: '[current-page:url:absolute]'

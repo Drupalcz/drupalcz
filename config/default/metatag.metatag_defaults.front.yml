@@ -7,5 +7,6 @@ _core:
 id: front
 label: 'Titulní stránka'
 tags:
-  canonical_url: '[site:url]'
   shortlink: '[site:url]'
+  canonical_url: '[site:url]'
+  og_image: /themes/custom/dcz_theme/images/og.png
