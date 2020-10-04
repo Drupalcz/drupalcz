@@ -9,11 +9,11 @@ tags:
   keywords: '[node:field_tags]'
   title: '[current-page:title] | [site:name]'
   article_modified_time: '[node:changed:html_datetime]'
-  article_published_time: '[node:created:html_datetime]'
   article_tag: '[node:field_tags]'
-  og_description: '[node:field_teaser_text]'
-  og_image: '[node:field_teaser_image]'
-  og_site_name: '[site:name]'
   og_title: '[current-page:title] | [site:name]'
-  og_type: article
+  og_image: '[node:field_teaser_image:entity:field_media_image:og_image]'
+  og_description: '[node:field_teaser_text]'
+  og_site_name: '[site:name]'
+  article_published_time: '[node:created:html_datetime]'
   og_url: '[current-page:url:absolute]'
+  og_type: article
