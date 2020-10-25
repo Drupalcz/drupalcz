@@ -30,7 +30,6 @@
         "drupal/core-composer-scaffold": "^8.9",
         "drupal/core-recommended": "^8.9",
         "drupal/ctools": "^3.0",
-        "drupal/default_content": "^2.0@alpha",
         "drupal/default_content_deploy": "^1.0@alpha",
         "drupal/devel": "^4.0",
         "drupal/diff": "^1.0@RC",
@@ -43,11 +42,9 @@
         "drupal/extlink": "^1.1",
         "drupal/flexslider": "^2.0",
         "drupal/geolocation": "^3",
-        "drupal/geshifilter": "^1.2",
+        "drupal/geshifilter": "^2.0@beta",
         "drupal/google_analytics": "^3.1",
-        "drupal/honeypot": "^2.0",
         "drupal/inline_entity_form": "^1.0@RC",
-        "drupal/juicebox": "^2.0@beta",
         "drupal/libraries": "^3.0@alpha",
         "drupal/media_entity_actions": "^1.0@alpha",
         "drupal/metatag": "^1.10",
@@ -65,7 +62,7 @@
         "drupal/slack_invite": "^1.1",
         "drupal/stage_file_proxy": "^1.0@RC",
         "drupal/token": "^1.5",
-        "drupal/upgrade_status": "^2.6",
+        "drupal/upgrade_status": "^3.0@beta",
         "drupal/viewsreference": "^2.0",
         "drupal/youtube": "^1.0@beta",
         "drush/drush": "^10",
@@ -113,6 +110,14 @@
         "enable-patching": true,
         "patchLevel": {
             "drupal/core": "-p2"
+        },
+        "patches": {
+            "drupal/core": {
+                "2920285 - Update module can get 'stuck' with 'no releases available": "https://www.drupal.org/files/issues/2020-07-20/2920285-11.patch"
+            },
+            "drupal/media_entity_actions": {
+                "2998468 - Provide an upgrade path to core": "https://www.drupal.org/files/issues/2020-06-10/2998468-15.patch"
+            }
         },
         "installer-types": [
             "bower-asset",
