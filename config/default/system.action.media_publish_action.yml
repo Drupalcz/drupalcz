@@ -9,5 +9,5 @@ _core:
 id: media_publish_action
 label: 'Vydat média'
 type: media
-plugin: media_publish_action
+plugin: 'entity:publish_action:media'
 configuration: {  }
