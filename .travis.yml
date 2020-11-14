@@ -51,7 +51,7 @@ before_install:
   - ssh-add $HOME/deploy_rsa
   # Disable xdebug.
   - phpenv config-rm xdebug.ini
-  - composer self-update
+  - composer self-update --1
   - composer validate --no-check-all --ansi
   - composer install
   # Exit build early if only documentation was changed in a Pull Request.
