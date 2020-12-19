@@ -6,7 +6,6 @@ env:
   COMPOSER_BIN: ${{ github.workspace }}/vendor/bin
   BLT_DIR: ${{ github.workspace }}/vendor/acquia/blt
   BUILD_DIR: ${{ github.workspace }}
-  PATH: ${COMPOSER_BIN}:${PATH}
 jobs:
   build:
     name: Before install
@@ -43,6 +42,7 @@ jobs:
           sudo composer self-update --1
           composer validate --no-check-all --ansi
           composer install
+          echo ${COMPOSER_BIN} >> $GITHUB_PATH
       - name: Verify MySQL connection from host
         run: |
           sudo apt-get update
