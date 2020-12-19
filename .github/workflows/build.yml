@@ -53,8 +53,8 @@ jobs:
       - name: Run tests
         run: |
           blt validate:all --no-interaction || exit 1
-          blt setup --define drush.alias='${{ drush.aliases.ci }}' --no-interaction --verbose || exit 1
-          blt tests:all --define drush.alias='${{ drush.aliases.ci }}' --define tests.run-server=true --no-interaction --verbose || exit 1
+          blt setup --define drush.alias='${drush.aliases.ci}' --no-interaction --verbose || exit 1
+          blt tests:all --define drush.alias='${drush.aliases.ci}' --define tests.run-server=true --no-interaction --verbose || exit 1
       - name: Simulate deploy
         run: |
           blt artifact:deploy --dry-run --commit-msg "Automated commit by CI for Build ${{ github.run_id}}" --no-interaction --verbose
