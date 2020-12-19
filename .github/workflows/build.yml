@@ -16,7 +16,7 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: root
         ports:
-          - 3306
+          - 3306:3306
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
