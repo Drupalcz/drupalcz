@@ -2,10 +2,10 @@ name: Build
 on: [push, pull_request]
 
 env:
-  TRAVIS_BUILD_DIR=${{ github.workspace }}
-  COMPOSER_BIN=${{ github.workspace }}/vendor/bin
-  BLT_DIR=${{ github.workspace }}/vendor/acquia/blt
-  BUILD_DIR=${{ github.workspace }}
+  TRAVIS_BUILD_DIR: ${{ github.workspace }}
+  COMPOSER_BIN: ${{ github.workspace }}/vendor/bin
+  BLT_DIR: ${{ github.workspace }}/vendor/acquia/blt
+  BUILD_DIR: ${{ github.workspace }}
 jobs:
   build:
     name: Before install
