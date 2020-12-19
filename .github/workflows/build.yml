@@ -32,7 +32,7 @@ jobs:
           path: |
             $HOME/.composer/cache
             vendor
-        key: composer-${{ hashFiles('**/composer.lock') }}
+          key: composer-${{ hashFiles('**/composer.lock') }}
       - name: Install dependencies
         run: |
           composer self-update --1
