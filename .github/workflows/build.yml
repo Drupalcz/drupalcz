@@ -1,0 +1,68 @@
+name: Build
+on: [push, pull_request]
+
+env:
+  TRAVIS_BUILD_DIR=${{ github.workspace }}
+  COMPOSER_BIN=${{ github.workspace }}/vendor/bin
+  BLT_DIR=${{ github.workspace }}/vendor/acquia/blt
+  BUILD_DIR=${{ github.workspace }}
+jobs:
+  build:
+    name: Before install
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Add ssh key
+        run: |
+          openssl aes-256-cbc -K $encrypted_76cf46cb768e_key -iv $encrypted_76cf46cb768e_iv -in .travis/dcz_travis_ssh_key.enc -out ${{ HOME }}/deploy_rsa -d
+          eval "$(ssh-agent -s)"
+          chmod 600 ${{ HOME }}/deploy_rsa
+          ssh-add ${{ HOME }}/deploy_rsa
+      - name: Cache composer
+        uses: actions/cache@v2
+        with:
+          path: |
+            $HOME/.composer/cache
+            vendor
+        key: composer-${{ hashFiles('**/composer.lock') }}
+      - name: Install dependencies
+        run: |
+          composer self-update --1
+          composer validate --no-check-all --ansi
+          composer install
+      - name: Verify MySQL connection from host
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mysql-client
+          mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot -e "select @@hostname;show variables where Variable_name like '%host%';"
+          mysql --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot --protocol=tcp -e "CREATE DATABASE drupal; CREATE USER 'drupal'@'localhost' IDENTIFIED BY 'drupal'; GRANT ALL ON drupal.* TO 'drupal'@'localhost';"
+      - name: Install chromedriver
+        run: ${{ BLT_DIR }}/scripts/linux/install-chrome.sh ${{ COMPOSER_BIN }}
+      - name: Configure git
+        run: |
+          git config --global user.name "CI"
+          git config --global user.email "ci@drupal.cz"
+      - name: Run tests
+        run: |
+          blt validate:all --no-interaction || exit 1
+          blt setup --define drush.alias='${{ drush.aliases.ci }}' --no-interaction --verbose || exit 1
+          blt tests:all --define drush.alias='${{ drush.aliases.ci }}' --define tests.run-server=true --no-interaction --verbose || exit 1
+      - name: Simulate deploy
+        run: |
+          blt artifact:deploy --dry-run --commit-msg "Automated commit by CI for Build ${{ github.run_id}}" --no-interaction --verbose
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+      - name: Run deploy on master and develop
+        if: ${{ steps.extract_branch.outputs.branch }} == 'master' || ${{ steps.extract_branch.outputs.branch }} == 'develop'
+        run: |
+          blt artifact:deploy --commit-msg "Automated commit by CI for Build ${{ github.run_id}}" --branch "${{ steps.extract_branch.outputs.branch }}-build" --no-interaction --verbose
