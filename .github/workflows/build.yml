@@ -35,7 +35,7 @@ jobs:
           key: composer-${{ hashFiles('**/composer.lock') }}
       - name: Install dependencies
         run: |
-          composer self-update --1
+          sudo composer self-update --1
           composer validate --no-check-all --ansi
           composer install
       - name: Verify MySQL connection from host
