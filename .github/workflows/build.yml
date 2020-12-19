@@ -45,7 +45,7 @@ jobs:
           mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot -e "select @@hostname;show variables where Variable_name like '%host%';"
           mysql --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot --protocol=tcp -e "CREATE DATABASE drupal; CREATE USER 'drupal'@'localhost' IDENTIFIED BY 'drupal'; GRANT ALL ON drupal.* TO 'drupal'@'localhost';"
       - name: Install chromedriver
-        run: ${{ BLT_DIR }}/scripts/linux/install-chrome.sh ${{ COMPOSER_BIN }}
+        run: ${BLT_DIR}/scripts/linux/install-chrome.sh ${COMPOSER_BIN}
       - name: Configure git
         run: |
           git config --global user.name "CI"
