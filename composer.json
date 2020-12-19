@@ -26,7 +26,6 @@
         "drupal/coder": "^8.3",
         "drupal/config_split": "^1.4",
         "drupal/config_update": "^1.5",
-        "drupal/core": "^8.9",
         "drupal/core-composer-scaffold": "^8.9",
         "drupal/core-recommended": "^8.9",
         "drupal/ctools": "^3.0",
