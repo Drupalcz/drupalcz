@@ -80,11 +80,13 @@ jobs:
         run: echo "##[set-output name=branch;]$(git branch --show-current)"
         id: extract_branch
       - name: Debug
+        if: ${{ steps.extract_branch.outputs.branch }} == 'master' || ${{ steps.extract_branch.outputs.branch }} == 'develop'
         run: |
-          echo ${{ steps.extract_branch.outputs.branch }}
-          if [[ '${{ steps.extract_branch.outputs.branch }}' == 'master' || '${{ steps.extract_branch.outputs.branch }}' == 'develop' ]]; then
-            echo "We want to do deploy"
-          fi
+          echo "Doing deploy"
+      - name: Debug
+        if: ${{ steps.extract_branch.outputs.branch }} != 'master' && ${{ steps.extract_branch.outputs.branch }} != 'develop'
+        run: |
+          echo "No deploy"
 #      - name: Run deploy on master and develop
 #        if: ${{ steps.extract_branch.outputs.branch }} == 'master' || ${{ steps.extract_branch.outputs.branch }} == 'develop'
 #        run: |
