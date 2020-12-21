@@ -78,12 +78,12 @@ jobs:
 #          rm -rf deploy
       - name: Extract branch name
         shell: bash
-        run: echo "::set-output name=branch:$(git branch --show-current)"
+        run: echo "::set-output name=branch::$(git branch --show-current)"
         id: extract_branch
       - name: Debug
         run: |
-          echo ${{ steps.extract_branch.outputs.branch }}
-          if [ ${{ steps.extract_branch.outputs.branch }} == 'master' || ${{ steps.extract_branch.outputs.branch }} == 'develop' ]; then
+          echo ${{ steps.extract_branch.output.branch }}
+          if [ ${{ steps.extract_branch.output.branch }} == 'master' || ${{ steps.extract_branch.output.branch }} == 'develop' ]; then
             echo "We want to do deploy"
           fi
 #      - name: Run deploy on master and develop
