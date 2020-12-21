@@ -82,7 +82,7 @@ jobs:
       - name: Debug
         run: |
           echo ${{ steps.extract_branch.outputs.branch }}
-          if [ ${{ steps.extract_branch.outputs.branch }} == 'master' || ${{ steps.extract_branch.outputs.branch }} == 'develop' ]; then
+          if [[ '${{ steps.extract_branch.outputs.branch }}' == 'master' || '${{ steps.extract_branch.outputs.branch }}' == 'develop' ]]; then
             echo "We want to do deploy"
           fi
 #      - name: Run deploy on master and develop
