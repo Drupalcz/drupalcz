@@ -44,8 +44,6 @@
         "drupal/geshifilter": "^2.0@beta",
         "drupal/google_analytics": "^3.1",
         "drupal/inline_entity_form": "^1.0@RC",
-        "drupal/libraries": "^3.0@alpha",
-        "drupal/media_entity_actions": "^1.0@alpha",
         "drupal/metatag": "^1.10",
         "drupal/panelizer": "^4.1",
         "drupal/panels": "^4.3",
@@ -54,18 +52,18 @@
         "drupal/pathauto": "^1.6.0",
         "drupal/purge": "^3.0@beta",
         "drupal/redirect": "^1.0",
-        "drupal/riddler": "^1.1",
+        "drupal/riddler": "dev-1.x",
         "drupal/seckit": "^2.0",
         "drupal/security_review": "1.x-dev",
         "drupal/shield": "^1.2",
-        "drupal/slack_invite": "^1.1",
+        "drupal/slack_invite": "dev-2.x",
         "drupal/stage_file_proxy": "^1.0@RC",
         "drupal/token": "^1.5",
         "drupal/upgrade_status": "^3.0@beta",
         "drupal/viewsreference": "^2.0",
         "drupal/youtube": "^1.0@beta",
         "drush/drush": "^10",
-        "oomphinc/composer-installers-extender": "^1.1",
+        "oomphinc/composer-installers-extender": "^2.0",
         "pear/versioncontrol_git": "^0.5.0"
     },
     "replace": {
@@ -114,8 +112,8 @@
             "drupal/core": {
                 "2920285 - Update module can get 'stuck' with 'no releases available": "https://www.drupal.org/files/issues/2020-07-20/2920285-11.patch"
             },
-            "drupal/media_entity_actions": {
-                "2998468 - Provide an upgrade path to core": "https://www.drupal.org/files/issues/2020-06-10/2998468-15.patch"
+            "drupal/slack_invite": {
+                "3189435 - The URI '<current>' is invalid.": "https://git.drupalcode.org/project/slack_invite/-/merge_requests/1.patch"
             }
         },
         "installer-types": [
