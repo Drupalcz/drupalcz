@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f8d9a4f0430ab550b34b61a54950b388",
+    "content-hash": "cb851c7d05d3e4bdb3ec8f1531eebe9a",
     "packages": [
         {
             "name": "acquia/blt",
@@ -217,12 +217,12 @@
             "version": "2.7.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/woocommerce/FlexSlider.git",
+                "url": "git@github.com:woothemes/FlexSlider.git",
                 "reference": "690832b7f972298e76e2965714657a2beec9e35c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/woocommerce/FlexSlider/zipball/690832b7f972298e76e2965714657a2beec9e35c",
+                "url": "https://api.github.com/repos/woothemes/FlexSlider/zipball/690832b7f972298e76e2965714657a2beec9e35c",
                 "reference": "690832b7f972298e76e2965714657a2beec9e35c"
             },
             "require": {
@@ -4589,130 +4589,6 @@
             }
         },
         {
-            "name": "drupal/libraries",
-            "version": "3.0.0-alpha1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/libraries.git",
-                "reference": "8.x-3.0-alpha1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/libraries-8.x-3.0-alpha1.zip",
-                "reference": "8.x-3.0-alpha1",
-                "shasum": "bb07036b1eaeea7d736fc7e72416238830cd8d67"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-3.0-alpha1",
-                    "datestamp": "1517046484",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Alpha releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Pol",
-                    "homepage": "https://www.drupal.org/user/47194"
-                },
-                {
-                    "name": "rjacobs",
-                    "homepage": "https://www.drupal.org/user/422459"
-                },
-                {
-                    "name": "sun",
-                    "homepage": "https://www.drupal.org/user/54136"
-                },
-                {
-                    "name": "tstoeckler",
-                    "homepage": "https://www.drupal.org/user/107158"
-                }
-            ],
-            "description": "Allows version-dependent and shared usage of external libraries in Drupal.",
-            "homepage": "http://drupal.org/project/libraries",
-            "support": {
-                "source": "http://cgit.drupalcode.org/libraries",
-                "issues": "http://drupal.org/project/issues/libraries",
-                "irc": "irc://irc.freenode.org/drupal-contribute"
-            }
-        },
-        {
-            "name": "drupal/media_entity_actions",
-            "version": "1.0.0-alpha2",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/media_entity_actions.git",
-                "reference": "8.x-1.0-alpha2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_entity_actions-8.x-1.0-alpha2.zip",
-                "reference": "8.x-1.0-alpha2",
-                "shasum": "9bf7881f11fa182c1b6673c4cc8c32ce3a1bdb81"
-            },
-            "require": {
-                "drupal/core": "^8.4.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-1.0-alpha2",
-                    "datestamp": "1510588386",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                },
-                "patches_applied": {
-                    "2998468 - Provide an upgrade path to core": "https://www.drupal.org/files/issues/2020-06-10/2998468-15.patch"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "chr.fritsch",
-                    "homepage": "https://www.drupal.org/user/2103716"
-                },
-                {
-                    "name": "marcoscano",
-                    "homepage": "https://www.drupal.org/user/1288796"
-                },
-                {
-                    "name": "phenaproxima",
-                    "homepage": "https://www.drupal.org/user/205645"
-                },
-                {
-                    "name": "seanB",
-                    "homepage": "https://www.drupal.org/user/545912"
-                },
-                {
-                    "name": "slashrsm",
-                    "homepage": "https://www.drupal.org/user/744628"
-                }
-            ],
-            "description": "Provides Actions plugins to be used with Media in core",
-            "homepage": "https://www.drupal.org/project/media_entity_actions",
-            "support": {
-                "source": "https://git.drupalcode.org/project/media_entity_actions"
-            }
-        },
-        {
             "name": "drupal/memcache",
             "version": "2.2.0",
             "source": {
@@ -5357,30 +5233,27 @@
         },
         {
             "name": "drupal/riddler",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/riddler.git",
-                "reference": "8.x-1.1"
+                "reference": "8.x-1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/riddler-8.x-1.1.zip",
-                "reference": "8.x-1.1",
-                "shasum": "a52a0cb56bb927d17b103053570b7524c725e30b"
+                "url": "https://ftp.drupal.org/files/projects/riddler-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "74621359a85975f4483cc6ac271f99cc83c2612c"
             },
             "require": {
-                "drupal/captcha": "*",
-                "drupal/core": "~8.0"
+                "drupal/captcha": "^1.1",
+                "drupal/core": "^8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1534623481",
+                    "version": "8.x-1.2",
+                    "datestamp": "1616602706",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5392,6 +5265,10 @@
                 "GPL-2.0-or-later"
             ],
             "authors": [
+                {
+                    "name": "Anybody",
+                    "homepage": "https://www.drupal.org/user/291091"
+                },
                 {
                     "name": "alex_optim",
                     "homepage": "https://www.drupal.org/user/3317601"
@@ -5407,8 +5284,12 @@
             ],
             "description": "Provides a question and answer CAPTCHA.",
             "homepage": "https://www.drupal.org/project/riddler",
+            "keywords": [
+                "Drupal"
+            ],
             "support": {
-                "source": "https://git.drupalcode.org/project/riddler"
+                "source": "http://cgit.drupalcode.org/riddler",
+                "issues": "https://www.drupal.org/project/issues/riddler"
             }
         },
         {
@@ -5599,29 +5480,26 @@
         },
         {
             "name": "drupal/slack_invite",
-            "version": "1.1.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/slack_invite.git",
-                "reference": "8.x-1.1"
+                "reference": "2.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/slack_invite-8.x-1.1.zip",
-                "reference": "8.x-1.1",
-                "shasum": "2faf9dbec129545a3bfcc51fc39a9f860b3b341f"
+                "url": "https://ftp.drupal.org/files/projects/slack_invite-2.0.0.zip",
+                "reference": "2.0.0",
+                "shasum": "9d3ace0798782dc1e9421bd53d73c7222d5cce42"
             },
             "require": {
-                "drupal/core": "~8.0"
+                "drupal/core": "^8.8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1448039339",
+                    "version": "2.0.0",
+                    "datestamp": "1605030284",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5641,7 +5519,7 @@
             "description": "Invite your users to your slack team",
             "homepage": "https://www.drupal.org/project/slack_invite",
             "support": {
-                "source": "http://cgit.drupalcode.org/slack_invite"
+                "source": "https://git.drupalcode.org/project/slack_invite"
             }
         },
         {
@@ -6035,6 +5913,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": "loophp/phposinfo",
             "time": "2020-05-19T14:14:28+00:00"
         },
         {
@@ -8539,6 +8418,7 @@
                 }
             ],
             "description": "A security checker for your composer.lock",
+            "abandoned": "https://github.com/fabpot/local-php-security-checker",
             "time": "2018-12-19T17:14:59+00:00"
         },
         {
@@ -9092,6 +8972,7 @@
                     "type": "tidelift"
                 }
             ],
+            "abandoned": "symfony/error-handler",
             "time": "2020-05-22T18:25:20+00:00"
         },
         {
@@ -11128,12 +11009,12 @@
             "version": "1.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
+                "url": "https://github.com/webmozarts/assert.git",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "shasum": ""
             },
@@ -11216,6 +11097,7 @@
                 }
             ],
             "description": "A robust cross-platform utility for normalizing, comparing and modifying file paths.",
+            "abandoned": "symfony/filesystem",
             "time": "2015-12-17T08:42:14+00:00"
         },
         {
@@ -11308,6 +11190,7 @@
                 "GPL-2.0-only"
             ],
             "description": "A wrapper package for BLT's require dev dependencies.",
+            "abandoned": true,
             "time": "2020-09-02T21:57:50+00:00"
         },
         {
@@ -11910,12 +11793,12 @@
             "version": "1.3.0",
             "source": {
                 "type": "git",
-                "url": "https://gitlab.com/DMore/behat-chrome-extension.git",
+                "url": "https://gitlab.com/behat-chrome/behat-chrome-extension.git",
                 "reference": "6279986ef85ac179f055460502e9b11c3784146c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/DMore%2Fbehat-chrome-extension/repository/archive.zip?sha=6279986ef85ac179f055460502e9b11c3784146c",
+                "url": "https://gitlab.com/api/v4/projects/behat-chrome%2Fbehat-chrome-extension/repository/archive.zip?sha=6279986ef85ac179f055460502e9b11c3784146c",
                 "reference": "6279986ef85ac179f055460502e9b11c3784146c",
                 "shasum": ""
             },
@@ -11958,12 +11841,12 @@
             "version": "2.7.0",
             "source": {
                 "type": "git",
-                "url": "https://gitlab.com/DMore/chrome-mink-driver.git",
+                "url": "https://gitlab.com/behat-chrome/chrome-mink-driver.git",
                 "reference": "d66765fb7f448e8b2bca2b899308a4a6d8a69264"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/DMore%2Fchrome-mink-driver/repository/archive.zip?sha=d66765fb7f448e8b2bca2b899308a4a6d8a69264",
+                "url": "https://gitlab.com/api/v4/projects/behat-chrome%2Fchrome-mink-driver/repository/archive.zip?sha=d66765fb7f448e8b2bca2b899308a4a6d8a69264",
                 "reference": "d66765fb7f448e8b2bca2b899308a4a6d8a69264",
                 "shasum": ""
             },
@@ -13910,8 +13793,6 @@
         "drupal/diff": 5,
         "drupal/geshifilter": 10,
         "drupal/inline_entity_form": 5,
-        "drupal/libraries": 15,
-        "drupal/media_entity_actions": 15,
         "drupal/purge": 10,
         "drupal/security_review": 20,
         "drupal/stage_file_proxy": 5,
