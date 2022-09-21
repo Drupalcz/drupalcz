@@ -9,7 +9,7 @@ env:
 jobs:
   build:
     name: Before install
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04 
     services:
       mysql:
         image: mysql:5.7
@@ -18,6 +18,10 @@ jobs:
         ports:
           - 3306:3306
     steps:
+      - name: Verify Docker dependencies
+        run: |
+          docker --version
+          docker-compose --version
       - name: Install Lando
         run: |
           wget "https://github.com/lando/lando/releases/download/v3.6.4/lando-x64-v3.6.4.deb"
