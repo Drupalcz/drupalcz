@@ -62,8 +62,6 @@ jobs:
           lando composer validate --no-check-all --ansi
           lando composer install --no-suggest
           echo ${COMPOSER_BIN} >> $GITHUB_PATH
-      - name: Install chromedriver
-        run: ${BLT_DIR}/scripts/linux/install-chrome.sh ${COMPOSER_BIN}
       - name: Configure git
         run: |
           git config --global user.name "CI"
