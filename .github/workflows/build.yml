@@ -48,6 +48,8 @@ jobs:
           echo "  UserKnownHostsFile=/dev/null" >> ~/.ssh/config
       - name: Start lando
         run: |
+          pwd
+          ls /home/runner/work/drupalcz/drupalcz -al
           lando start
       - name: Cache composer
         uses: actions/cache@v2
