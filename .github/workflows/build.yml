@@ -71,8 +71,8 @@ jobs:
       - name: Run tests
         run: |
           lando blt validate:all --no-interaction || exit 1
-          lando blt setup --define drush.alias='${drush.aliases.ci}' --no-interaction --verbose || exit 1
-          lando blt tests:all --define drush.alias='${drush.aliases.ci}' --define tests.run-server=false --no-interaction --verbose || exit 1
+          lando blt setup --environment=ci --no-interaction --verbose || exit 1
+          lando blt tests:all --environment=ci --no-interaction --verbose || exit 1
       - name: Simulate deploy
         run: |
           lando blt artifact:deploy --dry-run --commit-msg "Automated commit by CI for Build ${{ github.run_id}}" --no-interaction --verbose
