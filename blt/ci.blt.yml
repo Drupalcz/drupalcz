@@ -1,17 +1,26 @@
-# Valid values are:
-#   install - Installs Drupal from scratch.
-#   sync - Uses `blt drupal:sync` to pull a remote db from drush.aliases.remote.
-#   import - Imports a .sql file from setup.dump-file.
-# setup.strategy: import
-# Relative to the drupal docroot directory.
-# setup.dump-file: /tmp/my-dump-file.sql
-tests.run-server: true
-tests.drupal.sudo-run-tests: false
-# The local.hostname must be set to 127.0.0.1:8888 because we are using drush runserver to test the site.
-project.local.hostname: 127.0.0.1:8888
-drush.debug: false
+# Override any settings as necessary by copying to project.local.yml
+#project:
+#  local:
+#    protocol: http
+#    hostname: mysite.dev
+
+# You can set custom project aliases in drush/site-aliases/aliases.drushrc.php.
+# All local:* targets are run against drush.aliases.local.
+#drush:
+#  aliases:
+#    local: local.mysite.dev
+drush:
+  debug: false
 disable-targets:
   tests:
+    security:
+      check:
+        composer: true
+        updates: true
+    drupal:
+      run: true
+      phpunit:
+        run: true
     behat:
       run: true
     phpcs:

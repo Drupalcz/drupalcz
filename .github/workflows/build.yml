@@ -18,8 +18,15 @@ jobs:
         ports:
           - 3306:3306
     steps:
+      - name: Install Lando
+        run: |
+          sudo curl -fsSL "https://github.com/lando/lando/releases/download/v3.6.4/lando-x64-v3.6.4.deb"
+          sudo dpkg -i lando-x64-v3.6.4.deb
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Start lando
+        run: |
+          lando start
       - name: Setup PHP version
         uses: nanasess/setup-php@v3.0.6
         with:
