@@ -24,8 +24,8 @@ jobs:
           docker-compose --version
       - name: Install Lando
         run: |
-          wget "https://github.com/lando/lando/releases/download/v3.6.4/lando-x64-v3.6.4.deb"
-          sudo dpkg -i lando-x64-v3.6.4.deb
+          sudo curl -o /usr/local/bin/lando "https://github.com/lando/cli/releases/download/v3.6.4/lando-linux-x64-v3.6.4"
+          sudo chmod +x /usr/local/bin/lando
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Start lando
