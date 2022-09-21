@@ -9,7 +9,7 @@ env:
 jobs:
   build:
     name: Before install
-    runs-on: ubuntu-22.04 
+    runs-on: ubuntu-22.04
     services:
       mysql:
         image: mysql:5.7
@@ -28,13 +28,6 @@ jobs:
           sudo chmod +x /usr/local/bin/lando
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Start lando
-        run: |
-          lando start
-      - name: Setup PHP version
-        uses: nanasess/setup-php@v3.0.6
-        with:
-          php-version: '7.4'
       - name: SSH keys
         run: |
           # Make private key available from github secrets.
@@ -53,6 +46,9 @@ jobs:
           echo "  StrictHostKeyChecking no" >> ~/.ssh/config
           echo "  UserKnownHostsFile=/dev/null" >> ~/.ssh/config
           echo "  UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+      - name: Start lando
+        run: |
+          lando start
       - name: Cache composer
         uses: actions/cache@v2
         with:
@@ -62,16 +58,10 @@ jobs:
           key: composer-${{ hashFiles('**/composer.lock') }}
       - name: Install dependencies
         run: |
-          sudo composer self-update --1
-          composer validate --no-check-all --ansi
-          composer install --no-suggest
+          lando composer self-update --1
+          lando composer validate --no-check-all --ansi
+          lando composer install --no-suggest
           echo ${COMPOSER_BIN} >> $GITHUB_PATH
-      - name: Verify MySQL connection from host
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y mysql-client
-          mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot -e "select @@hostname;show variables where Variable_name like '%host%';"
-          mysql --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot --protocol=tcp -e "CREATE DATABASE drupal; CREATE USER 'drupal'@'%' IDENTIFIED BY 'drupal'; GRANT ALL ON drupal.* TO 'drupal'@'%';"
       - name: Install chromedriver
         run: ${BLT_DIR}/scripts/linux/install-chrome.sh ${COMPOSER_BIN}
       - name: Configure git
@@ -80,12 +70,12 @@ jobs:
           git config --global user.email "ci@drupal.cz"
       - name: Run tests
         run: |
-          blt validate:all --no-interaction || exit 1
-          blt setup --define drush.alias='${drush.aliases.ci}' --no-interaction --verbose || exit 1
-          blt tests:all --define drush.alias='${drush.aliases.ci}' --define tests.run-server=true --no-interaction --verbose || exit 1
+          lando blt validate:all --no-interaction || exit 1
+          lando blt setup --define drush.alias='${drush.aliases.ci}' --no-interaction --verbose || exit 1
+          lando blt tests:all --define drush.alias='${drush.aliases.ci}' --define tests.run-server=true --no-interaction --verbose || exit 1
       - name: Simulate deploy
         run: |
-          blt artifact:deploy --dry-run --commit-msg "Automated commit by CI for Build ${{ github.run_id}}" --no-interaction --verbose
+          lando blt artifact:deploy --dry-run --commit-msg "Automated commit by CI for Build ${{ github.run_id}}" --no-interaction --verbose
           rm -rf deploy
       - name: Extract branch name
         run: echo "##[set-output name=branch;]$(git branch --show-current)"
@@ -93,4 +83,4 @@ jobs:
       - name: Run deploy on master and develop
         if: ${{ steps.extract_branch.outputs.branch == 'master' ||  steps.extract_branch.outputs.branch == 'develop' }}
         run: |
-          blt artifact:deploy --commit-msg "Automated commit by CI for Build ${{ github.run_id}}" --branch "${{ steps.extract_branch.outputs.branch }}-build" --no-interaction --verbose
+          lando blt artifact:deploy --commit-msg "Automated commit by CI for Build ${{ github.run_id}}" --branch "${{ steps.extract_branch.outputs.branch }}-build" --no-interaction --verbose
