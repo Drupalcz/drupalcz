@@ -33,7 +33,7 @@ jobs:
       - name: Execute build script
         env:
           GIT_REMOTE: ${{ secrets.GIT_REMOTE_HOSTING }}
-          GIT_SSH_PRIVATE_KEY: ${{ secrets.PANTHEON_DEPLOYER_SSH_PRIVATE }}
+          GIT_SSH_PRIVATE_KEY: ${{ secrets.CIDRUPALCZPRIVATE }}
           GH_EVENT_REF: ${{ github.event.ref }}
           GH_EVENT_REF_TYPE: ${{ github.event.ref_type }}
         run: ./.github/scripts/build.sh

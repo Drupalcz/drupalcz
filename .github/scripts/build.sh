@@ -103,7 +103,7 @@ echo "# Resolved branch for a build: $BRANCHNAME."
 # Keep names 1:1 for now to make sure branch delete above works.
 # @ToDo: Make this conditional based on external variable
 #        to allow multiple hosting targets.
-BRANCHNAME_HOSTING="$BRANCHNAME"
+BRANCHNAME_HOSTING="$BRANCHNAME-build"
 echo "# Hosting branch for a build: $BRANCHNAME_HOSTING."
 
 # Get artefact repo.
