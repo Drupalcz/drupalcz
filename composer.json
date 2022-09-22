@@ -81,7 +81,16 @@
     },
     "config": {
         "sort-packages": true,
-        "process-timeout": 0
+        "process-timeout": 0,
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "grasmash/drupal-security-warning": true,
+            "oomphinc/composer-installers-extender": true,
+            "acquia/blt": true,
+            "drupal/core-composer-scaffold": true
+        }
     },
     "repositories": {
         "drupal": {
