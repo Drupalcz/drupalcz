@@ -1,0 +1,39 @@
+---
+# Triggers the workflow on push or delete events
+on: [push,delete]
+
+jobs:
+  validate:
+    name: Validate Composer
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Validate composer.json and composer.lock
+        if: "!contains(github.ref, 'refs/tags/') && github.event.name != 'delete'"
+        run: composer validate
+    # - name: Fail if branch name does not match pantheon limitations
+    #   run: TODO
+
+  gitsync:
+    name: Build and push repo
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - name: Checkout.
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Setup PHP and tools
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: composer:v2
+          extensions: mbstring, gd, intl, yaml, bcmath, curl
+      - name: Execute build script
+        env:
+          GIT_REMOTE: ${{ secrets.GIT_REMOTE_HOSTING }}
+          GIT_SSH_PRIVATE_KEY: ${{ secrets.PANTHEON_DEPLOYER_SSH_PRIVATE }}
+          GH_EVENT_REF: ${{ github.event.ref }}
+          GH_EVENT_REF_TYPE: ${{ github.event.ref_type }}
+        run: ./.github/scripts/build.sh
