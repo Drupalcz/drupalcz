@@ -63,6 +63,7 @@
         "drupal/viewsreference": "^2.0",
         "drupal/youtube": "^1.0@beta",
         "drush/drush": "^10",
+        "oomphinc/composer-installers-extender": "^2.0",
         "pear/versioncontrol_git": "^0.5.0"
     },
     "replace": {
@@ -84,7 +85,8 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "grasmash/drupal-security-warning": true,
             "acquia/blt": true,
-            "drupal/core-composer-scaffold": true
+            "drupal/core-composer-scaffold": true,
+            "oomphinc/composer-installers-extender": true
         }
     },
     "repositories": {
