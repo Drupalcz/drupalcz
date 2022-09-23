@@ -22,103 +22,105 @@ third_party_settings:
     default: default
     displays:
       default:
+        id: panels_variant
+        label: Default
+        weight: 0
+        uuid: e78ba45e-a380-4cef-b5e0-8686aa27c505
         blocks:
           5a1396ce-a682-4ad8-ae17-bdef9cc76f32:
             id: 'entity_field:user:field_dcz_name'
             label: Name
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: string
+              weight: 0
+              region: content
+              label: hidden
               settings:
                 link_to_entity: true
               third_party_settings: {  }
-              weight: 0
-              region: content
             region: title
             weight: -10
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
             uuid: 5a1396ce-a682-4ad8-ae17-bdef9cc76f32
           e0534c3d-dc92-4049-a54d-8057a1ee8c3b:
             id: 'entity_field:user:field_dcz_surname'
             label: Surname
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: string
+              weight: 0
+              region: content
+              label: hidden
               settings:
                 link_to_entity: true
               third_party_settings: {  }
-              weight: 0
-              region: content
             region: title
             weight: -9
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
             uuid: e0534c3d-dc92-4049-a54d-8057a1ee8c3b
           402d0dcb-eb24-41cd-a590-2f2b61e2f304:
             id: 'entity_field:user:field_dcz_user_image'
             label: Avatar
-            provider: ctools_block
             label_display: '0'
-            formatter:
-              label: hidden
-              type: image
-              settings:
-                image_style: profile
-                image_link: content
-              third_party_settings: {  }
-              weight: 0
-              region: content
-            region: image
-            weight: -10
+            provider: ctools_block
             context_mapping:
               entity: '@panelizer.entity_context:entity'
+            formatter:
+              type: image
+              weight: 0
+              region: content
+              label: hidden
+              settings:
+                image_link: content
+                image_style: profile
+              third_party_settings: {  }
+            region: image
+            weight: -10
             uuid: 402d0dcb-eb24-41cd-a590-2f2b61e2f304
-        id: panels_variant
-        label: Default
-        uuid: e78ba45e-a380-4cef-b5e0-8686aa27c505
-        weight: 0
+        page_title: ''
         layout: stack
         layout_settings: {  }
-        page_title: ''
+        builder: standard
         storage_type: panelizer_default
         storage_id: 'user:user:stack:default'
-        builder: standard
-        pattern: panelizer
         static_context: {  }
+        pattern: panelizer
 id: user.user.stack
 targetEntityType: user
 bundle: user
 mode: stack
 content:
   field_dcz_name:
-    weight: 1
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 1
     region: content
   field_dcz_surname:
-    weight: 2
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 2
     region: content
   field_dcz_user_image:
-    weight: 0
+    type: image
     label: hidden
     settings:
-      image_style: profile
       image_link: content
+      image_style: profile
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
-    type: image
+    weight: 0
     region: content
 hidden:
   field_dcz_bio: true

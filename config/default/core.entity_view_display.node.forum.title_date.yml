@@ -23,91 +23,91 @@ third_party_settings:
     default: default
     displays:
       default:
+        id: panels_variant
+        label: Default
+        weight: 0
+        uuid: b31a4ec8-ea77-4004-9679-1b35384aa2ec
         blocks:
           85ff535b-fa17-40d3-9854-180346c6eb76:
             id: 'entity_field:node:uid'
             label: 'Authored by'
-            provider: ctools_block
             label_display: '0'
-            formatter:
-              label: hidden
-              type: author
-              settings: {  }
-              third_party_settings: {  }
-              weight: 0
-              region: content
-            region: date
-            weight: -1
+            provider: ctools_block
             context_mapping:
               entity: '@panelizer.entity_context:entity'
+            formatter:
+              type: author
+              weight: 0
+              region: content
+              label: hidden
+              settings: {  }
+              third_party_settings: {  }
+            region: date
+            weight: -1
             uuid: 85ff535b-fa17-40d3-9854-180346c6eb76
           aada5de1-49f6-4411-8a4d-da6e3fe53ed0:
             id: 'entity_field:node:created'
             label: 'Authored on'
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: timestamp
+              weight: 0
+              region: content
+              label: hidden
               settings:
                 date_format: czech_date
                 custom_date_format: ''
                 timezone: ''
               third_party_settings: {  }
-              weight: 0
-              region: content
             region: date
             weight: 0
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
             uuid: aada5de1-49f6-4411-8a4d-da6e3fe53ed0
           f7cecb21-ca4f-4592-818a-e6f879ffd3ee:
             id: 'entity_field:node:field_drupal_version'
             label: 'Drupal version'
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: entity_reference_label
+              weight: 0
+              region: content
+              label: hidden
               settings:
                 link: false
               third_party_settings: {  }
-              weight: 0
-              region: content
             region: date
             weight: 1
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
             uuid: f7cecb21-ca4f-4592-818a-e6f879ffd3ee
           cfda8818-f7db-4732-876d-c6023a9bad71:
             id: 'entity_field:node:title'
             label: Title
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: string
+              weight: 0
+              label: hidden
               settings:
                 link_to_entity: true
               third_party_settings: {  }
-              weight: 0
             region: title
             weight: -10
             uuid: cfda8818-f7db-4732-876d-c6023a9bad71
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-        id: panels_variant
-        label: Default
-        uuid: b31a4ec8-ea77-4004-9679-1b35384aa2ec
-        weight: 0
+        page_title: ''
         layout: title_date
         layout_settings: {  }
-        page_title: ''
+        builder: ipe
         storage_type: panelizer_default
         storage_id: 'node:forum:title_date:default'
-        builder: ipe
-        pattern: panelizer
         static_context: {  }
+        pattern: panelizer
 _core:
   default_config_hash: TM_8DV1XKUAtF-wGxTBLOtg_GTtF5CX9WLrADxG7Xm4
 id: node.forum.title_date
@@ -116,41 +116,41 @@ bundle: forum
 mode: title_date
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 0
-    region: content
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-  comment_forum:
-    label: hidden
-    type: comment_default
-    weight: 20
+    weight: 0
     region: content
+  comment_forum:
+    type: comment_default
+    label: hidden
     settings:
       view_mode: default
       pager_id: 0
     third_party_settings: {  }
+    weight: 20
+    region: content
   field_drupal_version:
-    weight: 101
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 101
     region: content
   links:
-    weight: 100
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 100
+    region: content
   taxonomy_forums:
     type: entity_reference_label
-    weight: -1
-    region: content
     label: above
     settings:
       link: true
     third_party_settings: {  }
+    weight: -1
+    region: content
 hidden:
   langcode: true

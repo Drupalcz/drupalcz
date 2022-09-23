@@ -15,6 +15,6 @@ plugin: slack_invite_form_block
 settings:
   id: slack_invite_form_block
   label: 'Získejte pozvánku na Slack'
-  provider: slack_invite
   label_display: visible
+  provider: slack_invite
 visibility: {  }

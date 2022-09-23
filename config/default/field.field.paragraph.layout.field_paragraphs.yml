@@ -26,7 +26,6 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       dcz_para_block_reference: dcz_para_block_reference
       dcz_para_content: dcz_para_content
@@ -34,13 +33,14 @@ settings:
       dcz_para_tabs: dcz_para_tabs
       dcz_para_video: dcz_para_video
       dcz_para_view_reference: dcz_para_view_reference
+    negate: 0
     target_bundles_drag_drop:
       dcz_para_block_reference:
-        enabled: true
         weight: 12
-      dcz_para_content:
         enabled: true
+      dcz_para_content:
         weight: 13
+        enabled: true
       dcz_para_gallery:
         weight: 14
         enabled: false
@@ -48,20 +48,20 @@ settings:
         weight: 15
         enabled: false
       dcz_para_image:
-        enabled: true
         weight: 16
+        enabled: true
       dcz_para_tab:
         weight: 17
         enabled: false
       dcz_para_tabs:
-        enabled: true
         weight: 18
+        enabled: true
       dcz_para_video:
-        enabled: true
         weight: 19
-      dcz_para_view_reference:
         enabled: true
+      dcz_para_view_reference:
         weight: 20
+        enabled: true
       layout:
         weight: 11
         enabled: false

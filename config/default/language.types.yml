@@ -1,3 +1,6 @@
+_core:
+  default_config_hash: dqouFqVseNJNvEjsoYKxbinFOITuCxYhi4y2OTNQP_8
+langcode: cs
 all:
   - language_interface
   - language_content
@@ -24,6 +27,3 @@ negotiation:
       language-user: -4
       language-browser: -2
       language-selected: 12
-_core:
-  default_config_hash: dqouFqVseNJNvEjsoYKxbinFOITuCxYhi4y2OTNQP_8
-langcode: cs

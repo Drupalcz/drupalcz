@@ -11,6 +11,9 @@ field_name: field_dcz_user_image
 entity_type: user
 type: image
 settings:
+  target_type: file
+  display_field: false
+  display_default: false
   uri_scheme: public
   default_image:
     uuid: bc1042f1-2b47-4d63-bb6a-a81776c3570c
@@ -18,9 +21,6 @@ settings:
     title: ''
     width: 350
     height: 350
-  target_type: file
-  display_field: false
-  display_default: false
 module: image
 locked: false
 cardinality: 1

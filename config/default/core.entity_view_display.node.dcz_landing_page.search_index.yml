@@ -23,87 +23,87 @@ third_party_settings:
     default: default
     displays:
       default:
+        id: panels_variant
+        label: Default
+        weight: 0
+        uuid: f9605ddf-c2ab-4ceb-b4ae-dccb68f6d666
         blocks:
           99e9192a-d889-4c51-9729-5958ad01b7e3:
             id: 'entity_field:node:title'
             label: Title
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: string
+              weight: 0
+              label: hidden
               settings:
                 link_to_entity: true
               third_party_settings: {  }
-              weight: 0
             region: title
             weight: 0
             uuid: 99e9192a-d889-4c51-9729-5958ad01b7e3
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
           6caf73d0-6f5e-4e05-8958-879af963cb98:
             id: 'entity_field:node:field_teaser_text'
             label: 'Teaser Text'
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: basic_string
+              weight: 0
+              label: hidden
               settings: {  }
               third_party_settings: {  }
-              weight: 0
             region: content
             weight: 0
             uuid: 6caf73d0-6f5e-4e05-8958-879af963cb98
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-        id: panels_variant
-        label: Default
-        uuid: f9605ddf-c2ab-4ceb-b4ae-dccb68f6d666
-        weight: 0
+        page_title: ''
         layout: search
         layout_settings: {  }
-        page_title: ''
+        builder: ipe
         storage_type: panelizer_default
         storage_id: 'node:dcz_landing_page:search_index:default'
-        builder: ipe
-        pattern: panelizer
         static_context: {  }
+        pattern: panelizer
 id: node.dcz_landing_page.search_index
 targetEntityType: node
 bundle: dcz_landing_page
 mode: search_index
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 101
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 101
     region: content
   field_hero_widget:
     type: entity_reference_revisions_entity_view
-    weight: 102
     label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    weight: 102
     region: content
   field_paragraphs:
-    weight: 104
+    type: entity_reference_revisions_entity_view
     label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
+    weight: 104
     region: content
   links:
-    weight: 100
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
   field_meta_tags: true
   langcode: true

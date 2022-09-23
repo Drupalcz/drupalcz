@@ -16,33 +16,33 @@ bundle: dcz_para_video
 mode: default
 content:
   field_class:
-    weight: 3
-    settings: {  }
-    third_party_settings: {  }
     type: options_buttons
+    weight: 3
     region: content
-  field_description:
-    weight: 1
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_title:
-    weight: 0
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_video:
-    weight: 2
     settings: {  }
     third_party_settings: {  }
-    type: youtube
+  field_description:
+    type: string_textfield
+    weight: 1
     region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_video:
+    type: youtube
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   created: true
   status: true

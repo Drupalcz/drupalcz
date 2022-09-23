@@ -16,37 +16,37 @@ bundle: dcz_para_view_reference
 mode: default
 content:
   field_class:
+    type: options_buttons
     weight: 2
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
   field_description:
+    type: string_textfield
     weight: 1
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_title:
+    type: string_textfield
     weight: 0
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_view_reference:
+    type: viewsreference_autocomplete
     weight: 3
+    region: content
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
       match_limit: 10
     third_party_settings: {  }
-    type: viewsreference_autocomplete
-    region: content
 hidden:
   created: true
   status: true

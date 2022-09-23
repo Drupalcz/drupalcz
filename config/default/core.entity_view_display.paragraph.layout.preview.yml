@@ -16,18 +16,18 @@ bundle: layout
 mode: preview
 content:
   field_class:
-    weight: 0
+    type: list_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 0
     region: content
   field_layout:
-    weight: 1
+    type: list_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 1
     region: content
 hidden:
   field_paragraphs: true

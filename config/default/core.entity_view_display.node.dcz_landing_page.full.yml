@@ -23,98 +23,98 @@ third_party_settings:
     default: default
     displays:
       default:
+        id: panels_variant
+        label: Default
+        weight: 0
+        uuid: bd6e472b-9501-4f96-93af-2211a06e7c0d
         blocks:
           85dd50c9-ff8d-4b81-a6b6-c0dec8203456:
             id: 'entity_field:node:body'
             label: Body
-            provider: ctools_block
             label_display: '0'
-            formatter:
-              label: hidden
-              type: text_default
-              settings: {  }
-              third_party_settings: {  }
-              weight: 0
-              region: content
-            region: content
-            weight: 0
+            provider: ctools_block
             context_mapping:
               entity: '@panelizer.entity_context:entity'
+            formatter:
+              type: text_default
+              weight: 0
+              region: content
+              label: hidden
+              settings: {  }
+              third_party_settings: {  }
+            region: content
+            weight: 0
             uuid: 85dd50c9-ff8d-4b81-a6b6-c0dec8203456
           82a0f8a3-b199-4632-9e2a-34f72d3d79cd:
             id: 'entity_field:node:field_hero_widget'
             label: 'Hero widget'
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: entity_reference_revisions_entity_view
+              weight: 0
+              region: content
+              label: hidden
               settings:
                 view_mode: default
                 link: ''
               third_party_settings: {  }
-              weight: 0
-              region: content
             region: content
             weight: -1
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
             uuid: 82a0f8a3-b199-4632-9e2a-34f72d3d79cd
           79a775f5-5fe6-451e-94c0-fd279fcb7bf2:
             id: 'entity_field:node:field_paragraphs'
             label: Paragraphs
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: entity_reference_revisions_entity_view
+              weight: 0
+              label: hidden
               settings:
                 view_mode: default
               third_party_settings: {  }
-              weight: 0
             region: content
             weight: 1
             uuid: 79a775f5-5fe6-451e-94c0-fd279fcb7bf2
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-        id: panels_variant
-        label: Default
-        uuid: bd6e472b-9501-4f96-93af-2211a06e7c0d
-        weight: 0
+        page_title: ''
         layout: layout_onecol
         layout_settings: {  }
-        page_title: ''
+        builder: ipe
         storage_type: panelizer_default
         storage_id: 'node:dcz_landing_page:full:default'
-        builder: ipe
-        pattern: panelizer
         static_context: {  }
+        pattern: panelizer
 id: node.dcz_landing_page.full
 targetEntityType: node
 bundle: dcz_landing_page
 mode: full
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 1
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 1
     region: content
   field_hero_widget:
     type: entity_reference_revisions_entity_view
-    weight: 0
     label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    weight: 0
     region: content
   links:
-    weight: 3
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 3
+    region: content
 hidden:
   field_meta_tags: true
   field_paragraphs: true

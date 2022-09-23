@@ -84,10 +84,8 @@ $config['slack_invite.settings']['token'] = "DUMMY_TOKEN";
 /**
  * Set active config split.
  */
-$config['config_split.config_split.local']['status'] = TRUE;
 $config['config_split.config_split.default_content']['status'] = TRUE;
-//$config['config_split.config_split.default_content']['status'] = FALSE;
-$config['config_split.config_split.dev']['status'] = FALSE;
+$config['config_split.config_split.dev']['status'] = TRUE;
 $config['config_split.config_split.test']['status'] = FALSE;
 $config['config_split.config_split.cleantalk']['status'] = FALSE;
 $config['config_split.config_split.prod']['status'] = FALSE;

@@ -16,6 +16,7 @@
         "acquia/memcache-settings": "*",
         "bower-asset/dropzone": "^5.1",
         "bower-asset/flexslider": "^2.6",
+        "composer/installers": "^2.2",
         "cweagans/composer-patches": "^1.6",
         "drupal/acquia_connector": "^1.5",
         "drupal/acquia_purge": "^1.0",
@@ -25,8 +26,9 @@
         "drupal/coder": "^8.3",
         "drupal/config_split": "^1.4",
         "drupal/config_update": "^1.5",
-        "drupal/core-composer-scaffold": "^8.9",
-        "drupal/core-recommended": "^8.9",
+        "drupal/core-composer-scaffold": "^9",
+        "drupal/core-project-message": "^9",
+        "drupal/core-recommended": "^9",
         "drupal/ctools": "^3.0",
         "drupal/default_content_deploy": "^1.0@alpha",
         "drupal/devel": "^4.0",
@@ -74,9 +76,6 @@
         "npm-asset/backbone": "*",
         "npm-asset/underscore": "*"
     },
-    "require-dev": {
-        "acquia/blt-require-dev": "11.x-dev"
-    },
     "config": {
         "sort-packages": true,
         "process-timeout": 0,
@@ -86,7 +85,8 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "grasmash/drupal-security-warning": true,
             "acquia/blt": true,
-            "drupal/core-composer-scaffold": true
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true
         }
     },
     "repositories": {
@@ -115,9 +115,6 @@
             "drupal/core": "-p2"
         },
         "patches": {
-            "drupal/core": {
-                "2920285 - Update module can get 'stuck' with 'no releases available": "https://www.drupal.org/files/issues/2020-07-20/2920285-11.patch"
-            },
             "drupal/media_entity_actions": {
                 "2998468 - Provide an upgrade path to core": "https://www.drupal.org/files/issues/2020-06-10/2998468-15.patch"
             },

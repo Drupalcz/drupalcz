@@ -1,3 +1,7 @@
+_core:
+  default_config_hash: rHbHZIIF9TP3H2Vs37uCHz4Gm4phULg0rQ_OKihxJfM
+langcode: cs
+extlink_exclude_admin_routes: false
 extlink_target: true
 extlink_target_no_override: true
 extlink_nofollow: true
@@ -14,7 +18,3 @@ extlink_css_exclude: ''
 extlink_css_explicit: ''
 extlink_mailto_class: '0'
 extlink_mailto_label: '(link sends email)'
-_core:
-  default_config_hash: rHbHZIIF9TP3H2Vs37uCHz4Gm4phULg0rQ_OKihxJfM
-langcode: cs
-extlink_exclude_admin_routes: false

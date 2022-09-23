@@ -1,5 +1,5 @@
-nominatim_base_url: ''
-nominatim_email: ''
 _core:
   default_config_hash: _ieCpVTn6h6dRbKzPzP4ZzChh59f8SgaSSfDHcS8_Ng
 langcode: cs
+nominatim_base_url: ''
+nominatim_email: ''

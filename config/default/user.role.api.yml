@@ -1,7 +1,13 @@
 uuid: c5fe523a-29ff-418e-9270-c98823520d14
 langcode: cs
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - node.type.dcz_showcase
+    - rest.resource.dcz_rest_drupalcs_awards
+  module:
+    - node
+    - rest
 id: api
 label: API
 weight: -5

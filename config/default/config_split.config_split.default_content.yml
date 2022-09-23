@@ -5,6 +5,7 @@ dependencies: {  }
 id: default_content
 label: 'Default content'
 description: ''
+weight: 0
 folder: ../config/split-default_content
 module:
   better_normalizers: 0
@@ -14,4 +15,3 @@ blacklist: {  }
 graylist: {  }
 graylist_dependents: true
 graylist_skip_equal: true
-weight: 0

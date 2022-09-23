@@ -16,15 +16,15 @@ bundle: dcz_para_view_reference
 mode: default
 content:
   field_title:
-    weight: 0
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 0
     region: content
   field_view_reference:
-    weight: 1
+    type: viewsreference_formatter
     label: hidden
     settings:
       plugin_types:
@@ -34,7 +34,7 @@ content:
         block: 0
         feed: 0
     third_party_settings: {  }
-    type: viewsreference_formatter
+    weight: 1
     region: content
 hidden:
   field_class: true

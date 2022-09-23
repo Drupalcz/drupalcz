@@ -11,21 +11,21 @@ type: 'canonical_entities:node'
 pattern: 'profily/[node:title]'
 selection_criteria:
   346b5b5f-8862-49e5-8f85-e7bd347af6bf:
-    id: node_type
-    bundles:
-      organization: organization
+    id: 'entity_bundle:node'
     negate: false
+    uuid: 346b5b5f-8862-49e5-8f85-e7bd347af6bf
     context_mapping:
       node: node
-    uuid: 346b5b5f-8862-49e5-8f85-e7bd347af6bf
+    bundles:
+      organization: organization
   b3527419-2442-43b3-a70d-08c9f52c88b9:
     id: language
-    langcodes:
-      cs: cs
     negate: false
+    uuid: b3527419-2442-43b3-a70d-08c9f52c88b9
     context_mapping:
       language: 'node:langcode:language'
-    uuid: b3527419-2442-43b3-a70d-08c9f52c88b9
+    langcodes:
+      cs: cs
 selection_logic: and
 weight: -6
 relationships:

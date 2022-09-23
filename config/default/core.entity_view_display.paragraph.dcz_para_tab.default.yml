@@ -15,11 +15,11 @@ bundle: dcz_para_tab
 mode: default
 content:
   field_content:
-    weight: 1
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 1
     region: content
 hidden:
   field_description: true
