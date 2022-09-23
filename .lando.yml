@@ -44,7 +44,12 @@ services:
     extras:
       - apt -qq update && apt -qq -y install pv jq
   node:
-    type: node:14
+    type: node:8
+    globals:
+      gulp-cli: "latest"
+      gulp: "latest"
+    build:
+      - "cd $LANDO_MOUNT/docroot/themes/custom/dcz_theme && npm install"
     # Needed for gulp-notify in themes to prevent errors
     # when running watch task.
     extras:
