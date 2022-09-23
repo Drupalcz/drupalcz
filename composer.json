@@ -74,9 +74,6 @@
         "npm-asset/backbone": "*",
         "npm-asset/underscore": "*"
     },
-    "require-dev": {
-        "acquia/blt-require-dev": "11.x-dev"
-    },
     "config": {
         "sort-packages": true,
         "process-timeout": 0,
