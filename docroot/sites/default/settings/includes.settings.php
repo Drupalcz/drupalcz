@@ -15,7 +15,7 @@ $settings['install_profile'] = 'minimal';
 /**
  * For custom installation
  */
-$config_directories['sync'] = "../config/default";
+$settings['config_sync_directory'] = "../config/default";
 
 /**
  * Set content directory for default_content_deploy.
