@@ -101,13 +101,6 @@ if (isset($_SERVER['HTTP_HOST']) && !in_array($base_url, $unshielded)) {
   $config['shield.settings']['print'] = 'Check out https://github.com/Drupalcz/drupalcz ;-)';
 }
 
-
-// Custom Travis CI settings.
-$travis_settings = DRUPAL_ROOT . "/sites/default/settings/travis.settings.php";
-if (getenv('TRAVIS') && file_exists($travis_settings)) {
-  require $travis_settings;
-}
-
 /**
  * Acquia - custom environment settings.
  */
@@ -129,4 +122,21 @@ if (!empty($path) && file_exists($path)) {
   require $path;
 }
 
-require_once DRUPAL_ROOT . "/sites/default/settings/local.settings.php";
+/**
+ * Lando environment settings.
+ */
+if (isset($_ENV["LANDO_APP_NAME"])) {
+  $path = DRUPAL_ROOT . "/sites/default/settings/lando.settings.php";
+  // Load settings.
+  if (!empty($path) && file_exists($path)) {
+    require $path;
+  }
+}
+
+/**
+ * Allow final local override.
+ */
+$path = DRUPAL_ROOT . "/sites/default/settings/local.settings.php";
+if (!empty($path) && file_exists($path)) {
+  require $path;
+}
