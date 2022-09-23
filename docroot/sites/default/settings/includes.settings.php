@@ -6,6 +6,23 @@
  */
 
 /**
+ * Install profile.
+ *
+ * It needs to be here. Otherwise install process edits this file.
+ */
+$settings['install_profile'] = 'minimal';
+
+/**
+ * For custom installation
+ */
+$config_directories['sync'] = "../config/default";
+
+/**
+ * Set content directory for default_content_deploy.
+ */
+$settings['default_content_deploy_content_directory'] = '../content';
+
+/**
  * Access control for update.php script.
  */
 $settings['update_free_access'] = FALSE;
@@ -111,3 +128,5 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
 if (!empty($path) && file_exists($path)) {
   require $path;
 }
+
+require_once DRUPAL_ROOT . "/sites/default/settings/local.settings.php";
