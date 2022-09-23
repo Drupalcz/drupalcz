@@ -1,6 +1,6 @@
 {
     "name": "drupalcz/site",
-    "description": "Drupal.cz Community website. (Drupal8 site built with BLT.)",
+    "description": "Drupal.cz Community website.",
     "type": "project",
     "license": "GPL-2.0+",
     "authors": [
@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.4",
         "acquia/memcache-settings": "*",
         "bower-asset/dropzone": "^5.1",
         "bower-asset/flexslider": "^2.6",
