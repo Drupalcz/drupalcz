@@ -8,22 +8,27 @@
     "packages": [
         {
             "name": "acquia/memcache-settings",
-            "version": "dev-master",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acquia/memcache-settings.git",
-                "reference": "c381d911d84fdfeac34ca3c6f56254be5ade6840"
+                "reference": "543cb19afcd9d75000dceb924b85c2ff16997003"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acquia/memcache-settings/zipball/c381d911d84fdfeac34ca3c6f56254be5ade6840",
-                "reference": "c381d911d84fdfeac34ca3c6f56254be5ade6840",
+                "url": "https://api.github.com/repos/acquia/memcache-settings/zipball/543cb19afcd9d75000dceb924b85c2ff16997003",
+                "reference": "543cb19afcd9d75000dceb924b85c2ff16997003",
                 "shasum": ""
             },
             "require": {
                 "drupal/memcache": "^2.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-2.0+"
@@ -36,7 +41,11 @@
                 }
             ],
             "description": "Recommended Memcache settings for use with Acquia hosting.",
-            "time": "2020-02-11T01:17:40+00:00"
+            "support": {
+                "issues": "https://github.com/acquia/memcache-settings/issues",
+                "source": "https://github.com/acquia/memcache-settings/tree/v1.2.0"
+            },
+            "time": "2022-08-03T15:14:53+00:00"
         },
         {
             "name": "asm89/stack-cors",
