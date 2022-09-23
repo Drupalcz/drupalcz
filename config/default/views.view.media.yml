@@ -66,7 +66,7 @@ display:
             offset_label: Posun
           tags:
             previous: '‹ Předchozí'
-            next: 'Další ›'
+            next: 'Následující ›'
             first: '« První'
             last: 'Poslední »'
           quantity: 9
@@ -484,8 +484,8 @@ display:
           type: boolean
           settings:
             format: custom
-            format_custom_true: Vydáno
-            format_custom_false: Nevydáno
+            format_custom_true: Zveřejněno
+            format_custom_false: Skryto
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -742,11 +742,11 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: Vydáno
+                title: Zveřejněno
                 operator: '='
                 value: '1'
               2:
-                title: Nevydáno
+                title: Skryto
                 operator: '='
                 value: '0'
           plugin_id: boolean

@@ -6,6 +6,23 @@
  */
 
 /**
+ * Install profile.
+ *
+ * It needs to be here. Otherwise install process edits this file.
+ */
+$settings['install_profile'] = 'minimal';
+
+/**
+ * For custom installation
+ */
+$config_directories['sync'] = "../config/default";
+
+/**
+ * Set content directory for default_content_deploy.
+ */
+$settings['default_content_deploy_content_directory'] = '../content';
+
+/**
  * Access control for update.php script.
  */
 $settings['update_free_access'] = FALSE;
@@ -84,13 +101,6 @@ if (isset($_SERVER['HTTP_HOST']) && !in_array($base_url, $unshielded)) {
   $config['shield.settings']['print'] = 'Check out https://github.com/Drupalcz/drupalcz ;-)';
 }
 
-
-// Custom Travis CI settings.
-$travis_settings = DRUPAL_ROOT . "/sites/default/settings/travis.settings.php";
-if (getenv('TRAVIS') && file_exists($travis_settings)) {
-  require $travis_settings;
-}
-
 /**
  * Acquia - custom environment settings.
  */
@@ -108,6 +118,25 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
 }
 
 // Load settings.
+if (!empty($path) && file_exists($path)) {
+  require $path;
+}
+
+/**
+ * Lando environment settings.
+ */
+if (isset($_ENV["LANDO_APP_NAME"])) {
+  $path = DRUPAL_ROOT . "/sites/default/settings/lando.settings.php";
+  // Load settings.
+  if (!empty($path) && file_exists($path)) {
+    require $path;
+  }
+}
+
+/**
+ * Allow final local override.
+ */
+$path = DRUPAL_ROOT . "/sites/default/settings/local.settings.php";
 if (!empty($path) && file_exists($path)) {
   require $path;
 }

@@ -1,29 +1,82 @@
 name: drupalcz
-recipe: drupal8
+recipe: drupal9
 
+excludes:
+  - vendor
 config:
   webroot: docroot
-  ssl: true
-  php: 7.3
   xdebug: false
-  overrides:
-    volumes:
-      - ${HOME}/.lando/composer_cache:/var/www/.composer
-
 services:
-  database:
-    portforward: 3310
-
+  appserver:
+    type: php:7.4
+    composer_version: 1
+    config:
+      php: .lando/php.ini
+    overrides:
+      # Pass SSH keys.
+      volumes:
+        - ${HOME}/.lando/composer_cache:/var/www/.composer
+        - type: bind
+          # Linux user: add 'export LANDO_SSH_AUTH_SOCK="${SSH_AUTH_SOCK}"' at the end of your ~/.bashrc:
+          # Mac user: MacOS specific path is here as the variable default value, nothing to do.
+          source: "${LANDO_SSH_AUTH_SOCK:-/run/host-services/ssh-auth.sock}"
+          target: /run/host-services/ssh-auth.sock
+      environment:
+        SSH_AUTH_SOCK: /run/host-services/ssh-auth.sock
+        # Load custom php.ini files if exist in .lando/config/php directory.
+        PHP_INI_SCAN_DIR: "/usr/local/etc/php/conf.d:/app/.lando/config/php"
+        # Support debugging Drush with xdebug.
+        PHP_IDE_CONFIG: "serverName=appserver"
+        DRUSH_ALLOW_XDEBUG: 1
+        XDEBUG_MODE: debug
+    composer:
+      squizlabs/php_codesniffer: '*'
+      drupal/coder: '*'
+      phpcompatibility/php-compatibility: '*'
+    run:
+      - /var/www/.composer/vendor/bin/phpcs --config-set installed_paths /var/www/.composer/vendor/phpcompatibility/php-compatibility
+      - /var/www/.composer/vendor/bin/phpcs --config-set error_severity 1
+      - /var/www/.composer/vendor/bin/phpcs --config-set warning_severity 8
+    run_as_root:
+      - chown www-data:www-data /run/host-services/ssh-auth.sock
+      - chmod g+w /run/host-services/ssh-auth.sock
+    #      - /app/.lando/setup_terminus.sh
+    extras:
+      - apt -qq update && apt -qq -y install pv jq
+  node:
+    type: node:8
+    globals:
+      gulp-cli: "latest"
+      gulp: "latest"
+    build:
+      - "cd $LANDO_MOUNT/docroot/themes/custom/dcz_theme && npm install"
+    # Needed for gulp-notify in themes to prevent errors
+    # when running watch task.
+    extras:
+      - apt -qq update && apt -qq -y install libnotify-bin
+  # Chatch all mail trying to get out of appserver.
   mailhog:
     type: mailhog
     hogfrom:
       - appserver
+    portforward: true
 
 events:
   post-start:
     - appserver: scripts/create-settings.sh
+    - appserver: test -e ~/.ssh/config || printf 'Host *\n  AddKeysToAgent yes\n' > ~/.ssh/config
 
 tooling:
+  fresh-install:
+    service: appserver
+    description: Setup all local sites (including settings.php) from fresh DB copy. Use `lando fresh-install from-local` to use DBs from last import.
+    cmd:
+      - "/app/.lando/fresh-install.sh"
+  ssh-fix:
+    service: appserver
+    description: Fix ssh auth sock permission for MacOS users. Lando rebuild fixes the problem as well.
+    cmd: "/bin/chgrp www-data /run/host-services/ssh-auth.sock && /bin/chmod g+w /run/host-services/ssh-auth.sock"
+    user: root
   xdebug-on:
     service: appserver
     description: Enable xdebug for apache.
@@ -34,3 +87,17 @@ tooling:
     description: Disable xdebug for apache.
     cmd: "rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && /etc/init.d/apache2 reload"
     user: root
+  npm:
+    service: node
+    description: Pass npm commands.
+  phpcs:
+    service: appserver
+    description: Pass phpcs commands.
+proxy:
+  # Mailhog web UI.
+  mailhog:
+    - drupalcz-mailhog.lndo.site
+  appserver:
+    - drupalcz.lndo.site
+  node:
+    - bs.drupalcz.lndo.site:3000

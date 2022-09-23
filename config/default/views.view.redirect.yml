@@ -55,7 +55,7 @@ display:
           id: 0
           total_pages: null
           tags:
-            previous: '‹ previous'
+            previous: '‹ předchozí'
             next: 'následující ›'
             first: '« první'
             last: 'poslední »'

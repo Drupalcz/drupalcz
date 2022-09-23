@@ -1,0 +1,18 @@
+---
+on: workflow_dispatch
+
+jobs:
+
+  tagsync:
+    name: Sync tags from the hosting repo to the github repo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout.
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Execute sync script
+        env:
+          GIT_REMOTE: ${{ secrets.GIT_REMOTE_HOSTING }}
+          GIT_SSH_PRIVATE_KEY: ${{ secrets.PANTHEON_DEPLOYER_SSH_PRIVATE }}
+        run: ./.github/scripts/synctags.sh
