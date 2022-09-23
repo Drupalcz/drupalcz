@@ -15,7 +15,7 @@ $settings['install_profile'] = 'minimal';
 /**
  * For custom installation
  */
-$config_directories['sync'] = "../config/default";
+$settings['config_sync_directory'] = "../config/default";
 
 /**
  * Set content directory for default_content_deploy.
@@ -115,6 +115,11 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   }
   // Populate secure variables.
   $config['slack_invite.settings']['token'] = getenv('SLACK_TOKEN');
+
+  // Database credentials.
+  if (file_exists('/var/www/site-php')) {
+    require '/var/www/site-php/drupalcz/drupalcz-settings.inc';
+  }
 }
 
 // Load settings.
