@@ -1,4 +1,8 @@
+_core:
+  default_config_hash: 5YkLBJiAXgH9BDLkDIb1ozqfCXWwvZggf4XfcXgfjzc
+langcode: cs
 account: UA-114938389-1
+premium: false
 domain_mode: 0
 cross_domains: ''
 visibility:
@@ -32,7 +36,3 @@ codesnippet:
 translation_set: false
 cache: false
 debug: false
-_core:
-  default_config_hash: 5YkLBJiAXgH9BDLkDIb1ozqfCXWwvZggf4XfcXgfjzc
-langcode: cs
-premium: false

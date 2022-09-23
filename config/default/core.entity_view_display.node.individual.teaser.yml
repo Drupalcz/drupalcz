@@ -29,34 +29,34 @@ mode: teaser
 content:
   field_firstname:
     type: string
-    weight: 0
-    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 0
+    region: content
   field_image:
     type: entity_reference_entity_view
-    weight: 2
-    region: content
     label: hidden
     settings:
       view_mode: landscape
       link: false
     third_party_settings: {  }
+    weight: 2
+    region: content
   field_surname:
     type: string
-    weight: 1
-    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  links:
-    weight: 3
+    weight: 1
     region: content
+  links:
     settings: {  }
     third_party_settings: {  }
+    weight: 3
+    region: content
 hidden:
   body: true
   field_emails: true

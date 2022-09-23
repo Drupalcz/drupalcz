@@ -15,12 +15,12 @@ bundle: image
 mode: landscape
 content:
   field_media_image:
+    type: responsive_image
     label: hidden
     settings:
       responsive_image_style: landscape
       image_link: ''
     third_party_settings: {  }
-    type: responsive_image
     weight: 0
     region: content
 hidden:

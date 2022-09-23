@@ -1,3 +1,6 @@
+_core:
+  default_config_hash: QIfZpz4g6BfEIyiL-WtauNYu31M8o3LvYlZ0VGRQtNo
+langcode: cs
 block:
   active:
     limit: 5
@@ -8,6 +11,3 @@ topics:
   order: 1
   page_limit: 25
 vocabulary: forums
-_core:
-  default_config_hash: QIfZpz4g6BfEIyiL-WtauNYu31M8o3LvYlZ0VGRQtNo
-langcode: cs

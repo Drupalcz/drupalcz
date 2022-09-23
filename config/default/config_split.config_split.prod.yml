@@ -5,6 +5,7 @@ dependencies: {  }
 id: prod
 label: PROD
 description: ''
+weight: 0
 folder: ../config/split-prod
 module:
   acquia_connector: 0
@@ -14,4 +15,3 @@ blacklist: {  }
 graylist: {  }
 graylist_dependents: true
 graylist_skip_equal: true
-weight: 0

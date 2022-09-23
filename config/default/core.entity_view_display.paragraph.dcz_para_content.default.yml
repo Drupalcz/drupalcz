@@ -17,17 +17,17 @@ mode: default
 content:
   field_class:
     type: entity_class_formatter
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
     weight: 1
     region: content
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
   field_content:
-    weight: 0
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 0
     region: content
 hidden:
   created: true

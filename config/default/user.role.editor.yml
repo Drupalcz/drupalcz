@@ -1,7 +1,28 @@
 uuid: 59166794-eca9-463d-b504-0496fce7ee30
 langcode: cs
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.basic_html
+    - filter.format.forum
+    - filter.format.full_html
+    - media.type.image
+    - node.type.dcz_article
+    - node.type.dcz_showcase
+    - node.type.forum
+    - node.type.page
+    - node.type.tutorial
+  module:
+    - contextual
+    - dropzonejs
+    - file
+    - filter
+    - forum
+    - media
+    - node
+    - path
+    - system
+    - toolbar
 id: editor
 label: Editor
 weight: -7

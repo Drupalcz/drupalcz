@@ -11,7 +11,7 @@ id: taxonomy_term.forums.forum_container
 field_name: forum_container
 entity_type: taxonomy_term
 bundle: forums
-label: Kontejner
+label: Container
 description: ''
 required: true
 translatable: true

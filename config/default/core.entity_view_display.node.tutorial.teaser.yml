@@ -26,72 +26,72 @@ third_party_settings:
     default: default
     displays:
       default:
+        id: panels_variant
+        label: Default
+        weight: 0
+        uuid: 5cd4a11d-b93d-414b-b41b-9ae4785bbd4d
         blocks:
           92587ec6-19e6-4eb2-8914-e29259484980:
             id: 'entity_field:node:field_teaser_image'
             label: 'Teaser Image'
-            provider: ctools_block
             label_display: '0'
-            formatter:
-              label: hidden
-              type: media_thumbnail
-              settings:
-                image_style: landscape_small
-                image_link: content
-              third_party_settings: {  }
-              weight: 0
-              region: content
-            region: image
-            weight: -2
+            provider: ctools_block
             context_mapping:
               entity: '@panelizer.entity_context:entity'
+            formatter:
+              type: media_thumbnail
+              weight: 0
+              region: content
+              label: hidden
+              settings:
+                image_link: content
+                image_style: landscape_small
+              third_party_settings: {  }
+            region: image
+            weight: -2
             uuid: 92587ec6-19e6-4eb2-8914-e29259484980
           98e69efb-bb6b-41e8-a5bf-49b71562c5bb:
             id: 'entity_field:node:field_teaser_text'
             label: 'Teaser Text'
-            provider: ctools_block
             label_display: '0'
-            formatter:
-              label: hidden
-              type: basic_string
-              settings: {  }
-              third_party_settings: {  }
-              weight: 0
-              region: content
-            region: content
-            weight: -2
+            provider: ctools_block
             context_mapping:
               entity: '@panelizer.entity_context:entity'
+            formatter:
+              type: basic_string
+              weight: 0
+              region: content
+              label: hidden
+              settings: {  }
+              third_party_settings: {  }
+            region: content
+            weight: -2
             uuid: 98e69efb-bb6b-41e8-a5bf-49b71562c5bb
           6cb4e226-c5bd-4b4e-bb98-af9a4a844f86:
             id: 'entity_field:node:title'
             label: Title
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: string
+              weight: 0
+              label: hidden
               settings:
                 link_to_entity: true
               third_party_settings: {  }
-              weight: 0
             region: title
             weight: 0
             uuid: 6cb4e226-c5bd-4b4e-bb98-af9a4a844f86
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-        id: panels_variant
-        label: Default
-        uuid: 5cd4a11d-b93d-414b-b41b-9ae4785bbd4d
-        weight: 0
+        page_title: ''
         layout: teaser
         layout_settings: {  }
-        page_title: ''
+        builder: standard
         storage_type: panelizer_default
         storage_id: 'node:tutorial:teaser:default'
-        builder: standard
-        pattern: panelizer
         static_context: {  }
+        pattern: panelizer
 id: node.tutorial.teaser
 targetEntityType: node
 bundle: tutorial
@@ -99,16 +99,16 @@ mode: teaser
 content:
   field_teaser_text:
     type: basic_string
-    weight: 2
-    region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
-  links:
-    weight: 0
+    weight: 2
     region: content
+  links:
     settings: {  }
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   body: true
   field_authors: true

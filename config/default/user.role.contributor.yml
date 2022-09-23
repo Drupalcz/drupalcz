@@ -1,7 +1,18 @@
 uuid: 9ed4648f-a6e6-4378-bc98-140f5f28e0bf
 langcode: cs
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.forum
+    - filter.format.full_html
+    - node.type.dcz_article
+    - node.type.dcz_showcase
+    - node.type.individual
+    - node.type.organization
+    - node.type.tutorial
+  module:
+    - filter
+    - node
 id: contributor
 label: Contributor
 weight: -8

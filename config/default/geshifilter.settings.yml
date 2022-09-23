@@ -1,12 +1,15 @@
+_core:
+  default_config_hash: 1jZtSc2CSiEBA45nbX0wMKFY3bmcilIwOBQCKFscK0U
+langcode: cs
+tags: 'code blockcode'
 use_format_specific_options: false
 default_highlighting: GESHIFILTER_DEFAULT_DONOTHING
 default_line_numbering: 0
 use_highlight_string_for_php: true
-enable_keyword_urls: true
 decode_entities: true
+enable_keyword_urls: true
 css_mode: 1
 code_container: '2'
-tags: 'code blockcode'
 tag_styles:
   1: 1
   2: 0
@@ -46,6 +49,3 @@ language:
   yaml:
     enabled: true
     tags: yaml
-_core:
-  default_config_hash: 1jZtSc2CSiEBA45nbX0wMKFY3bmcilIwOBQCKFscK0U
-langcode: cs

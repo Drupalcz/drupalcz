@@ -1,3 +1,3 @@
+langcode: cs
 interface:
   default: php_mail
-langcode: cs

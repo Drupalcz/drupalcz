@@ -12,33 +12,33 @@ id: hero
 label: Hero
 image_style_mappings:
   -
-    breakpoint_id: dcz_theme.large
-    multiplier: 1x
     image_mapping_type: sizes
     image_mapping:
       sizes: 100vw
       sizes_image_styles:
         - hero
-  -
-    breakpoint_id: dcz_theme.medium
+    breakpoint_id: dcz_theme.large
     multiplier: 1x
+  -
     image_mapping_type: sizes
     image_mapping:
       sizes: 100vw
       sizes_image_styles:
         - hero_medium
-  -
-    breakpoint_id: dcz_theme.small
+    breakpoint_id: dcz_theme.medium
     multiplier: 1x
+  -
     image_mapping_type: sizes
     image_mapping:
       sizes: 100vw
       sizes_image_styles:
         - hero_small
-  -
-    breakpoint_id: dcz_theme.smallest
+    breakpoint_id: dcz_theme.small
     multiplier: 1x
+  -
     image_mapping_type: image_style
     image_mapping: hero_small
+    breakpoint_id: dcz_theme.smallest
+    multiplier: 1x
 breakpoint_group: dcz_theme
 fallback_image_style: hero_medium

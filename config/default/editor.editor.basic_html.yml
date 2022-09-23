@@ -52,8 +52,6 @@ settings:
   plugins:
     stylescombo:
       styles: "h2|H2\r\nh3|H3\r\nh4|H4"
-    language:
-      language_list: un
 image_upload:
   status: true
   scheme: public

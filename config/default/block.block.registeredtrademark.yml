@@ -17,8 +17,8 @@ plugin: 'block_content:5188b6a4-c45a-467a-ad7f-b2b9116159cd'
 settings:
   id: 'block_content:5188b6a4-c45a-467a-ad7f-b2b9116159cd'
   label: 'Registered trademark'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
