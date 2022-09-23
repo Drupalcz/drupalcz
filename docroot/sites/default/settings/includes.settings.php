@@ -115,6 +115,11 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   }
   // Populate secure variables.
   $config['slack_invite.settings']['token'] = getenv('SLACK_TOKEN');
+
+  // Database credentials.
+  if (file_exists('/var/www/site-php')) {
+    require '/var/www/site-php/drupalcz/drupalcz-settings.inc';
+  }
 }
 
 // Load settings.
