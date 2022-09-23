@@ -1,6 +1,7 @@
 ---
 # Triggers the workflow on push or delete events
 on: [push,delete]
+name: Build
 
 jobs:
   validate:
