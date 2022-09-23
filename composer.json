@@ -16,6 +16,7 @@
         "acquia/memcache-settings": "*",
         "bower-asset/dropzone": "^5.1",
         "bower-asset/flexslider": "^2.6",
+        "composer/installers": "^2.2",
         "cweagans/composer-patches": "^1.6",
         "drupal/acquia_connector": "^1.5",
         "drupal/acquia_purge": "^1.0",
