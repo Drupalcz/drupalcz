@@ -55,7 +55,7 @@ display:
           total_pages: null
           tags:
             previous: '‹ Předchozí'
-            next: 'Další ›'
+            next: 'Následující ›'
           expose:
             items_per_page: false
             items_per_page_label: 'Položek na stránku'

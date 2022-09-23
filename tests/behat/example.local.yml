@@ -9,13 +9,13 @@ local:
       paths:
         # Set features to repo root so that .feature files belonging to contrib
         # modules, themes, and profiles can be discovered.
-        features: ${repo.root}
+        features: /app
       contexts:
         - Drupal\FeatureContext:
           parameters:
             environment:
               # absolute path to local directory to store screenshots - do not include trailing slash
-              screenshot_dir: ${reports.localDir}
+              screenshot_dir: /app/reports
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\MessageContext
@@ -27,7 +27,7 @@ local:
       browser_name: chrome
       javascript_session: default
       # configure the base url for your site
-      base_url: ${project.local.uri}
+      base_url: http://drupalcz.lndo.site
       # set default command for "Show last response" step.
       show_cmd: "open %s"
       # use the following lines to disable SSL authentication for goutte.
@@ -50,6 +50,6 @@ local:
     Drupal\DrupalExtension:
       drupal:
         # This must be an absolute path.
-        drupal_root: ${docroot}
+        drupal_root: /app/docroot
       drush:
         alias: '@self'

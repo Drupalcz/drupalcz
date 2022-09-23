@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: dP8_fdyCut6SD0rkBuyf1yuwuK-m2lTBzHk2Uq6BVMM
 id: media_publish_action
-label: 'Vydat média'
+label: 'Zveřejnit média'
 type: media
 plugin: 'entity:publish_action:media'
 configuration: {  }
