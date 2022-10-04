@@ -11,21 +11,21 @@ type: 'canonical_entities:node'
 pattern: 'clanky/[node:title]'
 selection_criteria:
   82073998-8467-43d5-ae6e-8a0accc919e8:
-    id: node_type
-    bundles:
-      dcz_article: dcz_article
+    id: 'entity_bundle:node'
     negate: false
+    uuid: 82073998-8467-43d5-ae6e-8a0accc919e8
     context_mapping:
       node: node
-    uuid: 82073998-8467-43d5-ae6e-8a0accc919e8
+    bundles:
+      dcz_article: dcz_article
   e8bd62d6-5516-44d4-bb3e-e6c7eddca969:
     id: language
-    langcodes:
-      cs: cs
     negate: false
+    uuid: e8bd62d6-5516-44d4-bb3e-e6c7eddca969
     context_mapping:
       language: 'node:langcode:language'
-    uuid: e8bd62d6-5516-44d4-bb3e-e6c7eddca969
+    langcodes:
+      cs: cs
 selection_logic: and
 weight: -9
 relationships:

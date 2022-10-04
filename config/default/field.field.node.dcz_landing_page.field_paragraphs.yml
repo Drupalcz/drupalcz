@@ -21,9 +21,9 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       layout: layout
+    negate: 0
     target_bundles_drag_drop:
       dcz_para_block_reference:
         weight: 9
@@ -53,6 +53,6 @@ settings:
         weight: 20
         enabled: false
       layout:
-        enabled: true
         weight: 11
+        enabled: true
 field_type: entity_reference_revisions

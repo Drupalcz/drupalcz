@@ -25,88 +25,88 @@ third_party_settings:
     default: default
     displays:
       default:
+        id: panels_variant
+        label: Default
+        weight: 0
+        uuid: aa32b0a4-edc0-418d-af7b-9b3d167e0ac9
         blocks:
           a017c66c-3d7f-430d-ae58-8e50286395c9:
             id: 'entity_field:node:title'
             label: Title
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: string
+              weight: 0
+              label: hidden
               settings:
                 link_to_entity: true
               third_party_settings: {  }
-              weight: 0
             region: title
             weight: 0
             uuid: a017c66c-3d7f-430d-ae58-8e50286395c9
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
           a5c2a5ab-e515-46dc-8742-fd32c27bc5ac:
             id: 'entity_field:node:field_teaser_image'
             label: 'Teaser Image'
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: image
-              settings:
-                image_style: landscape_small
-                image_link: content
-              third_party_settings: {  }
               weight: 0
+              label: hidden
+              settings:
+                image_link: content
+                image_style: landscape_small
+              third_party_settings: {  }
             region: image
             weight: -10
             uuid: a5c2a5ab-e515-46dc-8742-fd32c27bc5ac
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
           05e6e220-4bd8-4a7d-81d5-cdc7ba15d5e1:
             id: 'entity_field:node:field_teaser_text'
             label: 'Teaser Text'
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: basic_string
+              weight: 0
+              label: hidden
               settings: {  }
               third_party_settings: {  }
-              weight: 0
             region: content
             weight: -1
             uuid: 05e6e220-4bd8-4a7d-81d5-cdc7ba15d5e1
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-        id: panels_variant
-        label: Default
-        uuid: aa32b0a4-edc0-418d-af7b-9b3d167e0ac9
-        weight: 0
+        page_title: null
         layout: teaser
         layout_settings: {  }
-        page_title: null
+        builder: ipe
         storage_type: panelizer_default
         storage_id: 'node:dcz_showcase:teaser:default'
-        builder: ipe
-        pattern: panelizer
         static_context: {  }
+        pattern: panelizer
 id: node.dcz_showcase.teaser
 targetEntityType: node
 bundle: dcz_showcase
 mode: teaser
 content:
   body:
-    label: hidden
     type: text_summary_or_trimmed
-    weight: 101
+    label: hidden
     settings:
       trim_length: 600
     third_party_settings: {  }
+    weight: 101
     region: content
   links:
-    weight: 100
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
   field_display_options: true
   field_drupal_version: true

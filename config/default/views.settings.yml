@@ -1,3 +1,4 @@
+langcode: cs
 display_extenders:
   - metatag_display_extender
 skip_cache: false
@@ -6,7 +7,7 @@ ui:
   show:
     additional_queries: false
     advanced_column: true
-    master_display: false
+    default_display: false
     performance_statistics: false
     preview_information: true
     sql_query:
@@ -45,4 +46,3 @@ field_rewrite_elements:
   ins: INS
   q: Q
   s: S
-langcode: cs

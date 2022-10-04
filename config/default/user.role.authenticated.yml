@@ -1,7 +1,29 @@
 uuid: 150f6545-fc70-4c6e-a109-9c8aba43107d
 langcode: cs
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.basic_html
+    - filter.format.forum
+    - media.type.image
+    - node.type.dcz_article
+    - node.type.dcz_showcase
+    - node.type.forum
+    - node.type.individual
+    - node.type.organization
+    - node.type.tutorial
+  module:
+    - captcha
+    - comment
+    - contact
+    - dropzonejs
+    - entity_browser
+    - eu_cookie_compliance
+    - filter
+    - google_analytics
+    - media
+    - node
+    - system
 id: authenticated
 label: 'Authenticated user'
 weight: -9

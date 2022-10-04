@@ -17,32 +17,33 @@ bundle: dcz_para_tabs
 mode: default
 content:
   field_content:
+    type: text_textarea
     weight: 2
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   field_content_end:
+    type: text_textarea
     weight: 4
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   field_description:
+    type: string_textfield
     weight: 1
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_paragraphs:
     type: entity_reference_paragraphs
     weight: 3
+    region: content
     settings:
       title: Item
       title_plural: Items
@@ -51,7 +52,6 @@ content:
       form_display_mode: default
       default_paragraph_type: _none
     third_party_settings: {  }
-    region: content
 hidden:
   created: true
   status: true

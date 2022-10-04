@@ -22,18 +22,18 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       dcz_para_content: dcz_para_content
       dcz_para_tab: dcz_para_tab
       dcz_para_tabs: dcz_para_tabs
+    negate: 0
     target_bundles_drag_drop:
       dcz_para_block_reference:
         weight: 9
         enabled: false
       dcz_para_content:
-        enabled: true
         weight: 10
+        enabled: true
       dcz_para_gallery:
         weight: 11
         enabled: false
@@ -44,11 +44,11 @@ settings:
         weight: 13
         enabled: false
       dcz_para_tab:
-        enabled: true
         weight: 14
-      dcz_para_tabs:
         enabled: true
+      dcz_para_tabs:
         weight: 15
+        enabled: true
       dcz_para_video:
         weight: 16
         enabled: false

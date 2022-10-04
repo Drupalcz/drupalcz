@@ -12,12 +12,12 @@ pattern: '[term:name]'
 selection_criteria:
   cc733fe9-0e4d-4760-b3de-5d5788678ed4:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      drupal_version: drupal_version
     negate: false
+    uuid: cc733fe9-0e4d-4760-b3de-5d5788678ed4
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: cc733fe9-0e4d-4760-b3de-5d5788678ed4
+    bundles:
+      drupal_version: drupal_version
 selection_logic: and
 weight: -5
 relationships: {  }

@@ -55,8 +55,6 @@ settings:
             - Maximize
             - ShowBlocks
   plugins:
-    language:
-      language_list: un
     stylescombo:
       styles: "a.button|Button\r\np.lead|Leading text\r\np.extra-large|Extra large text\r\ncode|Inline code"
 image_upload:

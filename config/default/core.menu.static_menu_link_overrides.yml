@@ -1,14 +1,14 @@
+langcode: cs
 definitions:
   user__page:
-    weight: -50
     menu_name: account
     parent: ''
+    weight: -50
     expanded: false
     enabled: true
   user__logout:
-    weight: -48
     menu_name: account
     parent: ''
+    weight: -48
     expanded: false
     enabled: true
-langcode: cs

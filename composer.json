@@ -1,6 +1,6 @@
 {
     "name": "drupalcz/site",
-    "description": "Drupal.cz Community website.",
+    "description": "Drupal.cz Community website. (Drupal8 site built with BLT.)",
     "type": "project",
     "license": "GPL-2.0+",
     "authors": [
@@ -26,8 +26,9 @@
         "drupal/coder": "^8.3",
         "drupal/config_split": "^1.4",
         "drupal/config_update": "^1.5",
-        "drupal/core-composer-scaffold": "^8.9",
-        "drupal/core-recommended": "^8.9",
+        "drupal/core-composer-scaffold": "^9",
+        "drupal/core-project-message": "^9",
+        "drupal/core-recommended": "^9",
         "drupal/ctools": "^3.0",
         "drupal/default_content_deploy": "^1.0@alpha",
         "drupal/devel": "^4.0",
@@ -86,6 +87,7 @@
             "grasmash/drupal-security-warning": true,
             "acquia/blt": true,
             "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true,
             "oomphinc/composer-installers-extender": true
         }
     },
@@ -115,9 +117,6 @@
             "drupal/core": "-p2"
         },
         "patches": {
-            "drupal/core": {
-                "2920285 - Update module can get 'stuck' with 'no releases available": "https://www.drupal.org/files/issues/2020-07-20/2920285-11.patch"
-            },
             "drupal/media_entity_actions": {
                 "2998468 - Provide an upgrade path to core": "https://www.drupal.org/files/issues/2020-06-10/2998468-15.patch"
             },

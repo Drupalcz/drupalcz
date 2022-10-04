@@ -1,3 +1,4 @@
+langcode: cs
 favicon:
   mimetype: image/vnd.microsoft.icon
   path: ''
@@ -12,4 +13,3 @@ logo:
   path: ''
   url: ''
   use_default: true
-langcode: cs

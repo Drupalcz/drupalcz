@@ -44,8 +44,6 @@ settings:
   plugins:
     stylescombo:
       styles: "h2|H2\r\nh3|H3\r\nh4|H4\r\ncode.php|PHP kód\r\ncode.html|HTML kód\r\ncode.css|CSS styl\r\ncode.js|Javascriptový kód\r\ncode.jquery|jQuery kód\r\ncode.sql|SQL kód\r\ncode.twig|Twig kód\r\ncode.yaml|YAMLkód\r\n\r\n\r\n"
-    language:
-      language_list: un
 image_upload:
   status: true
   scheme: public

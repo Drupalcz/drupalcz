@@ -30,57 +30,57 @@ bundle: dcz_showcase
 mode: full
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 3
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 3
     region: content
   field_drupal_version:
-    weight: 2
+    type: entity_reference_label
     label: inline
     settings:
       link: false
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 2
     region: content
   field_logo:
     type: entity_reference_entity_view
-    weight: 0
-    region: content
     label: hidden
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
+    weight: 0
+    region: content
   field_main_screenshot:
     type: entity_reference_entity_view
-    weight: 1
-    region: content
     label: hidden
     settings:
       view_mode: screenshot
       link: false
     third_party_settings: {  }
+    weight: 1
+    region: content
   field_other_screenshots:
     type: entity_reference_entity_view
-    weight: 7
-    region: content
     label: above
     settings:
       view_mode: screenshot
       link: false
     third_party_settings: {  }
+    weight: 7
+    region: content
   field_tags:
     type: entity_reference_label
-    weight: 6
-    region: content
     label: hidden
     settings:
       link: true
     third_party_settings: {  }
+    weight: 6
+    region: content
   field_url:
-    weight: 4
+    type: link
     label: hidden
     settings:
       trim_length: null
@@ -89,13 +89,13 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    type: link
+    weight: 4
     region: content
   links:
-    weight: 5
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 5
+    region: content
 hidden:
   field_display_options: true
   langcode: true

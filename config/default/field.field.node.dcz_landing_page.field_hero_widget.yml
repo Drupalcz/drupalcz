@@ -30,8 +30,8 @@ settings:
         weight: 7
         enabled: false
       dcz_para_hero:
-        enabled: true
         weight: 8
+        enabled: true
       dcz_para_image:
         weight: 9
         enabled: false

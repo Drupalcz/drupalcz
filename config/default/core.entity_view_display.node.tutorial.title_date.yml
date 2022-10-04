@@ -28,82 +28,82 @@ third_party_settings:
     default: default
     displays:
       default:
+        id: panels_variant
+        label: Default
+        weight: 0
+        uuid: 54eaca50-198e-4071-8545-756050069bb4
         blocks:
           3146d6ec-6342-4cd9-a186-9febe2641c40:
             id: 'entity_field:node:created'
             label: 'Authored on'
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: timestamp
+              weight: 0
+              region: content
+              label: hidden
               settings:
                 date_format: czech_date
                 custom_date_format: ''
                 timezone: ''
               third_party_settings: {  }
-              weight: 0
-              region: content
             region: date
             weight: 0
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
             uuid: 3146d6ec-6342-4cd9-a186-9febe2641c40
           7f49939f-98bf-4d5b-9b7b-6ff89cdfc6c0:
             id: 'entity_field:node:title'
             label: Title
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: string
+              weight: 0
+              label: hidden
               settings:
                 link_to_entity: true
               third_party_settings: {  }
-              weight: 0
             region: title
             weight: 0
             uuid: 7f49939f-98bf-4d5b-9b7b-6ff89cdfc6c0
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-        id: panels_variant
-        label: Default
-        uuid: 54eaca50-198e-4071-8545-756050069bb4
-        weight: 0
+        page_title: ''
         layout: title_date
         layout_settings: {  }
-        page_title: ''
+        builder: ipe
         storage_type: panelizer_default
         storage_id: 'node:tutorial:title_date:default'
-        builder: ipe
-        pattern: panelizer
         static_context: {  }
+        pattern: panelizer
 id: node.tutorial.title_date
 targetEntityType: node
 bundle: tutorial
 mode: title_date
 content:
   body:
-    weight: 2
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 2
     region: content
   field_paragraphs:
-    weight: 1
+    type: entity_reference_revisions_entity_view
     label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
+    weight: 1
     region: content
   links:
-    weight: 0
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   field_authors: true
   field_clients: true

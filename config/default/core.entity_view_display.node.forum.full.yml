@@ -23,128 +23,128 @@ third_party_settings:
     default: default
     displays:
       default:
+        id: panels_variant
+        label: Default
+        weight: 0
+        uuid: ecaa952b-1f0d-4ac3-8fdc-c2fbda9c08b4
         blocks:
           4266d7f5-3efe-4a9c-a2b2-2100eb25c1cc:
             id: 'entity_field:node:uid'
             label: 'Authored by'
-            provider: ctools_block
             label_display: '0'
-            formatter:
-              label: hidden
-              type: author
-              settings: {  }
-              third_party_settings: {  }
-              weight: 0
-              region: content
-            region: top
-            weight: -2
+            provider: ctools_block
             context_mapping:
               entity: '@panelizer.entity_context:entity'
+            formatter:
+              type: author
+              weight: 0
+              region: content
+              label: hidden
+              settings: {  }
+              third_party_settings: {  }
+            region: top
+            weight: -2
             uuid: 4266d7f5-3efe-4a9c-a2b2-2100eb25c1cc
           07ffeb4c-cd29-45d8-8ab9-d7dcd4f94a16:
             id: 'entity_field:node:created'
             label: 'Authored on'
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: timestamp
+              weight: 0
+              region: content
+              label: hidden
               settings:
                 date_format: medium
                 custom_date_format: ''
                 timezone: ''
               third_party_settings: {  }
-              weight: 0
-              region: content
             region: top
             weight: -1
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
             uuid: 07ffeb4c-cd29-45d8-8ab9-d7dcd4f94a16
           369ea78d-6d01-4b08-8134-7ed715d82116:
             id: 'entity_field:node:body'
             label: Text
-            provider: ctools_block
             label_display: '0'
-            formatter:
-              label: hidden
-              type: text_default
-              settings: {  }
-              third_party_settings: {  }
-              weight: 0
-              region: content
-            region: middle
-            weight: -10
+            provider: ctools_block
             context_mapping:
               entity: '@panelizer.entity_context:entity'
+            formatter:
+              type: text_default
+              weight: 0
+              region: content
+              label: hidden
+              settings: {  }
+              third_party_settings: {  }
+            region: middle
+            weight: -10
             uuid: 369ea78d-6d01-4b08-8134-7ed715d82116
           3132bec0-e67c-4e6d-bc6f-f67b1de4fe29:
             id: 'entity_field:node:comment_forum'
             label: Komentáře
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: comment_default
+              weight: 0
+              region: content
+              label: hidden
               settings:
                 view_mode: default
                 pager_id: 0
               third_party_settings: {  }
-              weight: 0
-              region: content
             region: bottom
             weight: -2
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
             uuid: 3132bec0-e67c-4e6d-bc6f-f67b1de4fe29
           c79850be-045b-4613-bb5b-e5df49149904:
             id: 'entity_field:node:field_drupal_version'
             label: 'Drupal version'
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: inline
               type: entity_reference_label
+              weight: 0
+              region: content
+              label: inline
               settings:
                 link: true
               third_party_settings: {  }
-              weight: 0
-              region: content
             region: first_above
             weight: -1
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
             uuid: c79850be-045b-4613-bb5b-e5df49149904
           37afdc9a-7c33-4bbb-8054-31dc94aca5b6:
             id: 'entity_field:node:taxonomy_forums'
             label: Fórum
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: inline
               type: entity_reference_label
+              weight: 0
+              region: content
+              label: inline
               settings:
                 link: true
               third_party_settings: {  }
-              weight: 0
-              region: content
             region: first_above
             weight: -2
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
             uuid: 37afdc9a-7c33-4bbb-8054-31dc94aca5b6
-        id: panels_variant
-        label: Default
-        uuid: ecaa952b-1f0d-4ac3-8fdc-c2fbda9c08b4
-        weight: 0
+        page_title: '[node:title]'
         layout: layout_twocol_bricks
         layout_settings: {  }
-        page_title: '[node:title]'
+        builder: ipe
         storage_type: panelizer_default
         storage_id: 'node:forum:full:default'
-        builder: ipe
-        pattern: panelizer
         static_context: {  }
+        pattern: panelizer
 _core:
   default_config_hash: TM_8DV1XKUAtF-wGxTBLOtg_GTtF5CX9WLrADxG7Xm4
 id: node.forum.full
@@ -153,41 +153,41 @@ bundle: forum
 mode: full
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 2
-    region: content
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-  comment_forum:
-    label: hidden
-    type: comment_default
-    weight: 3
+    weight: 2
     region: content
+  comment_forum:
+    type: comment_default
+    label: hidden
     settings:
       view_mode: default
       pager_id: 0
     third_party_settings: {  }
+    weight: 3
+    region: content
   field_drupal_version:
-    weight: 1
+    type: entity_reference_label
     label: inline
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 1
     region: content
   links:
-    weight: 4
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 4
+    region: content
   taxonomy_forums:
     type: entity_reference_label
-    weight: 0
-    region: content
     label: inline
     settings:
       link: true
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   langcode: true

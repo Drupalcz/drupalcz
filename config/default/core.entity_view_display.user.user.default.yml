@@ -22,72 +22,81 @@ third_party_settings:
     default: default
     displays:
       default:
+        id: panels_variant
+        label: Default
+        weight: 0
+        uuid: e78ba45e-a380-4cef-b5e0-8686aa27c505
         blocks:
           5a1396ce-a682-4ad8-ae17-bdef9cc76f32:
             id: 'entity_field:user:field_dcz_name'
             label: Name
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: string
+              weight: 0
+              region: content
+              label: hidden
               settings:
                 link_to_entity: false
               third_party_settings: {  }
-              weight: 0
-              region: content
             region: first_above
             weight: -10
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
             uuid: 5a1396ce-a682-4ad8-ae17-bdef9cc76f32
           e0534c3d-dc92-4049-a54d-8057a1ee8c3b:
             id: 'entity_field:user:field_dcz_surname'
             label: Surname
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: string
+              weight: 0
+              region: content
+              label: hidden
               settings:
                 link_to_entity: false
               third_party_settings: {  }
-              weight: 0
-              region: content
             region: first_above
             weight: -9
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
             uuid: e0534c3d-dc92-4049-a54d-8057a1ee8c3b
           402d0dcb-eb24-41cd-a590-2f2b61e2f304:
             id: 'entity_field:user:field_dcz_user_image'
             label: Avatar
-            provider: ctools_block
             label_display: '0'
-            formatter:
-              label: hidden
-              type: image
-              settings:
-                image_style: large
-                image_link: ''
-              third_party_settings: {  }
-              weight: 0
-              region: content
-            region: second_above
-            weight: -10
+            provider: ctools_block
             context_mapping:
               entity: '@panelizer.entity_context:entity'
+            formatter:
+              type: image
+              weight: 0
+              region: content
+              label: hidden
+              settings:
+                image_link: ''
+                image_style: large
+              third_party_settings: {  }
+            region: second_above
+            weight: -10
             uuid: 402d0dcb-eb24-41cd-a590-2f2b61e2f304
           6291af4c-08ca-4133-9a84-4c9b6fef1a08:
             id: 'entity_field:user:field_location'
             label: Location
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: geolocation_map
+              weight: 0
+              region: content
+              label: hidden
               settings:
                 set_marker: true
+                use_overridden_map_settings: false
                 title: ''
                 info_text:
                   value: ''
@@ -98,44 +107,44 @@ third_party_settings:
                 centre:
                   fit_bounds:
                     enable: true
-                    settings:
-                      min_zoom: null
-                      reset_zoom: true
                     weight: -101
+                    settings:
+                      reset_zoom: true
+                      min_zoom: null
                     map_center_id: fit_bounds
                   ipstack:
-                    settings:
-                      access_key: ''
-                      location_option_id: ipstack
-                    weight: 0
                     enable: false
+                    weight: 0
+                    settings:
+                      location_option_id: ipstack
+                      access_key: ''
                     map_center_id: location_plugins
                   freeogeoip:
-                    weight: 0
                     enable: false
-                    map_center_id: location_plugins
+                    weight: 0
                     settings:
                       location_option_id: freeogeoip
+                    map_center_id: location_plugins
                   fixed_value:
+                    enable: false
+                    weight: 0
                     settings:
+                      location_option_id: fixed_value
                       latitude: null
                       longitude: null
-                      location_option_id: fixed_value
-                    weight: 0
-                    enable: false
                     map_center_id: location_plugins
                   fixed_boundaries:
+                    enable: false
+                    weight: 0
                     settings:
-                      north: ''
-                      east: ''
                       south: ''
                       west: ''
-                    weight: 0
-                    enable: false
+                      north: ''
+                      east: ''
                     map_center_id: fixed_boundaries
                   client_location:
-                    weight: 0
                     enable: false
+                    weight: 0
                     map_center_id: client_location
                 map_provider_id: leaflet
                 map_provider_settings:
@@ -395,9 +404,9 @@ third_party_settings:
                     leaflet_marker_popup:
                       weight: 0
                     leaflet_marker_icon:
-                      enabled: true
                       weight: 0
                       settings:
+                        marker_shadow_path: ''
                         marker_icon_path: /themes/custom/dcz_theme/images/drupal-marker.svg
                         icon_size:
                           width: null
@@ -408,13 +417,13 @@ third_party_settings:
                         popup_anchor:
                           x: 0
                           'y': 0
-                        marker_shadow_path: ''
                         shadow_size:
                           width: null
                           height: null
                         shadow_anchor:
                           x: null
                           'y': null
+                      enabled: true
                     leaflet_marker_clusterer:
                       weight: 0
                       settings:
@@ -423,10 +432,10 @@ third_party_settings:
                           zoom_to_bounds_on_click: true
                         disable_clustering_at_zoom: 0
                     leaflet_control_zoom:
-                      enabled: true
                       weight: 0
                       settings:
                         position: topright
+                      enabled: true
                     leaflet_control_scale:
                       weight: 0
                       settings:
@@ -438,10 +447,10 @@ third_party_settings:
                       settings:
                         position: topright
                     leaflet_control_locate:
-                      enabled: true
                       weight: 0
                       settings:
                         position: topright
+                      enabled: true
                     leaflet_control_geocoder:
                       weight: 0
                       settings:
@@ -470,11 +479,10 @@ third_party_settings:
                         srs: ''
                         format: image/jpeg
                     marker_infobubble:
-                      enabled: false
                       weight: 0
                       settings:
-                        close_button: 0
                         close_other: 0
+                        close_button: 0
                         close_button_src: ''
                         shadow_style: 0
                         padding: 10
@@ -489,21 +497,21 @@ third_party_settings:
                         arrow_style: 2
                         arrow_position: 30
                         arrow_size: 10
-                    control_streetview:
                       enabled: false
+                    control_streetview:
                       weight: 0
                       settings:
                         position: TOP_LEFT
                         behavior: default
-                    control_zoom:
                       enabled: false
+                    control_zoom:
                       weight: 0
                       settings:
                         position: RIGHT_CENTER
                         behavior: default
                         style: LARGE
-                    map_restriction:
                       enabled: false
+                    map_restriction:
                       weight: 0
                       settings:
                         north: ''
@@ -511,24 +519,24 @@ third_party_settings:
                         east: ''
                         west: ''
                         strict: false
-                    map_type_style:
                       enabled: false
+                    map_type_style:
                       weight: 0
                       settings:
                         style: '[]'
-                    marker_clusterer:
                       enabled: false
+                    marker_clusterer:
                       weight: 0
                       settings:
                         image_path: ''
                         styles: ''
+                        max_zoom: 15
+                        minimum_cluster_size: 2
                         zoom_on_click: false
                         average_center: false
                         grid_size: 60
-                        minimum_cluster_size: 2
-                        max_zoom: 15
-                    marker_icon:
                       enabled: false
+                    marker_icon:
                       weight: 0
                       settings:
                         marker_icon_path: ''
@@ -547,39 +555,39 @@ third_party_settings:
                         scaled_size:
                           width: null
                           height: null
-                    marker_infowindow:
                       enabled: false
+                    marker_infowindow:
                       weight: 0
                       settings:
                         info_window_solitary: false
-                        info_auto_display: false
                         disable_auto_pan: false
+                        info_auto_display: false
                         max_width: null
-                    control_recenter:
                       enabled: false
+                    control_recenter:
                       weight: 0
                       settings:
                         position: TOP_LEFT
-                    marker_label:
                       enabled: false
+                    marker_label:
                       weight: 0
                       settings:
                         color: ''
                         font_family: ''
                         font_size: ''
                         font_weight: ''
-                    marker_opacity:
                       enabled: false
+                    marker_opacity:
                       weight: 0
                       settings:
                         opacity: !!float 1
-                    marker_zoom_to_animate:
                       enabled: false
+                    marker_zoom_to_animate:
                       weight: 0
                       settings:
                         marker_zoom_anchor_id: ''
-                    spiderfying:
                       enabled: false
+                    spiderfying:
                       weight: 0
                       settings:
                         spiderfiable_marker_path: /modules/contrib/geolocation/modules/geolocation_google_maps/images/marker-plus.svg
@@ -594,51 +602,51 @@ third_party_settings:
                         spiralLengthStart: 11
                         spiralLengthFactor: 4
                         legWeight: 1.5
+                      enabled: false
                     google_maps_layer_traffic:
-                      enabled: false
                       weight: 0
-                    control_rotate:
                       enabled: false
+                    control_rotate:
                       weight: 0
                       settings:
                         position: TOP_LEFT
                         behavior: default
-                    control_maptype:
                       enabled: false
+                    control_maptype:
                       weight: 0
                       settings:
                         position: RIGHT_BOTTOM
                         behavior: default
                         style: DEFAULT
-                    context_popup:
                       enabled: false
+                    context_popup:
                       weight: 0
                       settings:
                         content:
                           value: ''
                           format: full_html
+                      enabled: false
                     google_maps_layer_bicycling:
-                      enabled: false
                       weight: 0
+                      enabled: false
                     client_location_indicator:
-                      enabled: false
                       weight: 0
+                      enabled: false
                     map_disable_tilt:
-                      enabled: false
                       weight: 0
-                    control_locate:
                       enabled: false
+                    control_locate:
                       weight: 0
                       settings:
                         position: TOP_LEFT
+                      enabled: false
                     map_disable_poi:
-                      enabled: false
                       weight: 0
+                      enabled: false
                     map_disable_user_interaction:
-                      enabled: false
                       weight: 0
-                    drawing:
                       enabled: false
+                    drawing:
                       weight: 0
                       settings:
                         polyline: false
@@ -649,14 +657,14 @@ third_party_settings:
                         polygon: false
                         fillColor: '#FF0000'
                         fillOpacity: '0.35'
-                    control_fullscreen:
                       enabled: false
+                    control_fullscreen:
                       weight: 0
                       settings:
                         position: TOP_LEFT
                         behavior: default
-                    control_geocoder:
                       enabled: false
+                    control_geocoder:
                       weight: 0
                       settings:
                         position: TOP_LEFT
@@ -667,162 +675,156 @@ third_party_settings:
                           autocomplete_min_length: 1
                           component_restrictions:
                             route: ''
-                            locality: ''
-                            administrative_area: ''
-                            postal_code: ''
                             country: ''
+                            administrative_area: ''
+                            locality: ''
+                            postal_code: ''
                           boundary_restriction:
                             south: ''
                             west: ''
                             north: ''
                             east: ''
-                    control_loading_indicator:
                       enabled: false
+                    control_loading_indicator:
                       weight: 0
                       settings:
                         position: TOP_LEFT
                         loading_label: Loading
-                    google_maps_layer_transit:
                       enabled: false
+                    google_maps_layer_transit:
                       weight: 0
+                      enabled: false
+                  zoom: '10'
                   height: 400px
                   width: 100%
+                  minZoom: '0'
+                  maxZoom: '20'
                   type: ROADMAP
-                  zoom: '10'
-                  maxZoom: 20
-                  minZoom: 0
                   gestureHandling: auto
-                use_overridden_map_settings: false
               third_party_settings: {  }
-              weight: 0
-              region: content
             region: bottom
             weight: -4
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
             uuid: 6291af4c-08ca-4133-9a84-4c9b6fef1a08
           24c8a4f4-2f34-49e6-8ebf-aff64c6e662c:
             id: 'entity_field:user:field_dcz_bio'
             label: Bio
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: text_default
+              weight: 0
+              label: hidden
               settings: {  }
               third_party_settings: {  }
-              weight: 0
             region: middle
             weight: -9
             uuid: 24c8a4f4-2f34-49e6-8ebf-aff64c6e662c
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
           19091d04-9e4d-4342-8be4-fe46fe8536f8:
             id: 'entity_field:user:created'
             label: Created
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: inline
               type: timestamp
+              weight: 0
+              label: inline
               settings:
                 date_format: czech_date
                 custom_date_format: ''
                 timezone: ''
               third_party_settings: {  }
-              weight: 0
             region: first_above
             weight: -8
             uuid: 19091d04-9e4d-4342-8be4-fe46fe8536f8
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
           1c4c9f11-ac9f-4407-a163-3a9a689842ba:
             id: 'views_block:dcz_articles-block_user_articles'
             label: ''
-            provider: views
             label_display: visible
+            provider: views
+            context_mapping: {  }
             views_label: ''
             items_per_page: none
             region: first_below
             weight: 0
             uuid: 1c4c9f11-ac9f-4407-a163-3a9a689842ba
-            context_mapping: {  }
           6fd0396f-c296-4dd1-85e4-1a2d479b92c8:
             id: 'views_block:dcz_tutorials-block_user_tutorials'
             label: ''
-            provider: views
             label_display: visible
+            provider: views
+            context_mapping: {  }
             views_label: ''
             items_per_page: none
             region: second_below
             weight: 0
             uuid: 6fd0396f-c296-4dd1-85e4-1a2d479b92c8
-            context_mapping: {  }
           3871d9ce-19f4-4ee1-aebe-f8fe18da58a4:
             id: 'entity_field:user:name'
             label: Name
-            provider: ctools_block
             label_display: '0'
+            provider: ctools_block
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
             formatter:
-              label: hidden
               type: user_name
+              weight: 0
+              label: hidden
               settings:
                 link_to_entity: false
               third_party_settings: {  }
-              weight: 0
             region: top
             weight: 0
             uuid: 3871d9ce-19f4-4ee1-aebe-f8fe18da58a4
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-        id: panels_variant
-        label: Default
-        uuid: e78ba45e-a380-4cef-b5e0-8686aa27c505
-        weight: 0
+        page_title: null
         layout: layout_twocol_bricks
         layout_settings: {  }
-        page_title: null
+        builder: standard
         storage_type: panelizer_default
         storage_id: 'user:user:default:default'
-        builder: standard
-        pattern: panelizer
         static_context: {  }
+        pattern: panelizer
 id: user.user.default
 targetEntityType: user
 bundle: user
 mode: default
 content:
   field_dcz_name:
-    weight: 1
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 1
     region: content
   field_dcz_surname:
-    weight: 2
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 2
     region: content
   field_dcz_user_image:
-    weight: 0
+    type: image
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
-    type: image
+    weight: 0
     region: content
   field_location:
-    weight: 6
+    type: geolocation_latlng
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: geolocation_latlng
+    weight: 6
     region: content
 hidden:
   field_dcz_bio: true

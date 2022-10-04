@@ -11,19 +11,19 @@ id: landscape
 label: Landscape
 image_style_mappings:
   -
-    breakpoint_id: dcz_theme.large
-    multiplier: 1x
     image_mapping_type: image_style
     image_mapping: landscape
+    breakpoint_id: dcz_theme.large
+    multiplier: 1x
   -
+    image_mapping_type: image_style
+    image_mapping: landscape_small
     breakpoint_id: dcz_theme.small
     multiplier: 1x
+  -
     image_mapping_type: image_style
     image_mapping: landscape_small
-  -
     breakpoint_id: dcz_theme.smallest
     multiplier: 1x
-    image_mapping_type: image_style
-    image_mapping: landscape_small
 breakpoint_group: dcz_theme
 fallback_image_style: landscape

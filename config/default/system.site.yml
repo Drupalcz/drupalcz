@@ -1,3 +1,4 @@
+langcode: cs
 uuid: 4ac9fc2e-f80a-4276-9b03-03f030798435
 name: Drupal.cz
 mail: info@drupal.cz
@@ -8,6 +9,5 @@ page:
   front: /node/21
 admin_compact_mode: false
 weight_select_max: 100
-langcode: cs
 default_langcode: cs
 mail_notification: ''

@@ -12,12 +12,12 @@ pattern: 'stitky/[term:name]'
 selection_criteria:
   96d7f0aa-2b6a-4371-829f-46cc8628b135:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      tags: tags
     negate: false
+    uuid: 96d7f0aa-2b6a-4371-829f-46cc8628b135
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: 96d7f0aa-2b6a-4371-829f-46cc8628b135
+    bundles:
+      tags: tags
 selection_logic: and
 weight: -5
 relationships: {  }

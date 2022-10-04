@@ -1,7 +1,15 @@
 uuid: 2f4da5b8-75f3-4531-b700-00062545d135
 langcode: cs
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.forum
+  module:
+    - comment
+    - eu_cookie_compliance
+    - filter
+    - media
+    - system
 id: anonymous
 label: 'Anonymous user'
 weight: -10

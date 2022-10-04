@@ -11,14 +11,14 @@ id: screenshot
 label: Screenshot
 image_style_mappings:
   -
-    breakpoint_id: dcz_theme.large
-    multiplier: 1x
     image_mapping_type: image_style
     image_mapping: screenshot_large
-  -
-    breakpoint_id: dcz_theme.small
+    breakpoint_id: dcz_theme.large
     multiplier: 1x
+  -
     image_mapping_type: image_style
     image_mapping: screenshot_small
+    breakpoint_id: dcz_theme.small
+    multiplier: 1x
 breakpoint_group: dcz_theme
 fallback_image_style: screenshot_small
