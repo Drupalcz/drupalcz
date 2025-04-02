@@ -24,7 +24,7 @@
         "drupal/better_normalizers": "^1.0@beta",
         "drupal/captcha": "^1.0@beta",
         "drupal/coder": "^8.3",
-        "drupal/config_split": "^1.4",
+        "drupal/config_split": "^2.0",
         "drupal/config_update": "^1.5",
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-project-message": "^9",
