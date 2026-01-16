@@ -140,6 +140,17 @@ if (isset($_ENV["LANDO_APP_NAME"])) {
 }
 
 /**
+ * DDEV environment settings.
+ */
+if (getenv('IS_DDEV_PROJECT') == 'true') {
+  $path = DRUPAL_ROOT . "/sites/default/settings/ddev.settings.php";
+  // Load settings.
+  if (!empty($path) && file_exists($path)) {
+    require $path;
+  }
+}
+
+/**
  * Allow final local override.
  */
 $path = DRUPAL_ROOT . "/sites/default/settings/local.settings.php";
