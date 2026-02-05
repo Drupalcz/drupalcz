@@ -79,6 +79,16 @@ set -x
 composer install --prefer-dist --no-progress --no-suggest
 { [ "${DEBUG}" ] || set +x; } 2>/dev/null
 
+# Build all Drupal libraries
+for dir in docroot/libraries/*; do
+  if [ -f "$dir/package.json" ]; then
+    cd "$dir"
+    npm ci
+    npm run build || true
+    cd -
+  fi
+done
+
 # Get current branch name.
 BRANCHNAME="$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)"
 if [ "$BRANCHNAME" == "HEAD" ]; then
