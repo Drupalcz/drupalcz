@@ -83,7 +83,6 @@ composer install --prefer-dist --no-progress --no-suggest
 for dir in docroot/libraries/*; do
   if [ -f "$dir/package.json" ]; then
     cd "$dir"
-    npm ci
     npm run build || true
     cd -
   fi
