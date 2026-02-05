@@ -79,15 +79,11 @@ set -x
 composer install --prefer-dist --no-progress --no-suggest
 { [ "${DEBUG}" ] || set +x; } 2>/dev/null
 
-# Build all Drupal libraries
-for dir in docroot/libraries/*; do
-  if [ -f "$dir/package.json" ]; then
-    cd "$dir"
-    yarn install
-    yarn build
-    cd -
-  fi
-done
+# Build Dropzone Drupal library
+cd "docroot/libraries/dropzone"
+yarn install
+yarn build
+cd -
 
 # Get current branch name.
 BRANCHNAME="$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)"
