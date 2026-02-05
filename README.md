@@ -21,6 +21,22 @@ Branch | Build status | Dev site | HTTP Basic auth
 * .travis.yml - Travis CI test suite configuration.
 
 ## Requirements
+### Pokud používáte DDEV
+* Nainstalujte si DDEV, https://ddev.readthedocs.io/en/stable/#installation
+* V adresáři projektu spusťte DDEV
+
+      ddev start
+
+* Po prvním spuštění nainstalujte Drupal:
+
+      ddev drush si minimal --existing-config
+
+* Přihlaste se:
+
+      ddev drush uli
+
+* **Pokud migrujete z Lando**, viz [DDEV_MIGRATION.md](DDEV_MIGRATION.md)
+
 ### Pokud používáte Lando
 * Nainstalujte si Lando, https://docs.devwithlando.io/installation/system-requirements.html
 * V adresáři projektu spusťte Lando
