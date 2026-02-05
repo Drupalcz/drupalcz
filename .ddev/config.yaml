@@ -1,7 +1,7 @@
 name: drupalcz
 type: drupal9
 docroot: docroot
-php_version: "7.4"
+php_version: "8.1"
 webserver_type: apache-fpm
 router_http_port: "80"
 router_https_port: "443"
@@ -18,4 +18,3 @@ web_environment: []
 hooks:
   post-start:
     - exec: scripts/create-settings.sh
-
