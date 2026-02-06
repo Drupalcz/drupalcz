@@ -1,0 +1,15 @@
+slack_invite.settings:
+  path: '/admin/config/services/slack-invite'
+  defaults:
+    _form: 'Drupal\slack_invite\Form\SlackInviteSettingsForm'
+    _title: 'Slack Invite Settings'
+  requirements:
+    _permission: 'administer slack invite'
+
+slack_invite.twostep:
+  path: '/slack_invite/{email}/{token}'
+  defaults:
+    _form: 'Drupal\slack_invite\Form\SlackInviteTwoStepApproveForm'
+    _title: 'Approve Slack invitation'
+  requirements:
+    _custom_access: 'Drupal\slack_invite\Form\SlackInviteTwoStepApproveForm::access'

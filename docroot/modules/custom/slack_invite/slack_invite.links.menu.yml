@@ -1,0 +1,5 @@
+slack_invite.settingss:
+  title: 'Slack Invite'
+  parent: system.admin_config_services
+  description: 'Slack Invite Settings'
+  route_name: slack_invite.settings
