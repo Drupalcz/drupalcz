@@ -5499,6 +5499,50 @@
             }
         },
         {
+            "name": "drupal/slack_invite",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/slack_invite.git",
+                "reference": "2.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/slack_invite-2.0.0.zip",
+                "reference": "2.0.0",
+                "shasum": "9d3ace0798782dc1e9421bd53d73c7222d5cce42"
+            },
+            "require": {
+                "drupal/core": "^8.8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.0",
+                    "datestamp": "1605030284",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "BTMash",
+                    "homepage": "https://www.drupal.org/user/60422"
+                }
+            ],
+            "description": "Invite your users to your slack team",
+            "homepage": "https://www.drupal.org/project/slack_invite",
+            "support": {
+                "source": "https://git.drupalcode.org/project/slack_invite"
+            }
+        },
+        {
             "name": "drupal/stage_file_proxy",
             "version": "1.2.0",
             "source": {
@@ -11463,6 +11507,6 @@
     "platform": {
         "php": ">=7.4"
     },
-    "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }
