@@ -46,7 +46,7 @@ widgets:
       clientside_resize: false
       resize_width: null
       resize_height: null
-      resize_quality: !!float 1
+      resize_quality: 1.0
       resize_method: contain
       thumbnail_method: contain
       media_type: image

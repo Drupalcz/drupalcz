@@ -314,7 +314,7 @@ display:
         - 'config:field.storage.node.field_teaser_text'
   block_user_articles:
     id: block_user_articles
-    display_title: 'User''s articles'
+    display_title: "User's articles"
     display_plugin: block
     position: 2
     display_options:

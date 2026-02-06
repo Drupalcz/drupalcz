@@ -51,6 +51,7 @@ module:
   jquery_ui: 0
   jquery_ui_draggable: 0
   jquery_ui_droppable: 0
+  jquery_ui_menu: 0
   language: 0
   layout_discovery: 0
   link: 0

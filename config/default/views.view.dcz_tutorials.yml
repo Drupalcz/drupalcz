@@ -300,7 +300,7 @@ display:
         - 'config:field.storage.node.field_teaser_text'
   block_user_tutorials:
     id: block_user_tutorials
-    display_title: 'User''s tutorials'
+    display_title: "User's tutorials"
     display_plugin: block
     position: 2
     display_options:

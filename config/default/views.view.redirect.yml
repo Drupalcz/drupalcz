@@ -247,7 +247,7 @@ display:
         type: basic
         options:
           submit_button: Filtr
-          reset_button: false
+          reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Řadit dle'
           expose_sort_order: true
