@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "acquia/memcache-settings": "*",
         "bower-asset/dropzone": "^5.1",
         "bower-asset/flexslider": "^2.6",
