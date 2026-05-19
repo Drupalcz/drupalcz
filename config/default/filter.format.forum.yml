@@ -15,15 +15,6 @@ filters:
     status: true
     weight: 0
     settings: {  }
-  filter_html:
-    id: filter_html
-    provider: filter
-    status: true
-    weight: -10
-    settings:
-      allowed_html: '<a href hreflang> <em> <strong> <cite> <blockquote cite> <code class> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <p> <br> <span> <img src alt data-entity-type data-entity-uuid data-align data-caption width height> <drupal-entity data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr>'
-      filter_html_help: true
-      filter_html_nofollow: true
   filter_caption:
     id: filter_caption
     provider: filter
@@ -38,3 +29,12 @@ filters:
     settings:
       general_tags: {  }
       per_language_settings: {  }
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: '<br> <p> <h2 id> <h3 id> <h4 id> <code class="php html css js jquery sql twig yaml"> <cite> <dl> <dt> <dd> <span> <drupal-entity data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <a hreflang href> <blockquote cite> <ul type> <ol type start> <img data-align src alt height width data-entity-uuid data-entity-type data-caption> <strong> <em> <li> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption>'
+      filter_html_help: true
+      filter_html_nofollow: true
