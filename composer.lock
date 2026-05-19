@@ -124,12 +124,12 @@
             "version": "2.7.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/woocommerce/FlexSlider.git",
+                "url": "git@github.com:woothemes/FlexSlider.git",
                 "reference": "690832b7f972298e76e2965714657a2beec9e35c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/woocommerce/FlexSlider/zipball/690832b7f972298e76e2965714657a2beec9e35c",
+                "url": "https://api.github.com/repos/woothemes/FlexSlider/zipball/690832b7f972298e76e2965714657a2beec9e35c",
                 "reference": "690832b7f972298e76e2965714657a2beec9e35c"
             },
             "require": {

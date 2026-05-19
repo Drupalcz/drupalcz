@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ * Primarily Drupal hooks and global API functions to manipulate slack invite.
+ *
+ * This is the main module file for Slack Invite.
+ */
+
+
+define('SLACK_INVITE_ALREADY_IN_TEAM', 'already_in_team');
+define('SLACK_INVITE_SENT_RECENTLY', 'sent_recently');
+define('SLACK_INVITE_ALREADY_INVITED', 'already_invited');
+
+/**
+ * Sends slack invite to email address.
+ */
+function _slack_invite_send_invite($email) {
+  $team_hostname = variable_get('slack_invite_hostname', '');
+  $api_url = "https://{$team_hostname}.slack.com/api/users.admin.invite?t=" . time();
+
+  $data = [
+    '_attempts' => 1,
+    'email' => $email,
+    'set_active' => 'true',
+    'token' => variable_get('slack_invite_token', ''),
+  ];
+
+  $data['channels'] = variable_get('slack_invite_channels', '');
+  if (empty($data['channels'])) {
+    unset($data['channels']);
+  }
+
+  $data = drupal_http_build_query($data);
+  $options = [
+    'method' => 'POST',
+    'headers' => ['Content-Type' => 'application/x-www-form-urlencoded'],
+    'data' => $data,
+  ];
+
+  return drupal_http_request("{$api_url}", $options);
+}
