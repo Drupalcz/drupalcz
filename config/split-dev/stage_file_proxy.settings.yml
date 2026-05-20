@@ -1,0 +1,5 @@
+hotlink: false
+origin: 'https://www.drupal.cz'
+origin_dir: sites/default/files
+use_imagecache_root: true
+verify: true
