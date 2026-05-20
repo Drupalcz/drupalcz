@@ -4,7 +4,6 @@ status: true
 dependencies:
   module:
     - editor
-    - geshifilter
 name: Fórum
 format: forum
 weight: -8
@@ -21,20 +20,18 @@ filters:
     status: true
     weight: 0
     settings: {  }
-  filter_geshifilter:
-    id: filter_geshifilter
-    provider: geshifilter
-    status: true
-    weight: 0
-    settings:
-      general_tags: {  }
-      per_language_settings: {  }
   filter_html:
     id: filter_html
     provider: filter
     status: true
     weight: -10
     settings:
-      allowed_html: '<br> <p> <h2 id> <h3 id> <h4 id> <code class="php html css js jquery sql twig yaml"> <cite> <dl> <dt> <dd> <span> <drupal-entity data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <a hreflang href> <blockquote cite> <ul type> <ol type start> <img data-align src alt height width data-entity-uuid data-entity-type data-caption> <strong> <em> <li> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption>'
+      allowed_html: '<br> <p> <pre> <h2 id> <h3 id> <h4 id> <code class="php html css js jquery sql twig yaml language-plaintext language-c language-cs language-cpp language-css language-diff language-html language-java language-javascript language-php language-python language-ruby language-typescript language-xml"> <cite> <dl> <dt> <dd> <span> <drupal-entity data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <a hreflang href> <blockquote cite> <ul type> <ol type start> <img data-align src alt height width data-entity-uuid data-entity-type data-caption> <strong> <em> <li> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption>'
       filter_html_help: true
       filter_html_nofollow: true
+  filter_image_lazy_load:
+    id: filter_image_lazy_load
+    provider: filter
+    status: true
+    weight: 1
+    settings: {  }

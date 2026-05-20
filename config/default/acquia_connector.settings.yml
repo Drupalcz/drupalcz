@@ -1,4 +1,3 @@
-langcode: cs
 debug: false
 cron_interval: 30
 cron_interval_override: 0

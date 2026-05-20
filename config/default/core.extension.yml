@@ -1,4 +1,3 @@
-langcode: cs
 module:
   acquia_connector: 0
   admin_toolbar: 0
@@ -10,6 +9,7 @@ module:
   breakpoint: 0
   captcha: 0
   ckeditor: 0
+  ckeditor5: 0
   comment: 0
   config: 0
   config_filter: 0
@@ -42,13 +42,13 @@ module:
   geolocation: 0
   geolocation_google_maps: 0
   geolocation_leaflet: 0
-  geshifilter: 0
   google_analytics: 0
   hal: 0
   history: 0
   image: 0
   inline_entity_form: 0
   jquery_ui: 0
+  jquery_ui_autocomplete: 0
   jquery_ui_draggable: 0
   jquery_ui_droppable: 0
   jquery_ui_menu: 0
@@ -72,6 +72,7 @@ module:
   paragraphs: 0
   path: 0
   path_alias: 0
+  phpass: 0
   redirect: 0
   redirect_404: 0
   responsive_image: 0

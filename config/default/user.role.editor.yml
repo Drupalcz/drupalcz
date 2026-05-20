@@ -51,6 +51,7 @@ permissions:
   - 'delete forum revisions'
   - 'delete own dcz_article content'
   - 'delete own dcz_showcase content'
+  - 'delete own files'
   - 'delete own forum content'
   - 'delete own page content'
   - 'delete own tutorial content'

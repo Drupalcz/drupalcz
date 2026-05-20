@@ -1,4 +1,3 @@
-langcode: cs
 definitions:
   user__page:
     menu_name: account

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0af903249270093c8953f67b239bb0bc",
+    "content-hash": "aedbe02c1a601516e07224b8ef9f386b",
     "packages": [
         {
             "name": "acquia/memcache-settings",
@@ -3863,52 +3863,6 @@
             }
         },
         {
-            "name": "drupal/geshifilter",
-            "version": "dev-3.0.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/geshifilter.git",
-                "reference": "013997908e85ed593463bd92c6a858976100774e"
-            },
-            "require": {
-                "drupal/core": "^9.3 || ^10",
-                "geshi/geshi": "^1.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-3.0.x": "3.0.x-dev"
-                },
-                "drupal": {
-                    "version": "3.0.x-dev",
-                    "datestamp": "1690004894",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "boombatower",
-                    "homepage": "https://www.drupal.org/user/214218"
-                },
-                {
-                    "name": "yukare",
-                    "homepage": "https://www.drupal.org/user/889254"
-                }
-            ],
-            "description": "Provides a filter to highlight source code using the GeSHi library (Generic Syntax Highlighter).",
-            "homepage": "https://www.drupal.org/project/geshifilter",
-            "support": {
-                "source": "https://git.drupalcode.org/project/geshifilter"
-            }
-        },
-        {
             "name": "drupal/google_analytics",
             "version": "4.0.3",
             "source": {
@@ -6177,52 +6131,6 @@
                 "source": "https://github.com/ezyang/htmlpurifier/tree/v4.19.0"
             },
             "time": "2025-10-17T16:34:55+00:00"
-        },
-        {
-            "name": "geshi/geshi",
-            "version": "v1.0.9.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GeSHi/geshi-1.0.git",
-                "reference": "fd22ab78481bf90337862b590e6f7517863926b8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GeSHi/geshi-1.0/zipball/fd22ab78481bf90337862b590e6f7517863926b8",
-                "reference": "fd22ab78481bf90337862b590e6f7517863926b8",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5 || ^8.2"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/geshi/",
-                    "src/geshi.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Benny Baumann",
-                    "email": "BenBE@geshi.org",
-                    "homepage": "http://blog.benny-baumann.de/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Generic Syntax Highlighter",
-            "homepage": "http://qbnz.com/highlighter/",
-            "support": {
-                "forum": "https://lists.sourceforge.net/lists/listinfo/geshi-users",
-                "irc": "irc://irc.freenode.org/geshi",
-                "issues": "https://sourceforge.net/p/geshi/feature-requests/",
-                "source": "https://github.com/GeSHi/geshi-1.0/tree/v1.0.9.1"
-            },
-            "time": "2019-10-20T20:54:46+00:00"
         },
         {
             "name": "grasmash/expander",

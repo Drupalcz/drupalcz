@@ -6,5 +6,6 @@ dependencies:
     - user
 id: user.compact
 label: Compact
+description: ''
 targetEntityType: user
 cache: true

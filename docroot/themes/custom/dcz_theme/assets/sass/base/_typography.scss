@@ -110,10 +110,40 @@ blockquote {
   }
 }
 
+// Inline code (e.g. `<code>foo</code>` inside paragraphs).
 code {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+  word-break: break-word;
+}
+
+// Block code: CKEditor 5 codeBlock output (`<pre><code class="language-…">`)
+// and legacy single-class `<code class="php|html|…">` from the GeshiFilter era.
+pre,
+code.php,
+code.html,
+code.css,
+code.js,
+code.jquery,
+code.sql,
+code.twig,
+code.yaml {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
   display: block;
+  margin: 1em 0;
   overflow: auto;
-  word-break: keep-all;
+  padding: 1em;
+  white-space: pre;
+}
+
+// Reset the inline `code` rule when it lives inside `<pre>`.
+pre code {
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  white-space: inherit;
 }
 
 .lead {

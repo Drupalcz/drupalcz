@@ -44,7 +44,6 @@
         "drupal/extlink": "^1.1",
         "drupal/flexslider": "^3.0",
         "drupal/geolocation": "^3.11",
-        "drupal/geshifilter": "^3.0",
         "drupal/google_analytics": "^4.0",
         "drupal/inline_entity_form": "^1.0@RC",
         "drupal/jquery_ui": "^1.8",

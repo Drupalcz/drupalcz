@@ -89,9 +89,33 @@ blockquote {
     line-height: 1; }
 
 code {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+  word-break: break-word; }
+
+pre,
+code.php,
+code.html,
+code.css,
+code.js,
+code.jquery,
+code.sql,
+code.twig,
+code.yaml {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
   display: block;
+  margin: 1em 0;
   overflow: auto;
-  word-break: keep-all; }
+  padding: 1em;
+  white-space: pre; }
+
+pre code {
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  white-space: inherit; }
 
 .lead {
   font-size: 2.43rem;
