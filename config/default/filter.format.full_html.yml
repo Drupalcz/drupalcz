@@ -5,7 +5,6 @@ dependencies:
   module:
     - editor
     - entity_embed
-    - geshifilter
 name: 'Full HTML'
 format: full_html
 weight: -10
@@ -15,6 +14,12 @@ filters:
     provider: editor
     status: true
     weight: -46
+    settings: {  }
+  entity_embed:
+    id: entity_embed
+    provider: entity_embed
+    status: true
+    weight: 0
     settings: {  }
   filter_align:
     id: filter_align
@@ -40,15 +45,9 @@ filters:
     status: false
     weight: -45
     settings:
-      allowed_html: '<em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <h1> <a href hreflang class="btn btn-primary"> <p class="lead"> <img src alt data-entity-type data-entity-uuid data-align data-caption> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr>'
+      allowed_html: '<a class="button"> <p class="lead extra-large">'
       filter_html_help: true
       filter_html_nofollow: false
-  filter_htmlcorrector:
-    id: filter_htmlcorrector
-    provider: filter
-    status: true
-    weight: -47
-    settings: {  }
   filter_html_escape:
     id: filter_html_escape
     provider: filter
@@ -61,6 +60,18 @@ filters:
     status: false
     weight: -41
     settings: {  }
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: true
+    weight: -47
+    settings: {  }
+  filter_image_lazy_load:
+    id: filter_image_lazy_load
+    provider: filter
+    status: true
+    weight: -45
+    settings: {  }
   filter_url:
     id: filter_url
     provider: filter
@@ -68,17 +79,3 @@ filters:
     weight: -48
     settings:
       filter_url_length: 72
-  filter_geshifilter:
-    id: filter_geshifilter
-    provider: geshifilter
-    status: true
-    weight: -50
-    settings:
-      general_tags: {  }
-      per_language_settings: {  }
-  entity_embed:
-    id: entity_embed
-    provider: entity_embed
-    status: true
-    weight: 0
-    settings: {  }

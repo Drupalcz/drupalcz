@@ -1,0 +1,35 @@
+diff --git a/src/ViewsReferenceCompression.php b/src/ViewsReferenceCompression.php
+index 1234567..abcdefg 100644
+--- a/src/ViewsReferenceCompression.php
++++ b/src/ViewsReferenceCompression.php
+@@ -3,7 +3,6 @@
+ namespace Drupal\viewsreference;
+
+ use Drupal\Component\Serialization\Json;
+-use Drupal\Component\Utility\UrlHelper;
+ use Drupal\views\ViewExecutable;
+
+ /**
+@@ -20,8 +19,9 @@ class ViewsReferenceCompression implements ViewsReferenceCompressionInterface {
+     // Compress the Views Reference Field settings as a JSON String to help
+     // avoid 414 errors with the request URI being too long.
+     $json = Json::encode($viewsreference);
++    // Use base64_encode(gzcompress()) instead of deprecated UrlHelper::compressQueryParameter().
+     return [
+-      'compressed' => UrlHelper::compressQueryParameter($json),
++      'compressed' => base64_encode(gzcompress($json)),
+     ];
+   }
+
+@@ -32,7 +32,8 @@ class ViewsReferenceCompression implements ViewsReferenceCompressionInterface {
+     if (isset($viewsreference['compressed'])) {
+       // Un-compress the Views Reference Field settings if they are still
+       // compressed.
+-      $json = UrlHelper::uncompressQueryParameter($viewsreference['compressed']);
++      // Use gzuncompress(base64_decode()) instead of deprecated UrlHelper::uncompressQueryParameter().
++      $json = gzuncompress(base64_decode($viewsreference['compressed']));
+       $viewsreference = Json::decode($json);
+     }
+     return $viewsreference;
+
+

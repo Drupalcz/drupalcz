@@ -1,3 +1,9 @@
-langcode: cs
 interface:
   default: php_mail
+mailer_dsn:
+  scheme: sendmail
+  host: default
+  user: null
+  password: null
+  port: null
+  options: {  }

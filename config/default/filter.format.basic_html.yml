@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - editor
+    - entity_embed
 name: 'Basic HTML'
 format: basic_html
 weight: -9
@@ -13,6 +14,12 @@ filters:
     provider: editor
     status: true
     weight: -46
+    settings: {  }
+  entity_embed:
+    id: entity_embed
+    provider: entity_embed
+    status: true
+    weight: 100
     settings: {  }
   filter_align:
     id: filter_align
@@ -38,15 +45,9 @@ filters:
     status: true
     weight: -50
     settings:
-      allowed_html: '<a href hreflang> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <p> <br> <span> <img src alt data-entity-type data-entity-uuid data-align data-caption width height> <drupal-entity data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr>'
+      allowed_html: '<br> <p> <h2 id> <h3 id> <h4 id> <h5> <h6> <cite> <dl> <dt> <dd> <span> <img src alt data-entity-type data-entity-uuid data-align data-caption width height> <a hreflang href> <blockquote cite> <ul type> <ol type start> <strong> <em> <code> <li> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption> <drupal-entity alt title data-align data-caption data-entity-embed-display data-entity-embed-display-settings data-view-mode data-entity-uuid data-langcode data-embed-button="image node" data-entity-type="media node">'
       filter_html_help: true
       filter_html_nofollow: false
-  filter_htmlcorrector:
-    id: filter_htmlcorrector
-    provider: filter
-    status: false
-    weight: -42
-    settings: {  }
   filter_html_escape:
     id: filter_html_escape
     provider: filter
@@ -58,6 +59,18 @@ filters:
     provider: filter
     status: false
     weight: -43
+    settings: {  }
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: false
+    weight: -42
+    settings: {  }
+  filter_image_lazy_load:
+    id: filter_image_lazy_load
+    provider: filter
+    status: true
+    weight: -45
     settings: {  }
   filter_url:
     id: filter_url

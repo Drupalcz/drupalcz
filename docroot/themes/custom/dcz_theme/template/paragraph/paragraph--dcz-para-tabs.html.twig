@@ -59,13 +59,13 @@
 
     <ul class="tab" role="tablist">
       {# Loops through the tab sections to print the tab section titles. #}
-      {% for key, item in content.field_paragraphs if key|first != '#' %}
+      {% for key, item in content.field_paragraphs|filter((item, key) => key|first != '#') %}
         <li role="presentation"><a class="tablink {% if loop.first %}active{% endif %}" href="#" data-tab-id="tab-{{ paragraph_id }}-{{ key }}" aria-controls="{{ item['#paragraph'].field_tab.value }}" role="tab">{{ item['#paragraph'].field_tab.value }}</a></li>
       {% endfor %}
     </ul>
     <div class="tab-content">
       {# Loops through the tab sections again to print the tab section bodies. #}
-      {% for key, item in content.field_paragraphs if key|first != '#' %}
+      {% for key, item in content.field_paragraphs|filter((item, key) => key|first != '#') %}
         <div role="tabpanel" class="tab-pane{% if loop.first %} active{% endif %}" id="tab-{{ paragraph_id }}-{{ key }}">
           {% for body_key, body_item in item['#paragraph'].field_content %}
             {# Use the same render array as item and set the '#paragraph'. #}

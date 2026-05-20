@@ -1,67 +1,116 @@
-uuid: 37c20d86-eb03-4ab1-9c00-de300c8c5bd7
-langcode: cs
+uuid: 38c6049f-c992-45fb-84cb-02326d3866e7
+langcode: en
 status: true
 dependencies:
   config:
     - filter.format.full_html
   module:
-    - ckeditor
+    - ckeditor5
 format: full_html
-editor: ckeditor
+editor: ckeditor5
 settings:
   toolbar:
-    rows:
-      -
-        -
-          name: Formatting
-          items:
-            - Bold
-            - Italic
-            - RemoveFormat
-            - Superscript
-            - Subscript
-            - Styles
-            - Format
-        -
-          name: Input
-          items:
-            - Paste
-            - PasteText
-            - PasteFromWord
-            - SpecialChar
-        -
-          name: Links
-          items:
-            - DrupalLink
-            - DrupalUnlink
-        -
-          name: Lists
-          items:
-            - BulletedList
-            - NumberedList
-            - Indent
-            - Outdent
-        -
-          name: Media
-          items:
-            - Blockquote
-            - Table
-            - image
-            - node
-        -
-          name: Tools
-          items:
-            - Source
-            - Maximize
-            - ShowBlocks
+    items:
+      - bold
+      - italic
+      - removeFormat
+      - superscript
+      - subscript
+      - style
+      - heading
+      - codeBlock
+      - '|'
+      - specialCharacters
+      - '|'
+      - link
+      - '|'
+      - bulletedList
+      - numberedList
+      - indent
+      - outdent
+      - '|'
+      - blockQuote
+      - insertTable
+      - image
+      - node
+      - '|'
+      - sourceEditing
+      - showBlocks
   plugins:
-    stylescombo:
-      styles: "a.button|Button\r\np.lead|Leading text\r\np.extra-large|Extra large text\r\ncode|Inline code"
+    ckeditor5_codeBlock:
+      languages:
+        -
+          label: 'Plain text'
+          language: plaintext
+        -
+          label: C
+          language: c
+        -
+          label: 'C#'
+          language: cs
+        -
+          label: C++
+          language: cpp
+        -
+          label: CSS
+          language: css
+        -
+          label: Diff
+          language: diff
+        -
+          label: HTML
+          language: html
+        -
+          label: Java
+          language: java
+        -
+          label: JavaScript
+          language: javascript
+        -
+          label: PHP
+          language: php
+        -
+          label: Python
+          language: python
+        -
+          label: Ruby
+          language: ruby
+        -
+          label: TypeScript
+          language: typescript
+        -
+          label: XML
+          language: xml
+    ckeditor5_heading:
+      enabled_headings:
+        - heading2
+        - heading3
+        - heading4
+        - heading5
+        - heading6
+    ckeditor5_list:
+      properties:
+        reversed: true
+        startIndex: true
+      multiBlock: true
+    ckeditor5_sourceEditing:
+      allowed_tags: {  }
+    ckeditor5_style:
+      styles:
+        -
+          label: Button
+          element: '<a class="button">'
+        -
+          label: 'Leading text'
+          element: '<p class="lead">'
+        -
+          label: 'Extra large text'
+          element: '<p class="extra-large">'
 image_upload:
   status: true
   scheme: public
   directory: inline-images
-  max_size: ''
+  max_size: null
   max_dimensions:
     width: 2048
     height: 2048

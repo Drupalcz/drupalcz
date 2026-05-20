@@ -2,7 +2,7 @@ name: Drupal.cz REST services
 type: module
 description: REST services for Drupal.cz
 package: Custom
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^8 || ^9 || ^10
 dependencies:
   - drupal:rest
   - drupal:basic_auth

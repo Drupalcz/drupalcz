@@ -20,6 +20,8 @@ content:
     settings:
       responsive_image_style: landscape
       image_link: ''
+      image_loading:
+        attribute: eager
     third_party_settings: {  }
     weight: 0
     region: content
