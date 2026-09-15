@@ -18,17 +18,17 @@ jobs:
         with:
           php-version: '8.2'
           tools: composer:v2
-      - name: Validate composer.json and composer.lock
+          extensions: mbstring, gd, intl, yaml, bcmath, curl
+      - name: Validate composer.json, composer.lock and platform requirements
         if: "!contains(github.ref, 'refs/tags/') && github.event_name != 'delete'"
-        run: composer validate
-      - name: Check platform requirements
-        if: "!contains(github.ref, 'refs/tags/') && github.event_name != 'delete'"
-        run: composer check-platform-reqs
+        run: |
+          composer validate
+          composer check-platform-reqs
     # - name: Fail if branch name does not match pantheon limitations
     #   run: TODO
 
   gitsync:
-    if: github.event_name == 'push' && (github.ref_name == 'master' || github.ref_name == 'develop')
+    if: github.event_name != 'pull_request' && (github.ref_name == 'master' || github.ref_name == 'develop')
     name: Build and push repo
     runs-on: ubuntu-latest
     needs: validate
