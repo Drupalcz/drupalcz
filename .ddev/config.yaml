@@ -7,10 +7,8 @@ webserver_type: apache-fpm
 # 20.19+ is the floor: the Dropzone library build pulls sass ^1.33, which resolves to
 # 1.100+ and requires it. Keep in step with .github/workflows/build.yml.
 nodejs_version: "22"
-# Non-default: on the lkv host 80/443 belong to the traefik proxy and
-# 8080/8443 to ragchat-nginx, so the router needs its own free pair.
-router_http_port: "8081"
-router_https_port: "8444"
+router_http_port: "80"
+router_https_port: "443"
 xdebug_enabled: false
 additional_hostnames: []
 additional_fqdns: []
