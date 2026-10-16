@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b9ff45353e8891c1d86249704a2fa8f",
+    "content-hash": "513bd97dcc828da0b5d9b7bd8ce210b5",
     "packages": [
         {
             "name": "acquia/memcache-settings",
@@ -103,21 +103,6 @@
                 "source": "https://github.com/asm89/stack-cors/tree/v2.3.0"
             },
             "time": "2025-03-13T08:50:04+00:00"
-        },
-        {
-            "name": "bower-asset/dropzone",
-            "version": "v5.9.3",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:enyo/dropzone.git",
-                "reference": "9f97ace16d9b6c85216c15f2b0349362ee1a4002"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/enyo/dropzone/zipball/9f97ace16d9b6c85216c15f2b0349362ee1a4002",
-                "reference": "9f97ace16d9b6c85216c15f2b0349362ee1a4002"
-            },
-            "type": "bower-asset"
         },
         {
             "name": "bower-asset/flexslider",
@@ -6037,6 +6022,42 @@
                 }
             ],
             "time": "2025-03-06T22:45:56+00:00"
+        },
+        {
+            "name": "enyo/dropzone",
+            "version": "v6.3.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/enyo/dropzone-packagist",
+                "reference": "ef582f48942635bb3bf30c2a50d80c10d4ea96f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/enyo/dropzone-packagist/zipball/ef582f48942635bb3bf30c2a50d80c10d4ea96f8",
+                "reference": "ef582f48942635bb3bf30c2a50d80c10d4ea96f8",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matias Simon",
+                    "email": "m@tias.me",
+                    "homepage": "https://www.matsimon.dev"
+                }
+            ],
+            "description": "Handles drag and drop of files for you.",
+            "homepage": "https://www.dropzone.dev/",
+            "keywords": [
+                "drag and drop",
+                "dragndrop",
+                "file upload",
+                "upload"
+            ],
+            "time": "2026-09-27T22:08:28+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",

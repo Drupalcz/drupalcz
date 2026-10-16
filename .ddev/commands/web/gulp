@@ -1,0 +1,12 @@
+#!/bin/bash
+
+## Description: Compile the custom theme with gulp
+## Usage: gulp [args]
+## Example: "ddev gulp css" or "ddev gulp"
+
+cd /var/www/html/docroot/themes/custom/dcz_theme || exit 1
+if [ ! -x node_modules/.bin/gulp ]; then
+  echo "Theme dependencies are missing. Run: ddev composer run init-theme" >&2
+  exit 1
+fi
+exec npx gulp "$@"

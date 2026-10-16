@@ -4,8 +4,6 @@ docroot: docroot
 # Matches the cloud hosting, which runs 8.2 — do not raise without raising it there.
 php_version: "8.2"
 webserver_type: apache-fpm
-# 20.19+ is the floor: the Dropzone library build pulls sass ^1.33, which resolves to
-# 1.100+ and requires it. Keep in step with .github/workflows/build.yml.
 nodejs_version: "22"
 router_http_port: "80"
 router_https_port: "443"
@@ -22,4 +20,3 @@ web_environment: []
 hooks:
   post-start:
     - exec: scripts/create-settings.sh
-    - exec: scripts/build-libraries.sh

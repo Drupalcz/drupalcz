@@ -14,7 +14,6 @@
     "require": {
         "php": ">=8.2",
         "acquia/memcache-settings": "*",
-        "bower-asset/dropzone": "^5.1",
         "bower-asset/flexslider": "^2.6",
         "composer/installers": "^2.2",
         "cweagans/composer-patches": "^1.6",
@@ -70,6 +69,7 @@
         "drupal/viewsreference": "^2.0",
         "drupal/youtube": "^2.0",
         "drush/drush": "~13.6.2",
+        "enyo/dropzone": "^6.3",
         "oomphinc/composer-installers-extender": "^2.0",
         "pear/versioncontrol_git": "^0.5.0"
     },
@@ -187,8 +187,11 @@
         }
     },
     "scripts": {
-        "post-create-project-cmd": [
-            "blt internal:create-project:init-repo"
+        "post-install-cmd": [
+            "sh scripts/build-libraries.sh"
+        ],
+        "post-update-cmd": [
+            "sh scripts/build-libraries.sh"
         ],
         "nuke": [
             "rm -rf vendor composer.lock docroot/core docroot/modules/contrib docroot/profiles/contrib docroot/themes/contrib",
