@@ -1,3 +1,5 @@
+@use '../extends/submittedby' as *;
+
 .node__meta {
   @extend %submitted-by;
 

@@ -1,3 +1,6 @@
+@use '../variables' as *;
+@use '../mixins/breakpoints' as *;
+
 .postscript {
   background: $postscript-bg;
   //border-top: 2px solid $drupal-secondary;

@@ -1,3 +1,6 @@
+@use '../variables' as *;
+@use '../mixins/breakpoints' as *;
+
 .vm-teaser {
   @include bp(small) {
     display: flex;

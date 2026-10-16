@@ -1,3 +1,6 @@
+@use '../variables' as *;
+@use '../mixins/breakpoints' as *;
+
 form {
   background: rgba(51, 122, 183, .1);
   padding: 1em $site-padding;

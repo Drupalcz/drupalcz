@@ -1,3 +1,7 @@
+@use 'sass:color';
+@use '../variables' as *;
+@use '../mixins/breakpoints' as *;
+
 .page-node-type-dcz-landing-page .paragraph--type--layout {
   padding-left: 0;
   padding-right: 0;
@@ -27,7 +31,7 @@
     background: $drupal-primary;
 
     &:hover {
-      background: darken($drupal-primary, 3);
+      background: color.adjust($drupal-primary, $lightness: -3%);
     }
   }
 }
@@ -57,7 +61,7 @@
     background: $drupal-third;
 
     &:hover {
-      background: darken($drupal-third, 3);
+      background: color.adjust($drupal-third, $lightness: -3%);
     }
   }
 }

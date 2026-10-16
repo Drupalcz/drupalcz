@@ -1,3 +1,6 @@
+@use '../variables' as *;
+@use '../mixins/breakpoints' as *;
+
 // Block with article tags.
 .view-blog-tags {
 

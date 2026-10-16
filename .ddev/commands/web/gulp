@@ -2,7 +2,7 @@
 
 ## Description: Compile the custom theme with gulp
 ## Usage: gulp [args]
-## Example: "ddev gulp css" or "ddev gulp"
+## Example: "ddev gulp css", "ddev gulp css-min", or "ddev gulp"
 
 cd /var/www/html/docroot/themes/custom/dcz_theme || exit 1
 if [ ! -x node_modules/.bin/gulp ]; then

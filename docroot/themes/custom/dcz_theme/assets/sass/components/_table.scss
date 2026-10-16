@@ -1,3 +1,6 @@
+@use '../variables' as *;
+@use '../mixins/breakpoints' as *;
+
 table {
   border-bottom: 5px solid $drupal-primary;
   width: 100%;

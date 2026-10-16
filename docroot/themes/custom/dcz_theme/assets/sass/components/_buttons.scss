@@ -1,3 +1,5 @@
+@use '../variables' as *;
+
 .button {
   background: $drupal-secondary;
   border-radius: 3px;
