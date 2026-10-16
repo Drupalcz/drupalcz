@@ -22,7 +22,9 @@
         "drupal/admin_toolbar": "^3.4",
         "drupal/better_normalizers": "^2.0@beta",
         "drupal/captcha": "^1.0@beta",
+        "drupal/ckeditor": "^1.0",
         "drupal/classy": "^2.0",
+        "drupal/color": "^1.0",
         "drupal/coder": "^8.3",
         "drupal/config_split": "^1.4",
         "drupal/config_update": "^2.0@alpha",
@@ -42,6 +44,7 @@
         "drupal/extlink": "^1.1",
         "drupal/flexslider": "^3.0",
         "drupal/forum": "^1.0.6",
+        "drupal/geshifilter": "^3.0",
         "drupal/geolocation": "^3.11",
         "drupal/google_analytics": "^4.0",
         "drupal/inline_entity_form": "^1.0@RC",
@@ -71,7 +74,8 @@
         "drush/drush": "~13.6.2",
         "enyo/dropzone": "^6.3",
         "oomphinc/composer-installers-extender": "^2.0",
-        "pear/versioncontrol_git": "^0.5.0"
+        "pear/versioncontrol_git": "^0.5.0",
+        "twig/twig": "3.28.0"
     },
     "replace": {
         "bower-asset/jquery": "*",
