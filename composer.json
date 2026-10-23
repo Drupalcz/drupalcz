@@ -167,6 +167,9 @@
             "drupal/panels": {
                 "PHP 8.4: make implicitly nullable parameters explicit": "patches/panels-php84-explicit-nullable.patch"
             },
+            "drupal/riddler": {
+                "Use CaptchaConstants instead of removed global CAPTCHA_DEFAULT_VALIDATION_* constants (backport from 2.0.5)": "patches/riddler-captcha-constants.patch"
+            },
             "drupal/slack_invite": {
                 "3189435 - The URI '<current>' is invalid.": "https://git.drupalcode.org/issue/slack_invite-3189435/-/commit/2a10d44bafe2a768dbceceadf6a51e500caae539.patch"
             }
