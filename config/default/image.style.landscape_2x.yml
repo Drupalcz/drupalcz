@@ -1,0 +1,15 @@
+uuid: f0fc640c-7c02-4ecd-a602-536a7f010ea3
+langcode: cs
+status: true
+dependencies: {  }
+name: landscape_2x
+label: 'Landscape 2x'
+effects:
+  543780db-67b0-4679-83bd-444cfd670b0c:
+    uuid: 543780db-67b0-4679-83bd-444cfd670b0c
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1200
+      height: 800
+      anchor: center-center

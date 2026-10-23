@@ -1,0 +1,15 @@
+uuid: 30e09482-3fde-47a5-a3c7-2a5582ac21e6
+langcode: cs
+status: true
+dependencies: {  }
+name: screenshot_large_2x
+label: 'Screenshot large 2x (2048px width)'
+effects:
+  31b7096c-eb13-452d-804c-e4e1f2bd7416:
+    uuid: 31b7096c-eb13-452d-804c-e4e1f2bd7416
+    id: image_scale
+    weight: 2
+    data:
+      width: 2048
+      height: null
+      upscale: false

@@ -4,7 +4,9 @@ status: true
 dependencies:
   config:
     - image.style.landscape
+    - image.style.landscape_2x
     - image.style.landscape_small
+    - image.style.landscape_small_2x
   theme:
     - dcz_theme
 id: landscape
@@ -17,13 +19,28 @@ image_style_mappings:
     multiplier: 1x
   -
     image_mapping_type: image_style
+    image_mapping: landscape_2x
+    breakpoint_id: dcz_theme.large
+    multiplier: 2x
+  -
+    image_mapping_type: image_style
     image_mapping: landscape_small
     breakpoint_id: dcz_theme.small
     multiplier: 1x
   -
     image_mapping_type: image_style
+    image_mapping: landscape_small_2x
+    breakpoint_id: dcz_theme.small
+    multiplier: 2x
+  -
+    image_mapping_type: image_style
     image_mapping: landscape_small
     breakpoint_id: dcz_theme.smallest
     multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: landscape_small_2x
+    breakpoint_id: dcz_theme.smallest
+    multiplier: 2x
 breakpoint_group: dcz_theme
 fallback_image_style: landscape

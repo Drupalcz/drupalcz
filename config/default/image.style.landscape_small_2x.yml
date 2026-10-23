@@ -1,0 +1,15 @@
+uuid: 864ef0ff-7c6c-4088-87ed-f5527bde50d3
+langcode: cs
+status: true
+dependencies: {  }
+name: landscape_small_2x
+label: 'Landscape small 2x'
+effects:
+  fb6a456d-5c3a-4798-b21f-99da80f7dec9:
+    uuid: fb6a456d-5c3a-4798-b21f-99da80f7dec9
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 480
+      height: 320
+      anchor: center-center
