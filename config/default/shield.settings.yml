@@ -1,0 +1,26 @@
+shield_enable: false
+credential_provider: shield
+credentials:
+  shield:
+    user: ''
+    pass: ''
+  key:
+    user: ''
+    pass_key: ''
+  multikey:
+    user_pass_key: ''
+print: Hello!
+debug_header: false
+log_authentication: false
+allowlist: ''
+domains: ''
+domains_method: 0
+user_agents: ''
+method: 0
+paths: ''
+http_method_allowlist: {  }
+allow_cli: true
+unset_basic_auth_headers: true
+basic_auth_bypass: false
+flood_control_enabled: true
+langcode: cs
