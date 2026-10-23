@@ -2,7 +2,6 @@ module:
   acquia_connector: 0
   admin_toolbar: 0
   admin_toolbar_tools: 0
-  basic_auth: 0
   big_pipe: 0
   block: 0
   block_content: 0
@@ -80,6 +79,7 @@ module:
   riddler: 0
   search: 0
   serialization: 0
+  shield: 0
   shortcut: 0
   slack_invite: 0
   syslog: 0
