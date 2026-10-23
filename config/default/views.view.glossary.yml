@@ -194,7 +194,6 @@ display:
         type: mini
         options:
           offset: 0
-          pagination_heading_level: h4
           items_per_page: 36
           total_pages: 0
           id: 0
@@ -209,6 +208,7 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -304,19 +304,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        status:
-          id: status
-          table: node_field_data
-          field: status
-          entity_type: node
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
-          group: 1
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
       style:
         type: table
         options:

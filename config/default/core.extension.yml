@@ -20,7 +20,6 @@ module:
   ctools: 0
   ctools_block: 0
   datetime: 0
-  dcz_rest: 0
   diff: 0
   dropzonejs: 0
   dropzonejs_eb_widget: 0
@@ -41,6 +40,7 @@ module:
   geolocation: 0
   geolocation_google_maps: 0
   geolocation_leaflet: 0
+  geshifilter: 0
   google_analytics: 0
   hal: 0
   history: 0
