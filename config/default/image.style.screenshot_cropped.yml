@@ -1,0 +1,15 @@
+uuid: 9c211ce9-dcb0-4e50-a3f7-7eb5451b8b34
+langcode: cs
+status: true
+dependencies: {  }
+name: screenshot_cropped
+label: 'Screenshot cropped (600x450)'
+effects:
+  cf847f33-ebca-4342-a07a-4b455c5fed92:
+    uuid: cf847f33-ebca-4342-a07a-4b455c5fed92
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 600
+      height: 450
+      anchor: center-top
