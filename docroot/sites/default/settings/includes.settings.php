@@ -13,11 +13,6 @@
 $settings['install_profile'] = 'minimal';
 
 /**
- * For custom installation
- */
-$settings['config_sync_directory'] = "../config/default";
-
-/**
  * Set content directory for default_content_deploy.
  */
 $settings['default_content_deploy_content_directory'] = '../content';
@@ -149,6 +144,14 @@ if (getenv('IS_DDEV_PROJECT') == 'true') {
     require $path;
   }
 }
+
+/**
+ * Config sync directory.
+ *
+ * Set after the Acquia include, which points it at a stale export under
+ * sites/default/files.
+ */
+$settings['config_sync_directory'] = DRUPAL_ROOT . '/../config/default';
 
 /**
  * Allow final local override.
