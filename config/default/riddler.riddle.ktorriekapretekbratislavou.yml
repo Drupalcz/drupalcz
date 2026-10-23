@@ -5,3 +5,4 @@ dependencies: {  }
 id: ktorriekapretekbratislavou
 question: 'Ktorá rieka preteká Bratislavou?'
 solution: 'Dunaj, dunaj'
+hint: null

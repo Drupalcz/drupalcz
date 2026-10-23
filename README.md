@@ -1,6 +1,6 @@
 # Drupal.cz
 
-Komunitní web [Drupal.cz](https://www.drupal.cz). Projekt vyžaduje Drupal 10.6, PHP 8.2 a Drush 13. Lokální vývoj probíhá v DDEV.
+Komunitní web [Drupal.cz](https://www.drupal.cz). Projekt vyžaduje Drupal 10.6, PHP 8.4 a Drush 13. Lokální vývoj probíhá v DDEV.
 
 Repozitář: https://github.com/Drupalcz/drupalcz
 
@@ -15,7 +15,7 @@ Produkce je na https://www.drupal.cz.
 
 ## Lokální vývoj (DDEV)
 
-Nainstalujte [DDEV](https://ddev.readthedocs.io/en/stable/). V `.ddev/config.yaml` je PHP 8.2, MariaDB 10.11 a Node.js 22. Verzi PHP nezvyšujte, dokud se nezvýší i na hostingu.
+Nainstalujte [DDEV](https://ddev.readthedocs.io/en/stable/). V `.ddev/config.yaml` je PHP 8.4, MySQL 5.7 a Node.js 22, stejně jako na hostingu. Verze PHP a MySQL nezvyšujte, dokud se nezvýší i tam.
 
 ### Nová instalace
 
@@ -61,6 +61,8 @@ ddev gulp           # kompilace, sledování změn a BrowserSync
 ```
 
 BrowserSync běží na https://drupalcz.ddev.site:3000.
+
+Knihovnu Dropzone instaluje Composer (`enyo/dropzone`). Po `composer install` a `composer update` skript `scripts/build-libraries.sh` zkopíruje `dropzone-min.js` a `dropzone.css` do `docroot/libraries/dropzone`. Ten adresář není v gitu.
 
 ## Konfigurace a obsah
 

@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.4",
         "acquia/memcache-settings": "*",
         "bower-asset/flexslider": "^2.6",
         "composer/installers": "^2.2",
@@ -33,7 +33,7 @@
         "drupal/core-recommended": "^10.6.20",
         "drupal/ctools": "^3.0",
         "drupal/default_content_deploy": "^2.0",
-        "drupal/devel": "~5.4.0",
+        "drupal/devel": "^5",
         "drupal/diff": "^2.1",
         "drupal/dropzonejs": "^2.0",
         "drupal/embed": "^1.0",
@@ -61,21 +61,20 @@
         "drupal/pathauto": "^1.6.0",
         "drupal/purge": "^3.0",
         "drupal/redirect": "^1.0",
-        "drupal/riddler": "2.0.0",
+        "drupal/riddler": "^2.0",
         "drupal/seckit": "^2.0",
         "drupal/security_review": "^3.1",
         "drupal/seven": "^1.0",
-        "drupal/shield": "^1.2",
+        "drupal/shield": "^1.9",
         "drupal/stage_file_proxy": "^3.1",
         "drupal/token": "^1.5",
         "drupal/upgrade_status": "^4.3",
         "drupal/viewsreference": "^2.0",
         "drupal/youtube": "^2.0",
-        "drush/drush": "~13.6.2",
+        "drush/drush": "^13.0",
         "enyo/dropzone": "^6.3",
         "oomphinc/composer-installers-extender": "^2.0",
-        "pear/versioncontrol_git": "^0.5.0",
-        "twig/twig": "3.28.0"
+        "pear/versioncontrol_git": "^0.5.0"
     },
     "replace": {
         "bower-asset/jquery": "*",
@@ -91,17 +90,19 @@
         "sort-packages": true,
         "process-timeout": 0,
         "platform": {
-            "php": "8.2"
+            "php": "8.4"
         },
         "audit": {
-            "block-insecure": false
+            "ignore": {
+                "SA-CONTRIB-2025-036": "Panelizer is obsolete and every release is affected; it is being replaced separately.",
+                "PKSA-ns3q-qtk3-d35r": "geshi/geshi comes with geshifilter, which is uninstalled in the next release and removed after that."
+            }
         },
         "allow-plugins": {
             "composer/installers": true,
             "cweagans/composer-patches": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "grasmash/drupal-security-warning": true,
-            "acquia/blt": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
             "oomphinc/composer-installers-extender": true
@@ -139,8 +140,14 @@
             "drupal/slack_invite": {
                 "3189435 - The URI '<current>' is invalid.": "https://git.drupalcode.org/issue/slack_invite-3189435/-/commit/2a10d44bafe2a768dbceceadf6a51e500caae539.patch"
             },
-            "drupal/viewsreference": {
-                "Fix deprecated UrlHelper methods for Drupal 10": "patches/viewsreference-drupal10-urlhelper-fix.patch"
+            "drupal/config_split": {
+                "3593936 - PHP 8.4 deprecation errors (MR !61 at cd9aeecd)": "patches/config_split-3593936-mr61.patch"
+            },
+            "drupal/inline_entity_form": {
+                "PHP 8.4: make implicitly nullable parameters explicit": "patches/inline_entity_form-php84-explicit-nullable.patch"
+            },
+            "drupal/panels": {
+                "PHP 8.4: make implicitly nullable parameters explicit": "patches/panels-php84-explicit-nullable.patch"
             }
         },
         "installer-types": [
@@ -179,11 +186,6 @@
             ]
         },
         "composer-exit-on-patch-failure": true
-    },
-    "autoload": {
-        "psr-4": {
-            "Example\\": "blt/src/"
-        }
     },
     "autoload-dev": {
         "psr-4": {

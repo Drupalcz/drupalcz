@@ -1,0 +1,22 @@
+--- a/panels_ipe/src/Form/PanelsIPEBlockPluginForm.php
++++ b/panels_ipe/src/Form/PanelsIPEBlockPluginForm.php
+@@ -108,7 +108,7 @@
+    * @return array
+    *   The form structure.
+    */
+-  public function buildForm(array $form, FormStateInterface $form_state, $plugin_id = NULL, PanelsDisplayVariant $panels_display = NULL, $uuid = NULL) {
++  public function buildForm(array $form, FormStateInterface $form_state, $plugin_id = NULL, ?PanelsDisplayVariant $panels_display = NULL, $uuid = NULL) {
+     // We require these default arguments.
+     if (!$plugin_id || !$panels_display) {
+       return FALSE;
+--- a/panels_ipe/src/Form/PanelsIPELayoutForm.php
++++ b/panels_ipe/src/Form/PanelsIPELayoutForm.php
+@@ -94,7 +94,7 @@
+    * @return array
+    *   The form structure.
+    */
+-  public function buildForm(array $form, FormStateInterface $form_state, $layout_id = NULL, PanelsDisplayVariant $panels_display = NULL) {
++  public function buildForm(array $form, FormStateInterface $form_state, $layout_id = NULL, ?PanelsDisplayVariant $panels_display = NULL) {
+     // We require these default arguments.
+     if (!$layout_id || !$panels_display) {
+       return FALSE;

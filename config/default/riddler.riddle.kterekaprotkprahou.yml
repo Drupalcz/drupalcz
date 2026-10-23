@@ -5,3 +5,4 @@ dependencies: {  }
 id: kterekaprotkprahou
 question: 'Která řeka protéká Prahou?'
 solution: 'Vltava, vltava'
+hint: null

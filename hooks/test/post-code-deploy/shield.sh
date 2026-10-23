@@ -17,8 +17,12 @@ deployed_tag="$4"
 repo_url="$5"
 repo_type="$6"
 
-# Update
-alias=$site.$target_env
+set -e
+
+# Use the site-local Drush from the deployed artifact, not the global drush9.
+repo_root="/var/www/html/$site.$target_env"
+export PATH=$repo_root/vendor/bin:$PATH
+cd $repo_root
 
 # Temp solution to prevent basic auth and shield conflict on prod.
-drush9 @$alias pmu basic_auth --yes
+drush pmu basic_auth --yes
