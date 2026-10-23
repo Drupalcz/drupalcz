@@ -118,14 +118,6 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   }
 }
 
-/**
- * Config sync directory.
- *
- * Set after the Acquia include, which points it at a stale export under
- * sites/default/files.
- */
-$settings['config_sync_directory'] = DRUPAL_ROOT . '/../config/default';
-
 // Load settings.
 if (!empty($path) && file_exists($path)) {
   require $path;
@@ -152,6 +144,14 @@ if (getenv('IS_DDEV_PROJECT') == 'true') {
     require $path;
   }
 }
+
+/**
+ * Config sync directory.
+ *
+ * Set after the Acquia include, which points it at a stale export under
+ * sites/default/files.
+ */
+$settings['config_sync_directory'] = DRUPAL_ROOT . '/../config/default';
 
 /**
  * Allow final local override.
