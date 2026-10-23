@@ -45,7 +45,7 @@ third_party_settings:
               label: hidden
               settings:
                 image_link: content
-                image_style: screenshot_small
+                image_style: screenshot_cropped
               third_party_settings: {  }
             region: image
             weight: 0
