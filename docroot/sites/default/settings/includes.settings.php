@@ -121,6 +121,10 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   if (file_exists('/var/www/site-php')) {
     require '/var/www/site-php/drupalcz/drupalcz-settings.inc';
   }
+
+  // Acquia's include points config_sync_directory at a stale export under
+  // sites/default/files, so set it back to the config in the repository.
+  $settings['config_sync_directory'] = DRUPAL_ROOT . '/../config/default';
 }
 
 // Load settings.
