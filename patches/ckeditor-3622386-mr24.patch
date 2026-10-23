@@ -1,0 +1,13 @@
+diff --git a/src/Plugin/Editor/CKEditor.php b/src/Plugin/Editor/CKEditor.php
+index 91b9137342bfa78270b8b395e8d1b9f219e933c1..393b841f0d1701913254f30c510af34ef2ac99d8 100644
+--- a/src/Plugin/Editor/CKEditor.php
++++ b/src/Plugin/Editor/CKEditor.php
+@@ -106,7 +106,7 @@ class CKEditor extends EditorBase implements ContainerFactoryPluginInterface {
+    * @param \Drupal\Core\Extension\ModuleExtensionList $module_list
+    *   The module list service.
+    */
+-  public function __construct(array $configuration, $plugin_id, $plugin_definition, CKEditorPluginManager $ckeditor_plugin_manager, ModuleHandlerInterface $module_handler, LanguageManagerInterface $language_manager, RendererInterface $renderer, StateInterface $state, FileUrlGeneratorInterface $file_url_generator = NULL, ModuleExtensionList $module_list = NULL) {
++  public function __construct(array $configuration, $plugin_id, $plugin_definition, CKEditorPluginManager $ckeditor_plugin_manager, ModuleHandlerInterface $module_handler, LanguageManagerInterface $language_manager, RendererInterface $renderer, StateInterface $state, FileUrlGeneratorInterface|NULL $file_url_generator = NULL, ModuleExtensionList|NULL $module_list = NULL) {
+     parent::__construct($configuration, $plugin_id, $plugin_definition);
+     $this->ckeditorPluginManager = $ckeditor_plugin_manager;
+     $this->moduleHandler = $module_handler;
