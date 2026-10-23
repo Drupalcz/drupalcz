@@ -1,3 +1,6 @@
+@use '../variables' as *;
+@use '../extends/submittedby' as *;
+
 %commentdescription {
   font-size: 1.8rem;
   position: absolute;

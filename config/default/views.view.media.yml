@@ -448,6 +448,15 @@ display:
             date_format: short
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -513,6 +522,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 50
           total_pages: null
           id: 0
@@ -528,7 +538,7 @@ display:
             items_per_page_options_all: false
             items_per_page_options_all_label: '- Vše -'
             offset: false
-            offset_label: Posun
+            offset_label: 'Vynechat položky'
           quantity: 9
       exposed_form:
         type: basic

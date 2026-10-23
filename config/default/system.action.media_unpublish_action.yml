@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: SjCWoq8U1kfkX7LifNA4564HzTtS_6B-8TWvn8xesbc
 id: media_unpublish_action
-label: 'Schovat média'
+label: 'Skrýt média'
 type: media
 plugin: 'entity:unpublish_action:media'
 configuration: {  }

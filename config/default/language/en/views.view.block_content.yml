@@ -1,10 +1,10 @@
-label: 'Custom block library'
-description: 'Find and manage custom blocks.'
+label: 'Content blocks'
+description: 'Find and manage content blocks.'
 display:
   default:
     display_title: Default
     display_options:
-      title: 'Custom block library'
+      title: 'Content blocks'
       fields:
         info:
           label: 'Block description'
@@ -34,7 +34,7 @@ display:
           sort_desc_label: Desc
       empty:
         area_text_custom:
-          content: 'There are no custom blocks available.'
+          content: 'There are no content blocks available.'
       filters:
         info:
           expose:
@@ -46,4 +46,5 @@ display:
     display_title: Page
     display_options:
       menu:
-        title: 'Custom block library'
+        title: Blocks
+        description: 'Create and edit content blocks.'

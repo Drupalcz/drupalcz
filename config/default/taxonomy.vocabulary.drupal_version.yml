@@ -6,3 +6,4 @@ name: 'Drupal version'
 vid: drupal_version
 description: 'Which version of Drupal is your question about.'
 weight: 0
+new_revision: false

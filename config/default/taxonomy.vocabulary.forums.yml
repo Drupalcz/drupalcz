@@ -11,3 +11,4 @@ name: Fórum
 vid: forums
 description: 'Slovník pro kategorizaci fóra'
 weight: -10
+new_revision: false

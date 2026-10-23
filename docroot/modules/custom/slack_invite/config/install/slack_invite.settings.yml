@@ -1,0 +1,6 @@
+token: ""
+hostname: ""
+twostep:
+  enabled: FALSE
+  channel: ""
+  message: "!email has requested an invitation to the Slack team. Click the following link to approve: !url"

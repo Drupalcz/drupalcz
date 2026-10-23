@@ -1,6 +1,5 @@
 _core:
   default_config_hash: oXwX3NzLv9QK_LbNEvpQ9OPwH9tqtMSJzq5y8t63Q8w
-langcode: cs
 general_settings:
   radio_behavior: jednoduché
   context_lines_leading: 1
@@ -16,4 +15,5 @@ general_settings:
     unified_fields:
       enabled: true
       weight: 2
+  visual_default_view_mode: full
   visual_inline_theme: default

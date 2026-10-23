@@ -1,3 +1,6 @@
+@use '../variables' as *;
+@use '../mixins/breakpoints' as *;
+
 // Layout
 .footer-wrapper {
   background: $footer-bg;

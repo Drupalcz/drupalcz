@@ -1,49 +1,136 @@
-uuid: fde64fb4-4c19-4acd-90d0-d628a8923ba9
-langcode: cs
+uuid: 7ee81a72-45f4-4d0c-99d2-18e6b8e88f66
+langcode: en
 status: true
 dependencies:
   config:
     - filter.format.forum
   module:
-    - ckeditor
+    - ckeditor5
 format: forum
-editor: ckeditor
+editor: ckeditor5
 settings:
   toolbar:
-    rows:
-      -
-        -
-          name: Formatting
-          items:
-            - Bold
-            - Italic
-            - Styles
-            - Blockquote
-            - RemoveFormat
-        -
-          name: Links
-          items:
-            - DrupalLink
-            - DrupalUnlink
-        -
-          name: Lists
-          items:
-            - BulletedList
-            - NumberedList
-        -
-          name: Media
-          items:
-            - DrupalImage
-        -
-          name: Tools
-          items:
-            - Undo
-            - Redo
-            - Source
-            - Maximize
+    items:
+      - bold
+      - italic
+      - style
+      - blockQuote
+      - removeFormat
+      - '|'
+      - link
+      - '|'
+      - bulletedList
+      - numberedList
+      - '|'
+      - drupalInsertImage
+      - '|'
+      - undo
+      - redo
+      - sourceEditing
+      - '|'
+      - heading
+      - code
+      - codeBlock
+      - insertTable
   plugins:
-    stylescombo:
-      styles: "h2|H2\r\nh3|H3\r\nh4|H4\r\ncode.php|PHP kód\r\ncode.html|HTML kód\r\ncode.css|CSS styl\r\ncode.js|Javascriptový kód\r\ncode.jquery|jQuery kód\r\ncode.sql|SQL kód\r\ncode.twig|Twig kód\r\ncode.yaml|YAMLkód\r\n\r\n\r\n"
+    ckeditor5_codeBlock:
+      languages:
+        -
+          label: 'Plain text'
+          language: plaintext
+        -
+          label: C
+          language: c
+        -
+          label: 'C#'
+          language: cs
+        -
+          label: C++
+          language: cpp
+        -
+          label: CSS
+          language: css
+        -
+          label: Diff
+          language: diff
+        -
+          label: HTML
+          language: html
+        -
+          label: Java
+          language: java
+        -
+          label: JavaScript
+          language: javascript
+        -
+          label: PHP
+          language: php
+        -
+          label: Python
+          language: python
+        -
+          label: Ruby
+          language: ruby
+        -
+          label: TypeScript
+          language: typescript
+        -
+          label: XML
+          language: xml
+    ckeditor5_heading:
+      enabled_headings:
+        - heading2
+        - heading3
+        - heading4
+    ckeditor5_imageResize:
+      allow_resize: true
+    ckeditor5_list:
+      properties:
+        reversed: false
+        startIndex: true
+      multiBlock: true
+    ckeditor5_sourceEditing:
+      allowed_tags:
+        - '<cite>'
+        - '<dl>'
+        - '<dt>'
+        - '<dd>'
+        - '<span>'
+        - '<h2 id>'
+        - '<h3 id>'
+        - '<h4 id>'
+        - '<drupal-entity data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button>'
+        - '<a hreflang>'
+        - '<blockquote cite>'
+        - '<ul type>'
+        - '<ol type>'
+        - '<img data-align>'
+    ckeditor5_style:
+      styles:
+        -
+          label: 'PHP kód'
+          element: '<code class="php">'
+        -
+          label: 'HTML kód'
+          element: '<code class="html">'
+        -
+          label: 'CSS styl'
+          element: '<code class="css">'
+        -
+          label: 'Javascriptový kód'
+          element: '<code class="js">'
+        -
+          label: 'jQuery kód'
+          element: '<code class="jquery">'
+        -
+          label: 'SQL kód'
+          element: '<code class="sql">'
+        -
+          label: 'Twig kód'
+          element: '<code class="twig">'
+        -
+          label: YAMLkód
+          element: '<code class="yaml">'
 image_upload:
   status: true
   scheme: public

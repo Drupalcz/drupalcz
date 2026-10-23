@@ -13,11 +13,6 @@
 $settings['install_profile'] = 'minimal';
 
 /**
- * For custom installation
- */
-$settings['config_sync_directory'] = "../config/default";
-
-/**
  * Set content directory for default_content_deploy.
  */
 $settings['default_content_deploy_content_directory'] = '../content';
@@ -138,6 +133,25 @@ if (isset($_ENV["LANDO_APP_NAME"])) {
     require $path;
   }
 }
+
+/**
+ * DDEV environment settings.
+ */
+if (getenv('IS_DDEV_PROJECT') == 'true') {
+  $path = DRUPAL_ROOT . "/sites/default/settings/ddev.settings.php";
+  // Load settings.
+  if (is_readable($path)) {
+    require $path;
+  }
+}
+
+/**
+ * Config sync directory.
+ *
+ * Set after the Acquia include, which points it at a stale export under
+ * sites/default/files.
+ */
+$settings['config_sync_directory'] = DRUPAL_ROOT . '/../config/default';
 
 /**
  * Allow final local override.

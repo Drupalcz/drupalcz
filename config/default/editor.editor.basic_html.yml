@@ -1,62 +1,70 @@
-uuid: a579d49e-c54e-4934-9300-f4ca3de57f23
-langcode: cs
+uuid: 5ddd3e40-44d7-4f35-bf86-453d958e9239
+langcode: en
 status: true
 dependencies:
   config:
     - filter.format.basic_html
   module:
-    - ckeditor
+    - ckeditor5
 format: basic_html
-editor: ckeditor
+editor: ckeditor5
 settings:
   toolbar:
-    rows:
-      -
-        -
-          name: Formatting
-          items:
-            - Bold
-            - Italic
-            - Styles
-            - '-'
-            - RemoveFormat
-        -
-          name: Input
-          items:
-            - Paste
-            - PasteText
-            - PasteFromWord
-            - SpecialChar
-        -
-          name: Links
-          items:
-            - DrupalLink
-            - DrupalUnlink
-        -
-          name: Lists
-          items:
-            - BulletedList
-            - NumberedList
-            - Indent
-            - Outdent
-        -
-          name: Media
-          items:
-            - Blockquote
-            - Table
-            - node
-        -
-          name: Tools
-          items:
-            - Source
+    items:
+      - bold
+      - italic
+      - removeFormat
+      - '|'
+      - specialCharacters
+      - '|'
+      - link
+      - '|'
+      - bulletedList
+      - numberedList
+      - indent
+      - outdent
+      - '|'
+      - blockQuote
+      - insertTable
+      - node
+      - '|'
+      - sourceEditing
+      - '|'
+      - heading
+      - code
   plugins:
-    stylescombo:
-      styles: "h2|H2\r\nh3|H3\r\nh4|H4"
+    ckeditor5_heading:
+      enabled_headings:
+        - heading2
+        - heading3
+        - heading4
+        - heading5
+        - heading6
+    ckeditor5_list:
+      properties:
+        reversed: false
+        startIndex: true
+      multiBlock: true
+    ckeditor5_sourceEditing:
+      allowed_tags:
+        - '<cite>'
+        - '<dl>'
+        - '<dt>'
+        - '<dd>'
+        - '<span>'
+        - '<h2 id>'
+        - '<h3 id>'
+        - '<h4 id>'
+        - '<img src alt data-entity-type data-entity-uuid data-align data-caption width height>'
+        - '<a hreflang>'
+        - '<blockquote cite>'
+        - '<ul type>'
+        - '<ol type>'
 image_upload:
   status: true
   scheme: public
   directory: inline-images
-  max_size: ''
+  max_size: null
   max_dimensions:
     width: 1024
     height: 1024

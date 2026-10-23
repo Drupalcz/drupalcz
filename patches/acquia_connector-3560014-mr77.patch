@@ -1,0 +1,22 @@
+diff --git a/src/Plugin/migrate/destination/State.php b/src/Plugin/migrate/destination/State.php
+index b8b71dc26a19051e70bd45f76ed7210582aa5312..d9732315d4430f4cf359ed015bf280c5dd269873 100644
+--- a/src/Plugin/migrate/destination/State.php
++++ b/src/Plugin/migrate/destination/State.php
+@@ -78,7 +78,7 @@ class State extends DestinationBase implements ContainerFactoryPluginInterface,
+   /**
+    * {@inheritdoc}
+    */
+-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration = NULL) {
++  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, ?MigrationInterface $migration = NULL) {
+     return new static($configuration,
+       $plugin_id,
+       $plugin_definition,
+@@ -100,7 +100,7 @@ class State extends DestinationBase implements ContainerFactoryPluginInterface,
+   /**
+    * {@inheritdoc}
+    */
+-  public function fields(MigrationInterface $migration = NULL) {
++  public function fields(?MigrationInterface $migration = NULL) {
+     // State API doesn't use fields.
+     return [];
+   }

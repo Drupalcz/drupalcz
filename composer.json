@@ -12,58 +12,67 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.4",
         "acquia/memcache-settings": "*",
-        "bower-asset/dropzone": "^5.1",
         "bower-asset/flexslider": "^2.6",
         "composer/installers": "^2.2",
         "cweagans/composer-patches": "^1.6",
-        "drupal/acquia_connector": "^1.5",
+        "drupal/acquia_connector": "^4.1",
         "drupal/acquia_purge": "^1.0",
-        "drupal/admin_toolbar": "~2.0",
-        "drupal/better_normalizers": "^1.0@beta",
+        "drupal/admin_toolbar": "^3.4",
+        "drupal/better_normalizers": "^2.0@beta",
         "drupal/captcha": "^1.0@beta",
+        "drupal/ckeditor": "^1.0",
+        "drupal/classy": "^2.0",
         "drupal/coder": "^8.3",
+        "drupal/color": "^1.0",
         "drupal/config_split": "^1.4",
-        "drupal/config_update": "^1.5",
-        "drupal/core-composer-scaffold": "^9",
-        "drupal/core-project-message": "^9",
-        "drupal/core-recommended": "^9",
+        "drupal/config_update": "^2.0@alpha",
+        "drupal/core-composer-scaffold": "^10.6.20",
+        "drupal/core-project-message": "^10.6.20",
+        "drupal/core-recommended": "^10.6.20",
         "drupal/ctools": "^3.0",
-        "drupal/default_content_deploy": "^1.0@alpha",
-        "drupal/devel": "^4.0",
-        "drupal/diff": "^1.0@RC",
+        "drupal/default_content_deploy": "^2.0",
+        "drupal/devel": "^5",
+        "drupal/diff": "^2.1",
         "drupal/dropzonejs": "^2.0",
         "drupal/embed": "^1.0",
         "drupal/entity_browser": "^2.0",
-        "drupal/entity_class_formatter": "^1.0",
-        "drupal/entity_embed": "^1.0",
+        "drupal/entity_class_formatter": "^2.0",
+        "drupal/entity_embed": "^1.4",
         "drupal/eu_cookie_compliance": "^1.0",
         "drupal/extlink": "^1.1",
-        "drupal/flexslider": "^2.0",
-        "drupal/geolocation": "^3",
-        "drupal/geshifilter": "^2.0@beta",
-        "drupal/google_analytics": "^3.1",
+        "drupal/flexslider": "^3.0",
+        "drupal/forum": "^1.0.6",
+        "drupal/geolocation": "^3.11",
+        "drupal/geshifilter": "^3.0",
+        "drupal/google_analytics": "^4.0",
         "drupal/inline_entity_form": "^1.0@RC",
-        "drupal/metatag": "^1.10",
+        "drupal/jquery_ui": "^1.8",
+        "drupal/jquery_ui_autocomplete": "^2.0",
+        "drupal/jquery_ui_draggable": "^2.1",
+        "drupal/jquery_ui_droppable": "^1.5",
+        "drupal/jquery_ui_menu": "^2.1",
+        "drupal/metatag": "^2.1",
         "drupal/panelizer": "^4.1",
-        "drupal/panels": "^4.3",
+        "drupal/panels": "^4.7",
         "drupal/panels_ipe": "^4.3",
         "drupal/paragraphs": "^1.5",
         "drupal/pathauto": "^1.6.0",
-        "drupal/purge": "^3.0@beta",
+        "drupal/purge": "^3.0",
         "drupal/redirect": "^1.0",
-        "drupal/riddler": "^1.1",
+        "drupal/riddler": "^2.0",
         "drupal/seckit": "^2.0",
-        "drupal/security_review": "1.x-dev",
-        "drupal/shield": "^1.2",
-        "drupal/slack_invite": "^2.0",
-        "drupal/stage_file_proxy": "^1.0@RC",
+        "drupal/security_review": "^3.1",
+        "drupal/seven": "^1.0",
+        "drupal/shield": "^1.9",
+        "drupal/stage_file_proxy": "^3.1",
         "drupal/token": "^1.5",
-        "drupal/upgrade_status": "^3.0@beta",
+        "drupal/upgrade_status": "^4.3",
         "drupal/viewsreference": "^2.0",
-        "drupal/youtube": "^1.0@beta",
-        "drush/drush": "^10",
+        "drupal/youtube": "^2.0",
+        "drush/drush": "^13.0",
+        "enyo/dropzone": "^6.3",
         "oomphinc/composer-installers-extender": "^2.0",
         "pear/versioncontrol_git": "^0.5.0"
     },
@@ -80,12 +89,20 @@
     "config": {
         "sort-packages": true,
         "process-timeout": 0,
+        "platform": {
+            "php": "8.4"
+        },
+        "audit": {
+            "ignore": {
+                "SA-CONTRIB-2025-036": "Panelizer is obsolete and every release is affected; it is being replaced separately.",
+                "PKSA-ns3q-qtk3-d35r": "geshi/geshi comes with geshifilter, which is uninstalled in the next release and removed after that."
+            }
+        },
         "allow-plugins": {
             "composer/installers": true,
             "cweagans/composer-patches": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "grasmash/drupal-security-warning": true,
-            "acquia/blt": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
             "oomphinc/composer-installers-extender": true
@@ -117,8 +134,41 @@
             "drupal/core": "-p2"
         },
         "patches": {
+            "drupal/acquia_connector": {
+                "3560014 - Fix PHP 8.4 deprecations: explicit nullable type must be used (MR !77 at 4c6f1381)": "patches/acquia_connector-3560014-mr77.patch"
+            },
+            "drupal/acquia_purge": {
+                "PHP 8.4 nullable fix from 8.x-1.x commit 46f1bb17 (#3529087)": "patches/acquia_purge-46f1bb17-php84-nullable.patch"
+            },
+            "drupal/ckeditor": {
+                "3622386 - Implicitly marking parameter as nullable is deprecated (MR !24 at 8a4f3c86)": "patches/ckeditor-3622386-mr24.patch"
+            },
+            "drupal/color": {
+                "3533903 - PHP 8.4 - Implicitly nullable via default value null deprecation": "https://www.drupal.org/files/issues/2025-07-03/ot-php8.4-fix-implicit-nullable-deprecation.patch"
+            },
+            "drupal/config_split": {
+                "3593936 - PHP 8.4 deprecation errors (MR !61 at cd9aeecd)": "patches/config_split-3593936-mr61.patch"
+            },
+            "drupal/ctools": {
+                "PHP 8.4: make implicitly nullable parameters explicit": "patches/ctools-php84-explicit-nullable.patch"
+            },
+            "drupal/google_analytics": {
+                "3562288 - PHP 8.4 - Implicit Nullable Parameters for Google Analytics (MR !45 at 8fe75cb8)": "patches/google_analytics-3562288-mr45.patch"
+            },
+            "drupal/inline_entity_form": {
+                "PHP 8.4 nullable fix from 8.x-1.x commit 4deee9bf (#3593387)": "patches/inline_entity_form-4deee9bf-php84-nullable.patch"
+            },
             "drupal/media_entity_actions": {
                 "2998468 - Provide an upgrade path to core": "https://www.drupal.org/files/issues/2020-06-10/2998468-15.patch"
+            },
+            "drupal/panelizer": {
+                "PHP 8.4: make implicitly nullable parameters explicit": "patches/panelizer-php84-explicit-nullable.patch"
+            },
+            "drupal/panels": {
+                "PHP 8.4: make implicitly nullable parameters explicit": "patches/panels-php84-explicit-nullable.patch"
+            },
+            "drupal/riddler": {
+                "Use CaptchaConstants instead of removed global CAPTCHA_DEFAULT_VALIDATION_* constants (backport from 2.0.5)": "patches/riddler-captcha-constants.patch"
             },
             "drupal/slack_invite": {
                 "3189435 - The URI '<current>' is invalid.": "https://git.drupalcode.org/issue/slack_invite-3189435/-/commit/2a10d44bafe2a768dbceceadf6a51e500caae539.patch"
@@ -161,19 +211,17 @@
         },
         "composer-exit-on-patch-failure": true
     },
-    "autoload": {
-        "psr-4": {
-            "Example\\": "blt/src/"
-        }
-    },
     "autoload-dev": {
         "psr-4": {
             "Drupal\\Tests\\PHPUnit\\": "tests/phpunit/src/"
         }
     },
     "scripts": {
-        "post-create-project-cmd": [
-            "blt internal:create-project:init-repo"
+        "post-install-cmd": [
+            "sh scripts/build-libraries.sh"
+        ],
+        "post-update-cmd": [
+            "sh scripts/build-libraries.sh"
         ],
         "nuke": [
             "rm -rf vendor composer.lock docroot/core docroot/modules/contrib docroot/profiles/contrib docroot/themes/contrib",

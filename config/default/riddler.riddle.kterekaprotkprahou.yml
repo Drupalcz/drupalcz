@@ -1,0 +1,8 @@
+uuid: 3570012c-18d7-4a10-b656-c1ccd97e07b3
+langcode: cs
+status: true
+dependencies: {  }
+id: kterekaprotkprahou
+question: 'Která řeka protéká Prahou?'
+solution: 'Vltava, vltava'
+hint: null

@@ -1,7 +1,7 @@
 global-styling:
   css:
     theme:
-      css/style.css: {}
+      css/style.min.css: { minified: true }
   js:
     js/drupalcz_theme.js: {}
 

@@ -1,0 +1,23 @@
+--- a/riddler.module
++++ b/riddler.module
+@@ -9,6 +9,7 @@
+  */
+ 
+ use Drupal\Core\Routing\RouteMatchInterface;
++use Drupal\captcha\Constants\CaptchaConstants;
+ 
+ /**
+  * Implements hook_help().
+@@ -83,10 +84,10 @@
+   $isolutions = array_map('strtolower', $solutions);
+ 
+   switch (\Drupal::config('captcha.settings')->get('default_validation')) {
+-    case CAPTCHA_DEFAULT_VALIDATION_CASE_SENSITIVE:
++    case CaptchaConstants::CAPTCHA_DEFAULT_VALIDATION_CASE_SENSITIVE:
+       return in_array($captcha_response, $solutions);
+ 
+-    case CAPTCHA_DEFAULT_VALIDATION_CASE_INSENSITIVE:
++    case CaptchaConstants::CAPTCHA_DEFAULT_VALIDATION_CASE_INSENSITIVE:
+       return in_array(strtolower($captcha_response), $isolutions);
+   }
+ 

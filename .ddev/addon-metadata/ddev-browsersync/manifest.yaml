@@ -1,0 +1,24 @@
+name: ddev-browsersync
+repository: ddev/ddev-browsersync
+version: "2.17"
+install_date: "2026-10-16T06:23:15+02:00"
+project_files:
+    - config.browsersync.yaml
+    - web-build/Dockerfile.ddev-browsersync
+    - browser-sync.cjs
+    - commands/web/browsersync
+    - scripts/wp-config-ddev-browsersync.php
+    - scripts/remove-wordpress-settings.sh
+    - scripts/setup-wordpress-settings.sh
+global_files: []
+removal_actions:
+    - |
+      #ddev-description:Remove browsersync settings for WordPress if applicable
+      if [ "$DDEV_DOCROOT" != "" ]; then
+        DDEV_SITE_PATH="${DDEV_APPROOT}/${DDEV_DOCROOT}" ;
+      else
+        DDEV_SITE_PATH=$DDEV_APPROOT
+      fi
+      rm -f "${DDEV_SITE_PATH}/wp-config-ddev-browsersync.php"
+      scripts/remove-wordpress-settings.sh
+    - "if [ \"$DDEV_PROJECT_TYPE\" = \"wordpress\" ]; then \n  echo \"Note: You may wish to renable ddev's management of the wp-config file:\"\n  echo \"     Run 'ddev config --disable-settings-management=false && ddev restart'\"\nfi\n"

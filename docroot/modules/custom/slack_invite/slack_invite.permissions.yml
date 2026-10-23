@@ -1,0 +1,7 @@
+administer slack invite:
+  title: 'Administer Slack Invite Settings.'
+  description: 'Administer the Slack Invite Settings.'
+
+approve slack invite:
+  title: 'Approve Slack Invites.'
+  description: 'Approve two-step Slack invitations.'

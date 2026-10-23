@@ -1,13 +1,17 @@
+@use 'sass:math';
+@use '../variables' as *;
+@use '../mixins/breakpoints' as *;
+
 .view-user-directory {
   .view-content {
     display: flex;
     flex-wrap: wrap;
-    margin-left: - $content-layout-padding/3;
-    margin-right: - $content-layout-padding/3;
+    margin-left: math.div(-$content-layout-padding, 3);
+    margin-right: math.div(-$content-layout-padding, 3);
 
     .views-row {
       max-width: calc(100 / 2 * 1%);
-      padding: $content-layout-padding/3;
+      padding: math.div($content-layout-padding, 3);
 
       @include bp(small) {
         width: calc(100 / 3 * 1%);

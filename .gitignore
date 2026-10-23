@@ -15,6 +15,14 @@ local.blt.yml
 .lando.local.yml
 /docroot/themes/custom/dcz_theme/config_local.json
 
+# DDEV
+.ddev/.homeadditions
+.ddev/.gitignore
+.ddev/import-db
+.ddev/db_snapshots
+.ddev/.dbirc
+.ddev/.bash_history
+
 # Ignore drupal core.
 docroot/core
 
@@ -32,7 +40,7 @@ drush/Commands
 
 # Ignore custom theme build artifacts
 docroot/themes/custom/*/node_modules
-#docroot/themes/custom/*/css
+docroot/themes/custom/*/css/style.css
 docroot/themes/custom/*/styleguide
 
 # Ignore build artifacts

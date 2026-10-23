@@ -1,0 +1,3 @@
+services:
+  slack_invite:
+    class: Drupal\slack_invite\SlackInvite

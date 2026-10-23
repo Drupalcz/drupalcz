@@ -3,6 +3,7 @@ langcode: cs
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image_browser
     - filter.format.basic_html
     - filter.format.forum
     - media.type.image
@@ -19,6 +20,7 @@ dependencies:
     - dropzonejs
     - entity_browser
     - eu_cookie_compliance
+    - file
     - filter
     - google_analytics
     - media
@@ -46,6 +48,7 @@ permissions:
   - 'create tutorial content'
   - 'delete own dcz_article content'
   - 'delete own dcz_showcase content'
+  - 'delete own files'
   - 'delete own individual content'
   - 'delete own organization content'
   - 'delete own tutorial content'

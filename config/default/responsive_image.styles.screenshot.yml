@@ -4,7 +4,9 @@ status: true
 dependencies:
   config:
     - image.style.screenshot_large
+    - image.style.screenshot_large_2x
     - image.style.screenshot_small
+    - image.style.screenshot_small_2x
   theme:
     - dcz_theme
 id: screenshot
@@ -17,8 +19,18 @@ image_style_mappings:
     multiplier: 1x
   -
     image_mapping_type: image_style
+    image_mapping: screenshot_large_2x
+    breakpoint_id: dcz_theme.large
+    multiplier: 2x
+  -
+    image_mapping_type: image_style
     image_mapping: screenshot_small
     breakpoint_id: dcz_theme.small
     multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: screenshot_small_2x
+    breakpoint_id: dcz_theme.small
+    multiplier: 2x
 breakpoint_group: dcz_theme
 fallback_image_style: screenshot_small
