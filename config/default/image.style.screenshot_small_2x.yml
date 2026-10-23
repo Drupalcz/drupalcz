@@ -1,0 +1,15 @@
+uuid: eda3ef98-0e92-4e54-9997-529141260cad
+langcode: cs
+status: true
+dependencies: {  }
+name: screenshot_small_2x
+label: 'Screenshot small 2x (1200px width)'
+effects:
+  091690cc-4e74-4855-aa34-2f51ca76d50d:
+    uuid: 091690cc-4e74-4855-aa34-2f51ca76d50d
+    id: image_scale
+    weight: 2
+    data:
+      width: 1200
+      height: null
+      upscale: false
