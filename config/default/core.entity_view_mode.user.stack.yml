@@ -6,5 +6,6 @@ dependencies:
     - user
 id: user.stack
 label: Stack
+description: ''
 targetEntityType: user
 cache: true

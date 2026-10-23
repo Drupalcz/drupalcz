@@ -23,6 +23,7 @@ settings:
       image: image
     sort:
       field: _none
-    auto_create: false
+      direction: ASC
+    auto_create: true
     auto_create_bundle: ''
 field_type: entity_reference

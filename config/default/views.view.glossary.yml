@@ -181,6 +181,15 @@ display:
             date_format: long
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
       pager:
         type: mini
         options:
@@ -199,6 +208,7 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -237,7 +247,6 @@ display:
           default_argument_type: fixed
           default_argument_options:
             argument: a
-          default_argument_skip_url: false
           summary_options: {  }
           summary:
             format: default_summary
@@ -295,19 +304,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        status:
-          id: status
-          table: node_field_data
-          field: status
-          entity_type: node
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
-          group: 1
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
       style:
         type: table
         options:
@@ -404,7 +400,6 @@ display:
           default_argument_type: fixed
           default_argument_options:
             argument: a
-          default_argument_skip_url: false
           summary_options:
             items_per_page: 25
             inline: true

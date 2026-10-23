@@ -1,21 +1,16 @@
 #! /bin/sh
 
-print_rebuild="n"
-if [ ! -f .lando.local.yml ]; then
-  cp sass.lando.local.yml .lando.local.yml
-  print_rebuild="y"
+# Prepare the custom theme for front-end builds inside DDEV.
+# Composer runs this from the project root: ddev composer run init-theme
+
+THEME="docroot/themes/custom/dcz_theme"
+
+if [ ! -f "$THEME/config_local.json" ]; then
+  cp "$THEME/default.config_local.json" "$THEME/config_local.json"
+  echo "Created $THEME/config_local.json"
 fi
 
-if [ ! -f docroot/themes/custom/dcz_theme/config_local.json ]; then
-  cp docroot/themes/custom/dcz_theme/default.config_local.json docroot/themes/custom/dcz_theme/config_local.json
-fi
+cd "$THEME" || exit 1
+npm install || exit 1
 
-if [ "$print_rebuild" = "y" ]; then
-  echo '''
-  Now please rebuild lando using `lando rebuild`. Use `lando gulp css` to compile CSS, `lando gulp` for watching
-  changes.
-  '''
-fi
-
-
-
+echo "Theme dependencies are installed. Compile CSS with \`ddev gulp css\` (style.css) and \`ddev gulp css-min\` (style.min.css). Watch with \`ddev gulp\` (BrowserSync at https://drupalcz.ddev.site:3000)."

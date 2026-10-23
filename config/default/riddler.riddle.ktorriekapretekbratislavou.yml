@@ -1,0 +1,8 @@
+uuid: d8bb18a1-e4cb-4290-93e8-427eee8fc5c2
+langcode: cs
+status: true
+dependencies: {  }
+id: ktorriekapretekbratislavou
+question: 'Ktorá rieka preteká Bratislavou?'
+solution: 'Dunaj, dunaj'
+hint: null

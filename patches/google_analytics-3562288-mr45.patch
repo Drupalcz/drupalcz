@@ -1,0 +1,39 @@
+diff --git a/src/Plugin/migrate/process/GoogleAnalyticsParameterPages.php b/src/Plugin/migrate/process/GoogleAnalyticsParameterPages.php
+index 6ae5fb1f09130ba8d86606a421030bec1be51176..95d2ce183996a1f74dc50ca52cea015abc5453d3 100644
+--- a/src/Plugin/migrate/process/GoogleAnalyticsParameterPages.php
++++ b/src/Plugin/migrate/process/GoogleAnalyticsParameterPages.php
+@@ -49,7 +49,7 @@ class GoogleAnalyticsParameterPages extends ProcessPluginBase implements Contain
+   /**
+    * {@inheritdoc}
+    */
+-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration = NULL) {
++  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, ?MigrationInterface $migration = NULL) {
+     $migration_configuration = [
+       'migration' => [
+         'd6_user_role',
+diff --git a/src/Plugin/migrate/process/GoogleAnalyticsVisibilityPages.php b/src/Plugin/migrate/process/GoogleAnalyticsVisibilityPages.php
+index 45fe8bf30d084a080324cd40921b054014232c1a..df2be84b2387c4dab9340d896499dfabbd3e64e9 100644
+--- a/src/Plugin/migrate/process/GoogleAnalyticsVisibilityPages.php
++++ b/src/Plugin/migrate/process/GoogleAnalyticsVisibilityPages.php
+@@ -50,7 +50,7 @@ class GoogleAnalyticsVisibilityPages extends ProcessPluginBase implements Contai
+   /**
+    * {@inheritdoc}
+    */
+-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration = NULL) {
++  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, ?MigrationInterface $migration = NULL) {
+     $migration_configuration = [
+       'migration' => [
+         'd6_user_role',
+diff --git a/src/Plugin/migrate/process/GoogleAnalyticsVisibilityRoles.php b/src/Plugin/migrate/process/GoogleAnalyticsVisibilityRoles.php
+index 6884d9ccb9746000e805f02f3983948c99f1600b..84df7ff2877e177db594f1cbdc16c09120fb4e3f 100644
+--- a/src/Plugin/migrate/process/GoogleAnalyticsVisibilityRoles.php
++++ b/src/Plugin/migrate/process/GoogleAnalyticsVisibilityRoles.php
+@@ -49,7 +49,7 @@ class GoogleAnalyticsVisibilityRoles extends ProcessPluginBase implements Contai
+   /**
+    * {@inheritdoc}
+    */
+-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration = NULL) {
++  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, ?MigrationInterface $migration = NULL) {
+     $migration_configuration = [
+       'migration' => [
+         'd6_user_role',

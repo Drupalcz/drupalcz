@@ -17,13 +17,16 @@ deployed_tag="$4"
 repo_url="$5"
 repo_type="$6"
 
-# Update
-alias=$site.$target_env
+# Stop on the first failure, so a failed update or import leaves the site in
+# maintenance mode instead of serving new code on old config.
+set -e
+
+# Use the site-local Drush from the deployed artifact, not the global drush9.
+repo_root="/var/www/html/$site.$target_env"
+export PATH=$repo_root/vendor/bin:$PATH
+cd $repo_root
 
 # Run updates and import config.
-drush9 @$alias sset system.maintenance_mode 1 --yes
-drush9 @$alias cr --yes
-drush9 @$alias updb --yes
-drush9 @$alias cim sync --yes
-drush9 @$alias cr --yes
-drush9 @$alias sset system.maintenance_mode 0 --yes
+drush sset system.maintenance_mode 1 --yes
+drush deploy --yes
+drush sset system.maintenance_mode 0 --yes

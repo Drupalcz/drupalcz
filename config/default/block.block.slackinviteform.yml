@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - slack_invite
+    - user
   theme:
     - dcz_theme
 id: slackinviteform
@@ -17,4 +18,11 @@ settings:
   label: 'Získejte pozvánku na Slack'
   label_display: visible
   provider: slack_invite
-visibility: {  }
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      authenticated: authenticated

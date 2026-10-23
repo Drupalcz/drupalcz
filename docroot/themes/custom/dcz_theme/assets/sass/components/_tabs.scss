@@ -1,3 +1,6 @@
+@use '../variables' as *;
+@use '../mixins/breakpoints' as *;
+
 /* Style the tab */
 .tab {
   border-bottom: 1px solid $drupal-primary;

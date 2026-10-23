@@ -580,7 +580,7 @@ third_party_settings:
                     marker_opacity:
                       weight: 0
                       settings:
-                        opacity: !!float 1
+                        opacity: 1.0
                       enabled: false
                     marker_zoom_to_animate:
                       weight: 0

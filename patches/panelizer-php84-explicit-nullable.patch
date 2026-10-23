@@ -1,0 +1,214 @@
+--- a/src/Panelizer.php
++++ b/src/Panelizer.php
+@@ -211,7 +211,7 @@
+   /**
+    * {@inheritdoc}
+    */
+-  public function getPanelsDisplay(FieldableEntityInterface $entity, $view_mode, EntityViewDisplayInterface $display = NULL) {
++  public function getPanelsDisplay(FieldableEntityInterface $entity, $view_mode, ?EntityViewDisplayInterface $display = NULL) {
+     $settings = $this->getPanelizerSettings($entity->getEntityTypeId(), $entity->bundle(), $view_mode, $display);
+     if (($settings['custom'] || $settings['allow']) && isset($entity->panelizer) && $entity->panelizer->first()) {
+       /** @var \Drupal\Core\Field\FieldItemInterface[] $values */
+@@ -272,7 +272,7 @@
+    * @param array $settings
+    *   The default panelizer settings for this EntityViewDisplay.
+    */
+-  protected function setCacheTags(PanelsDisplayVariant $panels_display, $entity_type_id, $bundle, $view_mode, EntityViewDisplayInterface $display = NULL, $default, array $settings) {
++  protected function setCacheTags(PanelsDisplayVariant $panels_display, $entity_type_id, $bundle, $view_mode, ?EntityViewDisplayInterface $display, $default, array $settings) {
+     if (!$display) {
+       $display = $this->getEntityViewDisplay($entity_type_id, $bundle, $view_mode);
+     }
+@@ -288,7 +288,7 @@
+   /**
+    * {@inheritdoc}
+    */
+-  public function setPanelsDisplay(FieldableEntityInterface $entity, $view_mode, $default, PanelsDisplayVariant $panels_display = NULL) {
++  public function setPanelsDisplay(FieldableEntityInterface $entity, $view_mode, $default, ?PanelsDisplayVariant $panels_display = NULL) {
+     $settings = $this->getPanelizerSettings($entity->getEntityTypeId(), $entity->bundle(), $view_mode);
+     if (($settings['custom'] || $settings['allow']) && isset($entity->panelizer)) {
+       $panelizer_item = NULL;
+@@ -336,7 +336,7 @@
+   /**
+    * {@inheritdoc}
+    */
+-  public function getDefaultPanelsDisplays($entity_type_id, $bundle, $view_mode, EntityViewDisplayInterface $display = NULL) {
++  public function getDefaultPanelsDisplays($entity_type_id, $bundle, $view_mode, ?EntityViewDisplayInterface $display = NULL) {
+     if (!$display) {
+       $display = $this->getEntityViewDisplay($entity_type_id, $bundle, $view_mode);
+     }
+@@ -362,7 +362,7 @@
+   /**
+    * {@inheritdoc}
+    */
+-  public function getDefaultPanelsDisplay($name, $entity_type_id, $bundle, $view_mode, EntityViewDisplayInterface $display = NULL) {
++  public function getDefaultPanelsDisplay($name, $entity_type_id, $bundle, $view_mode, ?EntityViewDisplayInterface $display = NULL) {
+     if (!$display) {
+       $display = $this->getEntityViewDisplay($entity_type_id, $bundle, $view_mode);
+       // If we still don't find a display, then we won't find a Panelizer
+@@ -415,7 +415,7 @@
+   /**
+    * {@inheritdoc}
+    */
+-  public function getDisplayStaticContexts($name, $entity_type_id, $bundle, $view_mode, EntityViewDisplayInterface $display = NULL) {
++  public function getDisplayStaticContexts($name, $entity_type_id, $bundle, $view_mode, ?EntityViewDisplayInterface $display = NULL) {
+     if (!$display) {
+       $display = $this->getEntityViewDisplay($entity_type_id, $bundle, $view_mode);
+       // If we still don't find a display, then we won't find a Panelizer
+@@ -452,7 +452,7 @@
+   /**
+    * {@inheritdoc}
+    */
+-  public function isPanelized($entity_type_id, $bundle, $view_mode, EntityViewDisplayInterface $display = NULL) {
++  public function isPanelized($entity_type_id, $bundle, $view_mode, ?EntityViewDisplayInterface $display = NULL) {
+     if (!$this->getEntityPlugin($entity_type_id)) {
+       return FALSE;
+     }
+@@ -467,7 +467,7 @@
+   /**
+    * {@inheritdoc}
+    */
+-  public function getPanelizerSettings($entity_type_id, $bundle, $view_mode, EntityViewDisplayInterface $display = NULL) {
++  public function getPanelizerSettings($entity_type_id, $bundle, $view_mode, ?EntityViewDisplayInterface $display = NULL) {
+     if (!$display) {
+       $display = $this->getEntityViewDisplay($entity_type_id, $bundle, $view_mode);
+     }
+@@ -491,7 +491,7 @@
+   /**
+    * {@inheritdoc}
+    */
+-  public function setPanelizerSettings($entity_type_id, $bundle, $view_mode, array $settings, EntityViewDisplayInterface $display = NULL) {
++  public function setPanelizerSettings($entity_type_id, $bundle, $view_mode, array $settings, ?EntityViewDisplayInterface $display = NULL) {
+     if (!$display) {
+       $display = $this->getEntityViewDisplay($entity_type_id, $bundle, $view_mode);
+     }
+@@ -633,7 +633,7 @@
+   /**
+    * {@inheritdoc}
+    */
+-  public function hasEntityPermission($op, EntityInterface $entity, $view_mode, AccountInterface $account = NULL) {
++  public function hasEntityPermission($op, EntityInterface $entity, $view_mode, ?AccountInterface $account = NULL) {
+     if (!$account) {
+       $account = $this->currentUser->getAccount();
+     }
+@@ -667,7 +667,7 @@
+   /**
+    * {@inheritdoc}
+    */
+-  public function hasDefaultPermission($op, $entity_type_id, $bundle, $view_mode, $default, AccountInterface $account = NULL) {
++  public function hasDefaultPermission($op, $entity_type_id, $bundle, $view_mode, $default, ?AccountInterface $account = NULL) {
+     if (!$this->isPanelized($entity_type_id, $bundle, $view_mode)) {
+       return FALSE;
+     }
+--- a/src/PanelizerEntityViewBuilder.php
++++ b/src/PanelizerEntityViewBuilder.php
+@@ -306,7 +306,7 @@
+   /**
+    * {@inheritdoc}
+    */
+-  public function resetCache(array $entities = NULL) {
++  public function resetCache(?array $entities = NULL) {
+     $this->getFallbackViewBuilder()->resetCache($entities);
+   }
+ 
+--- a/src/PanelizerInterface.php
++++ b/src/PanelizerInterface.php
+@@ -43,7 +43,7 @@
+    * @return \Drupal\panels\Plugin\DisplayVariant\PanelsDisplayVariant|NULL
+    *   The Panels display if panelized; NULL otherwise.
+    */
+-  public function getPanelsDisplay(FieldableEntityInterface $entity, $view_mode, EntityViewDisplayInterface $display = NULL);
++  public function getPanelsDisplay(FieldableEntityInterface $entity, $view_mode, ?EntityViewDisplayInterface $display = NULL);
+ 
+   /**
+    * Sets the Panels display for a given entity and view mode.
+@@ -61,7 +61,7 @@
+    *   When custom overrides aren't enabled on this entity, bundle and view
+    *   mode.
+    */
+-  public function setPanelsDisplay(FieldableEntityInterface $entity, $view_mode, $default, PanelsDisplayVariant $panels_display = NULL);
++  public function setPanelsDisplay(FieldableEntityInterface $entity, $view_mode, $default, ?PanelsDisplayVariant $panels_display = NULL);
+ 
+   /**
+    * Gets the default Panels displays for an entity type, bundle and view mode.
+@@ -82,7 +82,7 @@
+    *   the default if panelized; NULL otherwise. All panelized view modes will
+    *   have at least one named 'default'.
+    */
+-  public function getDefaultPanelsDisplays($entity_type_id, $bundle, $view_mode, EntityViewDisplayInterface $display = NULL);
++  public function getDefaultPanelsDisplays($entity_type_id, $bundle, $view_mode, ?EntityViewDisplayInterface $display = NULL);
+ 
+   /**
+    * Gets one default Panels display for an entity type, bundle and view mode.
+@@ -104,7 +104,7 @@
+    *   The default Panels display with the given name if it exists; otherwise
+    *   NULL.
+    */
+-  public function getDefaultPanelsDisplay($name, $entity_type_id, $bundle, $view_mode, EntityViewDisplayInterface $display = NULL);
++  public function getDefaultPanelsDisplay($name, $entity_type_id, $bundle, $view_mode, ?EntityViewDisplayInterface $display = NULL);
+ 
+   /**
+    * @param $name
+@@ -124,7 +124,7 @@
+    */
+   public function setDefaultPanelsDisplay($name, $entity_type_id, $bundle, $view_mode, PanelsDisplayVariant $panels_display);
+ 
+-  public function getDisplayStaticContexts($name, $entity_type_id, $bundle, $view_mode, EntityViewDisplayInterface $display = NULL);
++  public function getDisplayStaticContexts($name, $entity_type_id, $bundle, $view_mode, ?EntityViewDisplayInterface $display = NULL);
+ 
+   public function setDisplayStaticContexts($name, $entity_type_id, $bundle, $view_mode, $contexts);
+ 
+@@ -147,7 +147,7 @@
+    * @return bool
+    *   TRUE if panelized; otherwise FALSE.
+    */
+-  public function isPanelized($entity_type_id, $bundle, $view_mode, EntityViewDisplayInterface $display = NULL);
++  public function isPanelized($entity_type_id, $bundle, $view_mode, ?EntityViewDisplayInterface $display = NULL);
+ 
+   /**
+    * Get the Panelizer settings for an entity type, bundle and view mode.
+@@ -168,7 +168,7 @@
+    *   - enable (bool): Whether or not this view mode is panelized.
+    *   - field (bool): Whether or not the field is present.
+    */
+-  public function getPanelizerSettings($entity_type_id, $bundle, $view_mode, EntityViewDisplayInterface $display = NULL);
++  public function getPanelizerSettings($entity_type_id, $bundle, $view_mode, ?EntityViewDisplayInterface $display = NULL);
+ 
+   /**
+    * @param string $entity_type_id
+@@ -187,7 +187,7 @@
+    *
+    * @see PanelizerInterface::getPanelizerSettings()
+    */
+-  public function setPanelizerSettings($entity_type_id, $bundle, $view_mode, array $settings, EntityViewDisplayInterface $display = NULL);
++  public function setPanelizerSettings($entity_type_id, $bundle, $view_mode, array $settings, ?EntityViewDisplayInterface $display = NULL);
+ 
+   /**
+    * Get permissions for all panelized entity types and bundles.
+@@ -216,7 +216,7 @@
+    * @return bool
+    *   TRUE if the user has permission; FALSE otherwise.
+    */
+-  public function hasEntityPermission($op, EntityInterface $entity, $view_mode, AccountInterface $account = NULL);
++  public function hasEntityPermission($op, EntityInterface $entity, $view_mode, ?AccountInterface $account = NULL);
+ 
+   /**
+    * Checks if a user has permission to perform an operation on a default.
+@@ -238,6 +238,6 @@
+    * @return bool
+    *   TRUE if the user has permission; FALSE otherwise.
+    */
+-  public function hasDefaultPermission($op, $entity_type_id, $bundle, $view_mode, $default, AccountInterface $account = NULL);
++  public function hasDefaultPermission($op, $entity_type_id, $bundle, $view_mode, $default, ?AccountInterface $account = NULL);
+ 
+ }
+--- a/src/Plugin/PanelsStorage/PanelizerDefaultPanelsStorage.php
++++ b/src/Plugin/PanelsStorage/PanelizerDefaultPanelsStorage.php
+@@ -120,7 +120,7 @@
+    * @return \Drupal\Core\Plugin\Context\Context[]
+    *   The available contexts.
+    */
+-  protected function getEntityContext($entity_type_id, EntityInterface $entity = NULL) {
++  protected function getEntityContext($entity_type_id, ?EntityInterface $entity = NULL) {
+     $contexts = [];
+     // Set a placeholder context so that the calling code knows that we need
+     // an entity context. If we have the value available, then we actually set

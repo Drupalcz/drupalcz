@@ -1,3 +1,5 @@
+@use '../variables' as *;
+
 .view-dcz-articles {
   .views-row {
     border-bottom: 1px solid $gray-1;

@@ -11,7 +11,7 @@ third_party_settings:
 name: Tutorial
 type: tutorial
 description: 'Content type specifically determined for tutorials.'
-help: ''
+help: null
 new_revision: true
 preview_mode: 1
 display_submitted: true

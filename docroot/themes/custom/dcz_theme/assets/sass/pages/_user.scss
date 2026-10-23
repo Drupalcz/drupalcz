@@ -1,3 +1,5 @@
+@use '../mixins/breakpoints' as *;
+
 .user--view-mode-full {
   .block-entity-fielduserfield-dcz-user-image {
 

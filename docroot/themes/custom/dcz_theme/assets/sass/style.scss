@@ -1,26 +1,23 @@
-@import 'variables';
-
-// Base imports
-@import 'base/*';
+// Base
+@use 'base';
 
 // Mixins
-@import 'mixins/*';
+@use 'mixins';
 
 // Extends
-@import 'extends/*';
+@use 'extends';
 
 // Layouts
-@import 'layouts/*';
+@use 'layouts';
 
 // Sections
-@import 'sections/*';
+@use 'sections';
 
 // Components
-@import 'components/*';
+@use 'components';
 
 // View modes
-@import 'view_modes/*';
+@use 'view_modes';
 
 // Pages
-@import "pages/*";
-
+@use 'pages';
