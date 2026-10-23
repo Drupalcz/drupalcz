@@ -1,112 +1,90 @@
-# Drupal.cz community website
+# Drupal.cz
 
-## Build status
+Komunitní web [Drupal.cz](https://www.drupal.cz). Projekt vyžaduje Drupal 10.6, PHP 8.2 a Drush 13. Lokální vývoj probíhá v DDEV.
 
-Branch | Build status | Dev site | HTTP Basic auth
------------- | ------------- | ------------- | -------------
-[Master](https://github.com/Drupalcz/drupalcz/tree/master) | [![Build Status](https://travis-ci.com/Drupalcz/drupalcz.svg?branch=master)](https://travis-ci.com/Drupalcz/drupalcz) | http://stage.drupal.cz | `drupal` / `cz`
-[Develop](https://github.com/Drupalcz/drupalcz/tree/develop) | [![Build Status](https://travis-ci.com/Drupalcz/drupalcz.svg?branch=develop)](https://travis-ci.com/Drupalcz/drupalcz) | http://dev.drupal.cz | `drupal` / `cz`
+Repozitář: https://github.com/Drupalcz/drupalcz
 
-## Contents
-* blt/ - Settings for Acquia BLT.
-* config/ - Exported Drupal configutation.
-* console/ - Cache folder for Drupal Console. ()
-* docroot/ - Website root directory.
-* drush/ - Drush aliases and other rutiens.
-* hooks/ - Acquia cloud hooks. (See https://docs.acquia.com/cloud/manage/cloud-hooks )
-* patches/ - Our custom patches. (But we prefer linking drupal.org.)
-* reports/ - PHP Unit results.
-* tests/ - Collection of tests for Travis CI and local development.
-* .gitignore - Gitignore - be sure to check your own local gitignore so you don't commit your IDE's tmp files.
-* .travis.yml - Travis CI test suite configuration.
+## Prostředí
 
-## Requirements
-### Pokud používáte DDEV
-* Nainstalujte si DDEV, https://ddev.readthedocs.io/en/stable/#installation
-* V adresáři projektu spusťte DDEV
+| Větev | Web | HTTP basic auth |
+| --- | --- | --- |
+| [master](https://github.com/Drupalcz/drupalcz/tree/master) | http://stage.drupal.cz | `drupal` / `cz` |
+| [develop](https://github.com/Drupalcz/drupalcz/tree/develop) | http://dev.drupal.cz | `drupal` / `cz` |
 
-      ddev start
+Produkce je na https://www.drupal.cz.
 
-* Po prvním spuštění nainstalujte Drupal:
+## Lokální vývoj (DDEV)
 
-      ddev drush si minimal --existing-config
+Nainstalujte [DDEV](https://ddev.readthedocs.io/en/stable/). V `.ddev/config.yaml` je PHP 8.2, MariaDB 10.11 a Node.js 22. Verzi PHP nezvyšujte, dokud se nezvýší i na hostingu.
 
-* Přihlaste se:
+### Nová instalace
 
-      ddev drush uli
+```bash
+ddev start
+ddev composer install
+ddev drush site:install minimal --existing-config --yes
+ddev drush uli
+```
 
-* **Pokud migrujete z Lando**, viz [DDEV_MIGRATION.md](DDEV_MIGRATION.md)
+Web je na http://drupalcz.ddev.site.
 
-### Pokud používáte Lando
-* Nainstalujte si Lando, https://docs.devwithlando.io/installation/system-requirements.html
-* V adresáři projektu spusťte Lando
+Při `ddev start` se vytvoří `docroot/sites/default/settings/local.settings.php`, pokud ještě neexistuje. Instalace používá profil `minimal` a exportovanou konfiguraci z `config/`.
 
-      lando start
+### Import existující databáze
 
-#### Inicializacie prostředí pro vývoj frontendu (kompilování SASS na CSS)
+```bash
+ddev import-db --file=cesta/k/databazi.sql.gz
+ddev drush uli
+```
 
-  * Spusťte `lando composer run init-theme`
+### Databáze
 
-NEBO
+- Host: `db`
+- Databáze: `db`
+- Uživatel: `db`
+- Heslo: `db`
 
-  * Zkopírujte si soubor `sass.lando.local.yml` do `.lando.local.yml`
+## Frontend
 
-  * Zkopírujte si soubor `default.config_local.json` do `config_local.json`
+Téma je `docroot/themes/custom/dcz_theme`. Závislosti stačí nainstalovat jednou:
 
-  * Spusťte `lando rebuild -y`
+```bash
+ddev composer run init-theme
+```
 
-##### Kompilace SASS na CSS
+Kompilace:
 
-  * Přepněte se do adresáře tématu `cd docroot/themes/custom/dcz_theme`
+```bash
+ddev gulp css       # style.css
+ddev gulp css-min   # style.min.css
+ddev gulp           # kompilace, sledování změn a BrowserSync
+```
 
-  * Pro kompilaci SASS na CSS použijte `lando gulp css`
+BrowserSync běží na https://drupalcz.ddev.site:3000.
 
-  * Pro kompilaci všeho a čekání na změny použijte `lando gulp`
+## Konfigurace a obsah
 
-### Pokud používáte jiné vývojové prostředí
-* You need PHP ^7.2
-* Install composer: https://getcomposer.org/doc/00-intro.md
-* Install Drush version 8: http://docs.drush.org/en/master/install/
-* We are using Acquia BLT which has it's own set of requirements.
-  * Check out https://github.com/acquia/blt
-  * Not all are needed for basic tasks.
-  * Try `blt vm` if you don't want to alter your system.
-  * See more at https://github.com/acquia/blt
+Exportovaná konfigurace je v `config/`. Patche se zadávají v `composer.json` (`extra.patches`). Soubory, které nejdou odkázat na drupal.org, patří do `patches/`.
 
-## Getting the site up and running.
-* Get your copy of the code:
-  * Fork this repository. ( https://help.github.com/articles/fork-a-repo/ )
-  * Clone your repository.
-  * `git clone git@github.com:[YOUR-NAME]/drupalcz.git drupalcz`
-  * `cd drupalcz`
-* Prepare your database and fill the credentials into your new local config.
-  * `cp docroot/sites/default/settings/default.local.settings.php docroot/sites/default/settings/local.settings.php`
-  * edit this config: `docroot/sites/default/settings/local.settings.php`
-* Install the site (it will use the Drupal.cz distribution).
-  * `composer install`
-  * If this is first time you are setting up BLT, run
-    ```
-    ./vendor/bin/blt blt:init:shell-alias
-    source ~/.bash_profile
-    ```
-  * `blt setup:git-hooks` (Learn more about BLT: https://blt.readthedocs.io/)
-  * `cd docroot`
-  * `drush si minimal --existing-config`
-  * Login to new site:
-  * read admin password from console, or
-  * `drush uli`
-  * or `drush upwd admin vase_heslo`
-* If you want to have some default content for your development, import it
-  * `drush dcdi --force update`
-  * `drush cr`
+Výchozí obsah je v `content/`. Import:
 
-## Contributing
-* We are using GitFlow(https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow/) branching strategy
-* Learn how to manage config: https://www.youtube.com/watch?v=WsMuQFO8yGU
-* You need to create ```feature/NAME``` branch for each issue
-* Commit your changes. ( http://chris.beams.io/posts/git-commit/ )
-* Test your work by running:
-  * `blt validate`
-  * `blt tests`
-* After you finish work on issue, create pull request against `develop` branch.
-* Create pull request. https://help.github.com/articles/creating-a-pull-request/
+```bash
+ddev drush dcdi
+```
+
+## Adresáře
+
+- `config/` — exportovaná konfigurace
+- `content/` — výchozí obsah
+- `docroot/` — document root
+- `drush/` — konfigurace Drushe
+- `hooks/` — [Acquia Cloud hooks](https://docs.acquia.com/acquia-cloud-platform/develop-apps/drupal-apps/cloud-hooks)
+- `patches/` — lokální patche
+- `scripts/` — pomocné skripty
+- `tests/` — testy
+- `.ddev/` — konfigurace DDEV
+- `.github/` — GitHub Actions
+
+## Přispívání
+
+Používáme větve `feature/NAZEV`. Pull request míří do `develop`.
