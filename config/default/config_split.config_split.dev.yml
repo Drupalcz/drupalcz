@@ -6,9 +6,11 @@ id: dev
 label: DEV
 description: ''
 weight: 0
+stackable: false
+no_patching: false
+storage: folder
 folder: ../config/split-dev
 module:
-  better_normalizers: 0
   dblog: 0
   devel: 0
   stage_file_proxy: 0
@@ -16,8 +18,6 @@ module:
   upgrade_status: 0
   views_ui: 0
 theme: {  }
-blacklist:
+complete_list:
   - system.menu.devel
-graylist: {  }
-graylist_dependents: true
-graylist_skip_equal: true
+partial_list: {  }

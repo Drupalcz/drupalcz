@@ -21,12 +21,13 @@
         "drupal/acquia_purge": "^1.0",
         "drupal/admin_toolbar": "^3.4",
         "drupal/better_normalizers": "^2.0@beta",
-        "drupal/captcha": "^1.0@beta",
+        "drupal/captcha": "^2.0",
         "drupal/ckeditor": "^1.0",
         "drupal/classy": "^2.0",
         "drupal/coder": "^8.3",
         "drupal/color": "^1.0",
-        "drupal/config_split": "^1.4",
+        "drupal/config_filter": "^1.13",
+        "drupal/config_split": "^2.0",
         "drupal/config_update": "^2.0@alpha",
         "drupal/core-composer-scaffold": "^10.6.20",
         "drupal/core-project-message": "^10.6.20",
@@ -41,7 +42,7 @@
         "drupal/entity_class_formatter": "^2.0",
         "drupal/entity_embed": "^1.4",
         "drupal/eu_cookie_compliance": "^1.0",
-        "drupal/extlink": "^1.1",
+        "drupal/extlink": "^2.0",
         "drupal/flexslider": "^3.0",
         "drupal/forum": "^1.0.6",
         "drupal/geolocation": "^3.11",
@@ -49,11 +50,11 @@
         "drupal/gin": "^4.1",
         "drupal/gin_toolbar": "^2.1",
         "drupal/google_analytics": "^4.0",
-        "drupal/inline_entity_form": "^1.0@RC",
+        "drupal/inline_entity_form": "^3.0",
         "drupal/jquery_ui": "^1.8",
         "drupal/jquery_ui_autocomplete": "^2.0",
         "drupal/jquery_ui_draggable": "^2.1",
-        "drupal/jquery_ui_droppable": "^1.5",
+        "drupal/jquery_ui_droppable": "^2.1",
         "drupal/jquery_ui_menu": "^2.1",
         "drupal/metatag": "^2.1",
         "drupal/panelizer": "^4.1",
@@ -63,7 +64,7 @@
         "drupal/pathauto": "^1.6.0",
         "drupal/purge": "^3.0",
         "drupal/redirect": "^1.0",
-        "drupal/riddler": "^2.0",
+        "drupal/riddler": "^3.0",
         "drupal/seckit": "^2.0",
         "drupal/security_review": "^3.1",
         "drupal/seven": "^1.0",
@@ -72,7 +73,7 @@
         "drupal/token": "^1.5",
         "drupal/upgrade_status": "^4.3",
         "drupal/viewsreference": "^2.0",
-        "drupal/youtube": "^2.0",
+        "drupal/youtube": "^3.0@beta",
         "drush/drush": "^13.0",
         "enyo/dropzone": "^6.3",
         "oomphinc/composer-installers-extender": "^2.0",
@@ -148,32 +149,17 @@
             "drupal/color": {
                 "3533903 - PHP 8.4 - Implicitly nullable via default value null deprecation": "https://www.drupal.org/files/issues/2025-07-03/ot-php8.4-fix-implicit-nullable-deprecation.patch"
             },
-            "drupal/config_split": {
-                "3593936 - PHP 8.4 deprecation errors (MR !61 at cd9aeecd)": "patches/config_split-3593936-mr61.patch"
-            },
             "drupal/ctools": {
                 "PHP 8.4: make implicitly nullable parameters explicit": "patches/ctools-php84-explicit-nullable.patch"
             },
             "drupal/google_analytics": {
                 "3562288 - PHP 8.4 - Implicit Nullable Parameters for Google Analytics (MR !45 at 8fe75cb8)": "patches/google_analytics-3562288-mr45.patch"
             },
-            "drupal/inline_entity_form": {
-                "PHP 8.4 nullable fix from 8.x-1.x commit 4deee9bf (#3593387)": "patches/inline_entity_form-4deee9bf-php84-nullable.patch"
-            },
-            "drupal/media_entity_actions": {
-                "2998468 - Provide an upgrade path to core": "https://www.drupal.org/files/issues/2020-06-10/2998468-15.patch"
-            },
             "drupal/panelizer": {
                 "PHP 8.4: make implicitly nullable parameters explicit": "patches/panelizer-php84-explicit-nullable.patch"
             },
             "drupal/panels": {
                 "PHP 8.4: make implicitly nullable parameters explicit": "patches/panels-php84-explicit-nullable.patch"
-            },
-            "drupal/riddler": {
-                "Use CaptchaConstants instead of removed global CAPTCHA_DEFAULT_VALIDATION_* constants (backport from 2.0.5)": "patches/riddler-captcha-constants.patch"
-            },
-            "drupal/slack_invite": {
-                "3189435 - The URI '<current>' is invalid.": "https://git.drupalcode.org/issue/slack_invite-3189435/-/commit/2a10d44bafe2a768dbceceadf6a51e500caae539.patch"
             }
         },
         "installer-types": [
