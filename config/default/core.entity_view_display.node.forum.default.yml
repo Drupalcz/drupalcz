@@ -11,15 +11,14 @@ dependencies:
     - node.type.forum
   module:
     - comment
-    - panelizer
+    - field_layout
+    - layout_discovery
     - text
-    - user
 third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 _core:
   default_config_hash: TM_8DV1XKUAtF-wGxTBLOtg_GTtF5CX9WLrADxG7Xm4
 id: node.forum.default
@@ -65,4 +64,7 @@ content:
     weight: 0
     region: content
 hidden:
+  created: true
   langcode: true
+  title: true
+  uid: true

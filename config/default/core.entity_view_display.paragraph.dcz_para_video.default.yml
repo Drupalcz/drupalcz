@@ -9,7 +9,14 @@ dependencies:
     - field.field.paragraph.dcz_para_video.field_video
     - paragraphs.paragraphs_type.dcz_para_video
   module:
+    - field_layout
+    - layout_discovery
     - youtube
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: paragraph.dcz_para_video.default
 targetEntityType: paragraph
 bundle: dcz_para_video

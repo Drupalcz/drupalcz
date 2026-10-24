@@ -10,8 +10,14 @@ dependencies:
     - field.field.node.forum.taxonomy_forums
     - node.type.forum
   module:
+    - field_layout
+    - layout_discovery
     - text
-    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 _core:
   default_config_hash: MK_j248n6esK84n87ulM_yPeqdkndKn94h4vTJC4wjw
 id: node.forum.teaser
@@ -42,5 +48,8 @@ content:
     region: content
 hidden:
   comment_forum: true
+  created: true
   field_drupal_version: true
   langcode: true
+  title: true
+  uid: true

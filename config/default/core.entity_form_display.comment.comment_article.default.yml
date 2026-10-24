@@ -8,6 +8,11 @@ dependencies:
   module:
     - path
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: comment.comment_article.default
 targetEntityType: comment
 bundle: comment_article

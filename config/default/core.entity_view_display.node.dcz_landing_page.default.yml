@@ -7,20 +7,18 @@ dependencies:
     - field.field.node.dcz_landing_page.field_hero_widget
     - field.field.node.dcz_landing_page.field_meta_tags
     - field.field.node.dcz_landing_page.field_paragraphs
-    - field.field.node.dcz_landing_page.panelizer
     - node.type.dcz_landing_page
   module:
     - entity_reference_revisions
+    - field_layout
+    - layout_discovery
     - metatag
-    - panelizer
     - text
-    - user
 third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: node.dcz_landing_page.default
 targetEntityType: node
 bundle: dcz_landing_page
@@ -64,5 +62,7 @@ content:
     weight: 100
     region: content
 hidden:
+  created: true
   langcode: true
-  panelizer: true
+  title: true
+  uid: true

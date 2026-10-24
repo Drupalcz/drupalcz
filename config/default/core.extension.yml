@@ -17,8 +17,8 @@ module:
   contact: 0
   contextual: 0
   ctools: 0
-  ctools_block: 0
   datetime: 0
+  dcz_base_fields: 0
   diff: 0
   dropzonejs: 0
   dropzonejs_eb_widget: 0
@@ -31,6 +31,7 @@ module:
   entity_reference_revisions: 0
   extlink: 0
   field: 0
+  field_layout: 0
   field_ui: 0
   file: 0
   filter: 0
@@ -65,9 +66,6 @@ module:
   node: 0
   options: 0
   page_cache: 0
-  panelizer: 0
-  panels: 0
-  panels_ipe: 0
   paragraphs: 0
   path: 0
   path_alias: 0

@@ -9,6 +9,14 @@ dependencies:
     - field.field.paragraph.dcz_para_gallery.field_gallery
     - field.field.paragraph.dcz_para_gallery.field_title
     - paragraphs.paragraphs_type.dcz_para_gallery
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: paragraph.dcz_para_gallery.preview
 targetEntityType: paragraph
 bundle: dcz_para_gallery

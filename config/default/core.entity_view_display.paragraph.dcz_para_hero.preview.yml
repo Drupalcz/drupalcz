@@ -9,6 +9,14 @@ dependencies:
     - field.field.paragraph.dcz_para_hero.field_image
     - field.field.paragraph.dcz_para_hero.field_title
     - paragraphs.paragraphs_type.dcz_para_hero
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: paragraph.dcz_para_hero.preview
 targetEntityType: paragraph
 bundle: dcz_para_hero

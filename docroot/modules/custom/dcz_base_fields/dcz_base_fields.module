@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Makes node and user base fields configurable in view displays.
+ */
+
+use Drupal\Core\Entity\EntityTypeInterface;
+
+/**
+ * Implements hook_entity_base_field_info_alter().
+ *
+ * Panelizer replacement: core field_layout can only place fields that are
+ * configurable in view displays. Core marks these base fields as not
+ * configurable, so enable it for the ones used in the layouts.
+ */
+function dcz_base_fields_entity_base_field_info_alter(array &$fields, EntityTypeInterface $entity_type) {
+  $map = [
+    'node' => ['title', 'uid', 'created'],
+    'user' => ['name', 'created'],
+  ];
+  foreach ($map[$entity_type->id()] ?? [] as $name) {
+    if (isset($fields[$name])) {
+      $fields[$name]->setDisplayConfigurable('view', TRUE);
+    }
+  }
+}

@@ -8,6 +8,11 @@ dependencies:
   module:
     - path
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 _core:
   default_config_hash: EMa4-jXqGoooiV0X2bgOJxBI7RVBhpXWc_780E4YwGQ
 id: comment.comment_forum.default

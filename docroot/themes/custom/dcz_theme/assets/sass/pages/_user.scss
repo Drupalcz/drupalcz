@@ -1,14 +1,14 @@
 @use '../mixins/breakpoints' as *;
 
 .user--view-mode-full {
-  .block-entity-fielduserfield-dcz-user-image {
+  .field--name-field-dcz-user-image {
 
     @include bp(small) {
       float: right;
       width: 50%;
     }
   }
-  .block-entity-fielduserfield-dcz-bio {
+  .field--name-field-dcz-bio {
     clear: both;
   }
 

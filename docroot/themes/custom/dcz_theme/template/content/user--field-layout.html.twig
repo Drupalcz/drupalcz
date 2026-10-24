@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * User template for the profile page laid out with core field_layout.
+ *
+ * Keeps the minimal wrapper markup the site used when this display was
+ * rendered by Panelizer.
+ *
+ * @see dcz_theme_theme_suggestions_user_alter()
+ */
+#}
+{%
+  set classes = [
+    'user',
+    'user--type-user',
+    'user--view-mode-' ~ elements['#view_mode'],
+    'clearfix',
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+  <div>
+    {{ content }}
+  </div>
+</article>

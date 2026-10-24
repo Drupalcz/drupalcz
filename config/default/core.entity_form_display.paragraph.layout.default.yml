@@ -9,6 +9,11 @@ dependencies:
     - paragraphs.paragraphs_type.layout
   module:
     - paragraphs
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: paragraph.layout.default
 targetEntityType: paragraph
 bundle: layout

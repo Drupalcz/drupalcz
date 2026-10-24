@@ -10,7 +10,14 @@ dependencies:
     - paragraphs.paragraphs_type.dcz_para_tabs
   module:
     - entity_reference_revisions
+    - field_layout
+    - layout_discovery
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: paragraph.dcz_para_tabs.default
 targetEntityType: paragraph
 bundle: dcz_para_tabs

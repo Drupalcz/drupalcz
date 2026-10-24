@@ -9,6 +9,11 @@ dependencies:
   module:
     - image
     - path
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: media.image.default
 targetEntityType: media
 bundle: image

@@ -14,14 +14,13 @@ dependencies:
     - field.field.node.individual.field_websites
     - node.type.individual
   module:
-    - panelizer
-    - user
+    - field_layout
+    - layout_discovery
 third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: node.individual.teaser
 targetEntityType: node
 bundle: individual
@@ -59,8 +58,11 @@ content:
     region: content
 hidden:
   body: true
+  created: true
   field_emails: true
   field_er_organization: true
   field_gender: true
   field_websites: true
   langcode: true
+  title: true
+  uid: true

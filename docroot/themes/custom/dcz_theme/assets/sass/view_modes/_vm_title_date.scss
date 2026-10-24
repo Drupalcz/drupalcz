@@ -10,23 +10,19 @@
   }
 
   .vm-date {
+    display: flex;
     font-size: 0.85em;
 
-    .block-region-date {
-      display: flex;
+    > * {
+      border-right: 1px solid $gray-2;
+      margin-right: 0.5em;
+      padding-right: 0.5em;
 
-     > * {
-       border-right: 1px solid $gray-2;
-       margin-right: 0.5em;
-       padding-right: 0.5em;
-
-       &:last-child {
-         border-right: none;
-         margin-right: 0;
-         padding-right: 0;
-       }
-     }
+      &:last-child {
+        border-right: none;
+        margin-right: 0;
+        padding-right: 0;
+      }
     }
   }
 }
-

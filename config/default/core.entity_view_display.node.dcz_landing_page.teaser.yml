@@ -8,105 +8,35 @@ dependencies:
     - field.field.node.dcz_landing_page.field_hero_widget
     - field.field.node.dcz_landing_page.field_meta_tags
     - field.field.node.dcz_landing_page.field_paragraphs
-    - field.field.node.dcz_landing_page.panelizer
     - node.type.dcz_landing_page
   module:
-    - panelizer
-    - text
-    - user
+    - field_layout
+  theme:
+    - dcz_theme
 third_party_settings:
-  panelizer:
-    enable: true
-    custom: false
-    allow: false
-    default: default
-    displays:
-      default:
-        id: panels_variant
-        label: Default
-        weight: 0
-        uuid: b99aa906-d806-4c02-8a36-19dcfcbbe9bd
-        blocks:
-          0b66c235-e194-49f8-9ed7-c98b3104621b:
-            id: 'entity_field:node:title'
-            label: Title
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: string
-              weight: 0
-              label: hidden
-              settings:
-                link_to_entity: true
-              third_party_settings: {  }
-            region: title
-            weight: 0
-            uuid: 0b66c235-e194-49f8-9ed7-c98b3104621b
-          54835ca7-4bd9-4afe-8e0b-a8e2a11edff8:
-            id: 'entity_field:node:field_teaser_image'
-            label: 'Teaser Image'
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: image
-              weight: 0
-              label: hidden
-              settings:
-                image_link: content
-                image_style: landscape_small
-              third_party_settings: {  }
-            region: image
-            weight: 0
-            uuid: 54835ca7-4bd9-4afe-8e0b-a8e2a11edff8
-          cbbb3d7b-d325-4527-9808-3e24d94b2858:
-            id: 'entity_field:node:field_teaser_text'
-            label: 'Teaser Text'
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: basic_string
-              weight: 0
-              label: hidden
-              settings: {  }
-              third_party_settings: {  }
-            region: content
-            weight: 0
-            uuid: cbbb3d7b-d325-4527-9808-3e24d94b2858
-        page_title: ''
-        layout: teaser
-        layout_settings: {  }
-        builder: ipe
-        storage_type: panelizer_default
-        storage_id: 'node:dcz_landing_page:teaser:default'
-        static_context: {  }
-        pattern: panelizer
+  field_layout:
+    id: teaser
+    settings:
+      label: ''
 id: node.dcz_landing_page.teaser
 targetEntityType: node
 bundle: dcz_landing_page
 mode: teaser
 content:
-  body:
-    type: text_summary_or_trimmed
+  title:
+    type: string
     label: hidden
     settings:
-      trim_length: 600
+      link_to_entity: true
     third_party_settings: {  }
-    weight: 101
-    region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 100
-    region: content
+    weight: 0
+    region: title
 hidden:
+  body: true
+  created: true
   field_hero_widget: true
   field_meta_tags: true
   field_paragraphs: true
   langcode: true
-  panelizer: true
+  links: true
+  uid: true

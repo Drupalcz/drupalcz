@@ -11,85 +11,15 @@ dependencies:
     - field.field.user.user.field_location
     - image.style.profile
   module:
+    - field_layout
     - image
-    - panelizer
+    - layout_discovery
     - user
 third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
-    displays:
-      default:
-        id: panels_variant
-        label: Default
-        weight: 0
-        uuid: e78ba45e-a380-4cef-b5e0-8686aa27c505
-        blocks:
-          5a1396ce-a682-4ad8-ae17-bdef9cc76f32:
-            id: 'entity_field:user:field_dcz_name'
-            label: Name
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: string
-              weight: 0
-              region: content
-              label: hidden
-              settings:
-                link_to_entity: true
-              third_party_settings: {  }
-            region: title
-            weight: -10
-            uuid: 5a1396ce-a682-4ad8-ae17-bdef9cc76f32
-          e0534c3d-dc92-4049-a54d-8057a1ee8c3b:
-            id: 'entity_field:user:field_dcz_surname'
-            label: Surname
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: string
-              weight: 0
-              region: content
-              label: hidden
-              settings:
-                link_to_entity: true
-              third_party_settings: {  }
-            region: title
-            weight: -9
-            uuid: e0534c3d-dc92-4049-a54d-8057a1ee8c3b
-          402d0dcb-eb24-41cd-a590-2f2b61e2f304:
-            id: 'entity_field:user:field_dcz_user_image'
-            label: Avatar
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: image
-              weight: 0
-              region: content
-              label: hidden
-              settings:
-                image_link: content
-                image_style: profile
-              third_party_settings: {  }
-            region: image
-            weight: -10
-            uuid: 402d0dcb-eb24-41cd-a590-2f2b61e2f304
-        page_title: ''
-        layout: stack
-        layout_settings: {  }
-        builder: standard
-        storage_type: panelizer_default
-        storage_id: 'user:user:stack:default'
-        static_context: {  }
-        pattern: panelizer
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: user.user.stack
 targetEntityType: user
 bundle: user
@@ -123,7 +53,9 @@ content:
     weight: 0
     region: content
 hidden:
+  created: true
   field_dcz_bio: true
   field_location: true
   langcode: true
   member_for: true
+  name: true

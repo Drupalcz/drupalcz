@@ -10,14 +10,13 @@ dependencies:
     - field.field.node.organization.field_websites
     - node.type.organization
   module:
-    - panelizer
-    - user
+    - field_layout
+    - layout_discovery
 third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: node.organization.teaser
 targetEntityType: node
 bundle: organization
@@ -25,8 +24,11 @@ mode: teaser
 content: {  }
 hidden:
   body: true
+  created: true
   field_emails: true
   field_logo: true
   field_websites: true
   langcode: true
   links: true
+  title: true
+  uid: true

@@ -11,15 +11,15 @@ dependencies:
     - field.field.user.user.field_location
     - image.style.thumbnail
   module:
+    - field_layout
     - image
-    - panelizer
+    - layout_discovery
     - user
 third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: user.user.compact
 targetEntityType: user
 bundle: user
@@ -37,9 +37,11 @@ content:
     weight: 0
     region: content
 hidden:
+  created: true
   field_dcz_bio: true
   field_dcz_name: true
   field_dcz_surname: true
   field_location: true
   langcode: true
   member_for: true
+  name: true

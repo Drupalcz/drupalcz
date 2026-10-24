@@ -12,123 +12,58 @@ dependencies:
     - field.field.node.dcz_showcase.field_other_screenshots
     - field.field.node.dcz_showcase.field_tags
     - field.field.node.dcz_showcase.field_url
+    - image.style.screenshot_cropped
     - node.type.dcz_showcase
   module:
-    - link
-    - panelizer
-    - text
-    - user
+    - field_layout
+    - media
+  theme:
+    - dcz_theme
 third_party_settings:
-  panelizer:
-    enable: true
-    custom: false
-    allow: false
-    default: default
-    displays:
-      default:
-        id: panels_variant
-        label: Default
-        weight: 0
-        uuid: 13bb8147-737a-4222-8c68-6514e63f2841
-        blocks:
-          9f3f2d44-d534-4aab-94e7-1f7ea64ff5eb:
-            id: 'entity_field:node:field_main_screenshot'
-            label: 'Main screenshot'
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: media_thumbnail
-              weight: 0
-              region: content
-              label: hidden
-              settings:
-                image_link: content
-                image_style: screenshot_cropped
-              third_party_settings: {  }
-            region: image
-            weight: 0
-            uuid: 9f3f2d44-d534-4aab-94e7-1f7ea64ff5eb
-          46b1e217-73d7-4eef-905d-7bf3f03c3202:
-            id: 'entity_field:node:title'
-            label: Title
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: string
-              weight: 0
-              label: hidden
-              settings:
-                link_to_entity: true
-              third_party_settings: {  }
-            region: title
-            weight: 0
-            uuid: 46b1e217-73d7-4eef-905d-7bf3f03c3202
-          093a3336-8b11-425a-8fcb-a78545afa882:
-            id: 'entity_field:node:field_drupal_version'
-            label: 'Drupal version'
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: entity_reference_label
-              weight: 0
-              label: hidden
-              settings:
-                link: false
-              third_party_settings: {  }
-            region: content
-            weight: 0
-            uuid: 093a3336-8b11-425a-8fcb-a78545afa882
-        page_title: ''
-        layout: stack
-        layout_settings: {  }
-        builder: standard
-        storage_type: panelizer_default
-        storage_id: 'node:dcz_showcase:stack:default'
-        static_context: {  }
-        pattern: panelizer
+  field_layout:
+    id: stack
+    settings:
+      label: ''
 id: node.dcz_showcase.stack
 targetEntityType: node
 bundle: dcz_showcase
 mode: stack
 content:
-  body:
-    type: text_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 3
-    region: content
   field_drupal_version:
     type: entity_reference_label
-    label: inline
+    label: hidden
     settings:
       link: false
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
-  field_url:
-    type: link
+  field_main_screenshot:
+    type: media_thumbnail
     label: hidden
     settings:
-      trim_length: null
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
+      image_link: content
+      image_style: screenshot_cropped
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
-    weight: 4
-    region: content
+    weight: 0
+    region: image
+  title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: true
+    third_party_settings: {  }
+    weight: 0
+    region: title
 hidden:
+  body: true
+  created: true
   field_display_options: true
   field_logo: true
-  field_main_screenshot: true
   field_other_screenshots: true
   field_tags: true
+  field_url: true
   langcode: true
   links: true
+  uid: true

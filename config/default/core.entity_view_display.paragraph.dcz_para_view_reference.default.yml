@@ -9,7 +9,14 @@ dependencies:
     - field.field.paragraph.dcz_para_view_reference.field_view_reference
     - paragraphs.paragraphs_type.dcz_para_view_reference
   module:
+    - field_layout
+    - layout_discovery
     - viewsreference
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: paragraph.dcz_para_view_reference.default
 targetEntityType: paragraph
 bundle: dcz_para_view_reference
@@ -30,9 +37,9 @@ content:
       plugin_types:
         default: default
         embed: embed
-        page: 0
-        block: 0
-        feed: 0
+        page: '0'
+        block: '0'
+        feed: '0'
     third_party_settings: {  }
     weight: 1
     region: content

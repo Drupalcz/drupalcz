@@ -12,6 +12,11 @@ dependencies:
     - comment
     - path
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 _core:
   default_config_hash: QNS5prJxZ5ntiAjsrovv2SFwwYF8otWx9Cvz3yocq9U
 id: node.forum.default

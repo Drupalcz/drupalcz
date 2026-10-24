@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Node template for view modes laid out with core field_layout.
+ *
+ * Keeps the minimal wrapper markup the site used when these displays were
+ * rendered by Panelizer: no title and no "submitted by" footer, only the
+ * layout (see template/view_modes) inside the article.
+ *
+ * @see dcz_theme_theme_suggestions_node_alter()
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle,
+    view_mode ? 'node--view-mode-' ~ view_mode,
+    'clearfix',
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+  <div{{ content_attributes }}>
+    {{ content }}
+  </div>
+</article>

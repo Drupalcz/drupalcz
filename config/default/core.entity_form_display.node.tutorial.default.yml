@@ -21,6 +21,11 @@ dependencies:
     - paragraphs
     - path
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: node.tutorial.default
 targetEntityType: node
 bundle: tutorial

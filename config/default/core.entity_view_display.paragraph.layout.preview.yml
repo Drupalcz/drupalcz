@@ -9,7 +9,14 @@ dependencies:
     - field.field.paragraph.layout.field_paragraphs
     - paragraphs.paragraphs_type.layout
   module:
+    - field_layout
+    - layout_discovery
     - options
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: paragraph.layout.preview
 targetEntityType: paragraph
 bundle: layout

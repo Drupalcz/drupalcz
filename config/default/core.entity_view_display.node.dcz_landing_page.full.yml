@@ -8,87 +8,17 @@ dependencies:
     - field.field.node.dcz_landing_page.field_hero_widget
     - field.field.node.dcz_landing_page.field_meta_tags
     - field.field.node.dcz_landing_page.field_paragraphs
-    - field.field.node.dcz_landing_page.panelizer
     - node.type.dcz_landing_page
   module:
     - entity_reference_revisions
-    - panelizer
+    - field_layout
+    - layout_discovery
     - text
-    - user
 third_party_settings:
-  panelizer:
-    enable: true
-    custom: true
-    allow: false
-    default: default
-    displays:
-      default:
-        id: panels_variant
-        label: Default
-        weight: 0
-        uuid: bd6e472b-9501-4f96-93af-2211a06e7c0d
-        blocks:
-          85dd50c9-ff8d-4b81-a6b6-c0dec8203456:
-            id: 'entity_field:node:body'
-            label: Body
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: text_default
-              weight: 0
-              region: content
-              label: hidden
-              settings: {  }
-              third_party_settings: {  }
-            region: content
-            weight: 0
-            uuid: 85dd50c9-ff8d-4b81-a6b6-c0dec8203456
-          82a0f8a3-b199-4632-9e2a-34f72d3d79cd:
-            id: 'entity_field:node:field_hero_widget'
-            label: 'Hero widget'
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: entity_reference_revisions_entity_view
-              weight: 0
-              region: content
-              label: hidden
-              settings:
-                view_mode: default
-                link: ''
-              third_party_settings: {  }
-            region: content
-            weight: -1
-            uuid: 82a0f8a3-b199-4632-9e2a-34f72d3d79cd
-          79a775f5-5fe6-451e-94c0-fd279fcb7bf2:
-            id: 'entity_field:node:field_paragraphs'
-            label: Paragraphs
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: entity_reference_revisions_entity_view
-              weight: 0
-              label: hidden
-              settings:
-                view_mode: default
-              third_party_settings: {  }
-            region: content
-            weight: 1
-            uuid: 79a775f5-5fe6-451e-94c0-fd279fcb7bf2
-        page_title: ''
-        layout: layout_onecol
-        layout_settings: {  }
-        builder: ipe
-        storage_type: panelizer_default
-        storage_id: 'node:dcz_landing_page:full:default'
-        static_context: {  }
-        pattern: panelizer
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: node.dcz_landing_page.full
 targetEntityType: node
 bundle: dcz_landing_page
@@ -99,7 +29,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
   field_hero_widget:
     type: entity_reference_revisions_entity_view
@@ -108,15 +38,21 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 0
+    weight: -1
     region: content
-  links:
-    settings: {  }
+  field_paragraphs:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
     third_party_settings: {  }
-    weight: 3
+    weight: 1
     region: content
 hidden:
+  created: true
   field_meta_tags: true
-  field_paragraphs: true
   langcode: true
-  panelizer: true
+  links: true
+  title: true
+  uid: true

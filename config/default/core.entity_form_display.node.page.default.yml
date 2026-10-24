@@ -16,6 +16,11 @@ dependencies:
     - paragraphs
     - path
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: node.page.default
 targetEntityType: node
 bundle: page

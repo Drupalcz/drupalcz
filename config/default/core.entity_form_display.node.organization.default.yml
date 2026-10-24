@@ -14,6 +14,11 @@ dependencies:
     - link
     - path
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: node.organization.default
 targetEntityType: node
 bundle: organization

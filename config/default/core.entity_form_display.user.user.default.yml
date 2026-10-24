@@ -15,6 +15,11 @@ dependencies:
     - path
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: user.user.default
 targetEntityType: user
 bundle: user

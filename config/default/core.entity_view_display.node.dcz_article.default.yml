@@ -14,15 +14,14 @@ dependencies:
   module:
     - comment
     - entity_reference_revisions
-    - panelizer
+    - field_layout
+    - layout_discovery
     - text
-    - user
 third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: node.dcz_article.default
 targetEntityType: node
 bundle: dcz_article
@@ -67,6 +66,9 @@ content:
     weight: 4
     region: content
 hidden:
+  created: true
   field_teaser_image: true
   field_teaser_text: true
   langcode: true
+  title: true
+  uid: true

@@ -16,16 +16,15 @@ dependencies:
     - node.type.tutorial
   module:
     - entity_reference_revisions
+    - field_layout
+    - layout_discovery
     - metatag
-    - panelizer
     - text
-    - user
 third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: node.tutorial.default
 targetEntityType: node
 bundle: tutorial
@@ -76,9 +75,12 @@ content:
     weight: 0
     region: content
 hidden:
+  created: true
   field_authors: true
   field_clients: true
   field_coauthors: true
   field_creditors: true
   field_teaser_text: true
   langcode: true
+  title: true
+  uid: true

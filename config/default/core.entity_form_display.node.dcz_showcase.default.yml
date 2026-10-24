@@ -17,6 +17,11 @@ dependencies:
     - media_library
     - path
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: node.dcz_showcase.default
 targetEntityType: node
 bundle: dcz_showcase

@@ -13,16 +13,15 @@ dependencies:
     - field.field.node.individual.field_websites
     - node.type.individual
   module:
+    - field_layout
+    - layout_discovery
     - link
-    - panelizer
     - text
-    - user
 third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: node.individual.default
 targetEntityType: node
 bundle: individual
@@ -81,7 +80,10 @@ content:
     weight: 4
     region: content
 hidden:
+  created: true
   field_emails: true
   field_gender: true
   langcode: true
   links: true
+  title: true
+  uid: true

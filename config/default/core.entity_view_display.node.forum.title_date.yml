@@ -3,7 +3,6 @@ langcode: cs
 status: true
 dependencies:
   config:
-    - core.entity_view_display.comment.comment_forum.default
     - core.entity_view_mode.node.title_date
     - field.field.node.forum.body
     - field.field.node.forum.comment_forum
@@ -11,103 +10,15 @@ dependencies:
     - field.field.node.forum.taxonomy_forums
     - node.type.forum
   module:
-    - comment
-    - panelizer
-    - text
+    - field_layout
     - user
+  theme:
+    - dcz_theme
 third_party_settings:
-  panelizer:
-    enable: true
-    custom: false
-    allow: false
-    default: default
-    displays:
-      default:
-        id: panels_variant
-        label: Default
-        weight: 0
-        uuid: b31a4ec8-ea77-4004-9679-1b35384aa2ec
-        blocks:
-          85ff535b-fa17-40d3-9854-180346c6eb76:
-            id: 'entity_field:node:uid'
-            label: 'Authored by'
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: author
-              weight: 0
-              region: content
-              label: hidden
-              settings: {  }
-              third_party_settings: {  }
-            region: date
-            weight: -1
-            uuid: 85ff535b-fa17-40d3-9854-180346c6eb76
-          aada5de1-49f6-4411-8a4d-da6e3fe53ed0:
-            id: 'entity_field:node:created'
-            label: 'Authored on'
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: timestamp
-              weight: 0
-              region: content
-              label: hidden
-              settings:
-                date_format: czech_date
-                custom_date_format: ''
-                timezone: ''
-              third_party_settings: {  }
-            region: date
-            weight: 0
-            uuid: aada5de1-49f6-4411-8a4d-da6e3fe53ed0
-          f7cecb21-ca4f-4592-818a-e6f879ffd3ee:
-            id: 'entity_field:node:field_drupal_version'
-            label: 'Drupal version'
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: entity_reference_label
-              weight: 0
-              region: content
-              label: hidden
-              settings:
-                link: false
-              third_party_settings: {  }
-            region: date
-            weight: 1
-            uuid: f7cecb21-ca4f-4592-818a-e6f879ffd3ee
-          cfda8818-f7db-4732-876d-c6023a9bad71:
-            id: 'entity_field:node:title'
-            label: Title
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: string
-              weight: 0
-              label: hidden
-              settings:
-                link_to_entity: true
-              third_party_settings: {  }
-            region: title
-            weight: -10
-            uuid: cfda8818-f7db-4732-876d-c6023a9bad71
-        page_title: ''
-        layout: title_date
-        layout_settings: {  }
-        builder: ipe
-        storage_type: panelizer_default
-        storage_id: 'node:forum:title_date:default'
-        static_context: {  }
-        pattern: panelizer
+  field_layout:
+    id: title_date
+    settings:
+      label: ''
 _core:
   default_config_hash: TM_8DV1XKUAtF-wGxTBLOtg_GTtF5CX9WLrADxG7Xm4
 id: node.forum.title_date
@@ -115,42 +26,51 @@ targetEntityType: node
 bundle: forum
 mode: title_date
 content:
-  body:
-    type: text_default
+  created:
+    type: timestamp
     label: hidden
-    settings: {  }
+    settings:
+      date_format: czech_date
+      custom_date_format: ''
+      timezone: ''
+      tooltip:
+        date_format: long
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
     third_party_settings: {  }
     weight: 0
-    region: content
-  comment_forum:
-    type: comment_default
-    label: hidden
-    settings:
-      view_mode: default
-      pager_id: 0
-    third_party_settings: {  }
-    weight: 20
-    region: content
+    region: date
   field_drupal_version:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
-    weight: 101
-    region: content
-  links:
+    weight: 1
+    region: date
+  title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: true
+    third_party_settings: {  }
+    weight: -10
+    region: title
+  uid:
+    type: author
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 100
-    region: content
-  taxonomy_forums:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
     weight: -1
-    region: content
+    region: date
 hidden:
+  body: true
+  comment_forum: true
   langcode: true
+  links: true
+  taxonomy_forums: true

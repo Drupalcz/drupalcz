@@ -10,6 +10,11 @@ dependencies:
     - paragraphs.paragraphs_type.dcz_para_view_reference
   module:
     - viewsreference
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: paragraph.dcz_para_view_reference.default
 targetEntityType: paragraph
 bundle: dcz_para_view_reference
@@ -43,9 +48,9 @@ content:
     region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
 hidden:
   created: true

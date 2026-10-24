@@ -1,0 +1,5 @@
+name: 'DCZ base field display'
+type: module
+description: 'Makes selected node and user base fields configurable in view displays so core field_layout can place them.'
+package: Custom
+core_version_requirement: ^10.3 || ^11

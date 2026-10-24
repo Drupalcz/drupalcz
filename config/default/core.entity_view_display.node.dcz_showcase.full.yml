@@ -14,16 +14,15 @@ dependencies:
     - field.field.node.dcz_showcase.field_url
     - node.type.dcz_showcase
   module:
+    - field_layout
+    - layout_discovery
     - link
-    - panelizer
     - text
-    - user
 third_party_settings:
-  panelizer:
-    enable: false
-    custom: false
-    allow: false
-    default: default
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: node.dcz_showcase.full
 targetEntityType: node
 bundle: dcz_showcase
@@ -97,5 +96,8 @@ content:
     weight: 5
     region: content
 hidden:
+  created: true
   field_display_options: true
   langcode: true
+  title: true
+  uid: true

@@ -3,7 +3,6 @@ langcode: cs
 status: true
 dependencies:
   config:
-    - core.entity_view_display.comment.comment_article.default
     - core.entity_view_mode.node.title_date
     - field.field.node.dcz_article.body
     - field.field.node.dcz_article.field_comments_article
@@ -13,130 +12,60 @@ dependencies:
     - field.field.node.dcz_article.field_teaser_text
     - node.type.dcz_article
   module:
-    - comment
-    - entity_reference_revisions
-    - panelizer
-    - text
+    - field_layout
     - user
+  theme:
+    - dcz_theme
 third_party_settings:
-  panelizer:
-    enable: true
-    custom: false
-    allow: false
-    default: default
-    displays:
-      default:
-        id: panels_variant
-        label: Default
-        weight: 0
-        uuid: b13e1ada-14c4-41cb-ae58-5bf2cb5e90dd
-        blocks:
-          21f3c805-ea7b-4200-ad61-4adda99a8eca:
-            id: 'entity_field:node:uid'
-            label: 'Authored by'
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: author
-              weight: 0
-              region: content
-              label: hidden
-              settings: {  }
-              third_party_settings: {  }
-            region: date
-            weight: 0
-            uuid: 21f3c805-ea7b-4200-ad61-4adda99a8eca
-          5d2db8b7-8533-462f-ac84-61c2395e3dae:
-            id: 'entity_field:node:created'
-            label: 'Authored on'
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: timestamp
-              weight: 0
-              region: content
-              label: hidden
-              settings:
-                date_format: czech_date
-                custom_date_format: ''
-                timezone: ''
-              third_party_settings: {  }
-            region: date
-            weight: 1
-            uuid: 5d2db8b7-8533-462f-ac84-61c2395e3dae
-          eb8932f8-d1c1-41bc-bd60-9f68a5c2aabb:
-            id: 'entity_field:node:title'
-            label: Title
-            label_display: '0'
-            provider: ctools_block
-            context_mapping:
-              entity: '@panelizer.entity_context:entity'
-            formatter:
-              type: string
-              weight: 0
-              label: hidden
-              settings:
-                link_to_entity: true
-              third_party_settings: {  }
-            region: title
-            weight: 0
-            uuid: eb8932f8-d1c1-41bc-bd60-9f68a5c2aabb
-        page_title: ''
-        layout: title_date
-        layout_settings: {  }
-        builder: ipe
-        storage_type: panelizer_default
-        storage_id: 'node:dcz_article:title_date:default'
-        static_context: {  }
-        pattern: panelizer
+  field_layout:
+    id: title_date
+    settings:
+      label: ''
 id: node.dcz_article.title_date
 targetEntityType: node
 bundle: dcz_article
 mode: title_date
 content:
-  body:
-    type: text_default
+  created:
+    type: timestamp
     label: hidden
-    settings: {  }
+    settings:
+      date_format: czech_date
+      custom_date_format: ''
+      timezone: ''
+      tooltip:
+        date_format: long
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
     third_party_settings: {  }
     weight: 1
-    region: content
-  field_comments_article:
-    type: comment_default
-    label: above
-    settings:
-      view_mode: default
-      pager_id: 0
-    third_party_settings: {  }
-    weight: 4
-    region: content
-  field_paragraphs:
-    type: entity_reference_revisions_entity_view
+    region: date
+  title:
+    type: string
     label: hidden
     settings:
-      view_mode: default
-      link: ''
+      link_to_entity: true
     third_party_settings: {  }
-    weight: 2
-    region: content
-  field_tags:
-    type: entity_reference_label
+    weight: 0
+    region: title
+  uid:
+    type: author
     label: hidden
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 3
-    region: content
-  links:
     settings: {  }
     third_party_settings: {  }
     weight: 0
-    region: content
+    region: date
 hidden:
+  body: true
+  field_comments_article: true
+  field_paragraphs: true
+  field_tags: true
   field_teaser_image: true
   field_teaser_text: true
   langcode: true
+  links: true
