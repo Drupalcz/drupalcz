@@ -46,6 +46,8 @@
         "drupal/forum": "^1.0.6",
         "drupal/geolocation": "^3.11",
         "drupal/geshifilter": "^3.0",
+        "drupal/gin": "^4.1",
+        "drupal/gin_toolbar": "^2.1",
         "drupal/google_analytics": "^4.0",
         "drupal/inline_entity_form": "^1.0@RC",
         "drupal/jquery_ui": "^1.8",
