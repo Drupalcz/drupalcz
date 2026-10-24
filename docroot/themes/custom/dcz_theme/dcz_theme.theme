@@ -26,7 +26,8 @@ function dcz_theme_theme_suggestions_page_alter(array &$suggestions, array $vari
  * Nodes displayed through a core field_layout use a minimal wrapper template.
  */
 function dcz_theme_theme_suggestions_node_alter(array &$suggestions, array $variables) {
-  // Bundle => view modes that were rendered by Panelizer and now use layouts.
+  // Bundle => view modes laid out with field_layout. Keep in sync with the
+  // node view displays that have a non-default layout in config/default.
   $layout_displays = [
     'dcz_article' => ['search_index', 'teaser', 'title_date'],
     'dcz_landing_page' => ['full', 'search_index', 'teaser'],
@@ -85,6 +86,8 @@ function dcz_theme_preprocess_user(&$variables) {
     ];
     foreach ($lists as $region => [$view_id, $display_id]) {
       $view = Views::getView($view_id);
+      // The access check depends on the current user's permissions.
+      $variables['content']['#cache']['contexts'][] = 'user.permissions';
       if (!$view || !$view->access($display_id)) {
         continue;
       }
@@ -130,11 +133,14 @@ function dcz_theme_preprocess_node(&$variables) {
     $options = $node->getFieldDefinition($field)->getDisplayOptions('view');
     return $node->get($field)->view($options);
   };
-  if (empty($variables['date']) && isset($variables['date'])) {
-    $variables['date'] = \Drupal::service('renderer')->render($view('created'));
+  $renderer = \Drupal::service('renderer');
+  if (isset($variables['date']) && empty($variables['date'])) {
+    $build = $view('created');
+    $variables['date'] = $renderer->render($build);
   }
-  if (empty($variables['author_name']) && isset($variables['author_name'])) {
-    $variables['author_name'] = \Drupal::service('renderer')->render($view('uid'));
+  if (isset($variables['author_name']) && empty($variables['author_name'])) {
+    $build = $view('uid');
+    $variables['author_name'] = $renderer->render($build);
   }
   if (!isset($variables['label'])) {
     $variables['label'] = $view('title');
