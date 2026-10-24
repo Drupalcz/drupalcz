@@ -4,6 +4,9 @@ global-styling:
       css/style.min.css: { minified: true }
   js:
     js/drupalcz_theme.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
 
 font_dcz:
   version: VERSION

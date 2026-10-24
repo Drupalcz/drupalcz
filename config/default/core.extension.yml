@@ -39,7 +39,6 @@ module:
   geolocation: 0
   geolocation_google_maps: 0
   geolocation_leaflet: 0
-  geshifilter: 0
   gin_toolbar: 0
   google_analytics: 0
   hal: 0
